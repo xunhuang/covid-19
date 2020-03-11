@@ -1,5 +1,5 @@
 import React from 'react';
-import { GoogleMap, OverlayView, Marker, LoadScript } from '@react-google-maps/api'
+import { GoogleMap, Marker, LoadScript } from '@react-google-maps/api'
 
 var Hospitals = require('./hospitals.json');
 
