@@ -3,6 +3,8 @@ import { GoogleMap, OverlayView, Marker, LoadScript } from '@react-google-maps/a
 
 var Hospitals = require('./hospitals.json');
 
+const firebaseConfig = require('./firebaseConfig.json');
+
 console.log("*************");
 console.log(Hospitals.features);
 console.log("*************");
@@ -19,7 +21,7 @@ const BasicMap = (props) => {
       lng: a.geometry.coordinates[0],
     }}
       title={a.properties.NAME}
-      k />;
+      />;
   })
 
 
@@ -27,7 +29,7 @@ const BasicMap = (props) => {
     <div className='map-container'>
       <LoadScript
         id="script-loader"
-        googleMapsApiKey="AIzaSyCc0PJublS1nreH_DpI7YbJs3-yW-BqxSk"
+        googleMapsApiKey={firebaseConfig.apiKey}
       >
         <GoogleMap
           id='traffic-example'
