@@ -4,6 +4,10 @@ const firebaseConfig = require('../website/src/firebaseConfig.json');
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 
+const DataConfirmed = require('../website/src/data/time_series_19-covid-Confirmed.json');
+const DataDeath = require('../website/src/data/time_series_19-covid-Deaths.json');
+const DataRecovered = require('../website/src/data/time_series_19-covid-Recovered.json');
+
 const states_info = require('./us_states.json');
 let states = states_info.features;
 let states_by_id = states.reduce(function (m, item) {
@@ -119,6 +123,20 @@ async function saveCountyInDB(county) {
     return county;
 }
 
+async function findCountyInDB(state_shortname, countyname) {
+    var county = await db.collection("US_COUNTIES")
+        .where("STATE_SHORT_NAME", "==", state_shortname)
+        .where("NAME", "==", countyname)
+        .get().then((querySnapshot) => {
+            venues = snapshotToArray(querySnapshot);
+            if (venues.length !== 1) {
+                return null;
+            }
+            return venues[0];
+        });
+    return county;
+}
+
 async function countyGeoIDExistURLInDB(geoid) {
     var exist = await db.collection("US_COUNTIES")
         .where("GEO_ID", "==", geoid)
@@ -182,9 +200,94 @@ async function doCountiesImport() {
     }
 }
 
+async function updateCountyInfoInDB(key, info) {
+    let docRef = db.collection("US_COUNTIES").doc(key);
+    info.hasData = true;
+    await docRef.update(info).then((doc) => {
+        console.log(`done updating ${key}`);
+    }).catch(err => {
+        console.log(err);
+        return null;
+    });
+}
+function LookupCountyCount(source) {
+    let info = source;
+    delete info["Country/Region"];
+    delete info["Province/State"];
+    delete info["Lat"];
+    delete info["Long"];
+    return info;
+}
+
+async function findCountyFromInput(item) {
+    if (item['Country/Region'] === "US") {
+        let statefield = item['Province/State'];
+        if (statefield.includes(",")) {
+
+            let parts = statefield.split(",");
+            let county_name = parts[0];
+            let state_short = parts[1].trim();
+            if (state_short === "D.C.") {
+                state_short = "DC";
+            }
+
+            if (county_name.includes("County")) {
+                county_name = county_name.replace(" County", "");
+            }
+            if (county_name === "Wetchester") {
+                county_name = "Westchester";
+            }
+            if (county_name === "Wilton") {
+                county_name = "Fairfield";
+            }
+            if (county_name === "Jefferson Parish") {
+                county_name = "Jefferson";
+            }
+            let county = await findCountyInDB(state_short, county_name);
+            if (county) {
+                return county;
+            }
+            else {
+                console.log("NOT FOUND : " + statefield);
+                console.log(county_name);
+                console.log(state_short);
+            }
+        }
+    }
+    return null;
+}
+
 async function doit() {
-    await doStatesImport();
-    await doCountiesImport();
+    for (let i = 0; i < DataConfirmed.length; i++) {
+        item = DataConfirmed[i];
+        county = await findCountyFromInput(item);
+        if (county) {
+            let update = {};
+            update.DataConfirmed = LookupCountyCount(item);
+            await updateCountyInfoInDB(county.key, update);
+        }
+    }
+
+    for (let i = 0; i < DataDeath.length; i++) {
+        item = DataDeath[i];
+        county = await findCountyFromInput(item);
+        if (county) {
+            let update = {};
+            update.DataDeath = LookupCountyCount(item);
+            await updateCountyInfoInDB(county.key, update);
+        }
+    }
+
+    for (let i = 0; i < DataRecovered.length; i++) {
+        item = DataRecovered[i];
+        county = await findCountyFromInput(item);
+        if (county) {
+            let update = {};
+            update.DataRecovered = LookupCountyCount(item);
+            await updateCountyInfoInDB(county.key, update);
+        }
+    }
+    process.exit();
 }
 
 doit();
