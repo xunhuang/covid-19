@@ -47,7 +47,7 @@ function countyDataToGraphData(county_data) {
   const keys_to_drop = ["Province/State", "Country/Region", "Lat", "Long"];
   return Object.entries(county_data).reduce((result, v) => {
     if (!keys_to_drop.includes(v[0])) {
-      result.push({name: v[0], infected: Number(v[1])});
+      result.push({name: v[0], infected: Number(v[1]), deathrate: 0.2, recovery: 234});
     }
     return result;
   }, [] );
@@ -66,7 +66,8 @@ const BasicGraph = (props) => {
     <Tooltip />
     <CartesianGrid stroke="#f5f5f5" />
     <Line type="monotone" dataKey="infected" stroke="#ff7300" yAxisId={0} />
-    <Line type="monotone" dataKey="pv" stroke="#387908" yAxisId={1} />
+    <Line type="monotone" dataKey="deathrate" stroke="#387908" yAxisId={1} />
+    <Line type="monotone" dataKey="recovery" stroke="#3879ff" yAxisId={2} />
   </LineChart></div>;
 }
 
