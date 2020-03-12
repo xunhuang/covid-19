@@ -1,56 +1,111 @@
 import React from 'react';
 import { GoogleMap, Marker, LoadScript } from '@react-google-maps/api'
-import { LineChart, Line, XAxis,Tooltip, CartesianGrid } from 'recharts';
+import { LineChart, Line, XAxis, Tooltip, CartesianGrid } from 'recharts';
+
+const firebase = require("firebase");
+require("firebase/firestore");
+const firebaseConfig = require('./firebaseConfig.json');
+firebase.initializeApp(firebaseConfig);
+
+const db = firebase.firestore();
 
 var Hospitals = require('./hospitals.json');
 
-const firebaseConfig = require('./firebaseConfig.json');
 const DataConfirmed = require('./data/time_series_19-covid-Confirmed.json');
 
 const ConfirmedMap = DataConfirmed.reduce((map, item) => {
-        map[item["Province/State"]] = item;
-        return map;
-    }, {});
-
+  map[item["Province/State"]] = item;
+  return map;
+}, {});
 
 function LookupCountyCount(county_name) {
-   let info = ConfirmedMap[county_name];
-   delete info[ "Country/Region"];
-   delete info[ "Province/State"];
-   delete info[ "Lat"];
-   delete info[ "Long"];
-   return info;
+  let info = ConfirmedMap[county_name];
+  delete info["Country/Region"];
+  delete info["Province/State"];
+  delete info["Lat"];
+  delete info["Long"];
+  return info;
 }
 
 function LookupCountyCountTotal(county_name) {
-   let countInfo = LookupCountyCount(county_name);
-   let count_array = Object.values(countInfo).map (n => parseInt(n)); 
-   let arraySum = arr => arr.reduce((a,b) => a + b, 0)
-   let total = arraySum(count_array);
-    return total;
+  let countInfo = LookupCountyCount(county_name);
+  let count_array = Object.values(countInfo).map(n => parseInt(n));
+  let arraySum = arr => arr.reduce((a, b) => a + b, 0)
+  let total = arraySum(count_array);
+  return total;
+}
+
+function snapshotToArrayData(snapshot) {
+  var returnArr = []
+  snapshot.forEach(function (childSnapshot) {
+    returnArr.push(childSnapshot.data());
+  });
+  return returnArr;
+}
+
+async function getCountyList() {
+  let counties = await db.collection("US_COUNTIES")
+    .where("hasData", "==", true)
+    .get().then((querySnapshot) => {
+      return snapshotToArrayData(querySnapshot);
+    });
+  return counties;
+}
+
+async function getCountyFromDb(state_short_name, county_name) {
+  let counties = await db.collection("US_COUNTIES")
+    .where("STATE_SHORT_NAME", "==", state_short_name)
+    .where("NAME", "==", county_name)
+    .get().then((querySnapshot) => {
+      return snapshotToArrayData(querySnapshot);
+    });
+
+  if (counties.length === 1) {
+    return counties[0];
+  }
+
+  if (counties && counties.length !== 0) {
+    console.log("duplicate counties names in the same state");
+    console.log(counties);
+  }
+  return null;
 }
 
 const USCountyInfo = (props) => {
-   const county_name = props.county;
+  const [county, setCounty] = React.useState(null);
 
-   let county = ConfirmedMap[county_name];
-   let total = LookupCountyCountTotal(county_name);
+  React.useEffect(() => {
+    getCountyFromDb(props.state, props.county).then(c => {
+      setCounty(c);
+    });
+  }, [props.state, props.county]);
 
-   return <div> 
-        {county_name},
-        {county["Country/Region"]}
-    Total:  {total}
-    </div>;
+  if (!county) return <div>loading</div>;
+
+  return <div>
+    {county.NAME},
+    {county.STATE_NAME},
+    Total:  TBD
+  </div>;
+};
+
+const USCountyList = (props) => {
+  React.useEffect(() => {
+    getCountyList().then(counties => {
+      console.log(counties);
+    });
+  }, []);
+  return <div>Placeholder</div>;
 };
 
 function countyDataToGraphData(county_data) {
   const keys_to_drop = ["Province/State", "Country/Region", "Lat", "Long"];
   return Object.entries(county_data).reduce((result, v) => {
     if (!keys_to_drop.includes(v[0])) {
-      result.push({name: v[0], infected: Number(v[1]), deathrate: 0.2, recovery: 234});
+      result.push({ name: v[0], infected: Number(v[1]), deathrate: 0.2, recovery: 234 });
     }
     return result;
-  }, [] );
+  }, []);
 }
 
 const BasicGraph = (props) => {
@@ -83,7 +138,7 @@ const BasicMap = (props) => {
       lng: a.geometry.coordinates[0],
     }}
       title={a.properties.NAME}
-      />;
+    />;
   })
 
 
@@ -115,8 +170,11 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-      <USCountyInfo
-         county="Santa Clara County, CA" /> 
+        <USCountyList />
+        <USCountyInfo
+          county="Santa Clara"
+          state="CA"
+        />
         <div>
           US Hospitals
       </div>
