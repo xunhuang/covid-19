@@ -4,10 +4,43 @@ import { GoogleMap, Marker, LoadScript } from '@react-google-maps/api'
 var Hospitals = require('./hospitals.json');
 
 const firebaseConfig = require('./firebaseConfig.json');
+const DataConfirmed = require('./data/time_series_19-covid-Confirmed.json');
 
-console.log("*************");
-console.log(Hospitals.features);
-console.log("*************");
+const ConfirmedMap = DataConfirmed.reduce((map, item) => {
+        map[item["Province/State"]] = item;
+        return map;
+    }, {});
+
+
+function LookupCountyCount(county_name) {
+   let info = ConfirmedMap[county_name];
+   delete info[ "Country/Region"];
+   delete info[ "Province/State"];
+   delete info[ "Lat"];
+   delete info[ "Long"];
+   return info;
+}
+
+function LookupCountyCountTotal(county_name) {
+   let countInfo = LookupCountyCount(county_name);
+   let count_array = Object.values(countInfo).map (n => parseInt(n)); 
+   let arraySum = arr => arr.reduce((a,b) => a + b, 0)
+   let total = arraySum(count_array);
+    return total;
+}
+
+const USCountyInfo = (props) => {
+   const county_name = props.county;
+
+   let county = ConfirmedMap[county_name];
+   let total = LookupCountyCountTotal(county_name);
+
+   return <div> 
+        {county_name},
+        {county["Country/Region"]}
+    Total:  {total}
+    </div>;
+};
 
 const BasicMap = (props) => {
   const center = {
@@ -53,8 +86,10 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
+      <USCountyInfo
+         county="Santa Clara County, CA" /> 
         <div>
-          US Hospitals 1 2 3
+          US Hospitals
       </div>
         <BasicMap />
       </header>
