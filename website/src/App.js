@@ -11,30 +11,6 @@ const db = firebase.firestore();
 
 var Hospitals = require('./hospitals.json');
 
-const DataConfirmed = require('./data/time_series_19-covid-Confirmed.json');
-
-const ConfirmedMap = DataConfirmed.reduce((map, item) => {
-  map[item["Province/State"]] = item;
-  return map;
-}, {});
-
-function LookupCountyCount(county_name) {
-  let info = ConfirmedMap[county_name];
-  delete info["Country/Region"];
-  delete info["Province/State"];
-  delete info["Lat"];
-  delete info["Long"];
-  return info;
-}
-
-function LookupCountyCountTotal(county_name) {
-  let countInfo = LookupCountyCount(county_name);
-  let count_array = Object.values(countInfo).map(n => parseInt(n));
-  let arraySum = arr => arr.reduce((a, b) => a + b, 0)
-  let total = arraySum(count_array);
-  return total;
-}
-
 function snapshotToArrayData(snapshot) {
   var returnArr = []
   snapshot.forEach(function (childSnapshot) {
