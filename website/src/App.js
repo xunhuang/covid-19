@@ -79,12 +79,31 @@ const USCountyInfo = (props) => {
 };
 
 const USCountyList = (props) => {
+  const [counties, setCounties] = React.useState(null);
+
   React.useEffect(() => {
-    getCountyList().then(counties => {
-      // console.log(counties);
+    getCountyList().then(cs => {
+      setCounties(cs);
     });
   }, []);
-  return <div>Placeholder</div>;
+
+  if (!counties) return null;
+
+  let content = counties.sort((a, b) => {
+    let max_a = Math.max(...Object.values(a.DataConfirmed).map(v => parseInt(v)));
+    let max_b = Math.max(...Object.values(b.DataConfirmed).map(v => parseInt(v)));
+    return max_b - max_a;
+  }).map(county => {
+    let total = Math.max(...Object.values(county.DataConfirmed).map(v => parseInt(v)));
+    return <div>
+      <span> {county.NAME}</span>
+      <span> {county.STATE_SHORT_NAME}</span>
+      <span> {total} </span>
+    </div>
+  })
+
+
+  return <div>{content} </div>;
 };
 
 function countyDataToGraphData(confirmed, deaths, recovered) {
@@ -217,9 +236,8 @@ function App() {
           state="CA"
         />
         <div>
-          US Hospitals
-      </div>
-        <BasicMap />
+          <USCountyList />
+        </div>
       </header>
     </div>
   );
