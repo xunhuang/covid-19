@@ -81,6 +81,12 @@ const USCountyInfo = (props) => {
 const USCountyList = (props) => {
   const [counties, setCounties] = React.useState(null);
 
+  function clicked(newcounty, newstate) {
+    if (props.callback) {
+      props.callback(newcounty, newstate);
+    }
+  }
+
   React.useEffect(() => {
     getCountyList().then(cs => {
       setCounties(cs);
@@ -96,9 +102,9 @@ const USCountyList = (props) => {
   }).map(county => {
     let total = Math.max(...Object.values(county.DataConfirmed).map(v => parseInt(v)));
     return <div>
-      <span> {county.NAME}</span>
+      <span onClick={() => { clicked(county.NAME, county.STATE_SHORT_NAME); }}> {county.NAME}</span>,
       <span> {county.STATE_SHORT_NAME}</span>
-      <span> {total} </span>
+      <span> Total: {total} </span>
     </div>
   })
 
@@ -227,17 +233,24 @@ const BasicMap = (props) => {
   </div>;
 }
 
-function App() {
 
+function App() {
+  const [county, setCounty] = React.useState("Santa Clara");
+  const [state, setState] = React.useState("CA");
   return (
     <div className="App">
       <header className="App-header">
         <USCountyInfo
-          county="Santa Clara"
-          state="CA"
+          county={county}
+          state={state}
         />
         <div>
-          <USCountyList />
+          <USCountyList
+            callback={(newcounty, newstate) => {
+              setCounty(newcounty);
+              setState(newstate);
+            }}
+          />
         </div>
       </header>
     </div>
