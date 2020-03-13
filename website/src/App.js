@@ -94,22 +94,17 @@ const USCountyInfo = (props) => {
     return m;
   }, {});
 
-  console.log(newcases);
-
   React.useEffect(() => {
     getCountyFromDb(props.state, props.county).then(c => {
       setCounty(c);
     });
   }, [props.state, props.county]);
 
-  if (!county) return <div>loading</div>;
-
-  let intvalues = Object.values(county.DataConfirmed).map(v => parseInt(v));
-  let total = Math.max(...intvalues);
+  let total = Object.values(newcases).reduce((a, b) => a + b, 0);
 
   return <div>
-    {county.NAME},
-    {county.STATE_NAME},
+    {mycases[0].county},
+    {mycases[0].state_name},
     Total: {total}
     <div>
       <BasicGraphNewCases
@@ -119,37 +114,63 @@ const USCountyInfo = (props) => {
   </div>;
 };
 
-const USCountyList = (props) => {
-  const [counties, setCounties] = React.useState(null);
+function getCountySummary(cases) {
+  let g = cases.reduce((result, c) => {
+    if (!c.county || c.county === "undefined" || c.countuy === "Unassigned" || c.county === "Unknown") {
+      c.county = "Unknown";
+    }
 
+    let key = c.state_name + "," + c.county;
+
+    let group = result[key];
+    if (group) {
+      group.push(c);
+    } else {
+      group = [c];
+    }
+    result[key] = group;
+    return result;
+  }, {});
+
+  console.log(g);
+
+  let g_group = Object.keys(g).reduce((result, key) => {
+    let county = g[key];
+    let total = county.reduce((sum, c) => {
+      sum += c.people_count;
+      return sum;
+    }, 0);
+    result.push({
+      total: total,
+      county: county[0].county,
+      state_name: county[0].state_name,
+    });
+    return result;
+  }, []);
+
+  return g_group;
+}
+
+const USCountyList = (props) => {
   function clicked(newcounty, newstate) {
     if (props.callback) {
       props.callback(newcounty, newstate);
     }
   }
 
-  React.useEffect(() => {
-    getCountyList().then(cs => {
-      setCounties(cs);
-    });
-  }, []);
-
-  if (!counties) return null;
-
-  let content = counties.sort((a, b) => {
-    let max_a = Math.max(...Object.values(a.DataConfirmed).map(v => parseInt(v)));
-    let max_b = Math.max(...Object.values(b.DataConfirmed).map(v => parseInt(v)));
-    return max_b - max_a;
+  let summary = getCountySummary(CasesData);
+  let content = summary.sort((a, b) => {
+    return b.total - a.total;
   }).map(county => {
-    let total = Math.max(...Object.values(county.DataConfirmed).map(v => parseInt(v)));
+    let total = county.total
     return <div>
-      <span onClick={() => { clicked(county.NAME, county.STATE_SHORT_NAME); }}> {county.NAME}</span>,
-      <span> {county.STATE_SHORT_NAME}</span>
+      <span onClick={() => { clicked(county.county, county.state_name); }}>
+        {county.county}
+      </span>,
+      <span> {county.state_name}</span>
       <span> Total: {total} </span>
     </div>
   })
-
-
   return <div>{content} </div>;
 };
 
@@ -189,9 +210,7 @@ function countyDataToGraphData(confirmed, deaths, recovered) {
     return moment(a).toDate() - moment(b).toDate();
   });
 
-
   let last_confirmed = undefined;
-
   return sorted_keys.map(key => {
     let v = r[key];
     let newcase = 0;
@@ -218,15 +237,10 @@ function countyDataToGraphData(confirmed, deaths, recovered) {
 }
 
 function countyFromNewCases(newcases) {
-
   let sorted_keys = Object.keys(newcases).sort(function (a, b) {
     return moment(a).toDate() - moment(b).toDate();
   });
-
-  console.log(sorted_keys);
-
   let total = 0;
-
   return sorted_keys.map(key => {
     let v = newcases[key];
     let newcase = 0;
