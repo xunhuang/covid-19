@@ -4,14 +4,13 @@ import { LineChart, Line, YAxis, XAxis, Tooltip, CartesianGrid, Legend } from 'r
 
 const moment = require("moment");
 
-
 const firebase = require("firebase");
 require("firebase/firestore");
 const firebaseConfig = require('./firebaseConfig.json');
 firebase.initializeApp(firebaseConfig);
 
+const CasesData = require('./data/1.3cases.json');
 const db = firebase.firestore();
-
 var Hospitals = require('./hospitals.json');
 
 function snapshotToArrayData(snapshot) {
@@ -50,7 +49,7 @@ async function getCountyFromDb(state_short_name, county_name) {
   return null;
 }
 
-const USCountyInfo = (props) => {
+const USCountyInfoOld = (props) => {
   const [county, setCounty] = React.useState(null);
 
   React.useEffect(() => {
@@ -70,9 +69,51 @@ const USCountyInfo = (props) => {
     Total: {total}
     <div>
       <BasicGraph
-        confirmed={county.DataConfirmed}
+        newcases={county.DataConfirmed}
         deaths={county.DataDeath}
         recovered={county.DataRecovered}
+      />
+    </div>
+  </div>;
+};
+
+
+const USCountyInfo = (props) => {
+
+  const [county, setCounty] = React.useState(null);
+
+  const mycases = CasesData.filter(c => {
+    return (c.state_name === props.state && c.county === props.county);
+  });
+
+  const newcases = mycases.reduce((m, c) => {
+    let a = m[c.confirmed_date];
+    if (!a) a = 0;
+    a += c.people_count;
+    m[c.confirmed_date] = a;
+    return m;
+  }, {});
+
+  console.log(newcases);
+
+  React.useEffect(() => {
+    getCountyFromDb(props.state, props.county).then(c => {
+      setCounty(c);
+    });
+  }, [props.state, props.county]);
+
+  if (!county) return <div>loading</div>;
+
+  let intvalues = Object.values(county.DataConfirmed).map(v => parseInt(v));
+  let total = Math.max(...intvalues);
+
+  return <div>
+    {county.NAME},
+    {county.STATE_NAME},
+    Total: {total}
+    <div>
+      <BasicGraphNewCases
+        newcases={newcases}
       />
     </div>
   </div>;
@@ -174,6 +215,49 @@ function countyDataToGraphData(confirmed, deaths, recovered) {
       newcase: newcase,
     };
   });
+}
+
+function countyFromNewCases(newcases) {
+
+  let sorted_keys = Object.keys(newcases).sort(function (a, b) {
+    return moment(a).toDate() - moment(b).toDate();
+  });
+
+  console.log(sorted_keys);
+
+  let total = 0;
+
+  return sorted_keys.map(key => {
+    let v = newcases[key];
+    let newcase = 0;
+    total += v;
+
+    return {
+      name: key,
+      confirmed: total,
+      newcase: v,
+    };
+  });
+}
+
+const BasicGraphNewCases = (props) => {
+  const data = countyFromNewCases(props.newcases);
+  return <div><LineChart
+    width={400}
+    height={400}
+    data={data}
+    margin={{ top: 5, right: 20, left: 10, bottom: 5 }}
+  >
+    <Tooltip />
+    <YAxis />
+    <XAxis dataKey="name" />
+    <CartesianGrid stroke="#f5f5f5" strokeDasharray="5 5" />
+    <Line type="monotone" dataKey="confirmed" stroke="#ff7300" yAxisId={0} />
+    <Line type="monotone" dataKey="newcase" stroke="#387908" yAxisId={0} />
+    <Legend verticalAlign="top" />
+    {/* <Line type="monotone" dataKey="deaths" stroke="#387908" yAxisId={0} /> */}
+    {/* <Line type="monotone" dataKey="recovered" stroke="#3879ff" yAxisId={0} /> */}
+  </LineChart></div>;
 }
 
 const BasicGraph = (props) => {

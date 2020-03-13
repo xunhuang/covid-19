@@ -47,15 +47,23 @@ cases = eval(cases_to_eval.toString());
 
 async function doit() {
     let g = cases.reduce((result, c) => {
-        let group = result[c.county];
+        // let group = result[c.county];
+        if (!c.county || c.county === "undefined" || c.countuy === "Unassigned" || c.county === "Unknown") {
+            c.county = "Unknown";
+        }
+
+        let key = c.state_name + "," + c.county;
+
+        let group = result[key];
         if (group) {
             group.push(c);
         } else {
             group = [c];
         }
-        result[c.county] = group;
+        result[key] = group;
         return result;
     }, {});
+
     let g_group = Object.keys(g).reduce((result, key) => {
         county = g[key];
         total = county.reduce((sum, c) => {
