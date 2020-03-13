@@ -268,6 +268,7 @@ async function doit() {
         }
     }
 
+    /*
     for (let i = 0; i < DataDeath.length; i++) {
         item = DataDeath[i];
         county = await findCountyFromInput(item);
@@ -287,6 +288,7 @@ async function doit() {
             await updateCountyInfoInDB(county.key, update);
         }
     }
+    */
     process.exit();
 }
 

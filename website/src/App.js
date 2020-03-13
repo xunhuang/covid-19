@@ -1,6 +1,6 @@
 import React from 'react';
 import { GoogleMap, Marker, LoadScript } from '@react-google-maps/api'
-import { LineChart, Line, XAxis, Tooltip, CartesianGrid, Legend } from 'recharts';
+import { LineChart, Line, YAxis, XAxis, Tooltip, CartesianGrid, Legend } from 'recharts';
 
 const moment = require("moment");
 
@@ -158,12 +158,17 @@ function countyDataToGraphData(confirmed, deaths, recovered) {
       last_confirmed = Number(v.confirmed);
     } else {
       newcase = Number(v.confirmed) - last_confirmed;
-      last_confirmed = Number(v.confirmed);
+      if (newcase < 0) {
+        newcase = 0; // likely due to no data update
+      }
+      if (Number(v.confirmed) > 0) {
+        last_confirmed = Number(v.confirmed);
+      }
     }
 
     return {
       name: key,
-      confirmed: Number(v.confirmed),
+      confirmed: last_confirmed,
       deaths: Number(v.deaths),
       recovered: Number(v.recovered),
       newcase: newcase,
@@ -184,12 +189,14 @@ const BasicGraph = (props) => {
     data={data}
     margin={{ top: 5, right: 20, left: 10, bottom: 5 }}
   >
-    <XAxis dataKey="name" />
     <Tooltip />
-    <CartesianGrid stroke="#f5f5f5" />
+    <YAxis />
+    <XAxis dataKey="name" />
+    <CartesianGrid stroke="#f5f5f5" strokeDasharray="5 5" />
     <Line type="monotone" dataKey="confirmed" stroke="#ff7300" yAxisId={0} />
     <Line type="monotone" dataKey="newcase" stroke="#387908" yAxisId={0} />
-    <Legend layout="vetical" verticalAlign="top" align="right" />
+    <Legend verticalAlign="top" />
+
     {/* <Line type="monotone" dataKey="deaths" stroke="#387908" yAxisId={0} /> */}
     {/* <Line type="monotone" dataKey="recovered" stroke="#3879ff" yAxisId={0} /> */}
   </LineChart></div>;
