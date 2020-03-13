@@ -1,6 +1,6 @@
 import React from 'react';
 import { GoogleMap, Marker, LoadScript } from '@react-google-maps/api'
-import { LineChart, Line, XAxis, Tooltip, CartesianGrid } from 'recharts';
+import { LineChart, Line, XAxis, Tooltip, CartesianGrid, Legend } from 'recharts';
 
 const moment = require("moment");
 
@@ -183,6 +183,7 @@ const BasicGraph = (props) => {
     <CartesianGrid stroke="#f5f5f5" />
     <Line type="monotone" dataKey="confirmed" stroke="#ff7300" yAxisId={0} />
     <Line type="monotone" dataKey="newcase" stroke="#387908" yAxisId={0} />
+    <Legend layout="vetical" verticalAlign="top" align="right" />
     {/* <Line type="monotone" dataKey="deaths" stroke="#387908" yAxisId={0} /> */}
     {/* <Line type="monotone" dataKey="recovered" stroke="#3879ff" yAxisId={0} /> */}
   </LineChart></div>;
