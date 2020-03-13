@@ -2,6 +2,9 @@ import React from 'react';
 import { GoogleMap, Marker, LoadScript } from '@react-google-maps/api'
 import { LineChart, Line, XAxis, Tooltip, CartesianGrid } from 'recharts';
 
+const moment = require("moment");
+
+
 const firebase = require("firebase");
 require("firebase/firestore");
 const firebaseConfig = require('./firebaseConfig.json');
@@ -58,35 +61,89 @@ const USCountyInfo = (props) => {
 
   if (!county) return <div>loading</div>;
 
+  console.log(county);
+
   return <div>
     {county.NAME},
     {county.STATE_NAME},
     Total:  TBD
+    <div>
+      <BasicGraph
+        confirmed={county.DataConfirmed}
+        deaths={county.DataDeath}
+        recovered={county.DataRecovered}
+      />
+    </div>
   </div>;
 };
 
 const USCountyList = (props) => {
   React.useEffect(() => {
     getCountyList().then(counties => {
-      console.log(counties);
+      // console.log(counties);
     });
   }, []);
   return <div>Placeholder</div>;
 };
 
-function countyDataToGraphData(county_data) {
-  const keys_to_drop = ["Province/State", "Country/Region", "Lat", "Long"];
-  return Object.entries(county_data).reduce((result, v) => {
-    if (!keys_to_drop.includes(v[0])) {
-      result.push({ name: v[0], infected: Number(v[1]), deathrate: 0.2, recovery: 234 });
+function countyDataToGraphData(confirmed, deaths, recovered) {
+  let r = {};
+  r = Object.entries(confirmed).reduce((m, item) => {
+    let a = m[item[0]];
+    if (!a) {
+      a = {};
     }
-    return result;
-  }, []);
+    a.confirmed = item[1];
+    m[item[0]] = a;
+    return m;
+  }, r);
+
+  r = Object.entries(deaths).reduce((m, item) => {
+    let a = m[item[0]];
+    if (!a) {
+      a = {};
+    }
+    a.deaths = item[1];
+    m[item[0]] = a;
+    return m;
+  }, r);
+
+  r = Object.entries(recovered).reduce((m, item) => {
+    let a = m[item[0]];
+    if (!a) {
+      a = {};
+    }
+    a.recovered = item[1];
+    m[item[0]] = a;
+    return m;
+  }, r);
+
+
+  let sorted_keys = Object.keys(r).sort(function (a, b) {
+    return moment(a).toDate() - moment(b).toDate();
+  });
+
+  console.log(sorted_keys);
+
+  return sorted_keys.map(key => {
+    let v = r[key];
+    return {
+      name: key,
+      confirmed: Number(v.confirmed),
+      deaths: Number(v.deaths),
+      recovered: Number(v.recovered),
+    };
+  });
 }
 
 const BasicGraph = (props) => {
-  const santa_clara = { "Province/State": "Santa Clara County, CA", "Country/Region": "US", "Lat": "37.3541", "Long": "-121.9552", "1/22/20": "0", "1/23/20": "0", "1/24/20": "0", "1/25/20": "0", "1/26/20": "0", "1/27/20": "0", "1/28/20": "0", "1/29/20": "0", "1/30/20": "0", "1/31/20": "1", "2/1/20": "1", "2/2/20": "1", "2/3/20": "2", "2/4/20": "2", "2/5/20": "2", "2/6/20": "2", "2/7/20": "2", "2/8/20": "2", "2/9/20": "2", "2/10/20": "2", "2/11/20": "2", "2/12/20": "2", "2/13/20": "2", "2/14/20": "2", "2/15/20": "2", "2/16/20": "2", "2/17/20": "2", "2/18/20": "2", "2/19/20": "2", "2/20/20": "2", "2/21/20": "2", "2/22/20": "2", "2/23/20": "2", "2/24/20": "2", "2/25/20": "2", "2/26/20": "2", "2/27/20": "2", "2/28/20": "2", "2/29/20": "3", "3/1/20": "3", "3/2/20": "9", "3/3/20": "11", "3/4/20": "11", "3/5/20": "20", "3/6/20": "20", "3/7/20": "32", "3/8/20": "38", "3/9/20": "38", "3/10/20": "43" };
-  const data = countyDataToGraphData(santa_clara);
+  const data = countyDataToGraphData(
+    props.confirmed,
+    props.deaths,
+    props.recovered,
+  );
+  console.log(data);
+
   return <div><LineChart
     width={400}
     height={400}
@@ -96,9 +153,9 @@ const BasicGraph = (props) => {
     <XAxis dataKey="name" />
     <Tooltip />
     <CartesianGrid stroke="#f5f5f5" />
-    <Line type="monotone" dataKey="infected" stroke="#ff7300" yAxisId={0} />
-    <Line type="monotone" dataKey="deathrate" stroke="#387908" yAxisId={1} />
-    <Line type="monotone" dataKey="recovery" stroke="#3879ff" yAxisId={2} />
+    <Line type="monotone" dataKey="confirmed" stroke="#ff7300" yAxisId={0} />
+    {/* <Line type="monotone" dataKey="deaths" stroke="#387908" yAxisId={0} /> */}
+    {/* <Line type="monotone" dataKey="recovered" stroke="#3879ff" yAxisId={0} /> */}
   </LineChart></div>;
 }
 
@@ -154,7 +211,6 @@ function App() {
         <div>
           US Hospitals
       </div>
-        <BasicGraph />
         <BasicMap />
       </header>
     </div>
