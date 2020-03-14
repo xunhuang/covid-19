@@ -133,6 +133,12 @@ const USCountyInfo = (props) => {
     return m;
   }, {});
 
+  const today = moment().format("M/D");
+  var newcasenum = newcases[today];
+  if (!newcasenum) {
+    newcasenum = 0;
+  }
+
   let total = Object.values(newcases).reduce((a, b) => a + b, 0);
 
   return <div>
@@ -140,18 +146,30 @@ const USCountyInfo = (props) => {
       <Tag
         title={`${mycases[0].county}, ${mycases[0].state_name}`}
         confirmed={total}
-        newcases={4}
-        hospitals={15}
-        beds={1500}
+        newcases={newcasenum}
+        hospitals={"15?"}
+        beds={"1500?"}
       />
       <Tag
         title="Bay Area"
+        confirmed={"tbd"}
+        newcases={"tbd"}
+        hospitals={"15?"}
+        beds={"1500?"}
       />
       <Tag
         title="California"
+        confirmed={"tbd"}
+        newcases={"tbd"}
+        hospitals={"15?"}
+        beds={"1500?"}
       />
       <Tag
         title="US"
+        confirmed={"tbd"}
+        newcases={"tbd"}
+        hospitals={"6049"}
+        beds={"90000"}
       />
     </div>
     <BasicGraphNewCases
@@ -207,8 +225,8 @@ const USCountyList = (props) => {
     return b.total - a.total;
   }).map(county => {
     let total = county.total
-    return <div>
-      <span onClick={() => { clicked(county.county, county.state_name); }}>
+    return <div onClick={() => { clicked(county.county, county.state_name); }}>
+      <span>
         {county.county}
       </span>,
       <span> {county.state_name}</span>
