@@ -1,6 +1,6 @@
 import React from 'react';
 import { GoogleMap, Marker, LoadScript } from '@react-google-maps/api'
-import { LineChart, Line, YAxis, XAxis, Tooltip, CartesianGrid, Legend } from 'recharts';
+import { ResponsiveContainer, LineChart, Line, YAxis, XAxis, Tooltip, CartesianGrid, Legend } from 'recharts';
 const Cookies = require("js-cookie");
 const superagent = require("superagent");
 const moment = require("moment");
@@ -19,7 +19,6 @@ async function fetchCounty() {
 
   let cookie = Cookies.getJSON("covidLocation");
   if (cookie) {
-    console.log('Looking good')
     return cookie;
   }
 
@@ -108,11 +107,9 @@ const USCountyInfo = (props) => {
     {mycases[0].county},
     {mycases[0].state_name},
     Total: {total}
-    <div>
-      <BasicGraphNewCases
-        newcases={newcases}
-      />
-    </div>
+    <BasicGraphNewCases
+      newcases={newcases}
+    />
   </div>;
 };
 
@@ -193,22 +190,19 @@ function countyFromNewCases(newcases) {
 
 const BasicGraphNewCases = (props) => {
   const data = countyFromNewCases(props.newcases);
-  return <div><LineChart
-    width={400}
-    height={400}
-    data={data}
-    margin={{ top: 5, right: 20, left: 10, bottom: 5 }}
-  >
-    <Tooltip />
-    <YAxis />
-    <XAxis dataKey="name" />
-    <CartesianGrid stroke="#f5f5f5" strokeDasharray="5 5" />
-    <Line type="monotone" dataKey="confirmed" stroke="#ff7300" yAxisId={0} />
-    <Line type="monotone" dataKey="newcase" stroke="#387908" yAxisId={0} />
-    <Legend verticalAlign="top" />
-    {/* <Line type="monotone" dataKey="deaths" stroke="#387908" yAxisId={0} /> */}
-    {/* <Line type="monotone" dataKey="recovered" stroke="#3879ff" yAxisId={0} /> */}
-  </LineChart></div>;
+  return < ResponsiveContainer width='100%' aspect={4.0 / 3.0}>
+    <LineChart
+      data={data}
+      margin={{ top: 5, right: 30, left: 5, bottom: 5 }}
+    >
+      <Tooltip />
+      <YAxis />
+      <XAxis dataKey="name" />
+      <CartesianGrid stroke="#f5f5f5" strokeDasharray="5 5" />
+      <Line type="monotone" dataKey="confirmed" stroke="#ff7300" yAxisId={0} />
+      <Line type="monotone" dataKey="newcase" stroke="#387908" yAxisId={0} />
+      <Legend verticalAlign="top" />
+    </LineChart></ ResponsiveContainer>;
 }
 
 const BasicMap = (props) => {
