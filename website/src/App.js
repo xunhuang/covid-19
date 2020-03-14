@@ -1,6 +1,62 @@
 import React from 'react';
 import { GoogleMap, Marker, LoadScript } from '@react-google-maps/api'
 import { LineChart, Line, YAxis, XAxis, Tooltip, CartesianGrid, Legend } from 'recharts';
+const superagent = require("superagent");
+
+var ApproxIPLocation;
+
+async function fetchCounty() {
+
+  let location = await fetchApproxIPLocation();
+
+  let county_info = await superagent
+    .get("https://geo.fcc.gov/api/census/area")
+    .query({
+      lat: location.latitude,
+      lon: location.longitude,
+      format: "json",
+    }).then(res => {
+      return res.body;
+    })
+    .catch(err => {
+      return null;
+    });
+
+  return county_info;
+}
+
+async function fetchApproxIPLocation() {
+  let iplocation = await superagent
+    .get("https://api.ipdata.co/?api-key=fde5c5229bc2f57db71114590baaf58ce032876915321889a66cec61")
+    .then(res => {
+      ApproxIPLocation = {
+        longitude: res.body.longitude,
+        latitude: res.body.latitude,
+      }
+      return ApproxIPLocation;
+    })
+    .catch(err => {
+      return null;
+    });
+
+  if (iplocation != null) {
+    return iplocation;
+  }
+
+  return await superagent
+    .post(`https://www.googleapis.com/geolocation/v1/geolocate?key=${firebaseConfig.apiKey}`)
+    .then(res => {
+      ApproxIPLocation = {
+        longitude: res.body.location.lng,
+        latitude: res.body.location.lat,
+      }
+      console.log(res.body);
+      return ApproxIPLocation;
+    })
+    .catch(err => {
+      return null;
+    });
+}
 
 const moment = require("moment");
 
@@ -222,6 +278,11 @@ function App() {
     getCaseData().then(abc => {
       console.log(abc.data);
       setCaseData(abc.data);
+    });
+    fetchCounty().then(mycounty => {
+      console.log(mycounty);
+      setCounty(mycounty.results[0].county_name);
+      setState(mycounty.results[0].state_code);
     });
   }, []);
 

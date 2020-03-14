@@ -12788,6 +12788,7 @@
     ],
     "comments": "密歇根州新增4例，总数达16例，其中1例位于底特律，成年女性，旅行史不详",
     "gender": "女",
+    "county": "Wayne",
     "num": 1963
   },
   {
@@ -13793,11 +13794,13 @@
     "die_count": 0,
     "confirmed_date": "3/13",
     "state_name": "ID",
-    "comments": "爱达荷州首例确诊。具体信息不详。",
+    "comments": "爱达荷州首例确诊病例位于Ada County。该病例不是社区传播。",
     "links": [
       "https://www.ktvb.com/article/news/health/coronavirus/first-idaho-case-of-coronavirus-confirmed/277-262de30b-ef00-40a2-b40e-43e26f0bb99b"
     ],
-    "comments_en": "First Idaho case of coronavirus confirmed.",
+    "comments_en": "First Idaho case of coronavirus confirmed in Ada County, not from community spread.",
+    "county": "Ada",
+    "area": "Ada, Idaho",
     "num": 2199
   },
   {
@@ -13891,16 +13894,19 @@
   },
   {
     "id": "us-1257",
-    "people_count": 3,
     "die_count": 0,
     "confirmed_date": "3/13",
     "state_name": "AL",
-    "comments": "阿拉巴马州新增3例，累计5例，暂无更多信息",
-    "comments_en": "Alabama now has five coronavirus cases. three more cases were confirmed late this afternoon but details on those wasn’t released.",
+    "comments": "阿拉巴马州3月13日累积6例，其中一例确诊位于Elmore County，暂无更多信息",
+    "comments_en": "Alabama now has six coronavirus cases. One of the cases was confirmed in the Elmore County.",
     "links": [
-      "https://www.al.com/news/2020/03/alabama-has-first-confirmed-case-of-coronavirus-gov-ivey-announces.html"
+      "https://www.al.com/news/2020/03/alabama-has-first-confirmed-case-of-coronavirus-gov-ivey-announces.html",
+      "http://alabamapublichealth.gov/infectiousdiseases/2019-coronavirus.html"
     ],
-    "num": 2219
+    "people_count": 1,
+    "area": "Elmore County, AL",
+    "county": "Elmore",
+    "num": 2217
   },
   {
     "id": "us-1258",
@@ -13915,7 +13921,7 @@
       "https://www.boston.com/news/health/2020/03/09/updating-status-coronavirus-covid-19-massachusetts"
     ],
     "comments_en": "Massachusetts now has 123 cases and 26 are in Suffolk county now.",
-    "num": 2223
+    "num": 2221
   },
   {
     "id": "us-1260",
@@ -13930,7 +13936,7 @@
     ],
     "comments_en": "Another new case of COVID-19 was announced Friday in Salt Lake County, according to Utah Department of Health state epidemiologist Dr. Angela Dunn.",
     "comments": "犹他州Salt Lake郡新增1例，外州旅行史",
-    "num": 2224
+    "num": 2222
   },
   {
     "id": "us-1261",
@@ -13945,7 +13951,7 @@
     "links": [
       "https://www.wral.com/latest-wayne-resident-becomes-17th-coronavirus-case-in-nc/19008116/"
     ],
-    "num": 2225
+    "num": 2223
   },
   {
     "id": "us-1263",
@@ -13962,7 +13968,7 @@
     "links": [
       "https://www.ksl.com/article/46729833/2-new-covid-19-cases-confirmed-in-summit-county-1-new-case-in-salt-lake-county"
     ],
-    "num": 2226
+    "num": 2224
   },
   {
     "id": "us-1265",
@@ -13977,7 +13983,7 @@
       "https://fox5sandiego.com/news/coronavirus/8-coronavirus-cases-now-reported-in-san-diego-county/"
     ],
     "comments_en": "The number of “presumptive positive” coronavirus cases in San Diego County rose to eight on Friday, according to county health officials.",
-    "num": 2227
+    "num": 2225
   },
   {
     "id": "us-1267",
@@ -13992,7 +13998,7 @@
       "https://www.nbcdfw.com/news/coronavirus/3rd-case-of-coronavirus-reported-in-tarrant-county/2330375/"
     ],
     "comments_en": "Health officials in Tarrant County have confirmed a third presumptive positive case of COVID-19. The case is a contact of a previously identified Collin County case who is a Tarrant County resident. ",
-    "num": 2228
+    "num": 2226
   },
   {
     "id": "us-1268",
@@ -14008,7 +14014,7 @@
     "comments_en": "second presumptive positive case in St. Louis County is a resident ranging from 50-60 years old. The case is domestic travel related.",
     "comments": "密苏里州第3例，圣路易斯郡第2例，和第1例无关系，国内旅行史",
     "age": "50s",
-    "num": 2229
+    "num": 2227
   },
   {
     "id": "us-1269",
@@ -14021,7 +14027,7 @@
       "https://www.kmov.com/news/latest-on-coronavirus-in-st-louis/article_a9e8d27a-6231-11ea-93a6-a7e28350dfd8.html"
     ],
     "comments_en": "2 new positive COVID-19 cases in Missouri, bringing the statewide total of coronavirus cases to four.",
-    "num": 2230
+    "num": 2228
   },
   {
     "id": "us-1271",
@@ -14037,7 +14043,7 @@
       "https://emergency.pwcgov.org/"
     ],
     "people_count": 2,
-    "num": 2232
+    "num": 2230
   },
   {
     "id": "us-1272",
@@ -14052,7 +14058,7 @@
     "area": "Omaha, NE",
     "comments_en": "A Omaha child has been confirmed as Douglas County’s latest case of COVID-19. This brings the total number of cases in Nebraska to 14.",
     "comments": "内布拉斯加州Douglas County新增1例，患者是一个孩子来自Omaha。内布拉斯加州累计确诊14例。",
-    "num": 2233
+    "num": 2231
   },
   {
     "id": "us-1273",
@@ -14065,7 +14071,7 @@
     "links": [
       "https://www.wlbt.com/2020/03/13/cases-coronavirus-identified-by-miss-dept-health/"
     ],
-    "num": 2235
+    "num": 2233
   },
   {
     "id": "us-1274",
@@ -14081,7 +14087,7 @@
       "http://www.vdh.virginia.gov/news/2020-regional-news-releases/3990-2/",
       "http://www.vdh.virginia.gov/surveillance-and-investigation/novel-coronavirus/"
     ],
-    "num": 2240
+    "num": 2238
   },
   {
     "id": "us-1275",
@@ -14096,7 +14102,7 @@
     "links": [
       "http://www.vdh.virginia.gov/surveillance-and-investigation/novel-coronavirus/"
     ],
-    "num": 2241
+    "num": 2239
   },
   {
     "id": "us-1278",
@@ -14111,7 +14117,7 @@
     "links": [
       "http://www.vdh.virginia.gov/surveillance-and-investigation/novel-coronavirus/"
     ],
-    "num": 2244
+    "num": 2242
   },
   {
     "id": "us-1280",
@@ -14126,7 +14132,7 @@
     "links": [
       "https://docs.google.com/document/d/13bsMNnTb5kilxWJS6OHGNEP6I1HqBaeWLdtSEMVirAE/edit"
     ],
-    "num": 2246
+    "num": 2244
   },
   {
     "id": "us-1281",
@@ -14143,7 +14149,7 @@
     "area": "Clark, NV",
     "age": "30",
     "gender": "男",
-    "num": 2247
+    "num": 2245
   },
   {
     "id": "us-1282",
@@ -14160,7 +14166,7 @@
     "comments": "内华达州Clark County新增确诊1例，50多岁男性，无更多信息。",
     "age": "50",
     "gender": "男",
-    "num": 2248
+    "num": 2246
   },
   {
     "id": "us-1283",
@@ -14175,7 +14181,7 @@
     "links": [
       "https://docs.google.com/document/d/13bsMNnTb5kilxWJS6OHGNEP6I1HqBaeWLdtSEMVirAE/edit"
     ],
-    "num": 2249
+    "num": 2247
   },
   {
     "id": "us-1284",
@@ -14190,7 +14196,7 @@
     "links": [
       "https://docs.google.com/document/d/13bsMNnTb5kilxWJS6OHGNEP6I1HqBaeWLdtSEMVirAE/edit"
     ],
-    "num": 2250
+    "num": 2248
   },
   {
     "id": "us-1285",
@@ -14205,7 +14211,7 @@
     "links": [
       "https://docs.google.com/document/d/13bsMNnTb5kilxWJS6OHGNEP6I1HqBaeWLdtSEMVirAE/edit"
     ],
-    "num": 2251
+    "num": 2249
   },
   {
     "id": "us-1286",
@@ -14222,7 +14228,7 @@
       "https://www.washoecounty.us/outreach/2020/03/2020-03-13-covid19-third-case.php"
     ],
     "comments_en": "A third presumptive positive case of COVID-19 is reported (awaiting CDC'sconfirmation). The case is a female in her 20s who had recent travel to Germany and France. Her condition is stable and she is self isolating at home.",
-    "num": 2252
+    "num": 2250
   },
   {
     "id": "us-1290",
@@ -14239,7 +14245,7 @@
     "links": [
       "https://www.baltimoresun.com/coronavirus/bs-md-coronavirus-friday-20200313-wdbhyv7jvbdbrbfvjvzzbtejk4-story.html"
     ],
-    "num": 2253
+    "num": 2251
   },
   {
     "id": "us-1292",
@@ -14255,7 +14261,7 @@
     "comments_en": "On Friday, Dallas County health officials announced the 9th presumptive positive case of coronavirus in the county.",
     "age": "80s",
     "comments": "德州Dallas郡第9例，外州旅游史，目前在医院治疗",
-    "num": 2254
+    "num": 2252
   },
   {
     "id": "us-1293",
@@ -14270,7 +14276,7 @@
     "comments_en": "Santa Clarita first positive case. Henry Mayo Newhall Hospital officials confirmed Friday morning the hospital has received its first result indicating a patient tested positive for the COVID-19 coronavirus. ",
     "comments": "加州Santa Clarita首例。Henry Mayo Newhall医院的官员在星期五证实，该医院已收到第一项COVID-19测试结果，表明一名患者的COVID-19冠状病毒检测呈阳性。",
     "area": "Santa Clarita, CA",
-    "num": 2255
+    "num": 2253
   },
   {
     "id": "us-1294",
@@ -14286,7 +14292,7 @@
     "comments_en": "2nd Yolo County resident has tested positive. The individual is an adult over 60 years old and acquired the infection through travel. This is not a community-acquired case.",
     "comments": "加州Yolo county第2例，有外州旅游史，推测不应该为社区传染",
     "age": "60s",
-    "num": 2256
+    "num": 2254
   },
   {
     "id": "us-1296",
@@ -14304,7 +14310,7 @@
     ],
     "comments_en": "We have received a third presumptive positive case of #COVID19 in Austin-Travis County. The person is a woman in her 60s + we believe the case is travel-related.",
     "comments": "Travis County第3例确诊，60多岁女性，与旅行有关",
-    "num": 2257
+    "num": 2255
   },
   {
     "id": "us-1297",
@@ -14319,7 +14325,7 @@
     "links": [
       "http://www.ochealthinfo.com/phs/about/epidasmt/epi/dip/prevention/novel_coronavirus?from=singlemessage&isappinstalled=0"
     ],
-    "num": 2261
+    "num": 2259
   },
   {
     "id": "us-1298",
@@ -14334,20 +14340,7 @@
       "https://www.abc15.com/news/region-central-southern-az/tucson/new-presumptive-positive-coronavirus-case-diagnosed-in-pima-county-10th-in-arizona"
     ],
     "comments": "亚利桑那州第10例确诊，Pima Couny第2例确诊。",
-    "num": 2262
-  },
-  {
-    "id": "us-1299",
-    "people_count": 9,
-    "die_count": 0,
-    "confirmed_date": "3/13",
-    "state_name": "MI",
-    "comments": "密歇根州累计确诊25例，并且有26例在等测试结果。",
-    "comments_en": "Michigan now confirmed 25 positive cases and there are 26 cases are pending for results.",
-    "links": [
-      "https://www.michigan.gov/coronavirus/"
-    ],
-    "num": 2271
+    "num": 2260
   },
   {
     "id": "us-1300",
@@ -14362,7 +14355,7 @@
       "https://www.wral.com/latest-wake-county-public-health-announces-9th-presumptive-positive-case-of-coronavirus/19008116/"
     ],
     "comments": "Wake County 第9例确诊",
-    "num": 2272
+    "num": 2261
   },
   {
     "id": "us-1301",
@@ -14377,7 +14370,7 @@
     "comments": "北卡总计18例确诊",
     "area": "Wake County, NC",
     "county": "Wake",
-    "num": 2273
+    "num": 2262
   },
   {
     "id": "us-1302",
@@ -14394,7 +14387,7 @@
     "links": [
       "https://www.courierpostonline.com/story/news/local/south-jersey/2020/03/13/camden-county-has-second-presumptive-case-coronavirus-covid-19-south-jersey/5046123002/"
     ],
-    "num": 2274
+    "num": 2263
   },
   {
     "id": "us-1303",
@@ -14409,7 +14402,7 @@
     "links": [
       "https://www.nbcbayarea.com/news/coronavirus/list-of-coronavirus-cases-in-the-bay-area/2248581/"
     ],
-    "num": 2278
+    "num": 2267
   },
   {
     "id": "us-1304",
@@ -14419,8 +14412,285 @@
     "people_count": 4,
     "confirmed_date": "3/13",
     "area": "Riverside, CA",
-    "comments_en": "Health officials close all schools in Riverside County, local cases increase to 10.",
-    "links": [],
+    "comments_en": "Four new cases were reported in Riverside County. Health officials close all schools in Riverside County, local cases increase to 10. Another two cases are from the Diamond Princess cruise ship.",
+    "links": [
+      "https://kesq.com/news/2020/03/13/health-officials-close-all-schools-in-riverside-county/"
+    ],
+    "comments": "加州Riverside County新增4例。到目前为止当地累计确诊12例，包括10名本地患者和2名游轮患者。",
+    "num": 2271
+  },
+  {
+    "id": "us-1305",
+    "die_count": 0,
+    "state_name": "MT",
+    "confirmed_date": "3/13",
+    "people_count": 1,
+    "county": "Gallatin",
+    "area": "Gallatin, MT",
+    "comments": "蒙大拿州Gallatin County首例确诊。一位40多岁男性。",
+    "comments_en": "There are four positive cases in the counties of Gallatin, Yellowstone, Silver Bow, and Lewis and Clark. The Gallatin patient is a male in their 40s.",
+    "links": [
+      "https://www.ktvh.com/news/helena-news/governor-bullock-confirms-four-presumptively-positive-coronavirus-cases-in-montana"
+    ],
+    "gender": "男",
+    "age": "40s",
+    "num": 2272
+  },
+  {
+    "id": "us-1306",
+    "people_count": 1,
+    "die_count": 0,
+    "state_name": "MT",
+    "confirmed_date": "3/13",
+    "area": "Yellowstone, MT",
+    "county": "Yellowstone",
+    "comments": "蒙大拿州Yellowstone County首例确诊。一位50多岁女性。",
+    "comments_en": "There are four positive cases in the counties of Gallatin, Yellowstone, Silver Bow, and Lewis and Clark.\nThe Yellowstone patient is a female in their 50s.",
+    "links": [
+      "https://www.ktvh.com/news/helena-news/governor-bullock-confirms-four-presumptively-positive-coronavirus-cases-in-montana"
+    ],
+    "gender": "女",
+    "age": "50s",
+    "num": 2273
+  },
+  {
+    "id": "us-1307",
+    "people_count": 1,
+    "die_count": 0,
+    "state_name": "MT",
+    "confirmed_date": "3/13",
+    "area": "Silver Bow, MT",
+    "county": "Silver Bow",
+    "comments": "蒙大拿州Silver Bow County首例确诊。一位50多岁男性。",
+    "comments_en": "There are four positive cases in the counties of Gallatin, Yellowstone, Silver Bow, and Lewis and Clark. The Silver Bow patient is a male in their 50s.",
+    "links": [
+      "https://www.ktvh.com/news/helena-news/governor-bullock-confirms-four-presumptively-positive-coronavirus-cases-in-montana"
+    ],
+    "gender": "男",
+    "age": "50s",
+    "num": 2274
+  },
+  {
+    "id": "us-1308",
+    "people_count": 1,
+    "die_count": 0,
+    "state_name": "MT",
+    "confirmed_date": "3/13",
+    "area": "Lewis and Clark, MT",
+    "county": "Lewis and Clark",
+    "comments": "蒙大拿州Lewis and Clark County首例确诊。一位50多岁男性。",
+    "comments_en": "There are four positive cases in the counties of Gallatin, Yellowstone, Silver Bow, and Lewis and Clark. The Lewis and Clark patient is a male in their 50s.",
+    "links": [
+      "https://www.ktvh.com/news/helena-news/governor-bullock-confirms-four-presumptively-positive-coronavirus-cases-in-montana"
+    ],
+    "gender": "男",
+    "age": "50s",
+    "num": 2275
+  },
+  {
+    "id": "us-1310",
+    "people_count": 1,
+    "die_count": 0,
+    "confirmed_date": "3/13",
+    "area": "Harris County, TX",
+    "state_name": "TX",
+    "county": "Harris",
+    "comments_en": "Houston Health Department announced a new case, bringing the city’s case total to four. The case, a female in the 70 to 80 age range, is quarantined at home. She recently traveled to Egypt. The official has not been updated yet so the link goes to the twitter account of the Huston Health Dept.",
+    "links": [
+      "https://twitter.com/HoustonHealth/status/1238579910307975186"
+    ],
+    "comments": "Houston确诊第4例病人，为女性，70至80岁之间，曾去过埃及。该病例目前在家中隔离。",
+    "wuhan_related": "去过埃及",
+    "gender": "女",
+    "age": "70s",
+    "num": 2276
+  },
+  {
+    "id": "us-1313",
+    "people_count": 0,
+    "county": "Santa Clara",
+    "state_name": "CA",
+    "die_count": 1,
+    "confirmed_date": "3/13",
+    "area": "Santa Clara, CA",
+    "comments": "加州Santa Clara County第二例死亡病例。一位80多岁女性患者。",
+    "comments_en": "Santa Clara County reported its second coronavirus-related death. The patient who passed away was an adult woman in her 80s, officials said.",
+    "links": [
+      "https://www.nbcbayarea.com/news/coronavirus/list-of-coronavirus-cases-in-the-bay-area/2248581/",
+      "https://www.sfgate.com/bayarea/article/Bay-Area-coronavirus-updates-Contra-Costa-County-15129171.php"
+    ],
+    "gender": "女",
+    "age": "80s",
+    "num": 2276
+  },
+  {
+    "id": "us-1314",
+    "people_count": 1,
+    "die_count": 0,
+    "confirmed_date": "3/13",
+    "area": "Tuscaloosa County, AL",
+    "state_name": "AL",
+    "county": "Tuscaloosa",
+    "comments": "阿拉巴马州3月13日累积6例，其中一例确诊位于Tuscaloosa County，暂无更多信息",
+    "comments_en": "Alabama now has six coronavirus cases. One of the cases was confirmed in the Tuscaloosa County.",
+    "links": [
+      "http://alabamapublichealth.gov/infectiousdiseases/2019-coronavirus.html"
+    ],
+    "num": 2277
+  },
+  {
+    "id": "us-1316",
+    "people_count": 1,
+    "die_count": 0,
+    "confirmed_date": "3/13",
+    "state_name": "AL",
+    "area": "Limestone County, AL",
+    "county": "Limestone",
+    "comments": "阿拉巴马州3月13日累积6例，其中一例确诊位于limestone County，暂无更多信息",
+    "comments_en": "Alabama now has six coronavirus cases. One of the cases was confirmed in the Limestone County.",
+    "links": [
+      "http://alabamapublichealth.gov/infectiousdiseases/2019-coronavirus.html"
+    ],
+    "num": 2278
+  },
+  {
+    "id": "us-1317",
+    "people_count": 1,
+    "die_count": 0,
+    "confirmed_date": "3/13",
+    "state_name": "AL",
+    "comments": "阿拉巴马州3月13日累积6例，其中一例确诊来自out of town，暂无更多信息",
+    "comments_en": "Alabama now has six coronavirus cases. One of the cases is from out of town.",
+    "links": [
+      "http://alabamapublichealth.gov/infectiousdiseases/2019-coronavirus.html"
+    ],
+    "num": 2279
+  },
+  {
+    "id": "us-1321",
+    "people_count": 1,
+    "die_count": 0,
+    "confirmed_date": "3/13",
+    "state_name": "MI",
+    "comments": "密歇根州新增9例，其中一例成年男性，在Bay County， 有美国旅游史，现密歇根州累计确诊25例，并且有26例在等测试结果。",
+    "area": "Bay County, MI",
+    "county": "Bay ",
+    "comments_en": "A man in Bay County with a domestic travel history",
+    "links": [
+      "https://www.fox17online.com/news/national-news/coronavirus/michigan-announces-9-more-presumptive-positives"
+    ],
+    "gender": "男",
+    "num": 2280
+  },
+  {
+    "id": "us-1322",
+    "confirmed_date": "3/13",
+    "area": "Charlevoix County, MI",
+    "comments": "密歇根州新增9例，其中一例成年女性，在Charlevoix County ， 有出国旅游史，现密歇根州累计确诊25例，并且有26例在等测试结果。",
+    "links": [
+      "https://www.fox17online.com/news/national-news/coronavirus/michigan-announces-9-more-presumptive-positives"
+    ],
+    "people_count": 1,
+    "comments_en": "A woman in Charlevoix County with an international travel history",
+    "state_name": "MI",
+    "county": "Charlevoix ",
+    "die_count": 0,
+    "gender": "女",
+    "num": 2281
+  },
+  {
+    "id": "us-1323",
+    "confirmed_date": "3/13",
+    "area": "Detroit, MI",
+    "gender": "女",
+    "comments": "密歇根州新增9例，其中一例成年女性，在Detroit ， 有出国旅游史，现密歇根州累计确诊25例，并且有26例在等测试结果。",
+    "links": [
+      "https://www.fox17online.com/news/national-news/coronavirus/michigan-announces-9-more-presumptive-positives"
+    ],
+    "people_count": 1,
+    "comments_en": "A woman in Detroit with an international travel history",
+    "state_name": "MI",
+    "county": "Wayne",
+    "die_count": 0,
     "num": 2282
+  },
+  {
+    "id": "us-1324",
+    "confirmed_date": "3/13",
+    "area": "Macomb County, MI",
+    "gender": "男",
+    "comments": "密歇根州新增9例，其中一例成年男性，在Macomb County， 有出国旅游史，现密歇根州累计确诊25例，并且有26例在等测试结果。",
+    "links": [
+      "https://www.fox17online.com/news/national-news/coronavirus/michigan-announces-9-more-presumptive-positives"
+    ],
+    "people_count": 1,
+    "comments_en": "A man in Macomb County with an international travel history",
+    "state_name": "MI",
+    "county": "Macomb",
+    "die_count": 0,
+    "num": 2283
+  },
+  {
+    "id": "us-1325",
+    "confirmed_date": "3/13",
+    "area": "Oakland County, MI",
+    "gender": "女",
+    "comments": "密歇根州新增9例，其中两例为成年女性，在Oakland County， 现密歇根州累计确诊25例，并且有26例在等测试结果。",
+    "links": [
+      "https://www.fox17online.com/news/national-news/coronavirus/michigan-announces-9-more-presumptive-positives"
+    ],
+    "people_count": 2,
+    "comments_en": "Two women and a man from Oakland County",
+    "state_name": "MI",
+    "county": "Oakland",
+    "die_count": 0,
+    "num": 2285
+  },
+  {
+    "id": "us-1327",
+    "confirmed_date": "3/13",
+    "area": "Oakland County, MI",
+    "gender": "男",
+    "comments": "密歇根州新增9例，其中一例为成年男性，在Oakland County， 现密歇根州累计确诊25例，并且有26例在等测试结果。",
+    "links": [
+      "https://www.fox17online.com/news/national-news/coronavirus/michigan-announces-9-more-presumptive-positives"
+    ],
+    "people_count": 1,
+    "comments_en": "Two women and a man from Oakland County",
+    "state_name": "MI",
+    "county": "Oakland",
+    "die_count": 0,
+    "num": 2286
+  },
+  {
+    "id": "us-1328",
+    "confirmed_date": "3/13",
+    "area": "Wayne County, MI",
+    "gender": "女",
+    "comments": "密歇根州新增9例，其中两例为成年女性，在Wayne County， 现密歇根州累计确诊25例，并且有26例在等测试结果。",
+    "links": [
+      "https://www.fox17online.com/news/national-news/coronavirus/michigan-announces-9-more-presumptive-positives"
+    ],
+    "people_count": 2,
+    "comments_en": "Two women from Wayne County; one with domestic travel history and another without any travel history",
+    "state_name": "MI",
+    "county": "Wayne",
+    "die_count": 0,
+    "num": 2288
+  },
+  {
+    "id": "us-1329",
+    "people_count": 1,
+    "die_count": 1,
+    "state_name": "FL",
+    "area": "Orange County, FL",
+    "county": "Orange",
+    "comments_en": "An Orange County, Florida resident died Friday in California, becoming the fourth Florida-related death due to the virus",
+    "comments": "佛州第4例死亡病例，一位Orange County居民于周五在加州去世",
+    "links": [
+      "https://www.clickorlando.com/news/local/2020/03/13/15-new-cases-of-coronavirus-in-florida-health-officials-say/?outputType=amp/"
+    ],
+    "confirmed_date": "3/13",
+    "num": 2289
   }
 ]
