@@ -1,10 +1,12 @@
 import React from 'react';
 import { GoogleMap, Marker, LoadScript } from '@react-google-maps/api'
 import { ResponsiveContainer, LineChart, Line, YAxis, XAxis, Tooltip, CartesianGrid, Legend } from 'recharts';
+import { makeStyles } from '@material-ui/core/styles';
 const Cookies = require("js-cookie");
 const superagent = require("superagent");
 const moment = require("moment");
 const firebase = require("firebase");
+
 
 require("firebase/firestore");
 const firebaseConfig = require('./firebaseConfig.json');
@@ -88,7 +90,37 @@ async function getCountyFromDb(state_short_name, county_name) {
   return null;
 }
 
+const useStyles = makeStyles(theme => ({
+  row: {
+    padding: theme.spacing(1, 1),
+    justifyContent: "space-between",
+    width: "100%",
+    display: "flex",
+  },
+  tag: {
+    display: "inline-block",
+    textAlign: "center",
+    backgroundColor: "#f3f3f3",
+    padding: theme.spacing(1, 1),
+    flex: 1,
+    margin: 3,
+  },
+  topTag: {
+    fontSize: "0.55rem",
+  },
+  smallTag: {
+    fontSize: "0.6rem",
+  },
+  mainTag: {
+    fontSize: "1.3rem",
+  },
+  grow: {
+    flexGrow: 1,
+  },
+}));
+
 const USCountyInfo = (props) => {
+  const classes = useStyles();
   const mycases = props.casesData.filter(c => {
     return (c.state_name === props.state && c.county === props.county);
   });
@@ -104,9 +136,24 @@ const USCountyInfo = (props) => {
   let total = Object.values(newcases).reduce((a, b) => a + b, 0);
 
   return <div>
-    {mycases[0].county},
-    {mycases[0].state_name},
-    Total: {total}
+    <div className={classes.row} >
+      <Tag
+        title={`${mycases[0].county}, ${mycases[0].state_name}`}
+        confirmed={total}
+        newcases={4}
+        hospitals={15}
+        beds={1500}
+      />
+      <Tag
+        title="Bay Area"
+      />
+      <Tag
+        title="California"
+      />
+      <Tag
+        title="US"
+      />
+    </div>
     <BasicGraphNewCases
       newcases={newcases}
     />
@@ -199,11 +246,38 @@ const BasicGraphNewCases = (props) => {
       <YAxis />
       <XAxis dataKey="name" />
       <CartesianGrid stroke="#f5f5f5" strokeDasharray="5 5" />
-      <Line type="monotone" dataKey="confirmed" stroke="#ff7300" yAxisId={0} />
-      <Line type="monotone" dataKey="newcase" stroke="#387908" yAxisId={0} />
+      <Line type="monotone" dataKey="confirmed" stroke="#ff7300" yAxisId={0} strokeWidth={3} />
+      <Line type="monotone" dataKey="newcase" stroke="#387908" yAxisId={0} strokeWidth={3} />
       <Legend verticalAlign="top" />
     </LineChart></ ResponsiveContainer>;
 }
+
+const Tag = (props) => {
+  const classes = useStyles();
+  return <div className={classes.tag}>
+    <div> {props.title}</div>
+    <div className={classes.row} >
+      <section>
+        <div className={classes.topTag}>
+          + {props.newcases}
+        </div>
+        <div className={classes.mainTag}>
+          {props.confirmed} </div>
+        <div className={classes.smallTag}>
+          Confirmed </div>
+      </section>
+      <section>
+        <div className={classes.topTag}>
+          {props.beds} Beds
+          </div>
+        <div className={classes.mainTag}>
+          {props.hospitals} </div>
+        <div className={classes.smallTag}>
+          Hospitals </div>
+      </section>
+    </div>
+  </div >;
+};
 
 const BasicMap = (props) => {
   const center = {
@@ -268,12 +342,12 @@ function App() {
 
   if (casesData === null) {
     return <div> Loading</div>;
-
   }
 
   return (
     <div className="App">
       <header className="App-header">
+        <h2>COVID-19.direct : US County Level Information</h2>
         <USCountyInfo
           casesData={casesData}
           county={county}
