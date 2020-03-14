@@ -119,11 +119,39 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
+function casesSummary(mycases) {
+  const newcases = mycases.reduce((m, c) => {
+    let a = m[c.confirmed_date];
+    if (!a) a = 0;
+    a += c.people_count;
+    m[c.confirmed_date] = a;
+    return m;
+  }, {});
+  let total = Object.values(newcases).reduce((a, b) => a + b, 0);
+  const today = moment().format("M/D");
+  var newcasenum = newcases[today];
+  if (!newcasenum) {
+    newcasenum = 0;
+  }
+  return {
+    confirmed: total,
+    newcases: newcasenum,
+  }
+}
+
 const USCountyInfo = (props) => {
   const classes = useStyles();
-  const mycases = props.casesData.filter(c => {
+  let mycases = props.casesData.filter(c => {
     return (c.state_name === props.state && c.county === props.county);
   });
+
+  let state_mycases = props.casesData.filter(c => {
+    return (c.state_name === props.state);
+  });
+
+  let state_summary = casesSummary(state_mycases);
+  let county_summary = casesSummary(mycases);
+  let us_summary = casesSummary(props.casesData);
 
   const newcases = mycases.reduce((m, c) => {
     let a = m[c.confirmed_date];
@@ -133,20 +161,14 @@ const USCountyInfo = (props) => {
     return m;
   }, {});
 
-  const today = moment().format("M/D");
-  var newcasenum = newcases[today];
-  if (!newcasenum) {
-    newcasenum = 0;
-  }
-
-  let total = Object.values(newcases).reduce((a, b) => a + b, 0);
+  console.log(mycases);
 
   return <div>
     <div className={classes.row} >
       <Tag
-        title={`${mycases[0].county}, ${mycases[0].state_name}`}
-        confirmed={total}
-        newcases={newcasenum}
+        title={`${props.county} County`}
+        confirmed={county_summary.confirmed}
+        newcases={county_summary.newcases}
         hospitals={"15?"}
         beds={"1500?"}
       />
@@ -158,16 +180,16 @@ const USCountyInfo = (props) => {
         beds={"1500?"}
       />
       <Tag
-        title="California"
-        confirmed={"tbd"}
-        newcases={"tbd"}
+        title={props.state}
+        confirmed={state_summary.confirmed}
+        newcases={state_summary.newcases}
         hospitals={"15?"}
         beds={"1500?"}
       />
       <Tag
         title="US"
-        confirmed={"tbd"}
-        newcases={"tbd"}
+        confirmed={us_summary.confirmed}
+        newcases={us_summary.newcases}
         hospitals={"6049"}
         beds={"90000"}
       />
@@ -358,7 +380,7 @@ function App() {
     });
   }, []);
 
-  if (casesData === null) {
+  if (casesData === null || casesData === null) {
     return <div> Loading</div>;
   }
 
