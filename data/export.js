@@ -22,6 +22,14 @@ async function updateDataInDB(info) {
         console.log(err);
         return null;
     });
+
+    docRef = db.collection("ARCHIVED_DATA").doc(info.timestamp);
+    await docRef.set(info).then((doc) => {
+        console.log(`done updating archive`);
+    }).catch(err => {
+        console.log(err);
+        return null;
+    });
 }
 
 var cases = require('../website/src/data/1.3cases.json');
