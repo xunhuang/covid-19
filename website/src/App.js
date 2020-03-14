@@ -2,6 +2,15 @@ import React from 'react';
 import { GoogleMap, Marker, LoadScript } from '@react-google-maps/api'
 import { LineChart, Line, YAxis, XAxis, Tooltip, CartesianGrid, Legend } from 'recharts';
 const superagent = require("superagent");
+const moment = require("moment");
+const firebase = require("firebase");
+
+require("firebase/firestore");
+const firebaseConfig = require('./firebaseConfig.json');
+firebase.initializeApp(firebaseConfig);
+
+const db = firebase.firestore();
+var Hospitals = require('./hospitals.json');
 
 var ApproxIPLocation;
 
@@ -58,15 +67,6 @@ async function fetchApproxIPLocation() {
     });
 }
 
-const moment = require("moment");
-
-const firebase = require("firebase");
-require("firebase/firestore");
-const firebaseConfig = require('./firebaseConfig.json');
-firebase.initializeApp(firebaseConfig);
-
-const db = firebase.firestore();
-var Hospitals = require('./hospitals.json');
 
 function snapshotToArrayData(snapshot) {
   var returnArr = []
@@ -96,7 +96,6 @@ async function getCountyFromDb(state_short_name, county_name) {
 }
 
 const USCountyInfo = (props) => {
-  const [county, setCounty] = React.useState(null);
   const mycases = props.casesData.filter(c => {
     return (c.state_name === props.state && c.county === props.county);
   });
@@ -108,12 +107,6 @@ const USCountyInfo = (props) => {
     m[c.confirmed_date] = a;
     return m;
   }, {});
-
-  React.useEffect(() => {
-    getCountyFromDb(props.state, props.county).then(c => {
-      setCounty(c);
-    });
-  }, [props.state, props.county]);
 
   let total = Object.values(newcases).reduce((a, b) => a + b, 0);
 
@@ -194,7 +187,6 @@ function countyFromNewCases(newcases) {
   let total = 0;
   return sorted_keys.map(key => {
     let v = newcases[key];
-    let newcase = 0;
     total += v;
 
     return {
