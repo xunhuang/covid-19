@@ -1,6 +1,7 @@
 import React from 'react';
 import { GoogleMap, Marker, LoadScript } from '@react-google-maps/api'
 import { LineChart, Line, YAxis, XAxis, Tooltip, CartesianGrid, Legend } from 'recharts';
+const Cookies = require("js-cookie");
 const superagent = require("superagent");
 const moment = require("moment");
 const firebase = require("firebase");
@@ -15,6 +16,12 @@ var Hospitals = require('./hospitals.json');
 var ApproxIPLocation;
 
 async function fetchCounty() {
+
+  let cookie = Cookies.getJSON("covidLocation");
+  if (cookie) {
+    console.log('Looking good')
+    return cookie;
+  }
 
   let location = await fetchApproxIPLocation();
 
@@ -31,27 +38,14 @@ async function fetchCounty() {
       return null;
     });
 
+  Cookies.set("covidLocation", county_info, {
+    expires: 1  // 1 day
+  });
+
   return county_info;
 }
 
 async function fetchApproxIPLocation() {
-  let iplocation = await superagent
-    .get("https://api.ipdata.co/?api-key=fde5c5229bc2f57db71114590baaf58ce032876915321889a66cec61")
-    .then(res => {
-      ApproxIPLocation = {
-        longitude: res.body.longitude,
-        latitude: res.body.latitude,
-      }
-      return ApproxIPLocation;
-    })
-    .catch(err => {
-      return null;
-    });
-
-  if (iplocation != null) {
-    return iplocation;
-  }
-
   return await superagent
     .post(`https://www.googleapis.com/geolocation/v1/geolocate?key=${firebaseConfig.apiKey}`)
     .then(res => {
