@@ -9,7 +9,6 @@ require("firebase/firestore");
 const firebaseConfig = require('./firebaseConfig.json');
 firebase.initializeApp(firebaseConfig);
 
-const CasesData = require('./data/1.3cases.json');
 const db = firebase.firestore();
 var Hospitals = require('./hospitals.json');
 
@@ -19,15 +18,6 @@ function snapshotToArrayData(snapshot) {
     returnArr.push(childSnapshot.data());
   });
   return returnArr;
-}
-
-async function getCountyList() {
-  let counties = await db.collection("US_COUNTIES")
-    .where("hasData", "==", true)
-    .get().then((querySnapshot) => {
-      return snapshotToArrayData(querySnapshot);
-    });
-  return counties;
 }
 
 async function getCountyFromDb(state_short_name, county_name) {
@@ -49,40 +39,9 @@ async function getCountyFromDb(state_short_name, county_name) {
   return null;
 }
 
-const USCountyInfoOld = (props) => {
-  const [county, setCounty] = React.useState(null);
-
-  React.useEffect(() => {
-    getCountyFromDb(props.state, props.county).then(c => {
-      setCounty(c);
-    });
-  }, [props.state, props.county]);
-
-  if (!county) return <div>loading</div>;
-
-  let intvalues = Object.values(county.DataConfirmed).map(v => parseInt(v));
-  let total = Math.max(...intvalues);
-
-  return <div>
-    {county.NAME},
-    {county.STATE_NAME},
-    Total: {total}
-    <div>
-      <BasicGraph
-        newcases={county.DataConfirmed}
-        deaths={county.DataDeath}
-        recovered={county.DataRecovered}
-      />
-    </div>
-  </div>;
-};
-
-
 const USCountyInfo = (props) => {
-
   const [county, setCounty] = React.useState(null);
-
-  const mycases = CasesData.filter(c => {
+  const mycases = props.casesData.filter(c => {
     return (c.state_name === props.state && c.county === props.county);
   });
 
@@ -132,8 +91,6 @@ function getCountySummary(cases) {
     return result;
   }, {});
 
-  console.log(g);
-
   let g_group = Object.keys(g).reduce((result, key) => {
     let county = g[key];
     let total = county.reduce((sum, c) => {
@@ -158,7 +115,7 @@ const USCountyList = (props) => {
     }
   }
 
-  let summary = getCountySummary(CasesData);
+  let summary = getCountySummary(props.casesData);
   let content = summary.sort((a, b) => {
     return b.total - a.total;
   }).map(county => {
@@ -173,68 +130,6 @@ const USCountyList = (props) => {
   })
   return <div>{content} </div>;
 };
-
-function countyDataToGraphData(confirmed, deaths, recovered) {
-  let r = {};
-  r = Object.entries(confirmed).reduce((m, item) => {
-    let a = m[item[0]];
-    if (!a) {
-      a = {};
-    }
-    a.confirmed = item[1];
-    m[item[0]] = a;
-    return m;
-  }, r);
-
-  r = Object.entries(deaths).reduce((m, item) => {
-    let a = m[item[0]];
-    if (!a) {
-      a = {};
-    }
-    a.deaths = item[1];
-    m[item[0]] = a;
-    return m;
-  }, r);
-
-  r = Object.entries(recovered).reduce((m, item) => {
-    let a = m[item[0]];
-    if (!a) {
-      a = {};
-    }
-    a.recovered = item[1];
-    m[item[0]] = a;
-    return m;
-  }, r);
-
-  let sorted_keys = Object.keys(r).sort(function (a, b) {
-    return moment(a).toDate() - moment(b).toDate();
-  });
-
-  let last_confirmed = undefined;
-  return sorted_keys.map(key => {
-    let v = r[key];
-    let newcase = 0;
-    if (last_confirmed === undefined) {
-      last_confirmed = Number(v.confirmed);
-    } else {
-      newcase = Number(v.confirmed) - last_confirmed;
-      if (newcase < 0) {
-        newcase = 0; // likely due to no data update
-      }
-      if (Number(v.confirmed) > 0) {
-        last_confirmed = Number(v.confirmed);
-      }
-    }
-
-    return {
-      name: key,
-      confirmed: last_confirmed,
-      deaths: Number(v.deaths),
-      recovered: Number(v.recovered),
-      newcase: newcase,
-    };
-  });
-}
 
 function countyFromNewCases(newcases) {
   let sorted_keys = Object.keys(newcases).sort(function (a, b) {
@@ -269,32 +164,6 @@ const BasicGraphNewCases = (props) => {
     <Line type="monotone" dataKey="confirmed" stroke="#ff7300" yAxisId={0} />
     <Line type="monotone" dataKey="newcase" stroke="#387908" yAxisId={0} />
     <Legend verticalAlign="top" />
-    {/* <Line type="monotone" dataKey="deaths" stroke="#387908" yAxisId={0} /> */}
-    {/* <Line type="monotone" dataKey="recovered" stroke="#3879ff" yAxisId={0} /> */}
-  </LineChart></div>;
-}
-
-const BasicGraph = (props) => {
-  const data = countyDataToGraphData(
-    props.confirmed,
-    props.deaths,
-    props.recovered,
-  );
-
-  return <div><LineChart
-    width={400}
-    height={400}
-    data={data}
-    margin={{ top: 5, right: 20, left: 10, bottom: 5 }}
-  >
-    <Tooltip />
-    <YAxis />
-    <XAxis dataKey="name" />
-    <CartesianGrid stroke="#f5f5f5" strokeDasharray="5 5" />
-    <Line type="monotone" dataKey="confirmed" stroke="#ff7300" yAxisId={0} />
-    <Line type="monotone" dataKey="newcase" stroke="#387908" yAxisId={0} />
-    <Legend verticalAlign="top" />
-
     {/* <Line type="monotone" dataKey="deaths" stroke="#387908" yAxisId={0} /> */}
     {/* <Line type="monotone" dataKey="recovered" stroke="#3879ff" yAxisId={0} /> */}
   </LineChart></div>;
@@ -338,19 +207,40 @@ const BasicMap = (props) => {
   </div>;
 }
 
+async function getCaseData() {
+  let result = await firebase.functions().httpsCallable('datajson')();
+  return result;
+}
 
 function App() {
+
   const [county, setCounty] = React.useState("Santa Clara");
   const [state, setState] = React.useState("CA");
+  const [casesData, setCaseData] = React.useState(null);
+
+  React.useEffect(() => {
+    getCaseData().then(abc => {
+      console.log(abc.data);
+      setCaseData(abc.data);
+    });
+  }, []);
+
+  if (casesData === null) {
+    return <div> Loading</div>;
+
+  }
+
   return (
     <div className="App">
       <header className="App-header">
         <USCountyInfo
+          casesData={casesData}
           county={county}
           state={state}
         />
         <div>
           <USCountyList
+            casesData={casesData}
             callback={(newcounty, newstate) => {
               setCounty(newcounty);
               setState(newstate);

@@ -1,6 +1,5 @@
 const functions = require('firebase-functions');
 const cors = require('cors')({ origin: true });
-// initialize centrally once.
 var admin = require('firebase-admin');
 admin.initializeApp();
 const firestore = require('@google-cloud/firestore');
@@ -30,6 +29,7 @@ exports.datajson = functions.https.onRequest((req, res) => {
       let json = await getDataJson();
       res.send({
          timestamp: json.timestamp,
+         time: json.timestamp,
          data: JSON.parse(json.data),
       });
    })
