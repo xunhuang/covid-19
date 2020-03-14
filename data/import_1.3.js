@@ -4,8 +4,7 @@ const firebaseConfig = require('../website/src/firebaseConfig.json');
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 
-const superagent = require('superagent');
-const cheerio = require('cheerio');
+const moment = require("moment");
 
 function snapshotToArray(snapshot) {
     var returnArr = []
@@ -15,67 +14,26 @@ function snapshotToArray(snapshot) {
     return returnArr;
 };
 
-async function findCountyInDB(state_shortname, countyname) {
-    var county = await db.collection("US_COUNTIES")
-        .where("STATE_SHORT_NAME", "==", state_shortname)
-        .where("NAME", "==", countyname)
-        .get().then((querySnapshot) => {
-            venues = snapshotToArray(querySnapshot);
-            if (venues.length !== 1) {
-                return null;
-            }
-            return venues[0];
-        });
-    return county;
-}
-
-async function updateCountyInfoInDB(key, info) {
-    let docRef = db.collection("US_COUNTIES").doc(key);
-    info.hasData = true;
-    await docRef.update(info).then((doc) => {
-        console.log(`done updating ${key}`);
+async function updateDataInDB(info) {
+    let docRef = db.collection("DATA").doc("latest");
+    await docRef.set(info).then((doc) => {
+        console.log(`done updating latest`);
     }).catch(err => {
         console.log(err);
         return null;
     });
 }
 
-var fs = require('fs');
-var cases_to_eval = fs.readFileSync('./new.js');
-
-cases = eval(cases_to_eval.toString());
+var cases = require('../website/src/data/1.3cases.json');
 
 async function doit() {
-    let g = cases.reduce((result, c) => {
-        // let group = result[c.county];
-        if (!c.county || c.county === "undefined" || c.countuy === "Unassigned" || c.county === "Unknown") {
-            c.county = "Unknown";
-        }
+    let time = moment();
 
-        let key = c.state_name + "," + c.county;
-
-        let group = result[key];
-        if (group) {
-            group.push(c);
-        } else {
-            group = [c];
-        }
-        result[key] = group;
-        return result;
-    }, {});
-
-    let g_group = Object.keys(g).reduce((result, key) => {
-        county = g[key];
-        total = county.reduce((sum, c) => {
-            sum += c.people_count;
-            return sum;
-        }, 0);
-        result[key] = total;
-        return result;
-    }, {});
-
-    // console.log(JSON.stringify(g, 0, 2));
-    console.log(JSON.stringify(g_group, 0, 2));
+    let info = {
+        timestamp: time.format(),
+        data: JSON.stringify(cases, 0, 2),
+    }
+    await updateDataInDB(info);
     process.exit();
 }
 
