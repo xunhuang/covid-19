@@ -2,11 +2,13 @@ import React from 'react';
 import { GoogleMap, Marker, LoadScript } from '@react-google-maps/api'
 import { ResponsiveContainer, LineChart, Line, YAxis, XAxis, Tooltip, CartesianGrid, Legend } from 'recharts';
 import { makeStyles } from '@material-ui/core/styles';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
+
 const Cookies = require("js-cookie");
 const superagent = require("superagent");
 const moment = require("moment");
 const firebase = require("firebase");
-
 
 require("firebase/firestore");
 const firebaseConfig = require('./firebaseConfig.json');
@@ -141,6 +143,12 @@ function casesSummary(mycases) {
 
 const USCountyInfo = (props) => {
   const classes = useStyles();
+  const [value, setValue] = React.useState(0);
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
+
   let mycases = props.casesData.filter(c => {
     return (c.state_name === props.state && c.county === props.county);
   });
@@ -152,6 +160,22 @@ const USCountyInfo = (props) => {
   let state_summary = casesSummary(state_mycases);
   let county_summary = casesSummary(mycases);
   let us_summary = casesSummary(props.casesData);
+
+
+  let graph;
+  if (value === 0) {
+    graph = <BasicGraphNewCases
+      casesData={mycases}
+    />;
+  } else if (value === 1) {
+    graph = <BasicGraphNewCases
+      casesData={state_mycases}
+    />;
+  } else if (value === 2) {
+    graph = <BasicGraphNewCases
+      casesData={props.casesData}
+    />;
+  }
 
   return <div>
     <div className={classes.row} >
@@ -184,15 +208,19 @@ const USCountyInfo = (props) => {
         beds={"90000"}
       />
     </div>
-    <BasicGraphNewCases
-      casesData={mycases}
-    />
-    <BasicGraphNewCases
-      casesData={state_mycases}
-    />
-    <BasicGraphNewCases
-      casesData={props.casesData}
-    />
+
+    <Tabs
+      value={value}
+      onChange={handleChange}
+      indicatorColor="primary"
+      textColor="primary"
+      centered
+    >
+      <Tab label={`${props.county} County`} />
+      <Tab label={props.state} />
+      <Tab label={"US"} />
+    </Tabs>
+    {graph}
   </div>;
 };
 
