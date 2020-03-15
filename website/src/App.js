@@ -161,6 +161,12 @@ const USCountyInfo = (props) => {
     return m;
   }, {});
 
+  const today = moment().format("M/D");
+  var newcasenum = newcases[today];
+  if (!newcasenum) {
+    newcases[today] = 0;
+  }
+
   console.log(mycases);
 
   return <div>
@@ -277,7 +283,7 @@ function countyFromNewCases(newcases) {
 
 const BasicGraphNewCases = (props) => {
   const data = countyFromNewCases(props.newcases);
-  return < ResponsiveContainer width='100%' aspect={4.0 / 3.0}>
+  return <ResponsiveContainer height={300} >
     <LineChart
       data={data}
       margin={{ top: 5, right: 30, left: 5, bottom: 5 }}
@@ -289,7 +295,7 @@ const BasicGraphNewCases = (props) => {
       <Line type="monotone" dataKey="confirmed" stroke="#ff7300" yAxisId={0} strokeWidth={3} />
       <Line type="monotone" dataKey="newcase" stroke="#387908" yAxisId={0} strokeWidth={3} />
       <Legend verticalAlign="top" />
-    </LineChart></ ResponsiveContainer>;
+    </LineChart></ResponsiveContainer>;
 }
 
 const Tag = (props) => {
