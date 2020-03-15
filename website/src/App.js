@@ -153,22 +153,6 @@ const USCountyInfo = (props) => {
   let county_summary = casesSummary(mycases);
   let us_summary = casesSummary(props.casesData);
 
-  const newcases = mycases.reduce((m, c) => {
-    let a = m[c.confirmed_date];
-    if (!a) a = 0;
-    a += c.people_count;
-    m[c.confirmed_date] = a;
-    return m;
-  }, {});
-
-  const today = moment().format("M/D");
-  var newcasenum = newcases[today];
-  if (!newcasenum) {
-    newcases[today] = 0;
-  }
-
-  console.log(mycases);
-
   return <div>
     <div className={classes.row} >
       <Tag
@@ -201,7 +185,13 @@ const USCountyInfo = (props) => {
       />
     </div>
     <BasicGraphNewCases
-      newcases={newcases}
+      casesData={mycases}
+    />
+    <BasicGraphNewCases
+      casesData={state_mycases}
+    />
+    <BasicGraphNewCases
+      casesData={props.casesData}
     />
   </div>;
 };
@@ -264,7 +254,22 @@ const USCountyList = (props) => {
   return <div>{content} </div>;
 };
 
-function countyFromNewCases(newcases) {
+function countyFromNewCases(cases_data) {
+
+  let newcases = cases_data.reduce((m, c) => {
+    let a = m[c.confirmed_date];
+    if (!a) a = 0;
+    a += c.people_count;
+    m[c.confirmed_date] = a;
+    return m;
+  }, {});
+
+  const today = moment().format("M/D");
+  var newcasenum = newcases[today];
+  if (!newcasenum) {
+    newcases[today] = 0;
+  }
+
   let sorted_keys = Object.keys(newcases).sort(function (a, b) {
     return moment(a).toDate() - moment(b).toDate();
   });
@@ -282,7 +287,7 @@ function countyFromNewCases(newcases) {
 }
 
 const BasicGraphNewCases = (props) => {
-  const data = countyFromNewCases(props.newcases);
+  const data = countyFromNewCases(props.casesData);
   return <ResponsiveContainer height={300} >
     <LineChart
       data={data}
