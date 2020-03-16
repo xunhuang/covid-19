@@ -7,6 +7,7 @@ import Tab from '@material-ui/core/Tab';
 // import { countyModuleInit, lookupCountyInfo, nearbyCounties } from "./USCountyInfo.js";
 import { countyModuleInit, lookupCountyInfo, nearbyCounties } from "./USCountyInfo.js";
 import * as USCounty from "./USCountyInfo.js";
+import Grid from '@material-ui/core/Grid';
 
 const states = require('us-state-codes');
 const Cookies = require("js-cookie");
@@ -389,18 +390,40 @@ const NearbyCounties = (props) => {
         .sort((a, b) => a.distance - b.distance)
         .slice(0, 10)
       ;
-    let nearbyC = nearby.map(c =>
-      <div onClick={() => { clicked(c.County, c.State); }}>
-        <span > {c.County}</span>
-        <span > {c.distance}</span>
-      </div>
-    );
+    let nearbyC = nearby.map(c => {
+      let countysummary = USCounty.casesForCountySummary(props.state, c.County);
+      return <Grid container spacing={1}>
+        <Grid item xs={6} sm={3} onClick={() => { clicked(c.County, c.State); }}>
+          {c.County}
+        </Grid>
+        <Grid item xs={6} sm={3}>
+          {countysummary.confirmed}
+        </Grid>
+        <Grid item xs={6} sm={3}>
+          {countysummary.newcases}
+        </Grid>
+      </Grid >;
 
-    countySummary = <div>
-      County Population: {countyInfo.Population2010}
-      <h5>nearbyCounties </h5>
-      {nearbyC}
-    </div>;
+    });
+
+    countySummary =
+      <div>
+        County Population: {countyInfo.Population2010}
+        <Grid container spacing={1}>
+          <Grid item xs={6} sm={3}>
+            Nearby Counties
+        </Grid>
+          <Grid item xs={6} sm={3}>
+            Confirmred
+        </Grid>
+          <Grid item xs={6} sm={3}>
+            New Cases
+        </Grid>
+        </Grid >
+
+        {nearbyC}
+      </div>
+      ;
   }
   return countySummary;
 }
