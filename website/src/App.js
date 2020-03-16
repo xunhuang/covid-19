@@ -187,13 +187,6 @@ const USCountyInfo = (props) => {
         beds={"1500?"}
       />
       <Tag
-        title="Bay Area"
-        confirmed={"tbd"}
-        newcases={"tbd"}
-        hospitals={"15?"}
-        beds={"1500?"}
-      />
-      <Tag
         title={props.state}
         confirmed={state_summary.confirmed}
         newcases={state_summary.newcases}
