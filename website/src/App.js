@@ -4,13 +4,13 @@ import { ResponsiveContainer, LineChart, Line, YAxis, XAxis, Tooltip, CartesianG
 import { makeStyles } from '@material-ui/core/styles';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
+import { lookupCountyInfo, nearbyCounties } from "./USCountyInfo.js";
 
 const states = require('us-state-codes');
 const Cookies = require("js-cookie");
 const superagent = require("superagent");
 const moment = require("moment");
 const firebase = require("firebase");
-const lookupCountyInfo = require("./USCountyInfo.js").lookupCountyInfo;
 
 require("firebase/firestore");
 const firebaseConfig = require('./firebaseConfig.json');
@@ -22,7 +22,6 @@ var Hospitals = require('./hospitals.json');
 var ApproxIPLocation;
 
 async function fetchCounty() {
-
   let cookie = Cookies.getJSON("covidLocation");
   if (cookie) {
     return cookie;
@@ -180,8 +179,11 @@ const USCountyInfo = (props) => {
   let countyInfo = lookupCountyInfo(props.state, props.county);
   let countySummary;
   if (countyInfo) {
+    let nearby = nearbyCounties(props.state, props.county);
+    let nearbyC = nearby.map(c => <span > {c.County}</span>)
     countySummary = <div>
       County Population: {countyInfo.Population2010}
+      nearbyCounties : {nearbyC}
     </div>;
   }
 
