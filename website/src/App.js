@@ -403,6 +403,7 @@ const DetailCaseList = (props) => {
 
     countySummary =
       <div>
+        <h3> Case details for {props.county}, {states.getStateNameByStateCode(props.state)} </h3>
         <Grid container spacing={1}>
           <Grid item xs={6} sm={1}>
             Date
@@ -459,9 +460,10 @@ const NearbyCounties = (props) => {
 
     countySummary =
       <div>
+        <h3> Nearby Counties of {props.county}, {states.getStateNameByStateCode(props.state)} </h3>
         <Grid container spacing={1}>
           <Grid item xs={6} sm={3}>
-            Nearby Counties
+            Name
         </Grid>
           <Grid item xs={6} sm={3}>
             Confirmred
@@ -536,6 +538,16 @@ function App() {
           />
         </div>
       </header>
+      <div>
+        <h4> Data Sources </h4>
+        <li> Johns Hopkins CSSE:  https://github.com/CSSEGISandData/COVID-19 </li>
+        <li> https://coronavirus.1point3acres.com/en </li>
+        <li> https://en.wikipedia.org/wiki/User:Michael_J/County_table </li>
+        <li>  Homeland Infrastructure Foundation-Level Data (HIFLD)
+          https://hifld-geoplatform.opendata.arcgis.com/search?groupIds=2900322cc0b14948a74dca886b7d7cfc</li>
+
+
+      </div>
     </div>
   );
 }
