@@ -4,7 +4,6 @@ import { ResponsiveContainer, LineChart, Line, YAxis, XAxis, Tooltip, CartesianG
 import { makeStyles } from '@material-ui/core/styles';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-// import { countyModuleInit, lookupCountyInfo, nearbyCounties } from "./USCountyInfo.js";
 import { countyModuleInit, lookupCountyInfo, nearbyCounties } from "./USCountyInfo.js";
 import * as USCounty from "./USCountyInfo.js";
 import Grid from '@material-ui/core/Grid';
@@ -376,6 +375,51 @@ async function getCaseData() {
   return result;
 }
 
+const DetailCaseList = (props) => {
+  function clicked(newcounty, newstate) {
+    if (props.callback) {
+      props.callback(newcounty, newstate);
+    }
+  }
+  let countyInfo = lookupCountyInfo(props.state, props.county);
+  let county_cases = USCounty.casesForCounty(props.state, props.county).reverse();
+  let countySummary;
+  if (countyInfo) {
+
+    let nearbyC = county_cases.map(c => {
+      console.log(c);
+      return <Grid container spacing={1}>
+        <Grid item xs={6} sm={1}>
+          {c.confirmed_date}
+        </Grid>
+        <Grid item xs={6} sm={1}>
+          {c.people_count}
+        </Grid>
+        <Grid item xs={6} sm={9}>
+          {c.comments_en}
+        </Grid>
+      </Grid >;
+    });
+
+    countySummary =
+      <div>
+        <Grid container spacing={1}>
+          <Grid item xs={6} sm={1}>
+            Date
+        </Grid>
+          <Grid item xs={6} sm={1}>
+            Count
+        </Grid>
+          <Grid item xs={6} sm={9}>
+            Details
+        </Grid>
+        </Grid >
+        {nearbyC}
+      </div>
+      ;
+  }
+  return countySummary;
+}
 const NearbyCounties = (props) => {
   function clicked(newcounty, newstate) {
     if (props.callback) {
@@ -392,23 +436,29 @@ const NearbyCounties = (props) => {
       ;
     let nearbyC = nearby.map(c => {
       let countysummary = USCounty.casesForCountySummary(props.state, c.County);
+
+      let newcases = countysummary.newcases;
+      let confirmed = countysummary.confirmed;
+      let newpercent = countysummary.newpercent;
+
       return <Grid container spacing={1}>
         <Grid item xs={6} sm={3} onClick={() => { clicked(c.County, c.State); }}>
           {c.County}
         </Grid>
         <Grid item xs={6} sm={3}>
-          {countysummary.confirmed}
+          {confirmed}
         </Grid>
         <Grid item xs={6} sm={3}>
-          {countysummary.newcases}
+          {newcases} (+ {newpercent}%)
+        </Grid>
+        <Grid item xs={6} sm={3}>
+          {c.Population2010}
         </Grid>
       </Grid >;
-
     });
 
     countySummary =
       <div>
-        County Population: {countyInfo.Population2010}
         <Grid container spacing={1}>
           <Grid item xs={6} sm={3}>
             Nearby Counties
@@ -418,6 +468,9 @@ const NearbyCounties = (props) => {
         </Grid>
           <Grid item xs={6} sm={3}>
             New Cases
+        </Grid>
+          <Grid item xs={6} sm={3}>
+            Population
         </Grid>
         </Grid >
 
@@ -467,6 +520,12 @@ function App() {
             setState(newstate);
           }}
         />
+
+        <DetailCaseList
+          county={county}
+          state={state}
+        />
+
         <div>
           <USCountyList
             casesData={casesData}
