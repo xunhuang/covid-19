@@ -123,25 +123,6 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function casesSummary(mycases) {
-  const newcases = mycases.reduce((m, c) => {
-    let a = m[c.confirmed_date];
-    if (!a) a = 0;
-    a += c.people_count;
-    m[c.confirmed_date] = a;
-    return m;
-  }, {});
-  let total = Object.values(newcases).reduce((a, b) => a + b, 0);
-  const today = moment().format("M/D");
-  var newcasenum = newcases[today];
-  if (!newcasenum) {
-    newcasenum = 0;
-  }
-  return {
-    confirmed: total,
-    newcases: newcasenum,
-  }
-}
 
 const USCountyInfo = (props) => {
   const classes = useStyles();
@@ -153,10 +134,9 @@ const USCountyInfo = (props) => {
 
   let county_cases = USCounty.casesForCounty(props.state, props.county);
   let state_mycases = USCounty.casesForState(props.state);
-
-  let state_summary = casesSummary(state_mycases);
-  let county_summary = casesSummary(county_cases);
-  let us_summary = casesSummary(props.casesData);
+  let state_summary = USCounty.casesForStateSummary(props.state);
+  let county_summary = USCounty.casesForCountySummary(props.state, props.county);
+  let us_summary = USCounty.casesSummary(props.casesData);
 
   let graph;
   if (value === 0) {
