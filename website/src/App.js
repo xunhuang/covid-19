@@ -4,6 +4,7 @@ import { ResponsiveContainer, LineChart, Line, YAxis, XAxis, Tooltip, CartesianG
 import { makeStyles } from '@material-ui/core/styles';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
+var states = require('us-state-codes');
 
 const Cookies = require("js-cookie");
 const superagent = require("superagent");
@@ -63,7 +64,6 @@ async function fetchApproxIPLocation() {
       return null;
     });
 }
-
 
 function snapshotToArrayData(snapshot) {
   var returnArr = []
@@ -161,7 +161,6 @@ const USCountyInfo = (props) => {
   let county_summary = casesSummary(mycases);
   let us_summary = casesSummary(props.casesData);
 
-
   let graph;
   if (value === 0) {
     graph = <BasicGraphNewCases
@@ -187,7 +186,7 @@ const USCountyInfo = (props) => {
         beds={"1500?"}
       />
       <Tag
-        title={props.state}
+        title={states.getStateNameByStateCode(props.state)}
         confirmed={state_summary.confirmed}
         newcases={state_summary.newcases}
         hospitals={"15?"}
@@ -210,8 +209,8 @@ const USCountyInfo = (props) => {
       centered
     >
       <Tab label={`${props.county} County`} />
-      <Tab label={props.state} />
-      <Tab label={"US"} />
+      <Tab label={states.getStateNameByStateCode(props.state)} />
+      <Tab label={"United States"} />
     </Tabs>
     {graph}
   </div>;
