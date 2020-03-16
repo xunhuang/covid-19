@@ -4,12 +4,13 @@ import { ResponsiveContainer, LineChart, Line, YAxis, XAxis, Tooltip, CartesianG
 import { makeStyles } from '@material-ui/core/styles';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-var states = require('us-state-codes');
 
+const states = require('us-state-codes');
 const Cookies = require("js-cookie");
 const superagent = require("superagent");
 const moment = require("moment");
 const firebase = require("firebase");
+const lookupCountyInfo = require("./USCountyInfo.js").lookupCountyInfo;
 
 require("firebase/firestore");
 const firebaseConfig = require('./firebaseConfig.json');
@@ -176,6 +177,14 @@ const USCountyInfo = (props) => {
     />;
   }
 
+  let countyInfo = lookupCountyInfo(props.state, props.county);
+  let countySummary;
+  if (countyInfo) {
+    countySummary = <div>
+      County Population: {countyInfo.Population2010}
+    </div>;
+  }
+
   return <div>
     <div className={classes.row} >
       <Tag
@@ -212,7 +221,10 @@ const USCountyInfo = (props) => {
       <Tab label={states.getStateNameByStateCode(props.state)} />
       <Tab label={"United States"} />
     </Tabs>
-    {graph}
+    <div>
+      {graph}
+    </div>
+    {countySummary}
   </div>;
 };
 
