@@ -38,9 +38,9 @@ var cases = require('../website/src/data/1.3cases.json');
 async function doit() {
     let time = moment();
 
-
     cases = cases.map (c => {
         c.state_full_name = states.getStateNameByStateCode(c.state_name);
+        delete c["comments"];
         return c;
     });
 
@@ -48,6 +48,8 @@ async function doit() {
         timestamp: time.format(),
         data: JSON.stringify(cases, 0, 2),
     }
+
+    await updateDataInDB(info);
 
     process.exit();
 }
