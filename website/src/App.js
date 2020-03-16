@@ -4,7 +4,9 @@ import { ResponsiveContainer, LineChart, Line, YAxis, XAxis, Tooltip, CartesianG
 import { makeStyles } from '@material-ui/core/styles';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-import { lookupCountyInfo, nearbyCounties } from "./USCountyInfo.js";
+// import { countyModuleInit, lookupCountyInfo, nearbyCounties } from "./USCountyInfo.js";
+import { countyModuleInit, lookupCountyInfo, nearbyCounties } from "./USCountyInfo.js";
+import * as USCounty from "./USCountyInfo.js";
 
 const states = require('us-state-codes');
 const Cookies = require("js-cookie");
@@ -149,22 +151,17 @@ const USCountyInfo = (props) => {
     setValue(newValue);
   };
 
-  let mycases = props.casesData.filter(c => {
-    return (c.state_name === props.state && c.county === props.county);
-  });
-
-  let state_mycases = props.casesData.filter(c => {
-    return (c.state_name === props.state);
-  });
+  let county_cases = USCounty.casesForCounty(props.state, props.county);
+  let state_mycases = USCounty.casesForState(props.state);
 
   let state_summary = casesSummary(state_mycases);
-  let county_summary = casesSummary(mycases);
+  let county_summary = casesSummary(county_cases);
   let us_summary = casesSummary(props.casesData);
 
   let graph;
   if (value === 0) {
     graph = <BasicGraphNewCases
-      casesData={mycases}
+      casesData={county_cases}
     />;
   } else if (value === 1) {
     graph = <BasicGraphNewCases
@@ -434,7 +431,7 @@ function App() {
   const [casesData, setCaseData] = React.useState(null);
   React.useEffect(() => {
     getCaseData().then(abc => {
-      console.log(abc.data);
+      countyModuleInit(abc.data);
       setCaseData(abc.data);
     });
     fetchCounty().then(mycounty => {
