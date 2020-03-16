@@ -176,17 +176,6 @@ const USCountyInfo = (props) => {
     />;
   }
 
-  let countyInfo = lookupCountyInfo(props.state, props.county);
-  let countySummary;
-  if (countyInfo) {
-    let nearby = nearbyCounties(props.state, props.county);
-    let nearbyC = nearby.map(c => <span > {c.County}</span>)
-    countySummary = <div>
-      County Population: {countyInfo.Population2010}
-      nearbyCounties : {nearbyC}
-    </div>;
-  }
-
   return <div>
     <div className={classes.row} >
       <Tag
@@ -226,7 +215,6 @@ const USCountyInfo = (props) => {
     <div>
       {graph}
     </div>
-    {countySummary}
   </div>;
 };
 
@@ -285,7 +273,10 @@ const USCountyList = (props) => {
       <span> Total: {total} </span>
     </div>
   })
-  return <div>{content} </div>;
+  return <div>
+    <h4>US Counties list ordered by confirmed</h4>
+    {content}
+  </div>;
 };
 
 function countyFromNewCases(cases_data) {
@@ -407,12 +398,40 @@ async function getCaseData() {
   return result;
 }
 
-function App() {
+const NearbyCounties = (props) => {
+  function clicked(newcounty, newstate) {
+    if (props.callback) {
+      props.callback(newcounty, newstate);
+    }
+  }
+  let countyInfo = lookupCountyInfo(props.state, props.county);
+  let countySummary;
+  if (countyInfo) {
+    let nearby =
+      nearbyCounties(props.state, props.county)
+        .sort((a, b) => a.distance - b.distance)
+        .slice(0, 10)
+      ;
+    let nearbyC = nearby.map(c =>
+      <div onClick={() => { clicked(c.County, c.State); }}>
+        <span > {c.County}</span>
+        <span > {c.distance}</span>
+      </div>
+    );
 
+    countySummary = <div>
+      County Population: {countyInfo.Population2010}
+      <h5>nearbyCounties </h5>
+      {nearbyC}
+    </div>;
+  }
+  return countySummary;
+}
+
+function App() {
   const [county, setCounty] = React.useState("Santa Clara");
   const [state, setState] = React.useState("CA");
   const [casesData, setCaseData] = React.useState(null);
-
   React.useEffect(() => {
     getCaseData().then(abc => {
       console.log(abc.data);
@@ -437,6 +456,16 @@ function App() {
           casesData={casesData}
           county={county}
           state={state}
+        />
+
+        <NearbyCounties
+          casesData={casesData}
+          county={county}
+          state={state}
+          callback={(newcounty, newstate) => {
+            setCounty(newcounty);
+            setState(newstate);
+          }}
         />
         <div>
           <USCountyList
