@@ -5,6 +5,7 @@ firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 
 const moment = require("moment");
+var states = require('us-state-codes');
 
 function snapshotToArray(snapshot) {
     var returnArr = []
@@ -37,11 +38,17 @@ var cases = require('../website/src/data/1.3cases.json');
 async function doit() {
     let time = moment();
 
+
+    cases = cases.map (c => {
+        c.state_full_name = states.getStateNameByStateCode(c.state_name);
+        return c;
+    });
+
     let info = {
         timestamp: time.format(),
         data: JSON.stringify(cases, 0, 2),
     }
-    await updateDataInDB(info);
+
     process.exit();
 }
 
