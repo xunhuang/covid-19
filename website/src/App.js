@@ -132,11 +132,13 @@ const USCountyInfo = (props) => {
     setValue(newValue);
   };
 
+  let countyInfo = lookupCountyInfo(props.state, props.county);
   let county_cases = USCounty.casesForCounty(props.state, props.county);
   let state_mycases = USCounty.casesForState(props.state);
   let state_summary = USCounty.casesForStateSummary(props.state);
   let county_summary = USCounty.casesForCountySummary(props.state, props.county);
   let us_summary = USCounty.casesSummary(props.casesData);
+  let state_hospitals = USCounty.hospitalsForState(props.state);
 
   let graph;
   if (value === 0) {
@@ -159,22 +161,22 @@ const USCountyInfo = (props) => {
         title={`${props.county} County`}
         confirmed={county_summary.confirmed}
         newcases={county_summary.newcases}
-        hospitals={"15?"}
-        beds={"1500?"}
+        hospitals={countyInfo.Hospitals}
+        beds={countyInfo.HospitalBeds}
       />
       <Tag
         title={states.getStateNameByStateCode(props.state)}
         confirmed={state_summary.confirmed}
         newcases={state_summary.newcases}
-        hospitals={"15?"}
-        beds={"1500?"}
+        hospitals={state_hospitals.hospitals}
+        beds={state_hospitals.beds}
       />
       <Tag
         title="US"
         confirmed={us_summary.confirmed}
         newcases={us_summary.newcases}
-        hospitals={"6049"}
-        beds={"90000"}
+        hospitals={"6,146"}
+        beds={"924,107"}
       />
     </div>
 

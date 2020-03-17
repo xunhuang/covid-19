@@ -68,6 +68,26 @@ function casesForState(state_short_name) {
     });
 }
 
+function hospitalsForState(state_short_name) {
+    let state_countylist = CountyList.filter(c => {
+        return (c.State === state_short_name);
+    });
+    let hospitals = 0;
+    let beds = 0;
+    state_countylist.map(c => {
+        if (c.Hospitals) {
+            hospitals += c.Hospitals;
+        }
+        if (c.HospitalBeds) {
+            beds += c.HospitalBeds;
+        }
+    })
+    return {
+        hospitals: hospitals,
+        beds: beds,
+    }
+}
+
 function casesForCountySummary(state_short_name, county_name) {
     return casesSummary(casesForCounty(state_short_name, county_name));
 }
@@ -111,4 +131,5 @@ export {
     casesSummary,
     casesForCountySummary,
     casesForStateSummary,
+    hospitalsForState,
 }
