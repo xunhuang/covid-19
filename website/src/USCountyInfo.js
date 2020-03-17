@@ -37,8 +37,6 @@ function nearbyCounties(state_short_name, county_name) {
         return null;
     }
     let reduced_list = CountyList.filter((item) => {
-        let latdiff = Math.abs(Number(centerCounty.Latitude) - Number(item.Latitude));
-        let longdiff = Math.abs(Number(centerCounty.Longitude) - Number(item.Longitude));
         return Math.abs(Number(centerCounty.Latitude) - Number(item.Latitude)) < 1.5 &&
             Math.abs(Number(centerCounty.Longitude) - Number(item.Longitude)) < 1.5
     });
@@ -52,8 +50,44 @@ function nearbyCounties(state_short_name, county_name) {
         return c;
     });
 
-    // return add_distance.filter(c => c.distance > 0);
     return add_distance;
+}
+
+function getCountySummary(cases) {
+    let g = cases.reduce((result, c) => {
+        if (!c.county || c.county === "undefined" || c.countuy === "Unassigned" || c.county === "Unknown") {
+            c.county = "Unknown";
+        }
+
+        let key = c.state_name + "," + c.county;
+
+        let group = result[key];
+        if (group) {
+            group.push(c);
+        } else {
+            group = [c];
+        }
+        result[key] = group;
+        return result;
+    }, {});
+
+    let g_group = Object.keys(g).reduce((result, key) => {
+        let county = g[key];
+        let total = county.reduce((sum, c) => {
+            sum += c.people_count;
+            return sum;
+        }, 0);
+        result.push({
+            total: total,
+            county: county[0].county,
+            County: county[0].county,
+            state_name: county[0].state_name,
+            State: county[0].state_name,
+        });
+        return result;
+    }, []);
+
+    return g_group;
 }
 
 function casesForCounty(state_short_name, county_name) {
@@ -66,6 +100,13 @@ function casesForState(state_short_name) {
     return CasesData.filter(c => {
         return (c.state_name === state_short_name);
     });
+}
+
+function countyDataForState(state_short_name) {
+    let state_case = CasesData.filter(c => {
+        return (c.state_name === state_short_name);
+    });
+    return getCountySummary(state_case).sort((a, b) => b.total - a.total);
 }
 
 function hospitalsForState(state_short_name) {
@@ -132,4 +173,6 @@ export {
     casesForCountySummary,
     casesForStateSummary,
     hospitalsForState,
+    countyDataForState,
+    getCountySummary,
 }

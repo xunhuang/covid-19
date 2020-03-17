@@ -4,7 +4,7 @@ import { ResponsiveContainer, LineChart, Line, YAxis, XAxis, Tooltip, CartesianG
 import { makeStyles } from '@material-ui/core/styles';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-import { countyModuleInit, lookupCountyInfo, nearbyCounties } from "./USCountyInfo.js";
+import { countyModuleInit, lookupCountyInfo } from "./USCountyInfo.js";
 import * as USCounty from "./USCountyInfo.js";
 import Select from 'react-select';
 
@@ -13,7 +13,7 @@ import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
-import { NearbyCounties } from "./CountyListRender.js"
+import { NearbyCounties, CountiesForStateWidget } from "./CountyListRender.js"
 
 const states = require('us-state-codes');
 const Cookies = require("js-cookie");
@@ -209,41 +209,6 @@ const USCountyInfo = (props) => {
   </div>;
 };
 
-function getCountySummary(cases) {
-  let g = cases.reduce((result, c) => {
-    if (!c.county || c.county === "undefined" || c.countuy === "Unassigned" || c.county === "Unknown") {
-      c.county = "Unknown";
-    }
-
-    let key = c.state_name + "," + c.county;
-
-    let group = result[key];
-    if (group) {
-      group.push(c);
-    } else {
-      group = [c];
-    }
-    result[key] = group;
-    return result;
-  }, {});
-
-  let g_group = Object.keys(g).reduce((result, key) => {
-    let county = g[key];
-    let total = county.reduce((sum, c) => {
-      sum += c.people_count;
-      return sum;
-    }, 0);
-    result.push({
-      total: total,
-      county: county[0].county,
-      state_name: county[0].state_name,
-    });
-    return result;
-  }, []);
-
-  return g_group;
-}
-
 function countyFromNewCases(cases_data) {
   let newcases = cases_data.reduce((m, c) => {
     let a = m[c.confirmed_date];
@@ -396,17 +361,14 @@ const DetailCaseList = (props) => {
             ))}
           </TableBody>
         </Table>
-
-
       </div>
-
   }
   return countySummary;
 }
 
 const SearchBox = (props) => {
 
-  let summary = getCountySummary(props.casesData);
+  let summary = USCounty.getCountySummary(props.casesData);
   const flavourOptions = [
     { value: 'vanilla', label: 'Vanilla', rating: 'safe' },
     { value: 'chocolate', label: 'Chocolate', rating: 'good' },
@@ -481,6 +443,16 @@ function App() {
         />
 
         <NearbyCounties
+          casesData={casesData}
+          county={county}
+          state={state}
+          callback={(newcounty, newstate) => {
+            setCounty(newcounty);
+            setState(newstate);
+          }}
+        />
+
+        <CountiesForStateWidget
           casesData={casesData}
           county={county}
           state={state}

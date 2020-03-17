@@ -45,9 +45,22 @@ const NearbyCounties = (props) => {
     }
     return countySummary;
 }
+const CountiesForStateWidget = (props) => {
+    let countyInfo = true;
+    let countySummary = <div></div>;
+    if (countyInfo) {
+        let list = USCounty.countyDataForState(props.state);
+        countySummary =
+            <div>
+                <h3> Counties of {states.getStateNameByStateCode(props.state)} </h3>
+                <CountyListRender countylist={list} callback={props.callback} />
+            </div>;
+    }
+    return countySummary;
+}
 
 const CountyListRender = (props) => {
-    const nearby = props.countylist;
+    const list = props.countylist;
     const classes = useStyles();
     function clicked(newcounty, newstate) {
         if (props.callback) {
@@ -66,7 +79,7 @@ const CountyListRender = (props) => {
             </TableHead>
             <TableBody>
                 {
-                    nearby.map(row => {
+                    list.map(row => {
                         let sum = USCounty.casesForCountySummary(row.State, row.County);
                         let newcases = sum.newcases;
                         let confirmed = sum.confirmed;
@@ -88,4 +101,5 @@ const CountyListRender = (props) => {
 
 export {
     NearbyCounties,
+    CountiesForStateWidget,
 }
