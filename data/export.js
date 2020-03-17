@@ -16,7 +16,7 @@ function snapshotToArray(snapshot) {
 };
 
 async function updateDataInDB(info) {
-    let docRef = db.collection("DATA").doc("latest");
+    let docRef = db.collection("DATA").doc("latest1");
     await docRef.set(info).then((doc) => {
         console.log(`done updating latest`);
     }).catch(err => {
@@ -46,7 +46,8 @@ async function doit() {
 
     let info = {
         timestamp: time.format(),
-        data: JSON.stringify(cases, 0, 2),
+        // data: JSON.stringify(cases, 0, 2),
+        data1: cases,
     }
 
     await updateDataInDB(info);
