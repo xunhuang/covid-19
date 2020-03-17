@@ -53,6 +53,62 @@ function nearbyCounties(state_short_name, county_name) {
     return add_distance;
 }
 
+const USState_Population =
+{
+    "CA": 39937489,
+    "TX": 29472295,
+    "FL": 21992985,
+    "NY": 19440469,
+    "PA": 12820878,
+    "IL": 12659682,
+    "OH": 11747694,
+    "GA": 10736059,
+    "NC": 10611862,
+    "MI": 10045029,
+    "NJ": 8936574,
+    "VA": 8626207,
+    "WA": 7797095,
+    "AZ": 7378494,
+    "MA": 6976597,
+    "TN": 6897576,
+    "IN": 6745354,
+    "MO": 6169270,
+    "MD": 6083116,
+    "WI": 5851754,
+    "CO": 5845526,
+    "MN": 5700671,
+    "SC": 5210095,
+    "AL": 4908621,
+    "LA": 4645184,
+    "KY": 4499692,
+    "OR": 4301089,
+    "OK": 3954821,
+    "CT": 3563077,
+    "UT": 3282115,
+    "IA": 3179849,
+    "NV": 3139658,
+    "AR": 3038999,
+    "PR": 3032165,
+    "MS": 2989260,
+    "KS": 2910357,
+    "NM": 2096640,
+    "NE": 1952570,
+    "ID": 1826156,
+    "WV": 1778070,
+    "HI": 1412687,
+    "NH": 1371246,
+    "ME": 1345790,
+    "MT": 1086759,
+    "RI": 1056161,
+    "DE": 982895,
+    "SD": 903027,
+    "ND": 761723,
+    "AK": 734002,
+    "DC": 720687,
+    "VT": 628061,
+    "WY": 567025
+}
+
 function getAllStatesSummary(cases) {
     const today = moment().format("M/D");
     let g_group = cases.reduce((result, c) => {
@@ -78,6 +134,7 @@ function getAllStatesSummary(cases) {
             confirmed: item.confirmed,
             newcases: item.newcases,
             newpercent: ((item.newcases / (item.confirmed - item.newcases)) * 100).toFixed(0),
+            Population2010: USState_Population[key],
         })
         return result;
     }, []);
