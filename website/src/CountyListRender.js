@@ -29,12 +29,6 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const NearbyCounties = (props) => {
-    const classes = useStyles();
-    function clicked(newcounty, newstate) {
-        if (props.callback) {
-            props.callback(newcounty, newstate);
-        }
-    }
     let countyInfo = lookupCountyInfo(props.state, props.county);
     let countySummary = <div></div>;
     if (countyInfo) {
@@ -46,38 +40,49 @@ const NearbyCounties = (props) => {
         countySummary =
             <div>
                 <h3> Nearby Counties of {props.county}, {states.getStateNameByStateCode(props.state)} </h3>
-                <Table className={classes.table} size="small" aria-label="simple table">
-                    <TableHead>
-                        <TableRow>
-                            <TableCell > Name</TableCell>
-                            <TableCell align="center">Total</TableCell>
-                            <TableCell align="center">New</TableCell>
-                            <TableCell align="center">Population</TableCell>
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                        {
-                            nearby.map(row => {
-                                let sum = USCounty.casesForCountySummary(props.state, row.County);
-                                let newcases = sum.newcases;
-                                let confirmed = sum.confirmed;
-                                let newpercent = sum.newpercent;
-                                return <TableRow key={row.name}>
-                                    <TableCell component="th" scope="row" onClick={() => { clicked(row.County, row.State); }}>
-                                        {row.County}
-                                    </TableCell>
-                                    <TableCell align="center">{confirmed}</TableCell>
-                                    <TableCell align="center">
-                                        {newcases} (+ {newpercent}%)
-                  </TableCell>
-                                    <TableCell align="center">{row.Population2010}</TableCell>
-                                </TableRow>;
-                            })
-                        }
-                    </TableBody>
-                </Table>
-            </div>
+                <CountyListRender countylist={nearby} callback={props.callback} />
+            </div>;
     }
+    return countySummary;
+}
+
+const CountyListRender = (props) => {
+    const nearby = props.countylist;
+    const classes = useStyles();
+    function clicked(newcounty, newstate) {
+        if (props.callback) {
+            props.callback(newcounty, newstate);
+        }
+    }
+    let countySummary =
+        <Table className={classes.table} size="small" aria-label="simple table">
+            <TableHead>
+                <TableRow>
+                    <TableCell > Name</TableCell>
+                    <TableCell align="center">Total</TableCell>
+                    <TableCell align="center">New</TableCell>
+                    <TableCell align="center">Population</TableCell>
+                </TableRow>
+            </TableHead>
+            <TableBody>
+                {
+                    nearby.map(row => {
+                        let sum = USCounty.casesForCountySummary(row.State, row.County);
+                        let newcases = sum.newcases;
+                        let confirmed = sum.confirmed;
+                        let newpercent = sum.newpercent;
+                        return <TableRow key={row.name}>
+                            <TableCell component="th" scope="row" onClick={() => { clicked(row.County, row.State); }}>
+                                {row.County}
+                            </TableCell>
+                            <TableCell align="center">{confirmed}</TableCell>
+                            <TableCell align="center"> {newcases} (+ {newpercent}%) </TableCell>
+                            <TableCell align="center">{row.Population2010}</TableCell>
+                        </TableRow>;
+                    })
+                }
+            </TableBody>
+        </Table>;
     return countySummary;
 }
 
