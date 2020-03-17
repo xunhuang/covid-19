@@ -66,7 +66,7 @@ const AllStatesListWidget = (props) => {
     console.log(list);
     let countySummary =
         <div>
-            <h3> Counties of {states.getStateNameByStateCode(props.state)} </h3>
+            <h3> States of USA </h3>
             <AllStateListRender countylist={list} callback={props.callback} />
         </div>;
     return countySummary;
