@@ -4,7 +4,18 @@ import { ResponsiveContainer, LineChart, Line, YAxis, XAxis, Tooltip, CartesianG
 import { makeStyles } from '@material-ui/core/styles';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
+import { countyModuleInit, lookupCountyInfo, nearbyCounties } from "./USCountyInfo.js";
+import * as USCounty from "./USCountyInfo.js";
+import Select from 'react-select';
 
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import { NearbyCounties } from "./CountyListRender.js"
+
+const states = require('us-state-codes');
 const Cookies = require("js-cookie");
 const superagent = require("superagent");
 const moment = require("moment");
@@ -20,7 +31,6 @@ var Hospitals = require('./hospitals.json');
 var ApproxIPLocation;
 
 async function fetchCounty() {
-
   let cookie = Cookies.getJSON("covidLocation");
   if (cookie) {
     return cookie;
@@ -64,7 +74,6 @@ async function fetchApproxIPLocation() {
     });
 }
 
-
 function snapshotToArrayData(snapshot) {
   var returnArr = []
   snapshot.forEach(function (childSnapshot) {
@@ -96,7 +105,6 @@ const useStyles = makeStyles(theme => ({
   row: {
     padding: theme.spacing(1, 1),
     justifyContent: "space-between",
-    width: "100%",
     display: "flex",
   },
   tag: {
@@ -121,25 +129,6 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function casesSummary(mycases) {
-  const newcases = mycases.reduce((m, c) => {
-    let a = m[c.confirmed_date];
-    if (!a) a = 0;
-    a += c.people_count;
-    m[c.confirmed_date] = a;
-    return m;
-  }, {});
-  let total = Object.values(newcases).reduce((a, b) => a + b, 0);
-  const today = moment().format("M/D");
-  var newcasenum = newcases[today];
-  if (!newcasenum) {
-    newcasenum = 0;
-  }
-  return {
-    confirmed: total,
-    newcases: newcasenum,
-  }
-}
 
 const USCountyInfo = (props) => {
   const classes = useStyles();
@@ -149,23 +138,24 @@ const USCountyInfo = (props) => {
     setValue(newValue);
   };
 
-  let mycases = props.casesData.filter(c => {
-    return (c.state_name === props.state && c.county === props.county);
-  });
-
-  let state_mycases = props.casesData.filter(c => {
-    return (c.state_name === props.state);
-  });
-
-  let state_summary = casesSummary(state_mycases);
-  let county_summary = casesSummary(mycases);
-  let us_summary = casesSummary(props.casesData);
-
+  let countyInfo = lookupCountyInfo(props.state, props.county);
+  if (!countyInfo) {
+    countyInfo = {
+      HospitalBeds: "N/A",
+      Hospitals: "N/A",
+    }
+  }
+  let county_cases = USCounty.casesForCounty(props.state, props.county);
+  let state_mycases = USCounty.casesForState(props.state);
+  let state_summary = USCounty.casesForStateSummary(props.state);
+  let county_summary = USCounty.casesForCountySummary(props.state, props.county);
+  let us_summary = USCounty.casesSummary(props.casesData);
+  let state_hospitals = USCounty.hospitalsForState(props.state);
 
   let graph;
   if (value === 0) {
     graph = <BasicGraphNewCases
-      casesData={mycases}
+      casesData={county_cases}
     />;
   } else if (value === 1) {
     graph = <BasicGraphNewCases
@@ -183,22 +173,22 @@ const USCountyInfo = (props) => {
         title={`${props.county} County`}
         confirmed={county_summary.confirmed}
         newcases={county_summary.newcases}
-        hospitals={"15?"}
-        beds={"1500?"}
+        hospitals={countyInfo.Hospitals}
+        beds={countyInfo.HospitalBeds}
       />
       <Tag
-        title={props.state}
+        title={states.getStateNameByStateCode(props.state)}
         confirmed={state_summary.confirmed}
         newcases={state_summary.newcases}
-        hospitals={"15?"}
-        beds={"1500?"}
+        hospitals={state_hospitals.hospitals}
+        beds={state_hospitals.beds}
       />
       <Tag
         title="US"
         confirmed={us_summary.confirmed}
         newcases={us_summary.newcases}
-        hospitals={"6049"}
-        beds={"90000"}
+        hospitals={"6,146"}
+        beds={"924,107"}
       />
     </div>
 
@@ -210,10 +200,12 @@ const USCountyInfo = (props) => {
       centered
     >
       <Tab label={`${props.county} County`} />
-      <Tab label={props.state} />
-      <Tab label={"US"} />
+      <Tab label={states.getStateNameByStateCode(props.state)} />
+      <Tab label={"United States"} />
     </Tabs>
-    {graph}
+    <div>
+      {graph}
+    </div>
   </div>;
 };
 
@@ -252,31 +244,7 @@ function getCountySummary(cases) {
   return g_group;
 }
 
-const USCountyList = (props) => {
-  function clicked(newcounty, newstate) {
-    if (props.callback) {
-      props.callback(newcounty, newstate);
-    }
-  }
-
-  let summary = getCountySummary(props.casesData);
-  let content = summary.sort((a, b) => {
-    return b.total - a.total;
-  }).map(county => {
-    let total = county.total
-    return <div onClick={() => { clicked(county.county, county.state_name); }}>
-      <span>
-        {county.county}
-      </span>,
-      <span> {county.state_name}</span>
-      <span> Total: {total} </span>
-    </div>
-  })
-  return <div>{content} </div>;
-};
-
 function countyFromNewCases(cases_data) {
-
   let newcases = cases_data.reduce((m, c) => {
     let a = m[c.confirmed_date];
     if (!a) a = 0;
@@ -394,15 +362,93 @@ async function getCaseData() {
   return result;
 }
 
-function App() {
+const DetailCaseList = (props) => {
+  const classes = useStyles();
+  function clicked(newcounty, newstate) {
+    if (props.callback) {
+      props.callback(newcounty, newstate);
+    }
+  }
+  let countyInfo = lookupCountyInfo(props.state, props.county);
+  let county_cases = USCounty.casesForCounty(props.state, props.county).reverse();
+  let countySummary = <div />;
+  if (countyInfo) {
+    countySummary =
+      <div>
+        <h3> Case details for {props.county}, {states.getStateNameByStateCode(props.state)} </h3>
+        <Table className={classes.table} size="small" aria-label="simple table">
+          <TableHead>
+            <TableRow>
+              <TableCell > Date</TableCell>
+              <TableCell align="center">Count</TableCell>
+              <TableCell align="left">Detail</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {county_cases.map(row => (
+              <TableRow key={row.name}>
+                <TableCell component="th" scope="row">
+                  {row.confirmed_date}
+                </TableCell>
+                <TableCell align="center">{row.people_count}</TableCell>
+                <TableCell align="left">{row.comments_en}</TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
 
+
+      </div>
+
+  }
+  return countySummary;
+}
+
+const SearchBox = (props) => {
+
+  let summary = getCountySummary(props.casesData);
+  const flavourOptions = [
+    { value: 'vanilla', label: 'Vanilla', rating: 'safe' },
+    { value: 'chocolate', label: 'Chocolate', rating: 'good' },
+    { value: 'strawberry', label: 'Strawberry', rating: 'wild' },
+    { value: 'salted-caramel', label: 'Salted Caramel', rating: 'crazy' },
+  ];
+  let counties = summary.sort((a, b) => b.total - a.total)
+    .map(c => {
+      return {
+        label: `${c.county} , ${c.state_name} (${c.total})`,
+        value: c,
+      };
+    });
+  return <Select
+    className="basic-single"
+    classNamePrefix="select"
+    defaultValue={""}
+    placeholder={"Search for a County"}
+    isDisabled={false}
+    isLoading={false}
+    isClearable={true}
+    isRtl={false}
+    isSearchable={true}
+    name="county_selection"
+    options={counties}
+    onChange={param => {
+      console.log(param);
+      if (props.callback) {
+        props.callback(param.value.county, param.value.state_name);
+      }
+
+    }}
+  />;
+}
+
+function App() {
   const [county, setCounty] = React.useState("Santa Clara");
   const [state, setState] = React.useState("CA");
   const [casesData, setCaseData] = React.useState(null);
-
   React.useEffect(() => {
     getCaseData().then(abc => {
-      console.log(abc.data);
+      countyModuleInit(abc.data);
       setCaseData(abc.data);
     });
     fetchCounty().then(mycounty => {
@@ -420,19 +466,57 @@ function App() {
     <div className="App">
       <header className="App-header">
         <h2>COVID-19.direct : US County Level Information</h2>
+        <SearchBox
+          casesData={casesData}
+          callback={(newcounty, newstate) => {
+            setCounty(newcounty);
+            setState(newstate);
+          }}
+        />
+
         <USCountyInfo
           casesData={casesData}
           county={county}
           state={state}
         />
+
+        <NearbyCounties
+          casesData={casesData}
+          county={county}
+          state={state}
+          callback={(newcounty, newstate) => {
+            setCounty(newcounty);
+            setState(newstate);
+          }}
+        />
+
+        <DetailCaseList
+          county={county}
+          state={state}
+        />
         <div>
-          <USCountyList
-            casesData={casesData}
-            callback={(newcounty, newstate) => {
-              setCounty(newcounty);
-              setState(newstate);
-            }}
-          />
+          <h4> Data Sources </h4>
+          <li>
+            <a target="_blank" href="https://github.com/CSSEGISandData/COVID-19">
+              Johns Hopkins CSSE
+          </a>
+          </li>
+          <li>
+            <a target="_blank" href="https://coronavirus.1point3acres.com/en">
+              1point3acres.com
+          </a>
+          </li>
+
+          <li>
+            <a target="_blank" href="https://en.wikipedia.org/wiki/User:Michael_J/County_table">
+              Wikipedia county info
+          </a>
+          </li>
+          <li>
+            <a target="_blank" href="https://hifld-geoplatform.opendata.arcgis.com/search?groupIds=2900322cc0b14948a74dca886b7d7cfc">
+              Homeland Infrastructure Foundation-Level Data (HIFLD)
+           </a>
+          </li>
         </div>
       </header>
     </div>
