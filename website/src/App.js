@@ -21,7 +21,6 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import { NearbyCounties, CountiesForStateWidget } from "./CountyListRender.js"
 
-const buildUrl = require('build-url');
 const states = require('us-state-codes');
 const Cookies = require("js-cookie");
 const superagent = require("superagent");
@@ -157,20 +156,28 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-
-const USCountyInfoWidget = (props) => {
+const USCountyInfoWidget = withRouter((props) => {
   const classes = useStyles();
   const startvalue = props.state ? (props.county ? 0 : 1) : 2;
   const [value, setValue] = React.useState(startvalue);
 
-  console.log(props.state);
-  console.log(props.county);
+  const state = props.state ? props.state : "CA";
+  const county = props.county ? props.county : USCounty.countyDataForState(state)[0].County;
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
-  };
+    if (newValue === 0) {
+      browseTo(props.history, state, county);
+    }
+    if (newValue === 1) {
+      browseToState(props.history, state);
+    }
+    if (newValue === 2) {
+      browseToUSPage(props.history);
+    };
+  }
 
-  let countyInfo = lookupCountyInfo(props.state, props.county);
+  let countyInfo = lookupCountyInfo(state, county);
   if (!countyInfo) {
     countyInfo = {
       HospitalBeds: "N/A",
@@ -178,12 +185,12 @@ const USCountyInfoWidget = (props) => {
     }
   }
 
-  let county_cases = USCounty.casesForCounty(props.state, props.county);
-  let state_mycases = USCounty.casesForState(props.state);
-  let state_summary = USCounty.casesForStateSummary(props.state);
-  let county_summary = USCounty.casesForCountySummary(props.state, props.county);
+  let county_cases = USCounty.casesForCounty(state, county);
+  let state_mycases = USCounty.casesForState(state);
+  let state_summary = USCounty.casesForStateSummary(state);
+  let county_summary = USCounty.casesForCountySummary(state, county);
   let us_summary = USCounty.casesSummary(props.casesData);
-  let state_hospitals = USCounty.hospitalsForState(props.state);
+  let state_hospitals = USCounty.hospitalsForState(state);
 
   let graphlist = [
     <BasicGraphNewCases casesData={county_cases} />,
@@ -191,24 +198,44 @@ const USCountyInfoWidget = (props) => {
     <BasicGraphNewCases casesData={props.casesData} />,
   ];
 
+  let state_title =
+    <div onClick={() => {
+      browseToState(props.history, state);
+    }}>
+      {states.getStateNameByStateCode(state)}
+    </div>;
+
+  let county_title =
+    <div onClick={() => {
+      browseTo(props.history, state, county);
+    }}>
+      {county} County
+    </div>;
+
+  let US_title =
+    <div onClick={() => {
+      browseToUSPage(props.history);
+    }}>
+      US
+    </div>;
+
   return <div>
     <div className={classes.row} >
       <Tag
-        title={`${props.county} County`}
+        title={county_title}
         confirmed={county_summary.confirmed}
         newcases={county_summary.newcases}
         hospitals={countyInfo.Hospitals}
         beds={countyInfo.HospitalBeds}
       />
-      <Tag
-        title={states.getStateNameByStateCode(props.state)}
+      <Tag title={state_title}
         confirmed={state_summary.confirmed}
         newcases={state_summary.newcases}
         hospitals={state_hospitals.hospitals}
         beds={state_hospitals.beds}
       />
       <Tag
-        title="US"
+        title={US_title}
         confirmed={us_summary.confirmed}
         newcases={us_summary.newcases}
         hospitals={"6,146"}
@@ -222,15 +249,15 @@ const USCountyInfoWidget = (props) => {
       textColor="primary"
       centered
     >
-      <Tab label={`${props.county} County`} />
-      <Tab label={states.getStateNameByStateCode(props.state)} />
+      <Tab label={`${county} County`} />
+      <Tab label={states.getStateNameByStateCode(state)} />
       <Tab label={"United States"} />
     </Tabs>
     <div>
       {graphlist[value]}
     </div>
   </div>;
-};
+});
 
 function countyFromNewCases(cases_data) {
   let newcases = cases_data.reduce((m, c) => {
@@ -375,6 +402,16 @@ const StateDetailCaseListWidget = (props) => {
     </div>
   return countySummary;
 }
+const EntireUSDetailCaseListWidget = (props) => {
+  const classes = useStyles();
+  let state_cases = USCounty.casesForUS().reverse();
+  let countySummary =
+    <div>
+      <h3> Case details for United States} </h3>
+      <DetailCaseListWidget cases={state_cases} />
+    </div>
+  return countySummary;
+}
 
 const DetailCaseListWidget = (props) => {
   const classes = useStyles();
@@ -437,7 +474,7 @@ const SearchBox = (props) => {
 
 const App = (props) => {
   return <BrowserRouter>
-    <App1  {...props} />
+    <MainApp  {...props} />
   </BrowserRouter>;
 };
 
@@ -455,7 +492,14 @@ function browseToState(history, state) {
   );
 }
 
-const App1 = withRouter((props) => {
+function browseToUSPage(history) {
+  history.push(
+    "/US",
+    history.search,
+  );
+}
+
+const MainApp = withRouter((props) => {
   const [county, setCounty] = React.useState("Santa Clara");
   const [state, setState] = React.useState("CA");
   const [casesData, setCaseData] = React.useState(null);
@@ -482,10 +526,36 @@ const App1 = withRouter((props) => {
         {/* <Route exact path='/' component={App2} /> */}
         <Route exact path='/county/:state/:county' render={(props) => <CountyWidget {...props} casesData={casesData} />} />
         <Route exact path='/state/:state' render={(props) => <StateWidget {...props} casesData={casesData} />} />
+        <Route exact path='/US' render={(props) => <EntireUSWidget {...props} casesData={casesData} />} />
       </Switch>
     </div>
   );
 });
+
+const EntireUSWidget = (props) => {
+  const casesData = props.casesData;
+  return (
+    <div className="App">
+      <header className="App-header">
+        <h2>COVID-19.direct : US County Level Information</h2>
+        <SearchBox
+          casesData={casesData}
+          callback={(newcounty, newstate) => {
+            browseTo(props.history, newstate, newcounty);
+          }}
+        />
+        <USCountyInfoWidget
+          casesData={casesData}
+          callback={(newcounty, newstate) => {
+            browseTo(props.history, newstate, newcounty);
+          }}
+        />
+        <EntireUSDetailCaseListWidget />
+        <DataCrediWidget />
+      </header>
+    </div>
+  );
+}
 
 const CountyWidget = (props) => {
   const state = props.match.params.state;
