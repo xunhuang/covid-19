@@ -7,6 +7,8 @@ import Tab from '@material-ui/core/Tab';
 import { countyModuleInit, lookupCountyInfo, nearbyCounties } from "./USCountyInfo.js";
 import * as USCounty from "./USCountyInfo.js";
 import Grid from '@material-ui/core/Grid';
+import Select from 'react-select';
+
 
 const states = require('us-state-codes');
 const Cookies = require("js-cookie");
@@ -132,6 +134,12 @@ const USCountyInfo = (props) => {
   };
 
   let countyInfo = lookupCountyInfo(props.state, props.county);
+  if (!countyInfo) {
+    countyInfo = {
+      HospitalBeds: "N/A",
+      Hospitals: "N/A",
+    }
+  }
   let county_cases = USCounty.casesForCounty(props.state, props.county);
   let state_mycases = USCounty.casesForState(props.state);
   let state_summary = USCounty.casesForStateSummary(props.state);
@@ -231,34 +239,7 @@ function getCountySummary(cases) {
   return g_group;
 }
 
-const USCountyList = (props) => {
-  function clicked(newcounty, newstate) {
-    if (props.callback) {
-      props.callback(newcounty, newstate);
-    }
-  }
-
-  let summary = getCountySummary(props.casesData);
-  let content = summary.sort((a, b) => {
-    return b.total - a.total;
-  }).map(county => {
-    let total = county.total
-    return <div onClick={() => { clicked(county.county, county.state_name); }}>
-      <span>
-        {county.county}
-      </span>,
-      <span> {county.state_name}</span>
-      <span> Total: {total} </span>
-    </div>
-  })
-  return <div>
-    <h4>US Counties list ordered by confirmed</h4>
-    {content}
-  </div>;
-};
-
 function countyFromNewCases(cases_data) {
-
   let newcases = cases_data.reduce((m, c) => {
     let a = m[c.confirmed_date];
     if (!a) a = 0;
@@ -384,11 +365,9 @@ const DetailCaseList = (props) => {
   }
   let countyInfo = lookupCountyInfo(props.state, props.county);
   let county_cases = USCounty.casesForCounty(props.state, props.county).reverse();
-  let countySummary;
+  let countySummary = <div />;
   if (countyInfo) {
-
     let nearbyC = county_cases.map(c => {
-      console.log(c);
       return <Grid container spacing={1}>
         <Grid item xs={6} sm={1}>
           {c.confirmed_date}
@@ -429,7 +408,7 @@ const NearbyCounties = (props) => {
     }
   }
   let countyInfo = lookupCountyInfo(props.state, props.county);
-  let countySummary;
+  let countySummary = <div></div>;
   if (countyInfo) {
     let nearby =
       nearbyCounties(props.state, props.county)
@@ -484,6 +463,44 @@ const NearbyCounties = (props) => {
   return countySummary;
 }
 
+const SearchBox = (props) => {
+
+  let summary = getCountySummary(props.casesData);
+  const flavourOptions = [
+    { value: 'vanilla', label: 'Vanilla', rating: 'safe' },
+    { value: 'chocolate', label: 'Chocolate', rating: 'good' },
+    { value: 'strawberry', label: 'Strawberry', rating: 'wild' },
+    { value: 'salted-caramel', label: 'Salted Caramel', rating: 'crazy' },
+  ];
+  let counties = summary.sort((a, b) => b.total - a.total)
+    .map(c => {
+      return {
+        label: `${c.county} , ${c.state_name} (${c.total})`,
+        value: c,
+      };
+    });
+  return <Select
+    className="basic-single"
+    classNamePrefix="select"
+    defaultValue={""}
+    placeholder={"Search for a County"}
+    isDisabled={false}
+    isLoading={false}
+    isClearable={true}
+    isRtl={false}
+    isSearchable={true}
+    name="county_selection"
+    options={counties}
+    onChange={param => {
+      console.log(param);
+      if (props.callback) {
+        props.callback(param.value.county, param.value.state_name);
+      }
+
+    }}
+  />;
+}
+
 function App() {
   const [county, setCounty] = React.useState("Santa Clara");
   const [state, setState] = React.useState("CA");
@@ -504,10 +521,19 @@ function App() {
     return <div> Loading</div>;
   }
 
+
   return (
     <div className="App">
       <header className="App-header">
         <h2>COVID-19.direct : US County Level Information</h2>
+        <SearchBox
+          casesData={casesData}
+          callback={(newcounty, newstate) => {
+            setCounty(newcounty);
+            setState(newstate);
+          }}
+        />
+
         <USCountyInfo
           casesData={casesData}
           county={county}
@@ -528,16 +554,6 @@ function App() {
           county={county}
           state={state}
         />
-
-        <div>
-          <USCountyList
-            casesData={casesData}
-            callback={(newcounty, newstate) => {
-              setCounty(newcounty);
-              setState(newstate);
-            }}
-          />
-        </div>
       </header>
       <div>
         <h4> Data Sources </h4>
