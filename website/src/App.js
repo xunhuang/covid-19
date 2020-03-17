@@ -98,7 +98,6 @@ const useStyles = makeStyles(theme => ({
   row: {
     padding: theme.spacing(1, 1),
     justifyContent: "space-between",
-    width: "100%",
     display: "flex",
   },
   tag: {
