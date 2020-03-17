@@ -53,6 +53,37 @@ function nearbyCounties(state_short_name, county_name) {
     return add_distance;
 }
 
+function getAllStatesSummary(cases) {
+    const today = moment().format("M/D");
+    let g_group = cases.reduce((result, c) => {
+        let current = result[c.state_name];
+        if (!current) {
+            current = {
+                confirmed: 0,
+                newcases: 0,
+            }
+        }
+        current.confirmed += c.people_count;
+        if (c.confirmed_date === today) {
+            current.newcases += c.people_count;
+        }
+        result[c.state_name] = current;
+        return result;
+    }, {});
+
+    let r = Object.keys(g_group).reduce((result, key) => {
+        let item = g_group[key];
+        result.push({
+            state: key,
+            confirmed: item.confirmed,
+            newcases: item.newcases,
+            newpercent: ((item.newcases / (item.confirmed - item.newcases)) * 100).toFixed(0),
+        })
+        return result;
+    }, []);
+    return r;
+}
+
 function getCountySummary(cases) {
     let g = cases.reduce((result, c) => {
         if (!c.county || c.county === "undefined" || c.countuy === "Unassigned" || c.county === "Unknown") {
@@ -176,4 +207,5 @@ export {
     hospitalsForState,
     countyDataForState,
     getCountySummary,
+    getAllStatesSummary,
 }

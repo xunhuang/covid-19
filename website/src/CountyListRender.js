@@ -59,6 +59,58 @@ const CountiesForStateWidget = (props) => {
     return countySummary;
 }
 
+const AllStatesListWidget = (props) => {
+    let list = USCounty.getAllStatesSummary(props.casesData)
+        .sort((a, b) => b.confirmed - a.confirmed);
+    console.log(list);
+    let countySummary =
+        <div>
+            <h3> Counties of {states.getStateNameByStateCode(props.state)} </h3>
+            <AllStateListRender countylist={list} callback={props.callback} />
+        </div>;
+    return countySummary;
+}
+
+const AllStateListRender = (props) => {
+    const list = props.countylist;
+    const classes = useStyles();
+    let countySummary =
+        <Table className={classes.table} size="small" aria-label="simple table">
+            <TableHead>
+                <TableRow>
+                    <TableCell > Name</TableCell>
+                    <TableCell align="center">Total</TableCell>
+                    <TableCell align="center">New</TableCell>
+                    <TableCell align="center">Population</TableCell>
+                </TableRow>
+            </TableHead>
+            <TableBody>
+                {
+                    list.map(row => {
+                        let newcases = row.newcases;
+                        let confirmed = row.confirmed;
+                        let newpercent = row.newpercent;
+                        let newEntry = (Number.isNaN(newpercent)) ? newcases : `${newcases}(+${newpercent}%)`;
+                        if (newcases === 0) {
+                            newEntry = 0;
+                        }
+                        return <TableRow key={row.name}>
+                            <TableCell component="th" scope="row" onClick={() => {
+                                // clicked(row.County, row.State);
+                            }}>
+                                {row.state}
+                            </TableCell>
+                            <TableCell align="center">{confirmed}</TableCell>
+                            <TableCell align="center"> {newEntry} </TableCell>
+                            <TableCell align="center">{row.Population2010}</TableCell>
+                        </TableRow>;
+                    })
+                }
+            </TableBody>
+        </Table>;
+    return countySummary;
+}
+
 const CountyListRender = (props) => {
     const list = props.countylist;
     const classes = useStyles();
@@ -106,4 +158,5 @@ const CountyListRender = (props) => {
 export {
     NearbyCounties,
     CountiesForStateWidget,
+    AllStatesListWidget,
 }

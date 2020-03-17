@@ -19,7 +19,7 @@ import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
-import { NearbyCounties, CountiesForStateWidget } from "./CountyListRender.js"
+import { NearbyCounties, CountiesForStateWidget, AllStatesListWidget } from "./CountyListRender.js"
 
 const states = require('us-state-codes');
 const Cookies = require("js-cookie");
@@ -407,7 +407,7 @@ const EntireUSDetailCaseListWidget = (props) => {
   let state_cases = USCounty.casesForUS().reverse();
   let countySummary =
     <div>
-      <h3> Case details for United States} </h3>
+      <h3> Case details for United States </h3>
       <DetailCaseListWidget cases={state_cases} />
     </div>
   return countySummary;
@@ -550,6 +550,9 @@ const EntireUSWidget = (props) => {
             browseTo(props.history, newstate, newcounty);
           }}
         />
+        <AllStatesListWidget
+          casesData={casesData}
+        ></AllStatesListWidget>
         <EntireUSDetailCaseListWidget />
         <DataCrediWidget />
       </header>
