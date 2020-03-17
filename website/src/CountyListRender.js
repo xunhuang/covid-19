@@ -84,12 +84,16 @@ const CountyListRender = (props) => {
                         let newcases = sum.newcases;
                         let confirmed = sum.confirmed;
                         let newpercent = sum.newpercent;
+                        let newEntry = (Number.isNaN(newpercent)) ? newcases : `${newcases}(+${newpercent}%)`;
+                        if (newcases === 0) {
+                            newEntry = 0;
+                        }
                         return <TableRow key={row.name}>
                             <TableCell component="th" scope="row" onClick={() => { clicked(row.County, row.State); }}>
                                 {row.County}
                             </TableCell>
                             <TableCell align="center">{confirmed}</TableCell>
-                            <TableCell align="center"> {newcases} (+ {newpercent}%) </TableCell>
+                            <TableCell align="center"> {newEntry} </TableCell>
                             <TableCell align="center">{row.Population2010}</TableCell>
                         </TableRow>;
                     })

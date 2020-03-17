@@ -10,7 +10,7 @@ exports.helloWorld = functions.https.onRequest((request, response) => {
 });
 
 async function getDataJson() {
-   return await db.collection("DATA").doc("latest").get()
+   return await db.collection("DATA").doc("latest1").get()
       .then(function (doc) {
          if (doc.exists) {
             return doc.data();
@@ -30,7 +30,7 @@ exports.datajson = functions.https.onRequest((req, res) => {
       res.send({
          timestamp: json.timestamp,
          time: json.timestamp,
-         data: JSON.parse(json.data),
+         data: json.data1,
       });
    })
 });

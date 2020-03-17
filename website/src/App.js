@@ -1,4 +1,8 @@
 import React from 'react';
+import { Switch, Route, withRouter } from 'react-router-dom'
+import { BrowserRouter } from 'react-router-dom';
+
+
 import { GoogleMap, Marker, LoadScript } from '@react-google-maps/api'
 import { ResponsiveContainer, LineChart, Line, YAxis, XAxis, Tooltip, CartesianGrid, Legend } from 'recharts';
 import { makeStyles } from '@material-ui/core/styles';
@@ -7,6 +11,8 @@ import Tab from '@material-ui/core/Tab';
 import { countyModuleInit, lookupCountyInfo } from "./USCountyInfo.js";
 import * as USCounty from "./USCountyInfo.js";
 import Select from 'react-select';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography'
 
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -15,6 +21,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import { NearbyCounties, CountiesForStateWidget } from "./CountyListRender.js"
 
+const buildUrl = require('build-url');
 const states = require('us-state-codes');
 const Cookies = require("js-cookie");
 const superagent = require("superagent");
@@ -127,12 +134,37 @@ const useStyles = makeStyles(theme => ({
   grow: {
     flexGrow: 1,
   },
+  title: {
+    display: 'block',
+    color: '#FFFFFF',
+    background: '#FF0000',
+    padding: 5,
+    margin: 5,
+  },
+  subtitle: {
+    display: 'block',
+    padding: 5,
+    margin: 5,
+  },
+
+  rootSplash: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    width: "100%",
+    height: "60vh",
+    flexGrow: 1,
+  },
 }));
 
 
-const USCountyInfo = (props) => {
+const USCountyInfoWidget = (props) => {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
+
+  console.log("............");
+  console.log(props.state);
+  console.log(props.county);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -191,7 +223,6 @@ const USCountyInfo = (props) => {
         beds={"924,107"}
       />
     </div>
-
     <Tabs
       value={value}
       onChange={handleChange}
@@ -329,11 +360,6 @@ async function getCaseData() {
 
 const DetailCaseList = (props) => {
   const classes = useStyles();
-  function clicked(newcounty, newstate) {
-    if (props.callback) {
-      props.callback(newcounty, newstate);
-    }
-  }
   let countyInfo = lookupCountyInfo(props.state, props.county);
   let county_cases = USCounty.casesForCounty(props.state, props.county).reverse();
   let countySummary = <div />;
@@ -369,12 +395,6 @@ const DetailCaseList = (props) => {
 const SearchBox = (props) => {
 
   let summary = USCounty.getCountySummary(props.casesData);
-  const flavourOptions = [
-    { value: 'vanilla', label: 'Vanilla', rating: 'safe' },
-    { value: 'chocolate', label: 'Chocolate', rating: 'good' },
-    { value: 'strawberry', label: 'Strawberry', rating: 'wild' },
-    { value: 'salted-caramel', label: 'Salted Caramel', rating: 'crazy' },
-  ];
   let counties = summary.sort((a, b) => b.total - a.total)
     .map(c => {
       return {
@@ -404,7 +424,27 @@ const SearchBox = (props) => {
   />;
 }
 
-function App() {
+const App = (props) => {
+  return <BrowserRouter>
+    <App1  {...props} />
+  </BrowserRouter>;
+};
+
+function browseTo(history, state, county) {
+  history.push(
+    "/county/" + encodeURIComponent(state) + "/" + encodeURIComponent(county),
+    history.search,
+  );
+}
+
+function browseToState(history, state) {
+  history.push(
+    "/county/" + encodeURIComponent(state),
+    history.search,
+  );
+}
+
+const App1 = withRouter((props) => {
   const [county, setCounty] = React.useState("Santa Clara");
   const [state, setState] = React.useState("CA");
   const [casesData, setCaseData] = React.useState(null);
@@ -414,15 +454,34 @@ function App() {
       setCaseData(abc.data);
     });
     fetchCounty().then(mycounty => {
-      console.log(mycounty);
       setCounty(mycounty.results[0].county_name);
       setState(mycounty.results[0].state_code);
     });
   }, []);
-
-  if (casesData === null || casesData === null) {
-    return <div> Loading</div>;
+  if (casesData === null || state === null) {
+    return <Splash />
   }
+
+  if (props.location.pathname === "/") {
+    browseTo(props.history, state, county);
+  }
+  return (
+    <div>
+      <Switch>
+        {/* <Route exact path='/' component={App2} /> */}
+        {/* <Route exact path='/county/:state/:county' component={App2} /> */}
+        <Route exact path='/county/:state/:county' render={(props) => <CountyWidget {...props} casesData={casesData} />} />
+        <Route exact path='/county/:state' render={(props) => <StateWidget {...props} casesData={casesData} />} />
+        {/* <Route exact path='/state/:state' component={App2} /> */}
+      </Switch>
+    </div>
+  );
+});
+
+const CountyWidget = (props) => {
+  const state = props.match.params.state;
+  const county = props.match.params.county;
+  const casesData = props.casesData;
 
   return (
     <div className="App">
@@ -431,68 +490,129 @@ function App() {
         <SearchBox
           casesData={casesData}
           callback={(newcounty, newstate) => {
-            setCounty(newcounty);
-            setState(newstate);
+            browseTo(props.history, newstate, newcounty);
           }}
         />
-
-        <USCountyInfo
+        <USCountyInfoWidget
           casesData={casesData}
           county={county}
           state={state}
+          callback={(newcounty, newstate) => {
+            browseTo(props.history, newstate, newcounty);
+          }}
         />
-
         <NearbyCounties
           casesData={casesData}
           county={county}
           state={state}
           callback={(newcounty, newstate) => {
-            setCounty(newcounty);
-            setState(newstate);
+            browseTo(props.history, newstate, newcounty);
           }}
         />
+        <DetailCaseList
+          county={county}
+          state={state}
+        />
+        <DataCrediWidget />
+      </header>
+    </div>
+  );
+}
+const StateWidget = (props) => {
+  const state = props.match.params.state;
+  const county = props.match.params.county;
+  const casesData = props.casesData;
 
+  return (
+    <div className="App">
+      <header className="App-header">
+        <h2>COVID-19.direct : US County Level Information</h2>
+        <SearchBox
+          casesData={casesData}
+          callback={(newcounty, newstate) => {
+            browseTo(props.history, newstate, newcounty);
+          }}
+        />
+        <USCountyInfoWidget
+          casesData={casesData}
+          county={county}
+          state={state}
+          callback={(newcounty, newstate) => {
+            browseTo(props.history, newstate, newcounty);
+          }}
+        />
         <CountiesForStateWidget
           casesData={casesData}
           county={county}
           state={state}
           callback={(newcounty, newstate) => {
-            setCounty(newcounty);
-            setState(newstate);
+            browseTo(props.history, newstate, newcounty);
           }}
         />
-
         <DetailCaseList
           county={county}
           state={state}
         />
-        <div>
-          <h4> Data Sources </h4>
-          <li>
-            <a target="_blank" href="https://github.com/CSSEGISandData/COVID-19">
-              Johns Hopkins CSSE
-          </a>
-          </li>
-          <li>
-            <a target="_blank" href="https://coronavirus.1point3acres.com/en">
-              1point3acres.com
-          </a>
-          </li>
-
-          <li>
-            <a target="_blank" href="https://en.wikipedia.org/wiki/User:Michael_J/County_table">
-              Wikipedia county info
-          </a>
-          </li>
-          <li>
-            <a target="_blank" href="https://hifld-geoplatform.opendata.arcgis.com/search?groupIds=2900322cc0b14948a74dca886b7d7cfc">
-              Homeland Infrastructure Foundation-Level Data (HIFLD)
-           </a>
-          </li>
-        </div>
+        <DataCrediWidget />
       </header>
     </div>
   );
 }
+
+const DataCrediWidget = () => {
+  return (
+    <div>
+      <h4> Data Sources </h4>
+      <li>
+        <a target="_blank" href="https://github.com/CSSEGISandData/COVID-19">
+          Johns Hopkins CSSE
+          </a>
+      </li>
+      <li>
+        <a target="_blank" href="https://coronavirus.1point3acres.com/en">
+          1point3acres.com
+          </a>
+      </li>
+
+      <li>
+        <a target="_blank" href="https://en.wikipedia.org/wiki/User:Michael_J/County_table">
+          Wikipedia county info
+          </a>
+      </li>
+      <li>
+        <a target="_blank" href="https://hifld-geoplatform.opendata.arcgis.com/search?groupIds=2900322cc0b14948a74dca886b7d7cfc">
+          Homeland Infrastructure Foundation-Level Data (HIFLD)
+           </a>
+      </li>
+    </div>
+  );
+}
+
+const Splash = (props) => {
+  const classes = useStyles();
+  return (
+    <div className={classes.rootSplash}>
+      <div>
+        <Toolbar>
+          <div className={classes.grow}> </div>
+          <Typography className={classes.title} variant="h2" noWrap>
+            Stay Calm
+        </Typography>
+          <div className={classes.grow}> </div>
+        </Toolbar>
+
+        <Toolbar>
+          <div className={classes.grow}> </div>
+          <Typography className={classes.subtitle} variant="h5" noWrap>
+            THIS TOO SHALL PASS
+          </Typography>
+          <div className={classes.grow}> </div>
+        </Toolbar>
+      </div>
+    </div>);
+}
+
+
+
 
 export default App;
