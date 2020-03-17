@@ -160,9 +160,9 @@ const useStyles = makeStyles(theme => ({
 
 const USCountyInfoWidget = (props) => {
   const classes = useStyles();
-  const [value, setValue] = React.useState(0);
+  const startvalue = props.state ? (props.county ? 0 : 1) : 2;
+  const [value, setValue] = React.useState(startvalue);
 
-  console.log("............");
   console.log(props.state);
   console.log(props.county);
 
@@ -177,6 +177,7 @@ const USCountyInfoWidget = (props) => {
       Hospitals: "N/A",
     }
   }
+
   let county_cases = USCounty.casesForCounty(props.state, props.county);
   let state_mycases = USCounty.casesForState(props.state);
   let state_summary = USCounty.casesForStateSummary(props.state);
@@ -184,20 +185,11 @@ const USCountyInfoWidget = (props) => {
   let us_summary = USCounty.casesSummary(props.casesData);
   let state_hospitals = USCounty.hospitalsForState(props.state);
 
-  let graph;
-  if (value === 0) {
-    graph = <BasicGraphNewCases
-      casesData={county_cases}
-    />;
-  } else if (value === 1) {
-    graph = <BasicGraphNewCases
-      casesData={state_mycases}
-    />;
-  } else if (value === 2) {
-    graph = <BasicGraphNewCases
-      casesData={props.casesData}
-    />;
-  }
+  let graphlist = [
+    <BasicGraphNewCases casesData={county_cases} />,
+    <BasicGraphNewCases casesData={state_mycases} />,
+    <BasicGraphNewCases casesData={props.casesData} />,
+  ];
 
   return <div>
     <div className={classes.row} >
@@ -235,7 +227,7 @@ const USCountyInfoWidget = (props) => {
       <Tab label={"United States"} />
     </Tabs>
     <div>
-      {graph}
+      {graphlist[value]}
     </div>
   </div>;
 };
@@ -367,29 +359,48 @@ const DetailCaseList = (props) => {
     countySummary =
       <div>
         <h3> Case details for {props.county}, {states.getStateNameByStateCode(props.state)} </h3>
-        <Table className={classes.table} size="small" aria-label="simple table">
-          <TableHead>
-            <TableRow>
-              <TableCell > Date</TableCell>
-              <TableCell align="center">Count</TableCell>
-              <TableCell align="left">Detail</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {county_cases.map(row => (
-              <TableRow key={row.name}>
-                <TableCell component="th" scope="row">
-                  {row.confirmed_date}
-                </TableCell>
-                <TableCell align="center">{row.people_count}</TableCell>
-                <TableCell align="left">{row.comments_en}</TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
+        <DetailCaseListWidget cases={county_cases} />
       </div>
   }
   return countySummary;
+}
+
+const StateDetailCaseListWidget = (props) => {
+  const classes = useStyles();
+  let state_cases = USCounty.casesForState(props.state).reverse();
+  let countySummary =
+    <div>
+      <h3> Case details for {states.getStateNameByStateCode(props.state)} </h3>
+      <DetailCaseListWidget cases={state_cases} />
+    </div>
+  return countySummary;
+}
+
+const DetailCaseListWidget = (props) => {
+  const classes = useStyles();
+  const cases = props.cases;
+  let list =
+    <Table className={classes.table} size="small" aria-label="simple table">
+      <TableHead>
+        <TableRow>
+          <TableCell > Date</TableCell>
+          <TableCell align="center">Count</TableCell>
+          <TableCell align="left">Detail</TableCell>
+        </TableRow>
+      </TableHead>
+      <TableBody>
+        {cases.map(row => (
+          <TableRow key={row.name}>
+            <TableCell component="th" scope="row">
+              {row.confirmed_date}
+            </TableCell>
+            <TableCell align="center">{row.people_count}</TableCell>
+            <TableCell align="left">{row.comments_en}</TableCell>
+          </TableRow>
+        ))}
+      </TableBody>
+    </Table>
+  return list;
 }
 
 const SearchBox = (props) => {
@@ -439,7 +450,7 @@ function browseTo(history, state, county) {
 
 function browseToState(history, state) {
   history.push(
-    "/county/" + encodeURIComponent(state),
+    "/state/" + encodeURIComponent(state),
     history.search,
   );
 }
@@ -469,10 +480,8 @@ const App1 = withRouter((props) => {
     <div>
       <Switch>
         {/* <Route exact path='/' component={App2} /> */}
-        {/* <Route exact path='/county/:state/:county' component={App2} /> */}
         <Route exact path='/county/:state/:county' render={(props) => <CountyWidget {...props} casesData={casesData} />} />
-        <Route exact path='/county/:state' render={(props) => <StateWidget {...props} casesData={casesData} />} />
-        {/* <Route exact path='/state/:state' component={App2} /> */}
+        <Route exact path='/state/:state' render={(props) => <StateWidget {...props} casesData={casesData} />} />
       </Switch>
     </div>
   );
@@ -482,7 +491,6 @@ const CountyWidget = (props) => {
   const state = props.match.params.state;
   const county = props.match.params.county;
   const casesData = props.casesData;
-
   return (
     <div className="App">
       <header className="App-header">
@@ -549,8 +557,7 @@ const StateWidget = (props) => {
             browseTo(props.history, newstate, newcounty);
           }}
         />
-        <DetailCaseList
-          county={county}
+        <StateDetailCaseListWidget
           state={state}
         />
         <DataCrediWidget />
