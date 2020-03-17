@@ -122,6 +122,7 @@ function hospitalsForState(state_short_name) {
         if (c.HospitalBeds) {
             beds += c.HospitalBeds;
         }
+        return null;
     })
     return {
         hospitals: hospitals,
