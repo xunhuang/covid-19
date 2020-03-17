@@ -439,7 +439,7 @@ const NearbyCounties = (props) => {
                 let confirmed = sum.confirmed;
                 let newpercent = sum.newpercent;
                 return <TableRow key={row.name}>
-                  <TableCell component="th" scope="row">
+                  <TableCell component="th" scope="row" onClick={() => { clicked(row.County, row.State); }}>
                     {row.County}
                   </TableCell>
                   <TableCell align="center">{confirmed}</TableCell>
