@@ -108,12 +108,15 @@ function getCountySummary(cases) {
             sum += c.people_count;
             return sum;
         }, 0);
+        let c = lookupCountyInfo(county[0].state_name, county[0].county);
+        let pop = c ? c.Population2010 : NaN;
         result.push({
             total: total,
             county: county[0].county,
             County: county[0].county,
             state_name: county[0].state_name,
             State: county[0].state_name,
+            Population2010: pop,
         });
         return result;
     }, []);
