@@ -15,6 +15,7 @@ import TableCell from '@material-ui/core/TableCell';
 import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
+import { NearbyCounties } from "./CountyListRender.js"
 
 const states = require('us-state-codes');
 const Cookies = require("js-cookie");
@@ -404,6 +405,8 @@ const DetailCaseList = (props) => {
   }
   return countySummary;
 }
+
+/*
 const NearbyCounties = (props) => {
   const classes = useStyles();
   function clicked(newcounty, newstate) {
@@ -456,6 +459,7 @@ const NearbyCounties = (props) => {
   }
   return countySummary;
 }
+*/
 
 const SearchBox = (props) => {
 
@@ -514,7 +518,6 @@ function App() {
   if (casesData === null || casesData === null) {
     return <div> Loading</div>;
   }
-
 
   return (
     <div className="App">
