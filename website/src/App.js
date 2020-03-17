@@ -552,6 +552,9 @@ const EntireUSWidget = (props) => {
         />
         <AllStatesListWidget
           casesData={casesData}
+          callback={(newstate) => {
+            browseToState(props.history, newstate);
+          }}
         ></AllStatesListWidget>
         <EntireUSDetailCaseListWidget />
         <DataCrediWidget />

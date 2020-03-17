@@ -7,6 +7,7 @@ import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
+
 const states = require('us-state-codes');
 
 const useStyles = makeStyles(theme => ({
@@ -94,11 +95,15 @@ const AllStateListRender = (props) => {
                         if (newcases === 0) {
                             newEntry = 0;
                         }
+                        let statename = states.getStateNameByStateCode(row.state);
+                        if (!statename) {
+                            statename = row.state;
+                        }
                         return <TableRow key={row.name}>
                             <TableCell component="th" scope="row" onClick={() => {
-                                // clicked(row.County, row.State);
+                                props.callback(row.state)
                             }}>
-                                {row.state}
+                                {statename}
                             </TableCell>
                             <TableCell align="center">{confirmed}</TableCell>
                             <TableCell align="center"> {newEntry} </TableCell>
@@ -109,7 +114,7 @@ const AllStateListRender = (props) => {
             </TableBody>
         </Table>;
     return countySummary;
-}
+};
 
 const CountyListRender = (props) => {
     const list = props.countylist;
