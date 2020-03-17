@@ -9,6 +9,12 @@ import * as USCounty from "./USCountyInfo.js";
 import Grid from '@material-ui/core/Grid';
 import Select from 'react-select';
 
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableContainer from '@material-ui/core/TableContainer';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
 
 const states = require('us-state-codes');
 const Cookies = require("js-cookie");
@@ -358,6 +364,7 @@ async function getCaseData() {
 }
 
 const DetailCaseList = (props) => {
+  const classes = useStyles();
   function clicked(newcounty, newstate) {
     if (props.callback) {
       props.callback(newcounty, newstate);
@@ -367,41 +374,38 @@ const DetailCaseList = (props) => {
   let county_cases = USCounty.casesForCounty(props.state, props.county).reverse();
   let countySummary = <div />;
   if (countyInfo) {
-    let nearbyC = county_cases.map(c => {
-      return <Grid container spacing={1}>
-        <Grid item xs={6} sm={1}>
-          {c.confirmed_date}
-        </Grid>
-        <Grid item xs={6} sm={1}>
-          {c.people_count}
-        </Grid>
-        <Grid item xs={6} sm={9}>
-          {c.comments_en}
-        </Grid>
-      </Grid >;
-    });
-
     countySummary =
       <div>
         <h3> Case details for {props.county}, {states.getStateNameByStateCode(props.state)} </h3>
-        <Grid container spacing={1}>
-          <Grid item xs={6} sm={1}>
-            Date
-        </Grid>
-          <Grid item xs={6} sm={1}>
-            Count
-        </Grid>
-          <Grid item xs={6} sm={9}>
-            Details
-        </Grid>
-        </Grid >
-        {nearbyC}
+        <Table className={classes.table} size="small" aria-label="simple table">
+          <TableHead>
+            <TableRow>
+              <TableCell > Date</TableCell>
+              <TableCell align="center">Count</TableCell>
+              <TableCell align="left">Detail</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {county_cases.map(row => (
+              <TableRow key={row.name}>
+                <TableCell component="th" scope="row">
+                  {row.confirmed_date}
+                </TableCell>
+                <TableCell align="center">{row.people_count}</TableCell>
+                <TableCell align="left">{row.comments_en}</TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+
+
       </div>
-      ;
+
   }
   return countySummary;
 }
 const NearbyCounties = (props) => {
+  const classes = useStyles();
   function clicked(newcounty, newstate) {
     if (props.callback) {
       props.callback(newcounty, newstate);
@@ -415,50 +419,40 @@ const NearbyCounties = (props) => {
         .sort((a, b) => a.distance - b.distance)
         .slice(0, 10)
       ;
-    let nearbyC = nearby.map(c => {
-      let countysummary = USCounty.casesForCountySummary(props.state, c.County);
-
-      let newcases = countysummary.newcases;
-      let confirmed = countysummary.confirmed;
-      let newpercent = countysummary.newpercent;
-
-      return <Grid container spacing={1}>
-        <Grid item xs={6} sm={3} onClick={() => { clicked(c.County, c.State); }}>
-          {c.County}
-        </Grid>
-        <Grid item xs={6} sm={3}>
-          {confirmed}
-        </Grid>
-        <Grid item xs={6} sm={3}>
-          {newcases} (+ {newpercent}%)
-        </Grid>
-        <Grid item xs={6} sm={3}>
-          {c.Population2010}
-        </Grid>
-      </Grid >;
-    });
-
     countySummary =
       <div>
         <h3> Nearby Counties of {props.county}, {states.getStateNameByStateCode(props.state)} </h3>
-        <Grid container spacing={1}>
-          <Grid item xs={6} sm={3}>
-            Name
-        </Grid>
-          <Grid item xs={6} sm={3}>
-            Confirmred
-        </Grid>
-          <Grid item xs={6} sm={3}>
-            New Cases
-        </Grid>
-          <Grid item xs={6} sm={3}>
-            Population
-        </Grid>
-        </Grid >
-
-        {nearbyC}
+        <Table className={classes.table} size="small" aria-label="simple table">
+          <TableHead>
+            <TableRow>
+              <TableCell > Name</TableCell>
+              <TableCell align="center">Total</TableCell>
+              <TableCell align="center">New</TableCell>
+              <TableCell align="center">Population</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {
+              nearby.map(row => {
+                let sum = USCounty.casesForCountySummary(props.state, row.County);
+                let newcases = sum.newcases;
+                let confirmed = sum.confirmed;
+                let newpercent = sum.newpercent;
+                return <TableRow key={row.name}>
+                  <TableCell component="th" scope="row">
+                    {row.County}
+                  </TableCell>
+                  <TableCell align="center">{confirmed}</TableCell>
+                  <TableCell align="center">
+                    {newcases} (+ {newpercent}%)
+                  </TableCell>
+                  <TableCell align="center">{row.Population2010}</TableCell>
+                </TableRow>;
+              })
+            }
+          </TableBody>
+        </Table>
       </div>
-      ;
   }
   return countySummary;
 }
