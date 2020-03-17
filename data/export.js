@@ -16,7 +16,7 @@ function snapshotToArray(snapshot) {
 };
 
 async function updateDataInDB(info) {
-    let docRef = db.collection("DATA").doc("latest");
+    let docRef = db.collection("DATA").doc("latest1");
     await docRef.set(info).then((doc) => {
         console.log(`done updating latest`);
     }).catch(err => {
@@ -38,16 +38,19 @@ var cases = require('../website/src/data/1.3cases.json');
 async function doit() {
     let time = moment();
 
-
     cases = cases.map (c => {
         c.state_full_name = states.getStateNameByStateCode(c.state_name);
+        delete c["comments"];
         return c;
     });
 
     let info = {
         timestamp: time.format(),
-        data: JSON.stringify(cases, 0, 2),
+        // data: JSON.stringify(cases, 0, 2),
+        data1: cases,
     }
+
+    await updateDataInDB(info);
 
     process.exit();
 }
