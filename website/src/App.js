@@ -21,6 +21,10 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import { NearbyCounties, CountiesForStateWidget, AllStatesListWidget } from "./CountyListRender.js"
 
+
+
+
+var shortNumber = require('short-number');
 const states = require('us-state-codes');
 const Cookies = require("js-cookie");
 const superagent = require("superagent");
@@ -117,7 +121,7 @@ const useStyles = makeStyles(theme => ({
     display: "inline-block",
     textAlign: "center",
     backgroundColor: "#f3f3f3",
-    padding: theme.spacing(1, 1),
+    // padding: theme.spacing(1, 1),
     flex: 1,
     margin: 3,
   },
@@ -209,7 +213,7 @@ const USCountyInfoWidget = withRouter((props) => {
     <div onClick={() => {
       browseTo(props.history, state, county);
     }}>
-      {county} County
+      {county}
     </div>;
 
   let US_title =
@@ -238,8 +242,8 @@ const USCountyInfoWidget = withRouter((props) => {
         title={US_title}
         confirmed={us_summary.confirmed}
         newcases={us_summary.newcases}
-        hospitals={"6,146"}
-        beds={"924,107"}
+        hospitals={6146}
+        beds={924107}
       />
     </div>
     <Tabs
@@ -249,7 +253,7 @@ const USCountyInfoWidget = withRouter((props) => {
       textColor="primary"
       centered
     >
-      <Tab label={`${county} County`} />
+      <Tab label={`${county}`} />
       <Tab label={states.getStateNameByStateCode(state)} />
       <Tab label={"United States"} />
     </Tabs>
@@ -314,19 +318,19 @@ const Tag = (props) => {
     <div className={classes.row} >
       <section>
         <div className={classes.topTag}>
-          + {props.newcases}
+          +{shortNumber(props.newcases)}
         </div>
         <div className={classes.mainTag}>
-          {props.confirmed} </div>
+          {shortNumber(props.confirmed)} </div>
         <div className={classes.smallTag}>
           Confirmed </div>
       </section>
       <section>
         <div className={classes.topTag}>
-          {props.beds} Beds
+          {shortNumber(props.beds)} Beds
           </div>
         <div className={classes.mainTag}>
-          {props.hospitals} </div>
+          {shortNumber(props.hospitals)} </div>
         <div className={classes.smallTag}>
           Hospitals </div>
       </section>
