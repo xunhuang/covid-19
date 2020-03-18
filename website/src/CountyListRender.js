@@ -114,7 +114,7 @@ const AllStateListRender = (props) => {
                             statename = row.state;
                         }
                         let pop = row.Population2010 ? row.Population2010 : 0;
-                        return <TableRow key={row.name}>
+                        return <TableRow key={statename}>
                             <TableCell component="th" scope="row" onClick={() => {
                                 props.callback(row.state)
                             }}>
@@ -160,7 +160,7 @@ const CountyListRender = (props) => {
                         if (newcases === 0) {
                             newEntry = 0;
                         }
-                        return <TableRow key={row.name}>
+                        return <TableRow key={row.County}>
                             <TableCell component="th" scope="row" onClick={() => { clicked(row.County, row.State); }}>
                                 {row.County}
                             </TableCell>

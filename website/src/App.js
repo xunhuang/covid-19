@@ -286,7 +286,7 @@ function countyFromNewCases(cases_data) {
   }
 
   let sorted_keys = Object.keys(newcases).sort(function (a, b) {
-    return moment(a).toDate() - moment(b).toDate();
+    return moment(a, "MM/DD/YYY").toDate() - moment(b, "MM/DD/YYY").toDate();
   });
   let total = 0;
   return sorted_keys.map(key => {
@@ -391,7 +391,6 @@ async function getCaseData() {
 }
 
 const DetailCaseList = (props) => {
-  const classes = useStyles();
   let countyInfo = lookupCountyInfo(props.state, props.county);
   let county_cases = USCounty.casesForCounty(props.state, props.county).sort(sort_by_date);
   let countySummary = <div />;
@@ -410,7 +409,6 @@ function sort_by_date(a, b) {
 };
 
 const StateDetailCaseListWidget = (props) => {
-  const classes = useStyles();
   let state_cases = USCounty.casesForState(props.state).sort(sort_by_date);
   let countySummary =
     <div>
@@ -420,7 +418,6 @@ const StateDetailCaseListWidget = (props) => {
   return countySummary;
 }
 const EntireUSDetailCaseListWidget = (props) => {
-  const classes = useStyles();
   let state_cases = USCounty.casesForUS().sort(sort_by_date);
   let countySummary =
     <div>
@@ -444,7 +441,7 @@ const DetailCaseListWidget = (props) => {
       </TableHead>
       <TableBody>
         {cases.map(row => (
-          <TableRow key={row.name}>
+          <TableRow key={row.id}>
             <TableCell component="th" scope="row">
               {row.confirmed_date}
             </TableCell>
@@ -453,7 +450,7 @@ const DetailCaseListWidget = (props) => {
           </TableRow>
         ))}
       </TableBody>
-    </Table>
+    </Table >
   return list;
 }
 
@@ -664,23 +661,23 @@ const DataCrediWidget = () => {
     <div>
       <h4> Data Sources </h4>
       <li>
-        <a target="_blank" href="https://github.com/CSSEGISandData/COVID-19">
+        <a target="_blank" href="https://github.com/CSSEGISandData/COVID-19" rel="noopener noreferrer" >
           Johns Hopkins CSSE
           </a>
       </li>
       <li>
-        <a target="_blank" href="https://coronavirus.1point3acres.com/en">
+        <a target="_blank" href="https://coronavirus.1point3acres.com/en" rel="noopener noreferrer" >
           1point3acres.com
           </a>
       </li>
 
       <li>
-        <a target="_blank" href="https://en.wikipedia.org/wiki/User:Michael_J/County_table">
+        <a target="_blank" href="https://en.wikipedia.org/wiki/User:Michael_J/County_table" rel="noopener noreferrer" >
           Wikipedia county info
           </a>
       </li>
       <li>
-        <a target="_blank" href="https://hifld-geoplatform.opendata.arcgis.com/search?groupIds=2900322cc0b14948a74dca886b7d7cfc">
+        <a target="_blank" href="https://hifld-geoplatform.opendata.arcgis.com/search?groupIds=2900322cc0b14948a74dca886b7d7cfc" rel="noopener noreferrer" >
           Homeland Infrastructure Foundation-Level Data (HIFLD)
            </a>
       </li>
