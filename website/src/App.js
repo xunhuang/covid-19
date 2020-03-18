@@ -1,8 +1,6 @@
 import React from 'react';
 import { Switch, Route, withRouter } from 'react-router-dom'
 import { BrowserRouter } from 'react-router-dom';
-
-
 import { GoogleMap, Marker, LoadScript } from '@react-google-maps/api'
 import { ResponsiveContainer, LineChart, Line, YAxis, XAxis, Tooltip, CartesianGrid, Legend } from 'recharts';
 import { makeStyles } from '@material-ui/core/styles';
@@ -21,8 +19,8 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import { NearbyCounties, CountiesForStateWidget, AllStatesListWidget } from "./CountyListRender.js"
 
-
 var shortNumber = require('short-number');
+
 function myShortNumber(n) {
   if (!n) {
     return "0";
@@ -33,8 +31,6 @@ function myShortNumber(n) {
   }
   return shortNumber(n);
 }
-
-
 
 const states = require('us-state-codes');
 const Cookies = require("js-cookie");
@@ -48,8 +44,8 @@ firebase.initializeApp(firebaseConfig);
 
 const db = firebase.firestore();
 var Hospitals = require('./hospitals.json');
-
 var ApproxIPLocation;
+
 
 async function fetchCounty() {
   let cookie = Cookies.getJSON("covidLocation");
@@ -276,14 +272,14 @@ const USCountyInfoWidget = withRouter((props) => {
 
 function countyFromNewCases(cases_data) {
   let newcases = cases_data.reduce((m, c) => {
-    let a = m[c.confirmed_date];
+    let a = m[c.fulldate];
     if (!a) a = 0;
     a += c.people_count;
-    m[c.confirmed_date] = a;
+    m[c.fulldate] = a;
     return m;
   }, {});
 
-  const today = moment().format("M/D");
+  const today = moment().format("MM/DD/YYYY");
   var newcasenum = newcases[today];
   if (!newcasenum) {
     newcases[today] = 0;
@@ -297,8 +293,10 @@ function countyFromNewCases(cases_data) {
     let v = newcases[key];
     total += v;
 
+    const day = moment(key).format("M/D");
+
     return {
-      name: key,
+      name: day,
       confirmed: total,
       newcase: v,
     };
