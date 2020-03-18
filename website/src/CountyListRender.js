@@ -10,6 +10,19 @@ import TableRow from '@material-ui/core/TableRow';
 
 
 var shortNumber = require('short-number');
+
+function myShortNumber(n) {
+    if (!n) {
+        return "0";
+    }
+    if (isNaN(n)) {
+        n = n.replace(/,/g, '');
+        n = Number(n);
+    }
+    return shortNumber(n);
+}
+
+
 const states = require('us-state-codes');
 
 const useStyles = makeStyles(theme => ({
@@ -109,7 +122,7 @@ const AllStateListRender = (props) => {
                             </TableCell>
                             <TableCell align="center">{confirmed}</TableCell>
                             <TableCell align="center"> {newEntry} </TableCell>
-                            <TableCell align="center">{shortNumber(pop)}</TableCell>
+                            <TableCell align="center">{myShortNumber(pop)}</TableCell>
                         </TableRow>;
                     })
                 }
@@ -153,7 +166,7 @@ const CountyListRender = (props) => {
                             </TableCell>
                             <TableCell align="center">{confirmed}</TableCell>
                             <TableCell align="center"> {newEntry} </TableCell>
-                            <TableCell align="center">{shortNumber(Number(row.Population2010.replace(/,/g, '')))}</TableCell>
+                            <TableCell align="center">{myShortNumber(row.Population2010)}</TableCell>
                         </TableRow>;
                     })
                 }

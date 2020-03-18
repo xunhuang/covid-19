@@ -22,9 +22,20 @@ import TableRow from '@material-ui/core/TableRow';
 import { NearbyCounties, CountiesForStateWidget, AllStatesListWidget } from "./CountyListRender.js"
 
 
-
-
 var shortNumber = require('short-number');
+function myShortNumber(n) {
+  if (!n) {
+    return "0";
+  }
+  if (isNaN(n)) {
+    n = n.replace(/,/g, '');
+    n = Number(n);
+  }
+  return shortNumber(n);
+}
+
+
+
 const states = require('us-state-codes');
 const Cookies = require("js-cookie");
 const superagent = require("superagent");
@@ -318,19 +329,19 @@ const Tag = (props) => {
     <div className={classes.row} >
       <section>
         <div className={classes.topTag}>
-          +{shortNumber(props.newcases)}
+          +{myShortNumber(props.newcases)}
         </div>
         <div className={classes.mainTag}>
-          {shortNumber(props.confirmed)} </div>
+          {myShortNumber(props.confirmed)} </div>
         <div className={classes.smallTag}>
           Confirmed </div>
       </section>
       <section>
         <div className={classes.topTag}>
-          {shortNumber(props.beds)} Beds
+          {myShortNumber(props.beds)} Beds
           </div>
         <div className={classes.mainTag}>
-          {shortNumber(props.hospitals)} </div>
+          {myShortNumber(props.hospitals)} </div>
         <div className={classes.smallTag}>
           Hospitals </div>
       </section>
