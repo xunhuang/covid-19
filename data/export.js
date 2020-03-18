@@ -35,12 +35,18 @@ async function updateDataInDB(info) {
 
 var cases = require('../website/src/data/1.3cases.json');
 
+
+function pad(n){return n<10 ? '0'+n : n}
+
+
 async function doit() {
     let time = moment();
-
-    cases = cases.map (c => {
+    cases = cases.map( c => {
+        let d = c.confirmed_date.split("/");
+        c.fulldate = pad(d[0]) + '/' + pad(d[1]) + '/'+ 2020;
         c.state_full_name = states.getStateNameByStateCode(c.state_name);
         delete c["comments"];
+        delete c["links"];
         return c;
     });
 
