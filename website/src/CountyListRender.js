@@ -8,6 +8,21 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 
+
+var shortNumber = require('short-number');
+
+function myShortNumber(n) {
+    if (!n) {
+        return "0";
+    }
+    if (isNaN(n)) {
+        n = n.replace(/,/g, '');
+        n = Number(n);
+    }
+    return shortNumber(n);
+}
+
+
 const states = require('us-state-codes');
 
 const useStyles = makeStyles(theme => ({
@@ -63,7 +78,6 @@ const CountiesForStateWidget = (props) => {
 const AllStatesListWidget = (props) => {
     let list = USCounty.getAllStatesSummary(props.casesData)
         .sort((a, b) => b.confirmed - a.confirmed);
-    console.log(list);
     let countySummary =
         <div>
             <h3> States of USA </h3>
@@ -99,6 +113,7 @@ const AllStateListRender = (props) => {
                         if (!statename) {
                             statename = row.state;
                         }
+                        let pop = row.Population2010 ? row.Population2010 : 0;
                         return <TableRow key={row.name}>
                             <TableCell component="th" scope="row" onClick={() => {
                                 props.callback(row.state)
@@ -107,7 +122,7 @@ const AllStateListRender = (props) => {
                             </TableCell>
                             <TableCell align="center">{confirmed}</TableCell>
                             <TableCell align="center"> {newEntry} </TableCell>
-                            <TableCell align="center">{row.Population2010}</TableCell>
+                            <TableCell align="center">{myShortNumber(pop)}</TableCell>
                         </TableRow>;
                     })
                 }
@@ -151,7 +166,7 @@ const CountyListRender = (props) => {
                             </TableCell>
                             <TableCell align="center">{confirmed}</TableCell>
                             <TableCell align="center"> {newEntry} </TableCell>
-                            <TableCell align="center">{row.Population2010}</TableCell>
+                            <TableCell align="center">{myShortNumber(row.Population2010)}</TableCell>
                         </TableRow>;
                     })
                 }
