@@ -380,7 +380,7 @@ async function getCaseData() {
 const DetailCaseList = (props) => {
   const classes = useStyles();
   let countyInfo = lookupCountyInfo(props.state, props.county);
-  let county_cases = USCounty.casesForCounty(props.state, props.county).reverse();
+  let county_cases = USCounty.casesForCounty(props.state, props.county).sort(sort_by_date);
   let countySummary = <div />;
   if (countyInfo) {
     countySummary =
@@ -392,9 +392,13 @@ const DetailCaseList = (props) => {
   return countySummary;
 }
 
+function sort_by_date(a, b) {
+  return moment(b.confirmed_date).toDate() - moment(a.confirmed_date).toDate();
+};
+
 const StateDetailCaseListWidget = (props) => {
   const classes = useStyles();
-  let state_cases = USCounty.casesForState(props.state).reverse();
+  let state_cases = USCounty.casesForState(props.state).sort(sort_by_date);
   let countySummary =
     <div>
       <h3> Case details for {states.getStateNameByStateCode(props.state)} </h3>
@@ -404,7 +408,7 @@ const StateDetailCaseListWidget = (props) => {
 }
 const EntireUSDetailCaseListWidget = (props) => {
   const classes = useStyles();
-  let state_cases = USCounty.casesForUS().reverse();
+  let state_cases = USCounty.casesForUS().sort(sort_by_date);
   let countySummary =
     <div>
       <h3> Case details for United States </h3>

@@ -137,7 +137,6 @@ const CountyListRender = (props) => {
             <TableBody>
                 {
                     list.map(row => {
-                        console.log(row);
                         let sum = USCounty.casesForCountySummary(row.State, row.County);
                         let newcases = sum.newcases;
                         let confirmed = sum.confirmed;
