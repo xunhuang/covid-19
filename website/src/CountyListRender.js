@@ -101,7 +101,6 @@ const AllStateListRender = (props) => {
                             statename = row.state;
                         }
                         let pop = row.Population2010 ? row.Population2010 : 0;
-                        console.log(pop);
                         return <TableRow key={row.name}>
                             <TableCell component="th" scope="row" onClick={() => {
                                 props.callback(row.state)
