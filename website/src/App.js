@@ -1,19 +1,25 @@
 import React from 'react';
+import { Switch, Route, withRouter } from 'react-router-dom'
+import { BrowserRouter } from 'react-router-dom';
+
+
 import { GoogleMap, Marker, LoadScript } from '@react-google-maps/api'
 import { ResponsiveContainer, LineChart, Line, YAxis, XAxis, Tooltip, CartesianGrid, Legend } from 'recharts';
 import { makeStyles } from '@material-ui/core/styles';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-import { countyModuleInit, lookupCountyInfo, nearbyCounties } from "./USCountyInfo.js";
+import { countyModuleInit, lookupCountyInfo } from "./USCountyInfo.js";
 import * as USCounty from "./USCountyInfo.js";
 import Select from 'react-select';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography'
 
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
-import { NearbyCounties } from "./CountyListRender.js"
+import { NearbyCounties, CountiesForStateWidget, AllStatesListWidget } from "./CountyListRender.js"
 
 const states = require('us-state-codes');
 const Cookies = require("js-cookie");
@@ -127,71 +133,115 @@ const useStyles = makeStyles(theme => ({
   grow: {
     flexGrow: 1,
   },
+  title: {
+    display: 'block',
+    color: '#FFFFFF',
+    background: '#FF0000',
+    padding: 5,
+    margin: 5,
+  },
+  subtitle: {
+    display: 'block',
+    padding: 5,
+    margin: 5,
+  },
+
+  rootSplash: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    width: "100%",
+    height: "60vh",
+    flexGrow: 1,
+  },
 }));
 
-
-const USCountyInfo = (props) => {
+const USCountyInfoWidget = withRouter((props) => {
   const classes = useStyles();
-  const [value, setValue] = React.useState(0);
+  const startvalue = props.state ? (props.county ? 0 : 1) : 2;
+  const [value, setValue] = React.useState(startvalue);
+
+  const state = props.state ? props.state : "CA";
+  const county = props.county ? props.county : USCounty.countyDataForState(state)[0].County;
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
-  };
+    if (newValue === 0) {
+      browseTo(props.history, state, county);
+    }
+    if (newValue === 1) {
+      browseToState(props.history, state);
+    }
+    if (newValue === 2) {
+      browseToUSPage(props.history);
+    };
+  }
 
-  let countyInfo = lookupCountyInfo(props.state, props.county);
+  let countyInfo = lookupCountyInfo(state, county);
   if (!countyInfo) {
     countyInfo = {
       HospitalBeds: "N/A",
       Hospitals: "N/A",
     }
   }
-  let county_cases = USCounty.casesForCounty(props.state, props.county);
-  let state_mycases = USCounty.casesForState(props.state);
-  let state_summary = USCounty.casesForStateSummary(props.state);
-  let county_summary = USCounty.casesForCountySummary(props.state, props.county);
-  let us_summary = USCounty.casesSummary(props.casesData);
-  let state_hospitals = USCounty.hospitalsForState(props.state);
 
-  let graph;
-  if (value === 0) {
-    graph = <BasicGraphNewCases
-      casesData={county_cases}
-    />;
-  } else if (value === 1) {
-    graph = <BasicGraphNewCases
-      casesData={state_mycases}
-    />;
-  } else if (value === 2) {
-    graph = <BasicGraphNewCases
-      casesData={props.casesData}
-    />;
-  }
+  let county_cases = USCounty.casesForCounty(state, county);
+  let state_mycases = USCounty.casesForState(state);
+  let state_summary = USCounty.casesForStateSummary(state);
+  let county_summary = USCounty.casesForCountySummary(state, county);
+  let us_summary = USCounty.casesSummary(props.casesData);
+  let state_hospitals = USCounty.hospitalsForState(state);
+
+  let graphlist = [
+    <BasicGraphNewCases casesData={county_cases} />,
+    <BasicGraphNewCases casesData={state_mycases} />,
+    <BasicGraphNewCases casesData={props.casesData} />,
+  ];
+
+  let state_title =
+    <div onClick={() => {
+      browseToState(props.history, state);
+    }}>
+      {states.getStateNameByStateCode(state)}
+    </div>;
+
+  let county_title =
+    <div onClick={() => {
+      browseTo(props.history, state, county);
+    }}>
+      {county} County
+    </div>;
+
+  let US_title =
+    <div onClick={() => {
+      browseToUSPage(props.history);
+    }}>
+      US
+    </div>;
 
   return <div>
     <div className={classes.row} >
       <Tag
-        title={`${props.county} County`}
+        title={county_title}
         confirmed={county_summary.confirmed}
         newcases={county_summary.newcases}
         hospitals={countyInfo.Hospitals}
         beds={countyInfo.HospitalBeds}
       />
-      <Tag
-        title={states.getStateNameByStateCode(props.state)}
+      <Tag title={state_title}
         confirmed={state_summary.confirmed}
         newcases={state_summary.newcases}
         hospitals={state_hospitals.hospitals}
         beds={state_hospitals.beds}
       />
       <Tag
-        title="US"
+        title={US_title}
         confirmed={us_summary.confirmed}
         newcases={us_summary.newcases}
         hospitals={"6,146"}
         beds={"924,107"}
       />
     </div>
-
     <Tabs
       value={value}
       onChange={handleChange}
@@ -199,50 +249,15 @@ const USCountyInfo = (props) => {
       textColor="primary"
       centered
     >
-      <Tab label={`${props.county} County`} />
-      <Tab label={states.getStateNameByStateCode(props.state)} />
+      <Tab label={`${county} County`} />
+      <Tab label={states.getStateNameByStateCode(state)} />
       <Tab label={"United States"} />
     </Tabs>
     <div>
-      {graph}
+      {graphlist[value]}
     </div>
   </div>;
-};
-
-function getCountySummary(cases) {
-  let g = cases.reduce((result, c) => {
-    if (!c.county || c.county === "undefined" || c.countuy === "Unassigned" || c.county === "Unknown") {
-      c.county = "Unknown";
-    }
-
-    let key = c.state_name + "," + c.county;
-
-    let group = result[key];
-    if (group) {
-      group.push(c);
-    } else {
-      group = [c];
-    }
-    result[key] = group;
-    return result;
-  }, {});
-
-  let g_group = Object.keys(g).reduce((result, key) => {
-    let county = g[key];
-    let total = county.reduce((sum, c) => {
-      sum += c.people_count;
-      return sum;
-    }, 0);
-    result.push({
-      total: total,
-      county: county[0].county,
-      state_name: county[0].state_name,
-    });
-    return result;
-  }, []);
-
-  return g_group;
-}
+});
 
 function countyFromNewCases(cases_data) {
   let newcases = cases_data.reduce((m, c) => {
@@ -364,55 +379,74 @@ async function getCaseData() {
 
 const DetailCaseList = (props) => {
   const classes = useStyles();
-  function clicked(newcounty, newstate) {
-    if (props.callback) {
-      props.callback(newcounty, newstate);
-    }
-  }
   let countyInfo = lookupCountyInfo(props.state, props.county);
-  let county_cases = USCounty.casesForCounty(props.state, props.county).reverse();
+  let county_cases = USCounty.casesForCounty(props.state, props.county).sort(sort_by_date);
   let countySummary = <div />;
   if (countyInfo) {
     countySummary =
       <div>
         <h3> Case details for {props.county}, {states.getStateNameByStateCode(props.state)} </h3>
-        <Table className={classes.table} size="small" aria-label="simple table">
-          <TableHead>
-            <TableRow>
-              <TableCell > Date</TableCell>
-              <TableCell align="center">Count</TableCell>
-              <TableCell align="left">Detail</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {county_cases.map(row => (
-              <TableRow key={row.name}>
-                <TableCell component="th" scope="row">
-                  {row.confirmed_date}
-                </TableCell>
-                <TableCell align="center">{row.people_count}</TableCell>
-                <TableCell align="left">{row.comments_en}</TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-
-
+        <DetailCaseListWidget cases={county_cases} />
       </div>
-
   }
   return countySummary;
 }
 
+function sort_by_date(a, b) {
+  return moment(b.confirmed_date).toDate() - moment(a.confirmed_date).toDate();
+};
+
+const StateDetailCaseListWidget = (props) => {
+  const classes = useStyles();
+  let state_cases = USCounty.casesForState(props.state).sort(sort_by_date);
+  let countySummary =
+    <div>
+      <h3> Case details for {states.getStateNameByStateCode(props.state)} </h3>
+      <DetailCaseListWidget cases={state_cases} />
+    </div>
+  return countySummary;
+}
+const EntireUSDetailCaseListWidget = (props) => {
+  const classes = useStyles();
+  let state_cases = USCounty.casesForUS().sort(sort_by_date);
+  let countySummary =
+    <div>
+      <h3> Case details for United States </h3>
+      <DetailCaseListWidget cases={state_cases} />
+    </div>
+  return countySummary;
+}
+
+const DetailCaseListWidget = (props) => {
+  const classes = useStyles();
+  const cases = props.cases;
+  let list =
+    <Table className={classes.table} size="small" aria-label="simple table">
+      <TableHead>
+        <TableRow>
+          <TableCell > Date</TableCell>
+          <TableCell align="center">Count</TableCell>
+          <TableCell align="left">Detail</TableCell>
+        </TableRow>
+      </TableHead>
+      <TableBody>
+        {cases.map(row => (
+          <TableRow key={row.name}>
+            <TableCell component="th" scope="row">
+              {row.confirmed_date}
+            </TableCell>
+            <TableCell align="center">{row.people_count}</TableCell>
+            <TableCell align="left">{row.comments_en}</TableCell>
+          </TableRow>
+        ))}
+      </TableBody>
+    </Table>
+  return list;
+}
+
 const SearchBox = (props) => {
 
-  let summary = getCountySummary(props.casesData);
-  const flavourOptions = [
-    { value: 'vanilla', label: 'Vanilla', rating: 'safe' },
-    { value: 'chocolate', label: 'Chocolate', rating: 'good' },
-    { value: 'strawberry', label: 'Strawberry', rating: 'wild' },
-    { value: 'salted-caramel', label: 'Salted Caramel', rating: 'crazy' },
-  ];
+  let summary = USCounty.getCountySummary(props.casesData);
   let counties = summary.sort((a, b) => b.total - a.total)
     .map(c => {
       return {
@@ -442,7 +476,34 @@ const SearchBox = (props) => {
   />;
 }
 
-function App() {
+const App = (props) => {
+  return <BrowserRouter>
+    <MainApp  {...props} />
+  </BrowserRouter>;
+};
+
+function browseTo(history, state, county) {
+  history.push(
+    "/county/" + encodeURIComponent(state) + "/" + encodeURIComponent(county),
+    history.search,
+  );
+}
+
+function browseToState(history, state) {
+  history.push(
+    "/state/" + encodeURIComponent(state),
+    history.search,
+  );
+}
+
+function browseToUSPage(history) {
+  history.push(
+    "/US",
+    history.search,
+  );
+}
+
+const MainApp = withRouter((props) => {
   const [county, setCounty] = React.useState("Santa Clara");
   const [state, setState] = React.useState("CA");
   const [casesData, setCaseData] = React.useState(null);
@@ -452,15 +513,103 @@ function App() {
       setCaseData(abc.data);
     });
     fetchCounty().then(mycounty => {
-      console.log(mycounty);
       setCounty(mycounty.results[0].county_name);
       setState(mycounty.results[0].state_code);
     });
   }, []);
-
-  if (casesData === null || casesData === null) {
-    return <div> Loading</div>;
+  if (casesData === null || state === null) {
+    return <Splash />
   }
+
+  if (props.location.pathname === "/") {
+    browseTo(props.history, state, county);
+  }
+  return (
+    <div>
+      <Switch>
+        {/* <Route exact path='/' component={App2} /> */}
+        <Route exact path='/county/:state/:county' render={(props) => <CountyWidget {...props} casesData={casesData} />} />
+        <Route exact path='/state/:state' render={(props) => <StateWidget {...props} casesData={casesData} />} />
+        <Route exact path='/US' render={(props) => <EntireUSWidget {...props} casesData={casesData} />} />
+      </Switch>
+    </div>
+  );
+});
+
+const EntireUSWidget = (props) => {
+  const casesData = props.casesData;
+  return (
+    <div className="App">
+      <header className="App-header">
+        <h2>COVID-19.direct : US County Level Information</h2>
+        <SearchBox
+          casesData={casesData}
+          callback={(newcounty, newstate) => {
+            browseTo(props.history, newstate, newcounty);
+          }}
+        />
+        <USCountyInfoWidget
+          casesData={casesData}
+          callback={(newcounty, newstate) => {
+            browseTo(props.history, newstate, newcounty);
+          }}
+        />
+        <AllStatesListWidget
+          casesData={casesData}
+          callback={(newstate) => {
+            browseToState(props.history, newstate);
+          }}
+        ></AllStatesListWidget>
+        <EntireUSDetailCaseListWidget />
+        <DataCrediWidget />
+      </header>
+    </div>
+  );
+}
+
+const CountyWidget = (props) => {
+  const state = props.match.params.state;
+  const county = props.match.params.county;
+  const casesData = props.casesData;
+  return (
+    <div className="App">
+      <header className="App-header">
+        <h2>COVID-19.direct : US County Level Information</h2>
+        <SearchBox
+          casesData={casesData}
+          callback={(newcounty, newstate) => {
+            browseTo(props.history, newstate, newcounty);
+          }}
+        />
+        <USCountyInfoWidget
+          casesData={casesData}
+          county={county}
+          state={state}
+          callback={(newcounty, newstate) => {
+            browseTo(props.history, newstate, newcounty);
+          }}
+        />
+        <NearbyCounties
+          casesData={casesData}
+          county={county}
+          state={state}
+          callback={(newcounty, newstate) => {
+            browseTo(props.history, newstate, newcounty);
+          }}
+        />
+        <DetailCaseList
+          county={county}
+          state={state}
+        />
+        <DataCrediWidget />
+      </header>
+    </div>
+  );
+}
+const StateWidget = (props) => {
+  const state = props.match.params.state;
+  const county = props.match.params.county;
+  const casesData = props.casesData;
 
   return (
     <div className="App">
@@ -469,58 +618,88 @@ function App() {
         <SearchBox
           casesData={casesData}
           callback={(newcounty, newstate) => {
-            setCounty(newcounty);
-            setState(newstate);
+            browseTo(props.history, newstate, newcounty);
           }}
         />
-
-        <USCountyInfo
-          casesData={casesData}
-          county={county}
-          state={state}
-        />
-
-        <NearbyCounties
+        <USCountyInfoWidget
           casesData={casesData}
           county={county}
           state={state}
           callback={(newcounty, newstate) => {
-            setCounty(newcounty);
-            setState(newstate);
+            browseTo(props.history, newstate, newcounty);
           }}
         />
-
-        <DetailCaseList
+        <CountiesForStateWidget
+          casesData={casesData}
           county={county}
           state={state}
+          callback={(newcounty, newstate) => {
+            browseTo(props.history, newstate, newcounty);
+          }}
         />
-        <div>
-          <h4> Data Sources </h4>
-          <li>
-            <a target="_blank" href="https://github.com/CSSEGISandData/COVID-19">
-              Johns Hopkins CSSE
-          </a>
-          </li>
-          <li>
-            <a target="_blank" href="https://coronavirus.1point3acres.com/en">
-              1point3acres.com
-          </a>
-          </li>
-
-          <li>
-            <a target="_blank" href="https://en.wikipedia.org/wiki/User:Michael_J/County_table">
-              Wikipedia county info
-          </a>
-          </li>
-          <li>
-            <a target="_blank" href="https://hifld-geoplatform.opendata.arcgis.com/search?groupIds=2900322cc0b14948a74dca886b7d7cfc">
-              Homeland Infrastructure Foundation-Level Data (HIFLD)
-           </a>
-          </li>
-        </div>
+        <StateDetailCaseListWidget
+          state={state}
+        />
+        <DataCrediWidget />
       </header>
     </div>
   );
 }
+
+const DataCrediWidget = () => {
+  return (
+    <div>
+      <h4> Data Sources </h4>
+      <li>
+        <a target="_blank" href="https://github.com/CSSEGISandData/COVID-19">
+          Johns Hopkins CSSE
+          </a>
+      </li>
+      <li>
+        <a target="_blank" href="https://coronavirus.1point3acres.com/en">
+          1point3acres.com
+          </a>
+      </li>
+
+      <li>
+        <a target="_blank" href="https://en.wikipedia.org/wiki/User:Michael_J/County_table">
+          Wikipedia county info
+          </a>
+      </li>
+      <li>
+        <a target="_blank" href="https://hifld-geoplatform.opendata.arcgis.com/search?groupIds=2900322cc0b14948a74dca886b7d7cfc">
+          Homeland Infrastructure Foundation-Level Data (HIFLD)
+           </a>
+      </li>
+    </div>
+  );
+}
+
+const Splash = (props) => {
+  const classes = useStyles();
+  return (
+    <div className={classes.rootSplash}>
+      <div>
+        <Toolbar>
+          <div className={classes.grow}> </div>
+          <Typography className={classes.title} variant="h2" noWrap>
+            Stay Calm
+        </Typography>
+          <div className={classes.grow}> </div>
+        </Toolbar>
+
+        <Toolbar>
+          <div className={classes.grow}> </div>
+          <Typography className={classes.subtitle} variant="h5" noWrap>
+            THIS TOO SHALL PASS
+          </Typography>
+          <div className={classes.grow}> </div>
+        </Toolbar>
+      </div>
+    </div>);
+}
+
+
+
 
 export default App;
