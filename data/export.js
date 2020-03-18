@@ -46,6 +46,7 @@ async function doit() {
         c.fulldate = pad(d[0]) + '/' + pad(d[1]) + '/'+ 2020;
         c.state_full_name = states.getStateNameByStateCode(c.state_name);
         delete c["comments"];
+        delete c["links"];
         return c;
     });
 
