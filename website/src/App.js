@@ -408,7 +408,7 @@ const DetailCaseList = (props) => {
 }
 
 function sort_by_date(a, b) {
-  return moment(b.confirmed_date).toDate() - moment(a.confirmed_date).toDate();
+  return moment(b.fulldate).toDate() - moment(a.fulldate).toDate();
 };
 
 const StateDetailCaseListWidget = (props) => {
