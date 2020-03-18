@@ -1,11 +1,14 @@
 const firebase = require("firebase");
 require("firebase/firestore");
+require("firebase/storage");
 const firebaseConfig = require('../website/src/firebaseConfig.json');
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 
 const moment = require("moment");
 var states = require('us-state-codes');
+
+global.XMLHttpRequest = require("xhr2");
 
 function snapshotToArray(snapshot) {
     var returnArr = []
@@ -14,6 +17,26 @@ function snapshotToArray(snapshot) {
     });
     return returnArr;
 };
+
+const {Storage} = require('@google-cloud/storage');
+const storage = new Storage();
+
+bucketname= firebaseConfig.storageBucket;
+
+async function uploadDataToBlobStore(info) {
+const myBucket = storage.bucket(bucketname);
+
+let  contents = JSON.stringify(info, 2, 2);
+    try{
+let file = myBucket.file('latest');
+await file.save(contents); 
+    }catch{}
+
+    try{
+let file  = myBucket.file('archive/' + info.timestamp);
+await file.save(contents); 
+    }catch{}
+}
 
 async function updateDataInDB(info) {
     let docRef = db.collection("DATA").doc("latest1");
@@ -35,9 +58,7 @@ async function updateDataInDB(info) {
 
 var cases = require('../website/src/data/1.3cases.json');
 
-
 function pad(n){return n<10 ? '0'+n : n}
-
 
 async function doit() {
     let time = moment();
@@ -56,9 +77,12 @@ async function doit() {
         data1: cases,
     }
 
+
+    await uploadDataToBlobStore(info);
     await updateDataInDB(info);
 
     process.exit();
 }
 
 doit();
+

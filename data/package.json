@@ -9,10 +9,13 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@firebase/storage": "^0.3.29",
+    "@google-cloud/storage": "^4.6.0",
     "cheerio": "^1.0.0-rc.3",
     "firebase": "^7.10.0",
     "moment": "^2.24.0",
     "superagent": "^5.2.2",
-    "us-state-codes": "^1.1.2"
+    "us-state-codes": "^1.1.2",
+    "xhr2": "^0.2.0"
   }
 }
