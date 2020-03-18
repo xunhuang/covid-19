@@ -155,7 +155,6 @@ const useStyles = makeStyles(theme => ({
     padding: 5,
     margin: 5,
   },
-
   rootSplash: {
     display: "flex",
     justifyContent: "center",
@@ -164,6 +163,9 @@ const useStyles = makeStyles(theme => ({
     height: "60vh",
     flexGrow: 1,
   },
+  table: {
+    width: "100%"
+  }
 }));
 
 const USCountyInfoWidget = withRouter((props) => {

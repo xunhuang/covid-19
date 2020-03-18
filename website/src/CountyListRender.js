@@ -42,6 +42,9 @@ const useStyles = makeStyles(theme => ({
     grow: {
         flexGrow: 1,
     },
+    table: {
+        width: "100%"
+    }
 }));
 
 const NearbyCounties = (props) => {
