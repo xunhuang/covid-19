@@ -50,9 +50,10 @@ exports.datajsonNew = functions.https.onRequest((req, res) => {
    cors(req, res, async () => {
       let json = JSON.parse(await getDataJsonNew());
       res.send({
-         timestamp: json.timestamp,
-         time: json.timestamp,
-         data: json.data1,
+         data: {
+            generationTime: json.timestamp,
+            data: json.data1,
+         }
       });
    })
 });

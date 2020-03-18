@@ -46,7 +46,6 @@ const db = firebase.firestore();
 var Hospitals = require('./hospitals.json');
 var ApproxIPLocation;
 
-
 async function fetchCounty() {
   let cookie = Cookies.getJSON("covidLocation");
   if (cookie) {
@@ -386,7 +385,8 @@ const BasicMap = (props) => {
 }
 
 async function getCaseData() {
-  let result = await firebase.functions().httpsCallable('datajson')();
+  let result = await firebase.functions().httpsCallable('datajsonNew')();
+  console.log(result);
   return result;
 }
 
@@ -519,8 +519,8 @@ const MainApp = withRouter((props) => {
   const [casesData, setCaseData] = React.useState(null);
   React.useEffect(() => {
     getCaseData().then(abc => {
-      countyModuleInit(abc.data);
-      setCaseData(abc.data);
+      countyModuleInit(abc.data.data, abc.generationTime);
+      setCaseData(abc.data.data);
     });
     fetchCounty().then(mycounty => {
       setCounty(mycounty.results[0].county_name);
