@@ -553,7 +553,7 @@ const EntireUSWidget = (props) => {
   return (
     <div className="App">
       <header className="App-header">
-        <h2>COVID-19.direct : US County Level Information</h2>
+        <h2>COVID-19.direct: US Counties</h2>
         <SearchBox
           casesData={casesData}
           callback={(newcounty, newstate) => {
@@ -586,7 +586,7 @@ const CountyWidget = (props) => {
   return (
     <div className="App">
       <header className="App-header">
-        <h2>COVID-19.direct : US County Level Information</h2>
+        <h2>COVID-19.direct: US Counties</h2>
         <SearchBox
           casesData={casesData}
           callback={(newcounty, newstate) => {
@@ -626,7 +626,7 @@ const StateWidget = (props) => {
   return (
     <div className="App">
       <header className="App-header">
-        <h2>COVID-19.direct : US County Level Information</h2>
+        <h2>COVID-19.direct: US Counties</h2>
         <SearchBox
           casesData={casesData}
           callback={(newcounty, newstate) => {
