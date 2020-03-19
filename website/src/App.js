@@ -28,8 +28,21 @@ const useStyles = makeStyles(theme => ({
     display: "inline-block",
     textAlign: "center",
     backgroundColor: "#f3f3f3",
+    borderRadius: 10,
     flex: 1,
     margin: 3,
+  },
+  tagSelected: {
+    display: "inline-block",
+    textAlign: "center",
+    color: "#FFFFFF",
+    backgroundColor: "#00aeef",
+    borderRadius: 10,
+    flex: 1,
+    margin: 3,
+  },
+  tagTitle: {
+    marginTop: 5,
   },
   topTag: {
     fontSize: "0.55rem",
@@ -211,7 +224,6 @@ const USCountyInfoWidget = withRouter((props) => {
     }}>
       US
     </div>;
-
   return <div>
     <div className={classes.row} >
       <Tag
@@ -220,12 +232,14 @@ const USCountyInfoWidget = withRouter((props) => {
         newcases={county_summary.newcases}
         hospitals={countyInfo.Hospitals}
         beds={countyInfo.HospitalBeds}
+        selected={value === 0}
       />
       <Tag title={state_title}
         confirmed={state_summary.confirmed}
         newcases={state_summary.newcases}
         hospitals={state_hospitals.hospitals}
         beds={state_hospitals.beds}
+        selected={value === 1}
       />
       <Tag
         title={US_title}
@@ -233,23 +247,13 @@ const USCountyInfoWidget = withRouter((props) => {
         newcases={us_summary.newcases}
         hospitals={6146}
         beds={924107}
+        selected={value === 2}
       />
     </div>
-    <Tabs
-      value={value}
-      onChange={handleChange}
-      indicatorColor="primary"
-      textColor="primary"
-      centered
-    >
-      <Tab label={`${county}`} />
-      <Tab label={states.getStateNameByStateCode(state)} />
-      <Tab label={"United States"} />
-    </Tabs>
     <div>
       {graphlist[value]}
     </div>
-  </div>;
+  </div >;
 });
 
 function countyFromNewCases(cases_data) {
@@ -364,8 +368,8 @@ const BasicGraphNewCases = (props) => {
 
 const Tag = (props) => {
   const classes = useStyles();
-  return <div className={classes.tag}>
-    <div> {props.title}</div>
+  return <div className={props.selected ? classes.tagSelected : classes.tag}>
+    <div className={classes.tagTitle}> {props.title} </div>
     <div className={classes.row} >
       <section>
         <div className={classes.topTag}>
