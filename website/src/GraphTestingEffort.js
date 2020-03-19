@@ -19,16 +19,16 @@ const CustomTooltip = (props) => {
     if (active) {
         const { payload, label } = props;
 
-        let total;
+        let tested;
         let positive;
 
         payload.map(p => {
             p = p.payload;
-            if ("total" in p) {
-                total = p.total;
+            if ("testsThatDay" in p) {
+                tested = p.testsThatDay;
             }
-            if ("positive" in p) {
-                positive = p.positive;
+            if ("positiveThatDay" in p) {
+                positive = p.positiveThatDay;
             }
         });
 
@@ -38,13 +38,13 @@ const CustomTooltip = (props) => {
                     {label}
                 </Typography>
                 <Typography variant="body2" noWrap>
-                    {`Total Tested: ${total}`}
+                    {`Tested: ${tested}`}
                 </Typography>
                 <Typography variant="body2" noWrap>
-                    {`Tested Positve : ${positive}`}
+                    {`Positve : ${positive}`}
                 </Typography>
                 <Typography variant="body2" noWrap>
-                    {`Positve Rate : ${positive / total}`}
+                    {`Positve Rate : ${(positive / tested * 100).toFixed(1)} %`}
                 </Typography>
             </div>
         );
@@ -57,13 +57,17 @@ const GraphUSTesting = (props) => {
     console.log(USTesting);
 
     const data = USTesting.map(t => {
-
         let md = t.date % 1000;
         let m = Math.floor(md / 100);
-        let d = m % 100;
+        let d = md % 100;
         t.name = `${m}/${d}`;
         return t;
     })
+
+    for (let i = 0; i < data.length; i++) {
+        data[i].testsThatDay = (i === 0) ? data[i].total : data[i].total - data[i - 1].total;
+        data[i].positiveThatDay = (i === 0) ? data[i].positive : data[i].positive - data[i - 1].positive;
+    }
 
     return <ResponsiveContainer height={300} >
         <LineChart
@@ -73,8 +77,10 @@ const GraphUSTesting = (props) => {
             <YAxis />
             <XAxis dataKey="name" />
             <CartesianGrid stroke="#f5f5f5" strokeDasharray="5 5" />
-            <Line type="monotone" name="Total Tested" dataKey="total" stroke="#387908" yAxisId={0} strokeWidth={3} />
-            <Line type="monotone" name="Tested Positive" dataKey="positive" stroke="#ff7300" yAxisId={0} strokeWidth={3} />
+            {/* <Line type="monotone" name="Total Tested" dataKey="total" stroke="#387908" yAxisId={0} strokeWidth={3} />
+            <Line type="monotone" name="Tested Positive" dataKey="positive" stroke="#ff7300" yAxisId={0} strokeWidth={3} /> */}
+            <Line type="monotone" name="Daily Tested " dataKey="testsThatDay" stroke="#387908" yAxisId={0} strokeWidth={3} />
+            <Line type="monotone" name="Positive" dataKey="positiveThatDay" stroke="#ff7300" yAxisId={0} strokeWidth={3} />
             <Legend verticalAlign="top" />
             <Tooltip content={<CustomTooltip />} />
         </LineChart></ResponsiveContainer>;
