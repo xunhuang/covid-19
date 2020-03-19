@@ -22,7 +22,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import { NearbyCounties, CountiesForStateWidget, AllStatesListWidget } from "./CountyListRender.js"
 import { BasicGraphNewCases } from "./GraphNewCases.js"
-import { GraphUSTesting } from "./GraphTestingEffort"
+import { GraphUSTesting, GraphStateTesting } from "./GraphTestingEffort"
 
 const useStyles = makeStyles(theme => ({
   row: {
@@ -240,7 +240,23 @@ const USCountyInfoWidget = withRouter((props) => {
     graphlistSection = <BasicGraphNewCases casesData={county_cases} />;
   }
   if (value === 1) {
-    graphlistSection = <BasicGraphNewCases casesData={state_mycases} />;
+    graphlistSection = <div>
+      <Tabs
+        variant="fullWidth"
+        value={tabvalue}
+        onChange={handleChange}
+        aria-label="nav tabs example"
+      >
+        <LinkTab label="Confirmed Cases" href="/drafts" {...a11yProps(0)} />
+        <LinkTab label="Testing Efforts" href="/trash" {...a11yProps(1)} />
+      </Tabs>
+      <TabPanel value={tabvalue} index={0}>
+        <BasicGraphNewCases casesData={state_mycases} />;
+      </TabPanel>
+      <TabPanel value={tabvalue} index={1}>
+        <GraphStateTesting state={state} />
+      </TabPanel>
+    </div>;
   }
   if (value === 2) {
     graphlistSection = <div>

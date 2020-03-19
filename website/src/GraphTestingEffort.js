@@ -49,9 +49,8 @@ const CustomTooltip = (props) => {
     return null;
 }
 
-const GraphUSTesting = (props) => {
-    const USTesting = require("./data/us_testing.json");
-    const data = USTesting.map(t => {
+const GraphTestingWidget = (props) => {
+    const data = props.data.map(t => {
         let md = t.date % 1000;
         let m = Math.floor(md / 100);
         let d = md % 100;
@@ -81,4 +80,19 @@ const GraphUSTesting = (props) => {
         </LineChart></ResponsiveContainer>;
 }
 
-export { GraphUSTesting };
+const GraphUSTesting = (props) => {
+    const data = require("./data/us_testing.json");
+    return <GraphTestingWidget data={data} />;
+}
+
+const GraphStateTesting = (props) => {
+    const usdata = require("./data/state_testing.json");
+    const statedata =
+        usdata.
+            filter(d => d.state === props.state)
+            .sort((a, b) => a.date - b.date);
+
+    return <GraphTestingWidget data={statedata} />;
+}
+
+export { GraphUSTesting, GraphStateTesting };
