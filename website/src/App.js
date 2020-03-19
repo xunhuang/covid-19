@@ -9,8 +9,7 @@ import Tab from '@material-ui/core/Tab';
 import { countyModuleInit, lookupCountyInfo } from "./USCountyInfo.js";
 import * as USCounty from "./USCountyInfo.js";
 import Select from 'react-select';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography'
+import { Splash } from './Splash.js';
 
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -42,29 +41,6 @@ const useStyles = makeStyles(theme => ({
     fontSize: "1.3rem",
   },
   grow: {
-    flexGrow: 1,
-  },
-  title: {
-    display: 'block',
-    color: '#FFFFFF',
-    background: '#00aeef',
-    padding: 25,
-    margin: 25,
-    borderRadius: 20,
-
-  },
-  subtitle: {
-    display: 'block',
-    color: '#00aeef',
-    padding: 5,
-    margin: 5,
-  },
-  rootSplash: {
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    width: "100%",
-    height: "60vh",
     flexGrow: 1,
   },
   table: {
@@ -689,27 +665,5 @@ const DataCrediWidget = () => {
   );
 }
 
-const Splash = (props) => {
-  const classes = useStyles();
-  return (
-    <div className={classes.rootSplash}>
-      <div>
-        <Toolbar>
-          <div className={classes.grow}> </div>
-          <Typography className={classes.title} variant="h2" noWrap>
-            Stay Calm
-        </Typography>
-          <div className={classes.grow}> </div>
-        </Toolbar>
-        <Toolbar>
-          <div className={classes.grow}> </div>
-          <Typography className={classes.subtitle} variant="h5" noWrap>
-            this too shall pass
-          </Typography>
-          <div className={classes.grow}> </div>
-        </Toolbar>
-      </div>
-    </div>);
-}
 
 export default App;
