@@ -310,7 +310,7 @@ const CustomTooltip = (props) => {
 
     let pending_help;
     if (today === payload[0].payload.name) {
-      pending_help = <p>Last # potentially incomplete</p>;
+      pending_help = "Last # potentially incomplete";
     }
 
     return (
