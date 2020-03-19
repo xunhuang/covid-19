@@ -204,26 +204,10 @@ const USCountyInfoWidget = withRouter((props) => {
     <BasicGraphNewCases casesData={props.casesData} />,
   ];
 
-  let state_title =
-    <div onClick={() => {
-      browseToState(props.history, state);
-    }}>
-      {states.getStateNameByStateCode(state)}
-    </div>;
+  let state_title = states.getStateNameByStateCode(state);
+  let county_title = county;
+  let US_title = "US";
 
-  let county_title =
-    <div onClick={() => {
-      browseTo(props.history, state, county);
-    }}>
-      {county}
-    </div>;
-
-  let US_title =
-    <div onClick={() => {
-      browseToUSPage(props.history);
-    }}>
-      US
-    </div>;
   return <div>
     <div className={classes.row} >
       <Tag
@@ -233,6 +217,9 @@ const USCountyInfoWidget = withRouter((props) => {
         hospitals={countyInfo.Hospitals}
         beds={countyInfo.HospitalBeds}
         selected={value === 0}
+        callback={() => {
+          browseTo(props.history, state, county);
+        }}
       />
       <Tag title={state_title}
         confirmed={state_summary.confirmed}
@@ -240,6 +227,9 @@ const USCountyInfoWidget = withRouter((props) => {
         hospitals={state_hospitals.hospitals}
         beds={state_hospitals.beds}
         selected={value === 1}
+        callback={() => {
+          browseToState(props.history, state);
+        }}
       />
       <Tag
         title={US_title}
@@ -248,6 +238,9 @@ const USCountyInfoWidget = withRouter((props) => {
         hospitals={6146}
         beds={924107}
         selected={value === 2}
+        callback={() => {
+          browseToUSPage(props.history);
+        }}
       />
     </div>
     <div>
@@ -368,7 +361,13 @@ const BasicGraphNewCases = (props) => {
 
 const Tag = (props) => {
   const classes = useStyles();
-  return <div className={props.selected ? classes.tagSelected : classes.tag}>
+  return <div className={props.selected ? classes.tagSelected : classes.tag}
+    onClick={() => {
+      if (props.callback) {
+        props.callback();
+      }
+    }}
+  >
     <div className={classes.tagTitle}> {props.title} </div>
     <div className={classes.row} >
       <section>
