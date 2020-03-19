@@ -7,6 +7,13 @@ import { countyModuleInit, lookupCountyInfo } from "./USCountyInfo.js";
 import * as USCounty from "./USCountyInfo.js";
 import Select from 'react-select';
 import { Splash } from './Splash.js';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
+import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
+import PropTypes from 'prop-types';
+
+
 
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -157,26 +164,60 @@ async function getCountyFromDb(state_short_name, county_name) {
   return null;
 }
 
+function TabPanel(props) {
+  const { children, value, index, ...other } = props;
+
+  return (
+    <Typography
+      component="div"
+      role="tabpanel"
+      hidden={value !== index}
+      id={`nav-tabpanel-${index}`}
+      aria-labelledby={`nav-tab-${index}`}
+      {...other}
+    >
+      {value === index && <Box p={3}>{children}</Box>}
+    </Typography>
+  );
+}
+
+TabPanel.propTypes = {
+  children: PropTypes.node,
+  index: PropTypes.any.isRequired,
+  value: PropTypes.any.isRequired,
+};
+
+function a11yProps(index) {
+  return {
+    id: `nav-tab-${index}`,
+    'aria-controls': `nav-tabpanel-${index}`,
+  };
+}
+
+function LinkTab(props) {
+  return (
+    <Tab
+      component="a"
+      onClick={event => {
+        event.preventDefault();
+      }}
+      {...props}
+    />
+  );
+}
+
+
 
 const USCountyInfoWidget = withRouter((props) => {
   const classes = useStyles();
-  const startvalue = props.state ? (props.county ? 0 : 1) : 2;
-  const [value, setValue] = React.useState(startvalue);
+  const value = props.state ? (props.county ? 0 : 1) : 2;
+  const [tabvalue, setTabvalue] = React.useState(0);
 
   const state = props.state ? props.state : "CA";
   const county = props.county ? props.county : USCounty.countyDataForState(state)[0].County;
 
   const handleChange = (event, newValue) => {
-    setValue(newValue);
-    if (newValue === 0) {
-      browseTo(props.history, state, county);
-    }
-    if (newValue === 1) {
-      browseToState(props.history, state);
-    }
-    if (newValue === 2) {
-      browseToUSPage(props.history);
-    };
+    setTabvalue(newValue);
   }
 
   let countyInfo = lookupCountyInfo(state, county);
@@ -194,11 +235,32 @@ const USCountyInfoWidget = withRouter((props) => {
   let us_summary = USCounty.casesSummary(props.casesData);
   let state_hospitals = USCounty.hospitalsForState(state);
 
-  let graphlist = [
-    <BasicGraphNewCases casesData={county_cases} />,
-    <BasicGraphNewCases casesData={state_mycases} />,
-    <BasicGraphNewCases casesData={props.casesData} />,
-  ];
+  let graphlistSection;
+  if (value === 0) {
+    graphlistSection = <BasicGraphNewCases casesData={county_cases} />;
+  }
+  if (value === 1) {
+    graphlistSection = <BasicGraphNewCases casesData={state_mycases} />;
+  }
+  if (value === 2) {
+    graphlistSection = <div>
+      <Tabs
+        variant="fullWidth"
+        value={tabvalue}
+        onChange={handleChange}
+        aria-label="nav tabs example"
+      >
+        <LinkTab label="Trends" href="/drafts" {...a11yProps(0)} />
+        <LinkTab label="Testing Efforts" href="/trash" {...a11yProps(1)} />
+      </Tabs>
+      <TabPanel value={tabvalue} index={0}>
+        <BasicGraphNewCases casesData={props.casesData} />;
+      </TabPanel>
+      <TabPanel value={tabvalue} index={1}>
+        <GraphUSTesting />
+      </TabPanel>
+    </div>;
+  }
 
   let state_title = states.getStateNameByStateCode(state);
   let county_title = county;
@@ -240,7 +302,7 @@ const USCountyInfoWidget = withRouter((props) => {
       />
     </div>
     <div>
-      {graphlist[value]}
+      {graphlistSection}
     </div>
   </div >;
 });
@@ -495,7 +557,6 @@ const EntireUSWidget = (props) => {
             browseTo(props.history, newstate, newcounty);
           }}
         />
-        <GraphUSTesting></GraphUSTesting>
         <AllStatesListWidget
           casesData={casesData}
           callback={(newstate) => {

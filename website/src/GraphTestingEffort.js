@@ -3,15 +3,11 @@ import { ResponsiveContainer, LineChart, Line, YAxis, XAxis, Tooltip, CartesianG
 import { makeStyles } from '@material-ui/core/styles';
 import { Typography } from '@material-ui/core';
 
-const moment = require("moment");
-
 const useStyles = makeStyles(theme => ({
     customtooltip: {
         backgroundColor: "#FFFFFF",
     }
 }));
-
-
 
 const CustomTooltip = (props) => {
     const classes = useStyles();
@@ -30,6 +26,7 @@ const CustomTooltip = (props) => {
             if ("positiveThatDay" in p) {
                 positive = p.positiveThatDay;
             }
+            return null;
         });
 
         return (

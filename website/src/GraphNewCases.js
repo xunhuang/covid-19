@@ -67,6 +67,7 @@ const CustomTooltip = (props) => {
             if ("pending_newcase" in p) {
                 newcase = p.pending_newcase;
             }
+            return null;
         });
 
         let pending_help;
@@ -120,8 +121,9 @@ const BasicGraphNewCases = (props) => {
             margin={{ top: 5, right: 30, left: 5, bottom: 5 }}
         >
             <Tooltip content={<CustomTooltip />} />
-            <YAxis />
             <XAxis dataKey="name" />
+            <YAxis />
+            {/* <YAxis scale="log" domain={['auto', 'auto']} /> */}
             <CartesianGrid stroke="#f5f5f5" strokeDasharray="5 5" />
             <Line type="monotone" dataKey="confirmed" stroke="#ff7300" yAxisId={0} strokeWidth={3} />
             <Line type="monotone" dataKey="newcase" stroke="#387908" yAxisId={0} strokeWidth={3} />
