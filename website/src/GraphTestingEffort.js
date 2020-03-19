@@ -63,21 +63,27 @@ const GraphTestingWidget = (props) => {
         data[i].positiveThatDay = (i === 0) ? data[i].positive : data[i].positive - data[i - 1].positive;
     }
 
-    return <ResponsiveContainer height={300} >
-        <LineChart
-            data={data}
-            margin={{ top: 5, right: 30, left: 5, bottom: 5 }}
-        >
-            <YAxis />
-            <XAxis dataKey="name" />
-            <CartesianGrid stroke="#f5f5f5" strokeDasharray="5 5" />
-            {/* <Line type="monotone" name="Total Tested" dataKey="total" stroke="#387908" yAxisId={0} strokeWidth={3} />
+    return <div>
+        <ResponsiveContainer height={300} >
+            <LineChart
+                data={data}
+                margin={{ top: 5, right: 30, left: 5, bottom: 5 }}
+            >
+                <YAxis />
+                <XAxis dataKey="name" />
+                <CartesianGrid stroke="#f5f5f5" strokeDasharray="5 5" />
+                {/* <Line type="monotone" name="Total Tested" dataKey="total" stroke="#387908" yAxisId={0} strokeWidth={3} />
             <Line type="monotone" name="Tested Positive" dataKey="positive" stroke="#ff7300" yAxisId={0} strokeWidth={3} /> */}
-            <Line type="monotone" name="Daily Tested " dataKey="testsThatDay" stroke="#387908" yAxisId={0} strokeWidth={3} />
-            <Line type="monotone" name="Positive" dataKey="positiveThatDay" stroke="#ff7300" yAxisId={0} strokeWidth={3} />
-            <Legend verticalAlign="top" />
-            <Tooltip content={<CustomTooltip />} />
-        </LineChart></ResponsiveContainer>;
+                <Line type="monotone" name="Daily Tested " dataKey="testsThatDay" stroke="#387908" yAxisId={0} strokeWidth={3} />
+                <Line type="monotone" name="Positive" dataKey="positiveThatDay" stroke="#ff7300" yAxisId={0} strokeWidth={3} />
+                <Legend verticalAlign="top" />
+                <Tooltip content={<CustomTooltip />} />
+            </LineChart>
+        </ResponsiveContainer>
+        <Typography variant="body2" noWrap>
+            Data source: https://covidtracking.com/api/
+        </Typography>
+    </div>;
 }
 
 const GraphUSTesting = (props) => {

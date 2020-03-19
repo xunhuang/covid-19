@@ -216,6 +216,10 @@ const USCountyInfoWidget = withRouter((props) => {
   const state = props.state ? props.state : "CA";
   const county = props.county ? props.county : USCounty.countyDataForState(state)[0].County;
 
+  let state_title = states.getStateNameByStateCode(state);
+  let county_title = county;
+  let US_title = "US";
+
   const handleChange = (event, newValue) => {
     setTabvalue(newValue);
   }
@@ -237,7 +241,23 @@ const USCountyInfoWidget = withRouter((props) => {
 
   let graphlistSection;
   if (value === 0) {
-    graphlistSection = <BasicGraphNewCases casesData={county_cases} />;
+    graphlistSection = <div>
+      <Tabs
+        variant="fullWidth"
+        value={tabvalue}
+        onChange={handleChange}
+        aria-label="nav tabs example"
+      >
+        <LinkTab label="Confirmed Cases" href="/drafts" {...a11yProps(0)} />
+        <LinkTab label={`${state_title} Testing Efforts`} href="/trash" {...a11yProps(1)} />
+      </Tabs>
+      <TabPanel value={tabvalue} index={0}>
+        <BasicGraphNewCases casesData={county_cases} />
+      </TabPanel>
+      <TabPanel value={tabvalue} index={1}>
+        <GraphStateTesting state={state} />
+      </TabPanel>
+    </div>;
   }
   if (value === 1) {
     graphlistSection = <div>
@@ -248,10 +268,10 @@ const USCountyInfoWidget = withRouter((props) => {
         aria-label="nav tabs example"
       >
         <LinkTab label="Confirmed Cases" href="/drafts" {...a11yProps(0)} />
-        <LinkTab label="Testing Efforts" href="/trash" {...a11yProps(1)} />
+        <LinkTab label={`${state_title} Testing Efforts`} href="/trash" {...a11yProps(1)} />
       </Tabs>
       <TabPanel value={tabvalue} index={0}>
-        <BasicGraphNewCases casesData={state_mycases} />;
+        <BasicGraphNewCases casesData={state_mycases} />
       </TabPanel>
       <TabPanel value={tabvalue} index={1}>
         <GraphStateTesting state={state} />
@@ -267,20 +287,16 @@ const USCountyInfoWidget = withRouter((props) => {
         aria-label="nav tabs example"
       >
         <LinkTab label="Confirmed Cases" href="/drafts" {...a11yProps(0)} />
-        <LinkTab label="Testing Efforts" href="/trash" {...a11yProps(1)} />
+        <LinkTab label="National Testing" href="/trash" {...a11yProps(1)} />
       </Tabs>
       <TabPanel value={tabvalue} index={0}>
-        <BasicGraphNewCases casesData={props.casesData} />;
+        <BasicGraphNewCases casesData={props.casesData} />
       </TabPanel>
       <TabPanel value={tabvalue} index={1}>
         <GraphUSTesting />
       </TabPanel>
     </div>;
   }
-
-  let state_title = states.getStateNameByStateCode(state);
-  let county_title = county;
-  let US_title = "US";
 
   return <div>
     <div className={classes.row} >
@@ -688,6 +704,11 @@ const DataCrediWidget = () => {
       <li>
         <a target="_blank" href="https://hifld-geoplatform.opendata.arcgis.com/search?groupIds=2900322cc0b14948a74dca886b7d7cfc" rel="noopener noreferrer" >
           Homeland Infrastructure Foundation-Level Data (HIFLD)
+           </a>
+      </li>
+      <li>
+        <a target="_blank" href="https://covidtracking.com/api/" rel="noopener noreferrer" >
+          Covid tracking API
            </a>
       </li>
     </div>
