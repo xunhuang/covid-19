@@ -17,6 +17,7 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import { NearbyCounties, CountiesForStateWidget, AllStatesListWidget } from "./CountyListRender.js"
+import { Typography } from '@material-ui/core';
 
 const useStyles = makeStyles(theme => ({
   row: {
@@ -286,6 +287,7 @@ const CustomTooltip = (props) => {
   const classes = useStyles();
   const { active } = props;
   if (active) {
+    const today = moment().format("M/D");
     const { payload, label } = props;
     let confirmed;
     let newcase;
@@ -306,12 +308,25 @@ const CustomTooltip = (props) => {
       }
     });
 
+    let pending_help;
+    if (today === payload[0].payload.name) {
+      pending_help = <p>Last # potentially incomplete</p>;
+    }
+
     return (
       <div className={classes.customtooltip}>
-        <p>{label}</p>
-        <p>{`Confirmed: ${confirmed}`}</p>
-        <p>{`New: ${newcase}`}</p>
-        <p>{`Dotted: Pending`}</p>
+        <Typography variant="body1" noWrap>
+          {label}
+        </Typography>
+        <Typography variant="body2" noWrap>
+          {`Confirmed: ${confirmed}`}
+        </Typography>
+        <Typography variant="body2" noWrap>
+          {`New: ${newcase}`}
+        </Typography>
+        <Typography variant="body2" noWrap>
+          {pending_help}
+        </Typography>
       </div>
     );
   }
