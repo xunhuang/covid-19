@@ -15,6 +15,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import { NearbyCounties, CountiesForStateWidget, AllStatesListWidget } from "./CountyListRender.js"
 import { BasicGraphNewCases } from "./GraphNewCases.js"
+import { GraphUSTesting } from "./GraphTestingEffort"
 
 const useStyles = makeStyles(theme => ({
   row: {
@@ -494,6 +495,7 @@ const EntireUSWidget = (props) => {
             browseTo(props.history, newstate, newcounty);
           }}
         />
+        <GraphUSTesting></GraphUSTesting>
         <AllStatesListWidget
           casesData={casesData}
           callback={(newstate) => {
