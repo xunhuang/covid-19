@@ -19,6 +19,59 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import { NearbyCounties, CountiesForStateWidget, AllStatesListWidget } from "./CountyListRender.js"
 
+const useStyles = makeStyles(theme => ({
+  row: {
+    padding: theme.spacing(1, 1),
+    justifyContent: "space-between",
+    display: "flex",
+  },
+  tag: {
+    display: "inline-block",
+    textAlign: "center",
+    backgroundColor: "#f3f3f3",
+    flex: 1,
+    margin: 3,
+  },
+  topTag: {
+    fontSize: "0.55rem",
+  },
+  smallTag: {
+    fontSize: "0.6rem",
+  },
+  mainTag: {
+    fontSize: "1.3rem",
+  },
+  grow: {
+    flexGrow: 1,
+  },
+  title: {
+    display: 'block',
+    color: '#FFFFFF',
+    background: '#00aeef',
+    padding: 25,
+    margin: 25,
+    borderRadius: 20,
+
+  },
+  subtitle: {
+    display: 'block',
+    color: '#00aeef',
+    padding: 5,
+    margin: 5,
+  },
+  rootSplash: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    width: "100%",
+    height: "60vh",
+    flexGrow: 1,
+  },
+  table: {
+    width: "100%"
+  }
+}));
+
 var shortNumber = require('short-number');
 
 function myShortNumber(n) {
@@ -117,56 +170,6 @@ async function getCountyFromDb(state_short_name, county_name) {
   return null;
 }
 
-const useStyles = makeStyles(theme => ({
-  row: {
-    padding: theme.spacing(1, 1),
-    justifyContent: "space-between",
-    display: "flex",
-  },
-  tag: {
-    display: "inline-block",
-    textAlign: "center",
-    backgroundColor: "#f3f3f3",
-    // padding: theme.spacing(1, 1),
-    flex: 1,
-    margin: 3,
-  },
-  topTag: {
-    fontSize: "0.55rem",
-  },
-  smallTag: {
-    fontSize: "0.6rem",
-  },
-  mainTag: {
-    fontSize: "1.3rem",
-  },
-  grow: {
-    flexGrow: 1,
-  },
-  title: {
-    display: 'block',
-    color: '#FFFFFF',
-    background: '#FF0000',
-    padding: 5,
-    margin: 5,
-  },
-  subtitle: {
-    display: 'block',
-    padding: 5,
-    margin: 5,
-  },
-  rootSplash: {
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    width: "100%",
-    height: "60vh",
-    flexGrow: 1,
-  },
-  table: {
-    width: "100%"
-  }
-}));
 
 const USCountyInfoWidget = withRouter((props) => {
   const classes = useStyles();
@@ -388,7 +391,6 @@ const BasicMap = (props) => {
 
 async function getCaseData() {
   let result = await firebase.functions().httpsCallable('datajsonNew')();
-  console.log(result);
   return result;
 }
 
@@ -699,19 +701,15 @@ const Splash = (props) => {
         </Typography>
           <div className={classes.grow}> </div>
         </Toolbar>
-
         <Toolbar>
           <div className={classes.grow}> </div>
           <Typography className={classes.subtitle} variant="h5" noWrap>
-            THIS TOO SHALL PASS
+            this too shall pass
           </Typography>
           <div className={classes.grow}> </div>
         </Toolbar>
       </div>
     </div>);
 }
-
-
-
 
 export default App;
