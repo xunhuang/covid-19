@@ -21,7 +21,7 @@ import TableRow from '@material-ui/core/TableRow';
 import { NearbyCounties, CountiesForStateWidget, AllStatesListWidget } from "./CountyListRender.js"
 import { BasicGraphNewCases } from "./GraphNewCases.js"
 import { GraphUSTesting, GraphStateTesting } from "./GraphTestingEffort"
-import { DataCreditWidget } from "./DataCredit.js"
+import { withHeader } from "./Header.js"
 
 const states = require('us-state-codes');
 const Cookies = require("js-cookie");
@@ -578,116 +578,85 @@ const MainApp = withRouter((props) => {
   );
 });
 
-const EntireUSWidget = (props) => {
+
+const EntireUSWidget = withHeader((props) => {
   const casesData = props.casesData;
   return (
-    <div className="App">
-      <header className="App-header">
-        <h2>COVID-19.direct: US Counties</h2>
-        <SearchBox
-          casesData={casesData}
-          callback={(newcounty, newstate) => {
-            browseTo(props.history, newstate, newcounty);
-          }}
-        />
-        <USCountyInfoWidget
-          casesData={casesData}
-          callback={(newcounty, newstate) => {
-            browseTo(props.history, newstate, newcounty);
-          }}
-        />
-        <AllStatesListWidget
-          casesData={casesData}
-          callback={(newstate) => {
-            browseToState(props.history, newstate);
-          }}
-        ></AllStatesListWidget>
-        <EntireUSDetailCaseListWidget />
-        <DataCreditWidget />
-      </header>
-    </div>
+    <>
+      <USCountyInfoWidget
+        casesData={casesData}
+        callback={(newcounty, newstate) => {
+          browseTo(props.history, newstate, newcounty);
+        }}
+      />
+      <AllStatesListWidget
+        casesData={casesData}
+        callback={(newstate) => {
+          browseToState(props.history, newstate);
+        }}
+      ></AllStatesListWidget>
+      <EntireUSDetailCaseListWidget />
+    </>
   );
-}
+});
 
-const CountyWidget = (props) => {
+const CountyWidget = withHeader((props) => {
   const state = props.match.params.state;
   const county = props.match.params.county;
   const casesData = props.casesData;
   return (
-    <div className="App">
-      <header className="App-header">
-        <h2>COVID-19.direct: US Counties</h2>
-        <SearchBox
-          casesData={casesData}
-          callback={(newcounty, newstate) => {
-            browseTo(props.history, newstate, newcounty);
-          }}
-        />
-        <USCountyInfoWidget
-          casesData={casesData}
-          county={county}
-          state={state}
-          callback={(newcounty, newstate) => {
-            browseTo(props.history, newstate, newcounty);
-          }}
-        />
-        <NearbyCounties
-          casesData={casesData}
-          county={county}
-          state={state}
-          callback={(newcounty, newstate) => {
-            browseTo(props.history, newstate, newcounty);
-          }}
-        />
-        <DetailCaseList
-          county={county}
-          state={state}
-        />
-        <DataCreditWidget />
-      </header>
-    </div>
+    <>
+      <USCountyInfoWidget
+        casesData={casesData}
+        county={county}
+        state={state}
+        callback={(newcounty, newstate) => {
+          browseTo(props.history, newstate, newcounty);
+        }}
+      />
+      <NearbyCounties
+        casesData={casesData}
+        county={county}
+        state={state}
+        callback={(newcounty, newstate) => {
+          browseTo(props.history, newstate, newcounty);
+        }}
+      />
+      <DetailCaseList
+        county={county}
+        state={state}
+      />
+    </>
   );
-}
-const StateWidget = (props) => {
+});
+
+const StateWidget = withHeader((props) => {
   const state = props.match.params.state;
   const county = props.match.params.county;
   const casesData = props.casesData;
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <h2>COVID-19.direct: US Counties</h2>
-        <SearchBox
-          casesData={casesData}
-          callback={(newcounty, newstate) => {
-            browseTo(props.history, newstate, newcounty);
-          }}
-        />
-        <USCountyInfoWidget
-          casesData={casesData}
-          county={county}
-          state={state}
-          callback={(newcounty, newstate) => {
-            browseTo(props.history, newstate, newcounty);
-          }}
-        />
-        <CountiesForStateWidget
-          casesData={casesData}
-          county={county}
-          state={state}
-          callback={(newcounty, newstate) => {
-            browseTo(props.history, newstate, newcounty);
-          }}
-        />
-        <StateDetailCaseListWidget
-          state={state}
-        />
-        <DataCreditWidget />
-      </header>
-    </div>
-  );
-}
-
-
+    <>
+      <USCountyInfoWidget
+        casesData={casesData}
+        county={county}
+        state={state}
+        callback={(newcounty, newstate) => {
+          browseTo(props.history, newstate, newcounty);
+        }}
+      />
+      <CountiesForStateWidget
+        casesData={casesData}
+        county={county}
+        state={state}
+        callback={(newcounty, newstate) => {
+          browseTo(props.history, newstate, newcounty);
+        }}
+      />
+      <StateDetailCaseListWidget
+        state={state}
+      />
+    </>);
+});
 
 export default App;
