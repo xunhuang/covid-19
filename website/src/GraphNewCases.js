@@ -130,7 +130,7 @@ const BasicGraphNewCases = (props) => {
             <Line type="monotone" dataKey="pending_confirmed" stroke="#ff7300" strokeDasharray="1 1" strokeWidth={3} />
             <Line type="monotone" dataKey="pending_newcase" stroke="#387908" strokeDasharray="1 1" strokeWidth={3} />
             <Legend verticalAlign="top" payload={[
-                { value: 'Total', type: 'line', color: '#ff7300' },
+                { value: 'Total Confirmed', type: 'line', color: '#ff7300' },
                 { value: 'New', type: 'line', color: '#389708' },
             ]} />
         </LineChart></ResponsiveContainer>;

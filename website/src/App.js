@@ -250,7 +250,7 @@ const USCountyInfoWidget = withRouter((props) => {
         onChange={handleChange}
         aria-label="nav tabs example"
       >
-        <LinkTab label="Trends" href="/drafts" {...a11yProps(0)} />
+        <LinkTab label="Confirmed Cases" href="/drafts" {...a11yProps(0)} />
         <LinkTab label="Testing Efforts" href="/trash" {...a11yProps(1)} />
       </Tabs>
       <TabPanel value={tabvalue} index={0}>

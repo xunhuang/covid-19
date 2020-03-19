@@ -51,8 +51,6 @@ const CustomTooltip = (props) => {
 
 const GraphUSTesting = (props) => {
     const USTesting = require("./data/us_testing.json");
-    console.log(USTesting);
-
     const data = USTesting.map(t => {
         let md = t.date % 1000;
         let m = Math.floor(md / 100);
