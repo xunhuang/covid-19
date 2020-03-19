@@ -45,6 +45,9 @@ const useStyles = makeStyles(theme => ({
   },
   table: {
     width: "100%"
+  },
+  customtooltip: {
+    backgroundColor: "#FFFFFF",
   }
 }));
 
@@ -80,7 +83,6 @@ async function fetchCounty() {
   if (cookie) {
     return cookie;
   }
-
   let location = await fetchApproxIPLocation();
 
   let county_info = await superagent
@@ -283,20 +285,80 @@ function countyFromNewCases(cases_data) {
   });
 }
 
+const CustomTooltip = (props) => {
+  const classes = useStyles();
+  const { active } = props;
+  if (active) {
+    const { payload, label } = props;
+    let confirmed;
+    let newcase;
+
+    payload.map(p => {
+      p = p.payload;
+      if ("confirmed" in p) {
+        confirmed = p.confirmed;
+      }
+      if ("pending_confirmed" in p) {
+        confirmed = p.pending_confirmed;
+      }
+      if ("newcase" in p) {
+        newcase = p.newcase;
+      }
+      if ("pending_newcase" in p) {
+        newcase = p.pending_newcase;
+      }
+    });
+
+    return (
+      <div className={classes.customtooltip}>
+        <p>{label}</p>
+        <p>{`Confirmed: ${confirmed}`}</p>
+        <p>{`New: ${newcase}`}</p>
+        <p>{`Dotted: Pending`}</p>
+      </div>
+    );
+  }
+  return null;
+}
+
+
 const BasicGraphNewCases = (props) => {
-  const data = countyFromNewCases(props.casesData);
+
+  let data = countyFromNewCases(props.casesData);
+
+  if (data.length > 2) {
+    let newdata = data.slice(0, data.length - 2);
+    let second_last = data[data.length - 2];
+    let last = data[data.length - 1];
+    second_last.pending_confirmed = second_last.confirmed;
+    second_last.pending_newcase = second_last.newcase;
+    let newlast = {
+      name: last.name,
+      pending_confirmed: last.confirmed,
+      pending_newcase: last.newcase,
+    };
+    newdata.push(second_last);
+    newdata.push(newlast);
+    data = newdata;
+  }
+
   return <ResponsiveContainer height={300} >
     <LineChart
       data={data}
       margin={{ top: 5, right: 30, left: 5, bottom: 5 }}
     >
-      <Tooltip />
+      <Tooltip content={<CustomTooltip />} />
       <YAxis />
       <XAxis dataKey="name" />
       <CartesianGrid stroke="#f5f5f5" strokeDasharray="5 5" />
       <Line type="monotone" dataKey="confirmed" stroke="#ff7300" yAxisId={0} strokeWidth={3} />
       <Line type="monotone" dataKey="newcase" stroke="#387908" yAxisId={0} strokeWidth={3} />
-      <Legend verticalAlign="top" />
+      <Line type="monotone" dataKey="pending_confirmed" stroke="#ff7300" strokeDasharray="1 1" strokeWidth={3} />
+      <Line type="monotone" dataKey="pending_newcase" stroke="#387908" strokeDasharray="1 1" strokeWidth={3} />
+      <Legend verticalAlign="top" payload={[
+        { value: 'Total', type: 'line', color: '#ff7300' },
+        { value: 'New', type: 'line', color: '#389708' },
+      ]} />
     </LineChart></ResponsiveContainer>;
 }
 
