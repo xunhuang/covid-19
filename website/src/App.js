@@ -13,8 +13,6 @@ import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import PropTypes from 'prop-types';
 
-
-
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -23,6 +21,20 @@ import TableRow from '@material-ui/core/TableRow';
 import { NearbyCounties, CountiesForStateWidget, AllStatesListWidget } from "./CountyListRender.js"
 import { BasicGraphNewCases } from "./GraphNewCases.js"
 import { GraphUSTesting, GraphStateTesting } from "./GraphTestingEffort"
+
+const states = require('us-state-codes');
+const Cookies = require("js-cookie");
+const superagent = require("superagent");
+const moment = require("moment");
+const firebase = require("firebase");
+
+require("firebase/firestore");
+const firebaseConfig = require('./firebaseConfig.json');
+firebase.initializeApp(firebaseConfig);
+
+const db = firebase.firestore();
+const logger = firebase.analytics();
+var Hospitals = require('./hospitals.json');
 
 const useStyles = makeStyles(theme => ({
   row: {
@@ -80,18 +92,6 @@ function myShortNumber(n) {
   return shortNumber(n);
 }
 
-const states = require('us-state-codes');
-const Cookies = require("js-cookie");
-const superagent = require("superagent");
-const moment = require("moment");
-const firebase = require("firebase");
-
-require("firebase/firestore");
-const firebaseConfig = require('./firebaseConfig.json');
-firebase.initializeApp(firebaseConfig);
-
-const db = firebase.firestore();
-var Hospitals = require('./hospitals.json');
 var ApproxIPLocation;
 
 async function fetchCounty() {
@@ -548,8 +548,14 @@ const MainApp = withRouter((props) => {
       setCaseData(abc.data.data);
     });
     fetchCounty().then(mycounty => {
-      setCounty(mycounty.results[0].county_name);
-      setState(mycounty.results[0].state_code);
+      let c = mycounty.results[0].county_name;
+      let s = mycounty.results[0].state_code;
+      setCounty(c)
+      setState(s);
+      logger.logEvent("AppStart", {
+        county: c,
+        state: s,
+      });
     });
   }, []);
   if (casesData === null || state === null) {
