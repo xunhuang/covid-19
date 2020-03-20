@@ -173,7 +173,7 @@ function TabPanel(props) {
       aria-labelledby={`nav-tab-${index}`}
       {...other}
     >
-      {value === index && <Box >{children}</Box>}
+      {value === index && <Box p={1}>{children}</Box>}
     </Typography>
   );
 }
@@ -203,6 +203,35 @@ function LinkTab(props) {
   );
 }
 
+const MyTabs = (props) => {
+  const tabs = props.tabs;
+  const labels = props.labels;
+
+  const [tabvalue, setTabvalue] = React.useState(0);
+  const handleChange = (event, newValue) => {
+    setTabvalue(newValue);
+  }
+  let c = 0;
+  let labelcomp = labels.map(l =>
+    <LinkTab label={l} {...a11yProps(c++)} />
+  )
+  let d = 0;
+  let tabscomp = tabs.map(tab =>
+    <TabPanel value={tabvalue} index={d}>
+      {tabs[d++]}
+    </TabPanel>
+  )
+  return <>
+    <Tabs
+      value={tabvalue}
+      onChange={handleChange}
+      aria-label=""
+    >
+      {labelcomp}
+    </Tabs>
+    {tabscomp}
+  </>;
+}
 
 
 const USCountyInfoWidget = withRouter((props) => {
@@ -235,64 +264,39 @@ const USCountyInfoWidget = withRouter((props) => {
   let county_summary = USCounty.casesForCountySummary(state, county);
   let us_summary = USCounty.casesSummary(props.casesData);
   let state_hospitals = USCounty.hospitalsForState(state);
-
   let graphlistSection;
+
   if (value === 0) {
-    graphlistSection = <div>
-      <Tabs
-        variant="fullWidth"
-        value={tabvalue}
-        onChange={handleChange}
-        aria-label="nav tabs example"
-      >
-        <LinkTab label="Confirmed Cases" href="/drafts" {...a11yProps(0)} />
-        <LinkTab label={`${state_title} Testing Efforts`} href="/trash" {...a11yProps(1)} />
-      </Tabs>
-      <TabPanel value={tabvalue} index={0}>
-        <BasicGraphNewCases casesData={county_cases} />
-      </TabPanel>
-      <TabPanel value={tabvalue} index={1}>
-        <GraphStateTesting state={state} />
-      </TabPanel>
-    </div>;
+
+    const tabs = [
+      <BasicGraphNewCases casesData={county_cases} />,
+      <GraphStateTesting state={state} />,
+    ]
+    graphlistSection = <MyTabs
+      labels={["Confirmed Cases", `${state_title}`]}
+      tabs={tabs}
+    />;
   }
   if (value === 1) {
-    graphlistSection = <div>
-      <Tabs
-        variant="fullWidth"
-        value={tabvalue}
-        onChange={handleChange}
-        aria-label="nav tabs example"
-      >
-        <LinkTab label="Confirmed Cases" href="/drafts" {...a11yProps(0)} />
-        <LinkTab label={`${state_title} Testing Efforts`} href="/trash" {...a11yProps(1)} />
-      </Tabs>
-      <TabPanel value={tabvalue} index={0}>
-        <BasicGraphNewCases casesData={state_mycases} />
-      </TabPanel>
-      <TabPanel value={tabvalue} index={1}>
-        <GraphStateTesting state={state} />
-      </TabPanel>
-    </div>;
+    const tabs = [
+      <BasicGraphNewCases casesData={state_mycases} />,
+      <GraphStateTesting state={state} />,
+    ]
+    graphlistSection = <MyTabs
+      labels={["Confirmed Cases", `${state_title} Testing`]}
+      tabs={tabs}
+    />;
   }
   if (value === 2) {
-    graphlistSection = <div>
-      <Tabs
-        variant="fullWidth"
-        value={tabvalue}
-        onChange={handleChange}
-        aria-label="nav tabs example"
-      >
-        <LinkTab label="Confirmed Cases" href="/drafts" {...a11yProps(0)} />
-        <LinkTab label="National Testing" href="/trash" {...a11yProps(1)} />
-      </Tabs>
-      <TabPanel value={tabvalue} index={0}>
-        <BasicGraphNewCases casesData={props.casesData} />
-      </TabPanel>
-      <TabPanel value={tabvalue} index={1}>
-        <GraphUSTesting />
-      </TabPanel>
-    </div>;
+    const tabs = [
+      <BasicGraphNewCases casesData={props.casesData} />,
+      <GraphUSTesting />,
+    ]
+    graphlistSection = <MyTabs
+      labels={["Confirmed Cases", `National Testing`]}
+      tabs={tabs}
+    />;
+
   }
 
   return <div>
@@ -442,10 +446,7 @@ const StateDetailCaseListWidget = (props) => {
 const EntireUSDetailCaseListWidget = (props) => {
   let state_cases = USCounty.casesForUS().sort(sort_by_date);
   let countySummary =
-    <div>
-      <h3> Case details for United States </h3>
-      <DetailCaseListWidget cases={state_cases} />
-    </div>
+    <DetailCaseListWidget cases={state_cases} />
   return countySummary;
 }
 
@@ -540,36 +541,6 @@ const MainApp = withRouter((props) => {
     </div>
   );
 });
-
-const MyTabs = (props) => {
-  const tabs = props.tabs;
-  const labels = props.labels;
-
-  const [tabvalue, setTabvalue] = React.useState(0);
-  const handleChange = (event, newValue) => {
-    setTabvalue(newValue);
-  }
-  let c = 0;
-  let labelcomp = labels.map(l =>
-    <LinkTab label={l} {...a11yProps(c++)} />
-  )
-  let d = 0;
-  let tabscomp = tabs.map(tab =>
-    <TabPanel value={tabvalue} index={d}>
-      {tabs[d++]}
-    </TabPanel>
-  )
-  return <>
-    <Tabs
-      value={tabvalue}
-      onChange={handleChange}
-      aria-label=""
-    >
-      {labelcomp}
-    </Tabs>
-    {tabscomp}
-  </>;
-}
 
 
 const EntireUSWidget = withHeader((props) => {
