@@ -173,7 +173,7 @@ function TabPanel(props) {
       aria-labelledby={`nav-tab-${index}`}
       {...other}
     >
-      {value === index && <Box p={3}>{children}</Box>}
+      {value === index && <Box >{children}</Box>}
     </Typography>
   );
 }
@@ -541,9 +541,48 @@ const MainApp = withRouter((props) => {
   );
 });
 
+const MyTabs = (props) => {
+  const tabs = props.tabs;
+  const labels = props.labels;
+
+  const [tabvalue, setTabvalue] = React.useState(0);
+  const handleChange = (event, newValue) => {
+    setTabvalue(newValue);
+  }
+  let c = 0;
+  let labelcomp = labels.map(l =>
+    <LinkTab label={l} {...a11yProps(c++)} />
+  )
+  let d = 0;
+  let tabscomp = tabs.map(tab =>
+    <TabPanel value={tabvalue} index={d}>
+      {tabs[d++]}
+    </TabPanel>
+  )
+  return <>
+    <Tabs
+      value={tabvalue}
+      onChange={handleChange}
+      aria-label=""
+    >
+      {labelcomp}
+    </Tabs>
+    {tabscomp}
+  </>;
+}
+
 
 const EntireUSWidget = withHeader((props) => {
   const casesData = props.casesData;
+  const tabs = [
+    <AllStatesListWidget
+      casesData={casesData}
+      callback={(newstate) => {
+        browseToState(props.history, newstate);
+      }}
+    ></AllStatesListWidget>,
+    <EntireUSDetailCaseListWidget />,
+  ];
   return (
     <>
       <USCountyInfoWidget
@@ -552,13 +591,11 @@ const EntireUSWidget = withHeader((props) => {
           browseTo(props.history, newstate, newcounty);
         }}
       />
-      <AllStatesListWidget
-        casesData={casesData}
-        callback={(newstate) => {
-          browseToState(props.history, newstate);
-        }}
-      ></AllStatesListWidget>
-      <EntireUSDetailCaseListWidget />
+      <MyTabs
+        labels={["States of USA", "Case Details"]}
+        tabs={tabs}
+      >
+      </MyTabs>
     </>
   );
 });
