@@ -22,7 +22,6 @@ function myShortNumber(n) {
     return shortNumber(n);
 }
 
-
 const states = require('us-state-codes');
 
 const useStyles = makeStyles(theme => ({
@@ -60,7 +59,6 @@ const NearbyCounties = (props) => {
                     a.County !== "Bronx" && a.County !== "Richmond"))
             .sort((a, b) => a.distance - b.distance)
             .slice(0, 10);
-        console.log(nearby)
         countySummary =
             <div>
                 <h3> Nearby Counties of {props.county}, {states.getStateNameByStateCode(props.state)} </h3>
@@ -168,13 +166,19 @@ const CountyListRender = (props) => {
                         if (newcases === 0) {
                             newEntry = 0;
                         }
+                        let population = row.Population2010;
+                        // hard coding a special here for NYC because 
+                        // all 5 boroughs are lumped together. terrible hack
+                        if (row.State === "NY" && row.County === "New York") {
+                            population = 8500000;
+                        }
                         return <TableRow key={row.County}>
                             <TableCell component="th" scope="row" onClick={() => { clicked(row.County, row.State); }}>
                                 {row.County}
                             </TableCell>
                             <TableCell align="center">{confirmed}</TableCell>
                             <TableCell align="center"> {newEntry} </TableCell>
-                            <TableCell align="center">{myShortNumber(row.Population2010)}</TableCell>
+                            <TableCell align="center">{myShortNumber(population)}</TableCell>
                         </TableRow>;
                     })
                 }

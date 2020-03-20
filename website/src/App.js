@@ -99,6 +99,7 @@ async function fetchCounty() {
   let cookie = Cookies.getJSON("covidLocation");
   if (cookie) {
     if (cookie.county && cookie.state) {
+      console.log("cookie hit");
       return cookie;
     }
   }
