@@ -50,7 +50,7 @@ const CustomTooltip = (props) => {
 }
 
 const GraphTestingWidget = (props) => {
-    const data = props.data.map(t => {
+    let data = props.data.map(t => {
         let md = t.date % 1000;
         let m = Math.floor(md / 100);
         let d = md % 100;
@@ -63,7 +63,13 @@ const GraphTestingWidget = (props) => {
         data[i].positiveThatDay = (i === 0) ? data[i].positive : data[i].positive - data[i - 1].positive;
     }
 
+    let total_tests = data.reduce((m, a) => { return a.total > m ? a.total : m }, 0);
+    let total_positives = data.reduce((m, a) => { return a.positive > m ? a.positive : m }, 0);
+
     return <div>
+        <Typography variant="body2" noWrap>
+            {`Total Tests: ${total_tests}   Postive Rate: ${(total_positives / total_tests * 100).toFixed(1)}% `}
+        </Typography>
         <ResponsiveContainer height={300} >
             <LineChart
                 data={data}
