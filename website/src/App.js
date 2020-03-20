@@ -98,8 +98,11 @@ var ApproxIPLocation;
 async function fetchCounty() {
   let cookie = Cookies.getJSON("covidLocation");
   if (cookie) {
-    return cookie;
+    if (cookie.county && cookie.state) {
+      return cookie;
+    }
   }
+
   let location = await fetchApproxIPLocation();
 
   let county_info = await superagent
