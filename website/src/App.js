@@ -5,8 +5,8 @@ import { GoogleMap, Marker, LoadScript } from '@react-google-maps/api'
 import { makeStyles } from '@material-ui/core/styles';
 import { countyModuleInit, lookupCountyInfo } from "./USCountyInfo.js";
 import * as USCounty from "./USCountyInfo.js";
+import { myShortNumber } from "./Util.js";
 import { Splash } from './Splash.js';
-
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -74,19 +74,6 @@ const useStyles = makeStyles(theme => ({
     width: "100%"
   },
 }));
-
-var shortNumber = require('short-number');
-
-function myShortNumber(n) {
-  if (!n) {
-    return "0";
-  }
-  if (isNaN(n)) {
-    n = n.replace(/,/g, '');
-    n = Number(n);
-  }
-  return shortNumber(n);
-}
 
 var ApproxIPLocation;
 

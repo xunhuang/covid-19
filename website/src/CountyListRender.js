@@ -7,20 +7,7 @@ import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
-
-
-var shortNumber = require('short-number');
-
-function myShortNumber(n) {
-    if (!n) {
-        return "0";
-    }
-    if (isNaN(n)) {
-        n = n.replace(/,/g, '');
-        n = Number(n);
-    }
-    return shortNumber(n);
-}
+import { myShortNumber } from "./Util.js";
 
 const states = require('us-state-codes');
 
