@@ -12,6 +12,14 @@ exports.helloWorld = functions.https.onRequest((request, response) => {
    response.send("Hello from Firebase!");
 });
 
+async function getDataJsonWhich(f) {
+   const myBucket = storage.bucket('covid-19-live.appspot.com');
+   const file = myBucket.file(f);
+   let result = await file.download();
+   let str = result.toString();
+   return str;
+}
+
 async function getDataJsonNew() {
    const myBucket = storage.bucket('covid-19-live.appspot.com');
    const file = myBucket.file('latest');
@@ -20,28 +28,26 @@ async function getDataJsonNew() {
    return str;
 }
 
-async function getDataJson() {
-   return await db.collection("DATA").doc("latest1").get()
-      .then(function (doc) {
-         if (doc.exists) {
-            return doc.data();
-         } else {
-            console.log("No such document!");
-         }
-         return {
-            timestamp: "no data",
-            data: "{}"
+exports.datajsonShort = functions.https.onRequest((req, res) => {
+   cors(req, res, async () => {
+      let json = JSON.parse(await getDataJsonWhich("abridged"));
+      res.send({
+         data: {
+            generationTime: json.timestamp,
+            data: json.data1,
          }
       });
-}
+   })
+});
 
 exports.datajson = functions.https.onRequest((req, res) => {
    cors(req, res, async () => {
-      let json = await getDataJson();
+      let json = JSON.parse(await getDataJsonNew());
       res.send({
-         timestamp: json.timestamp,
-         time: json.timestamp,
-         data: json.data1,
+         data: {
+            generationTime: json.timestamp,
+            data: json.data1,
+         }
       });
    })
 });
