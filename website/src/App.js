@@ -109,10 +109,18 @@ async function fetchCounty() {
       lon: location.longitude,
       format: "json",
     }).then(res => {
-      return res.body;
+      let c = res.body.results[0].county_name;
+      let s = res.body.results[0].state_code;
+      return {
+        county: c,
+        state: s,
+      }
     })
     .catch(err => {
-      return null;
+      return {
+        county: "Santa Clara",
+        state: "CA",
+      }
     });
 
   Cookies.set("covidLocation", county_info, {
@@ -130,11 +138,15 @@ async function fetchApproxIPLocation() {
         longitude: res.body.location.lng,
         latitude: res.body.location.lat,
       }
-      console.log(res.body);
       return ApproxIPLocation;
     })
     .catch(err => {
-      return null;
+      // fall back if can't determine GPS, this is santa clara
+      ApproxIPLocation = {
+        longitude: -121.979891,
+        latitude: 37.333183,
+      }
+      return ApproxIPLocation;
     });
 }
 
@@ -480,37 +492,6 @@ const DetailCaseListWidget = (props) => {
   return list;
 }
 
-const SearchBox = (props) => {
-
-  let summary = USCounty.getCountySummary(props.casesData);
-  let counties = summary.sort((a, b) => b.total - a.total)
-    .map(c => {
-      return {
-        label: `${c.county} , ${c.state_name} (${c.total})`,
-        value: c,
-      };
-    });
-  return <Select
-    className="basic-single"
-    classNamePrefix="select"
-    defaultValue={""}
-    placeholder={"Search for a County"}
-    isDisabled={false}
-    isLoading={false}
-    isClearable={true}
-    isRtl={false}
-    isSearchable={true}
-    name="county_selection"
-    options={counties}
-    onChange={param => {
-      console.log(param);
-      if (props.callback) {
-        props.callback(param.value.county, param.value.state_name);
-      }
-
-    }}
-  />;
-}
 
 const App = (props) => {
   return <BrowserRouter>
@@ -549,13 +530,11 @@ const MainApp = withRouter((props) => {
       setCaseData(abc.data.data);
     });
     fetchCounty().then(mycounty => {
-      let c = mycounty.results[0].county_name;
-      let s = mycounty.results[0].state_code;
-      setCounty(c)
-      setState(s);
+      setCounty(mycounty.county)
+      setState(mycounty.state);
       logger.logEvent("AppStart", {
-        county: c,
-        state: s,
+        county: mycounty.county,
+        state: mycounty.state,
       });
     });
   }, []);
