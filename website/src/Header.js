@@ -2,6 +2,8 @@ import React from 'react';
 import * as USCounty from "./USCountyInfo.js";
 import { DataCreditWidget } from "./DataCredit.js"
 import Select from 'react-select';
+import Disqus from "disqus-react"
+import Typography from '@material-ui/core/Typography'
 
 function browseTo(history, state, county) {
     history.push(
@@ -43,6 +45,14 @@ const SearchBox = (props) => {
 }
 
 const withHeader = (comp, props) => {
+
+    const disqusShortname = "covid19direct";
+    const disqusConfig = {
+        url: "https://covid-19.direct", //this.props.pageUrl
+        identifier: "article-id", //this.props.uniqueId
+        title: "main page" //this.props.title
+    };
+
     return (props) => {
         let casesData = USCounty.casesForUS();
         let header = <header className="App-header">
@@ -55,7 +65,17 @@ const withHeader = (comp, props) => {
             />
         </header>
 
-        let footer = <DataCreditWidget />;
+        // let footer = <DataCreditWidget />;
+        let footer = <div>
+            <Typography variant="h5" noWrap>
+                Discussions
+                    </Typography>
+            <Disqus.DiscussionEmbed
+                shortname={disqusShortname}
+                config={disqusConfig}
+            />
+            <DataCreditWidget />
+        </div>;
 
         let component = comp({
             // add addition things here

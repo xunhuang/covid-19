@@ -1,9 +1,12 @@
 import React from 'react';
+import Typography from '@material-ui/core/Typography'
 
 const DataCreditWidget = () => {
     return (
         <div>
-            <h4> Data Sources </h4>
+            <Typography variant="h5" noWrap>
+                Data Credit
+            </Typography>
             <li>
                 <a target="_blank" href="https://github.com/CSSEGISandData/COVID-19" rel="noopener noreferrer" >
                     Johns Hopkins CSSE
