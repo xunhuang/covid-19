@@ -5,7 +5,6 @@ import { GoogleMap, Marker, LoadScript } from '@react-google-maps/api'
 import { makeStyles } from '@material-ui/core/styles';
 import { countyModuleInit, lookupCountyInfo } from "./USCountyInfo.js";
 import * as USCounty from "./USCountyInfo.js";
-import Select from 'react-select';
 import { Splash } from './Splash.js';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
@@ -160,25 +159,6 @@ function snapshotToArrayData(snapshot) {
     returnArr.push(childSnapshot.data());
   });
   return returnArr;
-}
-
-async function getCountyFromDb(state_short_name, county_name) {
-  let counties = await db.collection("US_COUNTIES")
-    .where("STATE_SHORT_NAME", "==", state_short_name)
-    .where("NAME", "==", county_name)
-    .get().then((querySnapshot) => {
-      return snapshotToArrayData(querySnapshot);
-    });
-
-  if (counties.length === 1) {
-    return counties[0];
-  }
-
-  if (counties && counties.length !== 0) {
-    console.log("duplicate counties names in the same state");
-    console.log(counties);
-  }
-  return null;
 }
 
 function TabPanel(props) {
