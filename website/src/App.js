@@ -6,11 +6,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import { countyModuleInit, lookupCountyInfo } from "./USCountyInfo.js";
 import * as USCounty from "./USCountyInfo.js";
 import { Splash } from './Splash.js';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
-import Typography from '@material-ui/core/Typography';
-import Box from '@material-ui/core/Box';
-import PropTypes from 'prop-types';
 
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -21,6 +16,7 @@ import { NearbyCounties, CountiesForStateWidget, AllStatesListWidget } from "./C
 import { BasicGraphNewCases } from "./GraphNewCases.js"
 import { GraphUSTesting, GraphStateTesting } from "./GraphTestingEffort"
 import { withHeader } from "./Header.js"
+import { MyTabs } from "./MyTabs.js"
 
 const states = require('us-state-codes');
 const Cookies = require("js-cookie");
@@ -152,87 +148,6 @@ async function fetchApproxIPLocation() {
       return ApproxIPLocation;
     });
 }
-
-function snapshotToArrayData(snapshot) {
-  var returnArr = []
-  snapshot.forEach(function (childSnapshot) {
-    returnArr.push(childSnapshot.data());
-  });
-  return returnArr;
-}
-
-function TabPanel(props) {
-  const { children, value, index, ...other } = props;
-
-  return (
-    <Typography
-      component="div"
-      role="tabpanel"
-      hidden={value !== index}
-      id={`nav-tabpanel-${index}`}
-      aria-labelledby={`nav-tab-${index}`}
-      {...other}
-    >
-      {value === index && <Box p={1}>{children}</Box>}
-    </Typography>
-  );
-}
-
-TabPanel.propTypes = {
-  children: PropTypes.node,
-  index: PropTypes.any.isRequired,
-  value: PropTypes.any.isRequired,
-};
-
-function a11yProps(index) {
-  return {
-    id: `nav-tab-${index}`,
-    'aria-controls': `nav-tabpanel-${index}`,
-  };
-}
-
-function LinkTab(props) {
-  return (
-    <Tab
-      component="a"
-      onClick={event => {
-        event.preventDefault();
-      }}
-      {...props}
-    />
-  );
-}
-
-const MyTabs = (props) => {
-  const tabs = props.tabs;
-  const labels = props.labels;
-
-  const [tabvalue, setTabvalue] = React.useState(0);
-  const handleChange = (event, newValue) => {
-    setTabvalue(newValue);
-  }
-  let c = 0;
-  let labelcomp = labels.map(l =>
-    <LinkTab label={l} {...a11yProps(c++)} />
-  )
-  let d = 0;
-  let tabscomp = tabs.map(tab =>
-    <TabPanel value={tabvalue} index={d}>
-      {tabs[d++]}
-    </TabPanel>
-  )
-  return <>
-    <Tabs
-      value={tabvalue}
-      onChange={handleChange}
-      aria-label=""
-    >
-      {labelcomp}
-    </Tabs>
-    {tabscomp}
-  </>;
-}
-
 
 const USCountyInfoWidget = withRouter((props) => {
   const classes = useStyles();
