@@ -273,7 +273,7 @@ const USCountyInfoWidget = withRouter((props) => {
       <GraphStateTesting state={state} />,
     ]
     graphlistSection = <MyTabs
-      labels={["Confirmed Cases", `${state_title}`]}
+      labels={["Confirmed Cases", `${state_title} Testing`]}
       tabs={tabs}
     />;
   }
@@ -421,11 +421,7 @@ const DetailCaseList = (props) => {
   let county_cases = USCounty.casesForCounty(props.state, props.county).sort(sort_by_date);
   let countySummary = <div />;
   if (countyInfo) {
-    countySummary =
-      <div>
-        <h3> Case details for {props.county}, {states.getStateNameByStateCode(props.state)} </h3>
-        <DetailCaseListWidget cases={county_cases} />
-      </div>
+    countySummary = <DetailCaseListWidget cases={county_cases} />;
   }
   return countySummary;
 }
@@ -436,11 +432,7 @@ function sort_by_date(a, b) {
 
 const StateDetailCaseListWidget = (props) => {
   let state_cases = USCounty.casesForState(props.state).sort(sort_by_date);
-  let countySummary =
-    <div>
-      <h3> Case details for {states.getStateNameByStateCode(props.state)} </h3>
-      <DetailCaseListWidget cases={state_cases} />
-    </div>
+  let countySummary = <DetailCaseListWidget cases={state_cases} />;
   return countySummary;
 }
 const EntireUSDetailCaseListWidget = (props) => {
@@ -565,8 +557,7 @@ const EntireUSWidget = withHeader((props) => {
       <MyTabs
         labels={["States of USA", "Case Details"]}
         tabs={tabs}
-      >
-      </MyTabs>
+      />
     </>
   );
 });
@@ -575,6 +566,21 @@ const CountyWidget = withHeader((props) => {
   const state = props.match.params.state;
   const county = props.match.params.county;
   const casesData = props.casesData;
+
+  const tabs = [
+    <NearbyCounties
+      casesData={casesData}
+      county={county}
+      state={state}
+      callback={(newcounty, newstate) => {
+        browseTo(props.history, newstate, newcounty);
+      }}
+    />,
+    <DetailCaseList
+      county={county}
+      state={state}
+    />,
+  ];
   return (
     <>
       <USCountyInfoWidget
@@ -585,17 +591,9 @@ const CountyWidget = withHeader((props) => {
           browseTo(props.history, newstate, newcounty);
         }}
       />
-      <NearbyCounties
-        casesData={casesData}
-        county={county}
-        state={state}
-        callback={(newcounty, newstate) => {
-          browseTo(props.history, newstate, newcounty);
-        }}
-      />
-      <DetailCaseList
-        county={county}
-        state={state}
+      <MyTabs
+        labels={["Nearby Counties", "Case Details"]}
+        tabs={tabs}
       />
     </>
   );
@@ -606,6 +604,20 @@ const StateWidget = withHeader((props) => {
   const county = props.match.params.county;
   const casesData = props.casesData;
 
+  const tabs = [
+    <CountiesForStateWidget
+      casesData={casesData}
+      county={county}
+      state={state}
+      callback={(newcounty, newstate) => {
+        browseTo(props.history, newstate, newcounty);
+      }}
+    />,
+    <StateDetailCaseListWidget
+      state={state}
+    />,
+  ];
+
   return (
     <>
       <USCountyInfoWidget
@@ -616,16 +628,9 @@ const StateWidget = withHeader((props) => {
           browseTo(props.history, newstate, newcounty);
         }}
       />
-      <CountiesForStateWidget
-        casesData={casesData}
-        county={county}
-        state={state}
-        callback={(newcounty, newstate) => {
-          browseTo(props.history, newstate, newcounty);
-        }}
-      />
-      <StateDetailCaseListWidget
-        state={state}
+      <MyTabs
+        labels={[`Counties of ${states.getStateNameByStateCode(state)} `, "Case Details"]}
+        tabs={tabs}
       />
     </>);
 });

@@ -59,11 +59,7 @@ const NearbyCounties = (props) => {
                     a.County !== "Bronx" && a.County !== "Richmond"))
             .sort((a, b) => a.distance - b.distance)
             .slice(0, 10);
-        countySummary =
-            <div>
-                <h3> Nearby Counties of {props.county}, {states.getStateNameByStateCode(props.state)} </h3>
-                <CountyListRender countylist={nearby} callback={props.callback} />
-            </div>;
+        countySummary = <CountyListRender countylist={nearby} callback={props.callback} />
     }
     return countySummary;
 }
@@ -73,10 +69,7 @@ const CountiesForStateWidget = (props) => {
     if (countyInfo) {
         let list = USCounty.countyDataForState(props.state);
         countySummary =
-            <div>
-                <h3> Counties of {states.getStateNameByStateCode(props.state)} </h3>
-                <CountyListRender countylist={list} callback={props.callback} />
-            </div>;
+            <CountyListRender countylist={list} callback={props.callback} />
     }
     return countySummary;
 }
