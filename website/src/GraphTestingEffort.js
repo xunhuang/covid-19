@@ -40,9 +40,9 @@ const CustomTooltip = (props) => {
                 <Typography variant="body2" noWrap>
                     {`Positve : ${positive}`}
                 </Typography>
-                <Typography variant="body2" noWrap>
+                {/* <Typography variant="body2" noWrap>
                     {`Positve Rate : ${(positive / tested * 100).toFixed(1)} %`}
-                </Typography>
+                </Typography> */}
             </div>
         );
     }
