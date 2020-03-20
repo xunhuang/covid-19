@@ -1,5 +1,565 @@
 [
   {
+    "date": 20200320,
+    "state": "AK",
+    "positive": 12,
+    "negative": 686,
+    "pending": null,
+    "death": null,
+    "total": 698,
+    "dateChecked": "2020-03-20T20:00:00Z"
+  },
+  {
+    "date": 20200320,
+    "state": "AL",
+    "positive": 81,
+    "negative": 28,
+    "pending": null,
+    "death": 0,
+    "total": 109,
+    "dateChecked": "2020-03-20T20:00:00Z"
+  },
+  {
+    "date": 20200320,
+    "state": "AR",
+    "positive": 96,
+    "negative": 351,
+    "pending": 203,
+    "death": null,
+    "total": 650,
+    "dateChecked": "2020-03-20T20:00:00Z"
+  },
+  {
+    "date": 20200320,
+    "state": "AS",
+    "positive": 0,
+    "negative": null,
+    "pending": null,
+    "death": 0,
+    "total": 0,
+    "dateChecked": "2020-03-20T20:00:00Z"
+  },
+  {
+    "date": 20200320,
+    "state": "AZ",
+    "positive": 65,
+    "negative": 211,
+    "pending": 101,
+    "death": 0,
+    "total": 377,
+    "dateChecked": "2020-03-20T20:00:00Z"
+  },
+  {
+    "date": 20200320,
+    "state": "CA",
+    "positive": 1063,
+    "negative": 10424,
+    "pending": null,
+    "death": 20,
+    "total": 11487,
+    "dateChecked": "2020-03-20T20:00:00Z"
+  },
+  {
+    "date": 20200320,
+    "state": "CO",
+    "positive": 277,
+    "negative": 2675,
+    "pending": null,
+    "death": 3,
+    "total": 2952,
+    "dateChecked": "2020-03-20T20:00:00Z"
+  },
+  {
+    "date": 20200320,
+    "state": "CT",
+    "positive": 194,
+    "negative": 604,
+    "pending": null,
+    "death": 3,
+    "total": 798,
+    "dateChecked": "2020-03-20T20:00:00Z"
+  },
+  {
+    "date": 20200320,
+    "state": "DC",
+    "positive": 71,
+    "negative": 501,
+    "pending": 1,
+    "death": 1,
+    "total": 573,
+    "dateChecked": "2020-03-20T20:00:00Z"
+  },
+  {
+    "date": 20200320,
+    "state": "DE",
+    "positive": 38,
+    "negative": 36,
+    "pending": null,
+    "death": 0,
+    "total": 74,
+    "dateChecked": "2020-03-20T20:00:00Z"
+  },
+  {
+    "date": 20200320,
+    "state": "FL",
+    "positive": 520,
+    "negative": 1870,
+    "pending": 1026,
+    "death": 10,
+    "total": 3416,
+    "dateChecked": "2020-03-20T20:00:00Z"
+  },
+  {
+    "date": 20200320,
+    "state": "GA",
+    "positive": 420,
+    "negative": 1966,
+    "pending": null,
+    "death": 13,
+    "total": 2386,
+    "dateChecked": "2020-03-20T20:00:00Z"
+  },
+  {
+    "date": 20200320,
+    "state": "GU",
+    "positive": 14,
+    "negative": 86,
+    "pending": null,
+    "death": null,
+    "total": 100,
+    "dateChecked": "2020-03-20T20:00:00Z"
+  },
+  {
+    "date": 20200320,
+    "state": "HI",
+    "positive": 26,
+    "negative": 124,
+    "pending": 9,
+    "death": null,
+    "total": 159,
+    "dateChecked": "2020-03-20T20:00:00Z"
+  },
+  {
+    "date": 20200320,
+    "state": "IA",
+    "positive": 45,
+    "negative": 642,
+    "pending": null,
+    "death": null,
+    "total": 687,
+    "dateChecked": "2020-03-20T20:00:00Z"
+  },
+  {
+    "date": 20200320,
+    "state": "ID",
+    "positive": 23,
+    "negative": 590,
+    "pending": null,
+    "death": null,
+    "total": 613,
+    "dateChecked": "2020-03-20T20:00:00Z"
+  },
+  {
+    "date": 20200320,
+    "state": "IL",
+    "positive": 590,
+    "negative": 3696,
+    "pending": null,
+    "death": 5,
+    "total": 4286,
+    "dateChecked": "2020-03-20T20:00:00Z"
+  },
+  {
+    "date": 20200320,
+    "state": "IN",
+    "positive": 79,
+    "negative": 475,
+    "pending": null,
+    "death": 2,
+    "total": 554,
+    "dateChecked": "2020-03-20T20:00:00Z"
+  },
+  {
+    "date": 20200320,
+    "state": "KS",
+    "positive": 44,
+    "negative": 417,
+    "pending": null,
+    "death": 1,
+    "total": 461,
+    "dateChecked": "2020-03-20T20:00:00Z"
+  },
+  {
+    "date": 20200320,
+    "state": "KY",
+    "positive": 47,
+    "negative": 592,
+    "pending": null,
+    "death": 1,
+    "total": 639,
+    "dateChecked": "2020-03-20T20:00:00Z"
+  },
+  {
+    "date": 20200320,
+    "state": "LA",
+    "positive": 479,
+    "negative": 568,
+    "pending": null,
+    "death": 12,
+    "total": 1047,
+    "dateChecked": "2020-03-20T20:00:00Z"
+  },
+  {
+    "date": 20200320,
+    "state": "MA",
+    "positive": 413,
+    "negative": 3678,
+    "pending": null,
+    "death": 1,
+    "total": 4091,
+    "dateChecked": "2020-03-20T20:00:00Z"
+  },
+  {
+    "date": 20200320,
+    "state": "MD",
+    "positive": 149,
+    "negative": 94,
+    "pending": null,
+    "death": 1,
+    "total": 243,
+    "dateChecked": "2020-03-20T20:00:00Z"
+  },
+  {
+    "date": 20200320,
+    "state": "ME",
+    "positive": 57,
+    "negative": 2264,
+    "pending": null,
+    "death": null,
+    "total": 2321,
+    "dateChecked": "2020-03-20T20:00:00Z"
+  },
+  {
+    "date": 20200320,
+    "state": "MI",
+    "positive": 549,
+    "negative": 2069,
+    "pending": null,
+    "death": 3,
+    "total": 2618,
+    "dateChecked": "2020-03-20T20:00:00Z"
+  },
+  {
+    "date": 20200320,
+    "state": "MN",
+    "positive": 115,
+    "negative": 3741,
+    "pending": null,
+    "death": null,
+    "total": 3856,
+    "dateChecked": "2020-03-20T20:00:00Z"
+  },
+  {
+    "date": 20200320,
+    "state": "MO",
+    "positive": 47,
+    "negative": 369,
+    "pending": null,
+    "death": 1,
+    "total": 416,
+    "dateChecked": "2020-03-20T20:00:00Z"
+  },
+  {
+    "date": 20200320,
+    "state": "MP",
+    "positive": 0,
+    "negative": null,
+    "pending": null,
+    "death": 0,
+    "total": 0,
+    "dateChecked": "2020-03-20T20:00:00Z"
+  },
+  {
+    "date": 20200320,
+    "state": "MS",
+    "positive": 80,
+    "negative": 695,
+    "pending": null,
+    "death": 1,
+    "total": 775,
+    "dateChecked": "2020-03-20T20:00:00Z"
+  },
+  {
+    "date": 20200320,
+    "state": "MT",
+    "positive": 16,
+    "negative": 931,
+    "pending": null,
+    "death": null,
+    "total": 947,
+    "dateChecked": "2020-03-20T20:00:00Z"
+  },
+  {
+    "date": 20200320,
+    "state": "NC",
+    "positive": 137,
+    "negative": 3096,
+    "pending": null,
+    "death": 0,
+    "total": 3233,
+    "dateChecked": "2020-03-20T20:00:00Z"
+  },
+  {
+    "date": 20200320,
+    "state": "ND",
+    "positive": 20,
+    "negative": 800,
+    "pending": null,
+    "death": 0,
+    "total": 820,
+    "dateChecked": "2020-03-20T20:00:00Z"
+  },
+  {
+    "date": 20200320,
+    "state": "NE",
+    "positive": 32,
+    "negative": 240,
+    "pending": null,
+    "death": 0,
+    "total": 272,
+    "dateChecked": "2020-03-20T20:00:00Z"
+  },
+  {
+    "date": 20200320,
+    "state": "NH",
+    "positive": 44,
+    "negative": 745,
+    "pending": 631,
+    "death": null,
+    "total": 1420,
+    "dateChecked": "2020-03-20T20:00:00Z"
+  },
+  {
+    "date": 20200320,
+    "state": "NJ",
+    "positive": 890,
+    "negative": 264,
+    "pending": 86,
+    "death": 11,
+    "total": 1240,
+    "dateChecked": "2020-03-20T20:00:00Z"
+  },
+  {
+    "date": 20200320,
+    "state": "NM",
+    "positive": 43,
+    "negative": 3771,
+    "pending": null,
+    "death": null,
+    "total": 3814,
+    "dateChecked": "2020-03-20T20:00:00Z"
+  },
+  {
+    "date": 20200320,
+    "state": "NV",
+    "positive": 109,
+    "negative": 1992,
+    "pending": -3,
+    "death": 1,
+    "total": 2098,
+    "dateChecked": "2020-03-20T20:00:00Z"
+  },
+  {
+    "date": 20200320,
+    "state": "NY",
+    "positive": 7102,
+    "negative": 25325,
+    "pending": null,
+    "death": 35,
+    "total": 32427,
+    "dateChecked": "2020-03-20T20:00:00Z"
+  },
+  {
+    "date": 20200320,
+    "state": "OH",
+    "positive": 169,
+    "negative": 140,
+    "pending": null,
+    "death": 1,
+    "total": 309,
+    "dateChecked": "2020-03-20T20:00:00Z"
+  },
+  {
+    "date": 20200320,
+    "state": "OK",
+    "positive": 49,
+    "negative": 538,
+    "pending": 374,
+    "death": 1,
+    "total": 961,
+    "dateChecked": "2020-03-20T20:00:00Z"
+  },
+  {
+    "date": 20200320,
+    "state": "OR",
+    "positive": 114,
+    "negative": 2003,
+    "pending": 433,
+    "death": 3,
+    "total": 2550,
+    "dateChecked": "2020-03-20T20:00:00Z"
+  },
+  {
+    "date": 20200320,
+    "state": "PA",
+    "positive": 268,
+    "negative": 2574,
+    "pending": null,
+    "death": 1,
+    "total": 2842,
+    "dateChecked": "2020-03-20T20:00:00Z"
+  },
+  {
+    "date": 20200320,
+    "state": "PR",
+    "positive": 14,
+    "negative": 114,
+    "pending": 52,
+    "death": null,
+    "total": 180,
+    "dateChecked": "2020-03-20T20:00:00Z"
+  },
+  {
+    "date": 20200320,
+    "state": "RI",
+    "positive": 54,
+    "negative": 654,
+    "pending": 140,
+    "death": null,
+    "total": 848,
+    "dateChecked": "2020-03-20T20:00:00Z"
+  },
+  {
+    "date": 20200320,
+    "state": "SC",
+    "positive": 81,
+    "negative": 833,
+    "pending": null,
+    "death": 1,
+    "total": 914,
+    "dateChecked": "2020-03-20T20:00:00Z"
+  },
+  {
+    "date": 20200320,
+    "state": "SD",
+    "positive": 14,
+    "negative": 663,
+    "pending": 270,
+    "death": 1,
+    "total": 947,
+    "dateChecked": "2020-03-20T20:00:00Z"
+  },
+  {
+    "date": 20200320,
+    "state": "TN",
+    "positive": 228,
+    "negative": 563,
+    "pending": null,
+    "death": null,
+    "total": 791,
+    "dateChecked": "2020-03-20T20:00:00Z"
+  },
+  {
+    "date": 20200320,
+    "state": "TX",
+    "positive": 194,
+    "negative": 5083,
+    "pending": null,
+    "death": 5,
+    "total": 5277,
+    "dateChecked": "2020-03-20T20:00:00Z"
+  },
+  {
+    "date": 20200320,
+    "state": "UT",
+    "positive": 112,
+    "negative": 2035,
+    "pending": null,
+    "death": 0,
+    "total": 2147,
+    "dateChecked": "2020-03-20T20:00:00Z"
+  },
+  {
+    "date": 20200320,
+    "state": "VA",
+    "positive": 114,
+    "negative": 2211,
+    "pending": null,
+    "death": 2,
+    "total": 2325,
+    "dateChecked": "2020-03-20T20:00:00Z"
+  },
+  {
+    "date": 20200320,
+    "state": "VI",
+    "positive": 3,
+    "negative": null,
+    "pending": null,
+    "death": 0,
+    "total": 3,
+    "dateChecked": "2020-03-20T20:00:00Z"
+  },
+  {
+    "date": 20200320,
+    "state": "VT",
+    "positive": 29,
+    "negative": 779,
+    "pending": null,
+    "death": 2,
+    "total": 808,
+    "dateChecked": "2020-03-20T20:00:00Z"
+  },
+  {
+    "date": 20200320,
+    "state": "WA",
+    "positive": 1376,
+    "negative": 19336,
+    "pending": null,
+    "death": 74,
+    "total": 20712,
+    "dateChecked": "2020-03-20T20:00:00Z"
+  },
+  {
+    "date": 20200320,
+    "state": "WI",
+    "positive": 206,
+    "negative": 3455,
+    "pending": null,
+    "death": 3,
+    "total": 3661,
+    "dateChecked": "2020-03-20T20:00:00Z"
+  },
+  {
+    "date": 20200320,
+    "state": "WV",
+    "positive": 7,
+    "negative": 219,
+    "pending": 13,
+    "death": 0,
+    "total": 239,
+    "dateChecked": "2020-03-20T20:00:00Z"
+  },
+  {
+    "date": 20200320,
+    "state": "WY",
+    "positive": 19,
+    "negative": 331,
+    "pending": null,
+    "death": null,
+    "total": 350,
+    "dateChecked": "2020-03-20T20:00:00Z"
+  },
+  {
     "date": 20200319,
     "state": "AK",
     "positive": 6,
@@ -5817,7 +6377,7 @@
     "pending": null,
     "death": null,
     "total": 197,
-    "dateChecked": "2020-03-08T21:00:00Z"
+    "dateChecked": "2020-03-08T20:00:00Z"
   },
   {
     "date": 20200308,
@@ -5827,7 +6387,7 @@
     "pending": 60,
     "death": null,
     "total": 802,
-    "dateChecked": "2020-03-08T21:00:00Z"
+    "dateChecked": "2020-03-08T20:00:00Z"
   },
   {
     "date": 20200308,
@@ -5837,7 +6397,7 @@
     "pending": null,
     "death": null,
     "total": 550,
-    "dateChecked": "2020-03-08T21:00:00Z"
+    "dateChecked": "2020-03-08T20:00:00Z"
   },
   {
     "date": 20200308,
@@ -5847,7 +6407,7 @@
     "pending": 108,
     "death": null,
     "total": 243,
-    "dateChecked": "2020-03-08T21:00:00Z"
+    "dateChecked": "2020-03-08T20:00:00Z"
   },
   {
     "date": 20200308,
@@ -5857,7 +6417,7 @@
     "pending": 53,
     "death": null,
     "total": 167,
-    "dateChecked": "2020-03-08T21:00:00Z"
+    "dateChecked": "2020-03-08T20:00:00Z"
   },
   {
     "date": 20200308,
@@ -5867,7 +6427,7 @@
     "pending": null,
     "death": null,
     "total": 13,
-    "dateChecked": "2020-03-08T21:00:00Z"
+    "dateChecked": "2020-03-08T20:00:00Z"
   },
   {
     "date": 20200308,
@@ -5877,7 +6437,7 @@
     "pending": null,
     "death": null,
     "total": 112,
-    "dateChecked": "2020-03-08T21:00:00Z"
+    "dateChecked": "2020-03-08T20:00:00Z"
   },
   {
     "date": 20200308,
@@ -5887,7 +6447,7 @@
     "pending": null,
     "death": null,
     "total": 8,
-    "dateChecked": "2020-03-08T21:00:00Z"
+    "dateChecked": "2020-03-08T20:00:00Z"
   },
   {
     "date": 20200308,
@@ -5897,7 +6457,7 @@
     "pending": null,
     "death": null,
     "total": 7,
-    "dateChecked": "2020-03-08T21:00:00Z"
+    "dateChecked": "2020-03-08T20:00:00Z"
   },
   {
     "date": 20200308,
@@ -5907,7 +6467,7 @@
     "pending": 44,
     "death": null,
     "total": 241,
-    "dateChecked": "2020-03-08T21:00:00Z"
+    "dateChecked": "2020-03-08T20:00:00Z"
   },
   {
     "date": 20200308,
@@ -5917,7 +6477,7 @@
     "pending": 0,
     "death": null,
     "total": 37,
-    "dateChecked": "2020-03-08T21:00:00Z"
+    "dateChecked": "2020-03-08T20:00:00Z"
   },
   {
     "date": 20200308,
@@ -5927,7 +6487,7 @@
     "pending": 7,
     "death": null,
     "total": 56,
-    "dateChecked": "2020-03-08T21:00:00Z"
+    "dateChecked": "2020-03-08T20:00:00Z"
   },
   {
     "date": 20200308,
@@ -5937,7 +6497,7 @@
     "pending": 5,
     "death": null,
     "total": 47,
-    "dateChecked": "2020-03-08T21:00:00Z"
+    "dateChecked": "2020-03-08T20:00:00Z"
   },
   {
     "date": 20200308,
@@ -5947,7 +6507,7 @@
     "pending": null,
     "death": null,
     "total": 4,
-    "dateChecked": "2020-03-08T21:00:00Z"
+    "dateChecked": "2020-03-08T20:00:00Z"
   },
   {
     "date": 20200308,
@@ -5957,7 +6517,7 @@
     "pending": null,
     "death": null,
     "total": 55,
-    "dateChecked": "2020-03-08T21:00:00Z"
+    "dateChecked": "2020-03-08T20:00:00Z"
   },
   {
     "date": 20200308,
@@ -5967,7 +6527,7 @@
     "pending": 12,
     "death": null,
     "total": 45,
-    "dateChecked": "2020-03-08T21:00:00Z"
+    "dateChecked": "2020-03-08T20:00:00Z"
   },
   {
     "date": 20200308,
@@ -5977,7 +6537,7 @@
     "pending": null,
     "death": null,
     "total": 3,
-    "dateChecked": "2020-03-08T21:00:00Z"
+    "dateChecked": "2020-03-08T20:00:00Z"
   },
   {
     "date": 20200308,
@@ -5987,7 +6547,7 @@
     "pending": 6,
     "death": null,
     "total": 44,
-    "dateChecked": "2020-03-08T21:00:00Z"
+    "dateChecked": "2020-03-08T20:00:00Z"
   },
   {
     "date": 20200308,
@@ -5997,7 +6557,7 @@
     "pending": null,
     "death": null,
     "total": 10,
-    "dateChecked": "2020-03-08T21:00:00Z"
+    "dateChecked": "2020-03-08T20:00:00Z"
   },
   {
     "date": 20200308,
@@ -6007,7 +6567,7 @@
     "pending": null,
     "death": null,
     "total": 2,
-    "dateChecked": "2020-03-08T21:00:00Z"
+    "dateChecked": "2020-03-08T20:00:00Z"
   },
   {
     "date": 20200308,
@@ -6017,7 +6577,7 @@
     "pending": null,
     "death": null,
     "total": 2,
-    "dateChecked": "2020-03-08T21:00:00Z"
+    "dateChecked": "2020-03-08T20:00:00Z"
   },
   {
     "date": 20200308,
@@ -6027,7 +6587,7 @@
     "pending": null,
     "death": null,
     "total": 49,
-    "dateChecked": "2020-03-08T21:00:00Z"
+    "dateChecked": "2020-03-08T20:00:00Z"
   },
   {
     "date": 20200308,
@@ -6037,7 +6597,7 @@
     "pending": 12,
     "death": null,
     "total": 44,
-    "dateChecked": "2020-03-08T21:00:00Z"
+    "dateChecked": "2020-03-08T20:00:00Z"
   },
   {
     "date": 20200308,
@@ -6047,7 +6607,7 @@
     "pending": 8,
     "death": null,
     "total": 38,
-    "dateChecked": "2020-03-08T21:00:00Z"
+    "dateChecked": "2020-03-08T20:00:00Z"
   },
   {
     "date": 20200308,
@@ -6057,7 +6617,7 @@
     "pending": null,
     "death": null,
     "total": 29,
-    "dateChecked": "2020-03-08T21:00:00Z"
+    "dateChecked": "2020-03-08T20:00:00Z"
   },
   {
     "date": 20200308,
@@ -6067,7 +6627,7 @@
     "pending": 5,
     "death": null,
     "total": 23,
-    "dateChecked": "2020-03-08T21:00:00Z"
+    "dateChecked": "2020-03-08T20:00:00Z"
   },
   {
     "date": 20200308,
@@ -6077,7 +6637,7 @@
     "pending": null,
     "death": null,
     "total": 15,
-    "dateChecked": "2020-03-08T21:00:00Z"
+    "dateChecked": "2020-03-08T20:00:00Z"
   },
   {
     "date": 20200308,
@@ -6087,7 +6647,7 @@
     "pending": null,
     "death": null,
     "total": 14,
-    "dateChecked": "2020-03-08T21:00:00Z"
+    "dateChecked": "2020-03-08T20:00:00Z"
   },
   {
     "date": 20200308,
@@ -6097,7 +6657,7 @@
     "pending": 0,
     "death": null,
     "total": 12,
-    "dateChecked": "2020-03-08T21:00:00Z"
+    "dateChecked": "2020-03-08T20:00:00Z"
   },
   {
     "date": 20200308,
@@ -6107,7 +6667,7 @@
     "pending": 0,
     "death": null,
     "total": 11,
-    "dateChecked": "2020-03-08T21:00:00Z"
+    "dateChecked": "2020-03-08T20:00:00Z"
   },
   {
     "date": 20200308,
@@ -6117,7 +6677,7 @@
     "pending": 2,
     "death": null,
     "total": 11,
-    "dateChecked": "2020-03-08T21:00:00Z"
+    "dateChecked": "2020-03-08T20:00:00Z"
   },
   {
     "date": 20200308,
@@ -6127,7 +6687,7 @@
     "pending": null,
     "death": null,
     "total": 1,
-    "dateChecked": "2020-03-08T21:00:00Z"
+    "dateChecked": "2020-03-08T20:00:00Z"
   },
   {
     "date": 20200308,
@@ -6137,7 +6697,7 @@
     "pending": null,
     "death": null,
     "total": 1,
-    "dateChecked": "2020-03-08T21:00:00Z"
+    "dateChecked": "2020-03-08T20:00:00Z"
   },
   {
     "date": 20200308,
@@ -6147,7 +6707,7 @@
     "pending": null,
     "death": null,
     "total": 1,
-    "dateChecked": "2020-03-08T21:00:00Z"
+    "dateChecked": "2020-03-08T20:00:00Z"
   },
   {
     "date": 20200308,
@@ -6157,7 +6717,7 @@
     "pending": 0,
     "death": null,
     "total": 48,
-    "dateChecked": "2020-03-08T21:00:00Z"
+    "dateChecked": "2020-03-08T20:00:00Z"
   },
   {
     "date": 20200308,
@@ -6167,7 +6727,7 @@
     "pending": 10,
     "death": null,
     "total": 36,
-    "dateChecked": "2020-03-08T21:00:00Z"
+    "dateChecked": "2020-03-08T20:00:00Z"
   },
   {
     "date": 20200308,
@@ -6177,7 +6737,7 @@
     "pending": null,
     "death": null,
     "total": 27,
-    "dateChecked": "2020-03-08T21:00:00Z"
+    "dateChecked": "2020-03-08T20:00:00Z"
   },
   {
     "date": 20200308,
@@ -6187,7 +6747,7 @@
     "pending": 6,
     "death": null,
     "total": 20,
-    "dateChecked": "2020-03-08T21:00:00Z"
+    "dateChecked": "2020-03-08T20:00:00Z"
   },
   {
     "date": 20200308,
@@ -6197,7 +6757,7 @@
     "pending": 2,
     "death": null,
     "total": 17,
-    "dateChecked": "2020-03-08T21:00:00Z"
+    "dateChecked": "2020-03-08T20:00:00Z"
   },
   {
     "date": 20200308,
@@ -6207,7 +6767,7 @@
     "pending": 4,
     "death": null,
     "total": 14,
-    "dateChecked": "2020-03-08T21:00:00Z"
+    "dateChecked": "2020-03-08T20:00:00Z"
   },
   {
     "date": 20200308,
@@ -6217,7 +6777,7 @@
     "pending": null,
     "death": null,
     "total": 11,
-    "dateChecked": "2020-03-08T21:00:00Z"
+    "dateChecked": "2020-03-08T20:00:00Z"
   },
   {
     "date": 20200308,
@@ -6227,7 +6787,7 @@
     "pending": 0,
     "death": null,
     "total": 10,
-    "dateChecked": "2020-03-08T21:00:00Z"
+    "dateChecked": "2020-03-08T20:00:00Z"
   },
   {
     "date": 20200308,
@@ -6237,7 +6797,7 @@
     "pending": 0,
     "death": null,
     "total": 6,
-    "dateChecked": "2020-03-08T21:00:00Z"
+    "dateChecked": "2020-03-08T20:00:00Z"
   },
   {
     "date": 20200308,
@@ -6247,7 +6807,7 @@
     "pending": null,
     "death": null,
     "total": 5,
-    "dateChecked": "2020-03-08T21:00:00Z"
+    "dateChecked": "2020-03-08T20:00:00Z"
   },
   {
     "date": 20200308,
@@ -6257,7 +6817,7 @@
     "pending": 0,
     "death": null,
     "total": 5,
-    "dateChecked": "2020-03-08T21:00:00Z"
+    "dateChecked": "2020-03-08T20:00:00Z"
   },
   {
     "date": 20200308,
@@ -6267,7 +6827,7 @@
     "pending": 3,
     "death": null,
     "total": 5,
-    "dateChecked": "2020-03-08T21:00:00Z"
+    "dateChecked": "2020-03-08T20:00:00Z"
   },
   {
     "date": 20200308,
@@ -6277,7 +6837,7 @@
     "pending": null,
     "death": null,
     "total": 1,
-    "dateChecked": "2020-03-08T21:00:00Z"
+    "dateChecked": "2020-03-08T20:00:00Z"
   },
   {
     "date": 20200308,
@@ -6287,7 +6847,7 @@
     "pending": null,
     "death": null,
     "total": 0,
-    "dateChecked": "2020-03-08T21:00:00Z"
+    "dateChecked": "2020-03-08T20:00:00Z"
   },
   {
     "date": 20200308,
@@ -6297,7 +6857,7 @@
     "pending": null,
     "death": null,
     "total": 0,
-    "dateChecked": "2020-03-08T21:00:00Z"
+    "dateChecked": "2020-03-08T20:00:00Z"
   },
   {
     "date": 20200308,
@@ -6307,7 +6867,7 @@
     "pending": null,
     "death": null,
     "total": 0,
-    "dateChecked": "2020-03-08T21:00:00Z"
+    "dateChecked": "2020-03-08T20:00:00Z"
   },
   {
     "date": 20200308,
@@ -6317,7 +6877,7 @@
     "pending": null,
     "death": null,
     "total": 0,
-    "dateChecked": "2020-03-08T21:00:00Z"
+    "dateChecked": "2020-03-08T20:00:00Z"
   },
   {
     "date": 20200307,
