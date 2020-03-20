@@ -18,24 +18,31 @@ function snapshotToArray(snapshot) {
     return returnArr;
 };
 
-const {Storage} = require('@google-cloud/storage');
+const { Storage } = require('@google-cloud/storage');
 const storage = new Storage();
 
-bucketname= firebaseConfig.storageBucket;
+bucketname = firebaseConfig.storageBucket;
+
+async function uploadDataToBlobStoreNoComment(info) {
+    const myBucket = storage.bucket(bucketname);
+    let contents = JSON.stringify(info, 2, 2);
+    try {
+        let file = myBucket.file('abridged');
+        await file.save(contents);
+    } catch{ }
+}
 
 async function uploadDataToBlobStore(info) {
-const myBucket = storage.bucket(bucketname);
-
-let  contents = JSON.stringify(info, 2, 2);
-    try{
-let file = myBucket.file('latest');
-await file.save(contents); 
-    }catch{}
-
-    try{
-let file  = myBucket.file('archive/' + info.timestamp);
-await file.save(contents); 
-    }catch{}
+    const myBucket = storage.bucket(bucketname);
+    let contents = JSON.stringify(info, 2, 2);
+    try {
+        let file = myBucket.file('latest');
+        await file.save(contents);
+    } catch{ }
+    try {
+        let file = myBucket.file('archive/' + info.timestamp);
+        await file.save(contents);
+    } catch{ }
 }
 
 async function updateDataInDB(info) {
@@ -58,13 +65,13 @@ async function updateDataInDB(info) {
 
 var cases = require('../website/src/data/1.3cases.json');
 
-function pad(n){return n<10 ? '0'+n : n}
+function pad(n) { return n < 10 ? '0' + n : n }
 
 async function doit() {
     let time = moment();
-    cases = cases.map( c => {
+    cases = cases.map(c => {
         let d = c.confirmed_date.split("/");
-        c.fulldate = pad(d[0]) + '/' + pad(d[1]) + '/'+ 2020;
+        c.fulldate = pad(d[0]) + '/' + pad(d[1]) + '/' + 2020;
         c.state_full_name = states.getStateNameByStateCode(c.state_name);
         delete c["comments"];
         delete c["links"];
@@ -77,10 +84,24 @@ async function doit() {
         data1: cases,
     }
 
-
     await uploadDataToBlobStore(info);
     await updateDataInDB(info);
 
+    cases = cases.map(c => {
+        delete c["comments"];
+        delete c["links"];
+        delete c["comments_en"];
+        delete c["gender"];
+        delete c["id"];
+        delete c["die_count"];
+        return c;
+    });
+
+    info = {
+        timestamp: time.format(),
+        data1: cases,
+    }
+    await uploadDataToBlobStoreNoComment(info);
     process.exit();
 }
 
