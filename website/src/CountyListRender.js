@@ -51,11 +51,16 @@ const NearbyCounties = (props) => {
     let countyInfo = lookupCountyInfo(props.state, props.county);
     let countySummary = <div></div>;
     if (countyInfo) {
-        let nearby =
-            nearbyCounties(props.state, props.county)
-                .sort((a, b) => a.distance - b.distance)
-                .slice(0, 10)
-            ;
+        let nearby = nearbyCounties(props.state, props.county)
+            // data source combined all NYC Boroughs into New York, NY
+            // this is a hack to remove these counties and they showed up as 
+            // zeros. 
+            .filter(a => a.State != "NY" ||
+                (a.County !== "Queens" && a.County !== "Kings" &&
+                    a.County !== "Bronx" && a.County !== "Richmond"))
+            .sort((a, b) => a.distance - b.distance)
+            .slice(0, 10);
+        console.log(nearby)
         countySummary =
             <div>
                 <h3> Nearby Counties of {props.county}, {states.getStateNameByStateCode(props.state)} </h3>
