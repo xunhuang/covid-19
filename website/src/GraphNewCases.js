@@ -156,10 +156,6 @@ const BasicGraphNewCases = (props) => {
 
     let data = countyFromNewCases(props.casesData);
 
-    let yAxis = <YAxis />;
-    if (props.logScale) {
-        yAxis = <YAxis yAxisId={0} scale={scale} />;
-    }
     if (data.length > 2) {
         let newdata = data.slice(0, data.length - 2);
         let second_last = data[data.length - 2];
@@ -198,7 +194,7 @@ const BasicGraphNewCases = (props) => {
                 <XAxis dataKey="name" />
                 {
                     state.showlog ?
-                        <YAxis scale="log" domain={['auto', 'auto']} /> :
+                    <YAxis yAxisId={0} scale={scale} /> :
                         <YAxis />
                 }
 
