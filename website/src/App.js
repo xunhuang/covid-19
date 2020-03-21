@@ -407,8 +407,8 @@ const CountyWidget = withHeader((props) => {
     <>
       <USInfoTopWidget
         casesData={casesData}
-        county={props.county}
-        state={props.state}
+        county={county}
+        state={state}
         selectedTab={"county"}
         callback={(newcounty, newstate) => {
           browseTo(props.history, newstate, newcounty);
@@ -453,8 +453,8 @@ const StateWidget = withHeader((props) => {
     <>
       <USInfoTopWidget
         casesData={casesData}
-        county={props.county}
-        state={props.state}
+        county={county}
+        state={state}
         selectedTab={"state"}
         callback={(newcounty, newstate) => {
           browseTo(props.history, newstate, newcounty);
