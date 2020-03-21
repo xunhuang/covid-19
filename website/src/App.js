@@ -17,6 +17,7 @@ import { BasicGraphNewCases } from "./GraphNewCases.js"
 import { GraphUSTesting, GraphStateTesting } from "./GraphTestingEffort"
 import { withHeader } from "./Header.js"
 import { MyTabs } from "./MyTabs.js"
+import { Typography } from '@material-ui/core';
 
 const states = require('us-state-codes');
 const Cookies = require("js-cookie");
@@ -258,9 +259,9 @@ const Tag = (props) => {
           Confirmed </div>
       </section>
       <section>
-        <div className={classes.topTag}>
+        <Typography className={classes.topTag} variant="body2" >
           {myShortNumber(props.beds)} Beds
-          </div>
+          </Typography>
         <div className={classes.mainTag}>
           {myShortNumber(props.hospitals)} </div>
         <div className={classes.smallTag}>
