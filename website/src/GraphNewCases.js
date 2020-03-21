@@ -2,8 +2,11 @@ import React from 'react';
 import { ResponsiveContainer, LineChart, Line, YAxis, XAxis, Tooltip, CartesianGrid, Legend } from 'recharts';
 import { makeStyles } from '@material-ui/core/styles';
 import { Typography } from '@material-ui/core';
+import { scaleSymlog } from 'd3-scale';
 
 const moment = require("moment");
+
+const scale = scaleSymlog().domain([0, 'dataMax']);
 
 const useStyles = makeStyles(theme => ({
     customtooltip: {
@@ -99,6 +102,10 @@ const BasicGraphNewCases = (props) => {
 
     let data = countyFromNewCases(props.casesData);
 
+    let yAxis = <YAxis />;
+    if (props.logScale) {
+        yAxis = <YAxis yAxisId={0} scale={scale} />;
+    }
     if (data.length > 2) {
         let newdata = data.slice(0, data.length - 2);
         let second_last = data[data.length - 2];
@@ -122,13 +129,12 @@ const BasicGraphNewCases = (props) => {
         >
             <Tooltip content={<CustomTooltip />} />
             <XAxis dataKey="name" />
-            <YAxis />
-            {/* <YAxis scale="log" domain={['auto', 'auto']} /> */}
+            {yAxis}
             <CartesianGrid stroke="#f5f5f5" strokeDasharray="5 5" />
             <Line type="monotone" dataKey="confirmed" stroke="#ff7300" yAxisId={0} strokeWidth={3} />
             <Line type="monotone" dataKey="newcase" stroke="#387908" yAxisId={0} strokeWidth={3} />
-            <Line type="monotone" dataKey="pending_confirmed" stroke="#ff7300" strokeDasharray="1 1" strokeWidth={3} />
-            <Line type="monotone" dataKey="pending_newcase" stroke="#387908" strokeDasharray="1 1" strokeWidth={3} />
+            <Line type="monotone" dataKey="pending_confirmed" stroke="#ff7300" yAxisId={0} strokeDasharray="1 1" strokeWidth={3} />
+            <Line type="monotone" dataKey="pending_newcase" stroke="#387908" yAxisId={0} strokeDasharray="1 1" strokeWidth={3} />
             <Legend verticalAlign="top" payload={[
                 { value: 'Total Confirmed', type: 'line', color: '#ff7300' },
                 { value: 'New', type: 'line', color: '#389708' },
