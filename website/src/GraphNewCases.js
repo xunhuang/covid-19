@@ -13,6 +13,9 @@ const moment = require("moment");
 const useStyles = makeStyles(theme => ({
     customtooltip: {
         backgroundColor: "#FFFFFF",
+    },
+    grow: {
+        flex: 1,
     }
 }));
 
@@ -138,6 +141,7 @@ const AntSwitch = withStyles(theme => ({
 
 
 const BasicGraphNewCases = (props) => {
+    const classes = useStyles();
 
     const [state, setState] = React.useState({
         showlog: false,
@@ -170,9 +174,11 @@ const BasicGraphNewCases = (props) => {
             <Grid component="label" container alignItems="center" spacing={1}>
                 <Grid item></Grid>
                 <Grid item>
-                    <AntSwitch checked={state.showlog} onChange={handleChange} name="showlog" />
+                    {/* <AntSwitch checked={state.showlog} onClick={handleChange} name="showlog" /> */}
                 </Grid>
                 <Grid item>Show Log Scale</Grid>
+                <Grid item className={classes.grow} />
+                {/* <Grid item onClick={() => { console.log("hi") }} > Data Source</Grid> */}
             </Grid>
         </Typography>
         <ResponsiveContainer height={300} >
