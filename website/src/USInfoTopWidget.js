@@ -10,6 +10,13 @@ import * as Util from "./Util.js";
 const states = require('us-state-codes');
 
 const useStyles = makeStyles(theme => ({
+    tagSticky: {
+        backgroundColor: "#FFFFFF",
+        position: "sticky",
+        top: 0,
+        left: 0,
+        zIndex: "100",
+    },
     tagContainer: {
         padding: theme.spacing(1, 1),
         justifyContent: "space-between",
@@ -80,7 +87,7 @@ const USInfoTopWidget = withRouter((props) => {
     let us_summary = USCounty.casesSummary(props.casesData);
     let state_hospitals = USCounty.hospitalsForState(state);
 
-    return <div>
+    return <div className={classes.tagSticky} >
         <div className={classes.tagContainer} >
             <Tag
                 title={county_title}
