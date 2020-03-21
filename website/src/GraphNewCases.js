@@ -115,8 +115,9 @@ const AntSwitch = withStyles(theme => ({
             color: theme.palette.common.white,
             '& + $track': {
                 opacity: 1,
-                backgroundColor: theme.palette.primary.main,
+                backgroundColor: "#00aeef",
                 borderColor: theme.palette.primary.main,
+                border: `0px solid ${theme.palette.grey[500]}`,
             },
         },
     },
@@ -129,6 +130,7 @@ const AntSwitch = withStyles(theme => ({
         border: `1px solid ${theme.palette.grey[500]}`,
         borderRadius: 16 / 2,
         opacity: 1,
+        height: "auto",
         backgroundColor: theme.palette.common.white,
     },
     checked: {},
