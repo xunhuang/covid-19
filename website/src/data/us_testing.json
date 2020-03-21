@@ -6,6 +6,7 @@
     "negative": 748,
     "posNeg": 866,
     "pending": 103,
+    "hospitalized": null,
     "death": null,
     "total": 969
   },
@@ -16,6 +17,7 @@
     "negative": 953,
     "posNeg": 1129,
     "pending": 197,
+    "hospitalized": null,
     "death": null,
     "total": 1326
   },
@@ -26,6 +28,7 @@
     "negative": 1571,
     "posNeg": 1794,
     "pending": 458,
+    "hospitalized": null,
     "death": null,
     "total": 2252
   },
@@ -36,6 +39,7 @@
     "negative": 1809,
     "posNeg": 2150,
     "pending": 602,
+    "hospitalized": null,
     "death": null,
     "total": 2752
   },
@@ -46,6 +50,7 @@
     "negative": 2335,
     "posNeg": 2752,
     "pending": 347,
+    "hospitalized": null,
     "death": null,
     "total": 3099
   },
@@ -56,6 +61,7 @@
     "negative": 3367,
     "posNeg": 3951,
     "pending": 313,
+    "hospitalized": null,
     "death": null,
     "total": 4264
   },
@@ -66,6 +72,7 @@
     "negative": 3807,
     "posNeg": 4585,
     "pending": 469,
+    "hospitalized": null,
     "death": null,
     "total": 5054
   },
@@ -76,6 +83,7 @@
     "negative": 5978,
     "posNeg": 7031,
     "pending": 563,
+    "hospitalized": null,
     "death": 27,
     "total": 7617
   },
@@ -86,6 +94,7 @@
     "negative": 7949,
     "posNeg": 9264,
     "pending": 673,
+    "hospitalized": null,
     "death": 36,
     "total": 9966
   },
@@ -96,6 +105,7 @@
     "negative": 13613,
     "posNeg": 15535,
     "pending": 1130,
+    "hospitalized": null,
     "death": 39,
     "total": 16665
   },
@@ -106,6 +116,7 @@
     "negative": 17102,
     "posNeg": 19552,
     "pending": 1236,
+    "hospitalized": null,
     "death": 49,
     "total": 20789
   },
@@ -116,6 +127,7 @@
     "negative": 22548,
     "posNeg": 25721,
     "pending": 2242,
+    "hospitalized": null,
     "death": 60,
     "total": 27963
   },
@@ -126,6 +138,7 @@
     "negative": 36104,
     "posNeg": 40123,
     "pending": 1691,
+    "hospitalized": null,
     "death": 71,
     "total": 41714
   },
@@ -136,6 +149,7 @@
     "negative": 47604,
     "posNeg": 53327,
     "pending": 1687,
+    "hospitalized": null,
     "death": 90,
     "total": 54957
   },
@@ -146,6 +160,7 @@
     "negative": 66225,
     "posNeg": 73956,
     "pending": 2538,
+    "hospitalized": null,
     "death": 112,
     "total": 76495
   },
@@ -156,6 +171,7 @@
     "negative": 89119,
     "posNeg": 100842,
     "pending": 3025,
+    "hospitalized": null,
     "death": 160,
     "total": 103867
   },
@@ -166,7 +182,19 @@
     "negative": 118147,
     "posNeg": 135185,
     "pending": 3336,
+    "hospitalized": null,
     "death": 219,
     "total": 138521
+  },
+  {
+    "date": 20200321,
+    "states": 56,
+    "positive": 23203,
+    "negative": 156017,
+    "posNeg": 179220,
+    "pending": 3477,
+    "hospitalized": 1964,
+    "death": 272,
+    "total": 182697
   }
 ]

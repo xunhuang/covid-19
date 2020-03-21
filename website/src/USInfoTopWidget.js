@@ -15,7 +15,7 @@ const useStyles = makeStyles(theme => ({
         position: "sticky",
         top: 0,
         left: 0,
-        zIndex: "100",
+        zIndex: "1",
     },
     tagContainer: {
         padding: theme.spacing(1, 1),

@@ -1,7 +1,12 @@
 import React from 'react';
-import { ResponsiveContainer, LineChart, Line, YAxis, XAxis, Tooltip, CartesianGrid, Legend } from 'recharts';
-import { makeStyles } from '@material-ui/core/styles';
+import { Text, ResponsiveContainer, LineChart, Line, YAxis, XAxis, Tooltip, CartesianGrid, Legend, Label } from 'recharts';
+import { makeStyles, withStyles } from '@material-ui/core/styles';
 import { Typography } from '@material-ui/core';
+import { purple } from '@material-ui/core/colors';
+import FormGroup from '@material-ui/core/FormGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Switch from '@material-ui/core/Switch';
+import Grid from '@material-ui/core/Grid';
 
 const moment = require("moment");
 
@@ -95,7 +100,50 @@ const CustomTooltip = (props) => {
     return null;
 }
 
+const AntSwitch = withStyles(theme => ({
+    root: {
+        width: 28,
+        height: 16,
+        padding: 0,
+        display: 'flex',
+    },
+    switchBase: {
+        padding: 2,
+        color: theme.palette.grey[500],
+        '&$checked': {
+            transform: 'translateX(12px)',
+            color: theme.palette.common.white,
+            '& + $track': {
+                opacity: 1,
+                backgroundColor: theme.palette.primary.main,
+                borderColor: theme.palette.primary.main,
+            },
+        },
+    },
+    thumb: {
+        width: 12,
+        height: 12,
+        boxShadow: 'none',
+    },
+    track: {
+        border: `1px solid ${theme.palette.grey[500]}`,
+        borderRadius: 16 / 2,
+        opacity: 1,
+        backgroundColor: theme.palette.common.white,
+    },
+    checked: {},
+}))(Switch);
+
+
 const BasicGraphNewCases = (props) => {
+
+    const [state, setState] = React.useState({
+        showlog: false,
+    });
+
+    const handleChange = event => {
+        setState({ ...state, [event.target.name]: event.target.checked });
+    };
 
     let data = countyFromNewCases(props.casesData);
 
@@ -115,25 +163,42 @@ const BasicGraphNewCases = (props) => {
         data = newdata;
     }
 
-    return <ResponsiveContainer height={300} >
-        <LineChart
-            data={data}
-            margin={{ top: 5, right: 30, left: 5, bottom: 5 }}
-        >
-            <Tooltip content={<CustomTooltip />} />
-            <XAxis dataKey="name" />
-            <YAxis />
-            {/* <YAxis scale="log" domain={['auto', 'auto']} /> */}
-            <CartesianGrid stroke="#f5f5f5" strokeDasharray="5 5" />
-            <Line type="monotone" dataKey="confirmed" stroke="#ff7300" yAxisId={0} strokeWidth={3} />
-            <Line type="monotone" dataKey="newcase" stroke="#387908" yAxisId={0} strokeWidth={3} />
-            <Line type="monotone" dataKey="pending_confirmed" stroke="#ff7300" strokeDasharray="1 1" strokeWidth={3} />
-            <Line type="monotone" dataKey="pending_newcase" stroke="#387908" strokeDasharray="1 1" strokeWidth={3} />
-            <Legend verticalAlign="top" payload={[
-                { value: 'Total Confirmed', type: 'line', color: '#ff7300' },
-                { value: 'New', type: 'line', color: '#389708' },
-            ]} />
-        </LineChart></ResponsiveContainer>;
+    return <>
+        <Typography component="div">
+            <Grid component="label" container alignItems="center" spacing={1}>
+                <Grid item></Grid>
+                <Grid item>
+                    <AntSwitch checked={state.showlog} onChange={handleChange} name="showlog" />
+                </Grid>
+                <Grid item>Show Log Scale</Grid>
+            </Grid>
+        </Typography>
+        <ResponsiveContainer height={300} >
+            <LineChart
+                data={data}
+                margin={{ top: 5, right: 30, left: 5, bottom: 5 }}
+            >
+                <Text textAnchor={"start"} verticalAnchor={"start"} > hello</Text>
+                <Tooltip content={<CustomTooltip />} />
+                <XAxis dataKey="name" />
+                {
+                    state.showlog ?
+                        <YAxis scale="log" domain={['auto', 'auto']} /> :
+                        <YAxis />
+                }
+
+                <CartesianGrid stroke="#f5f5f5" strokeDasharray="5 5" />
+                <Line type="monotone" dataKey="confirmed" stroke="#ff7300" yAxisId={0} strokeWidth={3} />
+                <Line type="monotone" dataKey="newcase" stroke="#387908" yAxisId={0} strokeWidth={3} />
+                <Line type="monotone" dataKey="pending_confirmed" stroke="#ff7300" strokeDasharray="1 1" strokeWidth={3} />
+                <Line type="monotone" dataKey="pending_newcase" stroke="#387908" strokeDasharray="1 1" strokeWidth={3} />
+                <Legend verticalAlign="top" payload={[
+                    { value: 'Total Confirmed', type: 'line', color: '#ff7300' },
+                    { value: 'New', type: 'line', color: '#389708' },
+                ]} />
+
+            </LineChart></ResponsiveContainer>
+    </>
 }
 
 export { BasicGraphNewCases };

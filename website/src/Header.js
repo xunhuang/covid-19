@@ -25,6 +25,9 @@ const SearchBox = (props) => {
     return <Select
         className="basic-single"
         classNamePrefix="select"
+        styles={{
+            menu: provided => ({ ...provided, zIndex: 9999 })
+        }}
         defaultValue={""}
         placeholder={"Search for a County"}
         isDisabled={false}
