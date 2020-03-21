@@ -34,6 +34,12 @@ const logger = firebase.analytics();
 var Hospitals = require('./hospitals.json');
 
 const useStyles = makeStyles(theme => ({
+  tagContainer: {
+    padding: theme.spacing(1, 1),
+    justifyContent: "space-between",
+    display: "flex",
+    flexWrap: "wrap",
+  },
   row: {
     padding: theme.spacing(1, 1),
     justifyContent: "space-between",
@@ -60,13 +66,13 @@ const useStyles = makeStyles(theme => ({
     marginTop: 5,
   },
   topTag: {
-    fontSize: "0.55rem",
+    fontSize: "0.5rem",
   },
   smallTag: {
-    fontSize: "0.6rem",
+    fontSize: "0.5rem",
   },
   mainTag: {
-    fontSize: "1.3rem",
+    fontSize: "1.0rem",
   },
   grow: {
     flexGrow: 1,
@@ -198,7 +204,7 @@ const USCountyInfoWidget = withRouter((props) => {
   }
 
   return <div>
-    <div className={classes.row} >
+    <div className={classes.tagContainer} >
       <Tag
         title={county_title}
         confirmed={county_summary.confirmed}
@@ -259,7 +265,7 @@ const Tag = (props) => {
           Confirmed </div>
       </section>
       <section>
-        <Typography className={classes.topTag} variant="body2" >
+        <Typography className={classes.topTag} variant="body2" noWrap >
           {myShortNumber(props.beds)} Beds
           </Typography>
         <div className={classes.mainTag}>

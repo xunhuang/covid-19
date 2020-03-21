@@ -56,7 +56,9 @@ const withHeader = (comp, props) => {
     return (props) => {
         let casesData = USCounty.casesForUS();
         let header = <header className="App-header">
-            <h2>COVID-19.direct: US Counties</h2>
+            <Typography variant="h5" >
+                COVID-19.direct
+                    </Typography>
             <SearchBox
                 casesData={casesData}
                 callback={(newcounty, newstate) => {
