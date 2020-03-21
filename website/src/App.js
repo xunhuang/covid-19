@@ -139,7 +139,6 @@ async function fetchApproxIPLocation() {
 const USCountyInfoWidget = withRouter((props) => {
   const classes = useStyles();
   const value = props.state ? (props.county ? 0 : 1) : 2;
-  const [tabvalue, setTabvalue] = React.useState(0);
 
   const state = props.state ? props.state : "CA";
   const county = props.county ? props.county : USCounty.countyDataForState(state)[0].County;
@@ -147,10 +146,6 @@ const USCountyInfoWidget = withRouter((props) => {
   let state_title = states.getStateNameByStateCode(state);
   let county_title = county;
   let US_title = "US";
-
-  const handleChange = (event, newValue) => {
-    setTabvalue(newValue);
-  }
 
   let countyInfo = lookupCountyInfo(state, county);
   if (!countyInfo) {
@@ -314,18 +309,43 @@ const BasicMap = (props) => {
 }
 
 async function getCaseData() {
-  let result = await firebase.functions().httpsCallable('datajsonNew')();
+  // let result = await firebase.functions().httpsCallable('datajsonNew')();
+  let result = await firebase.functions().httpsCallable('datajsonShort')();
   return result;
 }
 
-const DetailCaseList = (props) => {
-  let countyInfo = lookupCountyInfo(props.state, props.county);
-  let county_cases = USCounty.casesForCounty(props.state, props.county).sort(sort_by_date);
-  let countySummary = <div />;
-  if (countyInfo) {
-    countySummary = <DetailCaseListWidget cases={county_cases} />;
+async function fetchUSCaseDataFull() {
+  let result = await firebase.functions().httpsCallable('datajson')();
+  return result;
+}
+
+async function fetchCountyCases(state, county) {
+  let result = await firebase.functions().httpsCallable('datajsonCounty')({
+    state: state,
+    county: county,
+  });
+  return result;
+}
+
+async function fetchStateCases(state) {
+  let result = await firebase.functions().httpsCallable('datajsonState')({
+    state: state,
+  });
+  return result;
+}
+
+const CountyDetailCaseList = (props) => {
+  const [county_cases, setDetailCases] = React.useState(null);
+  React.useEffect(() => {
+    fetchCountyCases(props.state, props.county).then((result, b) => {
+      setDetailCases(result.data.data.sort(sort_by_date));
+    });
+  }, [props.state, props.county]);
+
+  if (!county_cases) {
+    return <div> Loading</div>;
   }
-  return countySummary;
+  return <DetailCaseListWidget cases={county_cases} />;
 }
 
 function sort_by_date(a, b) {
@@ -333,15 +353,30 @@ function sort_by_date(a, b) {
 };
 
 const StateDetailCaseListWidget = (props) => {
-  let state_cases = USCounty.casesForState(props.state).sort(sort_by_date);
-  let countySummary = <DetailCaseListWidget cases={state_cases} />;
-  return countySummary;
+  const [state_cases, setDetailCases] = React.useState(null);
+  React.useEffect(() => {
+    fetchStateCases(props.state).then((result, b) => {
+      setDetailCases(result.data.data.sort(sort_by_date));
+    });
+  }, [props.state]);
+
+  if (!state_cases) {
+    return <div> Loading</div>;
+  }
+  return <DetailCaseListWidget cases={state_cases} />;
 }
 const EntireUSDetailCaseListWidget = (props) => {
-  let state_cases = USCounty.casesForUS().sort(sort_by_date);
-  let countySummary =
-    <DetailCaseListWidget cases={state_cases} />
-  return countySummary;
+  const [us_cases, setDetailCases] = React.useState(null);
+  React.useEffect(() => {
+    fetchUSCaseDataFull().then((result, b) => {
+      setDetailCases(result.data.data.sort(sort_by_date));
+    });
+  }, []);
+
+  if (!us_cases) {
+    return <div> Loading</div>;
+  }
+  return <DetailCaseListWidget cases={us_cases} />;
 }
 
 const DetailCaseListWidget = (props) => {
@@ -478,7 +513,7 @@ const CountyWidget = withHeader((props) => {
         browseTo(props.history, newstate, newcounty);
       }}
     />,
-    <DetailCaseList
+    <CountyDetailCaseList
       county={county}
       state={state}
     />,

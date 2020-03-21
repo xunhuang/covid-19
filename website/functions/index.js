@@ -52,6 +52,30 @@ exports.datajson = functions.https.onRequest((req, res) => {
    })
 });
 
+exports.datajsonCounty = functions.https.onCall(
+   async (data, context) => {
+      let json = JSON.parse(await getDataJsonNew());
+      let jsondata = json.data1.filter(c =>
+         data.state == c.state_name && data.county == c.county,
+      );
+      return {
+         generationTime: json.timestamp,
+         data: jsondata,
+      }
+   });
+
+exports.datajsonState = functions.https.onCall(
+   async (data, context) => {
+      let json = JSON.parse(await getDataJsonNew());
+      let jsondata = json.data1.filter(c =>
+         data.state == c.state_name
+      );
+      return {
+         generationTime: json.timestamp,
+         data: jsondata,
+      };
+   });
+
 exports.datajsonNew = functions.https.onRequest((req, res) => {
    cors(req, res, async () => {
       let json = JSON.parse(await getDataJsonNew());
