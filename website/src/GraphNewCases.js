@@ -7,8 +7,11 @@ import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
 import Grid from '@material-ui/core/Grid';
+import { scaleSymlog } from 'd3-scale';
 
 const moment = require("moment");
+
+const scale = scaleSymlog().domain([0, 'dataMax']);
 
 const useStyles = makeStyles(theme => ({
     customtooltip: {
@@ -153,6 +156,10 @@ const BasicGraphNewCases = (props) => {
 
     let data = countyFromNewCases(props.casesData);
 
+    let yAxis = <YAxis />;
+    if (props.logScale) {
+        yAxis = <YAxis yAxisId={0} scale={scale} />;
+    }
     if (data.length > 2) {
         let newdata = data.slice(0, data.length - 2);
         let second_last = data[data.length - 2];
@@ -174,7 +181,7 @@ const BasicGraphNewCases = (props) => {
             <Grid component="label" container alignItems="center" spacing={1}>
                 <Grid item></Grid>
                 <Grid item>
-                    {/* <AntSwitch checked={state.showlog} onClick={handleChange} name="showlog" /> */}
+                    <AntSwitch checked={state.showlog} onClick={handleChange} name="showlog" />
                 </Grid>
                 <Grid item>Show Log Scale</Grid>
                 <Grid item className={classes.grow} />

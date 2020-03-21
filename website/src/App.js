@@ -118,11 +118,12 @@ const USCountyInfoWidget = withRouter((props) => {
   let county_cases = USCounty.casesForCounty(state, county);
   let state_mycases = USCounty.casesForState(state);
   let graphlistSection;
+  let useLogScale = false;
 
   if (value === 0) {
 
     const tabs = [
-      <BasicGraphNewCases casesData={county_cases} />,
+      <BasicGraphNewCases casesData={county_cases} logScale={useLogScale} />,
       <GraphStateTesting state={state} />,
     ]
     graphlistSection = <MyTabs
@@ -132,7 +133,7 @@ const USCountyInfoWidget = withRouter((props) => {
   }
   if (value === 1) {
     const tabs = [
-      <BasicGraphNewCases casesData={state_mycases} />,
+      <BasicGraphNewCases casesData={state_mycases} logScale={useLogScale} />,
       <GraphStateTesting state={state} />,
     ]
     graphlistSection = <MyTabs
@@ -142,7 +143,7 @@ const USCountyInfoWidget = withRouter((props) => {
   }
   if (value === 2) {
     const tabs = [
-      <BasicGraphNewCases casesData={props.casesData} />,
+      <BasicGraphNewCases casesData={props.casesData} logScale={useLogScale} />,
       <GraphUSTesting />,
     ]
     graphlistSection = <MyTabs
