@@ -5,7 +5,6 @@ import { GoogleMap, Marker, LoadScript } from '@react-google-maps/api'
 import { makeStyles } from '@material-ui/core/styles';
 import { countyModuleInit, lookupCountyInfo } from "./USCountyInfo.js";
 import * as USCounty from "./USCountyInfo.js";
-import { myShortNumber } from "./Util.js";
 import { Splash } from './Splash.js';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -17,7 +16,7 @@ import { BasicGraphNewCases } from "./GraphNewCases.js"
 import { GraphUSTesting, GraphStateTesting } from "./GraphTestingEffort"
 import { withHeader } from "./Header.js"
 import { MyTabs } from "./MyTabs.js"
-import { Typography } from '@material-ui/core';
+import { USInfoTopWidget } from './USInfoTopWidget.js'
 
 const states = require('us-state-codes');
 const Cookies = require("js-cookie");
@@ -34,49 +33,6 @@ const logger = firebase.analytics();
 var Hospitals = require('./hospitals.json');
 
 const useStyles = makeStyles(theme => ({
-  tagContainer: {
-    padding: theme.spacing(1, 1),
-    justifyContent: "space-between",
-    display: "flex",
-    flexWrap: "wrap",
-  },
-  row: {
-    padding: theme.spacing(1, 1),
-    justifyContent: "space-between",
-    display: "flex",
-  },
-  tag: {
-    display: "inline-block",
-    textAlign: "center",
-    backgroundColor: "#f3f3f3",
-    borderRadius: 10,
-    flex: 1,
-    margin: 3,
-  },
-  tagSelected: {
-    display: "inline-block",
-    textAlign: "center",
-    color: "#FFFFFF",
-    backgroundColor: "#00aeef",
-    borderRadius: 10,
-    flex: 1,
-    margin: 3,
-  },
-  tagTitle: {
-    marginTop: 5,
-  },
-  topTag: {
-    fontSize: "0.5rem",
-  },
-  smallTag: {
-    fontSize: "0.5rem",
-  },
-  mainTag: {
-    fontSize: "1.0rem",
-  },
-  grow: {
-    flexGrow: 1,
-  },
   table: {
     width: "100%"
   },
@@ -144,15 +100,12 @@ async function fetchApproxIPLocation() {
 }
 
 const USCountyInfoWidget = withRouter((props) => {
-  const classes = useStyles();
   const value = props.state ? (props.county ? 0 : 1) : 2;
 
   const state = props.state ? props.state : "CA";
   const county = props.county ? props.county : USCounty.countyDataForState(state)[0].County;
 
   let state_title = states.getStateNameByStateCode(state);
-  let county_title = county;
-  let US_title = "US";
 
   let countyInfo = lookupCountyInfo(state, county);
   if (!countyInfo) {
@@ -164,10 +117,6 @@ const USCountyInfoWidget = withRouter((props) => {
 
   let county_cases = USCounty.casesForCounty(state, county);
   let state_mycases = USCounty.casesForState(state);
-  let state_summary = USCounty.casesForStateSummary(state);
-  let county_summary = USCounty.casesForCountySummary(state, county);
-  let us_summary = USCounty.casesSummary(props.casesData);
-  let state_hospitals = USCounty.hospitalsForState(state);
   let graphlistSection;
 
   if (value === 0) {
@@ -200,82 +149,9 @@ const USCountyInfoWidget = withRouter((props) => {
       labels={["Confirmed Cases", `National Testing`]}
       tabs={tabs}
     />;
-
   }
-
-  return <div>
-    <div className={classes.tagContainer} >
-      <Tag
-        title={county_title}
-        confirmed={county_summary.confirmed}
-        newcases={county_summary.newcases}
-        hospitals={countyInfo.Hospitals}
-        beds={countyInfo.HospitalBeds}
-        selected={value === 0}
-        callback={() => {
-          browseTo(props.history, state, county);
-        }}
-      />
-      <Tag title={state_title}
-        confirmed={state_summary.confirmed}
-        newcases={state_summary.newcases}
-        hospitals={state_hospitals.hospitals}
-        beds={state_hospitals.beds}
-        selected={value === 1}
-        callback={() => {
-          browseToState(props.history, state);
-        }}
-      />
-      <Tag
-        title={US_title}
-        confirmed={us_summary.confirmed}
-        newcases={us_summary.newcases}
-        hospitals={6146}
-        beds={924107}
-        selected={value === 2}
-        callback={() => {
-          browseToUSPage(props.history);
-        }}
-      />
-    </div>
-    <div>
-      {graphlistSection}
-    </div>
-  </div >;
+  return graphlistSection;
 });
-
-const Tag = (props) => {
-  const classes = useStyles();
-  return <div className={props.selected ? classes.tagSelected : classes.tag}
-    onClick={() => {
-      if (props.callback) {
-        props.callback();
-      }
-    }}
-  >
-    <div className={classes.tagTitle}> {props.title} </div>
-    <div className={classes.row} >
-      <section>
-        <div className={classes.topTag}>
-          +{myShortNumber(props.newcases)}
-        </div>
-        <div className={classes.mainTag}>
-          {myShortNumber(props.confirmed)} </div>
-        <div className={classes.smallTag}>
-          Confirmed </div>
-      </section>
-      <section>
-        <Typography className={classes.topTag} variant="body2" noWrap >
-          {myShortNumber(props.beds)} Beds
-          </Typography>
-        <div className={classes.mainTag}>
-          {myShortNumber(props.hospitals)} </div>
-        <div className={classes.smallTag}>
-          Hospitals </div>
-      </section>
-    </div>
-  </div >;
-};
 
 const BasicMap = (props) => {
   const center = {
@@ -434,13 +310,6 @@ function browseToState(history, state) {
   );
 }
 
-function browseToUSPage(history) {
-  history.push(
-    "/US",
-    history.search,
-  );
-}
-
 const MainApp = withRouter((props) => {
   const [county, setCounty] = React.useState("Santa Clara");
   const [state, setState] = React.useState("CA");
@@ -470,9 +339,9 @@ const MainApp = withRouter((props) => {
     <div>
       <Switch>
         {/* <Route exact path='/' component={App2} /> */}
-        <Route exact path='/county/:state/:county' render={(props) => <CountyWidget {...props} casesData={casesData} />} />
-        <Route exact path='/state/:state' render={(props) => <StateWidget {...props} casesData={casesData} />} />
-        <Route exact path='/US' render={(props) => <EntireUSWidget {...props} casesData={casesData} />} />
+        <Route exact path='/county/:state/:county' render={(props) => <CountyWidget {...props} casesData={casesData} state={state} county={county} />} />
+        <Route exact path='/state/:state' render={(props) => <StateWidget {...props} casesData={casesData} state={state} county={county} />} />
+        <Route exact path='/US' render={(props) => <EntireUSWidget {...props} casesData={casesData} state={state} county={county} />} />
       </Switch>
     </div>
   );
@@ -492,6 +361,15 @@ const EntireUSWidget = withHeader((props) => {
   ];
   return (
     <>
+      <USInfoTopWidget
+        casesData={casesData}
+        county={props.county}
+        state={props.state}
+        selectedTab={"usa"}
+        callback={(newcounty, newstate) => {
+          browseTo(props.history, newstate, newcounty);
+        }}
+      />
       <USCountyInfoWidget
         casesData={casesData}
         callback={(newcounty, newstate) => {
@@ -527,6 +405,15 @@ const CountyWidget = withHeader((props) => {
   ];
   return (
     <>
+      <USInfoTopWidget
+        casesData={casesData}
+        county={props.county}
+        state={props.state}
+        selectedTab={"county"}
+        callback={(newcounty, newstate) => {
+          browseTo(props.history, newstate, newcounty);
+        }}
+      />
       <USCountyInfoWidget
         casesData={casesData}
         county={county}
@@ -564,6 +451,15 @@ const StateWidget = withHeader((props) => {
 
   return (
     <>
+      <USInfoTopWidget
+        casesData={casesData}
+        county={props.county}
+        state={props.state}
+        selectedTab={"state"}
+        callback={(newcounty, newstate) => {
+          browseTo(props.history, newstate, newcounty);
+        }}
+      />
       <USCountyInfoWidget
         casesData={casesData}
         county={county}

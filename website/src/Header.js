@@ -48,26 +48,19 @@ const withHeader = (comp, props) => {
 
     const disqusShortname = "covid19direct";
     const disqusConfig = {
-        url: "https://covid-19.direct", //this.props.pageUrl
-        identifier: "article-id", //this.props.uniqueId
-        title: "main page" //this.props.title
+        url: "https://covid-19.direct",
+        identifier: "article-id",
+        title: "main page"
     };
 
     return (props) => {
         let casesData = USCounty.casesForUS();
-        let header = <header className="App-header">
-            <Typography variant="h5" >
-                COVID-19.direct
-                    </Typography>
-            <SearchBox
-                casesData={casesData}
-                callback={(newcounty, newstate) => {
-                    browseTo(props.history, newstate, newcounty);
-                }}
-            />
-        </header>
 
-        // let footer = <DataCreditWidget />;
+        let component = comp({
+            // add addition things here
+            ...props,
+        });
+
         let footer = <div>
             <Typography variant="h5" noWrap>
                 Discussions
@@ -79,16 +72,21 @@ const withHeader = (comp, props) => {
             <DataCreditWidget />
         </div>;
 
-        let component = comp({
-            // add addition things here
-            ...props,
-        });
-        return (
-            <div>
-                {header}
-                {component}
-                {footer}
-            </div >);
+        let header = <header className="App-header">
+            <Typography variant="h5" >
+                COVID-19.direct
+                    </Typography>
+            <SearchBox
+                casesData={casesData}
+                callback={(newcounty, newstate) => {
+                    browseTo(props.history, newstate, newcounty);
+                }}
+            />
+            {component}
+            {footer}
+        </header>
+
+        return header;
     }
 };
 

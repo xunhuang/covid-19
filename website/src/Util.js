@@ -12,4 +12,30 @@ function myShortNumber(n) {
     return shortNumber(n);
 }
 
-export { myShortNumber }
+function browseTo(history, state, county) {
+    history.push(
+        "/county/" + encodeURIComponent(state) + "/" + encodeURIComponent(county),
+        history.search,
+    );
+}
+
+function browseToState(history, state) {
+    history.push(
+        "/state/" + encodeURIComponent(state),
+        history.search,
+    );
+}
+
+function browseToUSPage(history) {
+    history.push(
+        "/US",
+        history.search,
+    );
+}
+
+export {
+    myShortNumber,
+    browseTo,
+    browseToState,
+    browseToUSPage
+}
