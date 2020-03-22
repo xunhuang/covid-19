@@ -110,7 +110,7 @@ const USState_Population =
 }
 
 function getAllStatesSummary(cases) {
-    const today = moment().format("M/D");
+    const today = moment().format("MM/DD/YYYY");
     let g_group = cases.reduce((result, c) => {
         let current = result[c.state_name];
         if (!current) {
@@ -120,7 +120,7 @@ function getAllStatesSummary(cases) {
             }
         }
         current.confirmed += c.people_count;
-        if (c.confirmed_date === today) {
+        if (c.fulldate === today) {
             current.newcases += c.people_count;
         }
         result[c.state_name] = current;
@@ -235,14 +235,14 @@ function casesForUS(state_short_name) {
 
 function casesSummary(mycases) {
     const newcases = mycases.reduce((m, c) => {
-        let a = m[c.confirmed_date];
+        let a = m[c.fulldate];
         if (!a) a = 0;
         a += c.people_count;
-        m[c.confirmed_date] = a;
+        m[c.fulldate] = a;
         return m;
     }, {});
     let total = Object.values(newcases).reduce((a, b) => a + b, 0);
-    const today = moment().format("M/D");
+    const today = moment().format("MM/DD/YYYY");
     var newcasenum = newcases[today];
     if (!newcasenum) {
         newcasenum = 0;

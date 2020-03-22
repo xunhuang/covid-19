@@ -97,7 +97,7 @@ const DetailCaseListWidget = (props) => {
                 {cases.map(row => (
                     <TableRow key={row.id}>
                         <TableCell component="th" scope="row">
-                            {row.confirmed_date}
+                            {moment(row.fulldate).format("M/D")}
                         </TableCell>
                         <TableCell align="center">{row.people_count}</TableCell>
                         <TableCell align="left">{row.comments_en}</TableCell>
