@@ -55,22 +55,22 @@ const CustomTooltip = (props) => {
                     {label}
                 </Typography>
                 <Typography variant="body2" noWrap>
-                    {`Tested: ${tested}`}
+                    {`Daily Tested: ${tested}`}
                 </Typography>
                 <Typography variant="body2" noWrap>
-                    {`Positve : ${positive}`}
+                    {`Daily Positve : ${positive}`}
                 </Typography>
                 <Typography variant="body2" noWrap>
-                    {`Negative : ${negative}`}
+                    {`Daily Negative : ${negative}`}
                 </Typography>
                 <Typography variant="body2" noWrap>
-                    {`Positve Rate : ${(totalPositve / totalTested * 100).toFixed(1)} %`}
+                    {`Cumulative Positve Rate : ${(totalPositve / totalTested * 100).toFixed(1)} %`}
                 </Typography>
                 <Typography variant="body2" noWrap>
-                    {`Negative Rate : ${(totalNegative / totalTested * 100).toFixed(1)} %`}
+                    {`Cumulative Negative Rate : ${(totalNegative / totalTested * 100).toFixed(1)} %`}
                 </Typography>
                 <Typography variant="body2" noWrap>
-                    {`Pending: ${totalPending}`}
+                    {`Pending: ${totalPending ? totalPending : 0}`}
                 </Typography>
             </div>
         );
