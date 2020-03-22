@@ -86,10 +86,13 @@ async function fetchApproxIPLocation() {
     });
 }
 
+
+
+
 const USCountyInfoWidget = withRouter((props) => {
   const value = props.state ? (props.county ? 0 : 1) : 2;
+  const state = props.state ? props.state : GetLastState();
 
-  const state = props.state ? props.state : "CA";
   const county = props.county ? props.county : USCounty.countyDataForState(state)[0].County;
 
   let state_title = states.getStateNameByStateCode(state);
@@ -242,8 +245,28 @@ const MainApp = withRouter((props) => {
   );
 });
 
+function GetLastState() {
+  let county_info = CookieGetLastCounty();
+  if (county_info) {
+    return county_info.state;
+  }
+  return "CA";
+}
+
+function getDefaultCounty() {
+  let county_info = CookieGetLastCounty();
+  if (county_info) {
+    return county_info;
+  }
+  return {
+    county: "Santa Clara",
+    state: "CA",
+  }
+}
 
 const EntireUSWidget = withHeader((props) => {
+  const default_county_info = getDefaultCounty();
+
   const casesData = props.casesData;
   const tabs = [
     <AllStatesListWidget
@@ -258,8 +281,8 @@ const EntireUSWidget = withHeader((props) => {
     <>
       <USInfoTopWidget
         casesData={casesData}
-        county={props.county}
-        state={props.state}
+        county={default_county_info.county}
+        state={default_county_info.state}
         selectedTab={"usa"}
         callback={(newcounty, newstate) => {
           browseTo(props.history, newstate, newcounty);
@@ -279,10 +302,28 @@ const EntireUSWidget = withHeader((props) => {
   );
 });
 
+function CookieSetLastCounty(state, county) {
+  let county_info = {
+    state: state,
+    county: county,
+  }
+
+  Cookies.set("LastCounty", county_info, {
+    expires: 7  // 7 day, people are not supposed to be moving anyways
+  });
+}
+
+function CookieGetLastCounty() {
+  let county_info = Cookies.getJSON("LastCounty");
+  return county_info;
+}
+
 const CountyWidget = withHeader((props) => {
   const state = props.match.params.state;
   const county = props.match.params.county;
   const casesData = props.casesData;
+
+  CookieSetLastCounty(state, county);
 
   const tabs = [
     <NearbyCounties
@@ -325,10 +366,30 @@ const CountyWidget = withHeader((props) => {
   );
 });
 
+function getDefaultCountyForState(state, county) {
+  if (county) {
+    return county;
+  }
+  let county_info = CookieGetLastCounty();
+  console.log(county_info);
+  if (county_info) {
+    if (county_info.state === state) {
+      return county_info.county;
+    }
+  }
+
+  // cookie county not match, return the top county
+  return USCounty.countyDataForState(state)[0].County;
+}
+
 const StateWidget = withHeader((props) => {
   const state = props.match.params.state;
-  const county = props.match.params.county;
+  const county = getDefaultCountyForState(
+    props.match.params.state,
+    props.match.params.county);
   const casesData = props.casesData;
+
+  console.log(county);
 
   const tabs = [
     <CountiesForStateWidget

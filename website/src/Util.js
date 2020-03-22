@@ -9,7 +9,6 @@ function myShortNumber(n) {
         n = n.replace(/,/g, '');
         n = Number(n);
     }
-    console.log(n);
     return shortNumber(n);
 }
 
