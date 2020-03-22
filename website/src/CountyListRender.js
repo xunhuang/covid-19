@@ -89,8 +89,7 @@ const AllStateListRender = (props) => {
     const list = props.countylist;
     const classes = useStyles();
     let countySummary =
-        // <Table className={classes.table} size="small" aria-label="simple table">
-        <Table className={classes.table} aria-label="simple table">
+        <Table className={classes.table} size="small" aria-label="simple table">
             <TableHead>
                 <TableRow>
                     <Hidden xsDown>  {/* desktop layout*/}
