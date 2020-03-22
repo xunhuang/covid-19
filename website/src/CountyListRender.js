@@ -7,7 +7,8 @@ import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
-import { myShortNumber } from "./Util.js";
+import { myShortNumber, myToNumber } from "./Util.js";
+import Hidden from '@material-ui/core/Hidden';
 
 const states = require('us-state-codes');
 
@@ -126,10 +127,20 @@ const CountyListRender = (props) => {
         <Table className={classes.table} size="small" aria-label="simple table">
             <TableHead>
                 <TableRow>
-                    <TableCell > Name</TableCell>
-                    <TableCell align="center">Total</TableCell>
-                    <TableCell align="center">New</TableCell>
-                    <TableCell align="center">Population</TableCell>
+                    <Hidden xsDown>  {/* desktop layout*/}
+                        <TableCell > Name</TableCell>
+                        <TableCell align="center">Total</TableCell>
+                        <TableCell align="center">New</TableCell>
+                        <TableCell align="center">Population</TableCell>
+                        <TableCell align="center">Cases Per Million</TableCell>
+                    </Hidden>
+                    <Hidden smUp>  {/* mobile layout*/}
+                        <TableCell > Name</TableCell>
+                        <TableCell align="center">Total</TableCell>
+                        <TableCell align="center">New</TableCell>
+                        <TableCell align="center">Pop.</TableCell>
+                        <TableCell align="center">Cases/Mil</TableCell>
+                    </Hidden>
                 </TableRow>
             </TableHead>
             <TableBody>
@@ -143,19 +154,35 @@ const CountyListRender = (props) => {
                         if (newcases === 0) {
                             newEntry = 0;
                         }
-                        let population = row.Population2010;
+                        let population = myToNumber(row.Population2010);
+                        console.log(row.Population2010);
+                        console.log(population);
                         // hard coding a special here for NYC because 
                         // all 5 boroughs are lumped together. terrible hack
                         if (row.State === "NY" && row.County === "New York") {
                             population = 8500000;
                         }
                         return <TableRow key={row.County}>
-                            <TableCell component="th" scope="row" onClick={() => { clicked(row.County, row.State); }}>
-                                {row.County}
-                            </TableCell>
-                            <TableCell align="center">{confirmed}</TableCell>
-                            <TableCell align="center"> {newEntry} </TableCell>
-                            <TableCell align="center">{myShortNumber(population)}</TableCell>
+                            <Hidden xsDown>  {/* desktop layout*/}
+                                <TableCell component="th" scope="row" onClick={() => { clicked(row.County, row.State); }}>
+                                    {row.County}
+                                </TableCell>
+                                <TableCell align="center">{confirmed}</TableCell>
+                                <TableCell align="center"> {newEntry} </TableCell>
+                                <TableCell align="center">{myShortNumber(population)}</TableCell>
+                                <TableCell align="center">{(confirmed * 1000000 / population).toFixed(1)}</TableCell>
+
+
+                            </Hidden>
+                            <Hidden smUp>  {/* mobile layout*/}
+                                <TableCell component="th" scope="row" onClick={() => { clicked(row.County, row.State); }}>
+                                    {row.County}
+                                </TableCell>
+                                <TableCell align="center">{confirmed}</TableCell>
+                                <TableCell align="center"> {newEntry} </TableCell>
+                                <TableCell align="center">{myShortNumber(population)}</TableCell>
+                                <TableCell align="center">{(confirmed * 1000000 / population).toFixed(0)}</TableCell>
+                            </Hidden>
                         </TableRow>;
                     })
                 }
