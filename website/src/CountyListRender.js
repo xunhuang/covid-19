@@ -9,6 +9,21 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import { myShortNumber, myToNumber } from "./Util.js";
 import Hidden from '@material-ui/core/Hidden';
+import { ThemeProvider } from '@material-ui/core'
+import { createMuiTheme } from '@material-ui/core/styles';
+
+
+const compact = createMuiTheme({
+    overrides: {
+        MuiTableCell: {
+            sizeSmall: {  //This can be referred from Material UI API documentation. 
+                padding: '1px 1px 1px 1px',
+                // backgroundColor: "#eaeaea",
+            },
+        },
+    },
+});
+
 
 const states = require('us-state-codes');
 
@@ -74,7 +89,8 @@ const AllStateListRender = (props) => {
     const list = props.countylist;
     const classes = useStyles();
     let countySummary =
-        <Table className={classes.table} size="small" aria-label="simple table">
+        // <Table className={classes.table} size="small" aria-label="simple table">
+        <Table className={classes.table} aria-label="simple table">
             <TableHead>
                 <TableRow>
                     <TableCell > Name</TableCell>
@@ -111,7 +127,7 @@ const AllStateListRender = (props) => {
                     })
                 }
             </TableBody>
-        </Table>;
+        </Table>
     return countySummary;
 };
 
@@ -175,19 +191,22 @@ const CountyListRender = (props) => {
 
                             </Hidden>
                             <Hidden smUp>  {/* mobile layout*/}
-                                <TableCell component="th" scope="row" onClick={() => { clicked(row.County, row.State); }}>
-                                    {row.County}
-                                </TableCell>
-                                <TableCell align="center">{confirmed}</TableCell>
-                                <TableCell align="center"> {newEntry} </TableCell>
-                                <TableCell align="center">{myShortNumber(population)}</TableCell>
-                                <TableCell align="center">{(confirmed * 1000000 / population).toFixed(0)}</TableCell>
+                                <ThemeProvider theme={compact}>
+                                    <TableCell component="th" scope="row" onClick={() => { clicked(row.County, row.State); }}>
+                                        {row.County}
+                                    </TableCell>
+                                    <TableCell align="center">{confirmed}</TableCell>
+                                    <TableCell align="center"> {newEntry} </TableCell>
+                                    <TableCell align="center">{myShortNumber(population)}</TableCell>
+                                    <TableCell align="center">{(confirmed * 1000000 / population).toFixed(0)}</TableCell>
+                                </ThemeProvider>
                             </Hidden>
                         </TableRow>;
                     })
                 }
             </TableBody>
-        </Table>;
+        </Table >
+
     return countySummary;
 }
 
