@@ -104,7 +104,7 @@ const AllStateListRender = (props) => {
                             <TableCell > Name</TableCell>
                             <TableCell align="center">Total</TableCell>
                             <TableCell align="center">New</TableCell>
-                            <TableCell align="center">Population</TableCell>
+                            <TableCell align="center">Pop</TableCell>
                             <TableCell align="center">Cases/Mil</TableCell>
                         </ThemeProvider>
                     </Hidden>
@@ -117,6 +117,7 @@ const AllStateListRender = (props) => {
                         let confirmed = row.confirmed;
                         let newpercent = row.newpercent;
                         let newEntry = (Number.isNaN(newpercent)) ? newcases : `${newcases}(+${newpercent}%)`;
+                        let newEntryShort = (Number.isNaN(newpercent)) ? newcases : `${myShortNumber(newcases)}(+${newpercent}%)`;
                         if (newcases === 0) {
                             newEntry = 0;
                         }
@@ -148,7 +149,7 @@ const AllStateListRender = (props) => {
                                     <TableCell align="center">{confirmed}</TableCell>
                                     <TableCell align="center"> {newEntry} </TableCell>
                                     <TableCell align="center">{myShortNumber(pop)}</TableCell>
-                                    <TableCell align="center">{(confirmed * 1000000 / pop).toFixed(1)}</TableCell>
+                                    <TableCell align="center">{(confirmed * 1000000 / pop).toFixed(0)}</TableCell>
                                 </ThemeProvider>
                             </Hidden>
                         </TableRow>;
