@@ -418,7 +418,6 @@ const StateWidget = withHeader((props) => {
       />
       <USCountyInfoWidget
         casesData={casesData}
-        county={county}
         state={state}
         callback={(newcounty, newstate) => {
           browseTo(props.history, newstate, newcounty);
