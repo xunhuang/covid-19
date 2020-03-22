@@ -1,13 +1,17 @@
 import React from 'react';
-import { Text, ResponsiveContainer, LineChart, Line, YAxis, XAxis, Tooltip, CartesianGrid, Legend, Label } from 'recharts';
+import { Text, ResponsiveContainer, LineChart, Line, YAxis, XAxis, Tooltip, CartesianGrid, Legend } from 'recharts';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import { Typography } from '@material-ui/core';
-import { purple } from '@material-ui/core/colors';
-import FormGroup from '@material-ui/core/FormGroup';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
 import Grid from '@material-ui/core/Grid';
 import { scaleSymlog } from 'd3-scale';
+import { DataCreditWidget } from './DataCredit';
+import Button from '@material-ui/core/Button';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
 
 const moment = require("moment");
 
@@ -143,15 +147,24 @@ const AntSwitch = withStyles(theme => ({
 }))(Switch);
 
 
-const BasicGraphNewCases = (props) => {
-    const classes = useStyles();
 
+const BasicGraphNewCases = (props) => {
+
+    const classes = useStyles();
     const [state, setState] = React.useState({
         showlog: false,
     });
 
+    const [open, setOpen] = React.useState(false);
+    const handleClickOpen = () => {
+        setOpen(true);
+    };
+    const handleClose = () => {
+        setOpen(false);
+    };
+
     const handleChange = event => {
-        setState({ ...state, [event.target.name]: event.target.checked });
+        setState({ ...state, showlog: !state.showlog });
     };
 
     let data = countyFromNewCases(props.casesData);
@@ -173,15 +186,36 @@ const BasicGraphNewCases = (props) => {
     }
 
     return <>
-        <Typography component="div">
-            <Grid component="label" container alignItems="center" spacing={1}>
+        <Typography>
+            <Grid container alignItems="center" spacing={1}>
                 <Grid item></Grid>
                 <Grid item>
-                    <AntSwitch checked={state.showlog} onClick={handleChange} name="showlog" />
+                    <AntSwitch checked={state.showlog} onClick={handleChange} />
                 </Grid>
-                <Grid item>Show Log Scale</Grid>
+                <Grid item onClick={handleChange}>Show Log Scale</Grid>
                 <Grid item className={classes.grow} />
-                {/* <Grid item onClick={() => { console.log("hi") }} > Data Source</Grid> */}
+                <Grid item onClick={handleClickOpen} > Data Source</Grid>
+                <Dialog
+                    open={open}
+                    onClose={handleClose}
+                    aria-labelledby="alert-dialog-title"
+                    aria-describedby="alert-dialog-description"
+                >
+                    <DialogTitle id="alert-dialog-title">{"Data Credit"}</DialogTitle>
+                    <DialogContent>
+                        <DialogContentText id="alert-dialog-description">
+                            <DataCreditWidget></DataCreditWidget>
+                        </DialogContentText>
+                    </DialogContent>
+                    <DialogActions>
+                        <Button onClick={handleClose} color="primary" autoFocus>
+                            OK
+          </Button>
+                    </DialogActions>
+                </Dialog>
+
+
+                <Grid item></Grid>
             </Grid>
         </Typography>
         <ResponsiveContainer height={300} >
@@ -194,7 +228,7 @@ const BasicGraphNewCases = (props) => {
                 <XAxis dataKey="name" />
                 {
                     state.showlog ?
-                    <YAxis yAxisId={0} scale={scale} /> :
+                        <YAxis yAxisId={0} scale={scale} /> :
                         <YAxis />
                 }
 

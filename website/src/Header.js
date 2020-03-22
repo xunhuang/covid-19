@@ -1,6 +1,5 @@
 import React from 'react';
 import * as USCounty from "./USCountyInfo.js";
-import { DataCreditWidget } from "./DataCredit.js"
 import Select from 'react-select';
 import Disqus from "disqus-react"
 import Typography from '@material-ui/core/Typography'
@@ -72,7 +71,6 @@ const withHeader = (comp, props) => {
                 shortname={disqusShortname}
                 config={disqusConfig}
             />
-            <DataCreditWidget />
         </div>;
 
         let header = <header className="App-header">

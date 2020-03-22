@@ -17,6 +17,11 @@ const CustomTooltip = (props) => {
 
         let tested;
         let positive;
+        let negative;
+        let totalPositve;
+        let totalTested;
+        let totalNegative;
+        let totalPending;
 
         payload.map(p => {
             p = p.payload;
@@ -25,6 +30,21 @@ const CustomTooltip = (props) => {
             }
             if ("positiveThatDay" in p) {
                 positive = p.positiveThatDay;
+            }
+            if ("negativeThatDay" in p) {
+                negative = p.negativeThatDay;
+            }
+            if ("positive" in p) {
+                totalPositve = p.positive;
+            }
+            if ("negative" in p) {
+                totalNegative = p.negative;
+            }
+            if ("pending" in p) {
+                totalPending = p.pending;
+            }
+            if ("total" in p) {
+                totalTested = p.total;
             }
             return null;
         });
@@ -40,9 +60,18 @@ const CustomTooltip = (props) => {
                 <Typography variant="body2" noWrap>
                     {`Positve : ${positive}`}
                 </Typography>
-                {/* <Typography variant="body2" noWrap>
-                    {`Positve Rate : ${(positive / tested * 100).toFixed(1)} %`}
-                </Typography> */}
+                <Typography variant="body2" noWrap>
+                    {`Negative : ${negative}`}
+                </Typography>
+                <Typography variant="body2" noWrap>
+                    {`Positve Rate : ${(totalPositve / totalTested * 100).toFixed(1)} %`}
+                </Typography>
+                <Typography variant="body2" noWrap>
+                    {`Negative Rate : ${(totalNegative / totalTested * 100).toFixed(1)} %`}
+                </Typography>
+                <Typography variant="body2" noWrap>
+                    {`Pending: ${totalPending}`}
+                </Typography>
             </div>
         );
     }
@@ -61,14 +90,19 @@ const GraphTestingWidget = (props) => {
     for (let i = 0; i < data.length; i++) {
         data[i].testsThatDay = (i === 0) ? data[i].total : data[i].total - data[i - 1].total;
         data[i].positiveThatDay = (i === 0) ? data[i].positive : data[i].positive - data[i - 1].positive;
+        data[i].negativeThatDay = (i === 0) ? data[i].negative : data[i].negative - data[i - 1].negative;
     }
 
     let total_tests = data.reduce((m, a) => { return a.total > m ? a.total : m }, 0);
     let total_positives = data.reduce((m, a) => { return a.positive > m ? a.positive : m }, 0);
+    let total_negatives = data.reduce((m, a) => { return a.negative > m ? a.negative : m }, 0);
 
     return <div>
         <Typography variant="body2" noWrap>
-            {`Total Tests: ${total_tests}   Postive Rate: ${(total_positives / total_tests * 100).toFixed(1)}% `}
+            {`Total Tests: ${total_tests}   
+            Postive Rate: ${(total_positives / total_tests * 100).toFixed(1)}% 
+            Negative Rate: ${(total_negatives / total_tests * 100).toFixed(1)}% 
+            `}
         </Typography>
         <ResponsiveContainer height={300} >
             <LineChart
@@ -82,6 +116,7 @@ const GraphTestingWidget = (props) => {
             <Line type="monotone" name="Tested Positive" dataKey="positive" stroke="#ff7300" yAxisId={0} strokeWidth={3} /> */}
                 <Line type="monotone" name="Daily Tested " dataKey="testsThatDay" stroke="#387908" yAxisId={0} strokeWidth={3} />
                 <Line type="monotone" name="Positive" dataKey="positiveThatDay" stroke="#ff7300" yAxisId={0} strokeWidth={3} />
+                <Line type="monotone" name="Negative" dataKey="negativeThatDay" stroke="#00aeef" yAxisId={0} strokeWidth={3} />
                 <Legend verticalAlign="top" />
                 <Tooltip content={<CustomTooltip />} />
             </LineChart>

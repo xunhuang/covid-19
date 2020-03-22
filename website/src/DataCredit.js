@@ -4,35 +4,34 @@ import Typography from '@material-ui/core/Typography'
 const DataCreditWidget = () => {
     return (
         <div>
-            <Typography variant="h5" noWrap>
-                Data Credit
-            </Typography>
-            <li>
-                <a target="_blank" href="https://github.com/CSSEGISandData/COVID-19" rel="noopener noreferrer" >
-                    Johns Hopkins CSSE
+            <Typography variant="body2" noWrap>
+                <li>
+                    <a target="_blank" href="https://github.com/CSSEGISandData/COVID-19" rel="noopener noreferrer" >
+                        Johns Hopkins CSSE
           </a>
-            </li>
-            <li>
-                <a target="_blank" href="https://coronavirus.1point3acres.com/en" rel="noopener noreferrer" >
-                    1point3acres.com
+                </li>
+                <li>
+                    <a target="_blank" href="https://coronavirus.1point3acres.com/en" rel="noopener noreferrer" >
+                        1point3acres.com
           </a>
-            </li>
+                </li>
 
-            <li>
-                <a target="_blank" href="https://en.wikipedia.org/wiki/User:Michael_J/County_table" rel="noopener noreferrer" >
-                    Wikipedia county info
+                <li>
+                    <a target="_blank" href="https://en.wikipedia.org/wiki/User:Michael_J/County_table" rel="noopener noreferrer" >
+                        Wikipedia county info
           </a>
-            </li>
-            <li>
-                <a target="_blank" href="https://hifld-geoplatform.opendata.arcgis.com/search?groupIds=2900322cc0b14948a74dca886b7d7cfc" rel="noopener noreferrer" >
-                    Homeland Infrastructure Foundation-Level Data (HIFLD)
+                </li>
+                <li>
+                    <a target="_blank" href="https://hifld-geoplatform.opendata.arcgis.com/search?groupIds=2900322cc0b14948a74dca886b7d7cfc" rel="noopener noreferrer" >
+                        Homeland Infrastructure Foundation-Level Data (HIFLD)
            </a>
-            </li>
-            <li>
-                <a target="_blank" href="https://covidtracking.com/api/" rel="noopener noreferrer" >
-                    Covid tracking API
+                </li>
+                <li>
+                    <a target="_blank" href="https://covidtracking.com/api/" rel="noopener noreferrer" >
+                        Covid tracking API
            </a>
-            </li>
+                </li>
+            </Typography>
         </div>
     );
 }
