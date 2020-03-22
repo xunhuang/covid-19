@@ -93,10 +93,22 @@ const AllStateListRender = (props) => {
         <Table className={classes.table} aria-label="simple table">
             <TableHead>
                 <TableRow>
-                    <TableCell > Name</TableCell>
-                    <TableCell align="center">Total</TableCell>
-                    <TableCell align="center">New</TableCell>
-                    <TableCell align="center">Population</TableCell>
+                    <Hidden xsDown>  {/* desktop layout*/}
+                        <TableCell > Name</TableCell>
+                        <TableCell align="center">Total</TableCell>
+                        <TableCell align="center">New</TableCell>
+                        <TableCell align="center">Population</TableCell>
+                        <TableCell align="center">Cases Per Million</TableCell>
+                    </Hidden>
+                    <Hidden smUp>  {/* mobile layout*/}
+                        <ThemeProvider theme={compact}>
+                            <TableCell > Name</TableCell>
+                            <TableCell align="center">Total</TableCell>
+                            <TableCell align="center">New</TableCell>
+                            <TableCell align="center">Population</TableCell>
+                            <TableCell align="center">Cases/Mil</TableCell>
+                        </ThemeProvider>
+                    </Hidden>
                 </TableRow>
             </TableHead>
             <TableBody>
@@ -113,16 +125,33 @@ const AllStateListRender = (props) => {
                         if (!statename) {
                             statename = row.state;
                         }
-                        let pop = row.Population2010 ? row.Population2010 : 0;
+                        let pop = myToNumber(row.Population2010);
                         return <TableRow key={statename}>
-                            <TableCell component="th" scope="row" onClick={() => {
-                                props.callback(row.state)
-                            }}>
-                                {statename}
-                            </TableCell>
-                            <TableCell align="center">{confirmed}</TableCell>
-                            <TableCell align="center"> {newEntry} </TableCell>
-                            <TableCell align="center">{myShortNumber(pop)}</TableCell>
+                            <Hidden xsDown>  {/* desktop layout*/}
+                                <TableCell component="th" scope="row" onClick={() => {
+                                    props.callback(row.state)
+                                }}>
+                                    {statename}
+                                </TableCell>
+                                <TableCell align="center">{confirmed}</TableCell>
+                                <TableCell align="center"> {newEntry} </TableCell>
+                                <TableCell align="center">{myShortNumber(pop)}</TableCell>
+                                <TableCell align="center">{(confirmed * 1000000 / pop).toFixed(1)}</TableCell>
+                            </Hidden>
+                            <Hidden smUp>  {/* mobile layout*/}
+                                <ThemeProvider theme={compact}>
+
+                                    <TableCell component="th" scope="row" onClick={() => {
+                                        props.callback(row.state)
+                                    }}>
+                                        {statename}
+                                    </TableCell>
+                                    <TableCell align="center">{confirmed}</TableCell>
+                                    <TableCell align="center"> {newEntry} </TableCell>
+                                    <TableCell align="center">{myShortNumber(pop)}</TableCell>
+                                    <TableCell align="center">{(confirmed * 1000000 / pop).toFixed(1)}</TableCell>
+                                </ThemeProvider>
+                            </Hidden>
                         </TableRow>;
                     })
                 }
@@ -187,8 +216,6 @@ const CountyListRender = (props) => {
                                 <TableCell align="center"> {newEntry} </TableCell>
                                 <TableCell align="center">{myShortNumber(population)}</TableCell>
                                 <TableCell align="center">{(confirmed * 1000000 / population).toFixed(1)}</TableCell>
-
-
                             </Hidden>
                             <Hidden smUp>  {/* mobile layout*/}
                                 <ThemeProvider theme={compact}>

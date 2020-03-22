@@ -9,12 +9,13 @@ function myShortNumber(n) {
         n = n.replace(/,/g, '');
         n = Number(n);
     }
+    console.log(n);
     return shortNumber(n);
 }
 
 function myToNumber(n) {
     if (!n) {
-        return "0";
+        return 0;
     }
     if (isNaN(n)) {
         n = n.replace(/,/g, '');
