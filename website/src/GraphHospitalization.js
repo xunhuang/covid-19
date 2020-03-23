@@ -87,8 +87,8 @@ const GraphTestingWidget = (props) => {
         return t;
     })
     return <div>
-        <Typography variant="body2" noWrap>
-            Data just stared to roll in on 3/22. Please be patient. Don't jump to conclusion.
+        <Typography variant="body2" >
+            Partial data coming in starting 3/21 for some states. Please be patient.
         </Typography>
         <ResponsiveContainer height={300} >
             <LineChart

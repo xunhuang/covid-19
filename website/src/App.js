@@ -12,7 +12,7 @@ import { withHeader } from "./Header.js"
 import { MyTabs } from "./MyTabs.js"
 import { USInfoTopWidget } from './USInfoTopWidget.js'
 import { EntireUSDetailCaseListWidget, CountyDetailCaseList, StateDetailCaseListWidget } from './DetailCaseLists'
-import { GraphUSHospitalization } from './GraphHospitalization.js'
+import { GraphUSHospitalization, GraphStateHospitalization } from './GraphHospitalization.js'
 
 const states = require('us-state-codes');
 const Cookies = require("js-cookie");
@@ -100,58 +100,38 @@ const GraphSectionUS = withRouter((props) => {
   return graphlistSection;
 });
 
-const USCountyInfoWidget = withRouter((props) => {
-  const value = props.state ? (props.county ? 0 : 1) : 2;
-  const state = props.state ? props.state : GetLastState();
-
-  const county = props.county ? props.county : USCounty.countyDataForState(state)[0].County;
-
+const GraphSectionState = withRouter((props) => {
+  const state = props.state;
   let state_title = states.getStateNameByStateCode(state);
-
-  let countyInfo = lookupCountyInfo(state, county);
-  if (!countyInfo) {
-    countyInfo = {
-      HospitalBeds: "N/A",
-      Hospitals: "N/A",
-    }
-  }
-
-  let county_cases = USCounty.casesForCounty(state, county);
   let state_mycases = USCounty.casesForState(state);
-  let graphlistSection;
   let useLogScale = false;
 
-  if (value === 0) {
+  const tabs = [
+    <BasicGraphNewCases casesData={state_mycases} logScale={useLogScale} />,
+    <GraphStateTesting state={state} />,
+    <GraphStateHospitalization state={state} />,
+  ]
+  let graphlistSection = <MyTabs
+    labels={["Cases", `${state_title} Testing`, "Hospitalization"]}
+    tabs={tabs}
+  />;
+  return graphlistSection;
+});
 
-    const tabs = [
-      <BasicGraphNewCases casesData={county_cases} logScale={useLogScale} />,
-      <GraphStateTesting state={state} />,
-    ]
-    graphlistSection = <MyTabs
-      labels={["Confirmed Cases", `${state_title} Testing`]}
-      tabs={tabs}
-    />;
-  }
-  if (value === 1) {
-    const tabs = [
-      <BasicGraphNewCases casesData={state_mycases} logScale={useLogScale} />,
-      <GraphStateTesting state={state} />,
-    ]
-    graphlistSection = <MyTabs
-      labels={["Confirmed Cases", `${state_title} Testing`]}
-      tabs={tabs}
-    />;
-  }
-  if (value === 2) {
-    const tabs = [
-      <BasicGraphNewCases casesData={props.casesData} logScale={useLogScale} />,
-      <GraphUSTesting />,
-    ]
-    graphlistSection = <MyTabs
-      labels={["Confirmed Cases", `National Testing`]}
-      tabs={tabs}
-    />;
-  }
+const GraphSectionCounty = withRouter((props) => {
+  const state = props.state;
+  const county = props.county;
+  let state_title = states.getStateNameByStateCode(state);
+  let county_cases = USCounty.casesForCounty(state, county);
+
+  const tabs = [
+    <BasicGraphNewCases casesData={county_cases} logScale={false} />,
+    <GraphStateTesting state={state} />,
+  ]
+  let graphlistSection = <MyTabs
+    labels={["Confirmed Cases", `${state_title} Testing`]}
+    tabs={tabs}
+  />;
   return graphlistSection;
 });
 
@@ -361,7 +341,7 @@ const CountyWidget = withHeader((props) => {
           browseTo(props.history, newstate, newcounty);
         }}
       />
-      <USCountyInfoWidget
+      <GraphSectionCounty
         casesData={casesData}
         county={county}
         state={state}
@@ -425,7 +405,7 @@ const StateWidget = withHeader((props) => {
           browseTo(props.history, newstate, newcounty);
         }}
       />
-      <USCountyInfoWidget
+      <GraphSectionState
         casesData={casesData}
         state={state}
         callback={(newcounty, newstate) => {
