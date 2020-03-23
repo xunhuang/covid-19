@@ -10,6 +10,10 @@ const GraphTestingWidget = (props) => {
         t.name = `${m}/${d}`;
         return t;
     })
+    data = data.sort(function (a, b) {
+        return a.date - b.date;
+    });
+
     return <div>
         <Typography variant="body2" >
             Partial data coming in starting 3/21 for some states. Please be patient.

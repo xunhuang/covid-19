@@ -87,6 +87,10 @@ const GraphTestingWidget = (props) => {
         return t;
     })
 
+    data = data.sort(function (a, b) {
+        return a.date - b.date;
+    });
+
     for (let i = 0; i < data.length; i++) {
         data[i].testsThatDay = (i === 0) ? data[i].total : data[i].total - data[i - 1].total;
         data[i].positiveThatDay = (i === 0) ? data[i].positive : data[i].positive - data[i - 1].positive;
