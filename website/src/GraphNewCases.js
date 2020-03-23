@@ -128,7 +128,7 @@ const CustomTooltip = (props) => {
                     {pending_help}
                 </Typography>
                 <Typography variant="body2" noWrap>
-                    Death: {death}
+                    Total Death: {death}
                 </Typography>
             </div>
         );
@@ -272,10 +272,10 @@ const BasicGraphNewCases = (props) => {
                     open={openDownload}
                     onClose={handleCloseDownload}
                 >
-                    <DialogTitle id="alert-dialog-title">{"Dowlnoad Complete"}</DialogTitle>
+                    <DialogTitle id="alert-dialog-title">{"Download Complete"}</DialogTitle>
                     <DialogContent>
                         <DialogContentText id="alert-dialog-description">
-                            File downloaded. Disclaimer: The format data likely to change over time.
+                            Disclaimer: The format data likely to change over time.
                         </DialogContentText>
                     </DialogContent>
                     <DialogActions>

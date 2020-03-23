@@ -4,18 +4,22 @@ import Typography from '@material-ui/core/Typography'
 const DataCreditWidget = () => {
     return (
         <div>
-            <Typography variant="body2" noWrap>
+            <Typography variant="body1">
+                We are incredibly grateful to people working hard to make their data available.
+            </Typography>
+
+            <Typography variant="body2" >
+                <li>
+                    <a target="_blank" href="https://coronavirus.1point3acres.com/en" rel="noopener noreferrer" >
+                        1point3acres.com
+          </a>
+                    - This the best real-time US data source.
+                </li>
                 <li>
                     <a target="_blank" href="https://github.com/CSSEGISandData/COVID-19" rel="noopener noreferrer" >
                         Johns Hopkins CSSE
           </a>
                 </li>
-                <li>
-                    <a target="_blank" href="https://coronavirus.1point3acres.com/en" rel="noopener noreferrer" >
-                        1point3acres.com
-          </a>
-                </li>
-
                 <li>
                     <a target="_blank" href="https://en.wikipedia.org/wiki/User:Michael_J/County_table" rel="noopener noreferrer" >
                         Wikipedia county info
