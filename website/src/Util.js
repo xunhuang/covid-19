@@ -13,14 +13,16 @@ function myShortNumber(n) {
 }
 
 function myToNumber(n) {
+    let ret;
     if (!n) {
         return 0;
     }
-    if (isNaN(n)) {
-        n = n.replace(/,/g, '');
-        n = Number(n);
+    if (isNaN(n) || typeof n === "string") {
+        ret = Number(n.replace(/,/g, ''));
+    } else {
+        ret = n;
     }
-    return n;
+    return ret;
 }
 
 function browseTo(history, state, county) {

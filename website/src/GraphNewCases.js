@@ -29,8 +29,14 @@ const useStyles = makeStyles(theme => ({
 function countyFromNewCases(cases_data) {
     let newcases = cases_data.reduce((m, c) => {
         let a = m[c.fulldate];
-        if (!a) a = 0;
-        a += c.people_count;
+        if (!a) {
+            a = {
+                confirmed: 0,
+                death: 0,
+            };
+        }
+        a.confirmed += c.people_count;
+        a.death += c.die;
         m[c.fulldate] = a;
         return m;
     }, {});
@@ -38,23 +44,33 @@ function countyFromNewCases(cases_data) {
     const today = moment().format("MM/DD/YYYY");
     var newcasenum = newcases[today];
     if (!newcasenum) {
-        newcases[today] = 0;
+        newcases[today] = {
+            confirmedTotal: 0,
+            deathTotal: 0,
+        };
+    } else {
+        console.log(newcasenum)
     }
 
     let sorted_keys = Object.keys(newcases).sort(function (a, b) {
         return moment(a, "MM/DD/YYY").toDate() - moment(b, "MM/DD/YYY").toDate();
     });
-    let total = 0;
+    let totalConfirmed = 0;
+    let totalDeath = 0;
+
     return sorted_keys.map(key => {
+
         let v = newcases[key];
-        total += v;
+        totalConfirmed += v.confirmed;
+        totalDeath += v.death;
 
         const day = moment(key).format("M/D");
 
         return {
             name: day,
-            confirmed: total,
-            newcase: v,
+            confirmed: totalConfirmed,
+            death: totalDeath,
+            newcase: v.confirmed,
         };
     });
 }
@@ -67,6 +83,7 @@ const CustomTooltip = (props) => {
         const { payload, label } = props;
         let confirmed;
         let newcase;
+        let death;
 
         payload.map(p => {
             p = p.payload;
@@ -81,6 +98,12 @@ const CustomTooltip = (props) => {
             }
             if ("pending_newcase" in p) {
                 newcase = p.pending_newcase;
+            }
+            if ("pending_death" in p) {
+                death = p.pending_death;
+            }
+            if ("death" in p) {
+                death = p.death;
             }
             return null;
         });
@@ -103,6 +126,9 @@ const CustomTooltip = (props) => {
                 </Typography>
                 <Typography variant="body2" noWrap>
                     {pending_help}
+                </Typography>
+                <Typography variant="body2" noWrap>
+                    Death: {death}
                 </Typography>
             </div>
         );
@@ -168,6 +194,7 @@ const BasicGraphNewCases = (props) => {
     };
 
     let data = countyFromNewCases(props.casesData);
+    console.log(data);
 
     if (data.length > 2) {
         let newdata = data.slice(0, data.length - 2);
@@ -175,10 +202,12 @@ const BasicGraphNewCases = (props) => {
         let last = data[data.length - 1];
         second_last.pending_confirmed = second_last.confirmed;
         second_last.pending_newcase = second_last.newcase;
+        second_last.pending_death = second_last.death;
         let newlast = {
             name: last.name,
             pending_confirmed: last.confirmed,
             pending_newcase: last.newcase,
+            pending_death: last.death,
         };
         newdata.push(second_last);
         newdata.push(newlast);
@@ -234,12 +263,15 @@ const BasicGraphNewCases = (props) => {
 
                 <CartesianGrid stroke="#f5f5f5" strokeDasharray="5 5" />
                 <Line type="monotone" dataKey="confirmed" stroke="#ff7300" yAxisId={0} strokeWidth={3} />
+                <Line type="monotone" dataKey="death" stroke="#000000" yAxisId={0} strokeWidth={3} />
                 <Line type="monotone" dataKey="newcase" stroke="#387908" yAxisId={0} strokeWidth={3} />
+                <Line type="monotone" dataKey="pending_death" stroke="#000000" strokeDasharray="1 1" strokeWidth={3} />
                 <Line type="monotone" dataKey="pending_confirmed" stroke="#ff7300" strokeDasharray="1 1" strokeWidth={3} />
                 <Line type="monotone" dataKey="pending_newcase" stroke="#387908" strokeDasharray="1 1" strokeWidth={3} />
                 <Legend verticalAlign="top" payload={[
-                    { value: 'Total Confirmed', type: 'line', color: '#ff7300' },
-                    { value: 'New', type: 'line', color: '#389708' },
+                    { value: 'Total ', type: 'line', color: '#ff7300' },
+                    { value: 'New Cases', type: 'line', color: '#389708' },
+                    { value: 'Death', type: 'line', color: '#000000' },
                 ]} />
 
             </LineChart></ResponsiveContainer>
