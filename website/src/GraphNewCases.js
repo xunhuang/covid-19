@@ -213,17 +213,12 @@ const BasicGraphNewCases = (props) => {
         data = newdata;
     }
 
-    console.log(data);
-
     if (state.show30days) {
         const cutoff = moment().subtract(30, 'days')
         data = data.filter(d => {
-            console.log(d.fulldate);
             return moment(d.fulldate).isAfter(cutoff)
         });
     }
-
-    console.log(data);
 
     return <>
         <Typography>
