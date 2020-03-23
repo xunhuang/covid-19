@@ -116,8 +116,7 @@ const AllStateListRender = (props) => {
                         let newcases = row.newcases;
                         let confirmed = row.confirmed;
                         let newpercent = row.newpercent;
-                        let newEntry = (Number.isNaN(newpercent)) ? newcases : `${newcases}(+${newpercent}%)`;
-                        let newEntryShort = (Number.isNaN(newpercent)) ? newcases : `${myShortNumber(newcases)}(+${newpercent}%)`;
+                        let newEntry = (Number.isNaN(newpercent) || isFinite(newpercent)) ? newcases : `${newcases}(+${newpercent}%)`;
                         if (newcases === 0) {
                             newEntry = 0;
                         }
@@ -195,7 +194,7 @@ const CountyListRender = (props) => {
                         let newcases = sum.newcases;
                         let confirmed = sum.confirmed;
                         let newpercent = sum.newpercent;
-                        let newEntry = (Number.isNaN(newpercent)) ? newcases : `${newcases}(+${newpercent}%)`;
+                        let newEntry = (Number.isNaN(newpercent) || !isFinite(newpercent)) ? newcases : `${newcases}(+${newpercent}%)`;
                         if (newcases === 0) {
                             newEntry = 0;
                         }
