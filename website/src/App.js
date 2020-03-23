@@ -2,7 +2,7 @@ import React from 'react';
 import { Switch, Route, withRouter } from 'react-router-dom'
 import { BrowserRouter } from 'react-router-dom';
 import { GoogleMap, Marker, LoadScript } from '@react-google-maps/api'
-import { countyModuleInit, lookupCountyInfo } from "./USCountyInfo.js";
+import { countyModuleInit } from "./USCountyInfo.js";
 import * as USCounty from "./USCountyInfo.js";
 import { Splash } from './Splash.js';
 import { NearbyCounties, CountiesForStateWidget, AllStatesListWidget } from "./CountyListRender.js"
@@ -235,14 +235,6 @@ const MainApp = withRouter((props) => {
     </div>
   );
 });
-
-function GetLastState() {
-  let county_info = CookieGetLastCounty();
-  if (county_info) {
-    return county_info.state;
-  }
-  return "CA";
-}
 
 function getDefaultCounty() {
   let county_info = CookieGetLastCounty();

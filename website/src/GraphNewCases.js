@@ -12,6 +12,7 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import { myShortNumber } from './Util';
 
 const moment = require("moment");
 
@@ -214,10 +215,14 @@ const BasicGraphNewCases = (props) => {
     }
 
     if (state.show30days) {
-        const cutoff = moment().subtract(30, 'days')
+        const cutoff = moment().subtract(14, 'days')
         data = data.filter(d => {
             return moment(d.fulldate).isAfter(cutoff)
         });
+    }
+
+    const formatYAxis = (tickItem) => {
+        return myShortNumber(tickItem);
     }
 
     return <>
@@ -232,9 +237,9 @@ const BasicGraphNewCases = (props) => {
                 <Grid item>
                     <AntSwitch checked={state.show30days} onClick={handle30DaysToggle} />
                 </Grid>
-                <Grid item onClick={handle30DaysToggle}>Last 30 days</Grid>
+                <Grid item onClick={handle30DaysToggle}>Last 2 weeks</Grid>
                 <Grid item className={classes.grow} />
-                <Grid item onClick={handleClickOpen} > Data Source</Grid>
+                <Grid item onClick={handleClickOpen} > Data</Grid>
                 <Dialog
                     open={open}
                     onClose={handleClose}
@@ -269,7 +274,7 @@ const BasicGraphNewCases = (props) => {
                 {
                     state.showlog ?
                         <YAxis yAxisId={0} scale={scale} /> :
-                        <YAxis />
+                        <YAxis tickFormatter={formatYAxis} />
                 }
 
                 <CartesianGrid stroke="#f5f5f5" strokeDasharray="5 5" />
