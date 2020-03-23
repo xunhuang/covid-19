@@ -12,6 +12,7 @@ import { withHeader } from "./Header.js"
 import { MyTabs } from "./MyTabs.js"
 import { USInfoTopWidget } from './USInfoTopWidget.js'
 import { EntireUSDetailCaseListWidget, CountyDetailCaseList, StateDetailCaseListWidget } from './DetailCaseLists'
+import { GraphUSHospitalization } from './GraphHospitalization.js'
 
 const states = require('us-state-codes');
 const Cookies = require("js-cookie");
@@ -86,8 +87,18 @@ async function fetchApproxIPLocation() {
     });
 }
 
-
-
+const GraphSectionUS = withRouter((props) => {
+  const tabs = [
+    <BasicGraphNewCases casesData={props.casesData} logScale={false} />,
+    <GraphUSTesting />,
+    <GraphUSHospitalization />,
+  ]
+  let graphlistSection = <MyTabs
+    labels={["Cases", `USA Testing`, "Hospitalization"]}
+    tabs={tabs}
+  />;
+  return graphlistSection;
+});
 
 const USCountyInfoWidget = withRouter((props) => {
   const value = props.state ? (props.county ? 0 : 1) : 2;
@@ -288,7 +299,7 @@ const EntireUSWidget = withHeader((props) => {
           browseTo(props.history, newstate, newcounty);
         }}
       />
-      <USCountyInfoWidget
+      <GraphSectionUS
         casesData={casesData}
         callback={(newcounty, newstate) => {
           browseTo(props.history, newstate, newcounty);
@@ -388,8 +399,6 @@ const StateWidget = withHeader((props) => {
     props.match.params.state,
     props.match.params.county);
   const casesData = props.casesData;
-
-  console.log(county);
 
   const tabs = [
     <CountiesForStateWidget

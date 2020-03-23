@@ -48,8 +48,6 @@ function countyFromNewCases(cases_data) {
             confirmedTotal: 0,
             deathTotal: 0,
         };
-    } else {
-        console.log(newcasenum)
     }
 
     let sorted_keys = Object.keys(newcases).sort(function (a, b) {
@@ -172,8 +170,6 @@ const AntSwitch = withStyles(theme => ({
     checked: {},
 }))(Switch);
 
-
-
 const BasicGraphNewCases = (props) => {
 
     const classes = useStyles();
@@ -194,7 +190,6 @@ const BasicGraphNewCases = (props) => {
     };
 
     let data = countyFromNewCases(props.casesData);
-    console.log(data);
 
     if (data.length > 2) {
         let newdata = data.slice(0, data.length - 2);
