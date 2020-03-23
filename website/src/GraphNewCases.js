@@ -14,6 +14,7 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import { myShortNumber } from './Util';
 
+const fileDownload = require('js-file-download');
 const moment = require("moment");
 
 const scale = scaleSymlog().domain([0, 'dataMax']);
@@ -180,11 +181,16 @@ const BasicGraphNewCases = (props) => {
     });
 
     const [open, setOpen] = React.useState(false);
+    const [openDownload, setOpenDownload] = React.useState(false);
+
     const handleClickOpen = () => {
         setOpen(true);
     };
     const handleClose = () => {
         setOpen(false);
+    };
+    const handleCloseDownload = () => {
+        setOpenDownload(false);
     };
 
     const handleChange = event => {
@@ -239,12 +245,15 @@ const BasicGraphNewCases = (props) => {
                 </Grid>
                 <Grid item onClick={handle30DaysToggle}>Last 2 weeks</Grid>
                 <Grid item className={classes.grow} />
-                <Grid item onClick={handleClickOpen} > Data</Grid>
+                <Grid item onClick={
+                    () => {
+                        fileDownload(JSON.stringify(data, 2, 2), "covid-data.json");
+                        setOpenDownload(true);
+                    }
+                }> Data Download</Grid>
                 <Dialog
                     open={open}
                     onClose={handleClose}
-                    aria-labelledby="alert-dialog-title"
-                    aria-describedby="alert-dialog-description"
                 >
                     <DialogTitle id="alert-dialog-title">{"Data Credit"}</DialogTitle>
                     <DialogContent>
@@ -254,6 +263,23 @@ const BasicGraphNewCases = (props) => {
                     </DialogContent>
                     <DialogActions>
                         <Button onClick={handleClose} color="primary" autoFocus>
+                            OK
+          </Button>
+                    </DialogActions>
+                </Dialog>
+
+                <Dialog
+                    open={openDownload}
+                    onClose={handleCloseDownload}
+                >
+                    <DialogTitle id="alert-dialog-title">{"Dowlnoad Complete"}</DialogTitle>
+                    <DialogContent>
+                        <DialogContentText id="alert-dialog-description">
+                            File downloaded. Disclaimer: The format data likely to change over time.
+                        </DialogContentText>
+                    </DialogContent>
+                    <DialogActions>
+                        <Button onClick={handleCloseDownload} color="primary" autoFocus>
                             OK
           </Button>
                     </DialogActions>
@@ -291,6 +317,9 @@ const BasicGraphNewCases = (props) => {
                 ]} />
 
             </LineChart></ResponsiveContainer>
+        <Typography variant="body2" noWrap onClick={handleClickOpen} >
+            Data Credit: Click for details.
+        </Typography>
     </>
 }
 
