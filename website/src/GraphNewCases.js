@@ -57,7 +57,6 @@ function countyFromNewCases(cases_data) {
     let totalDeath = 0;
 
     return sorted_keys.map(key => {
-
         let v = newcases[key];
         totalConfirmed += v.confirmed;
         totalDeath += v.death;
@@ -66,6 +65,7 @@ function countyFromNewCases(cases_data) {
 
         return {
             name: day,
+            fulldate: key,
             confirmed: totalConfirmed,
             death: totalDeath,
             newcase: v.confirmed,
@@ -175,6 +175,7 @@ const BasicGraphNewCases = (props) => {
     const classes = useStyles();
     const [state, setState] = React.useState({
         showlog: false,
+        show30days: false,
     });
 
     const [open, setOpen] = React.useState(false);
@@ -189,8 +190,11 @@ const BasicGraphNewCases = (props) => {
         setState({ ...state, showlog: !state.showlog });
     };
 
-    let data = countyFromNewCases(props.casesData);
+    const handle30DaysToggle = event => {
+        setState({ ...state, show30days: !state.show30days });
+    };
 
+    let data = countyFromNewCases(props.casesData);
     if (data.length > 2) {
         let newdata = data.slice(0, data.length - 2);
         let second_last = data[data.length - 2];
@@ -209,6 +213,18 @@ const BasicGraphNewCases = (props) => {
         data = newdata;
     }
 
+    console.log(data);
+
+    if (state.show30days) {
+        const cutoff = moment().subtract(30, 'days')
+        data = data.filter(d => {
+            console.log(d.fulldate);
+            return moment(d.fulldate).isAfter(cutoff)
+        });
+    }
+
+    console.log(data);
+
     return <>
         <Typography>
             <Grid container alignItems="center" spacing={1}>
@@ -216,7 +232,12 @@ const BasicGraphNewCases = (props) => {
                 <Grid item>
                     <AntSwitch checked={state.showlog} onClick={handleChange} />
                 </Grid>
-                <Grid item onClick={handleChange}>Show Log Scale</Grid>
+                <Grid item onClick={handleChange}>Log Scale</Grid>
+                <Grid item className={classes.grow} />
+                <Grid item>
+                    <AntSwitch checked={state.show30days} onClick={handle30DaysToggle} />
+                </Grid>
+                <Grid item onClick={handle30DaysToggle}>Last 30 days</Grid>
                 <Grid item className={classes.grow} />
                 <Grid item onClick={handleClickOpen} > Data Source</Grid>
                 <Dialog

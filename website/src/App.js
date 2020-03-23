@@ -61,7 +61,7 @@ async function fetchCounty() {
     });
 
   Cookies.set("covidLocation", county_info, {
-    expires: 7  // 7 day, people are not supposed to be moving anyways
+    expires: 90  // 7 day, people are not supposed to be moving anyways
   });
 
   return county_info;
