@@ -253,12 +253,82 @@ const ConfirmedMap = ConfirmedData.reduce((m, a) => {
     return m;
 }, {});
 
+const DeathMap = DeathData.reduce((m, a) => {
+    let key = makeCountyKey(
+        a["State"],
+        a["County Name"],
+    );
+
+    delete a["countyFIPS"];
+    delete a["County Name"];
+    delete a["State"];
+    delete a["stateFIPS"];
+
+    let obj = {}
+    Object.keys(a).map(k => {
+        let v = parseInt(a[k]);
+        let p = k.split("/");
+        let m = pad(parseInt(p[0]));
+        let d = pad(parseInt(p[1]));
+        let y = p[2];
+        obj[`${m}/${d}/${y}`] = v;
+    });
+
+    m[key] = obj;
+    return m;
+}, {});
+
+console.log(DeathMap);
+
+function getAllKeys() {
+    let c = getCountyData("CA", "Alameda");
+    let latest = getLatestKey(c);
+}
+
+function getLatestKey(c) {
+    let keys = Object.keys(c);
+    let sortedKeys = keys.sort((a, b) => moment(b, "MM/DD/YYYY").toDate() - moment(a, "MM/DD/YYYY").toDate());
+    return sortedKeys[0];
+}
+
+function computeCombinedMap() {
+    let countykeys = Object.keys(ConfirmedMap);
+    let combined = {};
+
+    countykeys.map(key => {
+        let c_confirm = ConfirmedMap[key];
+        let c_death = DeathMap[key];
+
+        let date_keys = Object.keys(c_confirm);
+
+        let obj_for_date = {};
+        date_keys.map(date => {
+            let entry = {
+                confirmed: c_confirm[date],
+                death: c_death ? c_death[date] : 0,
+            }
+            obj_for_date[date] = entry
+        })
+        combined[key] = obj_for_date;
+    });
+    return combined;
+}
+
+const CombinedDataMap = computeCombinedMap();
+
+console.log(CombinedDataMap);
+
 function pad(n) { return n < 10 ? '0' + n : n }
 
 function getCountyData(state_short_name, county_name) {
     let key = makeCountyKey(state_short_name, county_name + " County");
     let c = ConfirmedMap[key];
     return c;
+}
+
+function getCountyDataForGrapth(state_short_name, county_name) {
+    let key = makeCountyKey(state_short_name, county_name + " County");
+    return CombinedDataMap[key];
 }
 
 function arraysum_text(a) {
@@ -297,12 +367,6 @@ function casesForStateSummary(state_short_name) {
         // newpercent: ((newcasenum / (total - newcasenum)) * 100).toFixed(0),
         newpercent: 0, // placeholder
     }
-}
-
-function getLatestKey(c) {
-    let keys = Object.keys(c);
-    let sortedKeys = keys.sort((a, b) => moment(b, "MM/DD/YYYY").toDate() - moment(a, "MM/DD/YYYY").toDate());
-    return sortedKeys[0];
 }
 
 function casesForUSSummary() {
@@ -363,4 +427,6 @@ export {
     countyDataForState,
     getCountySummary,
     getAllStatesSummary,
+    /// new
+    getCountyDataForGrapth,
 }

@@ -119,14 +119,29 @@ const GraphSectionState = withRouter((props) => {
   return graphlistSection;
 });
 
+function dataMapToGraphSeries(graphdata) {
+  let arr = [];
+
+  for (let i in graphdata) {
+    let entry = graphdata[i];
+    entry.fulldate = i;
+    arr.push(entry);
+  }
+  return arr;
+}
+
 const GraphSectionCounty = withRouter((props) => {
   const state = props.state;
   const county = props.county;
   let state_title = states.getStateNameByStateCode(state);
   let county_cases = USCounty.casesForCounty(state, county);
 
+  let graphdata = USCounty.getCountyDataForGrapth(state, county);
+  let readyForGraph = dataMapToGraphSeries(graphdata);
+  console.log(readyForGraph);
+
   const tabs = [
-    <BasicGraphNewCases casesData={county_cases} logScale={false} />,
+    <BasicGraphNewCases data={readyForGraph} casesData={county_cases} logScale={false} />,
     <GraphStateTesting state={state} />,
   ]
   let graphlistSection = <MyTabs

@@ -201,6 +201,8 @@ const BasicGraphNewCases = (props) => {
         setState({ ...state, show30days: !state.show30days });
     };
 
+    let data = props.data;
+    /*
     let data = countyFromNewCases(props.casesData);
     if (data.length > 2) {
         let newdata = data.slice(0, data.length - 2);
@@ -219,15 +221,23 @@ const BasicGraphNewCases = (props) => {
         newdata.push(newlast);
         data = newdata;
     }
+    */
 
     if (state.show30days) {
         const cutoff = moment().subtract(14, 'days')
         data = data.filter(d => {
             return moment(d.fulldate).isAfter(cutoff)
         });
+    } else {
+
+        const cutoff = moment().subtract(45, 'days')
+        data = data.filter(d => {
+            return moment(d.fulldate).isAfter(cutoff)
+        });
     }
 
     const formatYAxis = (tickItem) => {
+        console.log(tickItem)
         return myShortNumber(tickItem);
     }
 
@@ -280,10 +290,10 @@ const BasicGraphNewCases = (props) => {
                 <CartesianGrid stroke="#d5d5d5" strokeDasharray="5 5" />
                 <Line type="monotone" dataKey="confirmed" stroke="#ff7300" yAxisId={0} strokeWidth={3} />
                 <Line type="monotone" dataKey="death" stroke="#000000" yAxisId={0} strokeWidth={3} />
-                <Line type="monotone" dataKey="newcase" stroke="#387908" yAxisId={0} strokeWidth={3} />
+                {/* <Line type="monotone" dataKey="newcase" stroke="#387908" yAxisId={0} strokeWidth={3} />
                 <Line type="monotone" dataKey="pending_death" stroke="#000000" strokeDasharray="1 1" strokeWidth={3} />
                 <Line type="monotone" dataKey="pending_confirmed" stroke="#ff7300" strokeDasharray="1 1" strokeWidth={3} />
-                <Line type="monotone" dataKey="pending_newcase" stroke="#387908" strokeDasharray="1 1" strokeWidth={3} />
+                <Line type="monotone" dataKey="pending_newcase" stroke="#387908" strokeDasharray="1 1" strokeWidth={3} /> */}
                 <Legend verticalAlign="top" payload={[
                     { value: 'Total ', type: 'line', color: '#ff7300' },
                     { value: 'New Cases', type: 'line', color: '#389708' },
