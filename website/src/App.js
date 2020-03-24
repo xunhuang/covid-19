@@ -239,6 +239,8 @@ const MainApp = withRouter((props) => {
       });
     });
   }, []);
+
+  // return <Splash />
   if (casesData === null || state === null) {
     return <Splash />
   }

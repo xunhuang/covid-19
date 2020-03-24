@@ -5,6 +5,8 @@ const moment = require("moment");
 
 const ConfirmedData = require("./data/covid_confirmed_usafacts.json");
 const DeathData = require("./data/covid_death_usafacts.json");
+const LatestData = require("./data/latest.json");
+const states = require('us-state-codes');
 
 function countyModuleInit(casesdata) {
     makeTable();
@@ -228,30 +230,61 @@ function makeCountyKey(state, county) {
     return "" + state + county;
 }
 
-const ConfirmedMap = ConfirmedData.reduce((m, a) => {
+const LatestMap = LatestData.features.reduce((m, o) => {
+    let a = o.attributes;
     let key = makeCountyKey(
-        a["State"],
-        a["County Name"],
+        states.getStateCodeByStateName(a.Province_State),
+        a.Admin2 + " County",
     );
-
-    delete a["countyFIPS"];
-    delete a["County Name"];
-    delete a["State"];
-    delete a["stateFIPS"];
-
-    let obj = {}
-    Object.keys(a).map(k => {
-        let v = parseInt(a[k]);
-        let p = k.split("/");
-        let m = pad(parseInt(p[0]));
-        let d = pad(parseInt(p[1]));
-        let y = p[2];
-        obj[`${m}/${d}/${y}`] = v;
-    });
-
-    m[key] = obj;
+    m[key] = {
+        confirmed: a.Confirmed,
+        death: a.Deaths,
+    };
     return m;
 }, {});
+console.log(LatestMap);
+
+function computeConfirmMap() {
+    let map = ConfirmedData.reduce((m, a) => {
+        let key = makeCountyKey(
+            a["State"],
+            a["County Name"],
+        );
+
+        delete a["countyFIPS"];
+        delete a["County Name"];
+        delete a["State"];
+        delete a["stateFIPS"];
+
+        let obj = {}
+        Object.keys(a).map(k => {
+            let v = parseInt(a[k]);
+            let p = k.split("/");
+            let m = pad(parseInt(p[0]));
+            let d = pad(parseInt(p[1]));
+            let y = p[2];
+            obj[`${m}/${d}/${y}`] = v;
+        });
+
+        let today = moment().format("MM/DD/YYYY");
+        let yesterday = moment().subtract(1, "days").format("MM/DD/YYYY");
+        let latestForCounty = LatestMap[key];
+        if (latestForCounty) {
+            obj[today] = obj[yesterday] + latestForCounty.confirmed;
+        }
+
+
+        m[key] = obj;
+
+        return m;
+
+    }, {});
+
+    return map;
+}
+
+const ConfirmedMap = computeConfirmMap();
+console.log(ConfirmedMap);
 
 const DeathMap = DeathData.reduce((m, a) => {
     let key = makeCountyKey(
@@ -273,6 +306,13 @@ const DeathMap = DeathData.reduce((m, a) => {
         let y = p[2];
         obj[`${m}/${d}/${y}`] = v;
     });
+
+    let today = moment().format("MM/DD/YYYY");
+    let yesterday = moment().subtract(1, "days").format("MM/DD/YYYY");
+    let latestForCounty = LatestMap[key];
+    if (latestForCounty) {
+        obj[today] = obj[yesterday] + latestForCounty.death;
+    }
 
     m[key] = obj;
     return m;
@@ -433,7 +473,6 @@ function casesForUSSummary() {
     let c = getCountyData("CA", "Alameda");
     let latest = getLatestKey(c);
 
-    console.log(latest);
     let confirmed = 0;
     for (var index in ConfirmedMap) {
         confirmed += ConfirmedMap[index][latest];
