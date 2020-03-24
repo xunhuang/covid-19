@@ -266,17 +266,26 @@ function computeConfirmMap() {
             obj[`${m}/${d}/${y}`] = v;
         });
 
+        console.log(obj);
         let today = moment().format("MM/DD/YYYY");
+        let yesterday = moment().subtract(1, "days").format("MM/DD/YYYY");
         let latestForCounty = LatestMap[key];
         if (latestForCounty) {
-            obj[today] = latestForCounty.confirmed;
+            // number should not be decreasing
+            if (latestForCounty.confirmed > obj[yesterday]) {
+                obj[today] = latestForCounty.confirmed;
+            } else {
+                obj[today] = obj[yesterday];
+            }
+        } else {
+            obj[today] = obj[yesterday];
         }
-        m[key] = obj;
+        console.log(obj);
 
+        m[key] = obj;
         return m;
 
     }, {});
-
     return map;
 }
 
@@ -305,9 +314,17 @@ const DeathMap = DeathData.reduce((m, a) => {
     });
 
     let today = moment().format("MM/DD/YYYY");
+    let yesterday = moment().subtract(1, "days").format("MM/DD/YYYY");
     let latestForCounty = LatestMap[key];
     if (latestForCounty) {
-        obj[today] = latestForCounty.death;
+        // number should not be decreasing
+        if (latestForCounty.death > obj[yesterday]) {
+            obj[today] = latestForCounty.death;
+        } else {
+            obj[today] = obj[yesterday];
+        }
+    } else {
+        obj[today] = obj[yesterday];
     }
 
     m[key] = obj;
@@ -466,13 +483,17 @@ function casesForStateSummary(state_short_name) {
 }
 
 function casesForUSSummary() {
-    let c = getCountyData("CA", "Alameda");
-    let latest = getLatestKey(c);
+    // let c = getCountyData("CA", "Alameda");
+    // console.log("latest");
+    // console.log(latest)
 
     let confirmed = 0;
     for (var index in ConfirmedMap) {
-        confirmed += ConfirmedMap[index][latest];
+        let c = ConfirmedMap[index];
+        let latest = getLatestKey(c);
+        confirmed += c[latest];
     }
+    console.log(confirmed);
 
     return {
         confirmed: confirmed,
