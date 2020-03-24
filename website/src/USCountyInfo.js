@@ -332,11 +332,11 @@ function getCountyDataForGrapth(state_short_name, county_name) {
 }
 
 function getStateDataForGrapth(state_short_name) {
-    let counties = CountyList.filter(c => c.State === state_short_name);
+    let counties_keys = Object.keys(CombinedDataMap).filter(k => k.startsWith(state_short_name));
     let result = {};
 
-    counties.map(c => {
-        let c_data = getCountyDataForGrapth(state_short_name, c.County);
+    counties_keys.map(k => {
+        let c_data = CombinedDataMap[k];
         if (!c_data) {
             return;
         }
@@ -401,8 +401,25 @@ function casesForCountySummary(state_short_name, county_name) {
 }
 
 function casesForStateSummary(state_short_name) {
-    let counties = CountyList.filter(c => c.State === state_short_name);
-    let summaries = counties.map(c => casesForCountySummary(state_short_name, c.County));
+    let counties_keys = Object.keys(CombinedDataMap).filter(k => k.startsWith(state_short_name));
+    let summaries = counties_keys.map(k => {
+        let c = CombinedDataMap[k];
+        if (!c) {
+            return {
+                confirmed: 0,
+                newcases: 0,
+                newpercent: 0,
+            }
+        }
+        let latest = getLatestKey(c);
+        return {
+            confirmed: c[latest].confirmed,
+            death: c[latest].death,
+            newcases: 0, // placeholder
+            // newpercent: ((newcasenum / (total - newcasenum)) * 100).toFixed(0),
+            newpercent: 0, // placeholder
+        }
+    });
     let confirm_array = summaries.map(s => s.confirmed);
     return {
         confirmed: arraysum_text(confirm_array),
