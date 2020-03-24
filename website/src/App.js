@@ -342,10 +342,6 @@ const CountyWidget = withHeader((props) => {
         browseTo(props.history, newstate, newcounty);
       }}
     />,
-    <CountyDetailCaseList
-      county={county}
-      state={state}
-    />,
     <CountyHospitalsWidget
       county={county}
       state={state}
