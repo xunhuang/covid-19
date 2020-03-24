@@ -3,6 +3,9 @@ const getDistance = require('geolib').getDistance;
 const CountyList = require("./data/county_gps.json");
 const moment = require("moment");
 
+const ConfirmedData = require("./data/covid_confirmed_usafacts.json");
+const DeathData = require("./data/covid_death_usafacts.json");
+
 function countyModuleInit(casesdata) {
     makeTable();
     CasesData = casesdata;
@@ -221,11 +224,88 @@ function hospitalsForState(state_short_name) {
     }
 }
 
+function makeCountyKey(state, county) {
+    return "" + state + county;
+}
+
+const ConfirmedMap = ConfirmedData.reduce((m, a) => {
+    let key = makeCountyKey(
+        a["State"],
+        a["County Name"],
+    );
+
+    delete a["countyFIPS"];
+    delete a["County Name"];
+    delete a["State"];
+    delete a["stateFIPS"];
+
+    let obj = {
+
+    }
+
+    Object.keys(a).map(k => {
+        let v = parseInt(a[k]);
+        let p = k.split("/");
+        let m = pad(parseInt(p[0]));
+        let d = pad(parseInt(p[1]));
+        let y = p[2];
+        obj[`${m}/${d}/${y}`] = v;
+    });
+
+    m[key] = obj;
+    return m;
+}, {});
+
+function pad(n) { return n < 10 ? '0' + n : n }
+
+function getCountyData(state_short_name, county_name) {
+    let key = makeCountyKey(state_short_name, county_name + " County");
+    let c = ConfirmedMap[key];
+    return c;
+}
+
+function arraysum_text(a) {
+    let sum = 0;
+    for (let i = 0; i < a.length; i++) {
+        sum += a[i];
+    }
+    return sum;
+}
+
 function casesForCountySummary(state_short_name, county_name) {
-    return casesSummary(casesForCounty(state_short_name, county_name));
+    let c = getCountyData(state_short_name, county_name);
+    if (!c) {
+        return {
+            confirmed: 0,
+            newcases: 0,
+            newpercent: 0,
+        }
+    }
+    let keys = Object.keys(c);
+    let sortedKeys = keys.sort((a, b) => moment(b, "MM/DD/YYYY").toDate() - moment(a, "MM/DD/YYYY").toDate());
+    return {
+        confirmed: c[keys[0]],
+        newcases: 0, // placeholder
+        // newpercent: ((newcasenum / (total - newcasenum)) * 100).toFixed(0),
+        newpercent: 0, // placeholder
+    }
 }
 
 function casesForStateSummary(state_short_name) {
+
+    let counties = CountyList.filter(c => c.State === state_short_name);
+    let summaries = counties.map(c => casesForCountySummary(state_short_name, c.County));
+
+
+    let confirm_array = summaries.map(s => s.confirmed);
+
+    return {
+        confirmed: arraysum_text(confirm_array),
+        newcases: 0, // placeholder
+        // newpercent: ((newcasenum / (total - newcasenum)) * 100).toFixed(0),
+        newpercent: 0, // placeholder
+    }
+
     return casesSummary(casesForState(state_short_name));
 }
 
