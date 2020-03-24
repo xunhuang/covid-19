@@ -202,8 +202,23 @@ const BasicGraphNewCases = (props) => {
     };
 
     let data = props.data;
-    /*
-    let data = countyFromNewCases(props.casesData);
+    data = data.map(d => {
+        d.name = moment(d.fulldate).format("M/D");
+        return d;
+    }).sort((a, b) => moment(a).isBefore(moment(b)));
+
+    let newdata = [];
+    for (let i = 0; i < data.length; i++) {
+        let item = data[i];
+        if (i == 0) {
+            item.newcase = data[i].confirmed;
+        } else {
+            item.newcase = data[i].confirmed - data[i - 1].confirmed;
+        }
+        newdata.push(item)
+    }
+    data = newdata;
+
     if (data.length > 2) {
         let newdata = data.slice(0, data.length - 2);
         let second_last = data[data.length - 2];
@@ -221,7 +236,6 @@ const BasicGraphNewCases = (props) => {
         newdata.push(newlast);
         data = newdata;
     }
-    */
 
     if (state.show30days) {
         const cutoff = moment().subtract(14, 'days')
@@ -290,10 +304,12 @@ const BasicGraphNewCases = (props) => {
                 <CartesianGrid stroke="#d5d5d5" strokeDasharray="5 5" />
                 <Line type="monotone" dataKey="confirmed" stroke="#ff7300" yAxisId={0} strokeWidth={3} />
                 <Line type="monotone" dataKey="death" stroke="#000000" yAxisId={0} strokeWidth={3} />
-                {/* <Line type="monotone" dataKey="newcase" stroke="#387908" yAxisId={0} strokeWidth={3} />
+                <Line type="monotone" dataKey="newcase" stroke="#387908" yAxisId={0} strokeWidth={3} />
+
                 <Line type="monotone" dataKey="pending_death" stroke="#000000" strokeDasharray="1 1" strokeWidth={3} />
                 <Line type="monotone" dataKey="pending_confirmed" stroke="#ff7300" strokeDasharray="1 1" strokeWidth={3} />
                 <Line type="monotone" dataKey="pending_newcase" stroke="#387908" strokeDasharray="1 1" strokeWidth={3} /> */}
+
                 <Legend verticalAlign="top" payload={[
                     { value: 'Total ', type: 'line', color: '#ff7300' },
                     { value: 'New Cases', type: 'line', color: '#389708' },
