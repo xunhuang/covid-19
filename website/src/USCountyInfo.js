@@ -267,13 +267,10 @@ function computeConfirmMap() {
         });
 
         let today = moment().format("MM/DD/YYYY");
-        let yesterday = moment().subtract(1, "days").format("MM/DD/YYYY");
         let latestForCounty = LatestMap[key];
         if (latestForCounty) {
-            obj[today] = obj[yesterday] + latestForCounty.confirmed;
+            obj[today] = latestForCounty.confirmed;
         }
-
-
         m[key] = obj;
 
         return m;
@@ -308,10 +305,9 @@ const DeathMap = DeathData.reduce((m, a) => {
     });
 
     let today = moment().format("MM/DD/YYYY");
-    let yesterday = moment().subtract(1, "days").format("MM/DD/YYYY");
     let latestForCounty = LatestMap[key];
     if (latestForCounty) {
-        obj[today] = obj[yesterday] + latestForCounty.death;
+        obj[today] = latestForCounty.death;
     }
 
     m[key] = obj;
