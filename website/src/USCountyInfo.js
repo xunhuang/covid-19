@@ -333,10 +333,6 @@ const DeathMap = DeathData.reduce((m, a) => {
 
 console.log(DeathMap);
 
-function getAllKeys() {
-    let c = getCountyData("CA", "Alameda");
-    let latest = getLatestKey(c);
-}
 
 function getLatestKey(c) {
     let keys = Object.keys(c);
@@ -375,7 +371,7 @@ function pad(n) { return n < 10 ? '0' + n : n }
 
 function getCountyData(state_short_name, county_name) {
     let key = makeCountyKey(state_short_name, county_name + " County");
-    let c = ConfirmedMap[key];
+    let c = CombinedDataMap[key];
     return c;
 }
 
@@ -435,6 +431,9 @@ function arraysum_text(a) {
     return sum;
 }
 
+const todaykey = moment().format("MM/DD/YYYY");
+const yesterdaykey = moment().subtract(1, "days").format("MM/DD/YYYY");
+
 function casesForCountySummary(state_short_name, county_name) {
     let c = getCountyData(state_short_name, county_name);
     if (!c) {
@@ -444,12 +443,12 @@ function casesForCountySummary(state_short_name, county_name) {
             newpercent: 0,
         }
     }
-    let latest = getLatestKey(c);
+    let today = c[todaykey].confirmed;
+    let yesterday = c[yesterdaykey].confirmed;
     return {
-        confirmed: c[latest],
-        newcases: 0, // placeholder
-        // newpercent: ((newcasenum / (total - newcasenum)) * 100).toFixed(0),
-        newpercent: 0, // placeholder
+        confirmed: today,
+        newcases: today - yesterday,
+        newpercent: ((today - yesterday / today) * 100).toFixed(0),
     }
 }
 
@@ -464,28 +463,25 @@ function casesForStateSummary(state_short_name) {
                 newpercent: 0,
             }
         }
-        let latest = getLatestKey(c);
+        let today = c[todaykey].confirmed;
+        let yesterday = c[yesterdaykey].confirmed;
         return {
-            confirmed: c[latest].confirmed,
-            death: c[latest].death,
-            newcases: 0, // placeholder
-            // newpercent: ((newcasenum / (total - newcasenum)) * 100).toFixed(0),
-            newpercent: 0, // placeholder
+            confirmed: today,
+            death: c[todaykey].death,
+            newcases: today - yesterday,
+            newpercent: ((today - yesterday / today) * 100).toFixed(0),
         }
     });
-    let confirm_array = summaries.map(s => s.confirmed);
+    let confirmed = arraysum_text(summaries.map(s => s.confirmed));
+    let newcases = arraysum_text(summaries.map(s => s.newcases));
     return {
-        confirmed: arraysum_text(confirm_array),
-        newcases: 0, // placeholder
-        // newpercent: ((newcasenum / (total - newcasenum)) * 100).toFixed(0),
-        newpercent: 0, // placeholder
+        confirmed: confirmed,
+        newcases: newcases,
+        newpercent: ((newcases / (confirmed - newcases)) * 100).toFixed(0),
     }
 }
 
 function casesForUSSummary() {
-    // let c = getCountyData("CA", "Alameda");
-    // console.log("latest");
-    // console.log(latest)
 
     let confirmed = 0;
     for (var index in ConfirmedMap) {
