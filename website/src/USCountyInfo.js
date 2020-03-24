@@ -239,10 +239,7 @@ const ConfirmedMap = ConfirmedData.reduce((m, a) => {
     delete a["State"];
     delete a["stateFIPS"];
 
-    let obj = {
-
-    }
-
+    let obj = {}
     Object.keys(a).map(k => {
         let v = parseInt(a[k]);
         let p = k.split("/");
@@ -281,10 +278,9 @@ function casesForCountySummary(state_short_name, county_name) {
             newpercent: 0,
         }
     }
-    let keys = Object.keys(c);
-    let sortedKeys = keys.sort((a, b) => moment(b, "MM/DD/YYYY").toDate() - moment(a, "MM/DD/YYYY").toDate());
+    let latest = getLatestKey(c);
     return {
-        confirmed: c[keys[0]],
+        confirmed: c[latest],
         newcases: 0, // placeholder
         // newpercent: ((newcasenum / (total - newcasenum)) * 100).toFixed(0),
         newpercent: 0, // placeholder
@@ -292,21 +288,39 @@ function casesForCountySummary(state_short_name, county_name) {
 }
 
 function casesForStateSummary(state_short_name) {
-
     let counties = CountyList.filter(c => c.State === state_short_name);
     let summaries = counties.map(c => casesForCountySummary(state_short_name, c.County));
-
-
     let confirm_array = summaries.map(s => s.confirmed);
-
     return {
         confirmed: arraysum_text(confirm_array),
         newcases: 0, // placeholder
         // newpercent: ((newcasenum / (total - newcasenum)) * 100).toFixed(0),
         newpercent: 0, // placeholder
     }
+}
 
-    return casesSummary(casesForState(state_short_name));
+function getLatestKey(c) {
+    let keys = Object.keys(c);
+    let sortedKeys = keys.sort((a, b) => moment(b, "MM/DD/YYYY").toDate() - moment(a, "MM/DD/YYYY").toDate());
+    return sortedKeys[0];
+}
+
+function casesForUSSummary() {
+    let c = getCountyData("CA", "Alameda");
+    let latest = getLatestKey(c);
+
+    console.log(latest);
+    let confirmed = 0;
+    for (var index in ConfirmedMap) {
+        confirmed += ConfirmedMap[index][latest];
+    }
+
+    return {
+        confirmed: confirmed,
+        newcases: 0, // placeholder
+        // newpercent: ((newcasenum / (total - newcasenum)) * 100).toFixed(0),
+        newpercent: 0, // placeholder
+    }
 }
 
 function casesForUS() {
@@ -344,6 +358,7 @@ export {
     casesSummary,
     casesForCountySummary,
     casesForStateSummary,
+    casesForUSSummary,
     hospitalsForState,
     countyDataForState,
     getCountySummary,

@@ -84,7 +84,7 @@ const USInfoTopWidget = withRouter((props) => {
 
     let state_summary = USCounty.casesForStateSummary(state);
     let county_summary = USCounty.casesForCountySummary(state, county);
-    let us_summary = USCounty.casesSummary(USCounty.casesForUS());
+    let us_summary = USCounty.casesForUSSummary();
     let state_hospitals = USCounty.hospitalsForState(state);
 
     return <div className={classes.tagSticky} >
