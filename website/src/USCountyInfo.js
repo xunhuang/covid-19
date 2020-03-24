@@ -417,25 +417,39 @@ function getCountyDataForGrapth(state_short_name, county_name) {
     return CombinedDataMap[key];
 }
 
+
+function getCombinedDataForKey(k) {
+    return CombinedDataMap[k];
+}
+
 function getStateDataForGrapth(state_short_name) {
     let counties_keys = Object.keys(CombinedDataMap).filter(k => k.startsWith(state_short_name));
     let result = {};
 
     counties_keys.map(k => {
-        let c_data = CombinedDataMap[k];
+        // let c_data = CombinedDataMap[k];
+        let c_data = getCombinedDataForKey(k);
         if (!c_data) {
             return;
         }
         Object.keys(c_data).map(date_key => {
             let date_data = c_data[date_key];
             let entry = result[date_key];
+
+            let a = {};
             if (entry) {
-                entry.confirmed += date_data.confirmed;
-                entry.death += date_data.death;
+                // if I don't do this, somehow it affects upsteam data, werid. 
+                // a = entry;
+                a.confirmed = entry.confirmed + date_data.confirmed;
+                a.death = entry.death + date_data.death;
+                a.fulldate = entry.fulldate;
+                a.name = entry.name;
+                a.newcase = entry.newcase;
+                a.state = a.state;
             } else {
-                entry = date_data;
+                a = date_data;
             }
-            result[date_key] = entry;
+            result[date_key] = a;
         });
     });
     return result;
@@ -508,6 +522,8 @@ function casesForStateSummary(state_short_name) {
             newcases: today - yesterday,
         }
     });
+
+    console.log(summaries.map(s => s.confirmed));
     let confirmed = arraysum_text(summaries.map(s => s.confirmed));
     let newcases = arraysum_text(summaries.map(s => s.newcases));
     return {

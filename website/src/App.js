@@ -125,11 +125,11 @@ const GraphSectionState = withRouter((props) => {
   return graphlistSection;
 });
 
-function dataMapToGraphSeries(graphdata) {
+function dataMapToGraphSeries(g) {
   let arr = [];
 
-  for (let i in graphdata) {
-    let entry = graphdata[i];
+  for (let i in g) {
+    let entry = g[i];
     entry.fulldate = i;
     arr.push(entry);
   }

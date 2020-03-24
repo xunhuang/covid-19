@@ -194,7 +194,6 @@ const CountyListRender = (props) => {
                         let newcases = sum.newcases;
                         let confirmed = sum.confirmed;
                         let newpercent = sum.newpercent;
-                        console.log(newpercent);
                         let newEntry = (Number.isNaN(newpercent) || !isFinite(newpercent)) ? newcases : `${newcases}(+${newpercent}%)`;
                         if (newcases === 0) {
                             newEntry = 0;
