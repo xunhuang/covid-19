@@ -1,5 +1,5 @@
 import React from 'react';
-import { ResponsiveContainer, LineChart, Line, YAxis, XAxis, Tooltip, CartesianGrid, Legend } from 'recharts';
+import { ResponsiveContainer, AreaChart, Area, YAxis, XAxis, Tooltip, CartesianGrid, Legend } from 'recharts';
 import { makeStyles } from '@material-ui/core/styles';
 import { Typography } from '@material-ui/core';
 
@@ -95,6 +95,8 @@ const GraphTestingWidget = (props) => {
         data[i].testsThatDay = (i === 0) ? data[i].total : data[i].total - data[i - 1].total;
         data[i].positiveThatDay = (i === 0) ? data[i].positive : data[i].positive - data[i - 1].positive;
         data[i].negativeThatDay = (i === 0) ? data[i].negative : data[i].negative - data[i - 1].negative;
+        const resultsThatDay = data[i].positivethatDay + data[i].negativeThatDay;
+        data[i].pendingThatDay = data[i].testsThatDay - resultsThatDay;
     }
 
     let total_tests = data.reduce((m, a) => { return a.total > m ? a.total : m }, 0);
@@ -109,7 +111,7 @@ const GraphTestingWidget = (props) => {
             `}
         </Typography>
         <ResponsiveContainer height={300} >
-            <LineChart
+            <AreaChart
                 data={data}
                 margin={{ top: 5, right: 30, left: 5, bottom: 5 }}
             >
@@ -118,12 +120,12 @@ const GraphTestingWidget = (props) => {
                 <CartesianGrid stroke="#d5d5d5" strokeDasharray="5 5" />
                 {/* <Line type="monotone" name="Total Tested" dataKey="total" stroke="#387908" yAxisId={0} strokeWidth={3} />
             <Line type="monotone" name="Tested Positive" dataKey="positive" stroke="#ff7300" yAxisId={0} strokeWidth={3} /> */}
-                <Line type="monotone" name="Daily Tested " dataKey="testsThatDay" stroke="#387908" yAxisId={0} strokeWidth={3} />
-                <Line type="monotone" name="Positive" dataKey="positiveThatDay" stroke="#ff7300" yAxisId={0} strokeWidth={3} />
-                <Line type="monotone" name="Negative" dataKey="negativeThatDay" stroke="#00aeef" yAxisId={0} strokeWidth={3} />
+                <Area stackId="1" type="monotone" name="Positive" dataKey="positiveThatDay" stroke="#ff7300" fill="#ff7300" yAxisId={0} strokeWidth={3} />
+                <Area stackId="1" type="monotone" name="Negative" dataKey="negativeThatDay" stroke="#00aeef" fill="#00aeef" yAxisId={0} strokeWidth={3} />
+                <Area stackId="1" type="monotone" name="Pending" dataKey="pendingThatDay" stroke="#387908" fill="#387908" yAxisId={0} strokeWidth={3} />
                 <Legend verticalAlign="top" />
                 <Tooltip content={<CustomTooltip />} />
-            </LineChart>
+            </AreaChart>
         </ResponsiveContainer>
         <Typography variant="body2" noWrap>
             Data source: https://covidtracking.com/api/
