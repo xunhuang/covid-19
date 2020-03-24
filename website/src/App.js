@@ -279,7 +279,8 @@ const EntireUSWidget = withHeader((props) => {
         }}
       />
       <MyTabs
-        labels={["States of USA", "Case Details"]}
+        // labels={["States of USA", "Case Details"]}
+        labels={["States of USA"]}
         tabs={tabs}
       />
     </>
@@ -347,7 +348,8 @@ const CountyWidget = withHeader((props) => {
         }}
       />
       <MyTabs
-        labels={["Nearby", "Case Details", "Hospitals"]}
+        // labels={["Nearby", "Case Details", "Hospitals"]}
+        labels={["Nearby", "Hospitals"]}
         tabs={tabs}
       />
     </>
@@ -409,7 +411,8 @@ const StateWidget = withHeader((props) => {
         }}
       />
       <MyTabs
-        labels={[`Counties of ${states.getStateNameByStateCode(state)} `, "Case Details"]}
+        // labels={[`Counties of ${states.getStateNameByStateCode(state)} `, "Case Details"]}
+        labels={[`Counties of ${states.getStateNameByStateCode(state)} `]}
         tabs={tabs}
       />
     </>);
