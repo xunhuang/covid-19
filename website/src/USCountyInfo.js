@@ -129,40 +129,6 @@ function getAllStatesSummary(cases) {
     })
 }
 
-/*
-function getAllStatesSummary(cases) {
-    const today = moment().format("MM/DD/YYYY");
-    let g_group = cases.reduce((result, c) => {
-        let current = result[c.state_name];
-        if (!current) {
-            current = {
-                confirmed: 0,
-                newcases: 0,
-            }
-        }
-        current.confirmed += c.people_count;
-        if (c.fulldate === today) {
-            current.newcases += c.people_count;
-        }
-        result[c.state_name] = current;
-        return result;
-    }, {});
-
-    let r = Object.keys(g_group).reduce((result, key) => {
-        let item = g_group[key];
-        result.push({
-            state: key,
-            confirmed: item.confirmed,
-            newcases: item.newcases,
-            newpercent: ((item.newcases / (item.confirmed - item.newcases)) * 100).toFixed(0),
-            Population2010: USState_Population[key],
-        })
-        return result;
-    }, []);
-    return r;
-}
-*/
-
 function getCountySummary(cases) {
     let g = cases.reduce((result, c) => {
         if (!c.county || c.county === "undefined" || c.countuy === "Unassigned" || c.county === "Unknown") {
@@ -260,9 +226,6 @@ const LatestMap = LatestData.features.reduce((m, o) => {
     return m;
 }, {});
 
-console.log("latest----");
-console.log(LatestMap);
-
 function computeConfirmMap() {
     let map = ConfirmedData.reduce((m, a) => {
 
@@ -314,8 +277,6 @@ function computeConfirmMap() {
 }
 
 const ConfirmedMap = computeConfirmMap();
-console.log("ConfirmedMap");
-console.log(ConfirmedMap);
 
 const DeathMap = DeathData.reduce((m, a) => {
     let key = makeCountyKey(
@@ -362,32 +323,20 @@ const DeathMap = DeathData.reduce((m, a) => {
     return m;
 }, {});
 
-console.log("DeathMap");
-console.log(DeathMap);
-
-function getLatestKey(c) {
-    let keys = Object.keys(c);
-    let sortedKeys = keys.sort((a, b) => moment(b, "MM/DD/YYYY").toDate() - moment(a, "MM/DD/YYYY").toDate());
-    return sortedKeys[0];
-}
-
 function computeCombinedMap() {
     let countykeys = Object.keys(ConfirmedMap);
     let combined = {};
-
     countykeys.map(key => {
         let c_confirm = ConfirmedMap[key];
         let c_death = DeathMap[key];
-
         let date_keys = Object.keys(c_confirm);
-
         let obj_for_date = {};
         date_keys.map(date => {
             let entry = {
                 confirmed: c_confirm[date],
                 death: c_death ? c_death[date] : 0,
             }
-            obj_for_date[date] = entry
+            obj_for_date[date] = entry;
         })
         combined[key] = obj_for_date;
     });
@@ -403,8 +352,7 @@ function getCountyData(state_short_name, county_name) {
         county_name = "New York City"
     }
     let key = makeCountyKey(state_short_name, county_name + " County");
-    let c = CombinedDataMap[key];
-    return c;
+    return CombinedDataMap[key];
 }
 
 function getCountyDataForGrapth(state_short_name, county_name) {
@@ -460,13 +408,22 @@ function getUSDataForGrapth() {
         Object.keys(c_data).map(date_key => {
             let date_data = c_data[date_key];
             let entry = result[date_key];
+            let a = {};
             if (entry) {
-                entry.confirmed += date_data.confirmed;
-                entry.death += date_data.death;
+                // entry.confirmed += date_data.confirmed;
+                // entry.death += date_data.death;
+
+                a.confirmed = entry.confirmed + date_data.confirmed;
+                a.death = entry.death + date_data.death;
+                a.fulldate = entry.fulldate;
+                a.name = entry.name;
+                a.newcase = entry.newcase;
+                a.state = a.state;
+
             } else {
-                entry = date_data;
+                a = date_data;
             }
-            result[date_key] = entry;
+            result[date_key] = a;
         });
     });
     return result;
@@ -502,9 +459,11 @@ function casesForCountySummary(state_short_name, county_name) {
 }
 
 function casesForStateSummary(state_short_name) {
-    let counties_keys = Object.keys(CombinedDataMap).filter(k => k.startsWith(state_short_name));
+    let counties_keys = Object.keys(CombinedDataMap)
+        .filter(k => k.startsWith(state_short_name));
+
     let summaries = counties_keys.map(k => {
-        let c = CombinedDataMap[k];
+        let c = getCombinedDataForKey(k);
         if (!c) {
             return {
                 confirmed: 0,
@@ -521,7 +480,6 @@ function casesForStateSummary(state_short_name) {
         }
     });
 
-    console.log(summaries.map(s => s.confirmed));
     let confirmed = arraysum_text(summaries.map(s => s.confirmed));
     let newcases = arraysum_text(summaries.map(s => s.newcases));
     return {
@@ -538,6 +496,9 @@ function casesForUSSummary() {
     let yesterday = 0;
     for (var index in ConfirmedMap) {
         let c = ConfirmedMap[index];
+        today += c[todaykey];
+        yesterday += c[yesterdaykey];
+
         today += c[todaykey];
         yesterday += c[yesterdaykey];
     }
