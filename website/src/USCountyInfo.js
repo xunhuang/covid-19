@@ -483,19 +483,18 @@ function casesForStateSummary(state_short_name) {
 
 function casesForUSSummary() {
 
-    let confirmed = 0;
+    let today = 0;
+    let yesterday = 0;
     for (var index in ConfirmedMap) {
         let c = ConfirmedMap[index];
-        let latest = getLatestKey(c);
-        confirmed += c[latest];
+        today += c[todaykey];
+        yesterday += c[yesterdaykey];
     }
-    console.log(confirmed);
 
     return {
-        confirmed: confirmed,
-        newcases: 0, // placeholder
-        // newpercent: ((newcasenum / (total - newcasenum)) * 100).toFixed(0),
-        newpercent: 0, // placeholder
+        confirmed: today,
+        newcases: today - yesterday,
+        newpercent: ((today - yesterday / today) * 100).toFixed(0),
     }
 }
 
