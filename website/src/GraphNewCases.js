@@ -251,7 +251,6 @@ const BasicGraphNewCases = (props) => {
     }
 
     const formatYAxis = (tickItem) => {
-        console.log(tickItem)
         return myShortNumber(tickItem);
     }
 

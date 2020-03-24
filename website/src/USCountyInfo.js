@@ -115,6 +115,24 @@ const USState_Population =
 }
 
 function getAllStatesSummary(cases) {
+    let state_sum = Object.keys(USState_Population).map(state => casesForStateSummary(state));
+    state_sum.map(s => {
+
+        return {
+            state: s.state,
+            confirmed: s.confirmed,
+            newcases: s.newcases,
+            newpercent: ((s.newcases / (s.confirmed - s.newcases)) * 100).toFixed(0),
+            Population2010: USState_Population[s.key],
+        }
+
+    })
+
+    return state_sum;
+}
+
+/*
+function getAllStatesSummary(cases) {
     const today = moment().format("MM/DD/YYYY");
     let g_group = cases.reduce((result, c) => {
         let current = result[c.state_name];
@@ -145,6 +163,7 @@ function getAllStatesSummary(cases) {
     }, []);
     return r;
 }
+*/
 
 function getCountySummary(cases) {
     let g = cases.reduce((result, c) => {
@@ -242,14 +261,23 @@ const LatestMap = LatestData.features.reduce((m, o) => {
     };
     return m;
 }, {});
+
+console.log("latest----");
 console.log(LatestMap);
 
 function computeConfirmMap() {
     let map = ConfirmedData.reduce((m, a) => {
+
         let key = makeCountyKey(
             a["State"],
             a["County Name"],
         );
+        if (a["State"] === "NY" && a["County Name"] == "New York City") {
+            key = makeCountyKey(
+                "NY",
+                "New York City County"
+            );
+        }
 
         delete a["countyFIPS"];
         delete a["County Name"];
@@ -266,7 +294,6 @@ function computeConfirmMap() {
             obj[`${m}/${d}/${y}`] = v;
         });
 
-        console.log(obj);
         let today = moment().format("MM/DD/YYYY");
         let yesterday = moment().subtract(1, "days").format("MM/DD/YYYY");
         let latestForCounty = LatestMap[key];
@@ -280,7 +307,6 @@ function computeConfirmMap() {
         } else {
             obj[today] = obj[yesterday];
         }
-        console.log(obj);
 
         m[key] = obj;
         return m;
@@ -290,6 +316,7 @@ function computeConfirmMap() {
 }
 
 const ConfirmedMap = computeConfirmMap();
+console.log("ConfirmedMap");
 console.log(ConfirmedMap);
 
 const DeathMap = DeathData.reduce((m, a) => {
@@ -297,6 +324,12 @@ const DeathMap = DeathData.reduce((m, a) => {
         a["State"],
         a["County Name"],
     );
+    if (a["State"] === "NY" && a["County Name"] == "New York City") {
+        key = makeCountyKey(
+            "NY",
+            "New York City County"
+        );
+    }
 
     delete a["countyFIPS"];
     delete a["County Name"];
@@ -331,8 +364,8 @@ const DeathMap = DeathData.reduce((m, a) => {
     return m;
 }, {});
 
+console.log("DeathMap");
 console.log(DeathMap);
-
 
 function getLatestKey(c) {
     let keys = Object.keys(c);
@@ -365,17 +398,21 @@ function computeCombinedMap() {
 
 const CombinedDataMap = computeCombinedMap();
 
-console.log(CombinedDataMap);
-
 function pad(n) { return n < 10 ? '0' + n : n }
 
 function getCountyData(state_short_name, county_name) {
+    if (state_short_name == "NY" && county_name === "New York") {
+        county_name = "New York City"
+    }
     let key = makeCountyKey(state_short_name, county_name + " County");
     let c = CombinedDataMap[key];
     return c;
 }
 
 function getCountyDataForGrapth(state_short_name, county_name) {
+    if (state_short_name == "NY" && county_name === "New York") {
+        county_name = "New York City"
+    }
     let key = makeCountyKey(state_short_name, county_name + " County");
     return CombinedDataMap[key];
 }
@@ -448,7 +485,7 @@ function casesForCountySummary(state_short_name, county_name) {
     return {
         confirmed: today,
         newcases: today - yesterday,
-        newpercent: ((today - yesterday / today) * 100).toFixed(0),
+        newpercent: (((today - yesterday) / yesterday) * 100).toFixed(0),
     }
 }
 
@@ -469,12 +506,12 @@ function casesForStateSummary(state_short_name) {
             confirmed: today,
             death: c[todaykey].death,
             newcases: today - yesterday,
-            newpercent: ((today - yesterday / today) * 100).toFixed(0),
         }
     });
     let confirmed = arraysum_text(summaries.map(s => s.confirmed));
     let newcases = arraysum_text(summaries.map(s => s.newcases));
     return {
+        state: state_short_name,
         confirmed: confirmed,
         newcases: newcases,
         newpercent: ((newcases / (confirmed - newcases)) * 100).toFixed(0),
