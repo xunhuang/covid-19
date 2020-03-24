@@ -310,11 +310,6 @@ const CountyWidget = withHeader((props) => {
   CookieSetLastCounty(state, county);
 
   const tabs = [
-    // <CountyHospitalsWidget
-    //   county={county}
-    //   state={state}
-    // >
-    // </CountyHospitalsWidget >,
     <NearbyCounties
       casesData={casesData}
       county={county}
@@ -327,6 +322,11 @@ const CountyWidget = withHeader((props) => {
       county={county}
       state={state}
     />,
+    <CountyHospitalsWidget
+      county={county}
+      state={state}
+    >
+    </CountyHospitalsWidget >,
   ];
   return (
     <>
@@ -348,8 +348,7 @@ const CountyWidget = withHeader((props) => {
         }}
       />
       <MyTabs
-        labels={["Nearby Counties", "Case Details"]}
-        // labels={["Hospitals", "Nearby Counties", "Case Details"]}
+        labels={["Nearby", "Case Details", "Hospitals"]}
         tabs={tabs}
       />
     </>
