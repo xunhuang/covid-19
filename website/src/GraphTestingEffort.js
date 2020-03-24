@@ -115,7 +115,7 @@ const GraphTestingWidget = (props) => {
             >
                 <YAxis />
                 <XAxis dataKey="name" />
-                <CartesianGrid stroke="#f5f5f5" strokeDasharray="5 5" />
+                <CartesianGrid stroke="#d5d5d5" strokeDasharray="5 5" />
                 {/* <Line type="monotone" name="Total Tested" dataKey="total" stroke="#387908" yAxisId={0} strokeWidth={3} />
             <Line type="monotone" name="Tested Positive" dataKey="positive" stroke="#ff7300" yAxisId={0} strokeWidth={3} /> */}
                 <Line type="monotone" name="Daily Tested " dataKey="testsThatDay" stroke="#387908" yAxisId={0} strokeWidth={3} />

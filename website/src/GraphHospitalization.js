@@ -25,7 +25,7 @@ const GraphTestingWidget = (props) => {
             >
                 <YAxis />
                 <XAxis dataKey="name" />
-                <CartesianGrid stroke="#f5f5f5" strokeDasharray="5 5" />
+                <CartesianGrid stroke="#d5d5d5" strokeDasharray="5 5" />
                 <Line type="monotone" name="Positive" dataKey="positive" stroke="#ff7300" yAxisId={0} strokeWidth={3} />
                 <Line type="monotone" name="Hospitalized" dataKey="hospitalized" stroke="#00aeef" yAxisId={0} strokeWidth={3} />
                 <Legend verticalAlign="top" />

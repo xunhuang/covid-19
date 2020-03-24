@@ -277,7 +277,7 @@ const BasicGraphNewCases = (props) => {
                         <YAxis tickFormatter={formatYAxis} />
                 }
 
-                <CartesianGrid stroke="#f5f5f5" strokeDasharray="5 5" />
+                <CartesianGrid stroke="#d5d5d5" strokeDasharray="5 5" />
                 <Line type="monotone" dataKey="confirmed" stroke="#ff7300" yAxisId={0} strokeWidth={3} />
                 <Line type="monotone" dataKey="death" stroke="#000000" yAxisId={0} strokeWidth={3} />
                 <Line type="monotone" dataKey="newcase" stroke="#387908" yAxisId={0} strokeWidth={3} />
