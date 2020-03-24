@@ -498,9 +498,6 @@ function casesForUSSummary() {
         let c = ConfirmedMap[index];
         today += c[todaykey];
         yesterday += c[yesterdaykey];
-
-        today += c[todaykey];
-        yesterday += c[yesterdaykey];
     }
 
     return {
