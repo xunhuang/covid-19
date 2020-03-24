@@ -13,7 +13,7 @@ const DataCreditWidget = () => {
                     <a target="_blank" href="https://coronavirus.1point3acres.com/en" rel="noopener noreferrer" >
                         1point3acres.com
           </a>
-                    - This the best real-time US data source.
+                    The best real-time US data source.
                 </li>
                 <li>
                     <a target="_blank" href="https://github.com/CSSEGISandData/COVID-19" rel="noopener noreferrer" >

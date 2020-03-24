@@ -239,18 +239,11 @@ const BasicGraphNewCases = (props) => {
                     <AntSwitch checked={state.showlog} onClick={handleChange} />
                 </Grid>
                 <Grid item onClick={handleChange}>Log Scale</Grid>
-                <Grid item className={classes.grow} />
+                <Grid item></Grid>
                 <Grid item>
                     <AntSwitch checked={state.show30days} onClick={handle30DaysToggle} />
                 </Grid>
                 <Grid item onClick={handle30DaysToggle}>Last 2 weeks</Grid>
-                <Grid item className={classes.grow} />
-                <Grid item onClick={
-                    () => {
-                        fileDownload(JSON.stringify(data, 2, 2), "covid-data.json");
-                        setOpenDownload(true);
-                    }
-                }> Data Download</Grid>
                 <Dialog
                     open={open}
                     onClose={handleClose}
@@ -267,25 +260,6 @@ const BasicGraphNewCases = (props) => {
           </Button>
                     </DialogActions>
                 </Dialog>
-
-                <Dialog
-                    open={openDownload}
-                    onClose={handleCloseDownload}
-                >
-                    <DialogTitle id="alert-dialog-title">{"Download Complete"}</DialogTitle>
-                    <DialogContent>
-                        <DialogContentText id="alert-dialog-description">
-                            Disclaimer: The format data likely to change over time.
-                        </DialogContentText>
-                    </DialogContent>
-                    <DialogActions>
-                        <Button onClick={handleCloseDownload} color="primary" autoFocus>
-                            OK
-          </Button>
-                    </DialogActions>
-                </Dialog>
-
-
                 <Grid item></Grid>
             </Grid>
         </Typography>
@@ -317,8 +291,40 @@ const BasicGraphNewCases = (props) => {
                 ]} />
 
             </LineChart></ResponsiveContainer>
-        <Typography variant="body2" noWrap onClick={handleClickOpen} >
-            Data Credit: Click for details.
+        <Typography variant="body2" noWrap>
+            <Grid container alignItems="center" spacing={1}>
+                <Grid item onClick={handleClickOpen} >
+                    Data Credit: Click for details.
+                    </Grid>
+                <Grid item>
+                </Grid>
+                <Grid item className={classes.grow} />
+                <Grid item onClick={
+                    () => {
+                        fileDownload(JSON.stringify(data, 2, 2), "covid-data.json");
+                        setOpenDownload(true);
+                    }
+                }> Data Download</Grid>
+                <Dialog
+                    open={openDownload}
+                    onClose={handleCloseDownload}
+                >
+                    <DialogTitle id="alert-dialog-title">{"Download Complete"}</DialogTitle>
+                    <DialogContent>
+                        <DialogContentText id="alert-dialog-description">
+                            Disclaimer: The format data likely to change over time.
+                        </DialogContentText>
+                    </DialogContent>
+                    <DialogActions>
+                        <Button onClick={handleCloseDownload} color="primary" autoFocus>
+                            OK
+          </Button>
+                    </DialogActions>
+                </Dialog>
+
+
+                <Grid item></Grid>
+            </Grid>
         </Typography>
     </>
 }
