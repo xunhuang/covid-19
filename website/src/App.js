@@ -13,6 +13,7 @@ import { MyTabs } from "./MyTabs.js"
 import { USInfoTopWidget } from './USInfoTopWidget.js'
 import { EntireUSDetailCaseListWidget, CountyDetailCaseList, StateDetailCaseListWidget } from './DetailCaseLists'
 import { GraphUSHospitalization, GraphStateHospitalization } from './GraphHospitalization.js'
+import { CountyHospitalsWidget } from "./Hospitals"
 
 const states = require('us-state-codes');
 const Cookies = require("js-cookie");
@@ -309,6 +310,11 @@ const CountyWidget = withHeader((props) => {
   CookieSetLastCounty(state, county);
 
   const tabs = [
+    // <CountyHospitalsWidget
+    //   county={county}
+    //   state={state}
+    // >
+    // </CountyHospitalsWidget >,
     <NearbyCounties
       casesData={casesData}
       county={county}
@@ -343,6 +349,7 @@ const CountyWidget = withHeader((props) => {
       />
       <MyTabs
         labels={["Nearby Counties", "Case Details"]}
+        // labels={["Hospitals", "Nearby Counties", "Case Details"]}
         tabs={tabs}
       />
     </>
