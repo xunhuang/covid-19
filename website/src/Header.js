@@ -3,6 +3,8 @@ import * as USCounty from "./USCountyInfo.js";
 import Select from 'react-select';
 import Disqus from "disqus-react"
 import Typography from '@material-ui/core/Typography'
+import { makeStyles } from '@material-ui/core/styles';
+import { Link } from '@material-ui/core';
 
 function browseTo(history, state, county) {
     history.push(
@@ -10,6 +12,18 @@ function browseTo(history, state, county) {
         history.search,
     );
 }
+
+const useStyles = makeStyles(theme => ({
+    qpContainer: {
+        display: 'block',
+        // color: '#FFFFFF',
+        background: '#e3e3e3',
+        borderWidth: "1px",
+        padding: 15,
+        margin: 15,
+        // borderRadius: 20,
+    },
+}));
 
 const SearchBox = (props) => {
 
@@ -56,13 +70,12 @@ const withHeader = (comp, props) => {
     };
 
     return (props) => {
+        const classes = useStyles();
         let casesData = USCounty.casesForUS();
-
         let component = comp({
             // add addition things here
             ...props,
         });
-
         let footer = <div>
             <Typography variant="h5" noWrap>
                 Discussions
@@ -76,13 +89,27 @@ const withHeader = (comp, props) => {
         let header = <header className="App-header">
             <Typography variant="h5" >
                 COVID-19.direct
-                    </Typography>
+            </Typography>
             <SearchBox
                 casesData={casesData}
                 callback={(newcounty, newstate) => {
                     browseTo(props.history, newstate, newcounty);
                 }}
             />
+
+            <div className={classes.qpContainer}>
+                <Typography variant="h5" >
+                    For most up to date case data, please visit
+            </Typography>
+
+                <Typography variant="h5" >
+                    <Link href="https://coronavirus.1point3acres.com/en">
+
+                        https://coronavirus.1point3acres.com/en
+                </Link>
+                </Typography>
+            </div>
+
             {component}
             {footer}
         </header>
