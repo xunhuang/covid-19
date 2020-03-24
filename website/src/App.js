@@ -89,8 +89,11 @@ async function fetchApproxIPLocation() {
 }
 
 const GraphSectionUS = withRouter((props) => {
+  let graphdata = USCounty.getUSDataForGrapth();
+  let readyForGraph = dataMapToGraphSeries(graphdata);
+
   const tabs = [
-    <BasicGraphNewCases casesData={props.casesData} logScale={false} />,
+    <BasicGraphNewCases data={readyForGraph} casesData={props.casesData} logScale={false} />,
     <GraphUSTesting />,
     <GraphUSHospitalization />,
   ]
