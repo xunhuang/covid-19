@@ -331,6 +331,30 @@ function getCountyDataForGrapth(state_short_name, county_name) {
     return CombinedDataMap[key];
 }
 
+function getStateDataForGrapth(state_short_name, county_name) {
+    let counties = CountyList.filter(c => c.State === state_short_name);
+    let result = {};
+
+    counties.map(c => {
+        let c_data = getCountyDataForGrapth(state_short_name, c.County);
+        if (!c_data) {
+            return;
+        }
+        Object.keys(c_data).map(date_key => {
+            let date_data = c_data[date_key];
+            let entry = result[date_key];
+            if (entry) {
+                entry.confirmed += date_data.confirmed;
+                entry.death += date_data.death;
+            } else {
+                entry = date_data;
+            }
+            result[date_key] = entry;
+        });
+    });
+    return result;
+}
+
 function arraysum_text(a) {
     let sum = 0;
     for (let i = 0; i < a.length; i++) {
@@ -429,4 +453,5 @@ export {
     getAllStatesSummary,
     /// new
     getCountyDataForGrapth,
+    getStateDataForGrapth,
 }

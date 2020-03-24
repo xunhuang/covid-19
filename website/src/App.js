@@ -107,8 +107,11 @@ const GraphSectionState = withRouter((props) => {
   let state_mycases = USCounty.casesForState(state);
   let useLogScale = false;
 
+  let graphdata = USCounty.getStateDataForGrapth(state);
+  let readyForGraph = dataMapToGraphSeries(graphdata);
+
   const tabs = [
-    <BasicGraphNewCases casesData={state_mycases} logScale={useLogScale} />,
+    <BasicGraphNewCases data={readyForGraph} casesData={state_mycases} logScale={useLogScale} />,
     <GraphStateTesting state={state} />,
     <GraphStateHospitalization state={state} />,
   ]
