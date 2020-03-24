@@ -1,0 +1,1123 @@
+{
+  "objectIdFieldName": "OBJECTID",
+  "uniqueIdField": {
+    "name": "OBJECTID",
+    "isSystemMaintained": true
+  },
+  "globalIdFieldName": "",
+  "geometryType": "esriGeometryPoint",
+  "spatialReference": {
+    "wkid": 4326,
+    "latestWkid": 4326
+  },
+  "transform": {
+    "originPosition": "upperLeft",
+    "scale": [
+      1e-09,
+      1e-09,
+      0,
+      0
+    ],
+    "translate": [
+      -400,
+      -400,
+      0,
+      0
+    ]
+  },
+  "fields": [
+    {
+      "name": "OBJECTID",
+      "type": "esriFieldTypeOID",
+      "alias": "OBJECTID",
+      "sqlType": "sqlTypeOther",
+      "domain": null,
+      "defaultValue": null
+    },
+    {
+      "name": "Province_State",
+      "type": "esriFieldTypeString",
+      "alias": "Province/State",
+      "sqlType": "sqlTypeOther",
+      "length": 8000,
+      "domain": null,
+      "defaultValue": null,
+      "description": "{\"value\":\"Country Province or State Name (Level 2 Key)\",\"fieldValueType\":\"nameOrTitle\"}"
+    },
+    {
+      "name": "Country_Region",
+      "type": "esriFieldTypeString",
+      "alias": "Country/Region",
+      "sqlType": "sqlTypeOther",
+      "length": 8000,
+      "domain": null,
+      "defaultValue": null,
+      "description": "{\"value\":\"Country or Region Name (Level 1 Key)\",\"fieldValueType\":\"nameOrTitle\"}"
+    },
+    {
+      "name": "Last_Update",
+      "type": "esriFieldTypeDate",
+      "alias": "Last Update",
+      "sqlType": "sqlTypeOther",
+      "length": 8,
+      "domain": null,
+      "defaultValue": null,
+      "description": "{\"value\":\"Last data update Date/Time in UTC\",\"fieldValueType\":\"dateAndTime\"}"
+    },
+    {
+      "name": "Lat",
+      "type": "esriFieldTypeDouble",
+      "alias": "Latitude",
+      "sqlType": "sqlTypeOther",
+      "domain": null,
+      "defaultValue": null,
+      "description": "{\"value\":\"Geographic Latitude in Decimal Degrees (WGS1984)\",\"fieldValueType\":\"coordinate\"}"
+    },
+    {
+      "name": "Long_",
+      "type": "esriFieldTypeDouble",
+      "alias": "Longitude",
+      "sqlType": "sqlTypeOther",
+      "domain": null,
+      "defaultValue": null,
+      "description": "{\"value\":\"Geographic Longitude in Decimal Degrees (WGS1984)\",\"fieldValueType\":\"coordinate\"}"
+    },
+    {
+      "name": "Confirmed",
+      "type": "esriFieldTypeInteger",
+      "alias": "Confirmed",
+      "sqlType": "sqlTypeOther",
+      "domain": null,
+      "defaultValue": null,
+      "description": "{\"value\":\"Best collected count of Confirmed Cases reported by geography\",\"fieldValueType\":\"countOrAmount\"}"
+    },
+    {
+      "name": "Recovered",
+      "type": "esriFieldTypeInteger",
+      "alias": "Recovered",
+      "sqlType": "sqlTypeOther",
+      "domain": null,
+      "defaultValue": null,
+      "description": "{\"value\":\"Best collected count of Case Recoveries reported by geography\",\"fieldValueType\":\"countOrAmount\"}"
+    },
+    {
+      "name": "Deaths",
+      "type": "esriFieldTypeInteger",
+      "alias": "Deaths",
+      "sqlType": "sqlTypeOther",
+      "domain": null,
+      "defaultValue": null,
+      "description": "{\"value\":\"Best collected count for Case Deaths reported by geography\",\"fieldValueType\":\"countOrAmount\"}"
+    },
+    {
+      "name": "Active",
+      "type": "esriFieldTypeInteger",
+      "alias": "Active",
+      "sqlType": "sqlTypeOther",
+      "domain": null,
+      "defaultValue": null,
+      "description": "{\"value\":\"Confirmed - Recovered - Deaths (computed)\",\"fieldValueType\":\"countOrAmount\"}"
+    },
+    {
+      "name": "Admin2",
+      "type": "esriFieldTypeString",
+      "alias": "County",
+      "sqlType": "sqlTypeOther",
+      "length": 8000,
+      "domain": null,
+      "defaultValue": null,
+      "description": "{\"value\":\"US County Name (Level 3 Key)\",\"fieldValueType\":\"nameOrTitle\"}"
+    },
+    {
+      "name": "FIPS",
+      "type": "esriFieldTypeString",
+      "alias": "State/County FIPS Code",
+      "sqlType": "sqlTypeOther",
+      "length": 5,
+      "domain": null,
+      "defaultValue": null,
+      "description": "{\"value\":\"US State/County Code\",\"fieldValueType\":\"locationOrPlaceName\"}"
+    },
+    {
+      "name": "Combined_Key",
+      "type": "esriFieldTypeString",
+      "alias": "Combined Key",
+      "sqlType": "sqlTypeOther",
+      "length": 8000,
+      "domain": null,
+      "defaultValue": null,
+      "description": "{\"value\":\"Comma separated concatenation of Key Field values (L3, L2, L1)\",\"fieldValueType\":\"locationOrPlaceName\"}"
+    },
+    {
+      "name": "Incident_Rate",
+      "type": "esriFieldTypeDouble",
+      "alias": "Incident Rate",
+      "sqlType": "sqlTypeOther",
+      "domain": null,
+      "defaultValue": null,
+      "description": "{\"value\":\"\",\"fieldValueType\":\"percentageOrRatio\"}"
+    },
+    {
+      "name": "People_Tested",
+      "type": "esriFieldTypeInteger",
+      "alias": "People Tested",
+      "sqlType": "sqlTypeOther",
+      "domain": null,
+      "defaultValue": null,
+      "description": "{\"value\":\"\",\"fieldValueType\":\"countOrAmount\"}"
+    }
+  ],
+  "exceededTransferLimit": true,
+  "features": [
+    {
+      "attributes": {
+        "OBJECTID": 1,
+        "Province_State": "South Carolina",
+        "Country_Region": "US",
+        "Last_Update": 1585033907000,
+        "Lat": 34.22333378,
+        "Long_": -82.46170658,
+        "Confirmed": 1,
+        "Recovered": 0,
+        "Deaths": 0,
+        "Active": 0,
+        "Admin2": "Abbeville",
+        "FIPS": "45001",
+        "Combined_Key": "Abbeville, South Carolina, US",
+        "Incident_Rate": null,
+        "People_Tested": null
+      }
+    },
+    {
+      "attributes": {
+        "OBJECTID": 2,
+        "Province_State": "Louisiana",
+        "Country_Region": "US",
+        "Last_Update": 1585033907000,
+        "Lat": 30.2950649,
+        "Long_": -92.41419698,
+        "Confirmed": 1,
+        "Recovered": 0,
+        "Deaths": 0,
+        "Active": 0,
+        "Admin2": "Acadia",
+        "FIPS": "22001",
+        "Combined_Key": "Acadia, Louisiana, US",
+        "Incident_Rate": null,
+        "People_Tested": null
+      }
+    },
+    {
+      "attributes": {
+        "OBJECTID": 3,
+        "Province_State": "Virginia",
+        "Country_Region": "US",
+        "Last_Update": 1585033907000,
+        "Lat": 37.76707161,
+        "Long_": -75.63234615,
+        "Confirmed": 1,
+        "Recovered": 0,
+        "Deaths": 0,
+        "Active": 0,
+        "Admin2": "Accomack",
+        "FIPS": "51001",
+        "Combined_Key": "Accomack, Virginia, US",
+        "Incident_Rate": null,
+        "People_Tested": null
+      }
+    },
+    {
+      "attributes": {
+        "OBJECTID": 4,
+        "Province_State": "Idaho",
+        "Country_Region": "US",
+        "Last_Update": 1585033907000,
+        "Lat": 43.4526575,
+        "Long_": -116.2415516,
+        "Confirmed": 13,
+        "Recovered": 0,
+        "Deaths": 0,
+        "Active": 0,
+        "Admin2": "Ada",
+        "FIPS": "16001",
+        "Combined_Key": "Ada, Idaho, US",
+        "Incident_Rate": null,
+        "People_Tested": null
+      }
+    },
+    {
+      "attributes": {
+        "OBJECTID": 5,
+        "Province_State": "Iowa",
+        "Country_Region": "US",
+        "Last_Update": 1585033907000,
+        "Lat": 41.33075609,
+        "Long_": -94.47105874,
+        "Confirmed": 1,
+        "Recovered": 0,
+        "Deaths": 0,
+        "Active": 0,
+        "Admin2": "Adair",
+        "FIPS": "19001",
+        "Combined_Key": "Adair, Iowa, US",
+        "Incident_Rate": null,
+        "People_Tested": null
+      }
+    },
+    {
+      "attributes": {
+        "OBJECTID": 7,
+        "Province_State": "Missouri",
+        "Country_Region": "US",
+        "Last_Update": 1585033907000,
+        "Lat": 40.19058551,
+        "Long_": -92.60078167,
+        "Confirmed": 2,
+        "Recovered": 0,
+        "Deaths": 0,
+        "Active": 0,
+        "Admin2": "Adair",
+        "FIPS": "29001",
+        "Combined_Key": "Adair, Missouri, US",
+        "Incident_Rate": null,
+        "People_Tested": null
+      }
+    },
+    {
+      "attributes": {
+        "OBJECTID": 9,
+        "Province_State": "Colorado",
+        "Country_Region": "US",
+        "Last_Update": 1585033907000,
+        "Lat": 39.87432092,
+        "Long_": -104.3362578,
+        "Confirmed": 25,
+        "Recovered": 0,
+        "Deaths": 0,
+        "Active": 0,
+        "Admin2": "Adams",
+        "FIPS": "08001",
+        "Combined_Key": "Adams, Colorado, US",
+        "Incident_Rate": null,
+        "People_Tested": null
+      }
+    },
+    {
+      "attributes": {
+        "OBJECTID": 11,
+        "Province_State": "Illinois",
+        "Country_Region": "US",
+        "Last_Update": 1585033907000,
+        "Lat": 39.98815591,
+        "Long_": -91.18786813,
+        "Confirmed": 1,
+        "Recovered": 0,
+        "Deaths": 0,
+        "Active": 0,
+        "Admin2": "Adams",
+        "FIPS": "17001",
+        "Combined_Key": "Adams, Illinois, US",
+        "Incident_Rate": null,
+        "People_Tested": null
+      }
+    },
+    {
+      "attributes": {
+        "OBJECTID": 12,
+        "Province_State": "Indiana",
+        "Country_Region": "US",
+        "Last_Update": 1585033907000,
+        "Lat": 40.7457653,
+        "Long_": -84.93671406,
+        "Confirmed": 1,
+        "Recovered": 0,
+        "Deaths": 0,
+        "Active": 0,
+        "Admin2": "Adams",
+        "FIPS": "18001",
+        "Combined_Key": "Adams, Indiana, US",
+        "Incident_Rate": null,
+        "People_Tested": null
+      }
+    },
+    {
+      "attributes": {
+        "OBJECTID": 14,
+        "Province_State": "Mississippi",
+        "Country_Region": "US",
+        "Last_Update": 1585033907000,
+        "Lat": 31.47669768,
+        "Long_": -91.35326037,
+        "Confirmed": 2,
+        "Recovered": 0,
+        "Deaths": 0,
+        "Active": 0,
+        "Admin2": "Adams",
+        "FIPS": "28001",
+        "Combined_Key": "Adams, Mississippi, US",
+        "Incident_Rate": null,
+        "People_Tested": null
+      }
+    },
+    {
+      "attributes": {
+        "OBJECTID": 15,
+        "Province_State": "Nebraska",
+        "Country_Region": "US",
+        "Last_Update": 1585033907000,
+        "Lat": 40.5244942,
+        "Long_": -98.50117804,
+        "Confirmed": 1,
+        "Recovered": 0,
+        "Deaths": 0,
+        "Active": 0,
+        "Admin2": "Adams",
+        "FIPS": "31001",
+        "Combined_Key": "Adams, Nebraska, US",
+        "Incident_Rate": null,
+        "People_Tested": null
+      }
+    },
+    {
+      "attributes": {
+        "OBJECTID": 18,
+        "Province_State": "Pennsylvania",
+        "Country_Region": "US",
+        "Last_Update": 1585033907000,
+        "Lat": 39.87140411,
+        "Long_": -77.21610347,
+        "Confirmed": 6,
+        "Recovered": 0,
+        "Deaths": 0,
+        "Active": 0,
+        "Admin2": "Adams",
+        "FIPS": "42001",
+        "Combined_Key": "Adams, Pennsylvania, US",
+        "Incident_Rate": null,
+        "People_Tested": null
+      }
+    },
+    {
+      "attributes": {
+        "OBJECTID": 19,
+        "Province_State": "Washington",
+        "Country_Region": "US",
+        "Last_Update": 1585033907000,
+        "Lat": 46.98299757,
+        "Long_": -118.5601734,
+        "Confirmed": 1,
+        "Recovered": 0,
+        "Deaths": 0,
+        "Active": 0,
+        "Admin2": "Adams",
+        "FIPS": "53001",
+        "Combined_Key": "Adams, Washington, US",
+        "Incident_Rate": null,
+        "People_Tested": null
+      }
+    },
+    {
+      "attributes": {
+        "OBJECTID": 21,
+        "Province_State": "Vermont",
+        "Country_Region": "US",
+        "Last_Update": 1585033907000,
+        "Lat": 44.03217337,
+        "Long_": -73.14130877,
+        "Confirmed": 6,
+        "Recovered": 0,
+        "Deaths": 0,
+        "Active": 0,
+        "Admin2": "Addison",
+        "FIPS": "50001",
+        "Combined_Key": "Addison, Vermont, US",
+        "Incident_Rate": null,
+        "People_Tested": null
+      }
+    },
+    {
+      "attributes": {
+        "OBJECTID": 22,
+        "Province_State": "South Carolina",
+        "Country_Region": "US",
+        "Last_Update": 1585033907000,
+        "Lat": 33.54338026,
+        "Long_": -81.63645384,
+        "Confirmed": 1,
+        "Recovered": 0,
+        "Deaths": 0,
+        "Active": 0,
+        "Admin2": "Aiken",
+        "FIPS": "45003",
+        "Combined_Key": "Aiken, South Carolina, US",
+        "Incident_Rate": null,
+        "People_Tested": null
+      }
+    },
+    {
+      "attributes": {
+        "OBJECTID": 24,
+        "Province_State": "Florida",
+        "Country_Region": "US",
+        "Last_Update": 1585033907000,
+        "Lat": 29.67866525,
+        "Long_": -82.35928158,
+        "Confirmed": 36,
+        "Recovered": 0,
+        "Deaths": 0,
+        "Active": 0,
+        "Admin2": "Alachua",
+        "FIPS": "12001",
+        "Combined_Key": "Alachua, Florida, US",
+        "Incident_Rate": null,
+        "People_Tested": null
+      }
+    },
+    {
+      "attributes": {
+        "OBJECTID": 25,
+        "Province_State": "North Carolina",
+        "Country_Region": "US",
+        "Last_Update": 1585033907000,
+        "Lat": 36.0434701,
+        "Long_": -79.39976137,
+        "Confirmed": 3,
+        "Recovered": 0,
+        "Deaths": 0,
+        "Active": 0,
+        "Admin2": "Alamance",
+        "FIPS": "37001",
+        "Combined_Key": "Alamance, North Carolina, US",
+        "Incident_Rate": null,
+        "People_Tested": null
+      }
+    },
+    {
+      "attributes": {
+        "OBJECTID": 26,
+        "Province_State": "California",
+        "Country_Region": "US",
+        "Last_Update": 1585033907000,
+        "Lat": 37.64629437,
+        "Long_": -121.8929271,
+        "Confirmed": 122,
+        "Recovered": 0,
+        "Deaths": 1,
+        "Active": 0,
+        "Admin2": "Alameda",
+        "FIPS": "06001",
+        "Combined_Key": "Alameda, California, US",
+        "Incident_Rate": null,
+        "People_Tested": null
+      }
+    },
+    {
+      "attributes": {
+        "OBJECTID": 28,
+        "Province_State": "New York",
+        "Country_Region": "US",
+        "Last_Update": 1585033907000,
+        "Lat": 42.60060306,
+        "Long_": -73.97723916,
+        "Confirmed": 127,
+        "Recovered": 0,
+        "Deaths": 0,
+        "Active": 0,
+        "Admin2": "Albany",
+        "FIPS": "36001",
+        "Combined_Key": "Albany, New York, US",
+        "Incident_Rate": null,
+        "People_Tested": null
+      }
+    },
+    {
+      "attributes": {
+        "OBJECTID": 30,
+        "Province_State": "Virginia",
+        "Country_Region": "US",
+        "Last_Update": 1585033907000,
+        "Lat": 38.02080697,
+        "Long_": -78.55481085,
+        "Confirmed": 2,
+        "Recovered": 0,
+        "Deaths": 0,
+        "Active": 0,
+        "Admin2": "Albemarle",
+        "FIPS": "51003",
+        "Combined_Key": "Albemarle, Virginia, US",
+        "Incident_Rate": null,
+        "People_Tested": null
+      }
+    },
+    {
+      "attributes": {
+        "OBJECTID": 37,
+        "Province_State": "Virginia",
+        "Country_Region": "US",
+        "Last_Update": 1585033907000,
+        "Lat": 38.814003,
+        "Long_": -77.08183073,
+        "Confirmed": 6,
+        "Recovered": 0,
+        "Deaths": 0,
+        "Active": 0,
+        "Admin2": "Alexandria",
+        "FIPS": "51510",
+        "Combined_Key": "Alexandria, Virginia, US",
+        "Incident_Rate": null,
+        "People_Tested": null
+      }
+    },
+    {
+      "attributes": {
+        "OBJECTID": 40,
+        "Province_State": "Iowa",
+        "Country_Region": "US",
+        "Last_Update": 1585033907000,
+        "Lat": 43.28383218,
+        "Long_": -91.37860922,
+        "Confirmed": 6,
+        "Recovered": 0,
+        "Deaths": 0,
+        "Active": 0,
+        "Admin2": "Allamakee",
+        "FIPS": "19005",
+        "Combined_Key": "Allamakee, Iowa, US",
+        "Incident_Rate": null,
+        "People_Tested": null
+      }
+    },
+    {
+      "attributes": {
+        "OBJECTID": 41,
+        "Province_State": "Michigan",
+        "Country_Region": "US",
+        "Last_Update": 1585033907000,
+        "Lat": 42.59147037,
+        "Long_": -85.89102866,
+        "Confirmed": 1,
+        "Recovered": 0,
+        "Deaths": 0,
+        "Active": 0,
+        "Admin2": "Allegan",
+        "FIPS": "26005",
+        "Combined_Key": "Allegan, Michigan, US",
+        "Incident_Rate": null,
+        "People_Tested": null
+      }
+    },
+    {
+      "attributes": {
+        "OBJECTID": 43,
+        "Province_State": "New York",
+        "Country_Region": "US",
+        "Last_Update": 1585033907000,
+        "Lat": 42.25748406,
+        "Long_": -78.02750466,
+        "Confirmed": 2,
+        "Recovered": 0,
+        "Deaths": 0,
+        "Active": 0,
+        "Admin2": "Allegany",
+        "FIPS": "36003",
+        "Combined_Key": "Allegany, New York, US",
+        "Incident_Rate": null,
+        "People_Tested": null
+      }
+    },
+    {
+      "attributes": {
+        "OBJECTID": 46,
+        "Province_State": "Pennsylvania",
+        "Country_Region": "US",
+        "Last_Update": 1585033907000,
+        "Lat": 40.46809875,
+        "Long_": -79.98167747,
+        "Confirmed": 48,
+        "Recovered": 0,
+        "Deaths": 1,
+        "Active": 0,
+        "Admin2": "Allegheny",
+        "FIPS": "42003",
+        "Combined_Key": "Allegheny, Pennsylvania, US",
+        "Incident_Rate": null,
+        "People_Tested": null
+      }
+    },
+    {
+      "attributes": {
+        "OBJECTID": 47,
+        "Province_State": "Indiana",
+        "Country_Region": "US",
+        "Last_Update": 1585033907000,
+        "Lat": 41.09194313,
+        "Long_": -85.06800636,
+        "Confirmed": 4,
+        "Recovered": 0,
+        "Deaths": 1,
+        "Active": 0,
+        "Admin2": "Allen",
+        "FIPS": "18003",
+        "Combined_Key": "Allen, Indiana, US",
+        "Incident_Rate": null,
+        "People_Tested": null
+      }
+    },
+    {
+      "attributes": {
+        "OBJECTID": 50,
+        "Province_State": "Louisiana",
+        "Country_Region": "US",
+        "Last_Update": 1585033907000,
+        "Lat": 30.65385745,
+        "Long_": -92.82442028,
+        "Confirmed": 2,
+        "Recovered": 0,
+        "Deaths": 0,
+        "Active": 0,
+        "Admin2": "Allen",
+        "FIPS": "22003",
+        "Combined_Key": "Allen, Louisiana, US",
+        "Incident_Rate": null,
+        "People_Tested": null
+      }
+    },
+    {
+      "attributes": {
+        "OBJECTID": 55,
+        "Province_State": "California",
+        "Country_Region": "US",
+        "Last_Update": 1585033907000,
+        "Lat": 38.44583082,
+        "Long_": -120.65696,
+        "Confirmed": 2,
+        "Recovered": 0,
+        "Deaths": 0,
+        "Active": 0,
+        "Admin2": "Amador",
+        "FIPS": "06005",
+        "Combined_Key": "Amador, California, US",
+        "Incident_Rate": null,
+        "People_Tested": null
+      }
+    },
+    {
+      "attributes": {
+        "OBJECTID": 57,
+        "Province_State": "Virginia",
+        "Country_Region": "US",
+        "Last_Update": 1585033907000,
+        "Lat": 37.60308293,
+        "Long_": -79.14548696,
+        "Confirmed": 1,
+        "Recovered": 0,
+        "Deaths": 0,
+        "Active": 0,
+        "Admin2": "Amherst",
+        "FIPS": "51009",
+        "Combined_Key": "Amherst, Virginia, US",
+        "Incident_Rate": null,
+        "People_Tested": null
+      }
+    },
+    {
+      "attributes": {
+        "OBJECTID": 59,
+        "Province_State": "Alaska",
+        "Country_Region": "US",
+        "Last_Update": 1585033907000,
+        "Lat": 61.14998174,
+        "Long_": -149.1426986,
+        "Confirmed": 17,
+        "Recovered": 0,
+        "Deaths": 0,
+        "Active": 0,
+        "Admin2": "Anchorage",
+        "FIPS": "02020",
+        "Combined_Key": "Anchorage, Alaska, US",
+        "Incident_Rate": null,
+        "People_Tested": null
+      }
+    },
+    {
+      "attributes": {
+        "OBJECTID": 61,
+        "Province_State": "Kentucky",
+        "Country_Region": "US",
+        "Last_Update": 1585033907000,
+        "Lat": 38.00671029,
+        "Long_": -84.99171713,
+        "Confirmed": 2,
+        "Recovered": 0,
+        "Deaths": 1,
+        "Active": 0,
+        "Admin2": "Anderson",
+        "FIPS": "21005",
+        "Combined_Key": "Anderson, Kentucky, US",
+        "Incident_Rate": null,
+        "People_Tested": null
+      }
+    },
+    {
+      "attributes": {
+        "OBJECTID": 62,
+        "Province_State": "South Carolina",
+        "Country_Region": "US",
+        "Last_Update": 1585033907000,
+        "Lat": 34.51828081,
+        "Long_": -82.63959517,
+        "Confirmed": 15,
+        "Recovered": 0,
+        "Deaths": 0,
+        "Active": 0,
+        "Admin2": "Anderson",
+        "FIPS": "45007",
+        "Combined_Key": "Anderson, South Carolina, US",
+        "Incident_Rate": null,
+        "People_Tested": null
+      }
+    },
+    {
+      "attributes": {
+        "OBJECTID": 63,
+        "Province_State": "Tennessee",
+        "Country_Region": "US",
+        "Last_Update": 1585033907000,
+        "Lat": 36.12684348,
+        "Long_": -84.19965764,
+        "Confirmed": 1,
+        "Recovered": 0,
+        "Deaths": 0,
+        "Active": 0,
+        "Admin2": "Anderson",
+        "FIPS": "47001",
+        "Combined_Key": "Anderson, Tennessee, US",
+        "Incident_Rate": null,
+        "People_Tested": null
+      }
+    },
+    {
+      "attributes": {
+        "OBJECTID": 67,
+        "Province_State": "Maine",
+        "Country_Region": "US",
+        "Last_Update": 1585033907000,
+        "Lat": 44.1664747,
+        "Long_": -70.20380627,
+        "Confirmed": 3,
+        "Recovered": 0,
+        "Deaths": 0,
+        "Active": 0,
+        "Admin2": "Androscoggin",
+        "FIPS": "23001",
+        "Combined_Key": "Androscoggin, Maine, US",
+        "Incident_Rate": null,
+        "People_Tested": null
+      }
+    },
+    {
+      "attributes": {
+        "OBJECTID": 69,
+        "Province_State": "Maryland",
+        "Country_Region": "US",
+        "Last_Update": 1585033907000,
+        "Lat": 39.00670238,
+        "Long_": -76.60329337,
+        "Confirmed": 20,
+        "Recovered": 0,
+        "Deaths": 0,
+        "Active": 0,
+        "Admin2": "Anne Arundel",
+        "FIPS": "24003",
+        "Combined_Key": "Anne Arundel, Maryland, US",
+        "Incident_Rate": null,
+        "People_Tested": null
+      }
+    },
+    {
+      "attributes": {
+        "OBJECTID": 70,
+        "Province_State": "Minnesota",
+        "Country_Region": "US",
+        "Last_Update": 1585033907000,
+        "Lat": 45.27476015,
+        "Long_": -93.24604565,
+        "Confirmed": 7,
+        "Recovered": 0,
+        "Deaths": 0,
+        "Active": 0,
+        "Admin2": "Anoka",
+        "FIPS": "27003",
+        "Combined_Key": "Anoka, Minnesota, US",
+        "Incident_Rate": null,
+        "People_Tested": null
+      }
+    },
+    {
+      "attributes": {
+        "OBJECTID": 74,
+        "Province_State": "Arizona",
+        "Country_Region": "US",
+        "Last_Update": 1585033907000,
+        "Lat": 35.39465006,
+        "Long_": -109.4892383,
+        "Confirmed": 4,
+        "Recovered": 0,
+        "Deaths": 0,
+        "Active": 0,
+        "Admin2": "Apache",
+        "FIPS": "04001",
+        "Combined_Key": "Apache, Arizona, US",
+        "Incident_Rate": null,
+        "People_Tested": null
+      }
+    },
+    {
+      "attributes": {
+        "OBJECTID": 79,
+        "Province_State": "Colorado",
+        "Country_Region": "US",
+        "Last_Update": 1585033907000,
+        "Lat": 39.64977461,
+        "Long_": -104.3353617,
+        "Confirmed": 58,
+        "Recovered": 0,
+        "Deaths": 0,
+        "Active": 0,
+        "Admin2": "Arapahoe",
+        "FIPS": "08005",
+        "Combined_Key": "Arapahoe, Colorado, US",
+        "Incident_Rate": null,
+        "People_Tested": null
+      }
+    },
+    {
+      "attributes": {
+        "OBJECTID": 84,
+        "Province_State": "Virginia",
+        "Country_Region": "US",
+        "Last_Update": 1585033907000,
+        "Lat": 38.8767675,
+        "Long_": -77.10139853,
+        "Confirmed": 34,
+        "Recovered": 0,
+        "Deaths": 0,
+        "Active": 0,
+        "Admin2": "Arlington",
+        "FIPS": "51013",
+        "Combined_Key": "Arlington, Virginia, US",
+        "Incident_Rate": null,
+        "People_Tested": null
+      }
+    },
+    {
+      "attributes": {
+        "OBJECTID": 89,
+        "Province_State": "Louisiana",
+        "Country_Region": "US",
+        "Last_Update": 1585033907000,
+        "Lat": 30.20406249,
+        "Long_": -90.9132841,
+        "Confirmed": 26,
+        "Recovered": 0,
+        "Deaths": 1,
+        "Active": 0,
+        "Admin2": "Ascension",
+        "FIPS": "22005",
+        "Combined_Key": "Ascension, Louisiana, US",
+        "Incident_Rate": null,
+        "People_Tested": null
+      }
+    },
+    {
+      "attributes": {
+        "OBJECTID": 91,
+        "Province_State": "Ohio",
+        "Country_Region": "US",
+        "Last_Update": 1585033907000,
+        "Lat": 40.84772277,
+        "Long_": -82.27280781,
+        "Confirmed": 1,
+        "Recovered": 0,
+        "Deaths": 0,
+        "Active": 0,
+        "Admin2": "Ashland",
+        "FIPS": "39005",
+        "Combined_Key": "Ashland, Ohio, US",
+        "Incident_Rate": null,
+        "People_Tested": null
+      }
+    },
+    {
+      "attributes": {
+        "OBJECTID": 94,
+        "Province_State": "Ohio",
+        "Country_Region": "US",
+        "Last_Update": 1585033907000,
+        "Lat": 41.70860332,
+        "Long_": -80.74830218,
+        "Confirmed": 3,
+        "Recovered": 0,
+        "Deaths": 0,
+        "Active": 0,
+        "Admin2": "Ashtabula",
+        "FIPS": "39007",
+        "Combined_Key": "Ashtabula, Ohio, US",
+        "Incident_Rate": null,
+        "People_Tested": null
+      }
+    },
+    {
+      "attributes": {
+        "OBJECTID": 96,
+        "Province_State": "Louisiana",
+        "Country_Region": "US",
+        "Last_Update": 1585033907000,
+        "Lat": 29.89946234,
+        "Long_": -91.06461642,
+        "Confirmed": 1,
+        "Recovered": 0,
+        "Deaths": 0,
+        "Active": 0,
+        "Admin2": "Assumption",
+        "FIPS": "22007",
+        "Combined_Key": "Assumption, Louisiana, US",
+        "Incident_Rate": null,
+        "People_Tested": null
+      }
+    },
+    {
+      "attributes": {
+        "OBJECTID": 97,
+        "Province_State": "Texas",
+        "Country_Region": "US",
+        "Last_Update": 1585033907000,
+        "Lat": 28.89333001,
+        "Long_": -98.52730485,
+        "Confirmed": 2,
+        "Recovered": 0,
+        "Deaths": 0,
+        "Active": 0,
+        "Admin2": "Atascosa",
+        "FIPS": "48013",
+        "Combined_Key": "Atascosa, Texas, US",
+        "Incident_Rate": null,
+        "People_Tested": null
+      }
+    },
+    {
+      "attributes": {
+        "OBJECTID": 102,
+        "Province_State": "New Jersey",
+        "Country_Region": "US",
+        "Last_Update": 1585033907000,
+        "Lat": 39.47538693,
+        "Long_": -74.65848483,
+        "Confirmed": 6,
+        "Recovered": 0,
+        "Deaths": 0,
+        "Active": 0,
+        "Admin2": "Atlantic",
+        "FIPS": "34001",
+        "Combined_Key": "Atlantic, New Jersey, US",
+        "Incident_Rate": null,
+        "People_Tested": null
+      }
+    },
+    {
+      "attributes": {
+        "OBJECTID": 104,
+        "Province_State": "Mississippi",
+        "Country_Region": "US",
+        "Last_Update": 1585033907000,
+        "Lat": 33.08658803,
+        "Long_": -89.57838564,
+        "Confirmed": 1,
+        "Recovered": 0,
+        "Deaths": 0,
+        "Active": 0,
+        "Admin2": "Attala",
+        "FIPS": "28007",
+        "Combined_Key": "Attala, Mississippi, US",
+        "Incident_Rate": null,
+        "People_Tested": null
+      }
+    },
+    {
+      "attributes": {
+        "OBJECTID": 113,
+        "Province_State": "Louisiana",
+        "Country_Region": "US",
+        "Last_Update": 1585033907000,
+        "Lat": 31.07796211,
+        "Long_": -92.00079449,
+        "Confirmed": 1,
+        "Recovered": 0,
+        "Deaths": 0,
+        "Active": 0,
+        "Admin2": "Avoyelles",
+        "FIPS": "22009",
+        "Combined_Key": "Avoyelles, Louisiana, US",
+        "Incident_Rate": null,
+        "People_Tested": null
+      }
+    },
+    {
+      "attributes": {
+        "OBJECTID": 117,
+        "Province_State": "Florida",
+        "Country_Region": "US",
+        "Last_Update": 1585033907000,
+        "Lat": 30.33060121,
+        "Long_": -82.28467476,
+        "Confirmed": 3,
+        "Recovered": 0,
+        "Deaths": 0,
+        "Active": 0,
+        "Admin2": "Baker",
+        "FIPS": "12003",
+        "Combined_Key": "Baker, Florida, US",
+        "Incident_Rate": null,
+        "People_Tested": null
+      }
+    },
+    {
+      "attributes": {
+        "OBJECTID": 120,
+        "Province_State": "Alabama",
+        "Country_Region": "US",
+        "Last_Update": 1585033907000,
+        "Lat": 30.72774991,
+        "Long_": -87.72207058,
+        "Confirmed": 3,
+        "Recovered": 0,
+        "Deaths": 0,
+        "Active": 0,
+        "Admin2": "Baldwin",
+        "FIPS": "01003",
+        "Combined_Key": "Baldwin, Alabama, US",
+        "Incident_Rate": null,
+        "People_Tested": null
+      }
+    },
+    {
+      "attributes": {
+        "OBJECTID": 121,
+        "Province_State": "Georgia",
+        "Country_Region": "US",
+        "Last_Update": 1585033907000,
+        "Lat": 33.06882326,
+        "Long_": -83.24701748,
+        "Confirmed": 2,
+        "Recovered": 0,
+        "Deaths": 0,
+        "Active": 0,
+        "Admin2": "Baldwin",
+        "FIPS": "13009",
+        "Combined_Key": "Baldwin, Georgia, US",
+        "Incident_Rate": null,
+        "People_Tested": null
+      }
+    }
+  ]
+}
