@@ -233,7 +233,7 @@ function computeConfirmMap() {
             a["State"],
             a["County Name"],
         );
-        if (a["State"] === "NY" && a["County Name"] == "New York City") {
+        if (a["State"] === "NY" && a["County Name"] === "New York City") {
             key = makeCountyKey(
                 "NY",
                 "New York City County"
@@ -253,6 +253,7 @@ function computeConfirmMap() {
             let d = pad(parseInt(p[1]));
             let y = p[2];
             obj[`${m}/${d}/${y}`] = v;
+            return null;
         });
 
         let today = moment().format("MM/DD/YYYY");
@@ -283,7 +284,7 @@ const DeathMap = DeathData.reduce((m, a) => {
         a["State"],
         a["County Name"],
     );
-    if (a["State"] === "NY" && a["County Name"] == "New York City") {
+    if (a["State"] === "NY" && a["County Name"] === "New York City") {
         key = makeCountyKey(
             "NY",
             "New York City County"
@@ -295,7 +296,7 @@ const DeathMap = DeathData.reduce((m, a) => {
     delete a["State"];
     delete a["stateFIPS"];
 
-    let obj = {}
+    let obj = {};
     Object.keys(a).map(k => {
         let v = parseInt(a[k]);
         let p = k.split("/");
@@ -303,6 +304,7 @@ const DeathMap = DeathData.reduce((m, a) => {
         let d = pad(parseInt(p[1]));
         let y = p[2];
         obj[`${m}/${d}/${y}`] = v;
+        return null;
     });
 
     let today = moment().format("MM/DD/YYYY");
@@ -337,8 +339,11 @@ function computeCombinedMap() {
                 death: c_death ? c_death[date] : 0,
             }
             obj_for_date[date] = entry;
+            return null;
         })
         combined[key] = obj_for_date;
+
+        return null;
     });
     return combined;
 }
@@ -348,7 +353,7 @@ const CombinedDataMap = computeCombinedMap();
 function pad(n) { return n < 10 ? '0' + n : n }
 
 function getCountyData(state_short_name, county_name) {
-    if (state_short_name == "NY" && county_name === "New York") {
+    if (state_short_name === "NY" && county_name === "New York") {
         county_name = "New York City"
     }
     let key = makeCountyKey(state_short_name, county_name + " County");
@@ -356,8 +361,8 @@ function getCountyData(state_short_name, county_name) {
 }
 
 function getCountyDataForGrapth(state_short_name, county_name) {
-    if (state_short_name == "NY" && county_name === "New York") {
-        county_name = "New York City"
+    if (state_short_name === "NY" && county_name === "New York") {
+        county_name = "New York City";
     }
     let key = makeCountyKey(state_short_name, county_name + " County");
     return CombinedDataMap[key];
@@ -376,7 +381,7 @@ function getStateDataForGrapth(state_short_name) {
         // let c_data = CombinedDataMap[k];
         let c_data = getCombinedDataForKey(k);
         if (!c_data) {
-            return;
+            return null;
         }
         Object.keys(c_data).map(date_key => {
             let date_data = c_data[date_key];
@@ -391,12 +396,14 @@ function getStateDataForGrapth(state_short_name) {
                 a.fulldate = entry.fulldate;
                 a.name = entry.name;
                 a.newcase = entry.newcase;
-                a.state = a.state;
+                a.state = entry.state;
             } else {
                 a = date_data;
             }
             result[date_key] = a;
+            return null;
         });
+        return null;
     });
     return result;
 }
@@ -418,13 +425,15 @@ function getUSDataForGrapth() {
                 a.fulldate = entry.fulldate;
                 a.name = entry.name;
                 a.newcase = entry.newcase;
-                a.state = a.state;
+                a.state = entry.state;
 
             } else {
                 a = date_data;
             }
             result[date_key] = a;
+            return null;
         });
+        return null;
     });
     return result;
 }

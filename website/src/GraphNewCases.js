@@ -28,53 +28,6 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-function countyFromNewCases(cases_data) {
-    let newcases = cases_data.reduce((m, c) => {
-        let a = m[c.fulldate];
-        if (!a) {
-            a = {
-                confirmed: 0,
-                death: 0,
-            };
-        }
-        a.confirmed += c.people_count;
-        a.death += c.die;
-        m[c.fulldate] = a;
-        return m;
-    }, {});
-
-    const today = moment().format("MM/DD/YYYY");
-    var newcasenum = newcases[today];
-    if (!newcasenum) {
-        newcases[today] = {
-            confirmedTotal: 0,
-            deathTotal: 0,
-        };
-    }
-
-    let sorted_keys = Object.keys(newcases).sort(function (a, b) {
-        return moment(a, "MM/DD/YYY").toDate() - moment(b, "MM/DD/YYY").toDate();
-    });
-    let totalConfirmed = 0;
-    let totalDeath = 0;
-
-    return sorted_keys.map(key => {
-        let v = newcases[key];
-        totalConfirmed += v.confirmed;
-        totalDeath += v.death;
-
-        const day = moment(key).format("M/D");
-
-        return {
-            name: day,
-            fulldate: key,
-            confirmed: totalConfirmed,
-            death: totalDeath,
-            newcase: v.confirmed,
-        };
-    });
-}
-
 const CustomTooltip = (props) => {
     const classes = useStyles();
     const { active } = props;
@@ -205,12 +158,12 @@ const BasicGraphNewCases = (props) => {
     data = data.map(d => {
         d.name = moment(d.fulldate).format("M/D");
         return d;
-    }).sort((a, b) => moment(a).isBefore(moment(b)));
+    });
 
     let newdata = [];
     for (let i = 0; i < data.length; i++) {
         let item = data[i];
-        if (i == 0) {
+        if (i === 0) {
             item.newcase = data[i].confirmed;
         } else {
             item.newcase = data[i].confirmed - data[i - 1].confirmed;
@@ -253,6 +206,8 @@ const BasicGraphNewCases = (props) => {
     const formatYAxis = (tickItem) => {
         return myShortNumber(tickItem);
     }
+
+    data = data.sort((a, b) => moment(a.fulldate).isAfter(moment(b.fulldate)));
 
     return <>
         <Typography>

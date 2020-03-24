@@ -4,7 +4,6 @@ import Select from 'react-select';
 import Disqus from "disqus-react"
 import Typography from '@material-ui/core/Typography'
 import { makeStyles } from '@material-ui/core/styles';
-import { Link } from '@material-ui/core';
 
 function browseTo(history, state, county) {
     history.push(
@@ -99,7 +98,7 @@ const withHeader = (comp, props) => {
 
             <div className={classes.qpContainer}>
                 <Typography variant="body1" >
-                    Data Source changed. Still deubgging, please report any errors in discussion section.
+                    Data Source changed. Please report errors in discussion section.
             </Typography>
 
             </div>
