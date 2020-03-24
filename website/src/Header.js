@@ -98,16 +98,10 @@ const withHeader = (comp, props) => {
             />
 
             <div className={classes.qpContainer}>
-                <Typography variant="h5" >
-                    For most up to date case data, please visit
+                <Typography variant="body1" >
+                    Data Source changed. Still deubgging, please report any errors in discussion section.
             </Typography>
 
-                <Typography variant="h5" >
-                    <Link href="https://coronavirus.1point3acres.com/en">
-
-                        https://coronavirus.1point3acres.com/en
-                </Link>
-                </Typography>
             </div>
 
             {component}
