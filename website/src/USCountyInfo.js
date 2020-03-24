@@ -116,19 +116,17 @@ const USState_Population =
 
 function getAllStatesSummary(cases) {
     let state_sum = Object.keys(USState_Population).map(state => casesForStateSummary(state));
-    state_sum.map(s => {
+    return state_sum.map(s => {
 
         return {
             state: s.state,
             confirmed: s.confirmed,
             newcases: s.newcases,
             newpercent: ((s.newcases / (s.confirmed - s.newcases)) * 100).toFixed(0),
-            Population2010: USState_Population[s.key],
+            Population2010: USState_Population[s.state],
         }
 
     })
-
-    return state_sum;
 }
 
 /*
