@@ -331,7 +331,6 @@ const CountyWidget = withHeader((props) => {
   return (
     <>
       <USInfoTopWidget
-        casesData={casesData}
         county={county}
         state={state}
         selectedTab={"county"}
@@ -395,7 +394,6 @@ const StateWidget = withHeader((props) => {
   return (
     <>
       <USInfoTopWidget
-        casesData={casesData}
         county={county}
         state={state}
         selectedTab={"state"}

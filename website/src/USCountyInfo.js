@@ -229,7 +229,7 @@ function casesForStateSummary(state_short_name) {
     return casesSummary(casesForState(state_short_name));
 }
 
-function casesForUS(state_short_name) {
+function casesForUS() {
     return CasesData;
 }
 
