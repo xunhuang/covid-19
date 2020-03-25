@@ -130,30 +130,20 @@ function getAllStatesSummary(cases) {
 
 function getCountySummary1() {
     let map = ConfirmedData2.reduce((m, a) => {
-        let key = makeCountyKey(
-            a["State"],
-            a["County Name"],
-        );
-        if (a["County Name"] === "Statewide Unallocated") {
-            key = makeCountyKey(
-                a["State"],
-                "Unassigned",
-            );
+        let state = a.State;
+        let county = a["County Name"];
+        let c = getCombinedData(state, county);
+
+        if (!c) {
+            console.log("************* " + state + " " + county);
         }
-        if (a["State"] === "NY" && a["County Name"] === "New York City") {
-            key = makeCountyKey(
-                "NY",
-                "New York City County"
-            );
-        }
-        let c = getCombinedDataForKey(key);
-        let county = a["County Name"].replace(" County", "");
+
         m.push({
             total: c[todaykey].confirmed,
             county: county,
             County: county,
-            state_name: a["State"],
-            State_name: a["State"],
+            state_name: state,
+            State_name: state,
         });
         return m;
     }, []);
@@ -387,16 +377,37 @@ const CombinedDataMap = computeCombinedMap();
 
 function pad(n) { return n < 10 ? '0' + n : n }
 
+// Input
+//     (state, county)
+//     state: short name , like NY
+//     county: regualar name, no " County" in the end, this function takes care of that
+// 
+// special handling 
+//      "Statewide Unallocated" maps to "Unassigned"
+//
 function getCombinedData(state_short_name, county_name) {
     if (state_short_name === "NY" && county_name === "New York") {
         county_name = "New York City"
     }
+    if (county_name.endsWith(" County")) {
+        county_name = county_name.replace(/ County$/g, "");
+    }
+
     let key = makeCountyKey(state_short_name, county_name + " County");
     if (county_name === "Statewide Unallocated") {
         key = makeCountyKey(state_short_name, "Unassigned");
+        console.log(CombinedDataMap)
     }
+    let result = getCombinedDataForKey(key);
+    if (!result) {
+        result = getCombinedDataForKey(key.replace(/ County$/g, ""));
+    }
+    return result;
+}
 
-    return CombinedDataMap[key];
+function getCombinedDataForKey(k) {
+    console.log("KEY IS:" + k)
+    return CombinedDataMap[k];
 }
 
 function getCountyData(state_short_name, county_name) {
@@ -404,23 +415,6 @@ function getCountyData(state_short_name, county_name) {
 }
 
 function getCountyDataForGrapth(state_short_name, county_name) {
-    /*
-    if (state_short_name === "NY" && county_name === "New York") {
-        county_name = "New York City";
-    }
-    if (county_name === "Statewide Unallocated") {
-        county_name = makeCountyKey(
-            state_short_name,
-            "Unassigned",
-        );
-    }
-    let key = makeCountyKey(state_short_name, county_name + " County");
-    if (county_name === "Unassigned") {
-        key = makeCountyKey(state_short_name, county_name);
-    }
-    return CombinedDataMap[key];
-    */
-    console.log("gettinng graph")
     return getCombinedData(state_short_name, county_name);
 }
 
@@ -432,15 +426,12 @@ function getCountyDataForGraphWithNearby(state_short_name, county_name) {
     return getDataForGrapthForCountyKeys(counties_keys)
 }
 
-function getCombinedDataForKey(k) {
-    return CombinedDataMap[k];
-}
 
 function getStateDataForGrapth(state_short_name) {
     let counties_keys = Object.keys(CombinedDataMap).filter(k => k.startsWith(state_short_name));
     return getDataForGrapthForCountyKeys(counties_keys)
 }
-        
+
 function getDataForGrapthForCountyKeys(counties_keys) {
     let result = {};
 
