@@ -1,7 +1,6 @@
 import React from 'react';
 import { Switch, Route, withRouter } from 'react-router-dom'
 import { BrowserRouter } from 'react-router-dom';
-import { GoogleMap, Marker, LoadScript } from '@react-google-maps/api'
 import { countyModuleInit } from "./USCountyInfo.js";
 import * as USCounty from "./USCountyInfo.js";
 import { Splash } from './Splash.js';
@@ -11,7 +10,6 @@ import { GraphUSTesting, GraphStateTesting } from "./GraphTestingEffort"
 import { withHeader } from "./Header.js"
 import { MyTabs } from "./MyTabs.js"
 import { USInfoTopWidget } from './USInfoTopWidget.js'
-import { EntireUSDetailCaseListWidget, CountyDetailCaseList, StateDetailCaseListWidget } from './DetailCaseLists'
 import { GraphUSHospitalization, GraphStateHospitalization } from './GraphHospitalization.js'
 import { CountyHospitalsWidget } from "./Hospitals"
 
@@ -25,8 +23,6 @@ const firebaseConfig = require('./firebaseConfig.json');
 firebase.initializeApp(firebaseConfig);
 
 const logger = firebase.analytics();
-var Hospitals = require('./hospitals.json');
-
 var ApproxIPLocation;
 
 async function fetchCounty() {
@@ -154,44 +150,6 @@ const GraphSectionCounty = withRouter((props) => {
   return graphlistSection;
 });
 
-const BasicMap = (props) => {
-  const center = {
-    lat: 44.58,
-    lng: -96.451580,
-  }
-
-  let hospitals = Hospitals.features.map(a => {
-    return <Marker position={{
-      lat: a.geometry.coordinates[1],
-      lng: a.geometry.coordinates[0],
-    }}
-      title={a.properties.NAME}
-    />;
-  })
-
-  return <div className='map'>
-    <div className='map-container'>
-      <LoadScript
-        id="script-loader"
-        googleMapsApiKey={firebaseConfig.apiKey}
-      >
-        <GoogleMap
-          id='traffic-example'
-          mapContainerStyle={{
-            height: "100vh",
-            width: "100%"
-          }}
-          zoom={4}
-          center={center}
-        >
-          <Marker position={center} />
-          {hospitals}
-        </GoogleMap>
-      </LoadScript>
-    </div>
-  </div>;
-}
-
 async function getCaseData() {
   let result = await firebase.functions().httpsCallable('datajsonShort')();
   return result;
@@ -278,7 +236,6 @@ const EntireUSWidget = withHeader((props) => {
         browseToState(props.history, newstate);
       }}
     ></AllStatesListWidget>,
-    <EntireUSDetailCaseListWidget />,
   ];
   return (
     <>
@@ -363,7 +320,6 @@ const CountyWidget = withHeader((props) => {
         }}
       />
       <MyTabs
-        // labels={["Nearby", "Case Details", "Hospitals"]}
         labels={["Nearby", "Hospitals"]}
         tabs={tabs}
       />
@@ -403,9 +359,6 @@ const StateWidget = withHeader((props) => {
         browseTo(props.history, newstate, newcounty);
       }}
     />,
-    <StateDetailCaseListWidget
-      state={state}
-    />,
   ];
 
   return (
@@ -426,7 +379,6 @@ const StateWidget = withHeader((props) => {
         }}
       />
       <MyTabs
-        // labels={[`Counties of ${states.getStateNameByStateCode(state)} `, "Case Details"]}
         labels={[`Counties of ${states.getStateNameByStateCode(state)} `]}
         tabs={tabs}
       />
