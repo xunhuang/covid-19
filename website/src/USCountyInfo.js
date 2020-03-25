@@ -151,7 +151,6 @@ function getCountySummary1() {
         });
         return m;
     }, []);
-    console.log(map);
     return map;
 }
 

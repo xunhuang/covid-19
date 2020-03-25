@@ -51,6 +51,8 @@ async function fetchCounty() {
       }
     })
     .catch(err => {
+      console.log("location error.. what the heck!")
+      console.log(err);
       return {
         county: "Santa Clara",
         state: "CA",
@@ -137,7 +139,6 @@ const GraphSectionCounty = withRouter((props) => {
 
   let graphdata = USCounty.getCountyDataForGrapth(state, county);
   let readyForGraph = dataMapToGraphSeries(graphdata);
-  console.log(readyForGraph);
 
   const tabs = [
     <BasicGraphNewCases data={readyForGraph} logScale={false} />,
@@ -176,8 +177,8 @@ function browseToState(history, state) {
 }
 
 const MainApp = withRouter((props) => {
-  const [county, setCounty] = React.useState("Santa Clara");
-  const [state, setState] = React.useState("CA");
+  const [county, setCounty] = React.useState(null);
+  const [state, setState] = React.useState(null);
   const [casesData, setCaseData] = React.useState(true);
   React.useEffect(() => {
     getCaseData().then(abc => {

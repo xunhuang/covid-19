@@ -12,7 +12,6 @@ import Hidden from '@material-ui/core/Hidden';
 import { ThemeProvider } from '@material-ui/core'
 import { createMuiTheme } from '@material-ui/core/styles';
 
-
 const compact = createMuiTheme({
     overrides: {
         MuiTableCell: {
@@ -23,7 +22,6 @@ const compact = createMuiTheme({
         },
     },
 });
-
 
 const states = require('us-state-codes');
 
@@ -191,9 +189,6 @@ const CountyListRender = (props) => {
                 {
                     list.map(row => {
                         let sum = USCounty.casesForCountySummary(row.State, row.County);
-                        console.log(row.State);
-                        console.log(row.County);
-                        console.log(sum);
                         let newcases = sum.newcases;
                         let confirmed = sum.confirmed;
                         let newpercent = sum.newpercent;
