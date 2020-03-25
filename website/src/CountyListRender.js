@@ -204,7 +204,7 @@ const CountyListRender = (props) => {
                         let population = myToNumber(row.Population2010);
                         // hard coding a special here for NYC because 
                         // all 5 boroughs are lumped together. terrible hack
-                        if (row.State === "NY" && row.County === "New York") {
+                        if (row.State === "NY" && (row.County === "New York City" || row.County === "New York")) {
                             population = 8500000;
                         }
                         return <TableRow key={row.County}>
