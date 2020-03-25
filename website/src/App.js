@@ -333,7 +333,6 @@ function getDefaultCountyForState(state, county) {
     return county;
   }
   let county_info = CookieGetLastCounty();
-  console.log(county_info);
   if (county_info) {
     if (county_info.state === state) {
       return county_info.county;
@@ -341,7 +340,12 @@ function getDefaultCountyForState(state, county) {
   }
 
   // cookie county not match, return the top county
-  return USCounty.countyDataForState(state)[0].County;
+  let counties = USCounty.countyDataForState(state).sort((a, b) => b.total - a.total);
+  let topcounty = counties[0].County;
+  if (topcounty === "Statewide Unallocated") {
+    topcounty = counties[1].County;
+  }
+  return topcounty;
 }
 
 const StateWidget = withHeader((props) => {
