@@ -197,12 +197,25 @@ const CountyListRender = (props) => {
                         if (newcases === 0) {
                             newEntry = 0;
                         }
+
                         let population = myToNumber(row.Population2010);
                         // hard coding a special here for NYC because 
                         // all 5 boroughs are lumped together. terrible hack
                         if (row.State === "NY" && (row.County === "New York City" || row.County === "New York")) {
                             population = 8500000;
                         }
+
+                        let partsPerMil = (confirmed * 1000000 / population).toFixed(0);
+
+                        if (row.County === "Statewide Unallocated") {
+                            population = 0;
+                            newEntry = newcases;
+                        }
+
+                        if (!isFinite(partsPerMil)) {
+                            partsPerMil = "-";
+                        }
+
                         return <TableRow key={row.County}>
                             <Hidden xsDown>  {/* desktop layout*/}
                                 <TableCell component="th" scope="row" onClick={() => { clicked(row.County, row.State); }}>
@@ -211,7 +224,7 @@ const CountyListRender = (props) => {
                                 <TableCell align="center">{confirmed}</TableCell>
                                 <TableCell align="center"> {newEntry} </TableCell>
                                 <TableCell align="center">{myShortNumber(population)}</TableCell>
-                                <TableCell align="center">{(confirmed * 1000000 / population).toFixed(1)}</TableCell>
+                                <TableCell align="center">{partsPerMil}</TableCell>
                             </Hidden>
                             <Hidden smUp>  {/* mobile layout*/}
                                 <ThemeProvider theme={compact}>
@@ -221,7 +234,7 @@ const CountyListRender = (props) => {
                                     <TableCell align="center">{confirmed}</TableCell>
                                     <TableCell align="center"> {newEntry} </TableCell>
                                     <TableCell align="center">{myShortNumber(population)}</TableCell>
-                                    <TableCell align="center">{(confirmed * 1000000 / population).toFixed(0)}</TableCell>
+                                    <TableCell align="center">{partsPerMil}</TableCell>
                                 </ThemeProvider>
                             </Hidden>
                         </TableRow>;

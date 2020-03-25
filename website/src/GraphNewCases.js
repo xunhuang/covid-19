@@ -166,14 +166,16 @@ const BasicGraphNewCases = (props) => {
         return d;
     });
 
-    const showPlusNearby = typeof(props.onPlusNearby) !== 'undefined';
+    // const showPlusNearby = typeof(props.onPlusNearby) !== 'undefined';
+    const showPlusNearby = false;
+
     let plusNearbyDiv = <></>;
     if (showPlusNearby) {
         plusNearbyDiv = <><Grid item></Grid>
-          <Grid item>
-            <AntSwitch checked={state.plusNearby} onClick={handlePlusNearbyToggle} />
-          </Grid>
-        <Grid item onClick={handlePlusNearbyToggle}>+Nearby</Grid></>;
+            <Grid item>
+                <AntSwitch checked={state.plusNearby} onClick={handlePlusNearbyToggle} />
+            </Grid>
+            <Grid item onClick={handlePlusNearbyToggle}>+Nearby</Grid></>;
     }
 
     let newdata = [];
