@@ -7,7 +7,23 @@ import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
-import { myShortNumber } from "./Util.js";
+import { myShortNumber, myToNumber } from "./Util.js";
+import Hidden from '@material-ui/core/Hidden';
+import { ThemeProvider } from '@material-ui/core'
+import { createMuiTheme } from '@material-ui/core/styles';
+
+
+const compact = createMuiTheme({
+    overrides: {
+        MuiTableCell: {
+            sizeSmall: {  //This can be referred from Material UI API documentation. 
+                padding: '1px 1px 1px 1px',
+                // backgroundColor: "#eaeaea",
+            },
+        },
+    },
+});
+
 
 const states = require('us-state-codes');
 
@@ -76,10 +92,22 @@ const AllStateListRender = (props) => {
         <Table className={classes.table} size="small" aria-label="simple table">
             <TableHead>
                 <TableRow>
-                    <TableCell > Name</TableCell>
-                    <TableCell align="center">Total</TableCell>
-                    <TableCell align="center">New</TableCell>
-                    <TableCell align="center">Population</TableCell>
+                    <Hidden xsDown>  {/* desktop layout*/}
+                        <TableCell > Name</TableCell>
+                        <TableCell align="center">Total</TableCell>
+                        <TableCell align="center">New</TableCell>
+                        <TableCell align="center">Population</TableCell>
+                        <TableCell align="center">Cases Per Million</TableCell>
+                    </Hidden>
+                    <Hidden smUp>  {/* mobile layout*/}
+                        <ThemeProvider theme={compact}>
+                            <TableCell > Name</TableCell>
+                            <TableCell align="center">Total</TableCell>
+                            <TableCell align="center">New</TableCell>
+                            <TableCell align="center">Pop</TableCell>
+                            <TableCell align="center">Cases/Mil</TableCell>
+                        </ThemeProvider>
+                    </Hidden>
                 </TableRow>
             </TableHead>
             <TableBody>
@@ -88,7 +116,7 @@ const AllStateListRender = (props) => {
                         let newcases = row.newcases;
                         let confirmed = row.confirmed;
                         let newpercent = row.newpercent;
-                        let newEntry = (Number.isNaN(newpercent)) ? newcases : `${newcases}(+${newpercent}%)`;
+                        let newEntry = (Number.isNaN(newpercent) || isFinite(newpercent)) ? newcases : `${newcases}(+${newpercent}%)`;
                         if (newcases === 0) {
                             newEntry = 0;
                         }
@@ -96,21 +124,38 @@ const AllStateListRender = (props) => {
                         if (!statename) {
                             statename = row.state;
                         }
-                        let pop = row.Population2010 ? row.Population2010 : 0;
+                        let pop = myToNumber(row.Population2010);
                         return <TableRow key={statename}>
-                            <TableCell component="th" scope="row" onClick={() => {
-                                props.callback(row.state)
-                            }}>
-                                {statename}
-                            </TableCell>
-                            <TableCell align="center">{confirmed}</TableCell>
-                            <TableCell align="center"> {newEntry} </TableCell>
-                            <TableCell align="center">{myShortNumber(pop)}</TableCell>
+                            <Hidden xsDown>  {/* desktop layout*/}
+                                <TableCell component="th" scope="row" onClick={() => {
+                                    props.callback(row.state)
+                                }}>
+                                    {statename}
+                                </TableCell>
+                                <TableCell align="center">{confirmed}</TableCell>
+                                <TableCell align="center"> {newEntry} </TableCell>
+                                <TableCell align="center">{myShortNumber(pop)}</TableCell>
+                                <TableCell align="center">{(confirmed * 1000000 / pop).toFixed(1)}</TableCell>
+                            </Hidden>
+                            <Hidden smUp>  {/* mobile layout*/}
+                                <ThemeProvider theme={compact}>
+
+                                    <TableCell component="th" scope="row" onClick={() => {
+                                        props.callback(row.state)
+                                    }}>
+                                        {statename}
+                                    </TableCell>
+                                    <TableCell align="center">{confirmed}</TableCell>
+                                    <TableCell align="center"> {newEntry} </TableCell>
+                                    <TableCell align="center">{myShortNumber(pop)}</TableCell>
+                                    <TableCell align="center">{(confirmed * 1000000 / pop).toFixed(0)}</TableCell>
+                                </ThemeProvider>
+                            </Hidden>
                         </TableRow>;
                     })
                 }
             </TableBody>
-        </Table>;
+        </Table>
     return countySummary;
 };
 
@@ -126,10 +171,20 @@ const CountyListRender = (props) => {
         <Table className={classes.table} size="small" aria-label="simple table">
             <TableHead>
                 <TableRow>
-                    <TableCell > Name</TableCell>
-                    <TableCell align="center">Total</TableCell>
-                    <TableCell align="center">New</TableCell>
-                    <TableCell align="center">Population</TableCell>
+                    <Hidden xsDown>  {/* desktop layout*/}
+                        <TableCell > Name</TableCell>
+                        <TableCell align="center">Total</TableCell>
+                        <TableCell align="center">New</TableCell>
+                        <TableCell align="center">Population</TableCell>
+                        <TableCell align="center">Cases Per Million</TableCell>
+                    </Hidden>
+                    <Hidden smUp>  {/* mobile layout*/}
+                        <TableCell > Name</TableCell>
+                        <TableCell align="center">Total</TableCell>
+                        <TableCell align="center">New</TableCell>
+                        <TableCell align="center">Pop.</TableCell>
+                        <TableCell align="center">Cases/Mil</TableCell>
+                    </Hidden>
                 </TableRow>
             </TableHead>
             <TableBody>
@@ -139,28 +194,43 @@ const CountyListRender = (props) => {
                         let newcases = sum.newcases;
                         let confirmed = sum.confirmed;
                         let newpercent = sum.newpercent;
-                        let newEntry = (Number.isNaN(newpercent)) ? newcases : `${newcases}(+${newpercent}%)`;
+                        let newEntry = (Number.isNaN(newpercent) || !isFinite(newpercent)) ? newcases : `${newcases}(+${newpercent}%)`;
                         if (newcases === 0) {
                             newEntry = 0;
                         }
-                        let population = row.Population2010;
+                        let population = myToNumber(row.Population2010);
                         // hard coding a special here for NYC because 
                         // all 5 boroughs are lumped together. terrible hack
                         if (row.State === "NY" && row.County === "New York") {
                             population = 8500000;
                         }
                         return <TableRow key={row.County}>
-                            <TableCell component="th" scope="row" onClick={() => { clicked(row.County, row.State); }}>
-                                {row.County}
-                            </TableCell>
-                            <TableCell align="center">{confirmed}</TableCell>
-                            <TableCell align="center"> {newEntry} </TableCell>
-                            <TableCell align="center">{myShortNumber(population)}</TableCell>
+                            <Hidden xsDown>  {/* desktop layout*/}
+                                <TableCell component="th" scope="row" onClick={() => { clicked(row.County, row.State); }}>
+                                    {row.County}
+                                </TableCell>
+                                <TableCell align="center">{confirmed}</TableCell>
+                                <TableCell align="center"> {newEntry} </TableCell>
+                                <TableCell align="center">{myShortNumber(population)}</TableCell>
+                                <TableCell align="center">{(confirmed * 1000000 / population).toFixed(1)}</TableCell>
+                            </Hidden>
+                            <Hidden smUp>  {/* mobile layout*/}
+                                <ThemeProvider theme={compact}>
+                                    <TableCell component="th" scope="row" onClick={() => { clicked(row.County, row.State); }}>
+                                        {row.County}
+                                    </TableCell>
+                                    <TableCell align="center">{confirmed}</TableCell>
+                                    <TableCell align="center"> {newEntry} </TableCell>
+                                    <TableCell align="center">{myShortNumber(population)}</TableCell>
+                                    <TableCell align="center">{(confirmed * 1000000 / population).toFixed(0)}</TableCell>
+                                </ThemeProvider>
+                            </Hidden>
                         </TableRow>;
                     })
                 }
             </TableBody>
-        </Table>;
+        </Table >
+
     return countySummary;
 }
 

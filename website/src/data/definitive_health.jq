@@ -21,4 +21,4 @@
    NUM_LICENSED_BEDS:[.[] |select (.NUM_LICENSED_BEDS > 0) ] | map(.NUM_LICENSED_BEDS) |add,
    NUM_STAFFED_BEDS:[.[] |select (.NUM_STAFFED_BEDS > 0) ] | map(.NUM_STAFFED_BEDS) |add
   }
-] | INDEX(.COUNTY_FLIPS)
+] 

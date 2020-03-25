@@ -1,9 +1,9 @@
 import React from 'react';
 import * as USCounty from "./USCountyInfo.js";
-import { DataCreditWidget } from "./DataCredit.js"
 import Select from 'react-select';
 import Disqus from "disqus-react"
 import Typography from '@material-ui/core/Typography'
+import { makeStyles } from '@material-ui/core/styles';
 
 function browseTo(history, state, county) {
     history.push(
@@ -11,6 +11,18 @@ function browseTo(history, state, county) {
         history.search,
     );
 }
+
+const useStyles = makeStyles(theme => ({
+    qpContainer: {
+        display: 'block',
+        // color: '#FFFFFF',
+        background: '#e3e3e3',
+        borderWidth: "1px",
+        padding: 15,
+        margin: 15,
+        // borderRadius: 20,
+    },
+}));
 
 const SearchBox = (props) => {
 
@@ -25,6 +37,9 @@ const SearchBox = (props) => {
     return <Select
         className="basic-single"
         classNamePrefix="select"
+        styles={{
+            menu: provided => ({ ...provided, zIndex: 9999 })
+        }}
         defaultValue={""}
         placeholder={"Search for a County"}
         isDisabled={false}
@@ -48,24 +63,18 @@ const withHeader = (comp, props) => {
 
     const disqusShortname = "covid19direct";
     const disqusConfig = {
-        url: "https://covid-19.direct", //this.props.pageUrl
-        identifier: "article-id", //this.props.uniqueId
-        title: "main page" //this.props.title
+        url: "https://covid-19.direct",
+        identifier: "article-id",
+        title: "main page"
     };
 
     return (props) => {
+        const classes = useStyles();
         let casesData = USCounty.casesForUS();
-        let header = <header className="App-header">
-            <h2>COVID-19.direct: US Counties</h2>
-            <SearchBox
-                casesData={casesData}
-                callback={(newcounty, newstate) => {
-                    browseTo(props.history, newstate, newcounty);
-                }}
-            />
-        </header>
-
-        // let footer = <DataCreditWidget />;
+        let component = comp({
+            // add addition things here
+            ...props,
+        });
         let footer = <div>
             <Typography variant="h5" noWrap>
                 Discussions
@@ -74,19 +83,31 @@ const withHeader = (comp, props) => {
                 shortname={disqusShortname}
                 config={disqusConfig}
             />
-            <DataCreditWidget />
         </div>;
 
-        let component = comp({
-            // add addition things here
-            ...props,
-        });
-        return (
-            <div>
-                {header}
-                {component}
-                {footer}
-            </div >);
+        let header = <header className="App-header">
+            <Typography variant="h5" >
+                COVID-19.direct
+            </Typography>
+            <SearchBox
+                casesData={casesData}
+                callback={(newcounty, newstate) => {
+                    browseTo(props.history, newstate, newcounty);
+                }}
+            />
+
+            <div className={classes.qpContainer}>
+                <Typography variant="body1" >
+                    Data Source changed. Please report errors in discussion section.
+            </Typography>
+
+            </div>
+
+            {component}
+            {footer}
+        </header>
+
+        return header;
     }
 };
 

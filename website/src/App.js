@@ -2,78 +2,30 @@ import React from 'react';
 import { Switch, Route, withRouter } from 'react-router-dom'
 import { BrowserRouter } from 'react-router-dom';
 import { GoogleMap, Marker, LoadScript } from '@react-google-maps/api'
-import { makeStyles } from '@material-ui/core/styles';
-import { countyModuleInit, lookupCountyInfo } from "./USCountyInfo.js";
+import { countyModuleInit } from "./USCountyInfo.js";
 import * as USCounty from "./USCountyInfo.js";
-import { myShortNumber } from "./Util.js";
 import { Splash } from './Splash.js';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
 import { NearbyCounties, CountiesForStateWidget, AllStatesListWidget } from "./CountyListRender.js"
 import { BasicGraphNewCases } from "./GraphNewCases.js"
 import { GraphUSTesting, GraphStateTesting } from "./GraphTestingEffort"
 import { withHeader } from "./Header.js"
 import { MyTabs } from "./MyTabs.js"
+import { USInfoTopWidget } from './USInfoTopWidget.js'
+import { EntireUSDetailCaseListWidget, CountyDetailCaseList, StateDetailCaseListWidget } from './DetailCaseLists'
+import { GraphUSHospitalization, GraphStateHospitalization } from './GraphHospitalization.js'
+import { CountyHospitalsWidget } from "./Hospitals"
 
 const states = require('us-state-codes');
 const Cookies = require("js-cookie");
 const superagent = require("superagent");
-const moment = require("moment");
 const firebase = require("firebase");
 
 require("firebase/firestore");
 const firebaseConfig = require('./firebaseConfig.json');
 firebase.initializeApp(firebaseConfig);
 
-const db = firebase.firestore();
 const logger = firebase.analytics();
 var Hospitals = require('./hospitals.json');
-
-const useStyles = makeStyles(theme => ({
-  row: {
-    padding: theme.spacing(1, 1),
-    justifyContent: "space-between",
-    display: "flex",
-  },
-  tag: {
-    display: "inline-block",
-    textAlign: "center",
-    backgroundColor: "#f3f3f3",
-    borderRadius: 10,
-    flex: 1,
-    margin: 3,
-  },
-  tagSelected: {
-    display: "inline-block",
-    textAlign: "center",
-    color: "#FFFFFF",
-    backgroundColor: "#00aeef",
-    borderRadius: 10,
-    flex: 1,
-    margin: 3,
-  },
-  tagTitle: {
-    marginTop: 5,
-  },
-  topTag: {
-    fontSize: "0.55rem",
-  },
-  smallTag: {
-    fontSize: "0.6rem",
-  },
-  mainTag: {
-    fontSize: "1.3rem",
-  },
-  grow: {
-    flexGrow: 1,
-  },
-  table: {
-    width: "100%"
-  },
-}));
 
 var ApproxIPLocation;
 
@@ -110,7 +62,7 @@ async function fetchCounty() {
     });
 
   Cookies.set("covidLocation", county_info, {
-    expires: 7  // 7 day, people are not supposed to be moving anyways
+    expires: 90  // 7 day, people are not supposed to be moving anyways
   });
 
   return county_info;
@@ -136,144 +88,74 @@ async function fetchApproxIPLocation() {
     });
 }
 
-const USCountyInfoWidget = withRouter((props) => {
-  const classes = useStyles();
-  const value = props.state ? (props.county ? 0 : 1) : 2;
-  const [tabvalue, setTabvalue] = React.useState(0);
+const GraphSectionUS = withRouter((props) => {
+  let graphdata = USCounty.getUSDataForGrapth();
+  let readyForGraph = dataMapToGraphSeries(graphdata);
 
-  const state = props.state ? props.state : "CA";
-  const county = props.county ? props.county : USCounty.countyDataForState(state)[0].County;
-
-  let state_title = states.getStateNameByStateCode(state);
-  let county_title = county;
-  let US_title = "US";
-
-  const handleChange = (event, newValue) => {
-    setTabvalue(newValue);
-  }
-
-  let countyInfo = lookupCountyInfo(state, county);
-  if (!countyInfo) {
-    countyInfo = {
-      HospitalBeds: "N/A",
-      Hospitals: "N/A",
-    }
-  }
-
-  let county_cases = USCounty.casesForCounty(state, county);
-  let state_mycases = USCounty.casesForState(state);
-  let state_summary = USCounty.casesForStateSummary(state);
-  let county_summary = USCounty.casesForCountySummary(state, county);
-  let us_summary = USCounty.casesSummary(props.casesData);
-  let state_hospitals = USCounty.hospitalsForState(state);
-  let graphlistSection;
-
-  if (value === 0) {
-
-    const tabs = [
-      <BasicGraphNewCases casesData={county_cases} />,
-      <GraphStateTesting state={state} />,
-    ]
-    graphlistSection = <MyTabs
-      labels={["Confirmed Cases", `${state_title} Testing`]}
-      tabs={tabs}
-    />;
-  }
-  if (value === 1) {
-    const tabs = [
-      <BasicGraphNewCases casesData={state_mycases} />,
-      <GraphStateTesting state={state} />,
-    ]
-    graphlistSection = <MyTabs
-      labels={["Confirmed Cases", `${state_title} Testing`]}
-      tabs={tabs}
-    />;
-  }
-  if (value === 2) {
-    const tabs = [
-      <BasicGraphNewCases casesData={props.casesData} />,
-      <GraphUSTesting />,
-    ]
-    graphlistSection = <MyTabs
-      labels={["Confirmed Cases", `National Testing`]}
-      tabs={tabs}
-    />;
-
-  }
-
-  return <div>
-    <div className={classes.row} >
-      <Tag
-        title={county_title}
-        confirmed={county_summary.confirmed}
-        newcases={county_summary.newcases}
-        hospitals={countyInfo.Hospitals}
-        beds={countyInfo.HospitalBeds}
-        selected={value === 0}
-        callback={() => {
-          browseTo(props.history, state, county);
-        }}
-      />
-      <Tag title={state_title}
-        confirmed={state_summary.confirmed}
-        newcases={state_summary.newcases}
-        hospitals={state_hospitals.hospitals}
-        beds={state_hospitals.beds}
-        selected={value === 1}
-        callback={() => {
-          browseToState(props.history, state);
-        }}
-      />
-      <Tag
-        title={US_title}
-        confirmed={us_summary.confirmed}
-        newcases={us_summary.newcases}
-        hospitals={6146}
-        beds={924107}
-        selected={value === 2}
-        callback={() => {
-          browseToUSPage(props.history);
-        }}
-      />
-    </div>
-    <div>
-      {graphlistSection}
-    </div>
-  </div >;
+  const tabs = [
+    <BasicGraphNewCases data={readyForGraph} casesData={props.casesData} logScale={false} />,
+    <GraphUSTesting />,
+    <GraphUSHospitalization />,
+  ]
+  let graphlistSection = <MyTabs
+    labels={["Cases", `USA Testing`, "Hospitalization"]}
+    tabs={tabs}
+  />;
+  return graphlistSection;
 });
 
-const Tag = (props) => {
-  const classes = useStyles();
-  return <div className={props.selected ? classes.tagSelected : classes.tag}
-    onClick={() => {
-      if (props.callback) {
-        props.callback();
-      }
-    }}
-  >
-    <div className={classes.tagTitle}> {props.title} </div>
-    <div className={classes.row} >
-      <section>
-        <div className={classes.topTag}>
-          +{myShortNumber(props.newcases)}
-        </div>
-        <div className={classes.mainTag}>
-          {myShortNumber(props.confirmed)} </div>
-        <div className={classes.smallTag}>
-          Confirmed </div>
-      </section>
-      <section>
-        <div className={classes.topTag}>
-          {myShortNumber(props.beds)} Beds
-          </div>
-        <div className={classes.mainTag}>
-          {myShortNumber(props.hospitals)} </div>
-        <div className={classes.smallTag}>
-          Hospitals </div>
-      </section>
-    </div>
-  </div >;
-};
+const GraphSectionState = withRouter((props) => {
+  const state = props.state;
+  let state_title = states.getStateNameByStateCode(state);
+  let state_mycases = USCounty.casesForState(state);
+  let useLogScale = false;
+
+  let graphdata = USCounty.getStateDataForGrapth(state);
+  let readyForGraph = dataMapToGraphSeries(graphdata);
+
+  const tabs = [
+    <BasicGraphNewCases data={readyForGraph} casesData={state_mycases} logScale={useLogScale} />,
+    <GraphStateTesting state={state} />,
+    <GraphStateHospitalization state={state} />,
+  ]
+  let graphlistSection = <MyTabs
+    labels={["Cases", `${state_title} Testing`, "Hospitalization"]}
+    tabs={tabs}
+  />;
+  return graphlistSection;
+});
+
+function dataMapToGraphSeries(g) {
+  let arr = [];
+
+  for (let i in g) {
+    let entry = g[i];
+    entry.fulldate = i;
+    arr.push(entry);
+  }
+  return arr;
+}
+
+const GraphSectionCounty = withRouter((props) => {
+  const state = props.state;
+  const county = props.county;
+  let state_title = states.getStateNameByStateCode(state);
+  let county_cases = USCounty.casesForCounty(state, county);
+
+  let graphdata = USCounty.getCountyDataForGrapth(state, county);
+  let readyForGraph = dataMapToGraphSeries(graphdata);
+  console.log(readyForGraph);
+
+  const tabs = [
+    <BasicGraphNewCases data={readyForGraph} casesData={county_cases} logScale={false} />,
+    <GraphStateTesting state={state} />,
+  ]
+  let graphlistSection = <MyTabs
+    labels={["Confirmed Cases", `${state_title} Testing`]}
+    tabs={tabs}
+  />;
+  return graphlistSection;
+});
 
 const BasicMap = (props) => {
   const center = {
@@ -314,63 +196,10 @@ const BasicMap = (props) => {
 }
 
 async function getCaseData() {
-  let result = await firebase.functions().httpsCallable('datajsonNew')();
+  // let result = await firebase.functions().httpsCallable('datajsonNew')();
+  let result = await firebase.functions().httpsCallable('datajsonShort')();
   return result;
 }
-
-const DetailCaseList = (props) => {
-  let countyInfo = lookupCountyInfo(props.state, props.county);
-  let county_cases = USCounty.casesForCounty(props.state, props.county).sort(sort_by_date);
-  let countySummary = <div />;
-  if (countyInfo) {
-    countySummary = <DetailCaseListWidget cases={county_cases} />;
-  }
-  return countySummary;
-}
-
-function sort_by_date(a, b) {
-  return moment(b.fulldate).toDate() - moment(a.fulldate).toDate();
-};
-
-const StateDetailCaseListWidget = (props) => {
-  let state_cases = USCounty.casesForState(props.state).sort(sort_by_date);
-  let countySummary = <DetailCaseListWidget cases={state_cases} />;
-  return countySummary;
-}
-const EntireUSDetailCaseListWidget = (props) => {
-  let state_cases = USCounty.casesForUS().sort(sort_by_date);
-  let countySummary =
-    <DetailCaseListWidget cases={state_cases} />
-  return countySummary;
-}
-
-const DetailCaseListWidget = (props) => {
-  const classes = useStyles();
-  const cases = props.cases;
-  let list =
-    <Table className={classes.table} size="small" aria-label="simple table">
-      <TableHead>
-        <TableRow>
-          <TableCell > Date</TableCell>
-          <TableCell align="center">Count</TableCell>
-          <TableCell align="left">Detail</TableCell>
-        </TableRow>
-      </TableHead>
-      <TableBody>
-        {cases.map(row => (
-          <TableRow key={row.id}>
-            <TableCell component="th" scope="row">
-              {row.confirmed_date}
-            </TableCell>
-            <TableCell align="center">{row.people_count}</TableCell>
-            <TableCell align="left">{row.comments_en}</TableCell>
-          </TableRow>
-        ))}
-      </TableBody>
-    </Table >
-  return list;
-}
-
 
 const App = (props) => {
   return <BrowserRouter>
@@ -388,13 +217,6 @@ function browseTo(history, state, county) {
 function browseToState(history, state) {
   history.push(
     "/state/" + encodeURIComponent(state),
-    history.search,
-  );
-}
-
-function browseToUSPage(history) {
-  history.push(
-    "/US",
     history.search,
   );
 }
@@ -417,6 +239,8 @@ const MainApp = withRouter((props) => {
       });
     });
   }, []);
+
+  // return <Splash />
   if (casesData === null || state === null) {
     return <Splash />
   }
@@ -428,16 +252,28 @@ const MainApp = withRouter((props) => {
     <div>
       <Switch>
         {/* <Route exact path='/' component={App2} /> */}
-        <Route exact path='/county/:state/:county' render={(props) => <CountyWidget {...props} casesData={casesData} />} />
-        <Route exact path='/state/:state' render={(props) => <StateWidget {...props} casesData={casesData} />} />
-        <Route exact path='/US' render={(props) => <EntireUSWidget {...props} casesData={casesData} />} />
+        <Route exact path='/county/:state/:county' render={(props) => <CountyWidget {...props} casesData={casesData} state={state} county={county} />} />
+        <Route exact path='/state/:state' render={(props) => <StateWidget {...props} casesData={casesData} state={state} county={county} />} />
+        <Route exact path='/US' render={(props) => <EntireUSWidget {...props} casesData={casesData} state={state} county={county} />} />
       </Switch>
     </div>
   );
 });
 
+function getDefaultCounty() {
+  let county_info = CookieGetLastCounty();
+  if (county_info) {
+    return county_info;
+  }
+  return {
+    county: "Santa Clara",
+    state: "CA",
+  }
+}
 
 const EntireUSWidget = withHeader((props) => {
+  const default_county_info = getDefaultCounty();
+
   const casesData = props.casesData;
   const tabs = [
     <AllStatesListWidget
@@ -450,24 +286,52 @@ const EntireUSWidget = withHeader((props) => {
   ];
   return (
     <>
-      <USCountyInfoWidget
+      <USInfoTopWidget
+        casesData={casesData}
+        county={default_county_info.county}
+        state={default_county_info.state}
+        selectedTab={"usa"}
+        callback={(newcounty, newstate) => {
+          browseTo(props.history, newstate, newcounty);
+        }}
+      />
+      <GraphSectionUS
         casesData={casesData}
         callback={(newcounty, newstate) => {
           browseTo(props.history, newstate, newcounty);
         }}
       />
       <MyTabs
-        labels={["States of USA", "Case Details"]}
+        // labels={["States of USA", "Case Details"]}
+        labels={["States of USA"]}
         tabs={tabs}
       />
     </>
   );
 });
 
+function CookieSetLastCounty(state, county) {
+  let county_info = {
+    state: state,
+    county: county,
+  }
+
+  Cookies.set("LastCounty", county_info, {
+    expires: 7  // 7 day, people are not supposed to be moving anyways
+  });
+}
+
+function CookieGetLastCounty() {
+  let county_info = Cookies.getJSON("LastCounty");
+  return county_info;
+}
+
 const CountyWidget = withHeader((props) => {
   const state = props.match.params.state;
   const county = props.match.params.county;
   const casesData = props.casesData;
+
+  CookieSetLastCounty(state, county);
 
   const tabs = [
     <NearbyCounties
@@ -478,14 +342,23 @@ const CountyWidget = withHeader((props) => {
         browseTo(props.history, newstate, newcounty);
       }}
     />,
-    <DetailCaseList
+    <CountyHospitalsWidget
       county={county}
       state={state}
-    />,
+    >
+    </CountyHospitalsWidget >,
   ];
   return (
     <>
-      <USCountyInfoWidget
+      <USInfoTopWidget
+        county={county}
+        state={state}
+        selectedTab={"county"}
+        callback={(newcounty, newstate) => {
+          browseTo(props.history, newstate, newcounty);
+        }}
+      />
+      <GraphSectionCounty
         casesData={casesData}
         county={county}
         state={state}
@@ -494,16 +367,35 @@ const CountyWidget = withHeader((props) => {
         }}
       />
       <MyTabs
-        labels={["Nearby Counties", "Case Details"]}
+        // labels={["Nearby", "Case Details", "Hospitals"]}
+        labels={["Nearby", "Hospitals"]}
         tabs={tabs}
       />
     </>
   );
 });
 
+function getDefaultCountyForState(state, county) {
+  if (county) {
+    return county;
+  }
+  let county_info = CookieGetLastCounty();
+  console.log(county_info);
+  if (county_info) {
+    if (county_info.state === state) {
+      return county_info.county;
+    }
+  }
+
+  // cookie county not match, return the top county
+  return USCounty.countyDataForState(state)[0].County;
+}
+
 const StateWidget = withHeader((props) => {
   const state = props.match.params.state;
-  const county = props.match.params.county;
+  const county = getDefaultCountyForState(
+    props.match.params.state,
+    props.match.params.county);
   const casesData = props.casesData;
 
   const tabs = [
@@ -522,16 +414,24 @@ const StateWidget = withHeader((props) => {
 
   return (
     <>
-      <USCountyInfoWidget
-        casesData={casesData}
+      <USInfoTopWidget
         county={county}
+        state={state}
+        selectedTab={"state"}
+        callback={(newcounty, newstate) => {
+          browseTo(props.history, newstate, newcounty);
+        }}
+      />
+      <GraphSectionState
+        casesData={casesData}
         state={state}
         callback={(newcounty, newstate) => {
           browseTo(props.history, newstate, newcounty);
         }}
       />
       <MyTabs
-        labels={[`Counties of ${states.getStateNameByStateCode(state)} `, "Case Details"]}
+        // labels={[`Counties of ${states.getStateNameByStateCode(state)} `, "Case Details"]}
+        labels={[`Counties of ${states.getStateNameByStateCode(state)} `]}
         tabs={tabs}
       />
     </>);

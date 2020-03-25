@@ -1,153 +1,47 @@
 [
   {
-    "date": 20200304,
-    "states": 14,
-    "positive": 118,
-    "negative": 748,
-    "posNeg": 866,
-    "pending": 103,
-    "death": null,
-    "total": 969
-  },
-  {
-    "date": 20200305,
-    "states": 24,
-    "positive": 176,
-    "negative": 953,
-    "posNeg": 1129,
-    "pending": 197,
-    "death": null,
-    "total": 1326
-  },
-  {
-    "date": 20200306,
-    "states": 36,
-    "positive": 223,
-    "negative": 1571,
-    "posNeg": 1794,
-    "pending": 458,
-    "death": null,
-    "total": 2252
-  },
-  {
-    "date": 20200307,
-    "states": 51,
-    "positive": 341,
-    "negative": 1809,
-    "posNeg": 2150,
-    "pending": 602,
-    "death": null,
-    "total": 2752
-  },
-  {
-    "date": 20200308,
-    "states": 51,
-    "positive": 417,
-    "negative": 2335,
-    "posNeg": 2752,
-    "pending": 347,
-    "death": null,
-    "total": 3099
-  },
-  {
-    "date": 20200309,
-    "states": 51,
-    "positive": 584,
-    "negative": 3367,
-    "posNeg": 3951,
-    "pending": 313,
-    "death": null,
-    "total": 4264
-  },
-  {
-    "date": 20200310,
-    "states": 51,
-    "positive": 778,
-    "negative": 3807,
-    "posNeg": 4585,
-    "pending": 469,
-    "death": null,
-    "total": 5054
-  },
-  {
-    "date": 20200311,
-    "states": 51,
-    "positive": 1053,
-    "negative": 5978,
-    "posNeg": 7031,
-    "pending": 563,
-    "death": 27,
-    "total": 7617
-  },
-  {
-    "date": 20200312,
-    "states": 51,
-    "positive": 1315,
-    "negative": 7949,
-    "posNeg": 9264,
-    "pending": 673,
-    "death": 36,
-    "total": 9966
-  },
-  {
-    "date": 20200313,
-    "states": 51,
-    "positive": 1922,
-    "negative": 13613,
-    "posNeg": 15535,
-    "pending": 1130,
-    "death": 39,
-    "total": 16665
-  },
-  {
-    "date": 20200314,
-    "states": 51,
-    "positive": 2450,
-    "negative": 17102,
-    "posNeg": 19552,
-    "pending": 1236,
-    "death": 49,
-    "total": 20789
-  },
-  {
-    "date": 20200315,
-    "states": 51,
-    "positive": 3173,
-    "negative": 22548,
-    "posNeg": 25721,
-    "pending": 2242,
-    "death": 60,
-    "total": 27963
-  },
-  {
-    "date": 20200316,
+    "date": 20200323,
     "states": 56,
-    "positive": 4019,
-    "negative": 36104,
-    "posNeg": 40123,
-    "pending": 1691,
-    "death": 71,
-    "total": 41714
+    "positive": 42164,
+    "negative": 237321,
+    "posNeg": 279485,
+    "pending": 14571,
+    "hospitalized": 3325,
+    "death": 471,
+    "total": 294056
   },
   {
-    "date": 20200317,
+    "date": 20200322,
     "states": 56,
-    "positive": 5723,
-    "negative": 47604,
-    "posNeg": 53327,
-    "pending": 1687,
-    "death": 90,
-    "total": 54957
+    "positive": 31888,
+    "negative": 193463,
+    "posNeg": 225351,
+    "pending": 2842,
+    "hospitalized": 2554,
+    "death": 398,
+    "total": 228216
   },
   {
-    "date": 20200318,
+    "date": 20200321,
     "states": 56,
-    "positive": 7731,
-    "negative": 66225,
-    "posNeg": 73956,
-    "pending": 2538,
-    "death": 112,
-    "total": 76495
+    "positive": 23203,
+    "negative": 155909,
+    "posNeg": 179112,
+    "pending": 3477,
+    "hospitalized": 1964,
+    "death": 272,
+    "total": 182589
+  },
+  {
+    "date": 20200320,
+    "states": 56,
+    "positive": 17038,
+    "negative": 118147,
+    "posNeg": 135185,
+    "pending": 3336,
+    "hospitalized": null,
+    "death": 219,
+    "total": 138521
   },
   {
     "date": 20200319,
@@ -156,7 +50,173 @@
     "negative": 89119,
     "posNeg": 100842,
     "pending": 3025,
+    "hospitalized": null,
     "death": 160,
     "total": 103867
+  },
+  {
+    "date": 20200318,
+    "states": 56,
+    "positive": 7731,
+    "negative": 66225,
+    "posNeg": 73956,
+    "pending": 2538,
+    "hospitalized": null,
+    "death": 112,
+    "total": 76495
+  },
+  {
+    "date": 20200317,
+    "states": 56,
+    "positive": 5723,
+    "negative": 47604,
+    "posNeg": 53327,
+    "pending": 1687,
+    "hospitalized": null,
+    "death": 90,
+    "total": 54957
+  },
+  {
+    "date": 20200316,
+    "states": 56,
+    "positive": 4019,
+    "negative": 36104,
+    "posNeg": 40123,
+    "pending": 1691,
+    "hospitalized": null,
+    "death": 71,
+    "total": 41714
+  },
+  {
+    "date": 20200315,
+    "states": 51,
+    "positive": 3173,
+    "negative": 22548,
+    "posNeg": 25721,
+    "pending": 2242,
+    "hospitalized": null,
+    "death": 60,
+    "total": 27963
+  },
+  {
+    "date": 20200314,
+    "states": 51,
+    "positive": 2450,
+    "negative": 17102,
+    "posNeg": 19552,
+    "pending": 1236,
+    "hospitalized": null,
+    "death": 49,
+    "total": 20789
+  },
+  {
+    "date": 20200313,
+    "states": 51,
+    "positive": 1922,
+    "negative": 13613,
+    "posNeg": 15535,
+    "pending": 1130,
+    "hospitalized": null,
+    "death": 39,
+    "total": 16665
+  },
+  {
+    "date": 20200312,
+    "states": 51,
+    "positive": 1315,
+    "negative": 7949,
+    "posNeg": 9264,
+    "pending": 673,
+    "hospitalized": null,
+    "death": 36,
+    "total": 9966
+  },
+  {
+    "date": 20200311,
+    "states": 51,
+    "positive": 1053,
+    "negative": 5978,
+    "posNeg": 7031,
+    "pending": 563,
+    "hospitalized": null,
+    "death": 27,
+    "total": 7617
+  },
+  {
+    "date": 20200310,
+    "states": 51,
+    "positive": 778,
+    "negative": 3807,
+    "posNeg": 4585,
+    "pending": 469,
+    "hospitalized": null,
+    "death": null,
+    "total": 5054
+  },
+  {
+    "date": 20200309,
+    "states": 51,
+    "positive": 584,
+    "negative": 3367,
+    "posNeg": 3951,
+    "pending": 313,
+    "hospitalized": null,
+    "death": null,
+    "total": 4264
+  },
+  {
+    "date": 20200308,
+    "states": 51,
+    "positive": 417,
+    "negative": 2335,
+    "posNeg": 2752,
+    "pending": 347,
+    "hospitalized": null,
+    "death": null,
+    "total": 3099
+  },
+  {
+    "date": 20200307,
+    "states": 51,
+    "positive": 341,
+    "negative": 1809,
+    "posNeg": 2150,
+    "pending": 602,
+    "hospitalized": null,
+    "death": null,
+    "total": 2752
+  },
+  {
+    "date": 20200306,
+    "states": 36,
+    "positive": 223,
+    "negative": 1571,
+    "posNeg": 1794,
+    "pending": 458,
+    "hospitalized": null,
+    "death": null,
+    "total": 2252
+  },
+  {
+    "date": 20200305,
+    "states": 24,
+    "positive": 176,
+    "negative": 953,
+    "posNeg": 1129,
+    "pending": 197,
+    "hospitalized": null,
+    "death": null,
+    "total": 1326
+  },
+  {
+    "date": 20200304,
+    "states": 14,
+    "positive": 118,
+    "negative": 748,
+    "posNeg": 866,
+    "pending": 103,
+    "hospitalized": null,
+    "death": null,
+    "total": 969
   }
 ]

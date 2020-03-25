@@ -3,6 +3,11 @@ const getDistance = require('geolib').getDistance;
 const CountyList = require("./data/county_gps.json");
 const moment = require("moment");
 
+const ConfirmedData = require("./data/covid_confirmed_usafacts.json");
+const DeathData = require("./data/covid_death_usafacts.json");
+const LatestData = require("./data/latest.json");
+const states = require('us-state-codes');
+
 function countyModuleInit(casesdata) {
     makeTable();
     CasesData = casesdata;
@@ -110,35 +115,18 @@ const USState_Population =
 }
 
 function getAllStatesSummary(cases) {
-    const today = moment().format("M/D");
-    let g_group = cases.reduce((result, c) => {
-        let current = result[c.state_name];
-        if (!current) {
-            current = {
-                confirmed: 0,
-                newcases: 0,
-            }
-        }
-        current.confirmed += c.people_count;
-        if (c.confirmed_date === today) {
-            current.newcases += c.people_count;
-        }
-        result[c.state_name] = current;
-        return result;
-    }, {});
+    let state_sum = Object.keys(USState_Population).map(state => casesForStateSummary(state));
+    return state_sum.map(s => {
 
-    let r = Object.keys(g_group).reduce((result, key) => {
-        let item = g_group[key];
-        result.push({
-            state: key,
-            confirmed: item.confirmed,
-            newcases: item.newcases,
-            newpercent: ((item.newcases / (item.confirmed - item.newcases)) * 100).toFixed(0),
-            Population2010: USState_Population[key],
-        })
-        return result;
-    }, []);
-    return r;
+        return {
+            state: s.state,
+            confirmed: s.confirmed,
+            newcases: s.newcases,
+            newpercent: ((s.newcases / (s.confirmed - s.newcases)) * 100).toFixed(0),
+            Population2010: USState_Population[s.state],
+        }
+
+    })
 }
 
 function getCountySummary(cases) {
@@ -221,28 +209,327 @@ function hospitalsForState(state_short_name) {
     }
 }
 
+function makeCountyKey(state, county) {
+    return "" + state + county;
+}
+
+const LatestMap = LatestData.features.reduce((m, o) => {
+    let a = o.attributes;
+    let key = makeCountyKey(
+        states.getStateCodeByStateName(a.Province_State),
+        a.Admin2 + " County",
+    );
+    m[key] = {
+        confirmed: a.Confirmed,
+        death: a.Deaths,
+    };
+    return m;
+}, {});
+
+function computeConfirmMap() {
+    let map = ConfirmedData.reduce((m, a) => {
+
+        let key = makeCountyKey(
+            a["State"],
+            a["County Name"],
+        );
+        if (a["State"] === "NY" && a["County Name"] === "New York City") {
+            key = makeCountyKey(
+                "NY",
+                "New York City County"
+            );
+        }
+
+        delete a["countyFIPS"];
+        delete a["County Name"];
+        delete a["State"];
+        delete a["stateFIPS"];
+
+        let obj = {}
+        Object.keys(a).map(k => {
+            let v = parseInt(a[k]);
+            let p = k.split("/");
+            let m = pad(parseInt(p[0]));
+            let d = pad(parseInt(p[1]));
+            let y = p[2];
+            obj[`${m}/${d}/${y}`] = v;
+            return null;
+        });
+
+        let today = moment().format("MM/DD/YYYY");
+        let yesterday = moment().subtract(1, "days").format("MM/DD/YYYY");
+        let latestForCounty = LatestMap[key];
+        if (latestForCounty) {
+            // number should not be decreasing
+            if (latestForCounty.confirmed > obj[yesterday]) {
+                obj[today] = latestForCounty.confirmed;
+            } else {
+                obj[today] = obj[yesterday];
+            }
+        } else {
+            obj[today] = obj[yesterday];
+        }
+
+        m[key] = obj;
+        return m;
+
+    }, {});
+    return map;
+}
+
+const ConfirmedMap = computeConfirmMap();
+
+const DeathMap = DeathData.reduce((m, a) => {
+    let key = makeCountyKey(
+        a["State"],
+        a["County Name"],
+    );
+    if (a["State"] === "NY" && a["County Name"] === "New York City") {
+        key = makeCountyKey(
+            "NY",
+            "New York City County"
+        );
+    }
+
+    delete a["countyFIPS"];
+    delete a["County Name"];
+    delete a["State"];
+    delete a["stateFIPS"];
+
+    let obj = {};
+    Object.keys(a).map(k => {
+        let v = parseInt(a[k]);
+        let p = k.split("/");
+        let m = pad(parseInt(p[0]));
+        let d = pad(parseInt(p[1]));
+        let y = p[2];
+        obj[`${m}/${d}/${y}`] = v;
+        return null;
+    });
+
+    let today = moment().format("MM/DD/YYYY");
+    let yesterday = moment().subtract(1, "days").format("MM/DD/YYYY");
+    let latestForCounty = LatestMap[key];
+    if (latestForCounty) {
+        // number should not be decreasing
+        if (latestForCounty.death > obj[yesterday]) {
+            obj[today] = latestForCounty.death;
+        } else {
+            obj[today] = obj[yesterday];
+        }
+    } else {
+        obj[today] = obj[yesterday];
+    }
+
+    m[key] = obj;
+    return m;
+}, {});
+
+function computeCombinedMap() {
+    let countykeys = Object.keys(ConfirmedMap);
+    let combined = {};
+    countykeys.map(key => {
+        let c_confirm = ConfirmedMap[key];
+        let c_death = DeathMap[key];
+        let date_keys = Object.keys(c_confirm);
+        let obj_for_date = {};
+        date_keys.map(date => {
+            let entry = {
+                confirmed: c_confirm[date],
+                death: c_death ? c_death[date] : 0,
+            }
+            obj_for_date[date] = entry;
+            return null;
+        })
+        combined[key] = obj_for_date;
+
+        return null;
+    });
+    return combined;
+}
+
+const CombinedDataMap = computeCombinedMap();
+
+function pad(n) { return n < 10 ? '0' + n : n }
+
+function getCountyData(state_short_name, county_name) {
+    if (state_short_name === "NY" && county_name === "New York") {
+        county_name = "New York City"
+    }
+    let key = makeCountyKey(state_short_name, county_name + " County");
+    return CombinedDataMap[key];
+}
+
+function getCountyDataForGrapth(state_short_name, county_name) {
+    if (state_short_name === "NY" && county_name === "New York") {
+        county_name = "New York City";
+    }
+    let key = makeCountyKey(state_short_name, county_name + " County");
+    return CombinedDataMap[key];
+}
+
+
+function getCombinedDataForKey(k) {
+    return CombinedDataMap[k];
+}
+
+function getStateDataForGrapth(state_short_name) {
+    let counties_keys = Object.keys(CombinedDataMap).filter(k => k.startsWith(state_short_name));
+    let result = {};
+
+    counties_keys.map(k => {
+        // let c_data = CombinedDataMap[k];
+        let c_data = getCombinedDataForKey(k);
+        if (!c_data) {
+            return null;
+        }
+        Object.keys(c_data).map(date_key => {
+            let date_data = c_data[date_key];
+            let entry = result[date_key];
+
+            let a = {};
+            if (entry) {
+                // if I don't do this, somehow it affects upsteam data, werid. 
+                // a = entry;
+                a.confirmed = entry.confirmed + date_data.confirmed;
+                a.death = entry.death + date_data.death;
+                a.fulldate = entry.fulldate;
+                a.name = entry.name;
+                a.newcase = entry.newcase;
+                a.state = entry.state;
+            } else {
+                a = date_data;
+            }
+            result[date_key] = a;
+            return null;
+        });
+        return null;
+    });
+    return result;
+}
+
+function getUSDataForGrapth() {
+    let counties = Object.values(CombinedDataMap);
+    let result = {};
+    counties.map(c_data => {
+        Object.keys(c_data).map(date_key => {
+            let date_data = c_data[date_key];
+            let entry = result[date_key];
+            let a = {};
+            if (entry) {
+                // entry.confirmed += date_data.confirmed;
+                // entry.death += date_data.death;
+
+                a.confirmed = entry.confirmed + date_data.confirmed;
+                a.death = entry.death + date_data.death;
+                a.fulldate = entry.fulldate;
+                a.name = entry.name;
+                a.newcase = entry.newcase;
+                a.state = entry.state;
+
+            } else {
+                a = date_data;
+            }
+            result[date_key] = a;
+            return null;
+        });
+        return null;
+    });
+    return result;
+}
+
+function arraysum_text(a) {
+    let sum = 0;
+    for (let i = 0; i < a.length; i++) {
+        sum += a[i];
+    }
+    return sum;
+}
+
+const todaykey = moment().format("MM/DD/YYYY");
+const yesterdaykey = moment().subtract(1, "days").format("MM/DD/YYYY");
+
 function casesForCountySummary(state_short_name, county_name) {
-    return casesSummary(casesForCounty(state_short_name, county_name));
+    let c = getCountyData(state_short_name, county_name);
+    if (!c) {
+        return {
+            confirmed: 0,
+            newcases: 0,
+            newpercent: 0,
+        }
+    }
+    let today = c[todaykey].confirmed;
+    let yesterday = c[yesterdaykey].confirmed;
+    return {
+        confirmed: today,
+        newcases: today - yesterday,
+        newpercent: (((today - yesterday) / yesterday) * 100).toFixed(0),
+    }
 }
 
 function casesForStateSummary(state_short_name) {
-    return casesSummary(casesForState(state_short_name));
+    let counties_keys = Object.keys(CombinedDataMap)
+        .filter(k => k.startsWith(state_short_name));
+
+    let summaries = counties_keys.map(k => {
+        let c = getCombinedDataForKey(k);
+        if (!c) {
+            return {
+                confirmed: 0,
+                newcases: 0,
+                newpercent: 0,
+            }
+        }
+        let today = c[todaykey].confirmed;
+        let yesterday = c[yesterdaykey].confirmed;
+        return {
+            confirmed: today,
+            death: c[todaykey].death,
+            newcases: today - yesterday,
+        }
+    });
+
+    let confirmed = arraysum_text(summaries.map(s => s.confirmed));
+    let newcases = arraysum_text(summaries.map(s => s.newcases));
+    return {
+        state: state_short_name,
+        confirmed: confirmed,
+        newcases: newcases,
+        newpercent: ((newcases / (confirmed - newcases)) * 100).toFixed(0),
+    }
 }
 
-function casesForUS(state_short_name) {
+function casesForUSSummary() {
+
+    let today = 0;
+    let yesterday = 0;
+    for (var index in ConfirmedMap) {
+        let c = ConfirmedMap[index];
+        today += c[todaykey];
+        yesterday += c[yesterdaykey];
+    }
+
+    return {
+        confirmed: today,
+        newcases: today - yesterday,
+        newpercent: ((today - yesterday / today) * 100).toFixed(0),
+    }
+}
+
+function casesForUS() {
     return CasesData;
 }
 
 function casesSummary(mycases) {
     const newcases = mycases.reduce((m, c) => {
-        let a = m[c.confirmed_date];
+        let a = m[c.fulldate];
         if (!a) a = 0;
         a += c.people_count;
-        m[c.confirmed_date] = a;
+        m[c.fulldate] = a;
         return m;
     }, {});
     let total = Object.values(newcases).reduce((a, b) => a + b, 0);
-    const today = moment().format("M/D");
+    const today = moment().format("MM/DD/YYYY");
     var newcasenum = newcases[today];
     if (!newcasenum) {
         newcasenum = 0;
@@ -264,8 +551,13 @@ export {
     casesSummary,
     casesForCountySummary,
     casesForStateSummary,
+    casesForUSSummary,
     hospitalsForState,
     countyDataForState,
     getCountySummary,
     getAllStatesSummary,
+    /// new
+    getCountyDataForGrapth,
+    getStateDataForGrapth,
+    getUSDataForGrapth,
 }
