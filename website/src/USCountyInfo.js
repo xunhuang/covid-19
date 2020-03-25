@@ -180,22 +180,13 @@ function getCountySummary1() {
             );
         }
         let c = getCombinedDataForKey(key);
-        // let c = lookupCountyInfo(county[0].state_name, county[0].county);
-        // let pop = c ? c.Population2010 : NaN;
+        let county = a["County Name"].replace(" County", "");
         m.push({
             total: c[todaykey].confirmed,
-            county: a["County Name"],
-            County: a["County Name"],
+            county: county,
+            County: county,
             state_name: a["State"],
             State_name: a["State"],
-            /*
-            total: total,
-            county: county[0].county,
-            County: county[0].county,
-            state_name: county[0].state_name,
-            State: county[0].state_name,
-            Population2010: pop,
-            */
         });
         return m;
     }, []);
