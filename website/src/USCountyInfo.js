@@ -133,13 +133,16 @@ function getCountySummary1() {
         let state = a.State;
         let county = a["County Name"];
         let c = getCombinedData(state, county);
+        let confirmed = 0;
 
-        if (!c) {
-            console.log("************* " + state + " " + county);
+        if (c) {
+            confirmed = c[todaykey].confirmed;
+        } else {
+            console.log("************* No Data " + state + " " + county);
         }
 
         m.push({
-            total: c[todaykey].confirmed,
+            total: confirmed,
             county: county,
             County: county,
             state_name: state,
@@ -150,29 +153,17 @@ function getCountySummary1() {
     return map;
 }
 
+function normalize_county_name_from_USAFACTS(county) {
+    return county.replace(/ County$/g, "");
+}
+
 function countyDataForState(state_short_name) {
     let map = ConfirmedData2
         .filter(c => c.State === state_short_name)
         .reduce((m, a) => {
-            let county = a["County Name"].replace(" County", "");
+            let county = normalize_county_name_from_USAFACTS(a["County Name"]);
             let state = a.State;
-            let key = makeCountyKey(
-                state,
-                a["County Name"] ,
-            );
-            if (a["State"] === "NY" && county === "New York City") {
-                key = makeCountyKey(
-                    "NY",
-                    "New York City County"
-                );
-            }
-            if (a["County Name"] === "Statewide Unallocated") {
-                key = makeCountyKey(
-                    a["State"],
-                    "Unassigned",
-                );
-            }
-            let c = getCombinedDataForKey(key);
+            let c = getCombinedData(state, county);
             let c_info = lookupCountyInfo(state, county);
             let pop = c_info ? c_info.Population2010 : NaN;
 
@@ -241,7 +232,7 @@ function computeConfirmMap() {
             );
         }
         if (a["County Name"] === "Statewide Unallocated") {
-            console.log("capturing unassigned.... ");
+            // console.log("capturing unassigned.... ");
             key = makeCountyKey(
                 a["State"],
                 "Unassigned",
@@ -285,7 +276,7 @@ function computeConfirmMap() {
             if (obj[yesterday]) {
                 obj[today] = obj[yesterday];
             } else {
-                console.log("THERE IS NO YESTERDAY");
+                // console.log("THERE IS NO YESTERDAY");
                 obj[yesterday] = obj[day_minus_2];
                 obj[today] = obj[yesterday];
             }
@@ -396,7 +387,6 @@ function getCombinedData(state_short_name, county_name) {
     let key = makeCountyKey(state_short_name, county_name + " County");
     if (county_name === "Statewide Unallocated") {
         key = makeCountyKey(state_short_name, "Unassigned");
-        console.log(CombinedDataMap)
     }
     let result = getCombinedDataForKey(key);
     if (!result) {
@@ -406,7 +396,7 @@ function getCombinedData(state_short_name, county_name) {
 }
 
 function getCombinedDataForKey(k) {
-    console.log("KEY IS:" + k)
+    // console.log("KEY IS:" + k)
     return CombinedDataMap[k];
 }
 
@@ -436,7 +426,6 @@ function getDataForGrapthForCountyKeys(counties_keys) {
     let result = {};
 
     counties_keys.map(k => {
-        // let c_data = CombinedDataMap[k];
         let c_data = getCombinedDataForKey(k);
         if (!c_data) {
             return null;
