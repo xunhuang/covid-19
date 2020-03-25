@@ -14,7 +14,7 @@ function browseTo(history, state, county) {
 
 const useStyles = makeStyles(theme => ({
     qpContainer: {
-        display: 'block',
+        display: 'none',
         // color: '#FFFFFF',
         background: '#e3e3e3',
         borderWidth: "1px",
@@ -25,8 +25,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const SearchBox = (props) => {
-
-    let summary = USCounty.getCountySummary(props.casesData);
+    let summary = USCounty.getCountySummary1();
     let counties = summary.sort((a, b) => b.total - a.total)
         .map(c => {
             return {
@@ -70,7 +69,6 @@ const withHeader = (comp, props) => {
 
     return (props) => {
         const classes = useStyles();
-        let casesData = USCounty.casesForUS();
         let component = comp({
             // add addition things here
             ...props,
@@ -90,7 +88,6 @@ const withHeader = (comp, props) => {
                 COVID-19.direct
             </Typography>
             <SearchBox
-                casesData={casesData}
                 callback={(newcounty, newstate) => {
                     browseTo(props.history, newstate, newcounty);
                 }}

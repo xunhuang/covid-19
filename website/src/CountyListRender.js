@@ -12,7 +12,6 @@ import Hidden from '@material-ui/core/Hidden';
 import { ThemeProvider } from '@material-ui/core'
 import { createMuiTheme } from '@material-ui/core/styles';
 
-
 const compact = createMuiTheme({
     overrides: {
         MuiTableCell: {
@@ -23,7 +22,6 @@ const compact = createMuiTheme({
         },
     },
 });
-
 
 const states = require('us-state-codes');
 
@@ -160,7 +158,7 @@ const AllStateListRender = (props) => {
 };
 
 const CountyListRender = (props) => {
-    const list = props.countylist;
+    const list = props.countylist.sort((a, b) => b.total - a.total);
     const classes = useStyles();
     function clicked(newcounty, newstate) {
         if (props.callback) {
@@ -201,7 +199,7 @@ const CountyListRender = (props) => {
                         let population = myToNumber(row.Population2010);
                         // hard coding a special here for NYC because 
                         // all 5 boroughs are lumped together. terrible hack
-                        if (row.State === "NY" && row.County === "New York") {
+                        if (row.State === "NY" && (row.County === "New York City" || row.County === "New York")) {
                             population = 8500000;
                         }
                         return <TableRow key={row.County}>
