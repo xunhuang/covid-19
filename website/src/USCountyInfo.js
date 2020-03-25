@@ -424,12 +424,24 @@ function getCountyDataForGrapth(state_short_name, county_name) {
     return getCombinedData(state_short_name, county_name);
 }
 
+function getCountyDataForGraphWithNearby(state_short_name, county_name) {
+    let counties_keys = nearbyCounties(state_short_name, county_name).map(a => makeCountyKey(
+        state_short_name,
+        a["County"] + " County",
+    ));
+    return getDataForGrapthForCountyKeys(counties_keys)
+}
+
 function getCombinedDataForKey(k) {
     return CombinedDataMap[k];
 }
 
 function getStateDataForGrapth(state_short_name) {
     let counties_keys = Object.keys(CombinedDataMap).filter(k => k.startsWith(state_short_name));
+    return getDataForGrapthForCountyKeys(counties_keys)
+}
+        
+function getDataForGrapthForCountyKeys(counties_keys) {
     let result = {};
 
     counties_keys.map(k => {
@@ -586,4 +598,5 @@ export {
     getStateDataForGrapth,
     getUSDataForGrapth,
     getCountySummary1,
+    getCountyDataForGraphWithNearby,
 }

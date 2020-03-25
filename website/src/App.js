@@ -133,16 +133,28 @@ function dataMapToGraphSeries(g) {
 }
 
 const GraphSectionCounty = withRouter((props) => {
-  const state = props.state;
-  const county = props.county;
-  let state_title = states.getStateNameByStateCode(state);
+  const [state, setState] = React.useState({
+    plusNearby: false,
+  });
 
-  let graphdata = USCounty.getCountyDataForGrapth(state, county);
+  const handlePlusNearbyToggle = event => {
+    setState({ ...state, plusNearby: !state.plusNearby });
+  };
+
+  const state_short_name = props.state;
+  const county = props.county;
+  const plusNearby = state.plusNearby;
+  let state_title = states.getStateNameByStateCode(state_short_name);
+
+  //let graphdata = USCounty.getCountyDataForGrapth(state, county);
+  let graphdata = plusNearby ? 
+    USCounty.getCountyDataForGraphWithNearby(state_short_name, county) :
+    USCounty.getCountyDataForGrapth(state_short_name, county);
   let readyForGraph = dataMapToGraphSeries(graphdata);
 
   const tabs = [
-    <BasicGraphNewCases data={readyForGraph} logScale={false} />,
-    <GraphStateTesting state={state} />,
+    <BasicGraphNewCases data={readyForGraph} logScale={false} onPlusNearby={handlePlusNearbyToggle} />,
+    <GraphStateTesting state={state_short_name} />,
   ]
   let graphlistSection = <MyTabs
     labels={["Confirmed Cases", `${state_title} Testing`]}
