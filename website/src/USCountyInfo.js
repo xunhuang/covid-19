@@ -134,6 +134,12 @@ function getCountySummary1() {
             a["State"],
             a["County Name"],
         );
+        if (a["County Name"] === "Statewide Unallocated") {
+            key = makeCountyKey(
+                a["State"],
+                "Unassigned",
+            );
+        }
         if (a["State"] === "NY" && a["County Name"] === "New York City") {
             key = makeCountyKey(
                 "NY",
@@ -170,11 +176,21 @@ function countyDataForState(state_short_name) {
                     "New York City County"
                 );
             }
+            if (a["County Name"] === "Statewide Unallocated") {
+                console.log("capturing unassigned.... ");
+                key = makeCountyKey(
+                    a["State"],
+                    "Unassigned",
+                );
+            }
+
 
             let c = getCombinedDataForKey(key);
 
             let c_info = lookupCountyInfo(state, county);
             let pop = c_info ? c_info.Population2010 : NaN;
+
+            console.log(key);
 
             m.push({
                 total: c[todaykey].confirmed,
@@ -240,6 +256,14 @@ function computeConfirmMap() {
                 "New York City County"
             );
         }
+        if (a["County Name"] === "Statewide Unallocated") {
+            console.log("capturing unassigned.... ");
+            key = makeCountyKey(
+                a["State"],
+                "Unassigned",
+            );
+        }
+        console.log(key);
         delete a["countyFIPS"];
         delete a["County Name"];
         delete a["State"];
@@ -257,7 +281,11 @@ function computeConfirmMap() {
         let today = moment().format("MM/DD/YYYY");
         let yesterday = moment().subtract(1, "days").format("MM/DD/YYYY");
         let day_minus_2 = moment().subtract(2, "days").format("MM/DD/YYYY");
+
         let latestForCounty = LatestMap[key];
+        if (key.endsWith("Unassigned")) {
+            latestForCounty = LatestMap[key + " County"];
+        }
         if (latestForCounty) {
 
             if (!obj[yesterday]) {
@@ -280,6 +308,12 @@ function computeConfirmMap() {
             }
         }
         m[key] = obj;
+        if (key.endsWith("NYUnassigned")) {
+            console.log(latestForCounty);
+            console.log(obj);
+            console.log(LatestMap["NYUnassigned County"]);
+
+        }
         return m;
     }, {});
     return map;
@@ -479,9 +513,12 @@ function casesForStateSummary(state_short_name) {
     let counties_keys = Object.keys(CombinedDataMap)
         .filter(k => k.startsWith(state_short_name));
 
+    console.log(counties_keys);
+
     let summaries = counties_keys.map(k => {
         let c = getCombinedDataForKey(k);
         if (!c) {
+            console.log("nothing?!");
             return {
                 confirmed: 0,
                 newcases: 0,
@@ -490,11 +527,14 @@ function casesForStateSummary(state_short_name) {
         }
         let today = c[todaykey].confirmed;
         let yesterday = c[yesterdaykey].confirmed;
-        return {
+        let result = {
             confirmed: today,
             death: c[todaykey].death,
             newcases: today - yesterday,
         }
+        console.log(k);
+        console.log(result);
+        return result;
     });
 
     let confirmed = arraysum_text(summaries.map(s => s.confirmed));
