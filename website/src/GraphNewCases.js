@@ -131,6 +131,7 @@ const BasicGraphNewCases = (props) => {
     const [state, setState] = React.useState({
         showlog: false,
         show30days: false,
+        plusNearby: false,
     });
 
     const [open, setOpen] = React.useState(false);
@@ -154,11 +155,26 @@ const BasicGraphNewCases = (props) => {
         setState({ ...state, show30days: !state.show30days });
     };
 
+    const handlePlusNearbyToggle = event => {
+        setState({ ...state, plusNearby: !state.plusNearby });
+        props.onPlusNearby(event);
+    };
+
     let data = props.data;
     data = data.map(d => {
         d.name = moment(d.fulldate).format("M/D");
         return d;
     });
+
+    const showPlusNearby = typeof(props.onPlusNearby) !== 'undefined';
+    let plusNearbyDiv = <></>;
+    if (showPlusNearby) {
+        plusNearbyDiv = <><Grid item></Grid>
+          <Grid item>
+            <AntSwitch checked={state.plusNearby} onClick={handlePlusNearbyToggle} />
+          </Grid>
+        <Grid item onClick={handlePlusNearbyToggle}>+Nearby</Grid></>;
+    }
 
     let newdata = [];
     for (let i = 0; i < data.length; i++) {
@@ -222,6 +238,7 @@ const BasicGraphNewCases = (props) => {
                     <AntSwitch checked={state.show30days} onClick={handle30DaysToggle} />
                 </Grid>
                 <Grid item onClick={handle30DaysToggle}>Last 2 weeks</Grid>
+                {plusNearbyDiv}
                 <Dialog
                     open={open}
                     onClose={handleClose}
