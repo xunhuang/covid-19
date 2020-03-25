@@ -72,10 +72,9 @@ async function doit() {
     cases = cases.map(c => {
         let d = c.confirmed_date.split("/");
         c.fulldate = pad(d[0]) + '/' + pad(d[1]) + '/' + 2020;
-        c.state_full_name = states.getStateNameByStateCode(c.state_name);
-        delete c["comments"];
-        delete c["links"];
-        return c;
+        // c.state_full_name = states.getStateNameByStateCode(c.state_name);
+        c.die = c["die_count"];
+        return c
     });
 
     let info = {
@@ -85,7 +84,7 @@ async function doit() {
     }
 
     await uploadDataToBlobStore(info);
-    await updateDataInDB(info);
+    // await updateDataInDB(info);
 
     cases = cases.map(c => {
         delete c["comments"];
@@ -94,6 +93,9 @@ async function doit() {
         delete c["gender"];
         delete c["id"];
         delete c["die_count"];
+        delete c["num"];
+        delete c["comments"];
+        delete c["links"];
         return c;
     });
 
