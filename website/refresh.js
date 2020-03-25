@@ -89,9 +89,9 @@ async function doit() {
 
         if (lineschanged > 20) {
             console.log("should test deploy now");
-            // execSync(`git pull`);
-            // execSync(`cp -f ${latestJsonLocation} ${latestJsonLocationOriginal}`);
-            // deploy();
+            execSync(`git pull`);
+            execSync(`cp -f ${latestJsonLocation} ${latestJsonLocationOriginal}`);
+            await deploy();
         }
 
         // await deploy();
