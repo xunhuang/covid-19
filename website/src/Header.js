@@ -25,8 +25,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const SearchBox = (props) => {
-
-    let summary = USCounty.getCountySummary(props.casesData);
+    let summary = USCounty.getCountySummary1();
     let counties = summary.sort((a, b) => b.total - a.total)
         .map(c => {
             return {

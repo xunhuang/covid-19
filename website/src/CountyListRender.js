@@ -160,7 +160,7 @@ const AllStateListRender = (props) => {
 };
 
 const CountyListRender = (props) => {
-    const list = props.countylist;
+    const list = props.countylist.sort((a, b) => b.total - a.total);
     const classes = useStyles();
     function clicked(newcounty, newstate) {
         if (props.callback) {
@@ -191,6 +191,9 @@ const CountyListRender = (props) => {
                 {
                     list.map(row => {
                         let sum = USCounty.casesForCountySummary(row.State, row.County);
+                        console.log(row.State);
+                        console.log(row.County);
+                        console.log(sum);
                         let newcases = sum.newcases;
                         let confirmed = sum.confirmed;
                         let newpercent = sum.newpercent;

@@ -7,6 +7,7 @@ const ConfirmedData = require("./data/covid_confirmed_usafacts.json");
 const DeathData = require("./data/covid_death_usafacts.json");
 const LatestData = require("./data/latest.json");
 const states = require('us-state-codes');
+const ConfirmedData2 = JSON.parse(JSON.stringify(ConfirmedData));
 
 function countyModuleInit(casesdata) {
     makeTable();
@@ -134,9 +135,7 @@ function getCountySummary(cases) {
         if (!c.county || c.county === "undefined" || c.countuy === "Unassigned" || c.county === "Unknown") {
             c.county = "Unknown";
         }
-
         let key = c.state_name + "," + c.county;
-
         let group = result[key];
         if (group) {
             group.push(c);
@@ -165,8 +164,43 @@ function getCountySummary(cases) {
         });
         return result;
     }, []);
-
     return g_group;
+}
+
+function getCountySummary1() {
+    let map = ConfirmedData2.reduce((m, a) => {
+        let key = makeCountyKey(
+            a["State"],
+            a["County Name"],
+        );
+        if (a["State"] === "NY" && a["County Name"] === "New York City") {
+            key = makeCountyKey(
+                "NY",
+                "New York City County"
+            );
+        }
+        let c = getCombinedDataForKey(key);
+        // let c = lookupCountyInfo(county[0].state_name, county[0].county);
+        // let pop = c ? c.Population2010 : NaN;
+        m.push({
+            total: c[todaykey].confirmed,
+            county: a["County Name"],
+            County: a["County Name"],
+            state_name: a["State"],
+            State_name: a["State"],
+            /*
+            total: total,
+            county: county[0].county,
+            County: county[0].county,
+            state_name: county[0].state_name,
+            State: county[0].state_name,
+            Population2010: pop,
+            */
+        });
+        return m;
+    }, []);
+    console.log(map);
+    return map;
 }
 
 function casesForCounty(state_short_name, county_name) {
@@ -182,10 +216,39 @@ function casesForState(state_short_name) {
 }
 
 function countyDataForState(state_short_name) {
-    let state_case = CasesData.filter(c => {
-        return (c.state_name === state_short_name);
-    });
-    return getCountySummary(state_case).sort((a, b) => b.total - a.total);
+    let map = ConfirmedData2
+        .filter(c => c.State === state_short_name)
+        .reduce((m, a) => {
+            let county = a["County Name"].replace(" County", "");
+            let state = a.State;
+            let key = makeCountyKey(
+                state,
+                a["County Name"] ,
+            );
+            if (a["State"] === "NY" && county === "New York City") {
+                key = makeCountyKey(
+                    "NY",
+                    "New York City County"
+                );
+            }
+
+            let c = getCombinedDataForKey(key);
+
+            let c_info = lookupCountyInfo(state, county);
+            let pop = c_info ? c_info.Population2010 : NaN;
+
+            m.push({
+                total: c[todaykey].confirmed,
+                confirmed: c[todaykey].confirmed,
+                county: county,
+                County: county,
+                state_name: state,
+                State: state,
+                Population2010: pop,
+            });
+            return m;
+        }, []);
+    return map;
 }
 
 function hospitalsForState(state_short_name) {
@@ -228,7 +291,6 @@ const LatestMap = LatestData.features.reduce((m, o) => {
 
 function computeConfirmMap() {
     let map = ConfirmedData.reduce((m, a) => {
-
         let key = makeCountyKey(
             a["State"],
             a["County Name"],
@@ -239,12 +301,10 @@ function computeConfirmMap() {
                 "New York City County"
             );
         }
-
         delete a["countyFIPS"];
         delete a["County Name"];
         delete a["State"];
         delete a["stateFIPS"];
-
         let obj = {}
         Object.keys(a).map(k => {
             let v = parseInt(a[k]);
@@ -255,7 +315,6 @@ function computeConfirmMap() {
             obj[`${m}/${d}/${y}`] = v;
             return null;
         });
-
         let today = moment().format("MM/DD/YYYY");
         let yesterday = moment().subtract(1, "days").format("MM/DD/YYYY");
         let latestForCounty = LatestMap[key];
@@ -269,10 +328,8 @@ function computeConfirmMap() {
         } else {
             obj[today] = obj[yesterday];
         }
-
         m[key] = obj;
         return m;
-
     }, {});
     return map;
 }
@@ -357,6 +414,7 @@ function getCountyData(state_short_name, county_name) {
         county_name = "New York City"
     }
     let key = makeCountyKey(state_short_name, county_name + " County");
+
     return CombinedDataMap[key];
 }
 
@@ -367,7 +425,6 @@ function getCountyDataForGrapth(state_short_name, county_name) {
     let key = makeCountyKey(state_short_name, county_name + " County");
     return CombinedDataMap[key];
 }
-
 
 function getCombinedDataForKey(k) {
     return CombinedDataMap[k];
@@ -560,4 +617,5 @@ export {
     getCountyDataForGrapth,
     getStateDataForGrapth,
     getUSDataForGrapth,
+    getCountySummary1,
 }

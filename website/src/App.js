@@ -107,14 +107,12 @@ const GraphSectionUS = withRouter((props) => {
 const GraphSectionState = withRouter((props) => {
   const state = props.state;
   let state_title = states.getStateNameByStateCode(state);
-  let state_mycases = USCounty.casesForState(state);
-  let useLogScale = false;
 
   let graphdata = USCounty.getStateDataForGrapth(state);
   let readyForGraph = dataMapToGraphSeries(graphdata);
 
   const tabs = [
-    <BasicGraphNewCases data={readyForGraph} casesData={state_mycases} logScale={useLogScale} />,
+    <BasicGraphNewCases data={readyForGraph} logScale={false} />,
     <GraphStateTesting state={state} />,
     <GraphStateHospitalization state={state} />,
   ]
@@ -140,14 +138,13 @@ const GraphSectionCounty = withRouter((props) => {
   const state = props.state;
   const county = props.county;
   let state_title = states.getStateNameByStateCode(state);
-  let county_cases = USCounty.casesForCounty(state, county);
 
   let graphdata = USCounty.getCountyDataForGrapth(state, county);
   let readyForGraph = dataMapToGraphSeries(graphdata);
   console.log(readyForGraph);
 
   const tabs = [
-    <BasicGraphNewCases data={readyForGraph} casesData={county_cases} logScale={false} />,
+    <BasicGraphNewCases data={readyForGraph} logScale={false} />,
     <GraphStateTesting state={state} />,
   ]
   let graphlistSection = <MyTabs
@@ -196,7 +193,6 @@ const BasicMap = (props) => {
 }
 
 async function getCaseData() {
-  // let result = await firebase.functions().httpsCallable('datajsonNew')();
   let result = await firebase.functions().httpsCallable('datajsonShort')();
   return result;
 }
@@ -224,11 +220,11 @@ function browseToState(history, state) {
 const MainApp = withRouter((props) => {
   const [county, setCounty] = React.useState("Santa Clara");
   const [state, setState] = React.useState("CA");
-  const [casesData, setCaseData] = React.useState(null);
+  const [casesData, setCaseData] = React.useState(true);
   React.useEffect(() => {
     getCaseData().then(abc => {
-      countyModuleInit(abc.data.data, abc.generationTime);
-      setCaseData(abc.data.data);
+      countyModuleInit([], abc.generationTime);
+      setCaseData([]);
     });
     fetchCounty().then(mycounty => {
       setCounty(mycounty.county)
