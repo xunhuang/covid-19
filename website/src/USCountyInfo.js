@@ -256,8 +256,14 @@ function computeConfirmMap() {
         });
         let today = moment().format("MM/DD/YYYY");
         let yesterday = moment().subtract(1, "days").format("MM/DD/YYYY");
+        let day_minus_2 = moment().subtract(2, "days").format("MM/DD/YYYY");
         let latestForCounty = LatestMap[key];
         if (latestForCounty) {
+
+            if (!obj[yesterday]) {
+                obj[yesterday] = latestForCounty.confirmed;
+            }
+
             // number should not be decreasing
             if (latestForCounty.confirmed > obj[yesterday]) {
                 obj[today] = latestForCounty.confirmed;
@@ -265,7 +271,13 @@ function computeConfirmMap() {
                 obj[today] = obj[yesterday];
             }
         } else {
-            obj[today] = obj[yesterday];
+            if (obj[yesterday]) {
+                obj[today] = obj[yesterday];
+            } else {
+                console.log("THERE IS NO YESTERDAY");
+                obj[yesterday] = obj[day_minus_2];
+                obj[today] = obj[yesterday];
+            }
         }
         m[key] = obj;
         return m;

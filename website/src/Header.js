@@ -14,7 +14,7 @@ function browseTo(history, state, county) {
 
 const useStyles = makeStyles(theme => ({
     qpContainer: {
-        display: 'block',
+        display: 'none',
         // color: '#FFFFFF',
         background: '#e3e3e3',
         borderWidth: "1px",
