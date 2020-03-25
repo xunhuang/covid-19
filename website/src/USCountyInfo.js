@@ -9,13 +9,11 @@ const LatestData = require("./data/latest.json");
 const states = require('us-state-codes');
 const ConfirmedData2 = JSON.parse(JSON.stringify(ConfirmedData));
 
-function countyModuleInit(casesdata) {
+function countyModuleInit() {
     makeTable();
-    CasesData = casesdata;
 }
 
 var TableLookup;
-var CasesData;
 
 function makeTable() {
     if (!TableLookup) {
@@ -155,18 +153,6 @@ function getCountySummary1() {
     }, []);
     console.log(map);
     return map;
-}
-
-function casesForCounty(state_short_name, county_name) {
-    return CasesData.filter(c => {
-        return (c.state_name === state_short_name && c.county === county_name);
-    });
-}
-
-function casesForState(state_short_name) {
-    return CasesData.filter(c => {
-        return (c.state_name === state_short_name);
-    });
 }
 
 function countyDataForState(state_short_name) {
@@ -527,39 +513,10 @@ function casesForUSSummary() {
     }
 }
 
-function casesForUS() {
-    return CasesData;
-}
-
-function casesSummary(mycases) {
-    const newcases = mycases.reduce((m, c) => {
-        let a = m[c.fulldate];
-        if (!a) a = 0;
-        a += c.people_count;
-        m[c.fulldate] = a;
-        return m;
-    }, {});
-    let total = Object.values(newcases).reduce((a, b) => a + b, 0);
-    const today = moment().format("MM/DD/YYYY");
-    var newcasenum = newcases[today];
-    if (!newcasenum) {
-        newcasenum = 0;
-    }
-    return {
-        confirmed: total,
-        newcases: newcasenum,
-        newpercent: ((newcasenum / (total - newcasenum)) * 100).toFixed(0),
-    }
-}
-
 export {
     countyModuleInit,
     lookupCountyInfo,
     nearbyCounties,
-    casesForCounty,
-    casesForState,
-    // casesForUS,
-    casesSummary,
     casesForCountySummary,
     casesForStateSummary,
     casesForUSSummary,
