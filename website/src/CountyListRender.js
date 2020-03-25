@@ -48,10 +48,15 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const NearbyCounties = (props) => {
-    let countyInfo = lookupCountyInfo(props.state, props.county);
+    let county = props.county;
+    if (county === "New York City") {
+        console.log("NYYYYC");
+        county = "New York";
+    }
+    let countyInfo = lookupCountyInfo(props.state, county);
     let countySummary = <div></div>;
     if (countyInfo) {
-        let nearby = nearbyCounties(props.state, props.county)
+        let nearby = nearbyCounties(props.state, county)
             // data source combined all NYC Boroughs into New York, NY
             // this is a hack to remove these counties and they showed up as 
             // zeros. 
