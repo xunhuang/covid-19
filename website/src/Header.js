@@ -69,7 +69,6 @@ const withHeader = (comp, props) => {
 
     return (props) => {
         const classes = useStyles();
-        let casesData = USCounty.casesForUS();
         let component = comp({
             // add addition things here
             ...props,
@@ -89,7 +88,6 @@ const withHeader = (comp, props) => {
                 COVID-19.direct
             </Typography>
             <SearchBox
-                casesData={casesData}
                 callback={(newcounty, newstate) => {
                     browseTo(props.history, newstate, newcounty);
                 }}

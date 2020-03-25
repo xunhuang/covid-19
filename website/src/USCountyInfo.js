@@ -130,43 +130,6 @@ function getAllStatesSummary(cases) {
     })
 }
 
-function getCountySummary(cases) {
-    let g = cases.reduce((result, c) => {
-        if (!c.county || c.county === "undefined" || c.countuy === "Unassigned" || c.county === "Unknown") {
-            c.county = "Unknown";
-        }
-        let key = c.state_name + "," + c.county;
-        let group = result[key];
-        if (group) {
-            group.push(c);
-        } else {
-            group = [c];
-        }
-        result[key] = group;
-        return result;
-    }, {});
-
-    let g_group = Object.keys(g).reduce((result, key) => {
-        let county = g[key];
-        let total = county.reduce((sum, c) => {
-            sum += c.people_count;
-            return sum;
-        }, 0);
-        let c = lookupCountyInfo(county[0].state_name, county[0].county);
-        let pop = c ? c.Population2010 : NaN;
-        result.push({
-            total: total,
-            county: county[0].county,
-            County: county[0].county,
-            state_name: county[0].state_name,
-            State: county[0].state_name,
-            Population2010: pop,
-        });
-        return result;
-    }, []);
-    return g_group;
-}
-
 function getCountySummary1() {
     let map = ConfirmedData2.reduce((m, a) => {
         let key = makeCountyKey(
@@ -595,14 +558,13 @@ export {
     nearbyCounties,
     casesForCounty,
     casesForState,
-    casesForUS,
+    // casesForUS,
     casesSummary,
     casesForCountySummary,
     casesForStateSummary,
     casesForUSSummary,
     hospitalsForState,
     countyDataForState,
-    getCountySummary,
     getAllStatesSummary,
     /// new
     getCountyDataForGrapth,
