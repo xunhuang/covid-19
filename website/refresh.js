@@ -12,6 +12,7 @@ const URLNewCasesJHUTooBig = "https://services1.arcgis.com/0MSEUqKaxRlEPj5g/arcg
 const URLNewCasesJHUBad = "https://services1.arcgis.com/0MSEUqKaxRlEPj5g/arcgis/rest/services/ncov_cases_US/FeatureServer/0/querysdssdd?f=json&where=(Confirmed%20%3E%200)%20AND%20(1%3D1)&returnGeometry=false&spatialRel=esriSpatialRelIntersects&outFields=*&orderByFields=OBJECTID%20ASC&resultOffset=0&resultRecordCount=10000&cacheHint=true&quantizationParameters=%7B%22mode%22%3A%22edit%22%7D"
 const latestJsonLocation = 'src/data/new-latest.json';
 const latestJsonLocationOriginal = 'src/data/latest.json';
+const moment = require("moment");
 
 async function fetchRemoteJson(url) {
     return await
@@ -81,6 +82,7 @@ async function rundiff(file1, file2) {
 }
 
 async function doit() {
+    console.log("Last executed:" + moment().format());
     if (await processDailyNew()) {
         let lineschanged = await rundiff(latestJsonLocation, latestJsonLocationOriginal);
         console.log(`Got updates  ${lineschanged} lines changed`);
