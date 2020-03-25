@@ -90,14 +90,14 @@ const AllStateListRender = (props) => {
         <Table className={classes.table} size="small" aria-label="simple table">
             <TableHead>
                 <TableRow>
-                    <Hidden xsDown>  {/* desktop layout*/}
+                    <Hidden xsDown>
                         <TableCell > Name</TableCell>
                         <TableCell align="center">Total</TableCell>
                         <TableCell align="center">New</TableCell>
                         <TableCell align="center">Population</TableCell>
                         <TableCell align="center">Cases Per Million</TableCell>
                     </Hidden>
-                    <Hidden smUp>  {/* mobile layout*/}
+                    <Hidden smUp>
                         <ThemeProvider theme={compact}>
                             <TableCell > Name</TableCell>
                             <TableCell align="center">Total</TableCell>
@@ -124,7 +124,7 @@ const AllStateListRender = (props) => {
                         }
                         let pop = myToNumber(row.Population2010);
                         return <TableRow key={statename}>
-                            <Hidden xsDown>  {/* desktop layout*/}
+                            <Hidden xsDown>
                                 <TableCell component="th" scope="row" onClick={() => {
                                     props.callback(row.state)
                                 }}>
@@ -135,7 +135,7 @@ const AllStateListRender = (props) => {
                                 <TableCell align="center">{myShortNumber(pop)}</TableCell>
                                 <TableCell align="center">{(confirmed * 1000000 / pop).toFixed(1)}</TableCell>
                             </Hidden>
-                            <Hidden smUp>  {/* mobile layout*/}
+                            <Hidden smUp>
                                 <ThemeProvider theme={compact}>
 
                                     <TableCell component="th" scope="row" onClick={() => {
@@ -169,14 +169,14 @@ const CountyListRender = (props) => {
         <Table className={classes.table} size="small" aria-label="simple table">
             <TableHead>
                 <TableRow>
-                    <Hidden xsDown>  {/* desktop layout*/}
+                    <Hidden xsDown>
                         <TableCell > Name</TableCell>
                         <TableCell align="center">Total</TableCell>
                         <TableCell align="center">New</TableCell>
                         <TableCell align="center">Population</TableCell>
                         <TableCell align="center">Cases Per Million</TableCell>
                     </Hidden>
-                    <Hidden smUp>  {/* mobile layout*/}
+                    <Hidden smUp>
                         <TableCell > Name</TableCell>
                         <TableCell align="center">Total</TableCell>
                         <TableCell align="center">New</TableCell>
@@ -216,7 +216,7 @@ const CountyListRender = (props) => {
                         }
 
                         return <TableRow key={row.County}>
-                            <Hidden xsDown>  {/* desktop layout*/}
+                            <Hidden xsDown>
                                 <TableCell component="th" scope="row" onClick={() => { clicked(row.County, row.State); }}>
                                     {row.County}
                                 </TableCell>
@@ -225,7 +225,7 @@ const CountyListRender = (props) => {
                                 <TableCell align="center">{myShortNumber(population)}</TableCell>
                                 <TableCell align="center">{partsPerMil}</TableCell>
                             </Hidden>
-                            <Hidden smUp>  {/* mobile layout*/}
+                            <Hidden smUp>
                                 <ThemeProvider theme={compact}>
                                     <TableCell component="th" scope="row" onClick={() => { clicked(row.County, row.State); }}>
                                         {row.County}

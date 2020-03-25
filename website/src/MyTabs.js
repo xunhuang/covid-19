@@ -61,7 +61,7 @@ const MyTabs = (props) => {
     )
     let d = 0;
     let tabscomp = tabs.map(tab =>
-        <TabPanel value={tabvalue} index={d}>
+        <TabPanel value={tabvalue} index={d} key={d}>
             {tabs[d++]}
         </TabPanel>
     )

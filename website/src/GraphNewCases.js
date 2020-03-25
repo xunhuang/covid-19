@@ -168,7 +168,6 @@ const BasicGraphNewCases = (props) => {
 
     // const showPlusNearby = typeof(props.onPlusNearby) !== 'undefined';
     const showPlusNearby = false;
-
     let plusNearbyDiv = <></>;
     if (showPlusNearby) {
         plusNearbyDiv = <><Grid item></Grid>
@@ -228,38 +227,44 @@ const BasicGraphNewCases = (props) => {
     data = data.sort((a, b) => moment(a.fulldate).isAfter(moment(b.fulldate)));
 
     return <>
-        <Typography>
-            <Grid container alignItems="center" spacing={1}>
-                <Grid item></Grid>
-                <Grid item>
-                    <AntSwitch checked={state.showlog} onClick={handleChange} />
-                </Grid>
-                <Grid item onClick={handleChange}>Log Scale</Grid>
-                <Grid item></Grid>
-                <Grid item>
-                    <AntSwitch checked={state.show30days} onClick={handle30DaysToggle} />
-                </Grid>
-                <Grid item onClick={handle30DaysToggle}>Last 2 weeks</Grid>
-                {plusNearbyDiv}
-                <Dialog
-                    open={open}
-                    onClose={handleClose}
-                >
-                    <DialogTitle id="alert-dialog-title">{"Data Credit"}</DialogTitle>
-                    <DialogContent>
-                        <DialogContentText id="alert-dialog-description">
-                            <DataCreditWidget></DataCreditWidget>
-                        </DialogContentText>
-                    </DialogContent>
-                    <DialogActions>
-                        <Button onClick={handleClose} color="primary" autoFocus>
-                            OK
-          </Button>
-                    </DialogActions>
-                </Dialog>
-                <Grid item></Grid>
+        <Grid container alignItems="center" spacing={1}>
+            <Grid item></Grid>
+            <Grid item>
+                <AntSwitch checked={state.showlog} onClick={handleChange} />
             </Grid>
+            <Grid item onClick={handleChange}>
+                <Typography>
+                    Log Scale
         </Typography>
+            </Grid>
+            <Grid item></Grid>
+            <Grid item>
+                <AntSwitch checked={state.show30days} onClick={handle30DaysToggle} />
+            </Grid>
+            <Grid item onClick={handle30DaysToggle}>
+                <Typography>
+                    Last 2 weeks
+        </Typography>
+            </Grid>
+            {plusNearbyDiv}
+            <Dialog
+                open={open}
+                onClose={handleClose}
+            >
+                <DialogTitle id="alert-dialog-title">{"Data Credit"}</DialogTitle>
+                <DialogContent>
+                    <DialogContentText id="alert-dialog-description">
+                        <DataCreditWidget></DataCreditWidget>
+                    </DialogContentText>
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={handleClose} color="primary" autoFocus>
+                        OK
+          </Button>
+                </DialogActions>
+            </Dialog>
+            <Grid item></Grid>
+        </Grid>
         <ResponsiveContainer height={300} >
             <LineChart
                 data={data}
@@ -290,41 +295,45 @@ const BasicGraphNewCases = (props) => {
                 ]} />
 
             </LineChart></ResponsiveContainer>
-        <Typography variant="body2" noWrap>
-            <Grid container alignItems="center" spacing={1}>
-                <Grid item onClick={handleClickOpen} >
+        <Grid container alignItems="center" spacing={1}>
+            <Grid item onClick={handleClickOpen} >
+                <Typography variant="body2" noWrap>
                     Data Credit: Click for details.
-                    </Grid>
-                <Grid item>
-                </Grid>
-                <Grid item className={classes.grow} />
-                <Grid item onClick={
-                    () => {
-                        fileDownload(JSON.stringify(data, 2, 2), "covid-data.json");
-                        setOpenDownload(true);
-                    }
-                }> Data Download</Grid>
-                <Dialog
-                    open={openDownload}
-                    onClose={handleCloseDownload}
-                >
-                    <DialogTitle id="alert-dialog-title">{"Download Complete"}</DialogTitle>
-                    <DialogContent>
-                        <DialogContentText id="alert-dialog-description">
-                            Disclaimer: The format data likely to change over time.
-                        </DialogContentText>
-                    </DialogContent>
-                    <DialogActions>
-                        <Button onClick={handleCloseDownload} color="primary" autoFocus>
-                            OK
-          </Button>
-                    </DialogActions>
-                </Dialog>
-
-
-                <Grid item></Grid>
-            </Grid>
         </Typography>
+            </Grid>
+            <Grid item>
+            </Grid>
+            <Grid item className={classes.grow} />
+            <Grid item onClick={
+                () => {
+                    fileDownload(JSON.stringify(data, 2, 2), "covid-data.json");
+                    setOpenDownload(true);
+                }
+            }>
+                <Typography variant="body2" noWrap>
+                    Data Download
+        </Typography>
+            </Grid>
+            <Dialog
+                open={openDownload}
+                onClose={handleCloseDownload}
+            >
+                <DialogTitle id="alert-dialog-title">{"Download Complete"}</DialogTitle>
+                <DialogContent>
+                    <DialogContentText id="alert-dialog-description">
+                        Disclaimer: The format data likely to change over time.
+                        </DialogContentText>
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={handleCloseDownload} color="primary" autoFocus>
+                        OK
+          </Button>
+                </DialogActions>
+            </Dialog>
+
+
+            <Grid item></Grid>
+        </Grid>
     </>
 }
 

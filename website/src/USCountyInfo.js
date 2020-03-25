@@ -282,12 +282,6 @@ function computeConfirmMap() {
             }
         }
         m[key] = obj;
-        if (key.endsWith("NYUnassigned")) {
-            console.log(latestForCounty);
-            console.log(obj);
-            console.log(LatestMap["NYUnassigned County"]);
-
-        }
         return m;
     }, {});
     return map;
