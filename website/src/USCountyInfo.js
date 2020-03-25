@@ -131,7 +131,7 @@ function getAllStatesSummary(cases) {
 function getCountySummary1() {
     let map = ConfirmedData2.reduce((m, a) => {
         let state = a.State;
-        let county = a["County Name"];
+        let county = normalize_county_name_from_USAFACTS(a["County Name"]);
         let c = getCombinedData(state, county);
         let confirmed = 0;
 
