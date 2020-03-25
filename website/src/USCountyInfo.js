@@ -177,20 +177,14 @@ function countyDataForState(state_short_name) {
                 );
             }
             if (a["County Name"] === "Statewide Unallocated") {
-                console.log("capturing unassigned.... ");
                 key = makeCountyKey(
                     a["State"],
                     "Unassigned",
                 );
             }
-
-
             let c = getCombinedDataForKey(key);
-
             let c_info = lookupCountyInfo(state, county);
             let pop = c_info ? c_info.Population2010 : NaN;
-
-            console.log(key);
 
             m.push({
                 total: c[todaykey].confirmed,
@@ -263,7 +257,6 @@ function computeConfirmMap() {
                 "Unassigned",
             );
         }
-        console.log(key);
         delete a["countyFIPS"];
         delete a["County Name"];
         delete a["State"];
@@ -394,21 +387,41 @@ const CombinedDataMap = computeCombinedMap();
 
 function pad(n) { return n < 10 ? '0' + n : n }
 
-function getCountyData(state_short_name, county_name) {
+function getCombinedData(state_short_name, county_name) {
     if (state_short_name === "NY" && county_name === "New York") {
         county_name = "New York City"
     }
     let key = makeCountyKey(state_short_name, county_name + " County");
+    if (county_name === "Statewide Unallocated") {
+        key = makeCountyKey(state_short_name, "Unassigned");
+    }
 
     return CombinedDataMap[key];
 }
 
+function getCountyData(state_short_name, county_name) {
+    return getCombinedData(state_short_name, county_name);
+}
+
 function getCountyDataForGrapth(state_short_name, county_name) {
+    /*
     if (state_short_name === "NY" && county_name === "New York") {
         county_name = "New York City";
     }
+    if (county_name === "Statewide Unallocated") {
+        county_name = makeCountyKey(
+            state_short_name,
+            "Unassigned",
+        );
+    }
     let key = makeCountyKey(state_short_name, county_name + " County");
+    if (county_name === "Unassigned") {
+        key = makeCountyKey(state_short_name, county_name);
+    }
     return CombinedDataMap[key];
+    */
+    console.log("gettinng graph")
+    return getCombinedData(state_short_name, county_name);
 }
 
 function getCombinedDataForKey(k) {
@@ -512,13 +525,9 @@ function casesForCountySummary(state_short_name, county_name) {
 function casesForStateSummary(state_short_name) {
     let counties_keys = Object.keys(CombinedDataMap)
         .filter(k => k.startsWith(state_short_name));
-
-    console.log(counties_keys);
-
     let summaries = counties_keys.map(k => {
         let c = getCombinedDataForKey(k);
         if (!c) {
-            console.log("nothing?!");
             return {
                 confirmed: 0,
                 newcases: 0,
@@ -532,8 +541,6 @@ function casesForStateSummary(state_short_name) {
             death: c[todaykey].death,
             newcases: today - yesterday,
         }
-        console.log(k);
-        console.log(result);
         return result;
     });
 

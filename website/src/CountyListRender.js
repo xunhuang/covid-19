@@ -69,6 +69,7 @@ const CountiesForStateWidget = (props) => {
     let countySummary = <div></div>;
     if (countyInfo) {
         let list = USCounty.countyDataForState(props.state);
+        console.log(list);
         countySummary =
             <CountyListRender countylist={list} callback={props.callback} />
     }
