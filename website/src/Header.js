@@ -51,7 +51,9 @@ const SearchBox = (props) => {
         onChange={param => {
             console.log(param);
             if (props.callback) {
-                props.callback(param.value.county, param.value.state_name);
+                if (param.value) {
+                    props.callback(param.value.county, param.value.state_name);
+                }
             }
 
         }}
