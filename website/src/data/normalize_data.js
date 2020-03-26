@@ -78,10 +78,6 @@ function covert() {
 
 const STATE_Name_To_FIPS = covert();
 
-function getCombinedDataForKey(k) {
-    // console.log("KEY IS:" + k)
-    return CombinedDataMap[k];
-}
 
 let AllData = {};
 
@@ -109,7 +105,6 @@ function setCountyNode(state_fips, county_fips, node) {
 }
 
 function createCountyObject(state_fips, state_name, county_fips, county_name) {
-    console.log("" + state_fips + state_name)
 
     let countyObject = {};
     countyObject.CountyName = county_name;
@@ -126,12 +121,19 @@ function createCountyObject(state_fips, state_name, county_fips, county_name) {
     return countyObject;
 }
 
+function fixCountyFip(cp) {
+    if (cp.length === 4) {
+        return "0" + cp;
+    }
+    return cp;
+}
+
 // create nodes
 ConfirmedData.map(b => {
     let countyObject = createCountyObject(
         pad(parseInt(b.stateFIPS)),
         b.State,
-        b.countyFIPS,
+        fixCountyFip(b.countyFIPS),
         b["County Name"],
     )
     let county = getCountyNode(countyObject.StateFIPS, countyObject.CountyFIPS);
@@ -141,7 +143,7 @@ ConfirmedData.map(b => {
 });
 
 ConfirmedData.map(b => {
-    let county_fips = b.countyFIPS;
+    let county_fips = fixCountyFip(b.countyFIPS);
     let state_fips = pad(parseInt(b.stateFIPS));
     let a = JSON.parse(JSON.stringify(b));
     let county = getCountyNode(state_fips, county_fips);
@@ -165,7 +167,7 @@ ConfirmedData.map(b => {
 });
 
 DeathData.map(b => {
-    let county_fips = b.countyFIPS;
+    let county_fips = fixCountyFip(b.countyFIPS);
     let state_fips = pad(parseInt(b.stateFIPS));
     let a = JSON.parse(JSON.stringify(b));
     let county = getCountyNode(state_fips, county_fips);
@@ -194,10 +196,10 @@ LatestData.features.map(c => {
     if (county_fips === null) {
         county_fips = "0";
     }
-    console.log(` ${state_fips}, ${county_fips}`);
+    // console.log(` ${state_fips}, ${county_fips}`);
     let county = getCountyNode(state_fips, county_fips);
     if (!county) {
-        console.log(`creating ${b.Province_State}, ${b.Admin2}`);
+        // console.log(`creating ${b.Province_State}, ${b.Admin2}`);
         county = createCountyObject(
             state_fips,
             states.getStateCodeByStateName(b.Province_State),
@@ -213,5 +215,50 @@ LatestData.features.map(c => {
     county.Death[datekey] = b.Deaths;
     county.Active[datekey] = b.Active;
 });
+
+////// now summarize the data
+
+function getValueFromLastDate(v) {
+    if (!v || Object.keys(v).length === 0) {
+        return { num: 0, newnum: 0 }
+    }
+    if (Object.keys(v).length === 1) {
+        return { num: v[0], newnum: v[0] }
+    }
+    let nv = Object.keys(v).sort((a, b) => moment(b, "MM/DD/YYYY").toDate() - moment(a, "MM/DD/YYYY").toDate());
+    return { num: v[nv[0]], newnum: v[nv[0]] - v[nv[1]] };
+}
+
+for (s in AllData) {
+    state = AllData[s];
+    for (c in state) {
+        county = state[c];
+        county.LastConfirmed = 0;
+        county.LastDeath = 0;
+        county.LastRecovered = 0;
+        county.LastActive = 0;
+
+        const CC = getValueFromLastDate(county.Confirmed);
+        const DD = getValueFromLastDate(county.Death);
+        const RR = getValueFromLastDate(county.Recovered);
+        const AA = getValueFromLastDate(county.Active);
+
+        county.LastConfirmed = CC.num;
+        county.LastConfirmedNew = CC.newnum;
+        county.LastDeath = DD.num;
+        county.LastDeathNew = DD.newnum;
+        county.LastRecovered = RR.num;
+        county.LastRecoveredNew = RR.newnum;
+        county.LastActive = AA.num;
+        county.LastActiveNew = AA.newnum;
+
+        if (county.CountyName === "Alameda County") {
+            // console.log(county);
+        }
+
+        setCountyNode(s, c, county);
+    }
+}
+
 
 console.log(JSON.stringify(AllData, 2, 2));
