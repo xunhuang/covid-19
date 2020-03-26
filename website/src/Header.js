@@ -24,9 +24,18 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
+
+const search = USCounty.getCountySummary1();
 const SearchBox = (props) => {
-    let summary = USCounty.getCountySummary1();
-    let counties = summary.sort((a, b) => b.total - a.total)
+    let summary = search.sort((a, b) => {
+        let x = a.total;
+        let y = b.total;
+        if (!x) x = 0;
+        if (!y) y = 0;
+
+        return y - x;
+    });
+    let counties = summary
         .map(c => {
             return {
                 label: `${c.county} , ${c.state_name} (${c.total})`,
@@ -49,7 +58,6 @@ const SearchBox = (props) => {
         name="county_selection"
         options={counties}
         onChange={param => {
-            console.log(param);
             if (props.callback) {
                 if (param.value) {
                     props.callback(param.value.county, param.value.state_name);

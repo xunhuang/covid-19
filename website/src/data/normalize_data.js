@@ -104,10 +104,16 @@ function setCountyNode(state_fips, county_fips, node) {
     state[county_fips] = node;
 }
 
+function fix_county_name(county_name) {
+    county_name = county_name.replace(/ County$/g, "");
+    county_name = county_name.replace(/ Parish$/g, "");
+    return county_name;
+}
+
 function createCountyObject(state_fips, state_name, county_fips, county_name) {
 
     let countyObject = {};
-    countyObject.CountyName = county_name;
+    countyObject.CountyName = fix_county_name(county_name);
     countyObject.StateName = state_name;
     countyObject.CountyFIPS = county_fips;
     countyObject.StateFIPS = state_fips;
@@ -253,10 +259,6 @@ for (s in AllData) {
         county.LastActive = AA.num;
         county.LastActiveNew = AA.newnum;
 
-        if (county.CountyName === "Alameda County") {
-            // console.log(county);
-        }
-
         setCountyNode(s, c, county);
     }
 }
@@ -318,7 +320,7 @@ USActive = {};
 
 for (s in AllData) {
     state = AllData[s];
-    // console.log(JSON.stringify(state, 2, 2));
+
     mergeTwoMapValues(USConfirmed, state.Summary.Confirmed)
     mergeTwoMapValues(USDeath, state.Summary.Death)
     mergeTwoMapValues(USRecovered, state.Summary.Recovered)

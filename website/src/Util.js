@@ -121,6 +121,9 @@ function myFipsCode(state, county) {
         let statefips = STATE_Name_To_FIPS[states.getStateNameByStateCode(state)];
         return [statefips, "0"];
     }
+    if (county === "New York City") {
+        county = "New York";
+    }
     console.log(`checking fips code for ${state} ${county}`);
     let a = fips.get({
         "state": state,

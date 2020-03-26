@@ -133,28 +133,33 @@ function getAllStatesSummary(cases) {
 }
 
 function getCountySummary1() {
-    let map = ConfirmedData2.reduce((m, a) => {
-        let state = a.State;
-        let county = normalize_county_name_from_USAFACTS(a["County Name"]);
-        let c = getCombinedData(state, county);
-        let confirmed = 0;
-
-        if (c) {
-            confirmed = c[todaykey].confirmed;
-        } else {
-            console.log("************* No Data " + state + " " + county);
+    let result = [];
+    for (let s in AllData) {
+        if (s === "Summary") {
+            continue;
         }
+        let state = AllData[s];
+        for (let cfips in state) {
 
-        m.push({
-            total: confirmed,
-            county: county,
-            County: county,
-            state_name: state,
-            State_name: state,
-        });
-        return m;
-    }, []);
-    return map;
+            if (cfips !== "Summary") {
+                let c = state[cfips];
+                if (!c.CountyName) {
+                    console.log("no name: " + c.StateFIPS + " " + c.CountyFIPS)
+                    console.log(c);
+                }
+                result.push({
+                    total: c.LastConfirmed,
+                    county: c.CountyName,
+                    County: c.CountyName,
+                    state_name: c.StateName,
+                    State_name: c.StateName,
+                    StateFIPS: c.StateFIPS,
+                    CountyFIPS: c.CountyFIPS,
+                });
+            }
+        }
+    }
+    return result;
 }
 
 function normalize_county_name_from_USAFACTS(county) {
@@ -394,15 +399,12 @@ function getCombinedData(state_short_name, county_name) {
 }
 
 function getCombinedDataForKey(k) {
-    // console.log("KEY IS:" + k)
     return CombinedDataMap[k];
 }
 
 function getCountyDataNew(state_short_name, county_name) {
     const [sfips, cfips] = Util.myFipsCode(state_short_name, county_name);
-    console.log(sfips, cfips);
     let county = AllData[sfips][cfips];
-    console.log(county);
     return county;
 }
 
@@ -542,19 +544,13 @@ function casesForStateSummary(state_short_name) {
 }
 
 function casesForUSSummary() {
-
-    let today = 0;
-    let yesterday = 0;
-    for (var index in ConfirmedMap) {
-        let c = ConfirmedMap[index];
-        today += c[todaykey];
-        yesterday += c[yesterdaykey];
-    }
-
+    const confirmed = AllData.Summary.LastConfirmed;
+    const newcases = AllData.Summary.LastConfirmedNew;
     return {
-        confirmed: today,
-        newcases: today - yesterday,
-        newpercent: ((today - yesterday / today) * 100).toFixed(0),
+        confirmed: confirmed,
+        newcases: newcases,
+        newcases: newcases,
+        newpercent: ((newcases / (confirmed - newcases)) * 100).toFixed(0),
     }
 }
 
@@ -564,10 +560,10 @@ export {
     nearbyCounties,
     casesForCountySummary, // check
     casesForStateSummary, // check
-    casesForUSSummary,
-    hospitalsForState,
+    casesForUSSummary, // check
+    hospitalsForState, // no related
     countyDataForState,
-    getAllStatesSummary,
+    getAllStatesSummary, // check... but can be more efficient if precomputed
     /// new
     getCountyDataForGrapth,
     getStateDataForGrapth,
