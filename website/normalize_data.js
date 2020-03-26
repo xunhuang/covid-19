@@ -3,7 +3,7 @@ const getDistance = require('geolib').getDistance;
 const moment = require("moment");
 const ConfirmedData = require("./src/data/covid_confirmed_usafacts.json");
 const DeathData = require("./src/data/covid_death_usafacts.json");
-const LatestData03252020 = require("./src/data/folder/JHU-03-25-2020.json");
+const LatestData03252020 = require("../data/archive/JHU-03-25-2020.json");
 const LatestData = require("./src/data/latest.json");
 const states = require('us-state-codes');
 const fs = require('fs');
@@ -437,6 +437,7 @@ Summary.LastRecovered = RR.num;
 Summary.LastRecoveredNew = RR.newnum;
 Summary.LastActive = AA.num;
 Summary.LastActiveNew = AA.newnum;
+Summary.genarated = moment().format();
 
 AllData.Summary = Summary;
 let content = JSON.stringify(AllData, 2, 2);
