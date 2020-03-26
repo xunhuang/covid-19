@@ -88,10 +88,8 @@ async function fetchApproxIPLocation() {
 
 const GraphSectionUS = withRouter((props) => {
   let graphdata = USCounty.getUSDataForGrapth();
-  let readyForGraph = dataMapToGraphSeries(graphdata);
-
   const tabs = [
-    <BasicGraphNewCases data={readyForGraph} casesData={props.casesData} logScale={false} />,
+    <BasicGraphNewCases data={graphdata} casesData={props.casesData} logScale={false} />,
     <GraphUSTesting />,
     <GraphUSHospitalization />,
   ]
@@ -107,10 +105,10 @@ const GraphSectionState = withRouter((props) => {
   let state_title = states.getStateNameByStateCode(state);
 
   let graphdata = USCounty.getStateDataForGrapth(state);
-  let readyForGraph = dataMapToGraphSeries(graphdata);
+  console.log(graphdata);
 
   const tabs = [
-    <BasicGraphNewCases data={readyForGraph} logScale={false} />,
+    <BasicGraphNewCases data={graphdata} logScale={false} />,
     <GraphStateTesting state={state} />,
     <GraphStateHospitalization state={state} />,
   ]
@@ -121,9 +119,23 @@ const GraphSectionState = withRouter((props) => {
   return graphlistSection;
 });
 
-function dataMapToGraphSeries(g) {
+function dataMapToGraphSeriesNew(g) {
   let arr = [];
 
+  for (let i in g.Confirmed) {
+    let entry = {}
+    entry.confirmed = g.Confirmed[i];
+    entry.death = g.Death[i];
+    entry.recovered = g.Recovered[i];
+    entry.active = g.Active[i];
+    entry.fulldate = i;
+    arr.push(entry);
+  }
+  return arr;
+}
+
+function dataMapToGraphSeries(g) {
+  let arr = [];
   for (let i in g) {
     let entry = g[i];
     entry.fulldate = i;
@@ -133,28 +145,17 @@ function dataMapToGraphSeries(g) {
 }
 
 const GraphSectionCounty = withRouter((props) => {
-  const [state, setState] = React.useState({
-    plusNearby: false,
-  });
-
-  const handlePlusNearbyToggle = event => {
-    setState({ ...state, plusNearby: !state.plusNearby });
-  };
-
-  const state_short_name = props.state;
+  const state = props.state;
   const county = props.county;
-  const plusNearby = state.plusNearby;
-  let state_title = states.getStateNameByStateCode(state_short_name);
+  let state_title = states.getStateNameByStateCode(state);
 
-  //let graphdata = USCounty.getCountyDataForGrapth(state, county);
-  let graphdata = plusNearby ? 
-    USCounty.getCountyDataForGraphWithNearby(state_short_name, county) :
-    USCounty.getCountyDataForGrapth(state_short_name, county);
-  let readyForGraph = dataMapToGraphSeries(graphdata);
+  let graphdata = USCounty.getCountyDataForGrapth(state, county);
+  // let readyForGraph = dataMapToGraphSeriesNew(graphdata);
+  // console.log(readyForGraph);
 
   const tabs = [
-    <BasicGraphNewCases data={readyForGraph} logScale={false} onPlusNearby={handlePlusNearbyToggle} />,
-    <GraphStateTesting state={state_short_name} />,
+    <BasicGraphNewCases data={graphdata} logScale={false} />,
+    <GraphStateTesting state={state} />,
   ]
   let graphlistSection = <MyTabs
     labels={["Confirmed Cases", `${state_title} Testing`]}

@@ -8,7 +8,6 @@ const DeathData = require("./data/covid_death_usafacts.json");
 const LatestData = require("./data/latest.json");
 
 const states = require('us-state-codes');
-const ConfirmedData2 = JSON.parse(JSON.stringify(ConfirmedData));
 const AllData = require("./data/AllData.json");
 
 function countyModuleInit() {
@@ -167,27 +166,27 @@ function normalize_county_name_from_USAFACTS(county) {
 }
 
 function countyDataForState(state_short_name) {
-    let map = ConfirmedData2
-        .filter(c => c.State === state_short_name)
-        .reduce((m, a) => {
-            let county = normalize_county_name_from_USAFACTS(a["County Name"]);
-            let state = a.State;
-            let c = getCombinedData(state, county);
-            let c_info = lookupCountyInfo(state, county);
+    const [sfips] = Util.myFipsCode(state_short_name, null);
+    const state = AllData[sfips];
+    var m = []
+    for (let cfips in state) {
+        if (cfips !== "Summary") {
+            let c = state[cfips];
+            let c_info = lookupCountyInfo(state_short_name, c.CountyName);
             let pop = c_info ? c_info.Population2010 : NaN;
-
             m.push({
-                total: c[todaykey].confirmed,
-                confirmed: c[todaykey].confirmed,
-                county: county,
-                County: county,
-                state_name: state,
-                State: state,
+                total: c.LastConfirmed,
+                confirmed: c.LastConfirmed,
+                county: c.CountyName,
+                County: c.CountyName,
+                state_name: c.StateName,
+                State: c.StateName,
                 Population2010: pop,
             });
-            return m;
-        }, []);
-    return map;
+
+        }
+    }
+    return m;
 }
 
 function hospitalsForState(state_short_name) {
@@ -408,23 +407,32 @@ function getCountyDataNew(state_short_name, county_name) {
     return county;
 }
 
+function dataMapToGraphSeriesNew(data) {
+    let arr = [];
+    for (let i in data.Confirmed) {
+        let entry = {}
+        entry.confirmed = data.Confirmed[i];
+        entry.death = data.Death[i];
+        entry.recovered = data.Recovered[i];
+        entry.active = data.Active[i];
+        entry.fulldate = i;
+        arr.push(entry);
+    }
+    return arr;
+}
+
 function getCountyDataForGrapth(state_short_name, county_name) {
-    return getCombinedData(state_short_name, county_name);
+    let data = getCountyDataNew(state_short_name, county_name);
+    return dataMapToGraphSeriesNew(data);
 }
 
-function getCountyDataForGraphWithNearby(state_short_name, county_name) {
-    let counties_keys = nearbyCounties(state_short_name, county_name).map(a => makeCountyKey(
-        state_short_name,
-        a["County"] + " County",
-    ));
-    return getDataForGrapthForCountyKeys(counties_keys)
-}
-
-
-function getStateDataForGrapth(state_short_name) {
-    let counties_keys = Object.keys(CombinedDataMap).filter(k => k.startsWith(state_short_name));
-    return getDataForGrapthForCountyKeys(counties_keys)
-}
+// function getCountyDataForGraphWithNearby(state_short_name, county_name) {
+//     let counties_keys = nearbyCounties(state_short_name, county_name).map(a => makeCountyKey(
+//         state_short_name,
+//         a["County"] + " County",
+//     ));
+//     return getDataForGrapthForCountyKeys(counties_keys)
+// }
 
 function getDataForGrapthForCountyKeys(counties_keys) {
     let result = {};
@@ -459,33 +467,16 @@ function getDataForGrapthForCountyKeys(counties_keys) {
     return result;
 }
 
+function getStateDataForGrapth(state_short_name) {
+    const [sfips] = Util.myFipsCode(state_short_name);
+    let data = AllData[sfips].Summary;
+    let result = dataMapToGraphSeriesNew(data);
+    return (result);
+}
+
 function getUSDataForGrapth() {
-    let counties = Object.values(CombinedDataMap);
-    let result = {};
-    counties.map(c_data => {
-        Object.keys(c_data).map(date_key => {
-            let date_data = c_data[date_key];
-            let entry = result[date_key];
-            let a = {};
-            if (entry) {
-                // entry.confirmed += date_data.confirmed;
-                // entry.death += date_data.death;
-
-                a.confirmed = entry.confirmed + date_data.confirmed;
-                a.death = entry.death + date_data.death;
-                a.fulldate = entry.fulldate;
-                a.name = entry.name;
-                a.newcase = entry.newcase;
-                a.state = entry.state;
-
-            } else {
-                a = date_data;
-            }
-            result[date_key] = a;
-            return null;
-        });
-        return null;
-    });
+    let data = AllData.Summary;
+    let result = dataMapToGraphSeriesNew(data);
     return result;
 }
 
@@ -562,12 +553,12 @@ export {
     casesForStateSummary, // check
     casesForUSSummary, // check
     hospitalsForState, // no related
-    countyDataForState,
+    countyDataForState, // check
     getAllStatesSummary, // check... but can be more efficient if precomputed
     /// new
-    getCountyDataForGrapth,
-    getStateDataForGrapth,
-    getUSDataForGrapth,
-    getCountySummary1,
-    getCountyDataForGraphWithNearby,
+    getCountySummary1, // check
+    getCountyDataForGrapth, // check
+    getStateDataForGrapth, // check
+    getUSDataForGrapth, //Check
+    // getCountyDataForGraphWithNearby,
 }

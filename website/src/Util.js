@@ -111,7 +111,6 @@ function covert() {
         m[state_fips_to_name[k]] = k
         return m;
     }, {});
-
 }
 
 const STATE_Name_To_FIPS = covert();
@@ -124,12 +123,12 @@ function myFipsCode(state, county) {
     if (county === "New York City") {
         county = "New York";
     }
-    console.log(`checking fips code for ${state} ${county}`);
+    // console.log(`checking fips code for ${state} ${county}`);
     let a = fips.get({
         "state": state,
         "county": county,
     });
-    console.log(a);
+    // console.log(a);
 
     return [a.fips.slice(0, 2), a.fips]
 }
