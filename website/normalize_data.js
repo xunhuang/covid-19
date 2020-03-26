@@ -437,7 +437,7 @@ Summary.LastRecovered = RR.num;
 Summary.LastRecoveredNew = RR.newnum;
 Summary.LastActive = AA.num;
 Summary.LastActiveNew = AA.newnum;
-Summary.genarated = moment().format();
+Summary.generated = moment().format();
 
 AllData.Summary = Summary;
 let content = JSON.stringify(AllData, 2, 2);

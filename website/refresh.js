@@ -118,7 +118,7 @@ async function rundiff(file1, file2) {
         var str = data.toString()
         var lines = str.split(/(\r?\n)/g);
         linecount += lines.length;
-        console.log(lines.join(""));
+        // console.log(lines.join(""));
     };
     return linecount;
 }
