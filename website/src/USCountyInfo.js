@@ -1,13 +1,8 @@
 import * as Util from "./Util.js"
 const getDistance = require('geolib').getDistance;
 const CountyList = require("./data/county_gps.json");
-const moment = require("moment");
-
-const ConfirmedData = require("./data/covid_confirmed_usafacts.json");
-const DeathData = require("./data/covid_death_usafacts.json");
-const LatestData = require("./data/latest.json");
-
-const states = require('us-state-codes');
+// const moment = require("moment");
+// const states = require('us-state-codes');
 const AllData = require("./data/AllData.json");
 
 function countyModuleInit() {
@@ -161,10 +156,6 @@ function getCountySummary1() {
     return result;
 }
 
-function normalize_county_name_from_USAFACTS(county) {
-    return county.replace(/ County$/g, "");
-}
-
 function countyDataForState(state_short_name) {
     const [sfips] = Util.myFipsCode(state_short_name, null);
     const state = AllData[sfips];
@@ -210,196 +201,7 @@ function hospitalsForState(state_short_name) {
     }
 }
 
-function makeCountyKey(state, county) {
-    return "" + state + county;
-}
 
-const LatestMap = LatestData.features.reduce((m, o) => {
-    let a = o.attributes;
-    let key = makeCountyKey(
-        states.getStateCodeByStateName(a.Province_State),
-        a.Admin2 + " County",
-    );
-    m[key] = {
-        confirmed: a.Confirmed,
-        death: a.Deaths,
-    };
-    return m;
-}, {});
-
-function computeConfirmMap() {
-    let map = ConfirmedData.reduce((m, a) => {
-        let key = makeCountyKey(
-            a["State"],
-            a["County Name"],
-        );
-        if (a["State"] === "NY" && a["County Name"] === "New York City") {
-            key = makeCountyKey(
-                "NY",
-                "New York City County"
-            );
-        }
-        if (a["County Name"] === "Statewide Unallocated") {
-            // console.log("capturing unassigned.... ");
-            key = makeCountyKey(
-                a["State"],
-                "Unassigned",
-            );
-        }
-        delete a["countyFIPS"];
-        delete a["County Name"];
-        delete a["State"];
-        delete a["stateFIPS"];
-        let obj = {}
-        Object.keys(a).map(k => {
-            let v = parseInt(a[k]);
-            let p = k.split("/");
-            let m = pad(parseInt(p[0]));
-            let d = pad(parseInt(p[1]));
-            let y = p[2];
-            obj[`${m}/${d}/${y}`] = v;
-            return null;
-        });
-        let today = moment().format("MM/DD/YYYY");
-        let yesterday = moment().subtract(1, "days").format("MM/DD/YYYY");
-        let day_minus_2 = moment().subtract(2, "days").format("MM/DD/YYYY");
-
-        let latestForCounty = LatestMap[key];
-        if (key.endsWith("Unassigned")) {
-            latestForCounty = LatestMap[key + " County"];
-        }
-        if (latestForCounty) {
-
-            if (!obj[yesterday]) {
-                obj[yesterday] = latestForCounty.confirmed;
-            }
-
-            // number should not be decreasing
-            if (latestForCounty.confirmed > obj[yesterday]) {
-                obj[today] = latestForCounty.confirmed;
-            } else {
-                obj[today] = obj[yesterday];
-            }
-        } else {
-            if (obj[yesterday]) {
-                obj[today] = obj[yesterday];
-            } else {
-                // console.log("THERE IS NO YESTERDAY");
-                obj[yesterday] = obj[day_minus_2];
-                obj[today] = obj[yesterday];
-            }
-        }
-        m[key] = obj;
-        return m;
-    }, {});
-    return map;
-}
-
-const ConfirmedMap = computeConfirmMap();
-
-const DeathMap = DeathData.reduce((m, a) => {
-    let key = makeCountyKey(
-        a["State"],
-        a["County Name"],
-    );
-    if (a["State"] === "NY" && a["County Name"] === "New York City") {
-        key = makeCountyKey(
-            "NY",
-            "New York City County"
-        );
-    }
-
-    delete a["countyFIPS"];
-    delete a["County Name"];
-    delete a["State"];
-    delete a["stateFIPS"];
-
-    let obj = {};
-    Object.keys(a).map(k => {
-        let v = parseInt(a[k]);
-        let p = k.split("/");
-        let m = pad(parseInt(p[0]));
-        let d = pad(parseInt(p[1]));
-        let y = p[2];
-        obj[`${m}/${d}/${y}`] = v;
-        return null;
-    });
-
-    let today = moment().format("MM/DD/YYYY");
-    let yesterday = moment().subtract(1, "days").format("MM/DD/YYYY");
-    let latestForCounty = LatestMap[key];
-    if (latestForCounty) {
-        // number should not be decreasing
-        if (latestForCounty.death > obj[yesterday]) {
-            obj[today] = latestForCounty.death;
-        } else {
-            obj[today] = obj[yesterday];
-        }
-    } else {
-        obj[today] = obj[yesterday];
-    }
-
-    m[key] = obj;
-    return m;
-}, {});
-
-function computeCombinedMap() {
-    let countykeys = Object.keys(ConfirmedMap);
-    let combined = {};
-    countykeys.map(key => {
-        let c_confirm = ConfirmedMap[key];
-        let c_death = DeathMap[key];
-        let date_keys = Object.keys(c_confirm);
-        let obj_for_date = {};
-        date_keys.map(date => {
-            let entry = {
-                confirmed: c_confirm[date],
-                death: c_death ? c_death[date] : 0,
-            }
-            obj_for_date[date] = entry;
-            return null;
-        })
-        combined[key] = obj_for_date;
-
-        return null;
-    });
-    return combined;
-}
-
-const CombinedDataMap = computeCombinedMap();
-
-function pad(n) { return n < 10 ? '0' + n : n }
-
-// Input
-//     (state, county)
-//     state: short name , like NY
-//     county: regualar name, no " County" in the end, this function takes care of that
-// 
-// special handling 
-//      "Statewide Unallocated" maps to "Unassigned"
-//
-function getCombinedData(state_short_name, county_name) {
-    if (state_short_name === "NY" && county_name === "New York") {
-        county_name = "New York City"
-    }
-    if (county_name.endsWith(" County")) {
-        county_name = county_name.replace(/ County$/g, "");
-    }
-
-    let key = makeCountyKey(state_short_name, county_name + " County");
-    if (county_name === "Statewide Unallocated") {
-        key = makeCountyKey(state_short_name, "Unassigned");
-    }
-    let result = getCombinedDataForKey(key);
-    if (!result) {
-        result = getCombinedDataForKey(key.replace(/ County$/g, ""));
-    }
-    return result;
-}
-
-function getCombinedDataForKey(k) {
-    return CombinedDataMap[k];
-}
 
 function getCountyDataNew(state_short_name, county_name) {
     const [sfips, cfips] = Util.myFipsCode(state_short_name, county_name);
@@ -426,47 +228,6 @@ function getCountyDataForGrapth(state_short_name, county_name) {
     return dataMapToGraphSeriesNew(data);
 }
 
-// function getCountyDataForGraphWithNearby(state_short_name, county_name) {
-//     let counties_keys = nearbyCounties(state_short_name, county_name).map(a => makeCountyKey(
-//         state_short_name,
-//         a["County"] + " County",
-//     ));
-//     return getDataForGrapthForCountyKeys(counties_keys)
-// }
-
-function getDataForGrapthForCountyKeys(counties_keys) {
-    let result = {};
-
-    counties_keys.map(k => {
-        let c_data = getCombinedDataForKey(k);
-        if (!c_data) {
-            return null;
-        }
-        Object.keys(c_data).map(date_key => {
-            let date_data = c_data[date_key];
-            let entry = result[date_key];
-
-            let a = {};
-            if (entry) {
-                // if I don't do this, somehow it affects upsteam data, werid. 
-                // a = entry;
-                a.confirmed = entry.confirmed + date_data.confirmed;
-                a.death = entry.death + date_data.death;
-                a.fulldate = entry.fulldate;
-                a.name = entry.name;
-                a.newcase = entry.newcase;
-                a.state = entry.state;
-            } else {
-                a = date_data;
-            }
-            result[date_key] = a;
-            return null;
-        });
-        return null;
-    });
-    return result;
-}
-
 function getStateDataForGrapth(state_short_name) {
     const [sfips] = Util.myFipsCode(state_short_name);
     let data = AllData[sfips].Summary;
@@ -480,16 +241,6 @@ function getUSDataForGrapth() {
     return result;
 }
 
-function arraysum_text(a) {
-    let sum = 0;
-    for (let i = 0; i < a.length; i++) {
-        sum += a[i];
-    }
-    return sum;
-}
-
-const todaykey = moment().format("MM/DD/YYYY");
-const yesterdaykey = moment().subtract(1, "days").format("MM/DD/YYYY");
 
 function casesForCountySummary(state_short_name, county_name) {
     let c = getCountyDataNew(state_short_name, county_name);
@@ -539,7 +290,6 @@ function casesForUSSummary() {
     const newcases = AllData.Summary.LastConfirmedNew;
     return {
         confirmed: confirmed,
-        newcases: newcases,
         newcases: newcases,
         newpercent: ((newcases / (confirmed - newcases)) * 100).toFixed(0),
     }
