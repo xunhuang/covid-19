@@ -123,6 +123,10 @@ function myFipsCode(state, county) {
     if (county === "New York City") {
         county = "New York";
     }
+    if (county === "Dukes and Nantucket") {
+        county = "Dukes";
+    }
+
     // console.log(`checking fips code for ${state} ${county}`);
     let a = fips.get({
         "state": state,
