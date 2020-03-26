@@ -153,12 +153,13 @@ const Tag = (props) => {
             </section>
             <section>
                 <Typography className={classes.topTag} variant="body2" noWrap >
-                    {myShortNumber(props.beds)} Beds
+                    {myShortNumber(props.hospitals)} Hospitals
           </Typography>
                 <div className={classes.mainTag}>
-                    {myShortNumber(props.hospitals)} </div>
+                    {myShortNumber(props.beds)}</div>
                 <div className={classes.smallTag}>
-                    Hospitals </div>
+                    Beds
+                    </div>
             </section>
         </div>
     </div >;
