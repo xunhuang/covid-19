@@ -3,6 +3,7 @@ const getDistance = require('geolib').getDistance;
 const moment = require("moment");
 const ConfirmedData = require("./covid_confirmed_usafacts.json");
 const DeathData = require("./covid_death_usafacts.json");
+const LatestData03252020 = require("/Users/xhuang/cvoid-19/website/src/data/folder/JHU-03-25-2020.json");
 const LatestData = require("./latest.json");
 const states = require('us-state-codes');
 
@@ -215,7 +216,7 @@ DeathData.map(b => {
     county.Death = death;
 });
 
-LatestData.features.map(c => {
+function processJSU(c) {
     let b = c.attributes;
     let county_fips = b.FIPS;
     let state_fips = STATE_Name_To_FIPS[b.Province_State];
@@ -240,10 +241,63 @@ LatestData.features.map(c => {
     county.Recovered[datekey] = b.Recovered;
     county.Death[datekey] = b.Deaths;
     county.Active[datekey] = b.Active;
-});
+}
+
+function processJSU2(c) {
+    let b = c.attributes;
+    let county_fips = b.FIPS;
+    let state_fips = STATE_Name_To_FIPS[b.Province_State];
+    if (county_fips === null) {
+        county_fips = "0";
+    }
+    // console.log(` ${state_fips}, ${county_fips}`);
+    let county = getCountyNode(state_fips, county_fips);
+    if (!county) {
+        // console.log(`creating ${b.Province_State}, ${b.Admin2}`);
+        county = createCountyObject(
+            state_fips,
+            states.getStateCodeByStateName(b.Province_State),
+            county_fips,
+            b.Admin2,
+        )
+    }
+
+    let datekey = moment(b.Last_Update).format("MM/DD/YYYY");
+    datekey = "03/25/2020";
+    county.Confirmed[datekey] = b.Confirmed;
+    county.Recovered[datekey] = b.Recovered;
+    county.Death[datekey] = b.Deaths;
+    county.Active[datekey] = b.Active;
+}
+
+
+LatestData03252020.features.map(processJSU2);
+LatestData.features.map(processJSU);
+
+// back fill holes in the data
+
+for (s in AllData) {
+    state = AllData[s];
+    for (c in state) {
+        count = state[c];
+
+        if (count.Confirmed["03/26/2020"] === undefined) {
+            count.Confirmed["03/26/2020"] = count.Confirmed["03/25/2020"];
+        }
+        if (count.Death["03/26/2020"] === undefined) {
+            count.Death["03/26/2020"] = count.Death["03/25/2020"];
+        }
+        if (count.Recovered["03/26/2020"] === undefined) {
+            count.Recovered["03/26/2020"] = count.Recovered["03/25/2020"];
+        }
+        if (count.Active["03/26/2020"] === undefined) {
+            count.Active["03/26/2020"] = count.Active["03/25/2020"];
+        }
+        setCountyNode(s, c, count);
+    }
+}
 
 ////// now summarize the data
-
 function getValueFromLastDate(v) {
     if (!v || Object.keys(v).length === 0) {
         return { num: 0, newnum: 0 }
@@ -339,34 +393,37 @@ USRecovered = {};
 USActive = {};
 
 for (s in AllData) {
-    state = AllData[s];
-
-    mergeTwoMapValues(USConfirmed, state.Summary.Confirmed)
-    mergeTwoMapValues(USDeath, state.Summary.Death)
-    mergeTwoMapValues(USRecovered, state.Summary.Recovered)
-    mergeTwoMapValues(USActive, state.Summary.Active)
-
-    let Summary = {};
-    Summary.Confirmed = USConfirmed;
-    Summary.Death = USDeath;
-    Summary.Recovered = USRecovered;
-    Summary.Active = USActive;
-
-    const CC = getValueFromLastDate(USConfirmed);
-    const DD = getValueFromLastDate(USDeath);
-    const RR = getValueFromLastDate(USRecovered);
-    const AA = getValueFromLastDate(USActive);
-
-    Summary.LastConfirmed = CC.num;
-    Summary.LastConfirmedNew = CC.newnum;
-    Summary.LastDeath = DD.num;
-    Summary.LastDeathNew = DD.newnum;
-    Summary.LastRecovered = RR.num;
-    Summary.LastRecoveredNew = RR.newnum;
-    Summary.LastActive = AA.num;
-    Summary.LastActiveNew = AA.newnum;
-
-    AllData.Summary = Summary;
+    if (s.length === 2) {
+        state = AllData[s];
+        mergeTwoMapValues(USConfirmed, state.Summary.Confirmed)
+        mergeTwoMapValues(USDeath, state.Summary.Death)
+        mergeTwoMapValues(USRecovered, state.Summary.Recovered)
+        mergeTwoMapValues(USActive, state.Summary.Active)
+        // console.log(s);
+        // console.log(USConfirmed)
+    }
 }
 
+let Summary = {};
+Summary.Confirmed = USConfirmed;
+Summary.Death = USDeath;
+Summary.Recovered = USRecovered;
+Summary.Active = USActive;
+
+const CC = getValueFromLastDate(USConfirmed);
+const DD = getValueFromLastDate(USDeath);
+const RR = getValueFromLastDate(USRecovered);
+const AA = getValueFromLastDate(USActive);
+
+Summary.LastConfirmed = CC.num;
+Summary.LastConfirmedNew = CC.newnum;
+Summary.LastDeath = DD.num;
+Summary.LastDeathNew = DD.newnum;
+Summary.LastRecovered = RR.num;
+Summary.LastRecoveredNew = RR.newnum;
+Summary.LastActive = AA.num;
+Summary.LastActiveNew = AA.newnum;
+
+AllData.Summary = Summary;
 console.log(JSON.stringify(AllData, 2, 2));
+
