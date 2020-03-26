@@ -106,7 +106,7 @@ function setCountyNode(state_fips, county_fips, node) {
 
 function fix_county_name(county_name) {
     county_name = county_name.replace(/ County$/g, "");
-    county_name = county_name.replace(/ Parish$/g, "");
+    // county_name = county_name.replace(/ Parish$/g, "");
     return county_name;
 }
 
