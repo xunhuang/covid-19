@@ -117,7 +117,7 @@ function covert() {
 const STATE_Name_To_FIPS = covert();
 
 function myFipsCode(state, county) {
-    if (county === "Statewide Unallocated" || county === "Grand Princess Cruise Ship") {
+    if (!county || county === "Statewide Unallocated" || county === "Grand Princess Cruise Ship") {
         let statefips = STATE_Name_To_FIPS[states.getStateNameByStateCode(state)];
         return [statefips, "0"];
     }

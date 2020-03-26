@@ -229,6 +229,7 @@ function getValueFromLastDate(v) {
     return { num: v[nv[0]], newnum: v[nv[0]] - v[nv[1]] };
 }
 
+// summarize data for counties
 for (s in AllData) {
     state = AllData[s];
     for (c in state) {
@@ -260,5 +261,90 @@ for (s in AllData) {
     }
 }
 
+function mergeTwoMapValues(m1, m2) {
+    for (let i in m2) {
+        let a = m1[i];
+        a = a ? a : 0;
+        a += m2[i];
+        m1[i] = a;
+    }
+}
+
+// summarize data for states
+
+for (s in AllData) {
+    state = AllData[s];
+    // need to 
+    Confirmed = {};
+    Death = {};
+    Recovered = {};
+    Active = {};
+    for (c in state) {
+        county = state[c];
+        mergeTwoMapValues(Confirmed, county.Confirmed)
+        mergeTwoMapValues(Death, county.Death)
+        mergeTwoMapValues(Recovered, county.Recovered)
+        mergeTwoMapValues(Active, county.Active)
+
+    }
+    let Summary = {};
+    Summary.Confirmed = Confirmed;
+    Summary.Death = Death;
+    Summary.Recovered = Recovered;
+    Summary.Active = Active;
+
+    const CC = getValueFromLastDate(Confirmed);
+    const DD = getValueFromLastDate(Death);
+    const RR = getValueFromLastDate(Recovered);
+    const AA = getValueFromLastDate(Active);
+
+    Summary.LastConfirmed = CC.num;
+    Summary.LastConfirmedNew = CC.newnum;
+    Summary.LastDeath = DD.num;
+    Summary.LastDeathNew = DD.newnum;
+    Summary.LastRecovered = RR.num;
+    Summary.LastRecoveredNew = RR.newnum;
+    Summary.LastActive = AA.num;
+    Summary.LastActiveNew = AA.newnum;
+
+    state.Summary = Summary;
+}
+
+// summarize data for states
+USConfirmed = {};
+USDeath = {};
+USRecovered = {};
+USActive = {};
+
+for (s in AllData) {
+    state = AllData[s];
+    // console.log(JSON.stringify(state, 2, 2));
+    mergeTwoMapValues(USConfirmed, state.Summary.Confirmed)
+    mergeTwoMapValues(USDeath, state.Summary.Death)
+    mergeTwoMapValues(USRecovered, state.Summary.Recovered)
+    mergeTwoMapValues(USActive, state.Summary.Active)
+
+    let Summary = {};
+    Summary.Confirmed = USConfirmed;
+    Summary.Death = USDeath;
+    Summary.Recovered = USRecovered;
+    Summary.Active = USActive;
+
+    const CC = getValueFromLastDate(USConfirmed);
+    const DD = getValueFromLastDate(USDeath);
+    const RR = getValueFromLastDate(USRecovered);
+    const AA = getValueFromLastDate(USActive);
+
+    Summary.LastConfirmed = CC.num;
+    Summary.LastConfirmedNew = CC.newnum;
+    Summary.LastDeath = DD.num;
+    Summary.LastDeathNew = DD.newnum;
+    Summary.LastRecovered = RR.num;
+    Summary.LastRecoveredNew = RR.newnum;
+    Summary.LastActive = AA.num;
+    Summary.LastActiveNew = AA.newnum;
+
+    AllData.Summary = Summary;
+}
 
 console.log(JSON.stringify(AllData, 2, 2));

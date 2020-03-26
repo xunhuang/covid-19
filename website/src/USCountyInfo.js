@@ -124,6 +124,8 @@ function getAllStatesSummary(cases) {
             confirmed: s.confirmed,
             newcases: s.newcases,
             newpercent: ((s.newcases / (s.confirmed - s.newcases)) * 100).toFixed(0),
+
+            // this can also be presummarized.
             Population2010: USState_Population[s.state],
         }
 
@@ -402,11 +404,6 @@ function getCountyDataNew(state_short_name, county_name) {
     let county = AllData[sfips][cfips];
     console.log(county);
     return county;
-    // return getCombinedData(state_short_name, county_name);
-}
-
-function getCountyData(state_short_name, county_name) {
-    const [sfips, cfips] = Util.myFipsCode(state_short_name, county_name);
 }
 
 function getCountyDataForGrapth(state_short_name, county_name) {
@@ -521,29 +518,21 @@ function casesForCountySummary(state_short_name, county_name) {
 }
 
 function casesForStateSummary(state_short_name) {
-    let counties_keys = Object.keys(CombinedDataMap)
-        .filter(k => k.startsWith(state_short_name));
-    let summaries = counties_keys.map(k => {
-        let c = getCombinedDataForKey(k);
-        if (!c) {
-            return {
-                confirmed: 0,
-                newcases: 0,
-                newpercent: 0,
-            }
-        }
-        let today = c[todaykey].confirmed;
-        let yesterday = c[yesterdaykey].confirmed;
-        let result = {
-            confirmed: today,
-            death: c[todaykey].death,
-            newcases: today - yesterday,
-        }
-        return result;
-    });
+    const [sfips] = Util.myFipsCode(state_short_name);
+    const state = AllData[sfips];
 
-    let confirmed = arraysum_text(summaries.map(s => s.confirmed));
-    let newcases = arraysum_text(summaries.map(s => s.newcases));
+    if (!state) {
+        console.log(`${state_short_name} not supported as a state yet  `);
+        console.log(state);
+        return {
+            state: state_short_name,
+            confirmed: 0,
+            newcases: 0,
+            newpercent: 0,
+        }
+    }
+    let confirmed = state.Summary.LastConfirmed;
+    let newcases = state.Summary.LastConfirmedNew;
     return {
         state: state_short_name,
         confirmed: confirmed,
@@ -573,8 +562,8 @@ export {
     countyModuleInit,
     lookupCountyInfo,
     nearbyCounties,
-    casesForCountySummary,
-    casesForStateSummary,
+    casesForCountySummary, // check
+    casesForStateSummary, // check
     casesForUSSummary,
     hospitalsForState,
     countyDataForState,
