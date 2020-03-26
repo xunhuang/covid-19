@@ -1,4 +1,4 @@
-
+import * as Util from "./Util.js"
 const getDistance = require('geolib').getDistance;
 const CountyList = require("./data/county_gps.json");
 const moment = require("moment");
@@ -6,8 +6,10 @@ const moment = require("moment");
 const ConfirmedData = require("./data/covid_confirmed_usafacts.json");
 const DeathData = require("./data/covid_death_usafacts.json");
 const LatestData = require("./data/latest.json");
+
 const states = require('us-state-codes');
 const ConfirmedData2 = JSON.parse(JSON.stringify(ConfirmedData));
+const AllData = require("./data/AllData.json");
 
 function countyModuleInit() {
     makeTable();
@@ -394,8 +396,17 @@ function getCombinedDataForKey(k) {
     return CombinedDataMap[k];
 }
 
+function getCountyDataNew(state_short_name, county_name) {
+    const [sfips, cfips] = Util.myFipsCode(state_short_name, county_name);
+    console.log(sfips, cfips);
+    let county = AllData[sfips][cfips];
+    console.log(county);
+    return county;
+    // return getCombinedData(state_short_name, county_name);
+}
+
 function getCountyData(state_short_name, county_name) {
-    return getCombinedData(state_short_name, county_name);
+    const [sfips, cfips] = Util.myFipsCode(state_short_name, county_name);
 }
 
 function getCountyDataForGrapth(state_short_name, county_name) {
@@ -491,20 +502,21 @@ const todaykey = moment().format("MM/DD/YYYY");
 const yesterdaykey = moment().subtract(1, "days").format("MM/DD/YYYY");
 
 function casesForCountySummary(state_short_name, county_name) {
-    let c = getCountyData(state_short_name, county_name);
+    let c = getCountyDataNew(state_short_name, county_name);
     if (!c) {
+        console.log("why not count data for " + state_short_name + " " + county_name);
         return {
             confirmed: 0,
             newcases: 0,
             newpercent: 0,
         }
     }
-    let today = c[todaykey].confirmed;
-    let yesterday = c[yesterdaykey].confirmed;
+    let today = c.LastConfirmed;
+    let newcase = c.LastConfirmedNew;
     return {
         confirmed: today,
-        newcases: today - yesterday,
-        newpercent: (((today - yesterday) / yesterday) * 100).toFixed(0),
+        newcases: newcase,
+        newpercent: ((newcase) / (today - newcase) * 100).toFixed(0),
     }
 }
 
