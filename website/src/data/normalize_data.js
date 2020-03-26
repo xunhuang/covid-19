@@ -147,6 +147,18 @@ ConfirmedData.map(b => {
         setCountyNode(countyObject.StateFIPS, countyObject.CountyFIPS, countyObject);
     }
 });
+DeathData.map(b => {
+    let countyObject = createCountyObject(
+        pad(parseInt(b.stateFIPS)),
+        b.State,
+        fixCountyFip(b.countyFIPS),
+        b["County Name"],
+    )
+    let county = getCountyNode(countyObject.StateFIPS, countyObject.CountyFIPS);
+    if (!county) {
+        setCountyNode(countyObject.StateFIPS, countyObject.CountyFIPS, countyObject);
+    }
+});
 
 ConfirmedData.map(b => {
     let county_fips = fixCountyFip(b.countyFIPS);
@@ -158,11 +170,15 @@ ConfirmedData.map(b => {
     delete a["County Name"];
     delete a["State"];
     delete a["stateFIPS"];
+    delete a["field69"];
 
     let confirmed = county.Confirmed;
     Object.keys(a).map(k => {
         let v = parseInt(a[k]);
         let p = k.split("/");
+        if (p.length != 3) {
+            return null;
+        }
         let m = pad(parseInt(p[0]));
         let d = pad(parseInt(p[1]));
         let y = p[2];
@@ -182,10 +198,14 @@ DeathData.map(b => {
     delete a["State"];
     delete a["stateFIPS"];
 
+    // console.log(county);
     let death = county.Death;
     Object.keys(a).map(k => {
         let v = parseInt(a[k]);
         let p = k.split("/");
+        if (p.length != 3) {
+            return null;
+        }
         let m = pad(parseInt(p[0]));
         let d = pad(parseInt(p[1]));
         let y = p[2];
