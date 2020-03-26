@@ -30,14 +30,16 @@ async function fetchRemoteJson(url) {
 
 //  return true if sucessful, false if failed
 async function processDailyNew() {
+    console.log('-----------------------------');
+    console.log('Fetching new data ');
+    console.log('-----------------------------');
     try {
         let doc = await fetchRemoteJson(URLNewCasesJHU);
-        // let doc = await fetchRemoteJson(URLNewCasesJHUBad);
         if (doc.features && doc.features.length > 1000) {
-            console.log(doc.features.length);
+            console.log(`New data has ${doc.features.length}`);
             let docstring = JSON.stringify(doc, 2, 2);
             fs.writeFileSync(latestJsonLocation, docstring);
-            console.log("File has been created");
+            console.log("Data file has been updated");
             return true;
         };
 
@@ -68,6 +70,46 @@ async function deploy() {
     console.log("done deploying");
 }
 
+async function data_normalization() {
+
+    var spawn = require('child_process').spawn;
+    var prc = spawn('node', ['normalize_data.js']);
+    let exitCode = 0;
+
+    console.log('-----------------------------');
+    console.log('Performing data normalization');
+    console.log('-----------------------------');
+
+    prc.on('close', function (code) {
+        exitCode = code;
+    });
+
+    for await (const data of prc.stdout) {
+        var str = data.toString()
+        var lines = str.split(/(\r?\n)/g);
+        console.log(lines.join(""));
+    };
+    return exitCode;
+}
+
+async function data_summary() {
+
+    var spawn = require('child_process').spawn;
+    var prc = spawn('node', ['data_summary.js']);
+    let exitCode = 0;
+
+    prc.on('close', function (code) {
+        exitCode = code;
+    });
+
+    for await (const data of prc.stdout) {
+        var str = data.toString()
+        var lines = str.split(/(\r?\n)/g);
+        console.log(lines.join(""));
+    };
+    return exitCode;
+}
+
 async function rundiff(file1, file2) {
     var spawn = require('child_process').spawn;
     var prc = spawn('diff', ['-w', latestJsonLocation, latestJsonLocationOriginal]);
@@ -85,16 +127,20 @@ async function doit() {
     console.log("Last executed:" + moment().format());
     if (await processDailyNew()) {
         let lineschanged = await rundiff(latestJsonLocation, latestJsonLocationOriginal);
-        console.log(`Got updates  ${lineschanged} lines changed`);
+        console.log(`Got updates.  ${lineschanged} lines changed`);
 
         if (lineschanged > 20) {
-            console.log("should test deploy now");
-            execSync(`git pull`);
+            // execSync(`git pull`);
             execSync(`cp -f ${latestJsonLocation} ${latestJsonLocationOriginal}`);
+            await data_normalization();
+            await data_summary();
+            execSync(`node normalize_data.js`);
+            console.log("Deploying");
             await deploy();
+        } else {
+            await data_summary();
         }
 
-        // await deploy();
     } else {
         console.log("Fail to get new updates");
     }
