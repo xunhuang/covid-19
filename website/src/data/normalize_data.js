@@ -137,6 +137,9 @@ function fixCountyFip(cp) {
 
 // create nodes
 ConfirmedData.map(b => {
+    if (b.stateFIPS.length === 0) {
+        return;
+    }
     let countyObject = createCountyObject(
         pad(parseInt(b.stateFIPS)),
         b.State,
@@ -148,7 +151,12 @@ ConfirmedData.map(b => {
         setCountyNode(countyObject.StateFIPS, countyObject.CountyFIPS, countyObject);
     }
 });
+
 DeathData.map(b => {
+    // check for empty line
+    if (b.stateFIPS.length === 0) {
+        return;
+    }
     let countyObject = createCountyObject(
         pad(parseInt(b.stateFIPS)),
         b.State,
@@ -190,6 +198,10 @@ ConfirmedData.map(b => {
 });
 
 DeathData.map(b => {
+    // check for empty line
+    if (b.stateFIPS.length === 0) {
+        return;
+    }
     let county_fips = fixCountyFip(b.countyFIPS);
     let state_fips = pad(parseInt(b.stateFIPS));
     let a = JSON.parse(JSON.stringify(b));
@@ -297,6 +309,7 @@ for (s in AllData) {
     }
 }
 
+
 ////// now summarize the data
 function getValueFromLastDate(v) {
     if (!v || Object.keys(v).length === 0) {
@@ -393,15 +406,15 @@ USRecovered = {};
 USActive = {};
 
 for (s in AllData) {
-    if (s.length === 2) {
-        state = AllData[s];
-        mergeTwoMapValues(USConfirmed, state.Summary.Confirmed)
-        mergeTwoMapValues(USDeath, state.Summary.Death)
-        mergeTwoMapValues(USRecovered, state.Summary.Recovered)
-        mergeTwoMapValues(USActive, state.Summary.Active)
-        // console.log(s);
-        // console.log(USConfirmed)
-    }
+    // if (s.length === 2) {
+    state = AllData[s];
+    mergeTwoMapValues(USConfirmed, state.Summary.Confirmed)
+    mergeTwoMapValues(USDeath, state.Summary.Death)
+    mergeTwoMapValues(USRecovered, state.Summary.Recovered)
+    mergeTwoMapValues(USActive, state.Summary.Active)
+    // console.log(s);
+    // console.log(USConfirmed)
+    // }
 }
 
 let Summary = {};
