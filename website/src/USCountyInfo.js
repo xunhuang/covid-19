@@ -377,6 +377,12 @@ function myFipsCode(state, county) {
     if (county === "Dukes and Nantucket") {
         county = "Dukes";
     }
+    if (county === "Municipality of Anchorage") {
+        county = "Anchorage";
+    }
+    if (county === "City and Borough of Juneau") {
+        county = "Juneau";
+    }
     if (county === "East Feliciana") {
         return ["23", "22037"];
     }
@@ -392,8 +398,15 @@ function myFipsCode(state, county) {
 
     let county_info = lookupCountyInfo(state, county);
     if (county_info) {
-        // console.log(county_info);
-        return [county_info.FIPS.slice(0, 2), county_info.FIPS]
+        let fips = county_info.FIPS;
+        if (fips) {
+            if (fips.length === 4) {
+                fips = "0" + fips;
+            }
+            if (fips.length === 5) {
+                return [fips.slice(0, 2), fips];
+            }
+        }
     }
 
 
