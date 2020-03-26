@@ -1,9 +1,79 @@
 import * as Util from "./Util.js"
+const states = require('us-state-codes');
 const getDistance = require('geolib').getDistance;
 const CountyList = require("./data/county_gps.json");
+const fips = require('fips-county-codes');
 // const moment = require("moment");
 // const states = require('us-state-codes');
 const AllData = require("./data/AllData.json");
+
+const state_fips_to_name =
+{
+    "10": "Delaware",
+    "11": "District of Columbia",
+    "12": "Florida",
+    "13": "Georgia",
+    "15": "Hawaii",
+    "16": "Idaho",
+    "17": "Illinois",
+    "18": "Indiana",
+    "19": "Iowa",
+    "20": "Kansas",
+    "21": "Kentucky",
+    "22": "Louisiana",
+    "23": "Maine",
+    "24": "Maryland",
+    "25": "Massachusetts",
+    "26": "Michigan",
+    "27": "Minnesota",
+    "28": "Mississippi",
+    "29": "Missouri",
+    "30": "Montana",
+    "31": "Nebraska",
+    "32": "Nevada",
+    "33": "New Hampshire",
+    "34": "New Jersey",
+    "35": "New Mexico",
+    "36": "New York",
+    "37": "North Carolina",
+    "38": "North Dakota",
+    "39": "Ohio",
+    "40": "Oklahoma",
+    "41": "Oregon",
+    "42": "Pennsylvania",
+    "44": "Rhode Island",
+    "45": "South Carolina",
+    "46": "South Dakota",
+    "47": "Tennessee",
+    "48": "Texas",
+    "49": "Utah",
+    "50": "Vermont",
+    "51": "Virginia",
+    "53": "Washington",
+    "54": "West Virginia",
+    "55": "Wisconsin",
+    "56": "Wyoming",
+    "01": "Alabama",
+    "02": "Alaska",
+    "04": "Arizona",
+    "05": "Arkansas",
+    "06": "California",
+    "08": "Colorado",
+    "09": "Connecticut",
+    "72": "Puerto Rico",
+    "66": "Guam",
+    "78": "Virgin Islands",
+    "60": "American Samoa"
+};
+
+function covert() {
+    return Object.keys(state_fips_to_name).reduce((m, k) => {
+        m[state_fips_to_name[k]] = k
+        return m;
+    }, {});
+}
+
+const STATE_Name_To_FIPS = covert();
 
 function countyModuleInit() {
     makeTable();
@@ -157,7 +227,7 @@ function getCountySummary1() {
 }
 
 function countyDataForState(state_short_name) {
-    const [sfips] = Util.myFipsCode(state_short_name, null);
+    const [sfips] = myFipsCode(state_short_name, null);
     const state = AllData[sfips];
     var m = []
     for (let cfips in state) {
@@ -204,7 +274,7 @@ function hospitalsForState(state_short_name) {
 
 
 function getCountyDataNew(state_short_name, county_name) {
-    const [sfips, cfips] = Util.myFipsCode(state_short_name, county_name);
+    const [sfips, cfips] = myFipsCode(state_short_name, county_name);
     let county = AllData[sfips][cfips];
     return county;
 }
@@ -229,7 +299,7 @@ function getCountyDataForGrapth(state_short_name, county_name) {
 }
 
 function getStateDataForGrapth(state_short_name) {
-    const [sfips] = Util.myFipsCode(state_short_name);
+    const [sfips] = myFipsCode(state_short_name);
     let data = AllData[sfips].Summary;
     let result = dataMapToGraphSeriesNew(data);
     return (result);
@@ -262,7 +332,7 @@ function casesForCountySummary(state_short_name, county_name) {
 }
 
 function casesForStateSummary(state_short_name) {
-    const [sfips] = Util.myFipsCode(state_short_name);
+    const [sfips] = myFipsCode(state_short_name);
     const state = AllData[sfips];
 
     if (!state) {
@@ -293,6 +363,48 @@ function casesForUSSummary() {
         newcases: newcases,
         newpercent: ((newcases / (confirmed - newcases)) * 100).toFixed(0),
     }
+
+}
+
+function myFipsCode(state, county) {
+    if (!county || county === "Statewide Unallocated" || county === "Grand Princess Cruise Ship") {
+        let statefips = STATE_Name_To_FIPS[states.getStateNameByStateCode(state)];
+        return [statefips, "0"];
+    }
+    if (county === "New York City") {
+        county = "New York";
+    }
+    if (county === "Dukes and Nantucket") {
+        county = "Dukes";
+    }
+    if (county === "East Feliciana") {
+        return ["23", "22037"];
+    }
+    if (county === "Jefferson Davis" && state === "MS") {
+        county = "Jefferson Davis";
+    }
+    if (county === "Pointe Coupee" && state === "LA") {
+        return ["23", "22077"];
+    }
+    if (county === "Madison" && state === "LA") {
+        return ["23", "22065"];
+    }
+
+    let county_info = lookupCountyInfo(state, county);
+    if (county_info) {
+        // console.log(county_info);
+        return [county_info.FIPS.slice(0, 2), county_info.FIPS]
+    }
+
+
+    console.log(`checking fips code for ${state} ${county}`);
+    let a = fips.get({
+        "state": state,
+        "county": county,
+    });
+    console.log(a);
+
+    return [a.fips.slice(0, 2), a.fips]
 }
 
 export {
@@ -311,4 +423,5 @@ export {
     getStateDataForGrapth, // check
     getUSDataForGrapth, //Check
     // getCountyDataForGraphWithNearby,
+    myFipsCode,
 }

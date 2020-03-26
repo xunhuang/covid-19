@@ -126,13 +126,27 @@ function myFipsCode(state, county) {
     if (county === "Dukes and Nantucket") {
         county = "Dukes";
     }
+    if (county === "East Feliciana") {
+        return ["23", "22037"];
+    }
+    if (county === "Jefferson Davis" && state === "MS") {
+        county = "Jefferson Davis";
+    }
+    if (county === "Pointe Coupee" && state === "LA") {
+        return ["23", "22077"];
+    }
+    if (county === "Madison" && state === "LA") {
+        return ["23", "22065"];
+    }
 
-    // console.log(`checking fips code for ${state} ${county}`);
+
+
+    console.log(`checking fips code for ${state} ${county}`);
     let a = fips.get({
         "state": state,
         "county": county,
     });
-    // console.log(a);
+    console.log(a);
 
     return [a.fips.slice(0, 2), a.fips]
 }
@@ -143,5 +157,4 @@ export {
     browseTo,
     browseToState,
     browseToUSPage,
-    myFipsCode,
 }
