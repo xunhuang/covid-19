@@ -230,17 +230,15 @@ DeathData.map(b => {
     county.Death = death;
 });
 
-function processJSU(c) {
+function processJHUDataPoint(c, date) {
     let b = c.attributes;
     let county_fips = b.FIPS;
     let state_fips = STATE_Name_To_FIPS[b.Province_State];
     if (county_fips === null) {
         county_fips = "0";
     }
-    // console.log(` ${state_fips}, ${county_fips}`);
     let county = getCountyNode(state_fips, county_fips);
     if (!county) {
-        // console.log(`creating ${b.Province_State}, ${b.Admin2}`);
         county = createCountyObject(
             state_fips,
             states.getStateCodeByStateName(b.Province_State),
@@ -249,99 +247,57 @@ function processJSU(c) {
         )
     }
 
-    let datekey = moment(b.Last_Update).format("MM/DD/YYYY");
-    datekey = "03/27/2020";
-
+    let datekey = date;
     county.Confirmed[datekey] = b.Confirmed;
     county.Recovered[datekey] = b.Recovered;
     county.Death[datekey] = b.Deaths;
     county.Active[datekey] = b.Active;
 }
 
-function processJSU3(c) {
-    let b = c.attributes;
-    let county_fips = b.FIPS;
-    let state_fips = STATE_Name_To_FIPS[b.Province_State];
-    if (county_fips === null) {
-        county_fips = "0";
+function processJHU(dataset, date) {
+    let data = dataset.features;
+    for (let i = 0; i < data.length; i++) {
+        let datapoint = data[i];
+        processJHUDataPoint(datapoint, date);
     }
-    // console.log(` ${state_fips}, ${county_fips}`);
-    let county = getCountyNode(state_fips, county_fips);
-    if (!county) {
-        // console.log(`creating ${b.Province_State}, ${b.Admin2}`);
-        county = createCountyObject(
-            state_fips,
-            states.getStateCodeByStateName(b.Province_State),
-            county_fips,
-            b.Admin2,
-        )
-    }
-
-    let datekey = moment(b.Last_Update).format("MM/DD/YYYY");
-    datekey = "03/26/2020";
-    county.Confirmed[datekey] = b.Confirmed;
-    county.Recovered[datekey] = b.Recovered;
-    county.Death[datekey] = b.Deaths;
-    county.Active[datekey] = b.Active;
 }
 
-function processJSU2(c) {
-    let b = c.attributes;
-    let county_fips = b.FIPS;
-    let state_fips = STATE_Name_To_FIPS[b.Province_State];
-    if (county_fips === null) {
-        county_fips = "0";
-    }
-    // console.log(` ${state_fips}, ${county_fips}`);
-    let county = getCountyNode(state_fips, county_fips);
-    if (!county) {
-        // console.log(`creating ${b.Province_State}, ${b.Admin2}`);
-        county = createCountyObject(
-            state_fips,
-            states.getStateCodeByStateName(b.Province_State),
-            county_fips,
-            b.Admin2,
-        )
-    }
-
-    let datekey = moment(b.Last_Update).format("MM/DD/YYYY");
-    datekey = "03/25/2020";
-    county.Confirmed[datekey] = b.Confirmed;
-    county.Recovered[datekey] = b.Recovered;
-    county.Death[datekey] = b.Deaths;
-    county.Active[datekey] = b.Active;
-}
-
-
-LatestData03252020.features.map(processJSU2);
-LatestData03262020.features.map(processJSU3);
-LatestData.features.map(processJSU);
+processJHU(LatestData03252020, "03/25/2020");
+processJHU(LatestData03262020, "03/26/2020");
+processJHU(LatestData, "03/27/2020");
 
 // back fill holes in the data
 
-/*
-for (s in AllData) {
-    state = AllData[s];
-    for (c in state) {
-        count = state[c];
+const today = moment().format("MM/DD/YYYY");
+function fillarrayholes(v) {
+    let keys = Object.keys(v).sort((a, b) => moment(a, "MM/DD/YYYY").toDate() - moment(b, "MM/DD/YYYY").toDate());
+    let key = keys[0];
+    while (key !== today) {
+        let lastvalue = v[key];
+        let nextkey = moment(key).add(1, "days").format("MM/DD/YYYY");
+        let nextvalue = v[nextkey];
+        if (nextvalue === null || nextvalue === undefined) {
+            v[nextkey] = lastvalue;
+        }
+        key = nextkey;
+    }
+    return v;
+}
 
-        if (count.Confirmed["03/26/2020"] === undefined) {
-            count.Confirmed["03/26/2020"] = count.Confirmed["03/25/2020"];
+function fillholes() {
+
+    for (s in AllData) {
+        state = AllData[s];
+        for (c in state) {
+            let county = state[c];
+            county.Confirmed = fillarrayholes(county.Confirmed);
+            county.Death = fillarrayholes(county.Death);
+            setCountyNode(s, c, county);
         }
-        if (count.Death["03/26/2020"] === undefined) {
-            count.Death["03/26/2020"] = count.Death["03/25/2020"];
-        }
-        if (count.Recovered["03/26/2020"] === undefined) {
-            count.Recovered["03/26/2020"] = count.Recovered["03/25/2020"];
-        }
-        if (count.Active["03/26/2020"] === undefined) {
-            count.Active["03/26/2020"] = count.Active["03/25/2020"];
-        }
-        setCountyNode(s, c, count);
     }
 }
-*/
 
+fillholes();
 
 ////// now summarize the data
 function getValueFromLastDate(v, comment) {
