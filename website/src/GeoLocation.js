@@ -12,10 +12,10 @@ async function fetchCounty() {
         }
     }
 
-    let location = await fetchApproxIPLocationGoolge();
+    // let location = await fetchApproxIPLocationGoolge();
     // let location = await fetchApproxIPLocationIPGEOLOCATION();
-    //let location = await fetchApproxIPLocationIPDataCo();
-    if (location === null) {
+    // let location = await fetchApproxIPLocationIPDataCo();
+    if (!location) {
         location = {
             longitude: -121.979891,
             latitude: 37.333183,
@@ -88,13 +88,14 @@ async function fetchApproxIPLocationIPGEOLOCATION() {
             return location;
         })
         .catch(err => {
-            return;
+            return null;
         });
 }
 
 async function fetchApproxIPLocationIPDataCo() {
 
     const url = `https://api.ipdata.co/?api-key=${firebaseConfig.ipdataco_key}`;
+    console.log(url);
     return await superagent
         .get(url)
         .then(res => {
@@ -108,7 +109,7 @@ async function fetchApproxIPLocationIPDataCo() {
             return location;
         })
         .catch(err => {
-            return;
+            return null;
         });
 }
 
