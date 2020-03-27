@@ -29,3 +29,6 @@ console.log("New Jersey State New: " +  NJState.LastConfirmedNew);
 
 const NJUnAssigned =AllData["34"]["0"];
 console.log("New Jersey Unassigned: "+ NJUnAssigned.LastConfirmed);
+
+console.log(" -----------");
+console.log("data generated: "+ AllData.Summary.generated);
