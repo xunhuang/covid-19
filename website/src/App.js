@@ -34,7 +34,7 @@ const GraphSectionUS = withRouter((props) => {
     labels={["Cases", `USA Testing`, "Hospitalization"]}
     tabs={tabs}
   />;
-  ret urn graphlistSection;
+  return graphlistSection;
 });
 
 const GraphSectionState = withRouter((props) => {

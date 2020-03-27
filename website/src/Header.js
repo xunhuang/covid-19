@@ -13,6 +13,22 @@ function browseTo(history, state, county) {
 }
 
 const useStyles = makeStyles(theme => ({
+    topContainer: {
+        display: 'flex',
+    },
+    title: {
+        display: 'block',
+        padding: 2,
+        margin: 2,
+    },
+    keepclam: {
+        display: 'block',
+        color: '#FFFFFF',
+        background: '#00aeef',
+        borderRadius: 0,
+        padding: 2,
+        margin: 2,
+    },
     qpContainer: {
         display: 'none',
         // color: '#FFFFFF',
@@ -22,6 +38,9 @@ const useStyles = makeStyles(theme => ({
         margin: 15,
         // borderRadius: 20,
     },
+    grow: {
+        flex: 1,
+    }
 }));
 
 const SearchBox = (props) => {
@@ -93,15 +112,20 @@ const withHeader = (comp, props) => {
         </div>;
 
         let header = <header className="App-header">
-            <Typography variant="h5" >
-                COVID-19.direct
+            <div className={classes.topContainer}>
+                <span className={classes.title}>
+                    <Typography variant="h6" >
+                        COVID-19.direct
             </Typography>
+                </span>
+                <span className={classes.grow}></span>
+                {/* <span className={classes.keepclam}> Keep Clam, #StayHome</span> */}
+            </div>
             <SearchBox
                 callback={(newcounty, newstate) => {
                     browseTo(props.history, newstate, newcounty);
                 }}
             />
-
             <div className={classes.qpContainer}>
                 <Typography variant="body1" >
                     Data Source changed. Please report errors in discussion section.
@@ -111,7 +135,7 @@ const withHeader = (comp, props) => {
 
             {component}
             {footer}
-        </header>
+        </header >
 
         return header;
     }
