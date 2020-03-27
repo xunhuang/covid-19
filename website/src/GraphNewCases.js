@@ -214,7 +214,7 @@ const BasicGraphNewCases = (props) => {
         });
     } else {
 
-        const cutoff = moment().subtract(45, 'days')
+        const cutoff = moment().subtract(30, 'days')
         data = data.filter(d => {
             return moment(d.fulldate).isAfter(cutoff)
         });
