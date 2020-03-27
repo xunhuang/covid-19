@@ -322,7 +322,15 @@ function getValueFromLastDate(v) {
         return { num: v[0], newnum: v[0] }
     }
     let nv = Object.keys(v).sort((a, b) => moment(b, "MM/DD/YYYY").toDate() - moment(a, "MM/DD/YYYY").toDate());
-    return { num: v[nv[0]], newnum: v[nv[0]] - v[nv[1]] };
+
+    let last = v[nv[0]]
+    let newnum= v[nv[0]] - v[nv[1]];
+    if (newnum < 0 ) {
+        console.log(`negative new for ${nv[0]} - ${nv[1]}  delta of ${newnum}`);
+        newnum = 0; // hack to shield the error while debugging
+    }
+
+    return { num: last, newnum: newnum };
 }
 
 // summarize data for counties
