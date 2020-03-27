@@ -395,6 +395,10 @@ function myFipsCode(state, county) {
     if (county === "Madison" && state === "LA") {
         return ["23", "22065"];
     }
+    if (county === "Stanley" && state === "NC") {
+        county = "Gaston";
+    }
+
 
     let county_info = lookupCountyInfo(state, county);
     if (county_info) {
