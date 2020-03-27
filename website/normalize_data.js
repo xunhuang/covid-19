@@ -299,7 +299,6 @@ function fillholes() {
 
 fillholes();
 
-////// now summarize the data
 function getValueFromLastDate(v, comment) {
     if (!v || Object.keys(v).length === 0) {
         return { num: 0, newnum: 0 }
@@ -311,19 +310,6 @@ function getValueFromLastDate(v, comment) {
 
     let last = v[nv[0]]
     let newnum = v[nv[0]] - v[nv[1]];
-    /*
-    if (nv[0] === "03/26/2020" && comment !== undefined && newnum !== 0) {
-        console.log(`${comment} mising data from today, resulting in new as  ${newnum} `);
-        return { num: last, newnum: 0 };
-    }
-    if (newnum < 0) {
-        console.log(`${comment} !!! negative new for ${nv[0]} - ${nv[1]}  delta of ${newnum}`);
-        // console.log(v);
-        newnum = 0; // hack to shield the error while debugging
-    }
-    */
-
-
     return { num: last, newnum: newnum };
 }
 
@@ -404,22 +390,18 @@ for (s in AllData) {
     state.Summary = Summary;
 }
 
-// summarize data for states
+// summarize data for US
 USConfirmed = {};
 USDeath = {};
 USRecovered = {};
 USActive = {};
 
 for (s in AllData) {
-    // if (s.length === 2) {
     state = AllData[s];
     mergeTwoMapValues(USConfirmed, state.Summary.Confirmed)
     mergeTwoMapValues(USDeath, state.Summary.Death)
     mergeTwoMapValues(USRecovered, state.Summary.Recovered)
     mergeTwoMapValues(USActive, state.Summary.Active)
-    // console.log(s);
-    // console.log(USConfirmed)
-    // }
 }
 
 let Summary = {};
