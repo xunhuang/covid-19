@@ -13,20 +13,15 @@ import { USInfoTopWidget } from './USInfoTopWidget.js'
 import { GraphUSHospitalization, GraphStateHospitalization } from './GraphHospitalization.js'
 import { CountyHospitalsWidget } from "./Hospitals"
 import { fetchCounty } from "./GeoLocation"
+import { logger, firebase } from "./AppModule"
 
 const states = require('us-state-codes');
 const Cookies = require("js-cookie");
-const firebase = require("firebase");
-
-require("firebase/firestore");
-const firebaseConfig = require('./firebaseConfig.json');
-firebase.initializeApp(firebaseConfig);
-const logger = firebase.analytics();
 
 const GraphSectionUS = withRouter((props) => {
   let graphdata = USCounty.getUSDataForGrapth();
   const tabs = [
-    <BasicGraphNewCases data={graphdata} casesData={props.casesData} logScale={false} />,
+    <BasicGraphNewCases data={graphdata} logScale={false} />,
     <GraphUSTesting />,
     <GraphUSHospitalization />,
   ]
@@ -104,13 +99,9 @@ function browseToState(history, state) {
 const MainApp = withRouter((props) => {
   const [county, setCounty] = React.useState(null);
   const [state, setState] = React.useState(null);
-  const [casesData, setCaseData] = React.useState(true);
   React.useEffect(() => {
-    getCaseData().then(abc => {
-      countyModuleInit([], abc.generationTime);
-      setCaseData([]);
-    });
     fetchCounty().then(mycounty => {
+      countyModuleInit([]);
       setCounty(mycounty.county)
       setState(mycounty.state);
       logger.logEvent("AppStart", {
@@ -121,7 +112,7 @@ const MainApp = withRouter((props) => {
   }, []);
 
   // return <Splash />
-  if (casesData === null || state === null) {
+  if (state === null) {
     return <Splash />
   }
 
@@ -132,9 +123,9 @@ const MainApp = withRouter((props) => {
     <div>
       <Switch>
         {/* <Route exact path='/' component={App2} /> */}
-        <Route exact path='/county/:state/:county' render={(props) => <CountyWidget {...props} casesData={casesData} state={state} county={county} />} />
-        <Route exact path='/state/:state' render={(props) => <StateWidget {...props} casesData={casesData} state={state} county={county} />} />
-        <Route exact path='/US' render={(props) => <EntireUSWidget {...props} casesData={casesData} state={state} county={county} />} />
+        <Route exact path='/county/:state/:county' render={(props) => <CountyWidget {...props} state={state} county={county} />} />
+        <Route exact path='/state/:state' render={(props) => <StateWidget {...props} state={state} county={county} />} />
+        <Route exact path='/US' render={(props) => <EntireUSWidget {...props} state={state} county={county} />} />
       </Switch>
     </div>
   );
@@ -154,10 +145,8 @@ function getDefaultCounty() {
 const EntireUSWidget = withHeader((props) => {
   const default_county_info = getDefaultCounty();
 
-  const casesData = props.casesData;
   const tabs = [
     <AllStatesListWidget
-      casesData={casesData}
       callback={(newstate) => {
         browseToState(props.history, newstate);
       }}
@@ -166,7 +155,6 @@ const EntireUSWidget = withHeader((props) => {
   return (
     <>
       <USInfoTopWidget
-        casesData={casesData}
         county={default_county_info.county}
         state={default_county_info.state}
         selectedTab={"usa"}
@@ -175,7 +163,6 @@ const EntireUSWidget = withHeader((props) => {
         }}
       />
       <GraphSectionUS
-        casesData={casesData}
         callback={(newcounty, newstate) => {
           browseTo(props.history, newstate, newcounty);
         }}
@@ -208,13 +195,11 @@ function CookieGetLastCounty() {
 const CountyWidget = withHeader((props) => {
   const state = props.match.params.state;
   const county = props.match.params.county;
-  const casesData = props.casesData;
 
   CookieSetLastCounty(state, county);
 
   const tabs = [
     <NearbyCounties
-      casesData={casesData}
       county={county}
       state={state}
       callback={(newcounty, newstate) => {
@@ -238,7 +223,6 @@ const CountyWidget = withHeader((props) => {
         }}
       />
       <GraphSectionCounty
-        casesData={casesData}
         county={county}
         state={state}
         callback={(newcounty, newstate) => {
@@ -278,11 +262,9 @@ const StateWidget = withHeader((props) => {
   const county = getDefaultCountyForState(
     props.match.params.state,
     props.match.params.county);
-  const casesData = props.casesData;
 
   const tabs = [
     <CountiesForStateWidget
-      casesData={casesData}
       county={county}
       state={state}
       callback={(newcounty, newstate) => {
@@ -302,7 +284,6 @@ const StateWidget = withHeader((props) => {
         }}
       />
       <GraphSectionState
-        casesData={casesData}
         state={state}
         callback={(newcounty, newstate) => {
           browseTo(props.history, newstate, newcounty);

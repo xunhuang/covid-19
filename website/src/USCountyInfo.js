@@ -176,7 +176,7 @@ const USState_Population =
     "WY": 567025
 }
 
-function getAllStatesSummary(cases) {
+function getAllStatesSummary() {
     let state_sum = Object.keys(USState_Population).map(state => casesForStateSummary(state));
     return state_sum.map(s => {
 

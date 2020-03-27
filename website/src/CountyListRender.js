@@ -81,7 +81,7 @@ const CountiesForStateWidget = (props) => {
 }
 
 const AllStatesListWidget = (props) => {
-    let list = USCounty.getAllStatesSummary(props.casesData)
+    let list = USCounty.getAllStatesSummary()
         .sort((a, b) => b.confirmed - a.confirmed);
     let countySummary =
         <AllStateListRender countylist={list} callback={props.callback} />
