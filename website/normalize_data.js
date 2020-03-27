@@ -250,7 +250,35 @@ function processJSU(c) {
     }
 
     let datekey = moment(b.Last_Update).format("MM/DD/YYYY");
+    datekey = "03/27/2020";
 
+    county.Confirmed[datekey] = b.Confirmed;
+    county.Recovered[datekey] = b.Recovered;
+    county.Death[datekey] = b.Deaths;
+    county.Active[datekey] = b.Active;
+}
+
+function processJSU3(c) {
+    let b = c.attributes;
+    let county_fips = b.FIPS;
+    let state_fips = STATE_Name_To_FIPS[b.Province_State];
+    if (county_fips === null) {
+        county_fips = "0";
+    }
+    // console.log(` ${state_fips}, ${county_fips}`);
+    let county = getCountyNode(state_fips, county_fips);
+    if (!county) {
+        // console.log(`creating ${b.Province_State}, ${b.Admin2}`);
+        county = createCountyObject(
+            state_fips,
+            states.getStateCodeByStateName(b.Province_State),
+            county_fips,
+            b.Admin2,
+        )
+    }
+
+    let datekey = moment(b.Last_Update).format("MM/DD/YYYY");
+    datekey = "03/26/2020";
     county.Confirmed[datekey] = b.Confirmed;
     county.Recovered[datekey] = b.Recovered;
     county.Death[datekey] = b.Deaths;
@@ -286,11 +314,12 @@ function processJSU2(c) {
 
 
 LatestData03252020.features.map(processJSU2);
-LatestData03262020.features.map(processJSU);
+LatestData03262020.features.map(processJSU3);
 LatestData.features.map(processJSU);
 
 // back fill holes in the data
 
+/*
 for (s in AllData) {
     state = AllData[s];
     for (c in state) {
@@ -311,6 +340,7 @@ for (s in AllData) {
         setCountyNode(s, c, count);
     }
 }
+*/
 
 
 ////// now summarize the data
@@ -325,6 +355,7 @@ function getValueFromLastDate(v, comment) {
 
     let last = v[nv[0]]
     let newnum = v[nv[0]] - v[nv[1]];
+    /*
     if (nv[0] === "03/26/2020" && comment !== undefined && newnum !== 0) {
         console.log(`${comment} mising data from today, resulting in new as  ${newnum} `);
         return { num: last, newnum: 0 };
@@ -334,6 +365,7 @@ function getValueFromLastDate(v, comment) {
         // console.log(v);
         newnum = 0; // hack to shield the error while debugging
     }
+    */
 
 
     return { num: last, newnum: newnum };
