@@ -128,7 +128,8 @@ const withHeader = (comp, props) => {
             />
             <div className={classes.qpContainer}>
                 <Typography variant="body1" >
-                    Data Source changed. Please report errors in discussion section.
+                    Some problem with new number calculation. Total is correct but New is not.
+                    investigating.
             </Typography>
 
             </div>

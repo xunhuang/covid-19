@@ -12,9 +12,9 @@ async function fetchCounty() {
         }
     }
 
-    // let location = await fetchApproxIPLocationGoolge();
+    let location = await fetchApproxIPLocationGoolge();
     // let location = await fetchApproxIPLocationIPGEOLOCATION();
-    let location = await fetchApproxIPLocationIPDataCo();
+    //let location = await fetchApproxIPLocationIPDataCo();
     if (location === null) {
         location = {
             longitude: -121.979891,
