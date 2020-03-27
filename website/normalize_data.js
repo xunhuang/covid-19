@@ -314,7 +314,7 @@ for (s in AllData) {
 
 
 ////// now summarize the data
-function getValueFromLastDate(v) {
+function getValueFromLastDate(v, comment) {
     if (!v || Object.keys(v).length === 0) {
         return { num: 0, newnum: 0 }
     }
@@ -324,11 +324,17 @@ function getValueFromLastDate(v) {
     let nv = Object.keys(v).sort((a, b) => moment(b, "MM/DD/YYYY").toDate() - moment(a, "MM/DD/YYYY").toDate());
 
     let last = v[nv[0]]
-    let newnum= v[nv[0]] - v[nv[1]];
-    if (newnum < 0 ) {
-        console.log(`negative new for ${nv[0]} - ${nv[1]}  delta of ${newnum}`);
+    let newnum = v[nv[0]] - v[nv[1]];
+    if (nv[0] === "03/26/2020" && comment !== undefined && newnum !== 0) {
+        console.log(`${comment} mising data from today, resulting in new as  ${newnum} `);
+        return { num: last, newnum: 0 };
+    }
+    if (newnum < 0) {
+        console.log(`${comment} !!! negative new for ${nv[0]} - ${nv[1]}  delta of ${newnum}`);
+        // console.log(v);
         newnum = 0; // hack to shield the error while debugging
     }
+
 
     return { num: last, newnum: newnum };
 }
@@ -343,7 +349,7 @@ for (s in AllData) {
         county.LastRecovered = 0;
         county.LastActive = 0;
 
-        const CC = getValueFromLastDate(county.Confirmed);
+        const CC = getValueFromLastDate(county.Confirmed, county.CountyName + " " + county.StateName);
         const DD = getValueFromLastDate(county.Death);
         const RR = getValueFromLastDate(county.Recovered);
         const AA = getValueFromLastDate(county.Active);
@@ -393,7 +399,7 @@ for (s in AllData) {
     Summary.Recovered = Recovered;
     Summary.Active = Active;
 
-    const CC = getValueFromLastDate(Confirmed);
+    const CC = getValueFromLastDate(Confirmed, s);
     const DD = getValueFromLastDate(Death);
     const RR = getValueFromLastDate(Recovered);
     const AA = getValueFromLastDate(Active);
@@ -434,7 +440,7 @@ Summary.Death = USDeath;
 Summary.Recovered = USRecovered;
 Summary.Active = USActive;
 
-const CC = getValueFromLastDate(USConfirmed);
+const CC = getValueFromLastDate(USConfirmed, "country ");
 const DD = getValueFromLastDate(USDeath);
 const RR = getValueFromLastDate(USRecovered);
 const AA = getValueFromLastDate(USActive);
