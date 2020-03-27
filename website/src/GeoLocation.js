@@ -12,15 +12,34 @@ async function fetchCounty() {
         }
     }
 
-    // let location = await fetchApproxIPLocationGoolge();
-    // let location = await fetchApproxIPLocationIPGEOLOCATION();
-    // let location = await fetchApproxIPLocationIPDataCo();
+    let location = null;
+
+    if (!location) {
+        location = await fetchApproxIPLocationIPDataCo(firebaseConfig.ipdataco_key);
+    }
+    if (!location) {
+        location = await fetchApproxIPLocationIPDataCo(firebaseConfig.ipdataco_key2);
+    }
+    if (!location) {
+        location = await fetchApproxIPLocationIPGEOLOCATION();
+    }
+    if (!location) {
+        location = await fetchApproxIPLocationGoolge();
+    }
+
     if (!location) {
         location = {
-            longitude: -121.979891,
-            latitude: 37.333183,
+            // santa clara
+            // longitude: -121.979891,
+            // latitude: 37.333183,
+            // new york city
+            longitude: - 73.968723,
+            latitude: 40.775191,
         }
+        console.log("default to NYC");
     }
+
+    console.log(location);
 
     let county_info = await superagent
         .get("https://geo.fcc.gov/api/census/area")
@@ -31,6 +50,7 @@ async function fetchCounty() {
         }).then(res => {
             let c = res.body.results[0].county_name;
             let s = res.body.results[0].state_code;
+            console.log(res.body);
             return {
                 county: c,
                 state: s,
@@ -53,7 +73,7 @@ async function fetchCounty() {
 }
 
 // jshint unused: true
-async function fetchApproxIPLocationGoolge() {
+async function fetchApproxIPLocationGoolge(key) {
     return await superagent
         .post(`https://www.googleapis.com/geolocation/v1/geolocate?key=${firebaseConfig.apiKey}`)
         .then(res => {
@@ -92,9 +112,9 @@ async function fetchApproxIPLocationIPGEOLOCATION() {
         });
 }
 
-async function fetchApproxIPLocationIPDataCo() {
+async function fetchApproxIPLocationIPDataCo(apikey) {
 
-    const url = `https://api.ipdata.co/?api-key=${firebaseConfig.ipdataco_key}`;
+    const url = `https://api.ipdata.co/?api-key=${apikey}`;
     console.log(url);
     return await superagent
         .get(url)
