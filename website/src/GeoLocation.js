@@ -12,9 +12,9 @@ async function fetchCounty() {
         }
     }
 
-    let location = await fetchApproxIPLocationGoolge();
+    // let location = await fetchApproxIPLocationGoolge();
     // let location = await fetchApproxIPLocationIPGEOLOCATION();
-    // let location = await fetchApproxIPLocationIPDataCo();
+    let location = await fetchApproxIPLocationIPDataCo();
     if (location === null) {
         location = {
             longitude: -121.979891,
@@ -95,10 +95,10 @@ async function fetchApproxIPLocationIPGEOLOCATION() {
 async function fetchApproxIPLocationIPDataCo() {
 
     const url = `https://api.ipdata.co/?api-key=${firebaseConfig.ipdataco_key}`;
-    console.log(url);
     return await superagent
         .get(url)
         .then(res => {
+            console.log(res.body);
             if (!res.body || !res.body.longitude)
                 return null;
             let location = {
