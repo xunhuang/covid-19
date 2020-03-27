@@ -380,6 +380,9 @@ function myFipsCode(state, county) {
     if (county === "City and Borough of Juneau") {
         county = "Juneau";
     }
+    if (county === "Baltimore City") {
+        county = "Baltimore";
+    }
     if (county === "East Feliciana") {
         return ["23", "22037"];
     }
