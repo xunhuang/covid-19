@@ -1,3 +1,5 @@
+import moment from 'moment';
+
 const states = require('us-state-codes');
 const getDistance = require('geolib').getDistance;
 const CountyList = require("./data/county_gps.json");
@@ -276,15 +278,21 @@ function getCountyDataNew(state_short_name, county_name) {
     return county;
 }
 
+function sort_by_date(a, b) {
+    return moment(a, "MM/DD/YYYY").toDate() - moment(b, "MM/DD/YYYY").toDate();
+}
+
 function dataMapToGraphSeriesNew(data) {
     let arr = [];
-    for (let i in data.Confirmed) {
+    let keys = Object.keys(data.Confirmed).sort(sort_by_date);
+    for (let i = 0; i < keys.length; i++) {
         let entry = {}
-        entry.confirmed = data.Confirmed[i];
-        entry.death = data.Death[i];
-        entry.recovered = data.Recovered[i];
-        entry.active = data.Active[i];
-        entry.fulldate = i;
+        let key = keys[i];
+        entry.confirmed = data.Confirmed[key];
+        entry.death = data.Death[key];
+        entry.recovered = data.Recovered[key];
+        entry.active = data.Active[key];
+        entry.fulldate = key;
         arr.push(entry);
     }
     return arr;
@@ -298,7 +306,9 @@ function getCountyDataForGrapth(state_short_name, county_name) {
 function getStateDataForGrapth(state_short_name) {
     const [sfips] = myFipsCode(state_short_name);
     let data = AllData[sfips].Summary;
+    console.log(data);
     let result = dataMapToGraphSeriesNew(data);
+    console.log(result);
     return (result);
 }
 
