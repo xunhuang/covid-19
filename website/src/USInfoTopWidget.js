@@ -83,7 +83,7 @@ const USInfoTopWidget = withRouter((props) => {
     }
     if (county === "New York City") {
         countyInfo = {
-            HospitalBeds: 2397,
+            HospitalBeds: 23639,
             Hospitals: 58,
         }
     }
