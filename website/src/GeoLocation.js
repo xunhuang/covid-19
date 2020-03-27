@@ -3,8 +3,6 @@ const superagent = require("superagent");
 
 const firebaseConfig = require('./firebaseConfig.json');
 
-var ApproxIPLocation;
-
 async function fetchCounty() {
     let cookie = Cookies.getJSON("covidLocation");
     if (cookie) {
@@ -14,7 +12,15 @@ async function fetchCounty() {
         }
     }
 
-    let location = await fetchApproxIPLocationGoolge();
+    // let location = await fetchApproxIPLocationGoolge();
+    // let location = await fetchApproxIPLocationIPGEOLOCATION();
+    let location = await fetchApproxIPLocationIPDataCo();
+    if (location === null) {
+        location = {
+            longitude: -121.979891,
+            latitude: 37.333183,
+        }
+    }
 
     let county_info = await superagent
         .get("https://geo.fcc.gov/api/census/area")
@@ -46,23 +52,63 @@ async function fetchCounty() {
     return county_info;
 }
 
+// jshint unused: true
 async function fetchApproxIPLocationGoolge() {
     return await superagent
         .post(`https://www.googleapis.com/geolocation/v1/geolocate?key=${firebaseConfig.apiKey}`)
         .then(res => {
-            ApproxIPLocation = {
+            let location = {
                 longitude: res.body.location.lng,
                 latitude: res.body.location.lat,
             }
-            return ApproxIPLocation;
+            return location;
         })
         .catch(err => {
-            // fall back if can't determine GPS, this is santa clara
-            ApproxIPLocation = {
-                longitude: -121.979891,
-                latitude: 37.333183,
+            return null;
+        });
+}
+
+// this one is not very good - while at Alameda, it says it's in santa clara, I guess 
+// with google we are paying for precision.
+
+// jshint unused: true
+async function fetchApproxIPLocationIPGEOLOCATION() {
+    const url = `https://api.ipgeolocation.io/ipgeo?apiKey=${firebaseConfig.ipgeolocation_key}`;
+    console.log(url);
+    return await superagent
+        .get(url)
+        .then(res => {
+            if (!res.body.longitude)
+                return null;
+            let location = {
+                longitude: res.body.longitude,
+                latitude: res.body.latitude,
             }
-            return ApproxIPLocation;
+            console.log(res.body);
+            return location;
+        })
+        .catch(err => {
+            return;
+        });
+}
+
+async function fetchApproxIPLocationIPDataCo() {
+
+    const url = `https://api.ipdata.co/?api-key=${firebaseConfig.ipdataco_key}`;
+    console.log(url);
+    return await superagent
+        .get(url)
+        .then(res => {
+            if (!res.body || !res.body.longitude)
+                return null;
+            let location = {
+                longitude: res.body.longitude,
+                latitude: res.body.latitude,
+            }
+            return location;
+        })
+        .catch(err => {
+            return;
         });
 }
 

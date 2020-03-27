@@ -9,6 +9,7 @@ fbcli.setup.web().then(config => {
   if (fs.existsSync(geoapi_keyfile_location)) {
     const geokey = JSON.parse(fs.readFileSync(geoapi_keyfile_location));
     config.ipgeolocation_key = geokey.ipgeolocation;
+    config.ipdataco_key = geokey.ipdataco_key;
   }
   fs.writeFileSync(
     'src/firebaseConfig.json',

@@ -56,31 +56,6 @@ const GraphSectionState = withRouter((props) => {
   return graphlistSection;
 });
 
-function dataMapToGraphSeriesNew(g) {
-  let arr = [];
-
-  for (let i in g.Confirmed) {
-    let entry = {}
-    entry.confirmed = g.Confirmed[i];
-    entry.death = g.Death[i];
-    entry.recovered = g.Recovered[i];
-    entry.active = g.Active[i];
-    entry.fulldate = i;
-    arr.push(entry);
-  }
-  return arr;
-}
-
-function dataMapToGraphSeries(g) {
-  let arr = [];
-  for (let i in g) {
-    let entry = g[i];
-    entry.fulldate = i;
-    arr.push(entry);
-  }
-  return arr;
-}
-
 const GraphSectionCounty = withRouter((props) => {
   const state = props.state;
   const county = props.county;

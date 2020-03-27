@@ -1,10 +1,7 @@
-import * as Util from "./Util.js"
 const states = require('us-state-codes');
 const getDistance = require('geolib').getDistance;
 const CountyList = require("./data/county_gps.json");
 const fips = require('fips-county-codes');
-// const moment = require("moment");
-// const states = require('us-state-codes');
 const AllData = require("./data/AllData.json");
 
 const state_fips_to_name =
