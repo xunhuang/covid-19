@@ -12,79 +12,16 @@ import { MyTabs } from "./MyTabs.js"
 import { USInfoTopWidget } from './USInfoTopWidget.js'
 import { GraphUSHospitalization, GraphStateHospitalization } from './GraphHospitalization.js'
 import { CountyHospitalsWidget } from "./Hospitals"
+import { fetchCounty } from "./GeoLocation"
 
 const states = require('us-state-codes');
 const Cookies = require("js-cookie");
-const superagent = require("superagent");
 const firebase = require("firebase");
 
 require("firebase/firestore");
 const firebaseConfig = require('./firebaseConfig.json');
 firebase.initializeApp(firebaseConfig);
-
 const logger = firebase.analytics();
-var ApproxIPLocation;
-
-async function fetchCounty() {
-  let cookie = Cookies.getJSON("covidLocation");
-  if (cookie) {
-    if (cookie.county && cookie.state) {
-      console.log("cookie hit");
-      return cookie;
-    }
-  }
-
-  let location = await fetchApproxIPLocation();
-
-  let county_info = await superagent
-    .get("https://geo.fcc.gov/api/census/area")
-    .query({
-      lat: location.latitude,
-      lon: location.longitude,
-      format: "json",
-    }).then(res => {
-      let c = res.body.results[0].county_name;
-      let s = res.body.results[0].state_code;
-      return {
-        county: c,
-        state: s,
-      }
-    })
-    .catch(err => {
-      console.log("location error.. what the heck!")
-      console.log(err);
-      return {
-        county: "Santa Clara",
-        state: "CA",
-      }
-    });
-
-  Cookies.set("covidLocation", county_info, {
-    expires: 90  // 7 day, people are not supposed to be moving anyways
-  });
-
-  return county_info;
-}
-
-async function fetchApproxIPLocation() {
-  return await superagent
-    .post(`https://www.googleapis.com/geolocation/v1/geolocate?key=${firebaseConfig.apiKey}`)
-    .then(res => {
-      ApproxIPLocation = {
-        longitude: res.body.location.lng,
-        latitude: res.body.location.lat,
-      }
-      return ApproxIPLocation;
-    })
-    .catch(err => {
-      // fall back if can't determine GPS, this is santa clara
-      ApproxIPLocation = {
-        longitude: -121.979891,
-        latitude: 37.333183,
-      }
-      return ApproxIPLocation;
-    });
-}
 
 const GraphSectionUS = withRouter((props) => {
   let graphdata = USCounty.getUSDataForGrapth();
@@ -97,7 +34,7 @@ const GraphSectionUS = withRouter((props) => {
     labels={["Cases", `USA Testing`, "Hospitalization"]}
     tabs={tabs}
   />;
-  return graphlistSection;
+  ret urn graphlistSection;
 });
 
 const GraphSectionState = withRouter((props) => {
