@@ -4,6 +4,7 @@ const moment = require("moment");
 const ConfirmedData = require("./src/data/covid_confirmed_usafacts.json");
 const DeathData = require("./src/data/covid_death_usafacts.json");
 const LatestData03252020 = require("../data/archive/JHU-03-25-2020.json");
+const LatestData03262020 = require("../data/archive/JHU-03-26-2020.json");
 const LatestData = require("./src/data/latest.json");
 const states = require('us-state-codes');
 const fs = require('fs');
@@ -285,6 +286,7 @@ function processJSU2(c) {
 
 
 LatestData03252020.features.map(processJSU2);
+LatestData03262020.features.map(processJSU);
 LatestData.features.map(processJSU);
 
 // back fill holes in the data
@@ -441,4 +443,4 @@ Summary.generated = moment().format();
 
 AllData.Summary = Summary;
 let content = JSON.stringify(AllData, 2, 2);
-fs.writeFileSync( "./src/data/AllData.json", content);
+fs.writeFileSync("./src/data/AllData.json", content);
