@@ -42,7 +42,7 @@ async function processDailyNew() {
             fs.writeFileSync(latestJsonLocation, docstring);
 
 
-            const archive=archivelocation + "/JHU-" + moment().format();
+            const archive=archivelocation + "/JHU-" + moment().format("MM-DD-YYYY") + ".json";
             fs.writeFileSync(archive, docstring);
 
             console.log("Data file has been updated");
