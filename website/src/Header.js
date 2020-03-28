@@ -7,6 +7,8 @@ import { makeStyles } from '@material-ui/core/styles';
 
 function browseTo(history, state, county) {
     history.push(
+        county == null ?
+        "/state/" + encodeURIComponent(state) :
         "/county/" + encodeURIComponent(state) + "/" + encodeURIComponent(county),
         history.search,
     );
@@ -44,8 +46,28 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const SearchBox = (props) => {
-    const search = USCounty.getCountySummary1();
-    let summary = search.sort((a, b) => {
+    const counties = USCounty.getCountySummary1().map(
+        county => {
+            return {
+                display_name: `${county.county}, ${county.state_name}`,
+                county: county.county,
+                state: county.state_name,
+                total: county.total,
+            }
+        }
+    );
+    const states = USCounty.getAllStatesSummary().map(
+        state => {
+            return {
+                display_name: `${state.full_name} (${state.state})`,
+                county: null,
+                state: state.state,
+                total: state.confirmed + state.newcases
+            }
+        }
+    );
+    const search_list = counties.concat(states)
+    let search_list_sorted = search_list.sort((a, b) => {
         let x = a.total;
         let y = b.total;
         if (!x) x = 0;
@@ -53,10 +75,10 @@ const SearchBox = (props) => {
 
         return y - x;
     });
-    let counties = summary
+    let search_list_final = search_list_sorted
         .map(c => {
             return {
-                label: `${c.county} , ${c.state_name} (${c.total})`,
+                label: `${c.display_name} (${c.total})`,
                 value: c,
             };
         });
@@ -67,18 +89,18 @@ const SearchBox = (props) => {
             menu: provided => ({ ...provided, zIndex: 9999 })
         }}
         defaultValue={""}
-        placeholder={"Search for a County"}
+        placeholder={"Search for a County or a State"}
         isDisabled={false}
         isLoading={false}
         isClearable={true}
         isRtl={false}
         isSearchable={true}
-        name="county_selection"
-        options={counties}
+        name="county_or_state_selection"
+        options={search_list_final}
         onChange={param => {
             if (props.callback) {
                 if (param && param.value) {
-                    props.callback(param.value.county, param.value.state_name);
+                    props.callback(param.value.county, param.value.state);
                 }
             }
 
