@@ -5,6 +5,7 @@ const ConfirmedData = require("./src/data/covid_confirmed_usafacts.json");
 const DeathData = require("./src/data/covid_death_usafacts.json");
 const LatestData03252020 = require("../data/archive/JHU-03-25-2020.json");
 const LatestData03262020 = require("../data/archive/JHU-03-26-2020.json");
+const LatestData03272020 = require("../data/archive/JHU-03-27-2020.json");
 const LatestData = require("./src/data/latest.json");
 const states = require('us-state-codes');
 const fs = require('fs');
@@ -264,7 +265,8 @@ function processJHU(dataset, date) {
 
 processJHU(LatestData03252020, "03/25/2020");
 processJHU(LatestData03262020, "03/26/2020");
-processJHU(LatestData, "03/27/2020");
+processJHU(LatestData03272020, "03/27/2020");
+processJHU(LatestData, "03/28/2020");
 
 // back fill holes in the data
 
@@ -310,6 +312,9 @@ function getValueFromLastDate(v, comment) {
 
     let last = v[nv[0]]
     let newnum = v[nv[0]] - v[nv[1]];
+    if (newnum  <0) {
+        newnum =0;
+    }
     return { num: last, newnum: newnum };
 }
 
