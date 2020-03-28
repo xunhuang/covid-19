@@ -63,6 +63,10 @@ const useStyles = makeStyles(theme => ({
     table: {
         width: "100%"
     },
+    timestamp: {
+        fontWeight: "bold",
+        textAlign: "center",
+    }
 }));
 
 const USInfoTopWidget = withRouter((props) => {
@@ -128,6 +132,7 @@ const USInfoTopWidget = withRouter((props) => {
                 }}
             />
         </div>
+        <div className={classes.timestamp}>Last Updated: {us_summary.generatedTime}</div>
     </div >;
 });
 
