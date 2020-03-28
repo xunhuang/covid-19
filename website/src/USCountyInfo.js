@@ -388,6 +388,7 @@ function casesForCountySummary(state_short_name, county_name) {
             newpercent: 0,
         }
     }
+    console.log(c);
     let today = c.LastConfirmed;
     let newcase = c.LastConfirmedNew;
     return {
@@ -424,10 +425,13 @@ function casesForStateSummary(state_short_name) {
 function casesForUSSummary() {
     const confirmed = AllData.Summary.LastConfirmed;
     const newcases = AllData.Summary.LastConfirmedNew;
+    const generatedTime = (new Date(AllData.Summary.generated)).toString();
+
     return {
         confirmed: confirmed,
         newcases: newcases,
         newpercent: ((newcases / (confirmed - newcases)) * 100).toFixed(0),
+        generatedTime: generatedTime,
     }
 
 }
