@@ -205,7 +205,7 @@ const AllStateListRender = (props) => {
                                     <TableCell component="th" scope="row" onClick={() => {
                                         props.callback(row.state)
                                     }}>
-                                       {row.statename}
+                                        {row.statename}
                                     </TableCell>
                                     <TableCell align="right">{row.confirmed}</TableCell>
                                     <TableCell align="right"> {newcolumn} </TableCell>
@@ -217,8 +217,7 @@ const AllStateListRender = (props) => {
                                         <TableCell component="th" scope="row" onClick={() => {
                                             props.callback(row.state)
                                         }}>
-                                            {row.state}
-                                        </TableCell>
+                                            {row.statename}                                        </TableCell>
                                         <TableCell align="right">{row.confirmed}</TableCell>
                                         <TableCell align="right"> {newcolumn} </TableCell>
                                         <TableCell align="right">{myShortNumber(row.pop)}</TableCell>
@@ -282,8 +281,7 @@ const CountyListRender = (props) => {
         }
         // note. doing this row overwrite can be dangerous... references.
         newrow.newcases = newcases;
-        // newrow.County = row.County;
-        // newrow.State = row.State;
+        newrow.State = row.State;
         newrow.confirmed = confirmed;
         newrow.newpercent = newpercent;
         newrow.population = population;
@@ -312,6 +310,7 @@ const CountyListRender = (props) => {
                 {
                     stableSort(extendlist, getComparator(order, orderBy))
                         .map(row => {
+                            console.log(row.State);
                             let newcolumn = row.newcases ? `+${row.newcases}(${row.newEntry})` : 0;
 
                             return <TableRow key={row.County}>
