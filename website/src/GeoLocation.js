@@ -1,3 +1,5 @@
+import { logger, firebase } from "./AppModule"
+
 const Cookies = require("js-cookie");
 const superagent = require("superagent");
 
@@ -8,9 +10,11 @@ async function fetchCounty() {
     if (cookie) {
         if (cookie.county && cookie.state) {
             console.log("cookie hit");
+            logger.logEvent("LocationFoundInCookie", cookie);
             return cookie;
         }
     }
+    logger.logEvent("LocationNoCookie");
 
     let location = null;
 
@@ -36,7 +40,10 @@ async function fetchCounty() {
             longitude: - 73.968723,
             latitude: 40.775191,
         }
+        logger.logEvent("LocationNoFoundAfterAPI");
         console.log("default to NYC");
+    } else {
+        logger.logEvent("LocationFoundInGeoLocate", location);
     }
 
     console.log(location);
@@ -51,12 +58,18 @@ async function fetchCounty() {
             let c = res.body.results[0].county_name;
             let s = res.body.results[0].state_code;
             console.log(res.body);
+            logger.logEvent("CensusCountyLookupSuccess", {
+                location: location,
+                county: c,
+                state: s
+            });
             return {
                 county: c,
                 state: s,
             }
         })
         .catch(err => {
+            logger.logEvent("CensusCountyLookupFailed", location);
             console.log("location error.. what the heck!")
             console.log(err);
             return {
