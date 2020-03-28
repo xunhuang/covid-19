@@ -177,71 +177,13 @@ const USState_Population =
     "WY": 567025
 }
 
-const USState_Full_Name =
-{
-    "AK": "Alaska",
-    "AL": "Alabama",
-    "AR": "Arkansas",
-    "AZ": "Arizona",
-    "CA": "California",
-    "CO": "Colorado",
-    "CT": "Connecticut",
-    "DC": "District of Columbia",
-    "DE": "Delaware",
-    "FL": "Florida",
-    "GA": "Georgia",
-    "HI": "Hawaii",
-    "IA": "Iowa",
-    "ID": "Idaho",
-    "IL": "Illinois",
-    "IN": "Indiana",
-    "KS": "Kansas",
-    "KY": "Kentucky",
-    "LA": "Louisiana",
-    "MA": "Massachusetts",
-    "MD": "Maryland",
-    "ME": "Maine",
-    "MH": "Marshall Islands",
-    "MI": "Michigan",
-    "MN": "Minnesota",
-    "MO": "Missouri",
-    "MS": "Mississippi",
-    "MT": "Montana",
-    "NC": "North Carolina",
-    "ND": "North Dakota",
-    "NE": "Nebraska",
-    "NH": "New Hampshire",
-    "NJ": "New Jersey",
-    "NM": "New Mexico",
-    "NV": "Nevada",
-    // Added "state" to avoid confusion
-    "NY": "New York (State)",
-    "OH": "Ohio",
-    "OK": "Oklahoma",
-    "OR": "Oregon",
-    "PA": "Pennsylvania",
-    "PR": "Puerto Rico",
-    "RI": "Rhode Island",
-    "SC": "South Carolina",
-    "SD": "South Dakota",
-    "TN": "Tennessee",
-    "TX": "Texas",
-    "UT": "Utah",
-    "VA": "Virginia",
-    "VT": "Vermont",
-    "WA": "Washington",
-    "WI": "Wisconsin",
-    "WV": "West Virginia",
-    "WY": "Wyoming",
-}
-
 function getAllStatesSummary() {
     let state_sum = Object.keys(USState_Population).map(state => casesForStateSummary(state));
     return state_sum.map(s => {
 
         return {
             state: s.state,
-            full_name: USState_Full_Name[s.state],
+            full_name: states.getStateNameByStateCode(s.state),
             confirmed: s.confirmed,
             newcases: s.newcases,
             newpercent: s.newcases / (s.confirmed - s.newcases),
