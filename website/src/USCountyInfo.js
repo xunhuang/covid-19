@@ -455,8 +455,17 @@ function myFipsCode(state, county) {
     if (county === "East Feliciana") {
         return ["23", "22037"];
     }
+    if (county === "City of St. Louis" && state === "MO") {
+        county = "St. Louis";
+    }
     if (county === "Jefferson Davis" && state === "MS") {
         county = "Jefferson Davis";
+    }
+    if (county === "Pemiscott" && state === "MO") {
+        county = "Pemiscot";
+    }
+    if (county === "Jackson County (including other portions of Kansas City)" && state === "MO") {
+        county = "Jackson";
     }
     if (county === "Pointe Coupee" && state === "LA") {
         return ["23", "22077"];
