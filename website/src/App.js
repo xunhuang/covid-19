@@ -14,6 +14,8 @@ import { GraphUSHospitalization, GraphStateHospitalization } from './GraphHospit
 import { CountyHospitalsWidget } from "./Hospitals"
 import { fetchCounty } from "./GeoLocation"
 import { logger, firebase } from "./AppModule"
+import DonationPage from './DonationPage.js';
+import {getDefaultCounty, CookieGetLastCounty} from './DefaultGeoData.js';
 
 const states = require('us-state-codes');
 const Cookies = require("js-cookie");
@@ -126,21 +128,11 @@ const MainApp = withRouter((props) => {
         <Route exact path='/county/:state/:county' render={(props) => <CountyWidget {...props} state={state} county={county} />} />
         <Route exact path='/state/:state' render={(props) => <StateWidget {...props} state={state} county={county} />} />
         <Route exact path='/US' render={(props) => <EntireUSWidget {...props} state={state} county={county} />} />
+        <Route exact path='/donate' render={(props) => <DonationPage {...props} />} />
       </Switch>
     </div>
   );
 });
-
-function getDefaultCounty() {
-  let county_info = CookieGetLastCounty();
-  if (county_info) {
-    return county_info;
-  }
-  return {
-    county: "Santa Clara",
-    state: "CA",
-  }
-}
 
 const EntireUSWidget = withHeader((props) => {
   const default_county_info = getDefaultCounty();
@@ -185,11 +177,6 @@ function CookieSetLastCounty(state, county) {
   Cookies.set("LastCounty", county_info, {
     expires: 7  // 7 day, people are not supposed to be moving anyways
   });
-}
-
-function CookieGetLastCounty() {
-  let county_info = Cookies.getJSON("LastCounty");
-  return county_info;
 }
 
 const CountyWidget = withHeader((props) => {
