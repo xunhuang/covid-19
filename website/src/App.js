@@ -13,7 +13,7 @@ import { USInfoTopWidget } from './USInfoTopWidget.js'
 import { GraphUSHospitalization, GraphStateHospitalization } from './GraphHospitalization.js'
 import { CountyHospitalsWidget } from "./Hospitals"
 import { fetchCounty } from "./GeoLocation"
-import { logger, firebase } from "./AppModule"
+import { logger } from "./AppModule"
 
 const states = require('us-state-codes');
 const Cookies = require("js-cookie");
@@ -57,8 +57,6 @@ const GraphSectionCounty = withRouter((props) => {
   let state_title = states.getStateNameByStateCode(state);
 
   let graphdata = USCounty.getCountyDataForGrapth(state, county);
-  // let readyForGraph = dataMapToGraphSeriesNew(graphdata);
-  // console.log(readyForGraph);
 
   const tabs = [
     <BasicGraphNewCases data={graphdata} logScale={false} />,

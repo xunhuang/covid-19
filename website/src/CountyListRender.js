@@ -40,7 +40,7 @@ function getComparator(order, orderBy) {
 }
 
 function EnhancedTableHead(props) {
-    const { headCells, classes, order, orderBy, onRequestSort } = props;
+    const { headCells, order, orderBy, onRequestSort } = props;
     const createSortHandler = property => event => {
         onRequestSort(event, property);
     };
