@@ -271,6 +271,8 @@ const CountyListRender = (props) => {
         }
         // note. doing this row overwrite can be dangerous... references.
         newrow.newcases = newcases;
+        newrow.County = row.County;
+        newrow.State = row.State;
         newrow.confirmed = confirmed;
         newrow.newpercent = newpercent;
         newrow.population = population;
