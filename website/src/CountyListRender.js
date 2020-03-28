@@ -91,7 +91,6 @@ const AllStatesListWidget = (props) => {
 
 function EnhancedTableHead(props) {
     const { classes, order, orderBy, onRequestSort } = props;
-    const headCells = props.headCell;
     const createSortHandler = property => event => {
         onRequestSort(event, property);
     };
@@ -219,6 +218,13 @@ function getComparator(order, orderBy) {
         : (a, b) => -descendingComparator(a, b, orderBy);
 }
 
+const headCells = [
+    { id: 'County', numeric: false, disablePadding: false, label: 'Name' },
+    { id: 'confirmed', numeric: true, disablePadding: true, label: 'Total' },
+    { id: 'newcases', numeric: true, disablePadding: false, label: 'New' },
+    { id: 'population', numeric: true, disablePadding: false, label: 'Pop.' },
+    { id: 'partsPerMil', numeric: true, disablePadding: false, label: '#/Mil.' },
+];
 
 const CountyListRender = (props) => {
     const list = props.countylist.sort((a, b) => b.total - a.total);
@@ -236,14 +242,6 @@ const CountyListRender = (props) => {
         setOrder(isAsc ? 'desc' : 'asc');
         setOrderBy(property);
     };
-
-    const headCells = [
-        { id: 'County', numeric: false, disablePadding: false, label: 'Name' },
-        { id: 'confirmed', numeric: true, disablePadding: true, label: 'Total' },
-        { id: 'newcases', numeric: true, disablePadding: false, label: 'New' },
-        { id: 'population', numeric: true, disablePadding: false, label: 'Pop.' },
-        { id: 'partsPerMil', numeric: true, disablePadding: false, label: '#/Mil.' },
-    ];
 
     let extendlist = list.map(row => {
         let newrow = {};
@@ -283,7 +281,6 @@ const CountyListRender = (props) => {
     let countySummary =
         <Table className={classes.table} size="small" aria-label="simple table">
             <EnhancedTableHead
-                headCells={headCells}
                 classes={classes}
                 order={order}
                 orderBy={orderBy}
