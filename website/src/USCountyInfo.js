@@ -245,7 +245,7 @@ function getAllStatesSummary() {
             full_name: USState_Full_Name[s.state],
             confirmed: s.confirmed,
             newcases: s.newcases,
-            newpercent: ((s.newcases / (s.confirmed - s.newcases)) * 100).toFixed(0),
+            newpercent: s.newcases / (s.confirmed - s.newcases),
 
             // this can also be presummarized.
             Population2010: USState_Population[s.state],
@@ -393,7 +393,7 @@ function casesForCountySummary(state_short_name, county_name) {
     return {
         confirmed: today,
         newcases: newcase,
-        newpercent: ((newcase) / (today - newcase) * 100).toFixed(0),
+        newpercent: (newcase) / (today - newcase),
     }
 }
 
