@@ -25,10 +25,10 @@ async function fetchCounty() {
         location = await fetchApproxIPLocationIPDataCo(firebaseConfig.ipdataco_key2);
     }
     if (!location) {
-        location = await fetchApproxIPLocationIPGEOLOCATION();
+        location = await fetchApproxIPLocationGoolge();
     }
     if (!location) {
-        location = await fetchApproxIPLocationGoolge();
+        location = await fetchApproxIPLocationIPGEOLOCATION();
     }
 
     if (!location) {
