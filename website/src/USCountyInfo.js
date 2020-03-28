@@ -1,5 +1,4 @@
-import moment from 'moment';
-
+const moment = require('moment');
 const states = require('us-state-codes');
 const getDistance = require('geolib').getDistance;
 const CountyList = require("./data/county_gps.json");
@@ -440,18 +439,6 @@ function myFipsCode(state, county) {
     if (county === "New York City") {
         county = "New York";
     }
-    if (county === "Dukes and Nantucket") {
-        county = "Dukes";
-    }
-    if (county === "Municipality of Anchorage") {
-        county = "Anchorage";
-    }
-    if (county === "City and Borough of Juneau") {
-        county = "Juneau";
-    }
-    if (county === "Baltimore City") {
-        county = "Baltimore";
-    }
     if (county === "East Feliciana") {
         return ["23", "22037"];
     }
@@ -461,12 +448,6 @@ function myFipsCode(state, county) {
     if (county === "Jefferson Davis" && state === "MS") {
         county = "Jefferson Davis";
     }
-    if (county === "Pemiscott" && state === "MO") {
-        county = "Pemiscot";
-    }
-    if (county === "Jackson County (including other portions of Kansas City)" && state === "MO") {
-        county = "Jackson";
-    }
     if (county === "Pointe Coupee" && state === "LA") {
         return ["23", "22077"];
     }
@@ -475,6 +456,26 @@ function myFipsCode(state, county) {
     }
     if (county === "Stanley" && state === "NC") {
         county = "Gaston";
+    }
+    if (county === "Fairfax City" && state === "VA") {
+        county = "Fairfax";
+    }
+    if (county === "Roanoke City" && state === "VA") {
+        county = "Roanoke";
+    }
+
+    if (county === "LaSalle" && state === "LA") {
+        county = "La Salle";
+    }
+    console.log(`checking fips code for ${state} ${county}`);
+    if (county === "Sussex" && state === "DE") {
+        return ["10", "10005"];
+    }
+    if (county === "Washington" && state === "DC") {
+        return ["11", "11001"];
+    }
+    if (county === "Lac Qui Parle" && state === "MN") {
+        return ["27", "27073"];
     }
 
 
@@ -492,12 +493,12 @@ function myFipsCode(state, county) {
     }
 
 
-    console.log(`checking fips code for ${state} ${county}`);
+    // console.log(`checking fips code for ${state} ${county}`);
     let a = fips.get({
         "state": state,
         "county": county,
     });
-    console.log(a);
+    // console.log(a);
 
     return [a.fips.slice(0, 2), a.fips]
 }
@@ -520,3 +521,5 @@ export {
     // getCountyDataForGraphWithNearby,
     myFipsCode,
 }
+
+// exports.myFipsCode = myFipsCode;

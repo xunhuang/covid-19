@@ -9,6 +9,7 @@ const LatestData03272020 = require("../data/archive/JHU-03-27-2020.json");
 const LatestData = require("./src/data/latest.json");
 const states = require('us-state-codes');
 const fs = require('fs');
+// const  myFipsCode =  require("./src/USCountyInfo.js").myFipsCode;
 
 function pad(n) { return n < 10 ? '0' + n : n }
 
@@ -125,6 +126,14 @@ function createCountyObject(state_fips, state_name, county_fips, county_name) {
     countyObject.Death = {};
     countyObject.Recovered = {};
     countyObject.Active = {};
+
+    /*
+    const [s_fips, c_fips] = myFipsCode(state_name, county_name);
+    if (s_fips !== state_fips || c_fips !== county_fips) {
+        console.log(`bad state county name ${state_name},  ${county_name}`)
+    }
+    */
+
 
     setCountyNode(state_fips, county_fips, countyObject);
 
@@ -312,8 +321,8 @@ function getValueFromLastDate(v, comment) {
 
     let last = v[nv[0]]
     let newnum = v[nv[0]] - v[nv[1]];
-    if (newnum  <0) {
-        newnum =0;
+    if (newnum < 0) {
+        newnum = 0;
     }
     return { num: last, newnum: newnum };
 }
