@@ -180,7 +180,8 @@ const AllStateListRender = (props) => {
         }
         let statename = states.getStateNameByStateCode(row.state);
         newrow.pop = myToNumber(row.Population2010);
-        newrow.state = states.getStateNameByStateCode(row.state);
+        newrow.statename = statename;
+        newrow.state = row.state;
         newrow.partsPerMil = newrow.confirmed * 1000000 / newrow.pop;
         return newrow;
     });
@@ -199,12 +200,12 @@ const AllStateListRender = (props) => {
                     stableSort(extendlist, getComparator(order, orderBy))
                         .map(row => {
                             let newcolumn = row.newcases ? `+${row.newcases}(${row.newEntry})` : 0;
-                            return <TableRow key={row.statename}>
+                            return <TableRow key={row.state}>
                                 <Hidden xsDown>
                                     <TableCell component="th" scope="row" onClick={() => {
                                         props.callback(row.state)
                                     }}>
-                                        {row.state}
+                                       {row.statename}
                                     </TableCell>
                                     <TableCell align="right">{row.confirmed}</TableCell>
                                     <TableCell align="right"> {newcolumn} </TableCell>
