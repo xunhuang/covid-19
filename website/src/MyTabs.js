@@ -57,7 +57,7 @@ const MyTabs = (props) => {
     }
     let c = 0;
     let labelcomp = labels.map(l =>
-        <LinkTab label={l} {...a11yProps(c++)} />
+        <LinkTab label={l} key={c} {...a11yProps(c++)} />
     )
     let d = 0;
     let tabscomp = tabs.map(tab =>

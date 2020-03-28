@@ -162,7 +162,7 @@ const BasicGraphNewCases = (props) => {
 
     let data = props.data;
     data = data.map(d => {
-        d.name = moment(d.fulldate).format("M/D");
+        d.name = moment(d.fulldate, "MM/DD/YYYY").format("M/D");
         return d;
     });
 
@@ -210,13 +210,13 @@ const BasicGraphNewCases = (props) => {
     if (state.show30days) {
         const cutoff = moment().subtract(14, 'days')
         data = data.filter(d => {
-            return moment(d.fulldate).isAfter(cutoff)
+            return moment(d.fulldate, "MM/DD/YYYY").isAfter(cutoff)
         });
     } else {
 
         const cutoff = moment().subtract(30, 'days')
         data = data.filter(d => {
-            return moment(d.fulldate).isAfter(cutoff)
+            return moment(d.fulldate, "MM/DD/YYYY").isAfter(cutoff)
         });
     }
 
@@ -224,7 +224,7 @@ const BasicGraphNewCases = (props) => {
         return myShortNumber(tickItem);
     }
 
-    data = data.sort((a, b) => moment(a.fulldate).isAfter(moment(b.fulldate)));
+    data = data.sort((a, b) => moment(a.fulldate, "MM/DD/YYYY").isAfter(moment(b.fulldate, "MM/DD/YYYY")));
 
     return <>
         <Grid container alignItems="center" spacing={1}>

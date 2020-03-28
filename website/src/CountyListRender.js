@@ -44,7 +44,6 @@ function EnhancedTableHead(props) {
     const createSortHandler = property => event => {
         onRequestSort(event, property);
     };
-    console.log(headCells);
 
     return (
         <TableHead>
