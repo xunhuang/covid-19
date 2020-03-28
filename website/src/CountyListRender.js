@@ -267,9 +267,6 @@ const CountyListRender = (props) => {
         newrow.partsPerMil = confirmed * 1000000 / population;
 
         newrow.newEntry = (Number.isNaN(newpercent) || !isFinite(newpercent)) ? newcases : `${(newpercent * 100).toFixed(1)}%`;
-        console.log(newpercent);
-        console.log(Number.isNaN(newpercent));
-        console.log(newrow.newEntry);
         if (newcases === 0) {
             newrow.newEntry = 0;
         }
@@ -277,7 +274,6 @@ const CountyListRender = (props) => {
         if (row.County === "Statewide Unallocated") {
             population = 0;
             newrow.newEntry = newcases;
-            // newrow.partsPerMil = 1;
         }
         // note. doing this row overwrite can be dangerous... references.
         newrow.newcases = newcases;
@@ -310,7 +306,6 @@ const CountyListRender = (props) => {
                 {
                     stableSort(extendlist, getComparator(order, orderBy))
                         .map(row => {
-                            console.log(row.State);
                             let newcolumn = row.newcases ? `+${row.newcases}(${row.newEntry})` : 0;
 
                             return <TableRow key={row.County}>

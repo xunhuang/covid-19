@@ -71,11 +71,6 @@ const GraphSectionCounty = withRouter((props) => {
   return graphlistSection;
 });
 
-async function getCaseData() {
-  let result = await firebase.functions().httpsCallable('datajsonShort')();
-  return result;
-}
-
 const App = (props) => {
   return <BrowserRouter>
     <MainApp  {...props} />

@@ -344,7 +344,6 @@ function casesForStateSummary(state_short_name) {
 
     if (!state) {
         console.log(`${state_short_name} not supported as a state yet  `);
-        console.log(state);
         return {
             state: state_short_name,
             confirmed: 0,
@@ -409,7 +408,6 @@ function myFipsCode(state, county) {
     if (county === "LaSalle" && state === "LA") {
         county = "La Salle";
     }
-    console.log(`checking fips code for ${state} ${county}`);
     if (county === "Sussex" && state === "DE") {
         return ["10", "10005"];
     }

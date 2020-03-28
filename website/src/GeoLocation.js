@@ -1,4 +1,4 @@
-import { logger, firebase } from "./AppModule"
+import { logger } from "./AppModule"
 
 const Cookies = require("js-cookie");
 const superagent = require("superagent");
