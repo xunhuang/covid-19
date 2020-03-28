@@ -98,6 +98,7 @@ const USInfoTopWidget = withRouter((props) => {
     let state_hospitals = USCounty.hospitalsForState(state);
 
     return <div className={classes.tagSticky} >
+        <div>Last Updated: {us_summary.generatedTime}</div>
         <div className={classes.tagContainer} >
             <Tag
                 title={county_title}
