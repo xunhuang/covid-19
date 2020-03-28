@@ -4,6 +4,9 @@ import Select from 'react-select';
 import Disqus from "disqus-react"
 import Typography from '@material-ui/core/Typography'
 import { makeStyles } from '@material-ui/core/styles';
+import StickyFooter from 'react-sticky-footer';
+import Button from '@material-ui/core/Button';
+
 
 function browseTo(history, state, county) {
     history.push(
@@ -102,8 +105,30 @@ const withHeader = (comp, props) => {
 
             </div>
 
-            {component}
+            {component }
             {footer}
+
+            {/* TODO Comment out the following section until the donation pages are setup */}
+            <StickyFooter
+                bottomThreshold={0}
+                normalStyles={{
+                    display: "none",
+                }}
+                stickyStyles={{
+                    backgroundColor: "rgba(255,255,255,.9)",
+                    width: "100%",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    padding: 2,
+                }}
+            >   
+                <Button color="link"> Share </Button> 
+                <Button color="link" onClick={() => {
+                    const {history} = props;
+                    history.push("/donate", history.search);
+                }}> Support Us </Button>    
+            </StickyFooter>
         </header>
 
         return header;
