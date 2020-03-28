@@ -11,6 +11,7 @@ import { myShortNumber, myToNumber } from "./Util.js";
 import Hidden from '@material-ui/core/Hidden';
 import { ThemeProvider } from '@material-ui/core'
 import { createMuiTheme } from '@material-ui/core/styles';
+import TableSortLabel from '@material-ui/core/TableSortLabel';
 
 const compact = createMuiTheme({
     overrides: {
@@ -88,6 +89,40 @@ const AllStatesListWidget = (props) => {
     return countySummary;
 }
 
+function EnhancedTableHead(props) {
+    const { classes, order, orderBy, onRequestSort } = props;
+    const createSortHandler = property => event => {
+        onRequestSort(event, property);
+    };
+
+    return (
+        <TableHead>
+            <TableRow>
+                {headCells.map(headCell => (
+                    <TableCell
+                        key={headCell.id}
+                        align={headCell.numeric ? 'right' : 'left'}
+                        sortDirection={orderBy === headCell.id ? order : false}
+                    >
+                        <TableSortLabel
+                            active={orderBy === headCell.id}
+                            direction={orderBy === headCell.id ? order : 'asc'}
+                            onClick={createSortHandler(headCell.id)}
+                        >
+                            {headCell.label}
+                            {/* {orderBy === headCell.id ? (
+                                <span className={classes.visuallyHidden}>
+                                    {order === 'desc' ? 'sorted descending' : 'sorted ascending'}
+                                </span>
+                            ) : null} */}
+                        </TableSortLabel>
+                    </TableCell>
+                ))}
+            </TableRow>
+        </TableHead>
+    );
+}
+
 const AllStateListRender = (props) => {
     const list = props.countylist;
     const classes = useStyles();
@@ -97,18 +132,18 @@ const AllStateListRender = (props) => {
                 <TableRow>
                     <Hidden xsDown>
                         <TableCell > Name</TableCell>
-                        <TableCell align="center">Total</TableCell>
-                        <TableCell align="center">New</TableCell>
-                        <TableCell align="center">Population</TableCell>
-                        <TableCell align="center">Cases Per Million</TableCell>
+                        <TableCell align="right">Total</TableCell>
+                        <TableCell align="right">New</TableCell>
+                        <TableCell align="right">Population</TableCell>
+                        <TableCell align="right">Cases Per Million</TableCell>
                     </Hidden>
                     <Hidden smUp>
                         <ThemeProvider theme={compact}>
                             <TableCell > Name</TableCell>
-                            <TableCell align="center">Total</TableCell>
-                            <TableCell align="center">New</TableCell>
-                            <TableCell align="center">Pop</TableCell>
-                            <TableCell align="center">Cases/Mil</TableCell>
+                            <TableCell align="right">Total</TableCell>
+                            <TableCell align="right">New</TableCell>
+                            <TableCell align="right">Pop</TableCell>
+                            <TableCell align="right">Cases/Mil</TableCell>
                         </ThemeProvider>
                     </Hidden>
                 </TableRow>
@@ -135,10 +170,10 @@ const AllStateListRender = (props) => {
                                 }}>
                                     {statename}
                                 </TableCell>
-                                <TableCell align="center">{confirmed}</TableCell>
-                                <TableCell align="center"> {newEntry} </TableCell>
-                                <TableCell align="center">{myShortNumber(pop)}</TableCell>
-                                <TableCell align="center">{(confirmed * 1000000 / pop).toFixed(1)}</TableCell>
+                                <TableCell align="right">{confirmed}</TableCell>
+                                <TableCell align="right"> {newEntry} </TableCell>
+                                <TableCell align="right">{myShortNumber(pop)}</TableCell>
+                                <TableCell align="right">{(confirmed * 1000000 / pop).toFixed(1)}</TableCell>
                             </Hidden>
                             <Hidden smUp>
                                 <ThemeProvider theme={compact}>
@@ -148,10 +183,10 @@ const AllStateListRender = (props) => {
                                     }}>
                                         {statename}
                                     </TableCell>
-                                    <TableCell align="center">{confirmed}</TableCell>
-                                    <TableCell align="center"> {newEntry} </TableCell>
-                                    <TableCell align="center">{myShortNumber(pop)}</TableCell>
-                                    <TableCell align="center">{(confirmed * 1000000 / pop).toFixed(0)}</TableCell>
+                                    <TableCell align="right">{confirmed}</TableCell>
+                                    <TableCell align="right"> {newEntry} </TableCell>
+                                    <TableCell align="right">{myShortNumber(pop)}</TableCell>
+                                    <TableCell align="right">{(confirmed * 1000000 / pop).toFixed(0)}</TableCell>
                                 </ThemeProvider>
                             </Hidden>
                         </TableRow>;
@@ -162,6 +197,40 @@ const AllStateListRender = (props) => {
     return countySummary;
 };
 
+function descendingComparator(a, b, orderBy) {
+    if (b[orderBy] < a[orderBy]) {
+        return -1;
+    }
+    if (b[orderBy] > a[orderBy]) {
+        return 1;
+    }
+    return 0;
+}
+
+function stableSort(array, comparator) {
+    const stabilizedThis = array.map((el, index) => [el, index]);
+    stabilizedThis.sort((a, b) => {
+        const order = comparator(a[0], b[0]);
+        if (order !== 0) return order;
+        return a[1] - b[1];
+    });
+    return stabilizedThis.map(el => el[0]);
+}
+
+function getComparator(order, orderBy) {
+    return order === 'desc'
+        ? (a, b) => descendingComparator(a, b, orderBy)
+        : (a, b) => -descendingComparator(a, b, orderBy);
+}
+
+const headCells = [
+    { id: 'County', numeric: false, disablePadding: false, label: 'Name' },
+    { id: 'confirmed', numeric: true, disablePadding: true, label: 'Total' },
+    { id: 'newcases', numeric: true, disablePadding: false, label: 'New' },
+    { id: 'population', numeric: true, disablePadding: false, label: 'Pop.' },
+    { id: 'partsPerMil', numeric: true, disablePadding: false, label: '#/Mil.' },
+];
+
 const CountyListRender = (props) => {
     const list = props.countylist.sort((a, b) => b.total - a.total);
     const classes = useStyles();
@@ -170,79 +239,86 @@ const CountyListRender = (props) => {
             props.callback(newcounty, newstate);
         }
     }
+
+    const [order, setOrder] = React.useState('desc');
+    const [orderBy, setOrderBy] = React.useState('confirmed');
+    const handleRequestSort = (event, property) => {
+        const isAsc = orderBy === property && order === 'asc';
+        setOrder(isAsc ? 'desc' : 'asc');
+        setOrderBy(property);
+    };
+
+    let extendlist = list.map(row => {
+        let newrow = {};
+        let sum = USCounty.casesForCountySummary(row.State, row.County);
+        let newcases = sum.newcases;
+        let confirmed = sum.confirmed;
+        let newpercent = sum.newpercent;
+        let population = myToNumber(row.Population2010);
+
+        // hard coding a special here for NYC because
+        // all 5 boroughs are lumped together. terrible hack
+        if (row.State === "NY" && (row.County === "New York City" || row.County === "New York")) {
+            population = 8500000;
+        }
+
+        newrow.partsPerMil = confirmed * 1000000 / population;
+
+        newrow.newEntry = (Number.isNaN(newpercent) || isFinite(newpercent)) ? newcases : `${newcases}(+${newpercent}%)`;
+        if (newcases === 0) {
+            newrow.newEntry = 0;
+        }
+
+        if (row.County === "Statewide Unallocated") {
+            population = 0;
+            newrow.newEntry = newcases;
+            // newrow.partsPerMil = 1;
+        }
+        // note. doing this row overwrite can be dangerous... references.
+        newrow.newcases = newcases;
+        newrow.confirmed = confirmed;
+        newrow.newpercent = newpercent;
+        newrow.population = population;
+        newrow.County = row.County;
+        return newrow;
+    });
+
     let countySummary =
         <Table className={classes.table} size="small" aria-label="simple table">
-            <TableHead>
-                <TableRow>
-                    <Hidden xsDown>
-                        <TableCell > Name</TableCell>
-                        <TableCell align="center">Total</TableCell>
-                        <TableCell align="center">New</TableCell>
-                        <TableCell align="center">Population</TableCell>
-                        <TableCell align="center">Cases Per Million</TableCell>
-                    </Hidden>
-                    <Hidden smUp>
-                        <TableCell > Name</TableCell>
-                        <TableCell align="center">Total</TableCell>
-                        <TableCell align="center">New</TableCell>
-                        <TableCell align="center">Pop.</TableCell>
-                        <TableCell align="center">Cases/Mil</TableCell>
-                    </Hidden>
-                </TableRow>
-            </TableHead>
+            <EnhancedTableHead
+                classes={classes}
+                order={order}
+                orderBy={orderBy}
+                onRequestSort={handleRequestSort}
+            />
             <TableBody>
                 {
-                    list.map(row => {
-                        let sum = USCounty.casesForCountySummary(row.State, row.County);
-                        let newcases = sum.newcases;
-                        let confirmed = sum.confirmed;
-                        let newpercent = sum.newpercent;
-                        let newEntry = (Number.isNaN(newpercent) || !isFinite(newpercent)) ? newcases : `${newcases}(+${newpercent}%)`;
-                        if (newcases === 0) {
-                            newEntry = 0;
-                        }
+                    stableSort(extendlist, getComparator(order, orderBy))
+                        .map(row => {
 
-                        let population = myToNumber(row.Population2010);
-                        // hard coding a special here for NYC because 
-                        // all 5 boroughs are lumped together. terrible hack
-                        if (row.State === "NY" && (row.County === "New York City" || row.County === "New York")) {
-                            population = 8500000;
-                        }
-
-                        let partsPerMil = (confirmed * 1000000 / population).toFixed(0);
-
-                        if (row.County === "Statewide Unallocated") {
-                            population = 0;
-                            newEntry = newcases;
-                        }
-
-                        if (!isFinite(partsPerMil)) {
-                            partsPerMil = "-";
-                        }
-
-                        return <TableRow key={row.County}>
-                            <Hidden xsDown>
-                                <TableCell component="th" scope="row" onClick={() => { clicked(row.County, row.State); }}>
-                                    {row.County}
-                                </TableCell>
-                                <TableCell align="center">{confirmed}</TableCell>
-                                <TableCell align="center"> {newEntry} </TableCell>
-                                <TableCell align="center">{myShortNumber(population)}</TableCell>
-                                <TableCell align="center">{partsPerMil}</TableCell>
-                            </Hidden>
-                            <Hidden smUp>
-                                <ThemeProvider theme={compact}>
+                            return <TableRow key={row.County}>
+                                <Hidden xsDown>
                                     <TableCell component="th" scope="row" onClick={() => { clicked(row.County, row.State); }}>
                                         {row.County}
                                     </TableCell>
-                                    <TableCell align="center">{confirmed}</TableCell>
-                                    <TableCell align="center"> {newEntry} </TableCell>
-                                    <TableCell align="center">{myShortNumber(population)}</TableCell>
-                                    <TableCell align="center">{partsPerMil}</TableCell>
-                                </ThemeProvider>
-                            </Hidden>
-                        </TableRow>;
-                    })
+                                    <TableCell align="right">{row.confirmed}</TableCell>
+                                    <TableCell align="right"> {row.newEntry} </TableCell>
+                                    <TableCell align="right">{myShortNumber(row.population)}</TableCell>
+                                    <TableCell align="right">{row.partsPerMil.toFixed(0)}</TableCell>
+                                </Hidden>
+                                <Hidden smUp>
+                                    <ThemeProvider theme={compact}>
+                                        <TableCell component="th" scope="row" onClick={() => { clicked(row.County, row.State); }}>
+                                            {row.County}
+                                        </TableCell>
+                                        <TableCell align="right">{row.confirmed}</TableCell>
+                                        <TableCell align="right"> {row.newEntry} </TableCell>
+                                        <TableCell align="right">{myShortNumber(row.population)}</TableCell>
+                                        <TableCell align="right">{row.partsPerMil.toFixed(1)}</TableCell>
+                                    </ThemeProvider>
+                                </Hidden>
+                            </TableRow>;
+                        })
                 }
             </TableBody>
         </Table >
