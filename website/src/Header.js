@@ -8,8 +8,8 @@ import { makeStyles } from '@material-ui/core/styles';
 function browseTo(history, state, county) {
     history.push(
         county == null ?
-        "/state/" + encodeURIComponent(state) :
-        "/county/" + encodeURIComponent(state) + "/" + encodeURIComponent(county),
+            "/state/" + encodeURIComponent(state) :
+            "/county/" + encodeURIComponent(state) + "/" + encodeURIComponent(county),
         history.search,
     );
 }
@@ -17,6 +17,7 @@ function browseTo(history, state, county) {
 const useStyles = makeStyles(theme => ({
     topContainer: {
         display: 'flex',
+        alignItems: 'baseline',
     },
     title: {
         display: 'block',
@@ -142,6 +143,11 @@ const withHeader = (comp, props) => {
                 </span>
                 <span className={classes.grow}></span>
                 {/* <span className={classes.keepclam}> Keep Clam, #StayHome</span> */}
+                <span className={classes.title}>
+                    <Typography variant="body2" >
+                        #StayHome #StayInformed
+            </Typography>
+                </span>
             </div>
             <SearchBox
                 callback={(newcounty, newstate) => {
