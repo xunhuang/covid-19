@@ -258,7 +258,7 @@ const BasicGraphNewCases = (props) => {
     let refLines = (typeof props.refLines == 'undefined') ?
         null :
         props.refLines.map(l =>
-            <ReferenceLine x={l.date} label={l.label} stroke="#cc00cc" strokeWidth={2}/>
+            <ReferenceLine x={l.date} label={l.label} stroke="#cc00cc" strokeWidth={2} />
         )
 
     return <>
@@ -283,7 +283,8 @@ const BasicGraphNewCases = (props) => {
         </Typography>
             </Grid>
             <Grid item></Grid>
-
+            {/* 
+            // need to think more about how to show these visually
             <Grid item>
                 <AntSwitch checked={state.showConfirmed} onClick={handleShowConfirmedToggle} />
             </Grid>
@@ -300,7 +301,7 @@ const BasicGraphNewCases = (props) => {
                 <AntSwitch checked={state.showDeath} onClick={handleShowDeathToggle} />
             </Grid>
             <Grid item onClick={handleShowDeathToggle}>Death</Grid>
-
+ */}
             {plusNearbyDiv}
             <Dialog
                 open={open}
@@ -339,7 +340,7 @@ const BasicGraphNewCases = (props) => {
                 {state.showConfirmed && <Line type="monotone" dataKey="pending_confirmed" stroke="#ff7300" strokeDasharray="1 1" strokeWidth={3} />}
 
                 {state.showNewCase && <Line type="monotone" dataKey="newcase" stroke="#387908" yAxisId={0} strokeWidth={3} />}
-                {state.showNewCase && <Line type="monotone" dataKey="pending_newcase" stroke="#387908" strokeDasharray="1 1" strokeWidth={3} /> }
+                {state.showNewCase && <Line type="monotone" dataKey="pending_newcase" stroke="#387908" strokeDasharray="1 1" strokeWidth={3} />}
 
                 {state.showDeath && <Line type="monotone" dataKey="death" stroke="#000000" yAxisId={0} strokeWidth={3} />}
                 {state.showDeath && <Line type="monotone" dataKey="pending_death" stroke="#000000" strokeDasharray="1 1" strokeWidth={3} />}
