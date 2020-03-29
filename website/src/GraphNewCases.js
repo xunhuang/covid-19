@@ -248,17 +248,33 @@ const BasicGraphNewCases = (props) => {
     data = data.sort((a, b) => moment(a.fulldate, "MM/DD/YYYY").isAfter(moment(b.fulldate, "MM/DD/YYYY")));
 
     /**
+     * Vertical reference lines.
      * Example usage:
-     *     let refLines = [
+     *     let vRefLines = [
      *         {date: '3/20', label: 'shelter in place'},
      *         {date: '3/25', label: 'some other event'},
      *     ];
-     *     <BasicGraphNewCases refLines={refLines} .../>
+     *     <BasicGraphNewCases vRefLines={vRefLines} .../>
      */
-    let refLines = (typeof props.refLines == 'undefined') ?
+    let vRefLines = (typeof props.vRefLines == 'undefined') ?
         null :
-        props.refLines.map(l =>
+        props.vRefLines.map(l =>
             <ReferenceLine x={l.date} label={l.label} stroke="#cc00cc" strokeWidth={2} />
+        )
+
+    /**
+     * Horizontal reference lines.
+     * Example usage:
+     *     let hRefLines = [
+     *         {y: '100', label: '# ventilators'},
+     *         {y: '1000', label: '# beds'},
+     *     ];
+     *     <BasicGraphNewCases hRefLines={hRefLines} .../>
+     */
+    let hRefLines = (typeof props.hRefLines == 'undefined') ?
+        null :
+        props.hRefLines.map(l =>
+            <ReferenceLine y={l.y} label={l.label} stroke="#cccc00" strokeWidth={2} />
         )
 
     return <>
@@ -283,7 +299,7 @@ const BasicGraphNewCases = (props) => {
         </Typography>
             </Grid>
             <Grid item></Grid>
-            {/* 
+            {/*
             // need to think more about how to show these visually
             <Grid item>
                 <AntSwitch checked={state.showConfirmed} onClick={handleShowConfirmedToggle} />
@@ -347,7 +363,8 @@ const BasicGraphNewCases = (props) => {
                 /* A hack to avoid the error when all three lines are hidden */
                 <Line visibility="hidden" dataKey="pending_death" />
 
-                {refLines}
+                {vRefLines}
+                {hRefLines}
 
                 <Legend verticalAlign="top" payload={[
                     { value: 'Total ', type: 'line', color: '#ff7300' },
