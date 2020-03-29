@@ -109,8 +109,6 @@ function nearbyCounties(state_short_name, county_name) {
             Math.abs(Number(centerCounty.Longitude) - Number(item.Longitude)) < 1.5
     });
 
-    console.log(reduced_list);
-
     let add_distance = reduced_list.map(c => {
         c.distance =
             c.d = getDistance(
@@ -310,9 +308,7 @@ function getCountyDataForGrapth(state_short_name, county_name) {
 function getStateDataForGrapth(state_short_name) {
     const [sfips] = myFipsCode(state_short_name);
     let data = AllData[sfips].Summary;
-    console.log(data);
     let result = dataMapToGraphSeriesNew(data);
-    console.log(result);
     return (result);
 }
 

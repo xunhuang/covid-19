@@ -8,7 +8,6 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import { myShortNumber, myToNumber } from "./Util.js";
-import Hidden from '@material-ui/core/Hidden';
 import { ThemeProvider } from '@material-ui/core'
 import { createMuiTheme } from '@material-ui/core/styles';
 import TableSortLabel from '@material-ui/core/TableSortLabel';
@@ -110,9 +109,8 @@ const useStyles = makeStyles(theme => ({
 const NearbyCounties = (props) => {
     let county = props.county;
 
-    console.log("********************************************");
     if (county === "New York City") {
-        console.log("NYYYYC");
+        console.log("NYC");
         county = "New York";
     }
 
@@ -259,7 +257,6 @@ const CountyListRender = (props) => {
     let extendlist = list.map(row => {
         let newrow = {};
         let sum = USCounty.casesForCountySummary(row.State, row.County);
-        console.log(sum);
         let newcases = sum.newcases;
         let confirmed = sum.confirmed;
         let newpercent = sum.newpercent;

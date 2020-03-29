@@ -37,7 +37,6 @@ const GraphSectionState = withRouter((props) => {
   let state_title = states.getStateNameByStateCode(state);
 
   let graphdata = USCounty.getStateDataForGrapth(state);
-  console.log(graphdata);
 
   const tabs = [
     <BasicGraphNewCases data={graphdata} logScale={false} />,
