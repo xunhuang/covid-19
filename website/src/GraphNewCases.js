@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, ResponsiveContainer, LineChart, Line, YAxis, XAxis, Tooltip, CartesianGrid, Legend } from 'recharts';
+import { Text, ResponsiveContainer, LineChart, Line, ReferenceLine, YAxis, XAxis, Tooltip, CartesianGrid, Legend } from 'recharts';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import { Typography } from '@material-ui/core';
 import Switch from '@material-ui/core/Switch';
@@ -226,6 +226,20 @@ const BasicGraphNewCases = (props) => {
 
     data = data.sort((a, b) => moment(a.fulldate).isAfter(moment(b.fulldate)));
 
+    /**
+     * Example usage:
+     *     let refLines = [
+     *         {date: '3/20', label: 'shelter in place'},
+     *         {date: '3/25', label: 'some other event'},
+     *     ];
+     *     <BasicGraphNewCases refLines={refLines} .../>
+     */
+    let refLines = (typeof props.refLines == 'undefined') ?
+        null :
+        props.refLines.map(l =>
+            <ReferenceLine x={l.date} label={l.label} stroke="#cc00cc" strokeWidth={2}/>
+        )
+
     return <>
         <Grid container alignItems="center" spacing={1}>
             <Grid item></Grid>
@@ -287,6 +301,8 @@ const BasicGraphNewCases = (props) => {
                 <Line type="monotone" dataKey="pending_death" stroke="#000000" strokeDasharray="1 1" strokeWidth={3} />
                 <Line type="monotone" dataKey="pending_confirmed" stroke="#ff7300" strokeDasharray="1 1" strokeWidth={3} />
                 <Line type="monotone" dataKey="pending_newcase" stroke="#387908" strokeDasharray="1 1" strokeWidth={3} /> */}
+
+                {refLines}
 
                 <Legend verticalAlign="top" payload={[
                     { value: 'Total ', type: 'line', color: '#ff7300' },
