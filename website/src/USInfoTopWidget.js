@@ -65,8 +65,9 @@ const useStyles = makeStyles(theme => ({
         width: "100%"
     },
     timestamp: {
-        fontWeight: "bold",
-        textAlign: "center",
+        // fontWeight: "bold",
+        padding: theme.spacing(0, 1),
+        textAlign: "left",
     },
 }));
 
@@ -134,7 +135,9 @@ const USInfoTopWidget = withRouter((props) => {
             />
         </div>
         <div className={classes.timestamp}>
-          Last Updated: {moment(us_summary.generatedTime).format('lll')}
+            <Typography variant="body2" >
+                Updated: {moment(us_summary.generatedTime).format('lll')}
+            </Typography>
         </div>
     </div >;
 });
