@@ -109,6 +109,8 @@ function nearbyCounties(state_short_name, county_name) {
             Math.abs(Number(centerCounty.Longitude) - Number(item.Longitude)) < 1.5
     });
 
+    console.log(reduced_list);
+
     let add_distance = reduced_list.map(c => {
         c.distance =
             c.d = getDistance(
@@ -186,6 +188,7 @@ function getAllStatesSummary() {
             full_name: states.getStateNameByStateCode(s.state),
             confirmed: s.confirmed,
             newcases: s.newcases,
+            death: s.death,
             newpercent: s.newcases / (s.confirmed - s.newcases),
 
             // this can also be presummarized.
@@ -237,6 +240,7 @@ function countyDataForState(state_short_name) {
             m.push({
                 total: c.LastConfirmed,
                 confirmed: c.LastConfirmed,
+                death: c.LastDeath,
                 county: c.CountyName,
                 County: c.CountyName,
                 state_name: c.StateName,
@@ -326,6 +330,7 @@ function casesForCountySummary(state_short_name, county_name) {
         return {
             confirmed: 0,
             newcases: 0,
+            death: 0,
             newpercent: 0,
         }
     }
@@ -334,6 +339,7 @@ function casesForCountySummary(state_short_name, county_name) {
     return {
         confirmed: today,
         newcases: newcase,
+        death: c.LastDeath,
         newpercent: (newcase) / (today - newcase),
     }
 }
@@ -348,6 +354,7 @@ function casesForStateSummary(state_short_name) {
             state: state_short_name,
             confirmed: 0,
             newcases: 0,
+            death: 0,
             newpercent: 0,
         }
     }
@@ -357,6 +364,7 @@ function casesForStateSummary(state_short_name) {
         state: state_short_name,
         confirmed: confirmed,
         newcases: newcases,
+        death: state.Summary.LastDeath,
         newpercent: ((newcases / (confirmed - newcases)) * 100).toFixed(0),
     }
 }

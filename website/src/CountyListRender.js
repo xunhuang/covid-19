@@ -12,6 +12,7 @@ import Hidden from '@material-ui/core/Hidden';
 import { ThemeProvider } from '@material-ui/core'
 import { createMuiTheme } from '@material-ui/core/styles';
 import TableSortLabel from '@material-ui/core/TableSortLabel';
+import { Link } from '@material-ui/core';
 
 function descendingComparator(a, b, orderBy) {
     if (b[orderBy] < a[orderBy]) {
@@ -98,6 +99,9 @@ const useStyles = makeStyles(theme => ({
     grow: {
         flexGrow: 1,
     },
+    topTag: {
+        fontSize: "0.5rem",
+    },
     table: {
         width: "100%"
     }
@@ -105,10 +109,13 @@ const useStyles = makeStyles(theme => ({
 
 const NearbyCounties = (props) => {
     let county = props.county;
+
+    console.log("********************************************");
     if (county === "New York City") {
         console.log("NYYYYC");
         county = "New York";
     }
+
     let countyInfo = lookupCountyInfo(props.state, county);
     let countySummary = <div></div>;
     if (countyInfo) {
@@ -161,8 +168,9 @@ const AllStateListRender = (props) => {
         { id: 'state', numeric: false, disablePadding: false, label: 'Name' },
         { id: 'confirmed', numeric: true, disablePadding: true, label: 'Total' },
         { id: 'newcases', numeric: true, disablePadding: false, label: 'New' },
+        { id: 'partsPerMil', numeric: true, disablePadding: false, label: '#/mil' },
+        { id: 'deathsPerMil', numeric: true, disablePadding: false, label: 'D/mil' },
         { id: 'pop', numeric: true, disablePadding: false, label: 'Pop.' },
-        { id: 'partsPerMil', numeric: true, disablePadding: false, label: 'Cases/Mil' },
     ];
 
     let extendlist = list.map(row => {
@@ -170,9 +178,9 @@ const AllStateListRender = (props) => {
         newrow.newcases = row.newcases;
         newrow.confirmed = row.confirmed;
         newrow.newpercent = row.newpercent;
+        newrow.death = row.death;
         newrow.newEntry = (Number.isNaN(newrow.newpercent) || !isFinite(newrow.newpercent))
-            ?
-            newrow.newcases
+            ? newrow.newcases
             : `${(newrow.newpercent * 100).toFixed(1)}%`;
         if (newrow.newcases === 0) {
             newrow.newEntry = 0;
@@ -182,6 +190,7 @@ const AllStateListRender = (props) => {
         newrow.statename = statename;
         newrow.state = row.state;
         newrow.partsPerMil = newrow.confirmed * 1000000 / newrow.pop;
+        newrow.deathsPerMil = newrow.death * 1000000 / newrow.pop;
         return newrow;
     });
 
@@ -198,31 +207,29 @@ const AllStateListRender = (props) => {
                 {
                     stableSort(extendlist, getComparator(order, orderBy))
                         .map(row => {
-                            let newcolumn = row.newcases ? `+${row.newcases}(${row.newEntry})` : 0;
+                            let newcolumn = row.newcases ? `${myShortNumber(row.newcases)}(${row.newEntry})` : 0;
+                            newcolumn = <section>
+                                <div className={classes.topTag}>
+                                    +{row.newEntry}
+                                </div>
+                                <div className={classes.mainTag}>
+                                    {myShortNumber(row.newcases)} </div>
+                            </section>;
                             return <TableRow key={row.state}>
-                                <Hidden xsDown>
+                                <ThemeProvider theme={compact}>
                                     <TableCell component="th" scope="row" onClick={() => {
                                         props.callback(row.state)
                                     }}>
-                                        {row.statename}
+                                        <Link>
+                                            {row.statename}
+                                        </Link>
                                     </TableCell>
                                     <TableCell align="right">{row.confirmed}</TableCell>
                                     <TableCell align="right"> {newcolumn} </TableCell>
+                                    <TableCell align="right">{row.partsPerMil.toFixed(0)}</TableCell>
+                                    <TableCell align="right">{row.deathsPerMil.toFixed(0)}</TableCell>
                                     <TableCell align="right">{myShortNumber(row.pop)}</TableCell>
-                                    <TableCell align="right">{row.partsPerMil.toFixed(1)}</TableCell>
-                                </Hidden>
-                                <Hidden smUp>
-                                    <ThemeProvider theme={compact}>
-                                        <TableCell component="th" scope="row" onClick={() => {
-                                            props.callback(row.state)
-                                        }}>
-                                            {row.statename}                                        </TableCell>
-                                        <TableCell align="right">{row.confirmed}</TableCell>
-                                        <TableCell align="right"> {newcolumn} </TableCell>
-                                        <TableCell align="right">{myShortNumber(row.pop)}</TableCell>
-                                        <TableCell align="right">{row.partsPerMil.toFixed(0)}</TableCell>
-                                    </ThemeProvider>
-                                </Hidden>
+                                </ThemeProvider>
                             </TableRow>;
                         })
                 }
@@ -252,6 +259,7 @@ const CountyListRender = (props) => {
     let extendlist = list.map(row => {
         let newrow = {};
         let sum = USCounty.casesForCountySummary(row.State, row.County);
+        console.log(sum);
         let newcases = sum.newcases;
         let confirmed = sum.confirmed;
         let newpercent = sum.newpercent;
@@ -281,6 +289,7 @@ const CountyListRender = (props) => {
         newrow.newpercent = newpercent;
         newrow.population = population;
         newrow.County = row.County;
+        newrow.deathsPerMil = sum.death * 1000000 / population;
         return newrow;
     });
 
@@ -288,8 +297,9 @@ const CountyListRender = (props) => {
         { id: 'County', numeric: false, disablePadding: false, label: 'Name' },
         { id: 'confirmed', numeric: true, disablePadding: true, label: 'Total' },
         { id: 'newcases', numeric: true, disablePadding: false, label: 'New' },
+        { id: 'partsPerMil', numeric: true, disablePadding: false, label: '#/Mil' },
+        { id: 'deathsPerMil', numeric: true, disablePadding: false, label: 'D/Mil' },
         { id: 'population', numeric: true, disablePadding: false, label: 'Pop.' },
-        { id: 'partsPerMil', numeric: true, disablePadding: false, label: 'Case/Mil' },
     ];
 
     let countySummary =
@@ -306,28 +316,27 @@ const CountyListRender = (props) => {
                     stableSort(extendlist, getComparator(order, orderBy))
                         .map(row => {
                             let newcolumn = row.newcases ? `+${row.newcases}(${row.newEntry})` : 0;
+                            newcolumn = <section>
+                                <div className={classes.topTag}>
+                                    +{row.newEntry}
+                                </div>
+                                <div className={classes.mainTag}>
+                                    {myShortNumber(row.newcases)} </div>
+                            </section>;
 
                             return <TableRow key={row.County}>
-                                <Hidden xsDown>
+                                <ThemeProvider theme={compact}>
                                     <TableCell component="th" scope="row" onClick={() => { clicked(row.County, row.State); }}>
-                                        {row.County}
+                                        <Link>
+                                            {row.County}
+                                        </Link>
                                     </TableCell>
                                     <TableCell align="right">{row.confirmed}</TableCell>
                                     <TableCell align="right"> {newcolumn} </TableCell>
+                                    <TableCell align="right">{row.partsPerMil.toFixed(1)}</TableCell>
+                                    <TableCell align="right">{row.deathsPerMil.toFixed(0)}</TableCell>
                                     <TableCell align="right">{myShortNumber(row.population)}</TableCell>
-                                    <TableCell align="right">{row.partsPerMil.toFixed(0)}</TableCell>
-                                </Hidden>
-                                <Hidden smUp>
-                                    <ThemeProvider theme={compact}>
-                                        <TableCell component="th" scope="row" onClick={() => { clicked(row.County, row.State); }}>
-                                            {row.County}
-                                        </TableCell>
-                                        <TableCell align="right">{row.confirmed}</TableCell>
-                                        <TableCell align="right"> {newcolumn} </TableCell>
-                                        <TableCell align="right">{myShortNumber(row.population)}</TableCell>
-                                        <TableCell align="right">{row.partsPerMil.toFixed(1)}</TableCell>
-                                    </ThemeProvider>
-                                </Hidden>
+                                </ThemeProvider>
                             </TableRow>;
                         })
                 }
