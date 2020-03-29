@@ -405,7 +405,16 @@ function myFipsCode(state, county) {
         county = "Gaston";
     }
     if (county === "Fairfax City" && state === "VA") {
-        county = "Fairfax";
+        return ["51", "51600"];
+    }
+    if (county === "St. Louis County" && state === "MO") {
+        return ["29", "29189"];
+    }
+    if (county === "St. Louis City" && state === "MO") {
+        return ["29", "29510"];
+    }
+    if (county === "Fairfax" && state === "VA") {
+        return ["51", "51059"];
     }
     if (county === "Roanoke City" && state === "VA") {
         county = "Roanoke";
@@ -439,12 +448,12 @@ function myFipsCode(state, county) {
     }
 
 
-    // console.log(`checking fips code for ${state} ${county}`);
+    console.log(`checking fips code for ${state} ${county}`);
     let a = fips.get({
         "state": state,
         "county": county,
     });
-    // console.log(a);
+    console.log(a);
 
     return [a.fips.slice(0, 2), a.fips]
 }
