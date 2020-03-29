@@ -1,6 +1,6 @@
 
-const getDistance = require('geolib').getDistance;
 const moment = require("moment");
+const CountyList = require("./src/data/county_gps.json");
 const ConfirmedData = require("./src/data/covid_confirmed_usafacts.json");
 const DeathData = require("./src/data/covid_death_usafacts.json");
 const LatestData03252020 = require("../data/archive/JHU-03-25-2020.json");
@@ -10,7 +10,7 @@ const LatestData03282020 = require("../data/archive/JHU-03-28-2020.json");
 const LatestData = require("./src/data/latest.json");
 const states = require('us-state-codes');
 const fs = require('fs');
-// const  myFipsCode =  require("./src/USCountyInfo.js").myFipsCode;
+// const myFipsCode = require("./src/USCountyInfo.js").myFipsCode
 
 function pad(n) { return n < 10 ? '0' + n : n }
 
@@ -110,30 +110,56 @@ function setCountyNode(state_fips, county_fips, node) {
     state[county_fips] = node;
 }
 
-function fix_county_name(county_name) {
-    if (county_name != 'St. Louis County') {
-        county_name = county_name.replace(/ County$/g, "");
+let TableLookup = null;
+function makeTable() {
+    if (!TableLookup) {
+        TableLookup = CountyList.reduce((m, c) => {
+            let key = fixCountyFip(c.FIPS);
+            m[key] = c;
+            return m;
+        }, {});
     }
-    // county_name = county_name.replace(/ Parish$/g, "");
-    return county_name;
+}
+makeTable();
+
+function fix_county_name(county_name, county_fips) {
+    let county = TableLookup[county_fips];
+    if (!county) {
+        if (county_name !== "Statewide Unallocated") {
+            console.log(`${county_name} with ${county_fips} doesn't exist`)
+        }
+        if (county_name != 'St. Louis County') {
+            county_name = county_name.replace(/ County$/g, "");
+        }
+        return county_name;
+    }
+    return county.County;
 }
 
 function createCountyObject(state_fips, state_name, county_fips, county_name) {
 
+    if (county_name === "Grand Princess Cruise Ship") {
+        county_fips = "06000";
+    }
+
     let countyObject = {};
-    countyObject.CountyName = fix_county_name(county_name);
+    countyObject.CountyName = fix_county_name(county_name, county_fips);
     countyObject.StateName = state_name;
     countyObject.CountyFIPS = county_fips;
-    countyObject.StateFIPS = state_fips;
+    countyObject.StateFIPS = fixStateFips(state_fips);
     countyObject.Confirmed = {};
     countyObject.Death = {};
     countyObject.Recovered = {};
     countyObject.Active = {};
 
-    /*
-    const [s_fips, c_fips] = myFipsCode(state_name, county_name);
-    if (s_fips !== state_fips || c_fips !== county_fips) {
+    /* double check...
+    const [s_fips, c_fips] = myFipsCode(countyObject.StateName, countyObject.CountyName);
+    if (s_fips !== countyObject.StateFIPS || c_fips !== county_fips) {
         console.log(`bad state county name ${state_name},  ${county_name}`)
+        console.log(` ${s_fips},  ${countyObject.StateFIPS}`)
+        console.log(s_fips === countyObject.StateFIPS);
+        console.log(` ${c_fips},  ${county_fips}`)
+        console.log(c_fips === county_fips);
     }
     */
 
@@ -144,6 +170,16 @@ function createCountyObject(state_fips, state_name, county_fips, county_name) {
 
 function fixCountyFip(cp) {
     if (cp.length === 4) {
+        return "0" + cp;
+    }
+    return cp;
+}
+
+function fixStateFips(cp) {
+    if (!isNaN(cp)) {
+        cp = cp.toString();
+    }
+    if (cp.length === 1) {
         return "0" + cp;
     }
     return cp;

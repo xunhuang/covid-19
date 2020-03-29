@@ -379,60 +379,20 @@ function casesForUSSummary() {
 }
 
 function myFipsCode(state, county) {
-    if (!county || county === "Statewide Unallocated" || county === "Grand Princess Cruise Ship") {
+    if (!county || county === "Statewide Unallocated") {
         let statefips = STATE_Name_To_FIPS[states.getStateNameByStateCode(state)];
         return [statefips, "0"];
+    }
+
+    if (county === "Grand Princess Cruise Ship") {
+        return ["06", "06000"];
     }
     if (county === "New York City") {
         county = "New York";
     }
-    if (county === "East Feliciana") {
-        return ["23", "22037"];
+    if (county === "Dona Ana") {
+        return ["35", "35013"];
     }
-    if (county === "City of St. Louis" && state === "MO") {
-        county = "St. Louis";
-    }
-    if (county === "Jefferson Davis" && state === "MS") {
-        county = "Jefferson Davis";
-    }
-    if (county === "Pointe Coupee" && state === "LA") {
-        return ["23", "22077"];
-    }
-    if (county === "Madison" && state === "LA") {
-        return ["23", "22065"];
-    }
-    if (county === "Stanley" && state === "NC") {
-        county = "Gaston";
-    }
-    if (county === "Fairfax City" && state === "VA") {
-        return ["51", "51600"];
-    }
-    if (county === "St. Louis County" && state === "MO") {
-        return ["29", "29189"];
-    }
-    if (county === "St. Louis City" && state === "MO") {
-        return ["29", "29510"];
-    }
-    if (county === "Fairfax" && state === "VA") {
-        return ["51", "51059"];
-    }
-    if (county === "Roanoke City" && state === "VA") {
-        county = "Roanoke";
-    }
-
-    if (county === "LaSalle" && state === "LA") {
-        county = "La Salle";
-    }
-    if (county === "Sussex" && state === "DE") {
-        return ["10", "10005"];
-    }
-    if (county === "Washington" && state === "DC") {
-        return ["11", "11001"];
-    }
-    if (county === "Lac Qui Parle" && state === "MN") {
-        return ["27", "27073"];
-    }
-
 
     let county_info = lookupCountyInfo(state, county);
     if (county_info) {
@@ -446,7 +406,6 @@ function myFipsCode(state, county) {
             }
         }
     }
-
 
     console.log(`checking fips code for ${state} ${county}`);
     let a = fips.get({
