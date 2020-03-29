@@ -6,6 +6,7 @@ const DeathData = require("./src/data/covid_death_usafacts.json");
 const LatestData03252020 = require("../data/archive/JHU-03-25-2020.json");
 const LatestData03262020 = require("../data/archive/JHU-03-26-2020.json");
 const LatestData03272020 = require("../data/archive/JHU-03-27-2020.json");
+const LatestData03282020 = require("../data/archive/JHU-03-28-2020.json");
 const LatestData = require("./src/data/latest.json");
 const states = require('us-state-codes');
 const fs = require('fs');
@@ -133,7 +134,6 @@ function createCountyObject(state_fips, state_name, county_fips, county_name) {
         console.log(`bad state county name ${state_name},  ${county_name}`)
     }
     */
-
 
     setCountyNode(state_fips, county_fips, countyObject);
 
@@ -272,14 +272,15 @@ function processJHU(dataset, date) {
     }
 }
 
+const today = moment().format("MM/DD/YYYY");
 processJHU(LatestData03252020, "03/25/2020");
 processJHU(LatestData03262020, "03/26/2020");
 processJHU(LatestData03272020, "03/27/2020");
-processJHU(LatestData, "03/28/2020");
+processJHU(LatestData03282020, "03/28/2020");
+processJHU(LatestData, today);
 
 // back fill holes in the data
 
-const today = moment().format("MM/DD/YYYY");
 function fillarrayholes(v) {
     let keys = Object.keys(v).sort((a, b) => moment(a, "MM/DD/YYYY").toDate() - moment(b, "MM/DD/YYYY").toDate());
     let key = keys[0];
