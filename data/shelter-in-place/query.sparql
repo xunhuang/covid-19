@@ -1,0 +1,28 @@
+SELECT ?placeLabel ?fips ?isoStartDate  ?startSource
+WHERE {
+  ?order wdt:P31 wd:Q88509703;
+  wdt:P1001 ?id.
+  FILTER(BOUND(?fips))
+  SERVICE wikibase:label {
+    bd:serviceParam wikibase:language 'en'.
+    ?order rdfs:label ?orderLabel.
+    ?id rdfs:label ?placeLabel.
+  }
+  OPTIONAL {
+    ?id wdt:P882 ?fipsCounty.
+  }
+  OPTIONAL {
+    ?id wdt:P5087 ?fipsState.
+  }
+  BIND(IF(BOUND(?fipsCounty),?fipsCounty,?fipsState) AS ?fips)
+  OPTIONAL {
+    ?order wdt:P580 ?isoStartDate.
+    ?order p:P580 ?startStatement.
+    ?startStatement ps:P580 ?startValue.
+    OPTIONAL {
+      ?startStatement prov:wasDerivedFrom ?startRefNode.
+      ?startRefNode pr:P854 ?startURL.
+    }
+    BIND(str(?startURL) as ?startSource).
+  }
+}
