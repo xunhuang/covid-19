@@ -364,10 +364,12 @@ function casesForStateSummary(state_short_name) {
 function casesForUSSummary() {
     const confirmed = AllData.Summary.LastConfirmed;
     const newcases = AllData.Summary.LastConfirmedNew;
+    const generatedTime = (new Date(AllData.Summary.generated)).toString();
     return {
         confirmed: confirmed,
         newcases: newcases,
         newpercent: ((newcases / (confirmed - newcases)) * 100).toFixed(0),
+        generatedTime: generatedTime,
     }
 
 }
