@@ -189,6 +189,7 @@ const BasicGraphNewCases = (props) => {
     }
     data = newdata;
 
+
     if (data.length > 2) {
         let newdata = data.slice(0, data.length - 2);
         let second_last = data[data.length - 2];
@@ -198,6 +199,7 @@ const BasicGraphNewCases = (props) => {
         second_last.pending_death = second_last.death;
         let newlast = {
             name: last.name,
+            fulldate: moment().format("MM/DD/YYYY"),
             pending_confirmed: last.confirmed,
             pending_newcase: last.newcase,
             pending_death: last.death,
