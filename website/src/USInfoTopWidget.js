@@ -1,4 +1,5 @@
 import React from 'react';
+import moment from 'moment';
 import { makeStyles } from '@material-ui/core/styles';
 import * as USCounty from "./USCountyInfo.js";
 import { myShortNumber } from "./Util.js";
@@ -62,6 +63,10 @@ const useStyles = makeStyles(theme => ({
     },
     table: {
         width: "100%"
+    },
+    timestamp: {
+        fontWeight: "bold",
+        textAlign: "center",
     },
 }));
 
@@ -127,6 +132,9 @@ const USInfoTopWidget = withRouter((props) => {
                     Util.browseToUSPage(props.history);
                 }}
             />
+        </div>
+        <div className={classes.timestamp}>
+          Last Updated: {moment(us_summary.generatedTime).format('lll')}
         </div>
     </div >;
 });
