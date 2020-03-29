@@ -61,6 +61,10 @@ const CustomTooltip = (props) => {
             return null;
         });
 
+        if (typeof payload[0] == 'undefined') {
+            // This can happen when all the three lines are hidden
+            return null;
+        }
         let pending_help;
         if (today === payload[0].payload.name) {
             pending_help = "Last # potentially incomplete";
@@ -132,6 +136,9 @@ const BasicGraphNewCases = (props) => {
         showlog: false,
         show30days: false,
         plusNearby: false,
+        showConfirmed: true,
+        showNewCase: true,
+        showDeath: true,
     });
 
     const [open, setOpen] = React.useState(false);
@@ -147,7 +154,7 @@ const BasicGraphNewCases = (props) => {
         setOpenDownload(false);
     };
 
-    const handleChange = event => {
+    const handleLogScaleToggle = event => {
         setState({ ...state, showlog: !state.showlog });
     };
 
@@ -158,6 +165,18 @@ const BasicGraphNewCases = (props) => {
     const handlePlusNearbyToggle = event => {
         setState({ ...state, plusNearby: !state.plusNearby });
         props.onPlusNearby(event);
+    };
+
+    const handleShowConfirmedToggle = event => {
+        setState({ ...state, showConfirmed: !state.showConfirmed });
+    };
+
+    const handleShowNewCaseToggle = event => {
+        setState({ ...state, showNewCase: !state.showNewCase });
+    };
+
+    const handleShowDeathToggle = event => {
+        setState({ ...state, showDeath: !state.showDeath });
     };
 
     let data = props.data;
@@ -246,22 +265,42 @@ const BasicGraphNewCases = (props) => {
         <Grid container alignItems="center" spacing={1}>
             <Grid item></Grid>
             <Grid item>
-                <AntSwitch checked={state.showlog} onClick={handleChange} />
+                <AntSwitch checked={state.showlog} onClick={handleLogScaleToggle} />
             </Grid>
-            <Grid item onClick={handleChange}>
+            <Grid item onClick={handleLogScaleToggle}>
                 <Typography>
-                    Log Scale
+                    Log
         </Typography>
             </Grid>
             <Grid item></Grid>
+
             <Grid item>
                 <AntSwitch checked={state.show30days} onClick={handle30DaysToggle} />
             </Grid>
             <Grid item onClick={handle30DaysToggle}>
                 <Typography>
-                    Last 2 weeks
+                    2 weeks
         </Typography>
             </Grid>
+            <Grid item></Grid>
+
+            <Grid item>
+                <AntSwitch checked={state.showConfirmed} onClick={handleShowConfirmedToggle} />
+            </Grid>
+            <Grid item onClick={handleShowConfirmedToggle}>Total</Grid>
+            <Grid item></Grid>
+
+            <Grid item>
+                <AntSwitch checked={state.showNewCase} onClick={handleShowNewCaseToggle} />
+            </Grid>
+            <Grid item onClick={handleShowNewCaseToggle}>New</Grid>
+            <Grid item></Grid>
+
+            <Grid item>
+                <AntSwitch checked={state.showDeath} onClick={handleShowDeathToggle} />
+            </Grid>
+            <Grid item onClick={handleShowDeathToggle}>Death</Grid>
+
             {plusNearbyDiv}
             <Dialog
                 open={open}
@@ -296,13 +335,16 @@ const BasicGraphNewCases = (props) => {
                 }
 
                 <CartesianGrid stroke="#d5d5d5" strokeDasharray="5 5" />
-                <Line type="monotone" dataKey="confirmed" stroke="#ff7300" yAxisId={0} strokeWidth={3} />
-                <Line type="monotone" dataKey="death" stroke="#000000" yAxisId={0} strokeWidth={3} />
-                <Line type="monotone" dataKey="newcase" stroke="#387908" yAxisId={0} strokeWidth={3} />
+                {state.showConfirmed && <Line type="monotone" dataKey="confirmed" stroke="#ff7300" yAxisId={0} strokeWidth={3} />}
+                {state.showConfirmed && <Line type="monotone" dataKey="pending_confirmed" stroke="#ff7300" strokeDasharray="1 1" strokeWidth={3} />}
 
-                <Line type="monotone" dataKey="pending_death" stroke="#000000" strokeDasharray="1 1" strokeWidth={3} />
-                <Line type="monotone" dataKey="pending_confirmed" stroke="#ff7300" strokeDasharray="1 1" strokeWidth={3} />
-                <Line type="monotone" dataKey="pending_newcase" stroke="#387908" strokeDasharray="1 1" strokeWidth={3} /> */}
+                {state.showNewCase && <Line type="monotone" dataKey="newcase" stroke="#387908" yAxisId={0} strokeWidth={3} />}
+                {state.showNewCase && <Line type="monotone" dataKey="pending_newcase" stroke="#387908" strokeDasharray="1 1" strokeWidth={3} /> }
+
+                {state.showDeath && <Line type="monotone" dataKey="death" stroke="#000000" yAxisId={0} strokeWidth={3} />}
+                {state.showDeath && <Line type="monotone" dataKey="pending_death" stroke="#000000" strokeDasharray="1 1" strokeWidth={3} />}
+                /* A hack to avoid the error when all three lines are hidden */
+                <Line visibility="hidden" dataKey="pending_death" />
 
                 {refLines}
 
