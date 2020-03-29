@@ -12,6 +12,28 @@ function myShortNumber(n) {
     return shortNumber(n);
 }
 
+function myGoodNumber(n) {
+    if (Number.isNaN(n) || !isFinite(n)) {
+        return "-";
+    }
+    return n;
+}
+
+function myGoodWholeNumber(n) {
+    if (Number.isNaN(n) || !isFinite(n)) {
+        return "-";
+    }
+    return n.toFixed(0);
+}
+
+
+function myGoodShortNumber(n) {
+    if (Number.isNaN(n) || !isFinite(n)) {
+        return "-";
+    }
+    return myShortNumber(n);
+}
+
 function myToNumber(n) {
     let ret;
     if (!n) {
@@ -48,6 +70,9 @@ function browseToUSPage(history) {
 
 export {
     myShortNumber,
+    myGoodNumber,
+    myGoodShortNumber,
+    myGoodWholeNumber,
     myToNumber,
     browseTo,
     browseToState,

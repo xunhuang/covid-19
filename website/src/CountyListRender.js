@@ -7,7 +7,7 @@ import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
-import { myShortNumber, myToNumber } from "./Util.js";
+import { myShortNumber, myToNumber, myGoodNumber, myGoodWholeNumber, myGoodShortNumber } from "./Util.js";
 import { ThemeProvider } from '@material-ui/core'
 import { createMuiTheme } from '@material-ui/core/styles';
 import TableSortLabel from '@material-ui/core/TableSortLabel';
@@ -207,13 +207,17 @@ const AllStateListRender = (props) => {
                     stableSort(extendlist, getComparator(order, orderBy))
                         .map(row => {
                             let newcolumn = row.newcases ? `${myShortNumber(row.newcases)}(${row.newEntry})` : 0;
-                            newcolumn = <section>
-                                <div className={classes.topTag}>
-                                    +{row.newEntry}
-                                </div>
-                                <div className={classes.mainTag}>
-                                    {myShortNumber(row.newcases)} </div>
-                            </section>;
+                            if (row.newcases === 0) {
+                                newcolumn = "-";
+                            } else {
+                                newcolumn = <section>
+                                    <div className={classes.topTag}>
+                                        +{row.newEntry}
+                                    </div>
+                                    <div className={classes.mainTag}>
+                                        {myShortNumber(row.newcases)} </div>
+                                </section>;
+                            }
                             return <TableRow key={row.state}>
                                 <ThemeProvider theme={compact}>
                                     <TableCell component="th" scope="row" onClick={() => {
@@ -225,9 +229,9 @@ const AllStateListRender = (props) => {
                                     </TableCell>
                                     <TableCell align="right">{row.confirmed}</TableCell>
                                     <TableCell align="right"> {newcolumn} </TableCell>
-                                    <TableCell align="right">{row.partsPerMil.toFixed(0)}</TableCell>
-                                    <TableCell align="right">{row.deathsPerMil.toFixed(0)}</TableCell>
-                                    <TableCell align="right">{myShortNumber(row.pop)}</TableCell>
+                                    <TableCell align="right">{myGoodWholeNumber(row.partsPerMil)}</TableCell>
+                                    <TableCell align="right">{myGoodWholeNumber(row.deathsPerMil)}</TableCell>
+                                    <TableCell align="right">{(row.pop === 0) ? "-" : myGoodShortNumber(row.pop)}</TableCell>
                                 </ThemeProvider>
                             </TableRow>;
                         })
@@ -236,7 +240,6 @@ const AllStateListRender = (props) => {
         </Table>
     return countySummary;
 };
-
 
 const CountyListRender = (props) => {
     const list = props.countylist.sort((a, b) => b.total - a.total);
@@ -314,13 +317,17 @@ const CountyListRender = (props) => {
                     stableSort(extendlist, getComparator(order, orderBy))
                         .map(row => {
                             let newcolumn = row.newcases ? `+${row.newcases}(${row.newEntry})` : 0;
-                            newcolumn = <section>
-                                <div className={classes.topTag}>
-                                    +{row.newEntry}
-                                </div>
-                                <div className={classes.mainTag}>
-                                    {myShortNumber(row.newcases)} </div>
-                            </section>;
+                            if (row.newcases === 0) {
+                                newcolumn = "-";
+                            } else {
+                                newcolumn = <section>
+                                    <div className={classes.topTag}>
+                                        +{row.newEntry}
+                                    </div>
+                                    <div className={classes.mainTag}>
+                                        {myShortNumber(row.newcases)} </div>
+                                </section>;
+                            }
 
                             return <TableRow key={row.County}>
                                 <ThemeProvider theme={compact}>
@@ -331,9 +338,9 @@ const CountyListRender = (props) => {
                                     </TableCell>
                                     <TableCell align="right">{row.confirmed}</TableCell>
                                     <TableCell align="right"> {newcolumn} </TableCell>
-                                    <TableCell align="right">{row.partsPerMil.toFixed(1)}</TableCell>
-                                    <TableCell align="right">{row.deathsPerMil.toFixed(0)}</TableCell>
-                                    <TableCell align="right">{myShortNumber(row.population)}</TableCell>
+                                    <TableCell align="right">{myGoodWholeNumber(row.partsPerMil)}</TableCell>
+                                    <TableCell align="right">{myGoodWholeNumber(row.deathsPerMil)}</TableCell>
+                                    <TableCell align="right">{(row.population === 0) ? '-' : myGoodShortNumber(row.population)}</TableCell>
                                 </ThemeProvider>
                             </TableRow>;
                         })
