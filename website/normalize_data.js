@@ -511,9 +511,11 @@ function processsShelterInPlace() {
                 let state = AllData[fips.slice(0, 2)];
                 if (state) {
                     let c = state[fips];
-                    state.StayHomeOrder = {
+                    if (c) {
+                    c.StayHomeOrder = {
                         Url: p.Url,
                         StartDate: p.StartDate,
+                    }
                     }
                 }
                 /*
