@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, ResponsiveContainer, LineChart, Line, ReferenceLine, YAxis, XAxis, Tooltip, CartesianGrid, Legend } from 'recharts';
+import { ResponsiveContainer, LineChart, Line, ReferenceLine, YAxis, XAxis, Tooltip, CartesianGrid, Legend } from 'recharts';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import { Typography } from '@material-ui/core';
 import Switch from '@material-ui/core/Switch';
@@ -15,7 +15,6 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import FormControl from '@material-ui/core/FormControl';
 import Input from '@material-ui/core/Input';
-import InputLabel from '@material-ui/core/InputLabel';
 import ListItemText from '@material-ui/core/ListItemText';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
@@ -185,11 +184,6 @@ const BasicGraphNewCases = (props) => {
         setState({ ...state, show2weeks: !state.show2weeks });
     };
 
-    const handlePlusNearbyToggle = event => {
-        setState({ ...state, plusNearby: !state.plusNearby });
-        props.onPlusNearby(event);
-    };
-
     let graphOptions = [
         { name: 'Total', value: state.showConfirmed },
         { name: 'New', value: state.showNewCase },
@@ -211,17 +205,6 @@ const BasicGraphNewCases = (props) => {
         d.name = moment(d.fulldate, "MM/DD/YYYY").format("M/D");
         return d;
     });
-
-    // const showPlusNearby = typeof(props.onPlusNearby) !== 'undefined';
-    const showPlusNearby = false;
-    let plusNearbyDiv = <></>;
-    if (showPlusNearby) {
-        plusNearbyDiv = <><Grid item></Grid>
-            <Grid item>
-                <AntSwitch checked={state.plusNearby} onClick={handlePlusNearbyToggle} />
-            </Grid>
-            <Grid item onClick={handlePlusNearbyToggle}>+Nearby</Grid></>;
-    }
 
     let newdata = [];
     for (let i = 0; i < data.length; i++) {
@@ -386,7 +369,6 @@ const BasicGraphNewCases = (props) => {
 
                 {state.showDeath && <Line type="monotone" dataKey="death" stroke="#000000" yAxisId={0} strokeWidth={3} />}
                 {state.showDeath && <Line type="monotone" dataKey="pending_death" stroke="#000000" strokeDasharray="1 1" strokeWidth={3} />}
-                /* A hack to avoid the error when all three lines are hidden */
                 <Line visibility="hidden" dataKey="pending_death" />
 
                 {vRefLines}
