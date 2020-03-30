@@ -1,7 +1,10 @@
 import React from 'react';
-import { ResponsiveContainer, AreaChart, Area, YAxis, XAxis, Tooltip, CartesianGrid, Legend } from 'recharts';
+import { ResponsiveContainer, AreaChart, Area, YAxis, XAxis, Tooltip,
+  CartesianGrid, Legend, LineChart, Line } from 'recharts';
 import { makeStyles } from '@material-ui/core/styles';
 import { Typography } from '@material-ui/core';
+import { Grid } from '@material-ui/core';
+import { AntSwitch } from "./GraphNewCases.js"
 
 const useStyles = makeStyles(theme => ({
     customtooltip: {
@@ -103,29 +106,75 @@ const GraphTestingWidget = (props) => {
     let total_positives = data.reduce((m, a) => { return a.positive > m ? a.positive : m }, 0);
     let total_negatives = data.reduce((m, a) => { return a.negative > m ? a.negative : m }, 0);
 
+    // If true, show area chart.
+    // If false, show line chart.
+    const [useAreaChart,setUseAreaChart] = React.useState(true);
+    let chart = useAreaChart ?
+        <AreaChart
+            data={data}
+            margin={{ top: 5, right: 30, left: 5, bottom: 5 }}
+        >
+            <YAxis />
+            <XAxis dataKey="name" />
+            <CartesianGrid stroke="#d5d5d5" strokeDasharray="5 5" />
+            {/* <Line type="monotone" name="Total Tested" dataKey="total" stroke="#387908" yAxisId={0} strokeWidth={3} />
+        <Line type="monotone" name="Tested Positive" dataKey="positive" stroke="#ff7300" yAxisId={0} strokeWidth={3} /> */}
+            <Area stackId="1" type="monotone" name="Positive" dataKey="positiveThatDay" stroke="#ff7300" fill="#ff7300" yAxisId={0} strokeWidth={3} />
+            <Area stackId="1" type="monotone" name="Negative" dataKey="negativeThatDay" stroke="#00aeef" fill="#00aeef" yAxisId={0} strokeWidth={3} />
+            {/* <Area stackId="1" type="monotone" name="Pending" dataKey="pendingThatDay" stroke="#387908" fill="#387908" yAxisId={0} strokeWidth={3} /> */}
+            <Legend verticalAlign="top" />
+            <Tooltip content={<CustomTooltip />} />
+        </AreaChart>
+        :
+        <LineChart
+            data={data}
+            margin={{ top: 5, right: 30, left: 5, bottom: 5 }}
+        >
+            <YAxis />
+            <XAxis dataKey="name" />
+            <CartesianGrid stroke="#d5d5d5" strokeDasharray="5 5" />
+            <Line type="monotone" name="Daily Tested " dataKey="testsThatDay" stroke="#387908" yAxisId={0} strokeWidth={3} />
+            <Line type="monotone" name="Positive" dataKey="positiveThatDay" stroke="#ff7300" yAxisId={0} strokeWidth={3} />
+            <Line type="monotone" name="Negative" dataKey="negativeThatDay" stroke="#00aeef" yAxisId={0} strokeWidth={3} />
+            <Legend verticalAlign="top" />
+            <Tooltip content={<CustomTooltip />} />
+        </LineChart>;
+
     return <div>
-        <Typography variant="body2" noWrap>
-            {`Total Tests: ${total_tests}   
-            Postive Rate: ${(total_positives / total_tests * 100).toFixed(1)}% 
-            Negative Rate: ${(total_negatives / total_tests * 100).toFixed(1)}% 
-            `}
-        </Typography>
+        <Grid container alignItems="center" justify="space-between" spacing={1}>
+            <Grid item xs={12} sm={12} md={6} justify="flex-start">
+                <Typography variant="body2" noWrap>
+                    {`Total Tests: ${total_tests}
+                    Postive Rate: ${(total_positives / total_tests * 100).toFixed(1)}%
+                    Negative Rate: ${(total_negatives / total_tests * 100).toFixed(1)}%
+                    `}
+                </Typography>
+            </Grid>
+
+            <Grid item container xs={12} sm={12} md={6} alignItems="center" justify="flex-end" spacing={1}>
+                {/* Case 1: click on the "Line chart" text -> show line chart */}
+                <Grid item onClick={event => setUseAreaChart(false)}>
+                    <Typography>
+                        Line chart
+                    </Typography>
+                </Grid>
+                {/* Case 2: click on the ant switch -> change to the other chart type */}
+                <Grid item>
+                    <AntSwitch
+                        checked={useAreaChart}
+                        onClick={event => setUseAreaChart(!useAreaChart)}
+                    />
+                </Grid>
+                {/* Case 3: click on the "Area chart" text -> show area chart */}
+                <Grid item onClick={event => setUseAreaChart(true)}>
+                    <Typography>
+                        Area chart
+                    </Typography>
+                </Grid>
+            </Grid>
+        </Grid>
         <ResponsiveContainer height={300} >
-            <AreaChart
-                data={data}
-                margin={{ top: 5, right: 30, left: 5, bottom: 5 }}
-            >
-                <YAxis />
-                <XAxis dataKey="name" />
-                <CartesianGrid stroke="#d5d5d5" strokeDasharray="5 5" />
-                {/* <Line type="monotone" name="Total Tested" dataKey="total" stroke="#387908" yAxisId={0} strokeWidth={3} />
-            <Line type="monotone" name="Tested Positive" dataKey="positive" stroke="#ff7300" yAxisId={0} strokeWidth={3} /> */}
-                <Area stackId="1" type="monotone" name="Positive" dataKey="positiveThatDay" stroke="#ff7300" fill="#ff7300" yAxisId={0} strokeWidth={3} />
-                <Area stackId="1" type="monotone" name="Negative" dataKey="negativeThatDay" stroke="#00aeef" fill="#00aeef" yAxisId={0} strokeWidth={3} />
-                {/* <Area stackId="1" type="monotone" name="Pending" dataKey="pendingThatDay" stroke="#387908" fill="#387908" yAxisId={0} strokeWidth={3} /> */}
-                <Legend verticalAlign="top" />
-                <Tooltip content={<CustomTooltip />} />
-            </AreaChart>
+            {chart}
         </ResponsiveContainer>
         <Typography variant="body2" noWrap>
             Data source: https://covidtracking.com/api/

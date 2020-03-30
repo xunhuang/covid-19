@@ -440,4 +440,4 @@ const BasicGraphNewCases = (props) => {
     </>
 }
 
-export { BasicGraphNewCases };
+export { BasicGraphNewCases, AntSwitch };
