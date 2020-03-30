@@ -531,13 +531,23 @@ function processsShelterInPlace() {
     });
 }
 
-
 process_USAFACTS();
+for (let d = moment("03/25/2020", "MM/DD/YYYY"); d.isBefore(moment()); d = d.add(1, "days")) {
+    let file = `../data/archive/JHU-${d.format("MM-DD-YYYY")}.json`;
+    let contents = fs.readFileSync(file);
+    let data = JSON.parse(contents);
+
+    console.log("DOing JHU " + d.format("MM/DD/YYYY"));
+    processJHU(data, d.format("MM/DD/YYYY"));
+}
+
+/*
 processJHU(LatestData03252020, "03/25/2020");
 processJHU(LatestData03262020, "03/26/2020");
 processJHU(LatestData03272020, "03/27/2020");
 processJHU(LatestData03282020, "03/28/2020");
 processJHU(LatestData, today);
+*/
 fillholes();
 summarize_counties();
 summarize_states();
