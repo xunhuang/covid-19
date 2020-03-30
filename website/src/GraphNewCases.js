@@ -144,12 +144,12 @@ const AntSwitch = withStyles(theme => ({
 const MENU_ITEM_HEIGHT = 48;
 const MENU_ITEM_PADDING_TOP = 8;
 const GraphOptionsMenuProps = {
-  PaperProps: {
-    style: {
-      maxHeight: MENU_ITEM_HEIGHT * 4.5 + MENU_ITEM_PADDING_TOP,
-      width: 150,
+    PaperProps: {
+        style: {
+            maxHeight: MENU_ITEM_HEIGHT * 4.5 + MENU_ITEM_PADDING_TOP,
+            width: 150,
+        },
     },
-  },
 };
 
 const BasicGraphNewCases = (props) => {
@@ -191,9 +191,9 @@ const BasicGraphNewCases = (props) => {
     };
 
     let graphOptions = [
-      {name: 'Total', value: state.showConfirmed},
-      {name: 'New', value: state.showNewCase},
-      {name: 'Death', value: state.showDeath},
+        { name: 'Total', value: state.showConfirmed },
+        { name: 'New', value: state.showNewCase },
+        { name: 'Death', value: state.showDeath },
     ];
 
     const handleGraphOptionsChange = event => {
@@ -345,22 +345,22 @@ const BasicGraphNewCases = (props) => {
 
             <Grid item>
                 <FormControl size="medium" className={classes.formControl}>
-                  <Select
-                    id="new-case-graph-options-checkbox"
-                    multiple
-                    value={graphOptions.filter(o => o.value).map(o => o.name)}
-                    onChange={handleGraphOptionsChange}
-                    input={<Input />}
-                    renderValue={selected => 'Choose curves'}
-                    MenuProps={GraphOptionsMenuProps}
-                  >
-                    {graphOptions.map((option) => (
-                      <MenuItem key={option.name} value={option.name}>
-                        <Checkbox checked={option.value} />
-                        <ListItemText primary={option.name} />
-                      </MenuItem>
-                    ))}
-                  </Select>
+                    <Select
+                        id="new-case-graph-options-checkbox"
+                        multiple
+                        value={graphOptions.filter(o => o.value).map(o => o.name)}
+                        onChange={handleGraphOptionsChange}
+                        input={<Input />}
+                        renderValue={selected => 'Lines'}
+                        MenuProps={GraphOptionsMenuProps}
+                    >
+                        {graphOptions.map((option) => (
+                            <MenuItem key={option.name} value={option.name}>
+                                <Checkbox checked={option.value} />
+                                <ListItemText primary={option.name} />
+                            </MenuItem>
+                        ))}
+                    </Select>
                 </FormControl>
             </Grid>
         </Grid>
