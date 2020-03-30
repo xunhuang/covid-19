@@ -362,6 +362,7 @@ function casesForStateSummary(state_short_name) {
         newcases: newcases,
         death: state.Summary.LastDeath,
         newpercent: ((newcases / (confirmed - newcases)) * 100).toFixed(0),
+        stayHomeOrder: state.Summary.StayHomeOrder,
     }
 }
 
@@ -427,13 +428,9 @@ export {
     hospitalsForState, // no related
     countyDataForState, // check
     getAllStatesSummary, // check... but can be more efficient if precomputed
-    /// new
     getCountySummary1, // check
     getCountyDataForGrapth, // check
     getStateDataForGrapth, // check
     getUSDataForGrapth, //Check
-    // getCountyDataForGraphWithNearby,
     myFipsCode,
 }
-
-// exports.myFipsCode = myFipsCode;

@@ -14,6 +14,7 @@ import { GraphUSHospitalization, GraphStateHospitalization } from './GraphHospit
 import { CountyHospitalsWidget } from "./Hospitals"
 import { fetchCounty } from "./GeoLocation"
 import { logger } from "./AppModule"
+const moment = require("moment");
 
 const states = require('us-state-codes');
 const Cookies = require("js-cookie");
@@ -35,12 +36,23 @@ const GraphSectionUS = withRouter((props) => {
 const GraphSectionState = withRouter((props) => {
   const state = props.state;
   let state_title = states.getStateNameByStateCode(state);
-
+  let stateSummary = USCounty.casesForStateSummary(state)
   let graphdata = USCounty.getStateDataForGrapth(state);
+  let stayHomeOrder = stateSummary.stayHomeOrder;
 
   const tabs = [
-    <BasicGraphNewCases data={graphdata} logScale={false} />,
-    <GraphStateTesting state={state} />,
+    <BasicGraphNewCases
+      data={graphdata}
+      logScale={true}
+      vRefLines={
+        stayHomeOrder ?
+          [{
+            date: moment(stayHomeOrder.StartDate
+            ).format("M/D"),
+            label: "Stay-At-Home Order",
+          }] : []
+      } />,
+    < GraphStateTesting state={state} />,
     <GraphStateHospitalization state={state} />,
   ]
   let graphlistSection = <MyTabs
