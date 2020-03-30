@@ -8,6 +8,8 @@ const LatestData03262020 = require("../data/archive/JHU-03-26-2020.json");
 const LatestData03272020 = require("../data/archive/JHU-03-27-2020.json");
 const LatestData03282020 = require("../data/archive/JHU-03-28-2020.json");
 const LatestData = require("./src/data/latest.json");
+const ShelterInPlace = require("../data/shelter-in-place/shelter.json");
+
 const states = require('us-state-codes');
 const fs = require('fs');
 // const myFipsCode = require("./src/USCountyInfo.js").myFipsCode
@@ -481,6 +483,55 @@ function summarize_USA() {
     AllData.Summary = Summary;
 }
 
+function processsShelterInPlace() {
+    ShelterInPlace.map(p => {
+        let fips = p.CountyFIPS;
+
+        if (fips.length === 2) {
+            // state
+            //
+            if (state_fips_to_name[fips] === p.CountyName) {
+                console.log("------------------- good");
+            } else {
+                console.log(`**************** Mismatch ${p.CountyName} `);
+                // console.log("************** url: " + p.Url);
+            }
+            let state = AllData[fips];
+            if (state) {
+                state.Summary.StayHomeOrder = {
+                    Url: p.Url,
+                    StartDate: p.StartDate,
+                }
+            }
+
+        } else {
+            // -- county
+            let county = TableLookup[p.CountyFIPS];
+            if (county) {
+                let state = AllData[fips.slice(0, 2)];
+                if (state) {
+                    let c = state[fips];
+                    state.StayHomeOrder = {
+                        Url: p.Url,
+                        StartDate: p.StartDate,
+                    }
+                }
+                /*
+                if (county.County === p.CountyName) {
+                    console.log("------------------- good");
+                } else {
+                    console.log(`**************** Mismatch ${p.CountyName} ${county.County}`);
+                }
+                */
+
+            } else {
+                console.log("!!!!!!!!!!!!! FIPs not found " + p.CountyFIPS);
+            }
+        }
+    });
+}
+
+
 process_USAFACTS();
 processJHU(LatestData03252020, "03/25/2020");
 processJHU(LatestData03262020, "03/26/2020");
@@ -491,6 +542,7 @@ fillholes();
 summarize_counties();
 summarize_states();
 summarize_USA();
+processsShelterInPlace();
 
 let content = JSON.stringify(AllData, 2, 2);
 fs.writeFileSync("./src/data/AllData.json", content);
