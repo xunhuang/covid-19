@@ -1,10 +1,13 @@
 import React from 'react';
-import { ResponsiveContainer, AreaChart, Area, YAxis, XAxis, Tooltip,
-  CartesianGrid, Legend, LineChart, Line } from 'recharts';
+import {
+    ResponsiveContainer, AreaChart, Area, YAxis, XAxis, Tooltip,
+    CartesianGrid, Legend, LineChart, Line
+} from 'recharts';
 import { makeStyles } from '@material-ui/core/styles';
 import { Typography } from '@material-ui/core';
 import { Grid } from '@material-ui/core';
 import { AntSwitch } from "./GraphNewCases.js"
+import { myShortNumber } from './Util.js';
 
 const useStyles = makeStyles(theme => ({
     customtooltip: {
@@ -81,6 +84,10 @@ const CustomTooltip = (props) => {
     return null;
 }
 
+const formatYAxis = (tickItem) => {
+    return myShortNumber(tickItem);
+}
+
 const GraphTestingWidget = (props) => {
     let data = props.data.map(t => {
         let md = t.date % 1000;
@@ -108,13 +115,13 @@ const GraphTestingWidget = (props) => {
 
     // If true, show area chart.
     // If false, show line chart.
-    const [useAreaChart,setUseAreaChart] = React.useState(true);
+    const [useAreaChart, setUseAreaChart] = React.useState(false);
     let chart = useAreaChart ?
         <AreaChart
             data={data}
             margin={{ top: 5, right: 30, left: 5, bottom: 5 }}
         >
-            <YAxis />
+            <YAxis tickFormatter={formatYAxis} />
             <XAxis dataKey="name" />
             <CartesianGrid stroke="#d5d5d5" strokeDasharray="5 5" />
             {/* <Line type="monotone" name="Total Tested" dataKey="total" stroke="#387908" yAxisId={0} strokeWidth={3} />
@@ -130,32 +137,31 @@ const GraphTestingWidget = (props) => {
             data={data}
             margin={{ top: 5, right: 30, left: 5, bottom: 5 }}
         >
-            <YAxis />
+            <YAxis tickFormatter={formatYAxis} />
             <XAxis dataKey="name" />
             <CartesianGrid stroke="#d5d5d5" strokeDasharray="5 5" />
+            <Line type="monotone" name="Total Tested" dataKey="total" stroke="#ff7300" yAxisId={0} strokeWidth={3} />
             <Line type="monotone" name="Daily Tested " dataKey="testsThatDay" stroke="#387908" yAxisId={0} strokeWidth={3} />
-            <Line type="monotone" name="Positive" dataKey="positiveThatDay" stroke="#ff7300" yAxisId={0} strokeWidth={3} />
-            <Line type="monotone" name="Negative" dataKey="negativeThatDay" stroke="#00aeef" yAxisId={0} strokeWidth={3} />
-            <Legend verticalAlign="top" />
+            <Line type="monotone" name="Positive" dataKey="positiveThatDay" stroke="#a3a3a3" yAxisId={0} strokeWidth={3} />
+            {/* <Line type="monotone" name="Negative" dataKey="negativeThatDay" stroke="#00aeef" yAxisId={0} strokeWidth={3} /> */}
+            <Legend verticalAlign="top" />kkkk
             <Tooltip content={<CustomTooltip />} />
         </LineChart>;
 
     return <div>
         <Grid container alignItems="center" justify="space-between" spacing={1}>
-            <Grid item xs={12} sm={12} md={6} justify="flex-start">
-                <Typography variant="body2" noWrap>
-                    {`Total Tests: ${total_tests}
-                    Postive Rate: ${(total_positives / total_tests * 100).toFixed(1)}%
-                    Negative Rate: ${(total_negatives / total_tests * 100).toFixed(1)}%
+            <Grid item container xs={12} sm={12} md={6} alignItems="center" justify="flex-start" spacing={1}>
+                <Grid item>
+                    <Typography variant="body2" noWrap>
+                        {`Total: ${myShortNumber(total_tests)}
+                    Pos.:${(total_positives / total_tests * 100).toFixed(0)}%
+                    Neg.: ${(total_negatives / total_tests * 100).toFixed(0)}%
                     `}
-                </Typography>
-            </Grid>
-
-            <Grid item container xs={12} sm={12} md={6} alignItems="center" justify="flex-end" spacing={1}>
+                    </Typography>
+                </Grid>
                 {/* Case 1: click on the "Line chart" text -> show line chart */}
                 <Grid item onClick={event => setUseAreaChart(false)}>
                     <Typography>
-                        Line chart
                     </Typography>
                 </Grid>
                 {/* Case 2: click on the ant switch -> change to the other chart type */}
@@ -168,7 +174,7 @@ const GraphTestingWidget = (props) => {
                 {/* Case 3: click on the "Area chart" text -> show area chart */}
                 <Grid item onClick={event => setUseAreaChart(true)}>
                     <Typography>
-                        Area chart
+                        Results
                     </Typography>
                 </Grid>
             </Grid>
