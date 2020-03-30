@@ -337,6 +337,7 @@ function casesForCountySummary(state_short_name, county_name) {
         newcases: newcase,
         death: c.LastDeath,
         newpercent: (newcase) / (today - newcase),
+        stayHomeOrder: c.StayHomeOrder,
     }
 }
 

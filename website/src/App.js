@@ -36,8 +36,8 @@ const GraphSectionUS = withRouter((props) => {
 const GraphSectionState = withRouter((props) => {
   const state = props.state;
   let state_title = states.getStateNameByStateCode(state);
-  let stateSummary = USCounty.casesForStateSummary(state)
   let graphdata = USCounty.getStateDataForGrapth(state);
+  let stateSummary = USCounty.casesForStateSummary(state);
   let stayHomeOrder = stateSummary.stayHomeOrder;
 
   const tabs = [
@@ -68,9 +68,22 @@ const GraphSectionCounty = withRouter((props) => {
   let state_title = states.getStateNameByStateCode(state);
 
   let graphdata = USCounty.getCountyDataForGrapth(state, county);
+  let countySummary = USCounty.casesForCountySummary(state, county);
+  let stayHomeOrder = countySummary.stayHomeOrder;
 
   const tabs = [
-    <BasicGraphNewCases data={graphdata} logScale={false} />,
+    <BasicGraphNewCases
+      data={graphdata}
+      logScale={false}
+      vRefLines={
+        stayHomeOrder ?
+          [{
+            date: moment(stayHomeOrder.StartDate
+            ).format("M/D"),
+            label: "Stay-At-Home Order",
+          }] : []
+      }
+    />,
     <GraphStateTesting state={state} />,
   ]
   let graphlistSection = <MyTabs
