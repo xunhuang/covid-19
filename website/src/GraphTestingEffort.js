@@ -140,8 +140,8 @@ const GraphTestingWidget = (props) => {
             <YAxis tickFormatter={formatYAxis} />
             <XAxis dataKey="name" />
             <CartesianGrid stroke="#d5d5d5" strokeDasharray="5 5" />
-            <Line type="monotone" name="Total Tested" dataKey="total" stroke="#ff7300" yAxisId={0} strokeWidth={3} />
-            <Line type="monotone" name="Daily Tested " dataKey="testsThatDay" stroke="#387908" yAxisId={0} strokeWidth={3} />
+            <Line type="monotone" name="Total" dataKey="total" stroke="#ff7300" yAxisId={0} strokeWidth={3} />
+            <Line type="monotone" name="Daily" dataKey="testsThatDay" stroke="#387908" yAxisId={0} strokeWidth={3} />
             <Line type="monotone" name="Positive" dataKey="positiveThatDay" stroke="#a3a3a3" yAxisId={0} strokeWidth={3} />
             {/* <Line type="monotone" name="Negative" dataKey="negativeThatDay" stroke="#00aeef" yAxisId={0} strokeWidth={3} /> */}
             <Legend verticalAlign="top" />kkkk
