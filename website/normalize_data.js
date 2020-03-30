@@ -73,16 +73,12 @@ const state_fips_to_name =
     "60": "American Samoa"
 };
 
-
-function covert() {
+const STATE_Name_To_FIPS = (() => {
     return Object.keys(state_fips_to_name).reduce((m, k) => {
         m[state_fips_to_name[k]] = k
         return m;
     }, {});
-
-}
-
-const STATE_Name_To_FIPS = covert();
+})();
 
 
 let AllData = {};
@@ -110,17 +106,13 @@ function setCountyNode(state_fips, county_fips, node) {
     state[county_fips] = node;
 }
 
-let TableLookup = null;
-function makeTable() {
-    if (!TableLookup) {
-        TableLookup = CountyList.reduce((m, c) => {
-            let key = fixCountyFip(c.FIPS);
-            m[key] = c;
-            return m;
-        }, {});
-    }
-}
-makeTable();
+const TableLookup = (() => {
+    return CountyList.reduce((m, c) => {
+        let key = fixCountyFip(c.FIPS);
+        m[key] = c;
+        return m;
+    }, {});
+})();
 
 function fix_county_name(county_name, county_fips) {
     let county = TableLookup[county_fips];
@@ -143,6 +135,7 @@ function createCountyObject(state_fips, state_name, county_fips, county_name) {
     }
 
     let countyObject = {};
+
     countyObject.CountyName = fix_county_name(county_name, county_fips);
     countyObject.StateName = state_name;
     countyObject.CountyFIPS = county_fips;
@@ -202,81 +195,83 @@ ConfirmedData.map(b => {
     }
 });
 
-DeathData.map(b => {
-    // check for empty line
-    if (b.stateFIPS.length === 0) {
-        return;
-    }
-    let countyObject = createCountyObject(
-        pad(parseInt(b.stateFIPS)),
-        b.State,
-        fixCountyFip(b.countyFIPS),
-        b["County Name"],
-    )
-    let county = getCountyNode(countyObject.StateFIPS, countyObject.CountyFIPS);
-    if (!county) {
-        setCountyNode(countyObject.StateFIPS, countyObject.CountyFIPS, countyObject);
-    }
-});
+function process_USAFACTS() {
 
-ConfirmedData.map(b => {
-    let county_fips = fixCountyFip(b.countyFIPS);
-    let state_fips = pad(parseInt(b.stateFIPS));
-    let a = JSON.parse(JSON.stringify(b));
-    let county = getCountyNode(state_fips, county_fips);
-
-    delete a["countyFIPS"];
-    delete a["County Name"];
-    delete a["State"];
-    delete a["stateFIPS"];
-    delete a["field69"];
-
-    let confirmed = county.Confirmed;
-    Object.keys(a).map(k => {
-        let v = parseInt(a[k]);
-        let p = k.split("/");
-        if (p.length != 3) {
-            return null;
+    DeathData.map(b => {
+        // check for empty line
+        if (b.stateFIPS.length === 0) {
+            return;
         }
-        let m = pad(parseInt(p[0]));
-        let d = pad(parseInt(p[1]));
-        let y = p[2];
-        confirmed[`${m}/${d}/${y}`] = v;
-        return null;
-    });
-    county.Confirmed = confirmed;
-});
-
-DeathData.map(b => {
-    // check for empty line
-    if (b.stateFIPS.length === 0) {
-        return;
-    }
-    let county_fips = fixCountyFip(b.countyFIPS);
-    let state_fips = pad(parseInt(b.stateFIPS));
-    let a = JSON.parse(JSON.stringify(b));
-    let county = getCountyNode(state_fips, county_fips);
-    delete a["countyFIPS"];
-    delete a["County Name"];
-    delete a["State"];
-    delete a["stateFIPS"];
-
-    // console.log(county);
-    let death = county.Death;
-    Object.keys(a).map(k => {
-        let v = parseInt(a[k]);
-        let p = k.split("/");
-        if (p.length != 3) {
-            return null;
+        let countyObject = createCountyObject(
+            pad(parseInt(b.stateFIPS)),
+            b.State,
+            fixCountyFip(b.countyFIPS),
+            b["County Name"],
+        )
+        let county = getCountyNode(countyObject.StateFIPS, countyObject.CountyFIPS);
+        if (!county) {
+            setCountyNode(countyObject.StateFIPS, countyObject.CountyFIPS, countyObject);
         }
-        let m = pad(parseInt(p[0]));
-        let d = pad(parseInt(p[1]));
-        let y = p[2];
-        death[`${m}/${d}/${y}`] = v;
-        return null;
     });
-    county.Death = death;
-});
+
+    ConfirmedData.map(b => {
+        let county_fips = fixCountyFip(b.countyFIPS);
+        let state_fips = pad(parseInt(b.stateFIPS));
+        let a = JSON.parse(JSON.stringify(b));
+        let county = getCountyNode(state_fips, county_fips);
+
+        delete a["countyFIPS"];
+        delete a["County Name"];
+        delete a["State"];
+        delete a["stateFIPS"];
+        delete a["field69"];
+
+        let confirmed = county.Confirmed;
+        Object.keys(a).map(k => {
+            let v = parseInt(a[k]);
+            let p = k.split("/");
+            if (p.length != 3) {
+                return null;
+            }
+            let m = pad(parseInt(p[0]));
+            let d = pad(parseInt(p[1]));
+            let y = p[2];
+            confirmed[`${m}/${d}/${y}`] = v;
+            return null;
+        });
+        county.Confirmed = confirmed;
+    });
+
+    DeathData.map(b => {
+        // check for empty line
+        if (b.stateFIPS.length === 0) {
+            return;
+        }
+        let county_fips = fixCountyFip(b.countyFIPS);
+        let state_fips = pad(parseInt(b.stateFIPS));
+        let a = JSON.parse(JSON.stringify(b));
+        let county = getCountyNode(state_fips, county_fips);
+        delete a["countyFIPS"];
+        delete a["County Name"];
+        delete a["State"];
+        delete a["stateFIPS"];
+
+        let death = county.Death;
+        Object.keys(a).map(k => {
+            let v = parseInt(a[k]);
+            let p = k.split("/");
+            if (p.length != 3) {
+                return null;
+            }
+            let m = pad(parseInt(p[0]));
+            let d = pad(parseInt(p[1]));
+            let y = p[2];
+            death[`${m}/${d}/${y}`] = v;
+            return null;
+        });
+        county.Death = death;
+    });
+}
 
 function processJHUDataPoint(c, date) {
     let b = c.attributes;
@@ -311,11 +306,7 @@ function processJHU(dataset, date) {
 }
 
 const today = moment().format("MM/DD/YYYY");
-processJHU(LatestData03252020, "03/25/2020");
-processJHU(LatestData03262020, "03/26/2020");
-processJHU(LatestData03272020, "03/27/2020");
-processJHU(LatestData03282020, "03/28/2020");
-processJHU(LatestData, today);
+
 
 // back fill holes in the data
 
@@ -324,7 +315,7 @@ function fillarrayholes(v) {
     let key = keys[0];
     while (key !== today) {
         let lastvalue = v[key];
-        let nextkey = moment(key).add(1, "days").format("MM/DD/YYYY");
+        let nextkey = moment(key, "MM/DD/YYYY").add(1, "days").format("MM/DD/YYYY");
         let nextvalue = v[nextkey];
         if (nextvalue === null || nextvalue === undefined) {
             v[nextkey] = lastvalue;
@@ -347,7 +338,7 @@ function fillholes() {
     }
 }
 
-fillholes();
+
 
 function getValueFromLastDate(v, comment) {
     if (!v || Object.keys(v).length === 0) {
@@ -366,34 +357,6 @@ function getValueFromLastDate(v, comment) {
     return { num: last, newnum: newnum };
 }
 
-// summarize data for counties
-for (s in AllData) {
-    state = AllData[s];
-    for (c in state) {
-        county = state[c];
-        county.LastConfirmed = 0;
-        county.LastDeath = 0;
-        county.LastRecovered = 0;
-        county.LastActive = 0;
-
-        const CC = getValueFromLastDate(county.Confirmed, county.CountyName + " " + county.StateName);
-        const DD = getValueFromLastDate(county.Death);
-        const RR = getValueFromLastDate(county.Recovered);
-        const AA = getValueFromLastDate(county.Active);
-
-        county.LastConfirmed = CC.num;
-        county.LastConfirmedNew = CC.newnum;
-        county.LastDeath = DD.num;
-        county.LastDeathNew = DD.newnum;
-        county.LastRecovered = RR.num;
-        county.LastRecoveredNew = RR.newnum;
-        county.LastActive = AA.num;
-        county.LastActiveNew = AA.newnum;
-
-        setCountyNode(s, c, county);
-    }
-}
-
 function mergeTwoMapValues(m1, m2) {
     for (let i in m2) {
         let a = m1[i];
@@ -403,33 +366,107 @@ function mergeTwoMapValues(m1, m2) {
     }
 }
 
+
+function summarize_counties() {
+    for (s in AllData) {
+        state = AllData[s];
+        for (c in state) {
+            county = state[c];
+            county.LastConfirmed = 0;
+            county.LastDeath = 0;
+            county.LastRecovered = 0;
+            county.LastActive = 0;
+
+            const CC = getValueFromLastDate(county.Confirmed, county.CountyName + " " + county.StateName);
+            const DD = getValueFromLastDate(county.Death);
+            const RR = getValueFromLastDate(county.Recovered);
+            const AA = getValueFromLastDate(county.Active);
+
+            county.LastConfirmed = CC.num;
+            county.LastConfirmedNew = CC.newnum;
+            county.LastDeath = DD.num;
+            county.LastDeathNew = DD.newnum;
+            county.LastRecovered = RR.num;
+            county.LastRecoveredNew = RR.newnum;
+            county.LastActive = AA.num;
+            county.LastActiveNew = AA.newnum;
+            setCountyNode(s, c, county);
+        }
+    }
+}
+
+
 // summarize data for states
 
-for (s in AllData) {
-    state = AllData[s];
-    // need to 
-    Confirmed = {};
-    Death = {};
-    Recovered = {};
-    Active = {};
-    for (c in state) {
-        county = state[c];
-        mergeTwoMapValues(Confirmed, county.Confirmed)
-        mergeTwoMapValues(Death, county.Death)
-        mergeTwoMapValues(Recovered, county.Recovered)
-        mergeTwoMapValues(Active, county.Active)
+function summarize_states() {
 
+    for (s in AllData) {
+        state = AllData[s];
+        // need to 
+        Confirmed = {};
+        Death = {};
+        Recovered = {};
+        Active = {};
+        for (c in state) {
+            county = state[c];
+            mergeTwoMapValues(Confirmed, county.Confirmed)
+            mergeTwoMapValues(Death, county.Death)
+            mergeTwoMapValues(Recovered, county.Recovered)
+            mergeTwoMapValues(Active, county.Active)
+
+        }
+        let Summary = {};
+        Summary.Confirmed = Confirmed;
+        Summary.Death = Death;
+        Summary.Recovered = Recovered;
+        Summary.Active = Active;
+
+        const CC = getValueFromLastDate(Confirmed, s);
+        const DD = getValueFromLastDate(Death);
+        const RR = getValueFromLastDate(Recovered);
+        const AA = getValueFromLastDate(Active);
+
+        Summary.LastConfirmed = CC.num;
+        Summary.LastConfirmedNew = CC.newnum;
+        Summary.LastDeath = DD.num;
+        Summary.LastDeathNew = DD.newnum;
+        Summary.LastRecovered = RR.num;
+        Summary.LastRecoveredNew = RR.newnum;
+        Summary.LastActive = AA.num;
+        Summary.LastActiveNew = AA.newnum;
+
+        state.Summary = Summary;
     }
-    let Summary = {};
-    Summary.Confirmed = Confirmed;
-    Summary.Death = Death;
-    Summary.Recovered = Recovered;
-    Summary.Active = Active;
+}
 
-    const CC = getValueFromLastDate(Confirmed, s);
-    const DD = getValueFromLastDate(Death);
-    const RR = getValueFromLastDate(Recovered);
-    const AA = getValueFromLastDate(Active);
+
+function summarize_USA() {
+
+
+    // summarize data for US
+    USConfirmed = {};
+    USDeath = {};
+    USRecovered = {};
+    USActive = {};
+
+    for (s in AllData) {
+        state = AllData[s];
+        mergeTwoMapValues(USConfirmed, state.Summary.Confirmed)
+        mergeTwoMapValues(USDeath, state.Summary.Death)
+        mergeTwoMapValues(USRecovered, state.Summary.Recovered)
+        mergeTwoMapValues(USActive, state.Summary.Active)
+    }
+
+    let Summary = {};
+    Summary.Confirmed = USConfirmed;
+    Summary.Death = USDeath;
+    Summary.Recovered = USRecovered;
+    Summary.Active = USActive;
+
+    const CC = getValueFromLastDate(USConfirmed, "country ");
+    const DD = getValueFromLastDate(USDeath);
+    const RR = getValueFromLastDate(USRecovered);
+    const AA = getValueFromLastDate(USActive);
 
     Summary.LastConfirmed = CC.num;
     Summary.LastConfirmedNew = CC.newnum;
@@ -439,45 +476,21 @@ for (s in AllData) {
     Summary.LastRecoveredNew = RR.newnum;
     Summary.LastActive = AA.num;
     Summary.LastActiveNew = AA.newnum;
+    Summary.generated = moment().format();
 
-    state.Summary = Summary;
+    AllData.Summary = Summary;
 }
 
-// summarize data for US
-USConfirmed = {};
-USDeath = {};
-USRecovered = {};
-USActive = {};
+process_USAFACTS();
+processJHU(LatestData03252020, "03/25/2020");
+processJHU(LatestData03262020, "03/26/2020");
+processJHU(LatestData03272020, "03/27/2020");
+processJHU(LatestData03282020, "03/28/2020");
+processJHU(LatestData, today);
+fillholes();
+summarize_counties();
+summarize_states();
+summarize_USA();
 
-for (s in AllData) {
-    state = AllData[s];
-    mergeTwoMapValues(USConfirmed, state.Summary.Confirmed)
-    mergeTwoMapValues(USDeath, state.Summary.Death)
-    mergeTwoMapValues(USRecovered, state.Summary.Recovered)
-    mergeTwoMapValues(USActive, state.Summary.Active)
-}
-
-let Summary = {};
-Summary.Confirmed = USConfirmed;
-Summary.Death = USDeath;
-Summary.Recovered = USRecovered;
-Summary.Active = USActive;
-
-const CC = getValueFromLastDate(USConfirmed, "country ");
-const DD = getValueFromLastDate(USDeath);
-const RR = getValueFromLastDate(USRecovered);
-const AA = getValueFromLastDate(USActive);
-
-Summary.LastConfirmed = CC.num;
-Summary.LastConfirmedNew = CC.newnum;
-Summary.LastDeath = DD.num;
-Summary.LastDeathNew = DD.newnum;
-Summary.LastRecovered = RR.num;
-Summary.LastRecoveredNew = RR.newnum;
-Summary.LastActive = AA.num;
-Summary.LastActiveNew = AA.newnum;
-Summary.generated = moment().format();
-
-AllData.Summary = Summary;
 let content = JSON.stringify(AllData, 2, 2);
 fs.writeFileSync("./src/data/AllData.json", content);
