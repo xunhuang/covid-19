@@ -7,11 +7,18 @@ import Grid from '@material-ui/core/Grid';
 import { scaleSymlog } from 'd3-scale';
 import { DataCreditWidget } from './DataCredit';
 import Button from '@material-ui/core/Button';
+import Checkbox from '@material-ui/core/Checkbox';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import FormControl from '@material-ui/core/FormControl';
+import Input from '@material-ui/core/Input';
+import InputLabel from '@material-ui/core/InputLabel';
+import ListItemText from '@material-ui/core/ListItemText';
+import MenuItem from '@material-ui/core/MenuItem';
+import Select from '@material-ui/core/Select';
 import { myShortNumber } from './Util';
 
 const fileDownload = require('js-file-download');
@@ -25,7 +32,12 @@ const useStyles = makeStyles(theme => ({
     },
     grow: {
         flex: 1,
-    }
+    },
+    formControl: {
+        margin: theme.spacing(1),
+        minWidth: 130,
+        maxWidth: 300,
+    },
 }));
 
 const CustomTooltip = (props) => {
@@ -129,12 +141,23 @@ const AntSwitch = withStyles(theme => ({
     checked: {},
 }))(Switch);
 
+const MENU_ITEM_HEIGHT = 48;
+const MENU_ITEM_PADDING_TOP = 8;
+const GraphOptionsMenuProps = {
+  PaperProps: {
+    style: {
+      maxHeight: MENU_ITEM_HEIGHT * 4.5 + MENU_ITEM_PADDING_TOP,
+      width: 150,
+    },
+  },
+};
+
 const BasicGraphNewCases = (props) => {
 
     const classes = useStyles();
     const [state, setState] = React.useState({
         showlog: false,
-        show30days: false,
+        show2weeks: false,
         plusNearby: false,
         showConfirmed: true,
         showNewCase: true,
@@ -158,8 +181,8 @@ const BasicGraphNewCases = (props) => {
         setState({ ...state, showlog: !state.showlog });
     };
 
-    const handle30DaysToggle = event => {
-        setState({ ...state, show30days: !state.show30days });
+    const handle2WeeksToggle = event => {
+        setState({ ...state, show2weeks: !state.show2weeks });
     };
 
     const handlePlusNearbyToggle = event => {
@@ -167,16 +190,20 @@ const BasicGraphNewCases = (props) => {
         props.onPlusNearby(event);
     };
 
-    const handleShowConfirmedToggle = event => {
-        setState({ ...state, showConfirmed: !state.showConfirmed });
-    };
+    let graphOptions = [
+      {name: 'Total', value: state.showConfirmed},
+      {name: 'New', value: state.showNewCase},
+      {name: 'Death', value: state.showDeath},
+    ];
 
-    const handleShowNewCaseToggle = event => {
-        setState({ ...state, showNewCase: !state.showNewCase });
-    };
-
-    const handleShowDeathToggle = event => {
-        setState({ ...state, showDeath: !state.showDeath });
+    const handleGraphOptionsChange = event => {
+        let selected = event.target.value;
+        setState({
+            ...state,
+            showConfirmed: selected.includes('Total'),
+            showNewCase: selected.includes('New'),
+            showDeath: selected.includes('Death'),
+        });
     };
 
     let data = props.data;
@@ -228,7 +255,7 @@ const BasicGraphNewCases = (props) => {
         data = newdata;
     }
 
-    if (state.show30days) {
+    if (state.show2weeks) {
         const cutoff = moment().subtract(14, 'days')
         data = data.filter(d => {
             return moment(d.fulldate, "MM/DD/YYYY").isAfter(cutoff)
@@ -279,46 +306,25 @@ const BasicGraphNewCases = (props) => {
 
     return <>
         <Grid container alignItems="center" spacing={1}>
-            <Grid item></Grid>
             <Grid item>
                 <AntSwitch checked={state.showlog} onClick={handleLogScaleToggle} />
             </Grid>
             <Grid item onClick={handleLogScaleToggle}>
                 <Typography>
                     Log
-        </Typography>
+                </Typography>
             </Grid>
             <Grid item></Grid>
 
             <Grid item>
-                <AntSwitch checked={state.show30days} onClick={handle30DaysToggle} />
+                <AntSwitch checked={state.show30days} onClick={handle2WeeksToggle} />
             </Grid>
-            <Grid item onClick={handle30DaysToggle}>
+            <Grid item onClick={handle2WeeksToggle}>
                 <Typography>
                     2 weeks
-        </Typography>
+                </Typography>
             </Grid>
             <Grid item></Grid>
-            {/*
-            // need to think more about how to show these visually
-            <Grid item>
-                <AntSwitch checked={state.showConfirmed} onClick={handleShowConfirmedToggle} />
-            </Grid>
-            <Grid item onClick={handleShowConfirmedToggle}>Total</Grid>
-            <Grid item></Grid>
-
-            <Grid item>
-                <AntSwitch checked={state.showNewCase} onClick={handleShowNewCaseToggle} />
-            </Grid>
-            <Grid item onClick={handleShowNewCaseToggle}>New</Grid>
-            <Grid item></Grid>
-
-            <Grid item>
-                <AntSwitch checked={state.showDeath} onClick={handleShowDeathToggle} />
-            </Grid>
-            <Grid item onClick={handleShowDeathToggle}>Death</Grid>
- */}
-            {plusNearbyDiv}
             <Dialog
                 open={open}
                 onClose={handleClose}
@@ -332,17 +338,37 @@ const BasicGraphNewCases = (props) => {
                 <DialogActions>
                     <Button onClick={handleClose} color="primary" autoFocus>
                         OK
-          </Button>
+                    </Button>
                 </DialogActions>
             </Dialog>
-            <Grid item></Grid>
+            <Grid item xs></Grid>
+
+            <Grid item>
+                <FormControl size="medium" className={classes.formControl}>
+                  <Select
+                    id="new-case-graph-options-checkbox"
+                    multiple
+                    value={graphOptions.filter(o => o.value).map(o => o.name)}
+                    onChange={handleGraphOptionsChange}
+                    input={<Input />}
+                    renderValue={selected => 'Choose curves'}
+                    MenuProps={GraphOptionsMenuProps}
+                  >
+                    {graphOptions.map((option) => (
+                      <MenuItem key={option.name} value={option.name}>
+                        <Checkbox checked={option.value} />
+                        <ListItemText primary={option.name} />
+                      </MenuItem>
+                    ))}
+                  </Select>
+                </FormControl>
+            </Grid>
         </Grid>
         <ResponsiveContainer height={300} >
             <LineChart
                 data={data}
                 margin={{ top: 5, right: 30, left: 5, bottom: 5 }}
             >
-                <Text textAnchor={"start"} verticalAnchor={"start"} > hello</Text>
                 <Tooltip content={<CustomTooltip />} />
                 <XAxis dataKey="name" />
                 {
@@ -405,10 +431,9 @@ const BasicGraphNewCases = (props) => {
                 <DialogActions>
                     <Button onClick={handleCloseDownload} color="primary" autoFocus>
                         OK
-          </Button>
+                    </Button>
                 </DialogActions>
             </Dialog>
-
 
             <Grid item></Grid>
         </Grid>
