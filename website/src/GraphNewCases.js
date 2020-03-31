@@ -1,5 +1,5 @@
 import React from 'react';
-import { ResponsiveContainer, LineChart, Line, ReferenceLine, YAxis, XAxis, Tooltip, CartesianGrid, Legend } from 'recharts';
+import { ResponsiveContainer, LineChart, Label, Line, ReferenceLine, ReferenceArea, YAxis, XAxis, Tooltip, CartesianGrid, Legend } from 'recharts';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import { Typography } from '@material-ui/core';
 import Switch from '@material-ui/core/Switch';
@@ -24,7 +24,7 @@ import { myShortNumber } from './Util';
 const fileDownload = require('js-file-download');
 const moment = require("moment");
 
-const scale = scaleSymlog().domain([0, 'dataMax']);
+const scale = scaleSymlog().domain([0, 'dataMax + 10000']);
 
 const useStyles = makeStyles(theme => ({
     customtooltip: {
@@ -152,6 +152,28 @@ const GraphOptionsMenuProps = {
     },
 };
 
+const dayToDoubleLabelChildren = (options) => {
+    const {x, y, showlog, daysToDouble} = options;
+    return [
+        <ReferenceArea 
+        fillOpacity="0"
+        alwaysShow
+        x1={x}
+        x2={x}
+        y1={y * (showlog ? 4 : 1.1)}
+        y2={y * (showlog ? 4 : 1.1)}>
+        </ReferenceArea>,
+        <ReferenceArea 
+        fillOpacity="0"
+        x1={x}
+        x2={x}
+        y1={y}
+        y2={y}>
+        <Label value={`Double every ${daysToDouble.toFixed(1)} days`} offset={5} position="insideBottomRight" />
+        </ReferenceArea>
+    ];
+}
+
 const BasicGraphNewCases = (props) => {
 
     const classes = useStyles();
@@ -242,12 +264,11 @@ const BasicGraphNewCases = (props) => {
      * Add Trending Line
      */
     let daysToDouble = null;
+    let lastTrendingData = null;
     if (data.length > 8) {
-        const startDate = data[0].fulldate;
-        const dates = data.map(d => d.fulldate);
+        const startDate = data[0].name;
+        const dates = data.map(d => d.name);
         const daysFromStart = datesToDays(startDate, dates);
-        console.log(dates);
-        console.log(daysFromStart);
         const confirmed = data.map(d => d.confirmed);
         const results = fitExponentialTrendingLine(daysFromStart, confirmed);
         data = data.map((d, idx) => {
@@ -255,6 +276,7 @@ const BasicGraphNewCases = (props) => {
             return d;
         });
         daysToDouble = results.daysToDouble;
+        lastTrendingData = data[data.length - 1];
     }
 
     if (state.show2weeks) {
@@ -305,15 +327,6 @@ const BasicGraphNewCases = (props) => {
         props.hRefLines.map(l =>
             <ReferenceLine y={l.y} label={l.label} stroke="#e3e3e3" strokeWidth={2} />
         )
-
-    const legends = [
-        { value: 'Total ', type: 'line', color: '#ff7300' },
-        { value: 'New Cases', type: 'line', color: '#389708' },
-        { value: 'Death', type: 'line', color: '#000000' },
-    ];
-    if (daysToDouble != null) {
-        legends.push({ value: `Doubles every ${daysToDouble.toFixed(1)} days`, type: 'line', color: '#9c9c9c'});
-    }
 
     return <>
         <Grid container alignItems="center" spacing={1}>
@@ -385,7 +398,7 @@ const BasicGraphNewCases = (props) => {
                 {
                     state.showlog ?
                         <YAxis yAxisId={0} scale={scale} /> :
-                        <YAxis tickFormatter={formatYAxis} />
+                        <YAxis yAxisId={0} tickFormatter={formatYAxis} />
                 }
 
                 <CartesianGrid stroke="#d5d5d5" strokeDasharray="5 5" />
@@ -399,11 +412,23 @@ const BasicGraphNewCases = (props) => {
                 {state.showDeath && <Line type="monotone" dataKey="death" stroke="#000000" yAxisId={0} strokeWidth={3} />}
                 {state.showDeath && <Line type="monotone" dataKey="pending_death" stroke="#000000" strokeDasharray="1 1" strokeWidth={3} />}
                 <Line visibility="hidden" dataKey="pending_death" />
+   
 
                 {vRefLines}
                 {hRefLines}
 
-                <Legend verticalAlign="top" payload={legends} />
+                {state.showConfirmed && lastTrendingData != null && dayToDoubleLabelChildren({
+                    x: lastTrendingData.name,
+                    y: lastTrendingData.trending_line,
+                    daysToDouble,
+                    showlog: state.showlog}
+                )}
+
+                <Legend verticalAlign="top" payload={[
+                    { value: 'Total ', type: 'line', color: '#ff7300' },
+                    { value: 'New Cases', type: 'line', color: '#389708' },
+                    { value: 'Death', type: 'line', color: '#000000' },
+                ]} />
 
             </LineChart></ResponsiveContainer>
         <Grid container alignItems="center" spacing={1}>

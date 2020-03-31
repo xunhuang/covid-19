@@ -2,9 +2,9 @@ const moment = require('moment');
 const {linearRegression} = require('simple-statistics');
 
 const datesToDays = (startDate, dates) => {
-    const start = moment(startDate, "MM/DD/YYYY");
+    const start = moment(startDate, "MM/DD");
     return dates.map(date => {
-        return moment(date, "MM/DD/YYYY").diff(start, 'days');
+        return moment(date, "MM/DD").diff(start, 'days');
     });
 }
 
