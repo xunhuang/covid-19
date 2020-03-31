@@ -8,22 +8,25 @@ const datesToDays = (startDate, dates) => {
     });
 }
 
-const daysToDates = (startDate, days) => {
-    if (days.length < 1) {
-        return [];
-    }
-}
-
 const fitExponentialTrendingLine = (xs, ys) => {
-    const {slope, fittedYs} = fitLinearTrendingLine(xs, ys.map(y => Math.log(y)));
+    const results = fitLinearTrendingLine(xs, ys.map(y => Math.log(y)));
+    if (results == null) {
+        return null;
+    }
     return {
-        daysToDouble: 1 / slope * Math.log(2),
-        fittedYs: fittedYs.map(y => Math.exp(y))
+        daysToDouble: 1 / results.slope * Math.log(2),
+        fittedYs: results.fittedYs.map(y => Math.exp(y))
     };
 };
 
 const fitLinearTrendingLine = (xs, ys) => {
+    if (xs.length < 8 || ys.length < 8) {
+        return null;
+    }
     const data = xs.map((x, idx) => [x, ys[idx]]).slice(-8,-1);
+    if (data[0][1] <= 10) {
+        return null;
+    }
     const {m, b} = linearRegression(data);
     return {
         slope: m,
@@ -33,6 +36,5 @@ const fitLinearTrendingLine = (xs, ys) => {
 
 export {
     fitExponentialTrendingLine,
-    datesToDays,
-    daysToDates,
+    datesToDays
 }
