@@ -260,12 +260,14 @@ const BasicGraphNewCases = (props) => {
         const daysFromStart = datesToDays(startDate, dates);
         const confirmed = data.map(d => d.confirmed);
         const results = fitExponentialTrendingLine(daysFromStart, confirmed);
-        data = data.map((d, idx) => {
-            d.trending_line = results.fittedYs[idx];
-            return d;
-        });
-        daysToDouble = results.daysToDouble;
-        lastTrendingData = data[data.length - 1];
+        if (results != null) {
+            data = data.map((d, idx) => {
+                d.trending_line = results.fittedYs[idx];
+                return d;
+            });
+            daysToDouble = results.daysToDouble;
+            lastTrendingData = data[data.length - 1];
+        }
     }
 
     if (state.show2weeks) {
