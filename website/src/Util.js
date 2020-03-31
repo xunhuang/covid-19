@@ -103,6 +103,16 @@ function getDefaultCountyForState(state, county) {
     }
     return topcounty;
 }
+function CookieSetLastCounty(state, county) {
+    let county_info = {
+        state: state,
+        county: county,
+    }
+
+    Cookies.set("LastCounty", county_info, {
+        expires: 7  // 7 day, people are not supposed to be moving anyways
+    });
+}
 
 export {
     myShortNumber,
@@ -115,6 +125,7 @@ export {
     browseToUSPage,
 
     CookieGetLastCounty,
+    CookieSetLastCounty,
     getDefaultCountyForState,
     getDefaultCounty,
 }
