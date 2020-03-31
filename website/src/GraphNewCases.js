@@ -268,8 +268,8 @@ const BasicGraphNewCases = (props) => {
      */
     let vRefLines = (typeof props.vRefLines == 'undefined') ?
         null :
-        props.vRefLines.map(l =>
-            <ReferenceLine x={l.date} label={{ value: l.label, fill: '#b3b3b3' }} stroke="#e3e3e3" strokeWidth={3} />
+        props.vRefLines.map((l, idx) =>
+            <ReferenceLine key={`vrefline${idx}`} x={l.date} label={{ value: l.label, fill: '#b3b3b3' }} stroke="#e3e3e3" strokeWidth={3} />
         )
 
     /**
@@ -283,8 +283,8 @@ const BasicGraphNewCases = (props) => {
      */
     let hRefLines = (typeof props.hRefLines == 'undefined') ?
         null :
-        props.hRefLines.map(l =>
-            <ReferenceLine y={l.y} label={l.label} stroke="#e3e3e3" strokeWidth={2} />
+        props.hRefLines.map((l, idx) =>
+            <ReferenceLine key={`hrefline${idx}`}  y={l.y} label={l.label} stroke="#e3e3e3" strokeWidth={2} />
         )
 
     return <>
