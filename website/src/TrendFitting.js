@@ -23,7 +23,7 @@ const fitExponentialTrendingLine = (xs, ys) => {
 };
 
 const fitLinearTrendingLine = (xs, ys) => {
-    const data = xs.map((x, idx) => [x, ys[idx]]).slice(-Math.min(14, ys.length - 1),-1);
+    const data = xs.map((x, idx) => [x, ys[idx]]).slice(-8,-1);
     const {m, b} = linearRegression(data);
     return {
         slope: m,
