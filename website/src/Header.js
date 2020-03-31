@@ -125,13 +125,13 @@ const withHeader = (comp, props) => {
             ...props,
         });
         let footer = <div>
-            <Typography variant="h5" noWrap>
+            {/* <Typography variant="h5" noWrap>
                 Discussions
-                    </Typography>
-            <Disqus.DiscussionEmbed
+                    </Typography> */}
+            {/* <Disqus.DiscussionEmbed
                 shortname={disqusShortname}
                 config={disqusConfig}
-            />
+            /> */}
         </div>;
 
         let header = <header className="App-header">
