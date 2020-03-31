@@ -155,21 +155,10 @@ const GraphOptionsMenuProps = {
 const dayToDoubleLabelChildren = (options) => {
     const {x, y, showlog, daysToDouble} = options;
     return [
-        <ReferenceArea 
-        fillOpacity="0"
-        alwaysShow
-        x1={x}
-        x2={x}
-        y1={y * (showlog ? 4 : 1.1)}
-        y2={y * (showlog ? 4 : 1.1)}>
-        </ReferenceArea>,
-        <ReferenceArea 
-        fillOpacity="0"
-        x1={x}
-        x2={x}
-        y1={y}
-        y2={y}>
-        <Label value={`Double every ${daysToDouble.toFixed(1)} days`} offset={5} position="insideBottomRight" />
+        // Placeholder to accomodate label
+        <ReferenceArea fillOpacity="0" alwaysShow x1={x} x2={x} y1={y * (showlog ? 4 : 1.1)} y2={y * (showlog ? 4 : 1.1)} />,
+        <ReferenceArea fillOpacity="0" x1={x} x2={x} y1={y} y2={y}>
+            <Label value={`Double every ${daysToDouble.toFixed(1)} days`} offset={5} position="insideBottomRight" />
         </ReferenceArea>
     ];
 }
