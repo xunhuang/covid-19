@@ -112,7 +112,8 @@ const AllStateListRender = (props) => {
         { id: 'confirmed', numeric: true, disablePadding: true, label: 'Total' },
         { id: 'newcases', numeric: true, disablePadding: false, label: 'New' },
         { id: 'partsPerMil', numeric: true, disablePadding: false, label: '#/mil' },
-        { id: 'deathsPerMil', numeric: true, disablePadding: false, label: 'D/mil' },
+        // { id: 'deathsPerMil', numeric: true, disablePadding: false, label: 'D/mil' },
+        { id: 'death', numeric: true, disablePadding: false, label: 'Deaths' },
         { id: 'pop', numeric: true, disablePadding: false, label: 'Pop.' },
     ];
 
@@ -174,7 +175,8 @@ const AllStateListRender = (props) => {
                                     <TableCell align="right">{row.confirmed}</TableCell>
                                     <TableCell align="right"> {newcolumn} </TableCell>
                                     <TableCell align="right">{myGoodWholeNumber(row.partsPerMil)}</TableCell>
-                                    <TableCell align="right">{myGoodWholeNumber(row.deathsPerMil)}</TableCell>
+                                    {/* <TableCell align="right">{myGoodWholeNumber(row.deathsPerMil)}</TableCell> */}
+                                    <TableCell align="right">{myGoodShortNumber(row.death)}</TableCell>
                                     <TableCell align="right">{(row.pop === 0) ? "-" : myGoodShortNumber(row.pop)}</TableCell>
                                 </ThemeProvider>
                             </TableRow>;
@@ -235,6 +237,7 @@ const CountyListRender = (props) => {
         newrow.population = population;
         newrow.County = row.County;
         newrow.deathsPerMil = sum.death * 1000000 / population;
+        newrow.death = sum.death;
         return newrow;
     });
 
@@ -243,7 +246,8 @@ const CountyListRender = (props) => {
         { id: 'confirmed', numeric: true, disablePadding: true, label: 'Total' },
         { id: 'newcases', numeric: true, disablePadding: false, label: 'New' },
         { id: 'partsPerMil', numeric: true, disablePadding: false, label: '#/Mil' },
-        { id: 'deathsPerMil', numeric: true, disablePadding: false, label: 'D/Mil' },
+        // { id: 'deathsPerMil', numeric: true, disablePadding: false, label: 'D/Mil' },
+        { id: 'death', numeric: true, disablePadding: false, label: 'Deaths' },
         { id: 'population', numeric: true, disablePadding: false, label: 'Pop.' },
     ];
 
@@ -283,7 +287,8 @@ const CountyListRender = (props) => {
                                     <TableCell align="right">{row.confirmed}</TableCell>
                                     <TableCell align="right"> {newcolumn} </TableCell>
                                     <TableCell align="right">{myGoodWholeNumber(row.partsPerMil)}</TableCell>
-                                    <TableCell align="right">{myGoodWholeNumber(row.deathsPerMil)}</TableCell>
+                                    {/* <TableCell align="right">{myGoodWholeNumber(row.deathsPerMil)}</TableCell> */}
+                                    <TableCell align="right">{myGoodShortNumber(row.death)}</TableCell>
                                     <TableCell align="right">{(row.population === 0) ? '-' : myGoodShortNumber(row.population)}</TableCell>
                                 </ThemeProvider>
                             </TableRow>;
