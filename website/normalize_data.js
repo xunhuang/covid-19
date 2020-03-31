@@ -512,10 +512,10 @@ function processsShelterInPlace() {
                 if (state) {
                     let c = state[fips];
                     if (c) {
-                    c.StayHomeOrder = {
-                        Url: p.Url,
-                        StartDate: p.StartDate,
-                    }
+                        c.StayHomeOrder = {
+                            Url: p.Url,
+                            StartDate: p.StartDate,
+                        }
                     }
                 }
                 /*
@@ -550,10 +550,77 @@ processJHU(LatestData03272020, "03/27/2020");
 processJHU(LatestData03282020, "03/28/2020");
 processJHU(LatestData, today);
 */
+
+function getCountyByFips(fips) {
+    return AllData[fips.slice(0, 2)][fips];
+
+}
+function addMetros() {
+    let Metros = {
+        BayArea: {
+            Name: "SF Bay Area",
+            Counties: [
+                "06001",
+                "06075",
+                "06081",
+                "06085",
+                "06013",
+                "06041",
+            ]
+        },
+    }
+
+    for (m in Metros) {
+        let metro = Metros[m];
+        Confirmed = {};
+        Death = {};
+        Recovered = {};
+        Active = {};
+
+        console.log(metro);
+
+        for (let i = 0; i < metro.Counties.length; i++) {
+            let countyfips = metro.Counties[i];
+            let county = getCountyByFips(countyfips);
+
+            mergeTwoMapValues(Confirmed, county.Confirmed)
+            mergeTwoMapValues(Death, county.Death)
+            mergeTwoMapValues(Recovered, county.Recovered)
+            mergeTwoMapValues(Active, county.Active)
+
+        }
+        let Summary = {};
+        Summary.Confirmed = Confirmed;
+        Summary.Death = Death;
+        Summary.Recovered = Recovered;
+        Summary.Active = Active;
+
+        const CC = getValueFromLastDate(Confirmed, s);
+        const DD = getValueFromLastDate(Death);
+        const RR = getValueFromLastDate(Recovered);
+        const AA = getValueFromLastDate(Active);
+
+        Summary.LastConfirmed = CC.num;
+        Summary.LastConfirmedNew = CC.newnum;
+        Summary.LastDeath = DD.num;
+        Summary.LastDeathNew = DD.newnum;
+        Summary.LastRecovered = RR.num;
+        Summary.LastRecoveredNew = RR.newnum;
+        Summary.LastActive = AA.num;
+        Summary.LastActiveNew = AA.newnum;
+
+        metro.Summary = Summary;
+    }
+    AllData.Metros = Metros;
+}
+
+
 fillholes();
 summarize_counties();
 summarize_states();
 summarize_USA();
+addMetros();
+
 processsShelterInPlace();
 
 let content = JSON.stringify(AllData, 2, 2);

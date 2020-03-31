@@ -199,13 +199,13 @@ function getAllStatesSummary() {
 function getCountySummary1() {
     let result = [];
     for (let s in AllData) {
-        if (s === "Summary") {
+        if (s.length !== 2) {
             continue;
         }
         let state = AllData[s];
         for (let cfips in state) {
 
-            if (cfips !== "Summary") {
+            if (cfips.length === 5) {
                 let c = state[cfips];
                 if (!c.CountyName) {
                     console.log("no name: " + c.StateFIPS + " " + c.CountyFIPS)
