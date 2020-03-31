@@ -1,5 +1,6 @@
 
 var shortNumber = require('short-number');
+const Cookies = require("js-cookie");
 
 function myShortNumber(n) {
     if (!n) {
@@ -68,6 +69,22 @@ function browseToUSPage(history) {
     );
 }
 
+function CookieGetLastCounty() {
+    let county_info = Cookies.getJSON("LastCounty");
+    return county_info;
+}
+
+function getDefaultCounty() {
+    let county_info = CookieGetLastCounty();
+    if (county_info) {
+        return county_info;
+    }
+    return {
+        county: "Santa Clara",
+        state: "CA",
+    }
+}
+
 export {
     myShortNumber,
     myGoodNumber,
@@ -77,4 +94,5 @@ export {
     browseTo,
     browseToState,
     browseToUSPage,
+    getDefaultCounty,
 }

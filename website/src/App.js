@@ -4,34 +4,22 @@ import { BrowserRouter } from 'react-router-dom';
 import { countyModuleInit } from "./USCountyInfo.js";
 import * as USCounty from "./USCountyInfo.js";
 import { Splash } from './Splash.js';
-import { NearbyCounties, CountiesForStateWidget, AllStatesListWidget } from "./CountyListRender.js"
+import { NearbyCounties, CountiesForStateWidget } from "./CountyListRender.js"
 import { BasicGraphNewCases } from "./GraphNewCases.js"
-import { GraphUSTesting, GraphStateTesting } from "./GraphTestingEffort"
+import { GraphStateTesting } from "./GraphTestingEffort"
 import { withHeader } from "./Header.js"
 import { MyTabs } from "./MyTabs.js"
 import { USInfoTopWidget } from './USInfoTopWidget.js'
-import { GraphUSHospitalization, GraphStateHospitalization } from './GraphHospitalization.js'
+import { GraphStateHospitalization } from './GraphHospitalization.js'
 import { CountyHospitalsWidget } from "./Hospitals"
 import { fetchCounty } from "./GeoLocation"
 import { logger } from "./AppModule"
+import { PageUS } from "./PageUS"
+
 const moment = require("moment");
 
 const states = require('us-state-codes');
 const Cookies = require("js-cookie");
-
-const GraphSectionUS = withRouter((props) => {
-  let graphdata = USCounty.getUSDataForGrapth();
-  const tabs = [
-    <BasicGraphNewCases data={graphdata} logScale={false} />,
-    <GraphUSTesting />,
-    <GraphUSHospitalization />,
-  ]
-  let graphlistSection = <MyTabs
-    labels={["Cases", `USA Testing`, "Hospitalization"]}
-    tabs={tabs}
-  />;
-  return graphlistSection;
-});
 
 const GraphSectionState = withRouter((props) => {
   const state = props.state;
@@ -106,13 +94,6 @@ function browseTo(history, state, county) {
   );
 }
 
-function browseToState(history, state) {
-  history.push(
-    "/state/" + encodeURIComponent(state),
-    history.search,
-  );
-}
-
 const MainApp = withRouter((props) => {
   const [county, setCounty] = React.useState(null);
   const [state, setState] = React.useState(null);
@@ -142,54 +123,9 @@ const MainApp = withRouter((props) => {
         {/* <Route exact path='/' component={App2} /> */}
         <Route exact path='/county/:state/:county' render={(props) => <CountyWidget {...props} state={state} county={county} />} />
         <Route exact path='/state/:state' render={(props) => <StateWidget {...props} state={state} county={county} />} />
-        <Route exact path='/US' render={(props) => <EntireUSWidget {...props} state={state} county={county} />} />
+        <Route exact path='/US' render={(props) => <PageUS {...props} state={state} county={county} />} />
       </Switch>
     </div>
-  );
-});
-
-function getDefaultCounty() {
-  let county_info = CookieGetLastCounty();
-  if (county_info) {
-    return county_info;
-  }
-  return {
-    county: "Santa Clara",
-    state: "CA",
-  }
-}
-
-const EntireUSWidget = withHeader((props) => {
-  const default_county_info = getDefaultCounty();
-
-  const tabs = [
-    <AllStatesListWidget
-      callback={(newstate) => {
-        browseToState(props.history, newstate);
-      }}
-    ></AllStatesListWidget>,
-  ];
-  return (
-    <>
-      <USInfoTopWidget
-        county={default_county_info.county}
-        state={default_county_info.state}
-        selectedTab={"usa"}
-        callback={(newcounty, newstate) => {
-          browseTo(props.history, newstate, newcounty);
-        }}
-      />
-      <GraphSectionUS
-        callback={(newcounty, newstate) => {
-          browseTo(props.history, newstate, newcounty);
-        }}
-      />
-      <MyTabs
-        // labels={["States of USA", "Case Details"]}
-        labels={["States of USA"]}
-        tabs={tabs}
-      />
-    </>
   );
 });
 
