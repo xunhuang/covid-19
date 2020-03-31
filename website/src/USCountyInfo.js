@@ -292,8 +292,6 @@ function dataMapToGraphSeriesNew(data) {
         let key = keys[i];
         entry.confirmed = data.Confirmed[key];
         entry.death = data.Death[key];
-        entry.recovered = data.Recovered[key];
-        entry.active = data.Active[key];
         entry.fulldate = key;
         arr.push(entry);
     }
