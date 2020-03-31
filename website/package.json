@@ -20,6 +20,7 @@
     "firebase-tools": "^7.14.0",
     "geolib": "^3.2.1",
     "google-map-react": "^1.1.6",
+    "husky": "^4.2.3",
     "ip-geolocation-api-javascript-sdk": "^1.0.7",
     "js-cookie": "^2.2.1",
     "js-file-download": "^0.4.10",
@@ -27,6 +28,7 @@
     "moment": "^2.24.0",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
+    "react-facebook": "^8.1.4",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.4.0",
     "react-select": "^3.0.8",
@@ -47,6 +49,12 @@
   },
   "eslintConfig": {
     "extends": "react-app"
+  },
+  "husky": {
+    "hooks": {
+      "post-merge": "npm install",
+      "rebase": "npm install"
+    }
   },
   "browserslist": {
     "production": [

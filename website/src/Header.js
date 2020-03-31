@@ -4,6 +4,7 @@ import Select from 'react-select';
 import Disqus from "disqus-react"
 import Typography from '@material-ui/core/Typography'
 import { makeStyles } from '@material-ui/core/styles';
+import { FacebookProvider, CommentsCount } from 'react-facebook';
 
 function browseTo(history, state, county) {
     history.push(
@@ -125,14 +126,19 @@ const withHeader = (comp, props) => {
             ...props,
         });
         let footer = <div>
-            {/* <Typography variant="h5" noWrap>
+            <Typography variant="h5" noWrap>
                 Discussions
-                    </Typography> */}
-            {/* <Disqus.DiscussionEmbed
+                    </Typography>
+            <Disqus.DiscussionEmbed
                 shortname={disqusShortname}
                 config={disqusConfig}
-            /> */}
+            />
         </div>;
+
+        let fbcomment =
+            <FacebookProvider appId="201788627783795">
+                <CommentsCount href="http://www.facebook.com" />
+            </FacebookProvider>;
 
         let header = <header className="App-header">
             <div className={classes.topContainer}>
@@ -164,6 +170,7 @@ const withHeader = (comp, props) => {
 
             {component}
             {footer}
+            {fbcomment}
         </header >
 
         return header;
