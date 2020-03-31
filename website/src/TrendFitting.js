@@ -8,14 +8,16 @@ const datesToDays = (startDate, dates) => {
     });
 }
 
+const log2 = (a) => Math.log(a) / Math.log(2);
+
 const fitExponentialTrendingLine = (xs, ys, minY) => {
-    const results = fitLinearTrendingLine(xs, ys.map(y => Math.log(y)), Math.log(minY));
+    const results = fitLinearTrendingLine(xs, ys.map(y => log2(y)), log2(minY));
     if (results == null) {
         return null;
     }
     return {
-        daysToDouble: 1 / results.slope * Math.log(2),
-        fittedYs: results.fittedYs.map(y => Math.exp(y))
+        daysToDouble: 1 / results.slope,
+        fittedYs: results.fittedYs.map(y => Math.exp(y * Math.log(2)))
     };
 };
 
