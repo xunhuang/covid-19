@@ -29,6 +29,11 @@ const DataCreditWidget = () => {
                         Covid tracking API
            </a>
                 </li>
+                <li>
+                    <a target="_blank" href="https://w.wiki/LeZ" rel="noopener noreferrer">
+                        Wikidata query for stay-at-home orders
+                    </a>
+                </li>
             </Typography>
         </div>
     );
