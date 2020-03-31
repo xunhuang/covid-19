@@ -9,6 +9,7 @@ const LatestData03272020 = require("../data/archive/JHU-03-27-2020.json");
 const LatestData03282020 = require("../data/archive/JHU-03-28-2020.json");
 const LatestData = require("./src/data/latest.json");
 const ShelterInPlace = require("../data/shelter-in-place/shelter.json");
+const USRecovery = require("./src/data/us_recovery.json");
 
 const states = require('us-state-codes');
 const fs = require('fs');
@@ -566,14 +567,48 @@ function addMetros() {
     AllData.Metros = Metros;
 }
 
+function fixdate(k) {
+    let p = k.split("/");
+    if (p.length != 3) {
+        return null;
+    }
+    let m = pad(parseInt(p[0]));
+    let d = pad(parseInt(p[1]));
+    let y = p[2];
+    if (y.length === 2) {
+        y = "20" + y;
+    }
+    return `${m}/${d}/${y}`;
+}
+
+function addUSRecovery() {
+
+    let Recovered = {};
+    for (i in USRecovery) {
+        if (i === "Province/State" || i === 'Country/Region' || i === 'Lat' || i === 'Long') {
+            continue;
+        }
+        let k = fixdate(i);
+        Recovered[k] = parseInt(USRecovery[i]);
+    }
+
+    // AllData.Summary.Recovered = Recovered;
+    AllData.Summary.Recovered = fillarrayholes(Recovered);
+    const RR = getValueFromLastDate(Recovered, s);
+    AllData.Summary.LastRecovered = RR.num;
+    AllData.Summary.LastRecoveredNew = RR.newnum;
+}
+
 
 fillholes();
+
 summarize_counties();
 summarize_states();
 summarize_USA();
 addMetros();
 
 processsShelterInPlace();
+addUSRecovery();
 
 let content = JSON.stringify(AllData, 2, 2);
 fs.writeFileSync("./src/data/AllData.json", content);
