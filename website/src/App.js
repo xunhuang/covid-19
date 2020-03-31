@@ -16,6 +16,34 @@ const App = (props) => {
   </BrowserRouter>;
 };
 
+const states = require('us-state-codes');
+
+class MyRoute extends Route {
+  updateTitle() {
+    let params = this.props.computedMatch.params;
+    let state = params.state;
+    let county = params.county;
+    let titlePrefix = '';
+    if (state === undefined && county === undefined) {
+      titlePrefix = 'US';
+    } else if (county === undefined) {
+      titlePrefix = states.getStateNameByStateCode(state);
+    } else {
+      titlePrefix = `${county}, ${state}`;
+    }
+    let title = `${titlePrefix} | COVID-19 Daily Numbers`;
+    document.title = title;
+  }
+
+  componentDidMount() {
+    this.updateTitle();
+  }
+
+  componentDidUpdate() {
+    this.updateTitle();
+  }
+}
+
 const MainApp = withRouter((props) => {
   const [county, setCounty] = React.useState(null);
   const [state, setState] = React.useState(null);
@@ -43,9 +71,9 @@ const MainApp = withRouter((props) => {
     <div>
       <Switch>
         {/* <Route exact path='/' component={App2} /> */}
-        <Route exact path='/county/:state/:county' render={(props) => <PageCounty {...props} state={state} county={county} />} />
-        <Route exact path='/state/:state' render={(props) => <PageState {...props} state={state} county={county} />} />
-        <Route exact path='/US' render={(props) => <PageUS {...props} state={state} county={county} />} />
+        <MyRoute exact path='/county/:state/:county' render={(props) => <PageCounty {...props} state={state} county={county} />} />
+        <MyRoute exact path='/state/:state' render={(props) => <PageState {...props} state={state} county={county} />} />
+        <MyRoute exact path='/US' render={(props) => <PageUS {...props} state={state} county={county} />} />
       </Switch>
     </div>
   );
