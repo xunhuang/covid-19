@@ -6,7 +6,7 @@ import Switch from '@material-ui/core/Switch';
 import Grid from '@material-ui/core/Grid';
 import { scaleSymlog } from 'd3-scale';
 import { DataCreditWidget } from './DataCredit';
-import { datesToDays, daysToDates, fitExponentialTrendingLine } from './TrendFitting';
+import { datesToDays, fitExponentialTrendingLine } from './TrendFitting';
 import Button from '@material-ui/core/Button';
 import Checkbox from '@material-ui/core/Checkbox';
 import Dialog from '@material-ui/core/Dialog';
@@ -252,22 +252,20 @@ const BasicGraphNewCases = (props) => {
     /**
      * Add Trending Line
      */
+    const startDate = data[0].name;
+    const dates = data.map(d => d.name);
+    const daysFromStart = datesToDays(startDate, dates);
+    const confirmed = data.map(d => d.confirmed);
+    const results = fitExponentialTrendingLine(daysFromStart, confirmed, 10);
     let daysToDouble = null;
     let lastTrendingData = null;
-    if (data.length > 8) {
-        const startDate = data[0].name;
-        const dates = data.map(d => d.name);
-        const daysFromStart = datesToDays(startDate, dates);
-        const confirmed = data.map(d => d.confirmed);
-        const results = fitExponentialTrendingLine(daysFromStart, confirmed);
-        if (results != null) {
-            data = data.map((d, idx) => {
-                d.trending_line = results.fittedYs[idx];
-                return d;
-            });
-            daysToDouble = results.daysToDouble;
-            lastTrendingData = data[data.length - 1];
-        }
+    if (results != null) {
+        data = data.map((d, idx) => {
+            d.trending_line = results.fittedYs[idx];
+            return d;
+        });
+        daysToDouble = results.daysToDouble;
+        lastTrendingData = data[data.length - 1];
     }
 
     if (state.show2weeks) {
