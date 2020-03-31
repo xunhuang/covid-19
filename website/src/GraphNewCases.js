@@ -160,7 +160,7 @@ const daysToDoubleLabelChildren = (options) => {
         // Placeholder to accomodate label
         <ReferenceArea fillOpacity="0" alwaysShow x1={x} x2={x} y1={y * (showlog ? 4 : 1.1)} y2={y * (showlog ? 4 : 1.1)} />,
         <ReferenceArea fillOpacity="0" x1={x} x2={x} y1={y} y2={y}>
-            <Label value={`Double every ${daysToDouble.toFixed(1)} days*†`} offset={5} position="insideBottomRight" />
+            <Label value={`Double every ${daysToDouble.toFixed(1)} days†`} offset={5} position="insideBottomRight" />
         </ReferenceArea>
     ];
 }
@@ -465,7 +465,7 @@ const BasicGraphNewCases = (props) => {
             <Grid item>
                 <Box component="span" fontSize={12} lineHeight="normal" display="block">
                     † Trend fitted with
-                    <Link href="https://simplestatistics.org/docs/#linearregression" target="blank">linear regression</Link>
+                    <Link href="https://simplestatistics.org/docs/#linearregression" target="blank"> linear regression </Link>
                     on log₂ of cases last 7 days
 
                 </Box>
