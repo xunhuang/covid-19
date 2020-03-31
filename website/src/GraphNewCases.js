@@ -1,12 +1,14 @@
 import React from 'react';
-import { ResponsiveContainer, LineChart, Line, ReferenceLine, YAxis, XAxis, Tooltip, CartesianGrid, Legend } from 'recharts';
+import { ResponsiveContainer, LineChart, Label, Line, ReferenceLine, ReferenceArea, YAxis, XAxis, Tooltip, CartesianGrid, Legend } from 'recharts';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import { Typography } from '@material-ui/core';
 import Switch from '@material-ui/core/Switch';
 import Grid from '@material-ui/core/Grid';
 import { scaleSymlog } from 'd3-scale';
 import { DataCreditWidget } from './DataCredit';
+import { datesToDays, fitExponentialTrendingLine } from './TrendFitting';
 import Button from '@material-ui/core/Button';
+import Box from '@material-ui/core/Box';
 import Checkbox from '@material-ui/core/Checkbox';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
@@ -15,6 +17,7 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import FormControl from '@material-ui/core/FormControl';
 import Input from '@material-ui/core/Input';
+import Link from '@material-ui/core/Link';
 import ListItemText from '@material-ui/core/ListItemText';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
@@ -151,6 +154,17 @@ const GraphOptionsMenuProps = {
     },
 };
 
+const daysToDoubleLabelChildren = (options) => {
+    const {x, y, showlog, daysToDouble} = options;
+    return [
+        // Placeholder to accomodate label
+        <ReferenceArea fillOpacity="0" alwaysShow x1={x} x2={x} y1={y * (showlog ? 4 : 1.1)} y2={y * (showlog ? 4 : 1.1)} />,
+        <ReferenceArea fillOpacity="0" x1={x} x2={x} y1={y} y2={y}>
+            <Label value={`Double every ${daysToDouble.toFixed(1)} days*†`} offset={5} position="insideBottomRight" />
+        </ReferenceArea>
+    ];
+}
+
 const BasicGraphNewCases = (props) => {
 
     const classes = useStyles();
@@ -218,7 +232,6 @@ const BasicGraphNewCases = (props) => {
     }
     data = newdata;
 
-
     if (data.length > 2) {
         let newdata = data.slice(0, data.length - 2);
         let second_last = data[data.length - 2];
@@ -236,6 +249,25 @@ const BasicGraphNewCases = (props) => {
         newdata.push(second_last);
         newdata.push(newlast);
         data = newdata;
+    }
+
+    /**
+     * Add Trending Line
+     */
+    const startDate = data[0].name;
+    const dates = data.map(d => d.name);
+    const daysFromStart = datesToDays(startDate, dates);
+    const confirmed = data.map(d => d.confirmed);
+    const results = fitExponentialTrendingLine(daysFromStart, confirmed, 10);
+    let daysToDouble = null;
+    let lastTrendingData = null;
+    if (results != null) {
+        data = data.map((d, idx) => {
+            d.trending_line = results.fittedYs[idx];
+            return d;
+        });
+        daysToDouble = results.daysToDouble;
+        lastTrendingData = data[data.length - 1];
     }
 
     if (state.show2weeks) {
@@ -357,10 +389,11 @@ const BasicGraphNewCases = (props) => {
                 {
                     state.showlog ?
                         <YAxis yAxisId={0} scale={scale} /> :
-                        <YAxis tickFormatter={formatYAxis} />
+                        <YAxis yAxisId={0} tickFormatter={formatYAxis} />
                 }
 
                 <CartesianGrid stroke="#d5d5d5" strokeDasharray="5 5" />
+                {state.showConfirmed && <Line type="monotone" dataKey="trending_line" stroke="#9c9c9c" yAxisId={0} dot={false} isAnimationActive={false} strokeWidth={3} />}
                 {state.showConfirmed && <Line type="monotone" dataKey="confirmed" stroke="#ff7300" yAxisId={0} strokeWidth={3} />}
                 {state.showConfirmed && <Line type="monotone" dataKey="pending_confirmed" stroke="#ff7300" strokeDasharray="1 1" strokeWidth={3} />}
 
@@ -374,6 +407,13 @@ const BasicGraphNewCases = (props) => {
                 {vRefLines}
                 {hRefLines}
 
+                {state.showConfirmed && lastTrendingData != null && daysToDoubleLabelChildren({
+                    x: lastTrendingData.name,
+                    y: lastTrendingData.trending_line,
+                    daysToDouble,
+                    showlog: state.showlog}
+                )}
+
                 <Legend verticalAlign="top" payload={[
                     { value: 'Total ', type: 'line', color: '#ff7300' },
                     { value: 'New Cases', type: 'line', color: '#389708' },
@@ -381,44 +421,57 @@ const BasicGraphNewCases = (props) => {
                 ]} />
 
             </LineChart></ResponsiveContainer>
-        <Grid container alignItems="center" spacing={1}>
-            <Grid item onClick={handleClickOpen} >
-                <Typography variant="body2" noWrap>
-                    Data Credit: Click for details.
-        </Typography>
+
+        <Grid container direction="column" spacing={1}>
+            <Grid item>
+                <Grid container alignItems="center" spacing={1}>
+                    <Grid item onClick={handleClickOpen} >
+                        <Typography variant="body2" noWrap>
+                            Data Credit: Click for details.
+                        </Typography>
+                    </Grid>
+                    <Grid item>
+                    </Grid>
+                    <Grid item className={classes.grow} />
+                    <Grid item onClick={
+                        () => {
+                            fileDownload(JSON.stringify(data, 2, 2), "covid-data.json");
+                            setOpenDownload(true);
+                        }
+                    }>
+                        <Typography variant="body2" noWrap>
+                            Data Download
+                        </Typography>
+                    </Grid>
+                    <Dialog
+                        open={openDownload}
+                        onClose={handleCloseDownload}
+                    >
+                        <DialogTitle id="alert-dialog-title">{"Download Complete"}</DialogTitle>
+                        <DialogContent>
+                            <DialogContentText id="alert-dialog-description">
+                                Disclaimer: The format data likely to change over time.
+                                </DialogContentText>
+                        </DialogContent>
+                        <DialogActions>
+                            <Button onClick={handleCloseDownload} color="primary" autoFocus>
+                                OK
+                            </Button>
+                        </DialogActions>
+                    </Dialog>
+                </Grid>
             </Grid>
             <Grid item>
+                <Box component="span" fontSize={12} lineHeight="normal" display="block">
+                    * Trending line is fitted using <Link href="https://simplestatistics.org/docs/#linearregression" target="blank">linear regression</Link> on logarithm (base 2) of confirmed cases over last 7 days.
+                </Box>
             </Grid>
-            <Grid item className={classes.grow} />
-            <Grid item onClick={
-                () => {
-                    fileDownload(JSON.stringify(data, 2, 2), "covid-data.json");
-                    setOpenDownload(true);
-                }
-            }>
-                <Typography variant="body2" noWrap>
-                    Data Download
-        </Typography>
+            <Grid item>
+                 <Box component="span" fontSize={12} lineHeight="normal" display="block">
+                    † Day to double = 1 / (slope of 2-based logarithm trending line).
+                </Box>
             </Grid>
-            <Dialog
-                open={openDownload}
-                onClose={handleCloseDownload}
-            >
-                <DialogTitle id="alert-dialog-title">{"Download Complete"}</DialogTitle>
-                <DialogContent>
-                    <DialogContentText id="alert-dialog-description">
-                        Disclaimer: The format data likely to change over time.
-                        </DialogContentText>
-                </DialogContent>
-                <DialogActions>
-                    <Button onClick={handleCloseDownload} color="primary" autoFocus>
-                        OK
-                    </Button>
-                </DialogActions>
-            </Dialog>
-
-            <Grid item></Grid>
-        </Grid>
+        </Grid>    
     </>
 }
 
