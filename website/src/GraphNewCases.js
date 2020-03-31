@@ -24,7 +24,7 @@ import { myShortNumber } from './Util';
 const fileDownload = require('js-file-download');
 const moment = require("moment");
 
-const scale = scaleSymlog().domain([0, 'dataMax + 10000']);
+const scale = scaleSymlog().domain([0, 'dataMax']);
 
 const useStyles = makeStyles(theme => ({
     customtooltip: {
@@ -401,7 +401,6 @@ const BasicGraphNewCases = (props) => {
                 {state.showDeath && <Line type="monotone" dataKey="death" stroke="#000000" yAxisId={0} strokeWidth={3} />}
                 {state.showDeath && <Line type="monotone" dataKey="pending_death" stroke="#000000" strokeDasharray="1 1" strokeWidth={3} />}
                 <Line visibility="hidden" dataKey="pending_death" />
-   
 
                 {vRefLines}
                 {hRefLines}
