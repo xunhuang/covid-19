@@ -6,6 +6,7 @@ import Switch from '@material-ui/core/Switch';
 import Grid from '@material-ui/core/Grid';
 import { scaleSymlog } from 'd3-scale';
 import { DataCreditWidget } from './DataCredit';
+import { datesToDays, daysToDates, fitExponentialTrendingLine } from './TrendFitting';
 import Button from '@material-ui/core/Button';
 import Checkbox from '@material-ui/core/Checkbox';
 import Dialog from '@material-ui/core/Dialog';
@@ -218,7 +219,6 @@ const BasicGraphNewCases = (props) => {
     }
     data = newdata;
 
-
     if (data.length > 2) {
         let newdata = data.slice(0, data.length - 2);
         let second_last = data[data.length - 2];
@@ -236,6 +236,25 @@ const BasicGraphNewCases = (props) => {
         newdata.push(second_last);
         newdata.push(newlast);
         data = newdata;
+    }
+
+    /**
+     * Add Trending Line
+     */
+    let daysToDouble = null;
+    if (data.length > 8) {
+        const startDate = data[0].fulldate;
+        const dates = data.map(d => d.fulldate);
+        const daysFromStart = datesToDays(startDate, dates);
+        console.log(dates);
+        console.log(daysFromStart);
+        const confirmed = data.map(d => d.confirmed);
+        const results = fitExponentialTrendingLine(daysFromStart, confirmed);
+        data = data.map((d, idx) => {
+            d.trending_line = results.fittedYs[idx];
+            return d;
+        });
+        daysToDouble = results.daysToDouble;
     }
 
     if (state.show2weeks) {
@@ -286,6 +305,15 @@ const BasicGraphNewCases = (props) => {
         props.hRefLines.map(l =>
             <ReferenceLine y={l.y} label={l.label} stroke="#e3e3e3" strokeWidth={2} />
         )
+
+    const legends = [
+        { value: 'Total ', type: 'line', color: '#ff7300' },
+        { value: 'New Cases', type: 'line', color: '#389708' },
+        { value: 'Death', type: 'line', color: '#000000' },
+    ];
+    if (daysToDouble != null) {
+        legends.push({ value: `Doubles every ${daysToDouble.toFixed(1)} days`, type: 'line', color: '#9c9c9c'});
+    }
 
     return <>
         <Grid container alignItems="center" spacing={1}>
@@ -361,6 +389,7 @@ const BasicGraphNewCases = (props) => {
                 }
 
                 <CartesianGrid stroke="#d5d5d5" strokeDasharray="5 5" />
+                {state.showConfirmed && <Line type="monotone" dataKey="trending_line" stroke="#9c9c9c" yAxisId={0} dot={false} isAnimationActive={false} strokeWidth={3} />}
                 {state.showConfirmed && <Line type="monotone" dataKey="confirmed" stroke="#ff7300" yAxisId={0} strokeWidth={3} />}
                 {state.showConfirmed && <Line type="monotone" dataKey="pending_confirmed" stroke="#ff7300" strokeDasharray="1 1" strokeWidth={3} />}
 
@@ -374,11 +403,7 @@ const BasicGraphNewCases = (props) => {
                 {vRefLines}
                 {hRefLines}
 
-                <Legend verticalAlign="top" payload={[
-                    { value: 'Total ', type: 'line', color: '#ff7300' },
-                    { value: 'New Cases', type: 'line', color: '#389708' },
-                    { value: 'Death', type: 'line', color: '#000000' },
-                ]} />
+                <Legend verticalAlign="top" payload={legends} />
 
             </LineChart></ResponsiveContainer>
         <Grid container alignItems="center" spacing={1}>
