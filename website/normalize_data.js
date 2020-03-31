@@ -144,8 +144,6 @@ function createCountyObject(state_fips, state_name, county_fips, county_name) {
     countyObject.StateFIPS = fixStateFips(state_fips);
     countyObject.Confirmed = {};
     countyObject.Death = {};
-    countyObject.Recovered = {};
-    countyObject.Active = {};
 
     /* double check...
     const [s_fips, c_fips] = myFipsCode(countyObject.StateName, countyObject.CountyName);
@@ -294,9 +292,7 @@ function processJHUDataPoint(c, date) {
 
     let datekey = date;
     county.Confirmed[datekey] = b.Confirmed;
-    county.Recovered[datekey] = b.Recovered;
     county.Death[datekey] = b.Deaths;
-    county.Active[datekey] = b.Active;
 }
 
 function processJHU(dataset, date) {
@@ -376,22 +372,14 @@ function summarize_counties() {
             county = state[c];
             county.LastConfirmed = 0;
             county.LastDeath = 0;
-            county.LastRecovered = 0;
-            county.LastActive = 0;
 
             const CC = getValueFromLastDate(county.Confirmed, county.CountyName + " " + county.StateName);
             const DD = getValueFromLastDate(county.Death);
-            const RR = getValueFromLastDate(county.Recovered);
-            const AA = getValueFromLastDate(county.Active);
 
             county.LastConfirmed = CC.num;
             county.LastConfirmedNew = CC.newnum;
             county.LastDeath = DD.num;
             county.LastDeathNew = DD.newnum;
-            county.LastRecovered = RR.num;
-            county.LastRecoveredNew = RR.newnum;
-            county.LastActive = AA.num;
-            county.LastActiveNew = AA.newnum;
             setCountyNode(s, c, county);
         }
     }
@@ -407,35 +395,23 @@ function summarize_states() {
         // need to 
         Confirmed = {};
         Death = {};
-        Recovered = {};
-        Active = {};
         for (c in state) {
             county = state[c];
             mergeTwoMapValues(Confirmed, county.Confirmed)
             mergeTwoMapValues(Death, county.Death)
-            mergeTwoMapValues(Recovered, county.Recovered)
-            mergeTwoMapValues(Active, county.Active)
 
         }
         let Summary = {};
         Summary.Confirmed = Confirmed;
         Summary.Death = Death;
-        Summary.Recovered = Recovered;
-        Summary.Active = Active;
 
         const CC = getValueFromLastDate(Confirmed, s);
         const DD = getValueFromLastDate(Death);
-        const RR = getValueFromLastDate(Recovered);
-        const AA = getValueFromLastDate(Active);
 
         Summary.LastConfirmed = CC.num;
         Summary.LastConfirmedNew = CC.newnum;
         Summary.LastDeath = DD.num;
         Summary.LastDeathNew = DD.newnum;
-        Summary.LastRecovered = RR.num;
-        Summary.LastRecoveredNew = RR.newnum;
-        Summary.LastActive = AA.num;
-        Summary.LastActiveNew = AA.newnum;
 
         state.Summary = Summary;
     }
@@ -448,36 +424,24 @@ function summarize_USA() {
     // summarize data for US
     USConfirmed = {};
     USDeath = {};
-    USRecovered = {};
-    USActive = {};
 
     for (s in AllData) {
         state = AllData[s];
         mergeTwoMapValues(USConfirmed, state.Summary.Confirmed)
         mergeTwoMapValues(USDeath, state.Summary.Death)
-        mergeTwoMapValues(USRecovered, state.Summary.Recovered)
-        mergeTwoMapValues(USActive, state.Summary.Active)
     }
 
     let Summary = {};
     Summary.Confirmed = USConfirmed;
     Summary.Death = USDeath;
-    Summary.Recovered = USRecovered;
-    Summary.Active = USActive;
 
     const CC = getValueFromLastDate(USConfirmed, "country ");
     const DD = getValueFromLastDate(USDeath);
-    const RR = getValueFromLastDate(USRecovered);
-    const AA = getValueFromLastDate(USActive);
 
     Summary.LastConfirmed = CC.num;
     Summary.LastConfirmedNew = CC.newnum;
     Summary.LastDeath = DD.num;
     Summary.LastDeathNew = DD.newnum;
-    Summary.LastRecovered = RR.num;
-    Summary.LastRecoveredNew = RR.newnum;
-    Summary.LastActive = AA.num;
-    Summary.LastActiveNew = AA.newnum;
     Summary.generated = moment().format();
 
     AllData.Summary = Summary;
@@ -574,8 +538,6 @@ function addMetros() {
         let metro = Metros[m];
         Confirmed = {};
         Death = {};
-        Recovered = {};
-        Active = {};
 
         console.log(metro);
 
@@ -585,29 +547,19 @@ function addMetros() {
 
             mergeTwoMapValues(Confirmed, county.Confirmed)
             mergeTwoMapValues(Death, county.Death)
-            mergeTwoMapValues(Recovered, county.Recovered)
-            mergeTwoMapValues(Active, county.Active)
 
         }
         let Summary = {};
         Summary.Confirmed = Confirmed;
         Summary.Death = Death;
-        Summary.Recovered = Recovered;
-        Summary.Active = Active;
 
         const CC = getValueFromLastDate(Confirmed, s);
         const DD = getValueFromLastDate(Death);
-        const RR = getValueFromLastDate(Recovered);
-        const AA = getValueFromLastDate(Active);
 
         Summary.LastConfirmed = CC.num;
         Summary.LastConfirmedNew = CC.newnum;
         Summary.LastDeath = DD.num;
         Summary.LastDeathNew = DD.newnum;
-        Summary.LastRecovered = RR.num;
-        Summary.LastRecoveredNew = RR.newnum;
-        Summary.LastActive = AA.num;
-        Summary.LastActiveNew = AA.newnum;
 
         metro.Summary = Summary;
     }
