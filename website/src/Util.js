@@ -1,4 +1,4 @@
-
+import * as USCounty from "./USCountyInfo.js"
 var shortNumber = require('short-number');
 const Cookies = require("js-cookie");
 
@@ -84,6 +84,25 @@ function getDefaultCounty() {
         state: "CA",
     }
 }
+function getDefaultCountyForState(state, county) {
+    if (county) {
+        return county;
+    }
+    let county_info = CookieGetLastCounty();
+    if (county_info) {
+        if (county_info.state === state) {
+            return county_info.county;
+        }
+    }
+
+    // cookie county not match, return the top county
+    let counties = USCounty.countyDataForState(state).sort((a, b) => b.total - a.total);
+    let topcounty = counties[0].County;
+    if (topcounty === "Statewide Unallocated") {
+        topcounty = counties[1].County;
+    }
+    return topcounty;
+}
 
 export {
     myShortNumber,
@@ -94,5 +113,8 @@ export {
     browseTo,
     browseToState,
     browseToUSPage,
+
+    CookieGetLastCounty,
+    getDefaultCountyForState,
     getDefaultCounty,
 }

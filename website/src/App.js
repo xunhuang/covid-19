@@ -4,51 +4,22 @@ import { BrowserRouter } from 'react-router-dom';
 import { countyModuleInit } from "./USCountyInfo.js";
 import * as USCounty from "./USCountyInfo.js";
 import { Splash } from './Splash.js';
-import { NearbyCounties, CountiesForStateWidget } from "./CountyListRender.js"
+import { NearbyCounties } from "./CountyListRender.js"
 import { BasicGraphNewCases } from "./GraphNewCases.js"
 import { GraphStateTesting } from "./GraphTestingEffort"
 import { withHeader } from "./Header.js"
 import { MyTabs } from "./MyTabs.js"
 import { USInfoTopWidget } from './USInfoTopWidget.js'
-import { GraphStateHospitalization } from './GraphHospitalization.js'
 import { CountyHospitalsWidget } from "./Hospitals"
 import { fetchCounty } from "./GeoLocation"
 import { logger } from "./AppModule"
 import { PageUS } from "./PageUS"
+import { PageState } from "./PageState"
 
 const moment = require("moment");
 
 const states = require('us-state-codes');
 const Cookies = require("js-cookie");
-
-const GraphSectionState = withRouter((props) => {
-  const state = props.state;
-  let state_title = states.getStateNameByStateCode(state);
-  let graphdata = USCounty.getStateDataForGrapth(state);
-  let stateSummary = USCounty.casesForStateSummary(state);
-  let stayHomeOrder = stateSummary.stayHomeOrder;
-
-  const tabs = [
-    <BasicGraphNewCases
-      data={graphdata}
-      logScale={true}
-      vRefLines={
-        stayHomeOrder ?
-          [{
-            date: moment(stayHomeOrder.StartDate
-            ).format("M/D"),
-            label: "Stay-At-Home Order",
-          }] : []
-      } />,
-    < GraphStateTesting state={state} />,
-    <GraphStateHospitalization state={state} />,
-  ]
-  let graphlistSection = <MyTabs
-    labels={["Cases", `${state_title} Testing`, "Hospitalization"]}
-    tabs={tabs}
-  />;
-  return graphlistSection;
-});
 
 const GraphSectionCounty = withRouter((props) => {
   const state = props.state;
@@ -122,7 +93,7 @@ const MainApp = withRouter((props) => {
       <Switch>
         {/* <Route exact path='/' component={App2} /> */}
         <Route exact path='/county/:state/:county' render={(props) => <CountyWidget {...props} state={state} county={county} />} />
-        <Route exact path='/state/:state' render={(props) => <StateWidget {...props} state={state} county={county} />} />
+        <Route exact path='/state/:state' render={(props) => <PageState {...props} state={state} county={county} />} />
         <Route exact path='/US' render={(props) => <PageUS {...props} state={state} county={county} />} />
       </Switch>
     </div>
@@ -138,11 +109,6 @@ function CookieSetLastCounty(state, county) {
   Cookies.set("LastCounty", county_info, {
     expires: 7  // 7 day, people are not supposed to be moving anyways
   });
-}
-
-function CookieGetLastCounty() {
-  let county_info = Cookies.getJSON("LastCounty");
-  return county_info;
 }
 
 const CountyWidget = withHeader((props) => {
@@ -189,64 +155,4 @@ const CountyWidget = withHeader((props) => {
     </>
   );
 });
-
-function getDefaultCountyForState(state, county) {
-  if (county) {
-    return county;
-  }
-  let county_info = CookieGetLastCounty();
-  if (county_info) {
-    if (county_info.state === state) {
-      return county_info.county;
-    }
-  }
-
-  // cookie county not match, return the top county
-  let counties = USCounty.countyDataForState(state).sort((a, b) => b.total - a.total);
-  let topcounty = counties[0].County;
-  if (topcounty === "Statewide Unallocated") {
-    topcounty = counties[1].County;
-  }
-  return topcounty;
-}
-
-const StateWidget = withHeader((props) => {
-  const state = props.match.params.state;
-  const county = getDefaultCountyForState(
-    props.match.params.state,
-    props.match.params.county);
-
-  const tabs = [
-    <CountiesForStateWidget
-      county={county}
-      state={state}
-      callback={(newcounty, newstate) => {
-        browseTo(props.history, newstate, newcounty);
-      }}
-    />,
-  ];
-
-  return (
-    <>
-      <USInfoTopWidget
-        county={county}
-        state={state}
-        selectedTab={"state"}
-        callback={(newcounty, newstate) => {
-          browseTo(props.history, newstate, newcounty);
-        }}
-      />
-      <GraphSectionState
-        state={state}
-        callback={(newcounty, newstate) => {
-          browseTo(props.history, newstate, newcounty);
-        }}
-      />
-      <MyTabs
-        labels={[`Counties of ${states.getStateNameByStateCode(state)} `]}
-        tabs={tabs}
-      />
-    </>);
-});
-
 export default App;
