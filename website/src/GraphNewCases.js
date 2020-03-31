@@ -155,7 +155,7 @@ const GraphOptionsMenuProps = {
 };
 
 const daysToDoubleLabelChildren = (options) => {
-    const {x, y, showlog, daysToDouble} = options;
+    const { x, y, showlog, daysToDouble } = options;
     return [
         // Placeholder to accomodate label
         <ReferenceArea fillOpacity="0" alwaysShow x1={x} x2={x} y1={y * (showlog ? 4 : 1.1)} y2={y * (showlog ? 4 : 1.1)} />,
@@ -316,7 +316,7 @@ const BasicGraphNewCases = (props) => {
     let hRefLines = (typeof props.hRefLines == 'undefined') ?
         null :
         props.hRefLines.map((l, idx) =>
-            <ReferenceLine key={`hrefline${idx}`}  y={l.y} label={l.label} stroke="#e3e3e3" strokeWidth={2} />
+            <ReferenceLine key={`hrefline${idx}`} y={l.y} label={l.label} stroke="#e3e3e3" strokeWidth={2} />
         )
 
     return <>
@@ -411,7 +411,8 @@ const BasicGraphNewCases = (props) => {
                     x: lastTrendingData.name,
                     y: lastTrendingData.trending_line,
                     daysToDouble,
-                    showlog: state.showlog}
+                    showlog: state.showlog
+                }
                 )}
 
                 <Legend verticalAlign="top" payload={[
@@ -463,15 +464,18 @@ const BasicGraphNewCases = (props) => {
             </Grid>
             <Grid item>
                 <Box component="span" fontSize={12} lineHeight="normal" display="block">
-                    * Trending line is fitted using <Link href="https://simplestatistics.org/docs/#linearregression" target="blank">linear regression</Link> on logarithm (base 2) of confirmed cases over last 7 days.
+                    † Trend fitted with
+                    <Link href="https://simplestatistics.org/docs/#linearregression" target="blank">linear regression</Link>
+                    on log₂ of cases last 7 days
+
                 </Box>
             </Grid>
-            <Grid item>
+            {/* <Grid item>
                  <Box component="span" fontSize={12} lineHeight="normal" display="block">
                     † Day to double = 1 / (slope of 2-based logarithm trending line).
                 </Box>
-            </Grid>
-        </Grid>    
+            </Grid> */}
+        </Grid>
     </>
 }
 
