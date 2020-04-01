@@ -1,6 +1,7 @@
 import React from 'react';
 import { Switch, Route, withRouter } from 'react-router-dom'
 import { BrowserRouter } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
 import { countyModuleInit } from "./USCountyInfo.js";
 import { Splash } from './Splash.js';
 import { fetchCounty } from "./GeoLocation"
@@ -69,6 +70,11 @@ const MainApp = withRouter((props) => {
   }
   return (
     <div>
+      <Helmet>
+        // Verify site ownership to so that we can use Google search console
+        // to do Search Engine Optimization
+        <meta name="google-site-verification" content="pEhbJIm55DE6-2CT_JlI2tp2xqxCH0KF1v9mmqaeADc" />
+      </Helmet>
       <Switch>
         {/* <Route exact path='/' component={App2} /> */}
         <MyRoute exact path='/county/:state/:county' render={(props) => <PageCounty {...props} state={state} county={county} />} />
