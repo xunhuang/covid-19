@@ -191,6 +191,7 @@ function getAllStatesSummary() {
 
             // this can also be presummarized.
             Population2010: USState_Population[s.state],
+            daysToDouble: s.daysToDouble,
         }
 
     })
@@ -351,6 +352,7 @@ function casesForStateSummary(state_short_name) {
             newcases: 0,
             death: 0,
             newpercent: 0,
+            daysToDouble: null,
         }
     }
     let confirmed = state.Summary.LastConfirmed;
@@ -362,6 +364,7 @@ function casesForStateSummary(state_short_name) {
         death: state.Summary.LastDeath,
         newpercent: ((newcases / (confirmed - newcases)) * 100).toFixed(0),
         stayHomeOrder: state.Summary.StayHomeOrder,
+        daysToDouble: state.Summary.DaysToDouble,
     }
 }
 
