@@ -19,28 +19,43 @@ const App = (props) => {
 const states = require('us-state-codes');
 
 class MyRoute extends Route {
-  updateTitle() {
+  // Update page title and description
+  updateMeta() {
     let params = this.props.computedMatch.params;
     let state = params.state;
     let county = params.county;
+
     let titlePrefix = '';
+    let desc;
     if (state === undefined && county === undefined) {
+      // Case 1: US page
       titlePrefix = 'US';
+      desc = "US county-level COVID-19 30-day data visualized: confirmed cases, "
+        + "new cases & death curves. State-level testing results & hospitalization numbers.";
     } else if (county === undefined) {
-      titlePrefix = states.getStateNameByStateCode(state);
+      // Case 2: state page
+      let stateFullName = states.getStateNameByStateCode(state);
+      titlePrefix = stateFullName;
+      desc = `${stateFullName} COVID-19 30-day data visualized: confirmed cases, `
+        + "new cases & death curves, testing results & hospitalization numbers.";
     } else {
+      // Case 3: county page
       titlePrefix = `${county}, ${state}`;
+      desc = `${county} county COVID-19 30-day data visualized: confirmed cases, new cases & death curves.`;
     }
-    let title = `${titlePrefix} | COVID-19 Daily Numbers`;
+    let title = `${titlePrefix} | COVID-19 Daily Numbers Visualized`;
     document.title = title;
+    document.querySelector('meta[name="description"]').setAttribute("content", desc);
+    document.querySelector('meta[property="og:title"]').setAttribute("content", title);
+    document.querySelector('meta[property="og:description"]').setAttribute("content", desc);
   }
 
   componentDidMount() {
-    this.updateTitle();
+    this.updateMeta();
   }
 
   componentDidUpdate() {
-    this.updateTitle();
+    this.updateMeta();
   }
 }
 
