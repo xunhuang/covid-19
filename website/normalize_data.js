@@ -8,6 +8,7 @@ const LatestData03262020 = require("../data/archive/JHU-03-26-2020.json");
 const LatestData03272020 = require("../data/archive/JHU-03-27-2020.json");
 const LatestData03282020 = require("../data/archive/JHU-03-28-2020.json");
 const LatestData = require("./src/data/latest.json");
+const { linearRegression } = require('simple-statistics');
 const ShelterInPlace = require("../data/shelter-in-place/shelter.json");
 const USRecovery = require("./src/data/us_recovery.json");
 
@@ -381,6 +382,7 @@ function summarize_counties() {
             county.LastConfirmedNew = CC.newnum;
             county.LastDeath = DD.num;
             county.LastDeathNew = DD.newnum;
+            county.DaysToDouble = getDoubleDays(county.Confirmed, c);
             setCountyNode(s, c, county);
         }
     }
@@ -413,6 +415,7 @@ function summarize_states() {
         Summary.LastConfirmedNew = CC.newnum;
         Summary.LastDeath = DD.num;
         Summary.LastDeathNew = DD.newnum;
+        Summary.DaysToDouble = getDoubleDays(Confirmed);
 
         state.Summary = Summary;
     }
@@ -420,8 +423,6 @@ function summarize_states() {
 
 
 function summarize_USA() {
-
-
     // summarize data for US
     USConfirmed = {};
     USDeath = {};
@@ -444,6 +445,7 @@ function summarize_USA() {
     Summary.LastDeath = DD.num;
     Summary.LastDeathNew = DD.newnum;
     Summary.generated = moment().format();
+    Summary.DaysToDouble = getDoubleDays(USConfirmed);
 
     AllData.Summary = Summary;
 }
@@ -507,14 +509,6 @@ for (let d = moment("03/25/2020", "MM/DD/YYYY"); d.isBefore(moment()); d = d.add
     console.log("DOing JHU " + d.format("MM/DD/YYYY"));
     processJHU(data, d.format("MM/DD/YYYY"));
 }
-
-/*
-processJHU(LatestData03252020, "03/25/2020");
-processJHU(LatestData03262020, "03/26/2020");
-processJHU(LatestData03272020, "03/27/2020");
-processJHU(LatestData03282020, "03/28/2020");
-processJHU(LatestData, today);
-*/
 
 function getCountyByFips(fips) {
     return AllData[fips.slice(0, 2)][fips];
@@ -599,6 +593,26 @@ function addUSRecovery() {
     AllData.Summary.LastRecoveredNew = RR.newnum;
 }
 
+const log2 = (a) => Math.log(a) / Math.log(2);
+
+function getDoubleDays(data, fips) {
+    let keys = Object.keys(data).sort((a, b) => moment(a, "MM/DD/YYYY").toDate() - moment(b, "MM/DD/YYYY").toDate());
+    if (keys.length < 8) {
+        return null;
+    }
+    const key7days = keys.slice(-8, -1);
+    const firstday = moment(key7days[0], "MM/DD/YYYY");
+
+    const prepared_data = key7days.map(k => {
+        let delta = moment(k, "MM/DD/YYYY").diff(firstday, "days");
+        return [delta, log2(data[k])];
+    })
+    if (prepared_data[0][1] <= log2(10)) { // number too small tomake predictions
+        return null;
+    }
+    const { m, b } = linearRegression(prepared_data);
+    return 1 / m;
+}
 
 fillholes();
 
