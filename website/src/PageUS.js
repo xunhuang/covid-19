@@ -8,7 +8,7 @@ import { MyTabs } from "./MyTabs.js"
 import * as Util from "./Util.js"
 import { USInfoTopWidget } from './USInfoTopWidget.js'
 import { GraphUSHospitalization } from './GraphHospitalization.js'
-import { ListAllStates } from "./ListAllStates.js"
+import { ListAllStates, ListAllStatesPerCapita } from "./ListAllStates.js"
 
 import { logger } from "./AppModule"
 
@@ -36,6 +36,11 @@ const PageUS = withHeader((props) => {
                 Util.browseToState(props.history, newstate);
             }}
         ></ListAllStates>,
+        <ListAllStatesPerCapita
+            callback={(newstate) => {
+                Util.browseToState(props.history, newstate);
+            }}
+        ></ListAllStatesPerCapita>
     ];
     return (
         <>
@@ -53,7 +58,7 @@ const PageUS = withHeader((props) => {
                 }}
             />
             <MyTabs
-                labels={["States of USA"]}
+                labels={["States of USA", "Capita"]}
                 tabs={tabs}
             />
         </>

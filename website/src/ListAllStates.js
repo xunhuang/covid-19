@@ -16,7 +16,6 @@ const compact = createMuiTheme({
         MuiTableCell: {
             sizeSmall: {  //This can be referred from Material UI API documentation. 
                 padding: '1px 1px 1px 1px',
-                // backgroundColor: "#eaeaea",
             },
         },
     },
@@ -57,6 +56,14 @@ const ListAllStates = (props) => {
     return countySummary;
 }
 
+const ListAllStatesPerCapita = (props) => {
+    let list = USCounty.getAllStatesSummary()
+        .sort((a, b) => b.confirmed - a.confirmed);
+    let countySummary =
+        <AllStateListCapita countylist={list} callback={props.callback} />
+    return countySummary;
+}
+
 function prepareDataForDisplay(list) {
     let extendlist = list.map(row => {
         let newrow = {};
@@ -82,7 +89,7 @@ function prepareDataForDisplay(list) {
     return extendlist;
 }
 
-const AllStateListRender1 = (props) => {
+const AllStateListCapita = (props) => {
     const list = props.countylist;
     const classes = useStyles();
 
@@ -97,10 +104,9 @@ const AllStateListRender1 = (props) => {
     const myHeadCells = [
         { id: 'state', numeric: false, disablePadding: false, label: 'Name' },
         { id: 'confirmed', numeric: true, disablePadding: true, label: 'Total' },
-        { id: 'newcases', numeric: true, disablePadding: false, label: 'New' },
         { id: 'partsPerMil', numeric: true, disablePadding: false, label: '#/mil' },
-        // { id: 'deathsPerMil', numeric: true, disablePadding: false, label: 'D/mil' },
         { id: 'death', numeric: true, disablePadding: false, label: 'Deaths' },
+        { id: 'deathsPerMil', numeric: true, disablePadding: false, label: 'Deaths/mil' },
         { id: 'pop', numeric: true, disablePadding: false, label: 'Pop.' },
     ];
 
@@ -141,10 +147,9 @@ const AllStateListRender1 = (props) => {
                                         </Link>
                                     </TableCell>
                                     <TableCell align="right">{row.confirmed}</TableCell>
-                                    <TableCell align="right"> {newcolumn} </TableCell>
                                     <TableCell align="right">{myGoodWholeNumber(row.partsPerMil)}</TableCell>
-                                    {/* <TableCell align="right">{myGoodWholeNumber(row.deathsPerMil)}</TableCell> */}
                                     <TableCell align="right">{myGoodShortNumber(row.death)}</TableCell>
+                                    <TableCell align="right">{myGoodWholeNumber(row.deathsPerMil)}</TableCell>
                                     <TableCell align="right">{(row.pop === 0) ? "-" : myGoodShortNumber(row.pop)}</TableCell>
                                 </ThemeProvider>
                             </TableRow>;
@@ -172,7 +177,6 @@ const AllStateListRender = (props) => {
         { id: 'confirmed', numeric: true, disablePadding: true, label: 'Total' },
         { id: 'newcases', numeric: true, disablePadding: false, label: 'New' },
         { id: 'partsPerMil', numeric: true, disablePadding: false, label: '#/mil' },
-        // { id: 'deathsPerMil', numeric: true, disablePadding: false, label: 'D/mil' },
         { id: 'death', numeric: true, disablePadding: false, label: 'Deaths' },
         { id: 'daysToDouble', numeric: true, disablePadding: false, label: 'Days 2x' },
     ];
@@ -230,4 +234,5 @@ const AllStateListRender = (props) => {
 
 export {
     ListAllStates,
+    ListAllStatesPerCapita,
 }
