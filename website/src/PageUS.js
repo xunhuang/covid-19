@@ -8,7 +8,7 @@ import { MyTabs } from "./MyTabs.js"
 import * as Util from "./Util.js"
 import { USInfoTopWidget } from './USInfoTopWidget.js'
 import { GraphUSHospitalization } from './GraphHospitalization.js'
-import { AllStatesListWidget } from "./CountyListRender.js"
+import { ListAllStates } from "./ListAllStates.js"
 
 import { logger } from "./AppModule"
 
@@ -31,11 +31,11 @@ const PageUS = withHeader((props) => {
     logger.logEvent("PageUS");
 
     const tabs = [
-        <AllStatesListWidget
+        <ListAllStates
             callback={(newstate) => {
                 Util.browseToState(props.history, newstate);
             }}
-        ></AllStatesListWidget>,
+        ></ListAllStates>,
     ];
     return (
         <>
