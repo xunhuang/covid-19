@@ -43,7 +43,7 @@ class MyRoute extends Route {
       titlePrefix = `${county}, ${state}`;
       desc = `${county} county COVID-19 30-day data visualized: confirmed cases, new cases & death curves.`;
     }
-    let title = `${titlePrefix} | COVID-19 Daily Numbers`;
+    let title = `${titlePrefix} | COVID-19 Daily Numbers Visualized`;
     document.title = title;
     document.querySelector('meta[name="description"]').setAttribute("content", desc);
     document.querySelector('meta[property="og:title"]').setAttribute("content", title);
