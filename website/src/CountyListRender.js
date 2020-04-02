@@ -84,23 +84,18 @@ const CountiesForStateWidget = (props) => {
     return countySummary;
 }
 
-const CountyListRender = (props) => {
-    const list = props.countylist.sort((a, b) => b.total - a.total);
-    const classes = useStyles();
-    function clicked(newcounty, newstate) {
-        if (props.callback) {
-            props.callback(newcounty, newstate);
-        }
+const ListStateCountiesCapita = (props) => {
+    let countyInfo = true;
+    let countySummary = <div></div>;
+    if (countyInfo) {
+        let list = USCounty.countyDataForState(props.state);
+        countySummary =
+            <CountyListRenderCapita countylist={list} callback={props.callback} />
     }
+    return countySummary;
+}
 
-    const [order, setOrder] = React.useState('desc');
-    const [orderBy, setOrderBy] = React.useState('confirmed');
-    const handleRequestSort = (event, property) => {
-        const isAsc = orderBy === property && order === 'asc';
-        setOrder(isAsc ? 'desc' : 'asc');
-        setOrderBy(property);
-    };
-
+function prepCountyDataForDisplay(list) {
     let extendlist = list.map(row => {
         let newrow = {};
         let sum = USCounty.casesForCountySummary(row.State, row.County);
@@ -135,18 +130,41 @@ const CountyListRender = (props) => {
         newrow.County = row.County;
         newrow.deathsPerMil = sum.death * 1000000 / population;
         newrow.death = sum.death;
+        newrow.daysToDouble = row.daysToDouble;
+        console.log(row);
+        console.log(sum);
         return newrow;
     });
+    return extendlist;
+}
+
+const CountyListRender = (props) => {
+    const list = props.countylist.sort((a, b) => b.total - a.total);
+    const classes = useStyles();
+    function clicked(newcounty, newstate) {
+        if (props.callback) {
+            props.callback(newcounty, newstate);
+        }
+    }
+
+    const [order, setOrder] = React.useState('desc');
+    const [orderBy, setOrderBy] = React.useState('confirmed');
+    const handleRequestSort = (event, property) => {
+        const isAsc = orderBy === property && order === 'asc';
+        setOrder(isAsc ? 'desc' : 'asc');
+        setOrderBy(property);
+    };
 
     const myHeadCells = [
         { id: 'County', numeric: false, disablePadding: false, label: 'Name' },
         { id: 'confirmed', numeric: true, disablePadding: true, label: 'Total' },
         { id: 'newcases', numeric: true, disablePadding: false, label: 'New' },
         { id: 'partsPerMil', numeric: true, disablePadding: false, label: '#/Mil' },
-        // { id: 'deathsPerMil', numeric: true, disablePadding: false, label: 'D/Mil' },
         { id: 'death', numeric: true, disablePadding: false, label: 'Deaths' },
-        { id: 'population', numeric: true, disablePadding: false, label: 'Pop.' },
+        { id: 'daysToDouble', numeric: true, disablePadding: false, label: 'Days 2x' },
     ];
+
+    let extendlist = prepCountyDataForDisplay(list);
 
     let countySummary =
         <Table className={classes.table} size="small" aria-label="simple table">
@@ -184,7 +202,81 @@ const CountyListRender = (props) => {
                                     <TableCell align="right">{row.confirmed}</TableCell>
                                     <TableCell align="right"> {newcolumn} </TableCell>
                                     <TableCell align="right">{myGoodWholeNumber(row.partsPerMil)}</TableCell>
-                                    {/* <TableCell align="right">{myGoodWholeNumber(row.deathsPerMil)}</TableCell> */}
+                                    <TableCell align="right">{myGoodShortNumber(row.death)}</TableCell>
+                                    <TableCell align="right">{(!row.daysToDouble) ? "-" : ((row.daysToDouble > 10000) ? "-" : row.daysToDouble.toFixed(1))}</TableCell>
+                                </ThemeProvider>
+                            </TableRow>;
+                        })
+                }
+            </TableBody>
+        </Table >
+
+    return countySummary;
+}
+const CountyListRenderCapita = (props) => {
+    const list = props.countylist.sort((a, b) => b.total - a.total);
+    const classes = useStyles();
+    function clicked(newcounty, newstate) {
+        if (props.callback) {
+            props.callback(newcounty, newstate);
+        }
+    }
+
+    const [order, setOrder] = React.useState('desc');
+    const [orderBy, setOrderBy] = React.useState('confirmed');
+    const handleRequestSort = (event, property) => {
+        const isAsc = orderBy === property && order === 'asc';
+        setOrder(isAsc ? 'desc' : 'asc');
+        setOrderBy(property);
+    };
+
+    const myHeadCells = [
+        { id: 'County', numeric: false, disablePadding: false, label: 'Name' },
+        { id: 'newcases', numeric: true, disablePadding: false, label: 'New' },
+        { id: 'partsPerMil', numeric: true, disablePadding: false, label: '#/Mil' },
+        { id: 'deathsPerMil', numeric: true, disablePadding: false, label: 'D/Mil' },
+        { id: 'death', numeric: true, disablePadding: false, label: 'Deaths' },
+        { id: 'population', numeric: true, disablePadding: false, label: 'Pop.' },
+    ];
+
+    let extendlist = prepCountyDataForDisplay(list);
+
+    let countySummary =
+        <Table className={classes.table} size="small" aria-label="simple table">
+            <EnhancedTableHead
+                classes={classes}
+                order={order}
+                orderBy={orderBy}
+                onRequestSort={handleRequestSort}
+                headCells={myHeadCells}
+            />
+            <TableBody>
+                {
+                    stableSort(extendlist, getComparator(order, orderBy))
+                        .map(row => {
+                            let newcolumn = row.newcases ? `+${row.newcases}(${row.newEntry})` : 0;
+                            if (row.newcases === 0) {
+                                newcolumn = "-";
+                            } else {
+                                newcolumn = <section>
+                                    <div className={classes.topTag}>
+                                        +{row.newEntry}
+                                    </div>
+                                    <div className={classes.mainTag}>
+                                        {myShortNumber(row.newcases)} </div>
+                                </section>;
+                            }
+
+                            return <TableRow key={row.County}>
+                                <ThemeProvider theme={compact}>
+                                    <TableCell component="th" scope="row" onClick={() => { clicked(row.County, row.State); }}>
+                                        <Link>
+                                            {row.County}
+                                        </Link>
+                                    </TableCell>
+                                    <TableCell align="right">{row.confirmed}</TableCell>
+                                    <TableCell align="right">{myGoodWholeNumber(row.partsPerMil)}</TableCell>
+                                    <TableCell align="right">{myGoodWholeNumber(row.deathsPerMil)}</TableCell>
                                     <TableCell align="right">{myGoodShortNumber(row.death)}</TableCell>
                                     <TableCell align="right">{(row.population === 0) ? '-' : myGoodShortNumber(row.population)}</TableCell>
                                 </ThemeProvider>
@@ -200,4 +292,5 @@ const CountyListRender = (props) => {
 export {
     NearbyCounties,
     CountiesForStateWidget,
+    ListStateCountiesCapita,
 }

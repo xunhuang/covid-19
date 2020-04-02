@@ -6,7 +6,7 @@ import { withHeader } from "./Header.js"
 import { MyTabs } from "./MyTabs.js"
 import { USInfoTopWidget } from './USInfoTopWidget.js'
 import { withRouter } from 'react-router-dom'
-import { CountiesForStateWidget } from "./CountyListRender.js"
+import { CountiesForStateWidget, ListStateCountiesCapita } from "./CountyListRender.js"
 import { GraphStateHospitalization } from './GraphHospitalization.js'
 import { BasicGraphNewCases } from "./GraphNewCases.js"
 
@@ -56,6 +56,13 @@ const PageState = withHeader((props) => {
                 Util.browseTo(props.history, newstate, newcounty);
             }}
         />,
+        <ListStateCountiesCapita
+            county={county}
+            state={state}
+            callback={(newcounty, newstate) => {
+                Util.browseTo(props.history, newstate, newcounty);
+            }}
+        />,
     ];
 
     return (
@@ -75,7 +82,7 @@ const PageState = withHeader((props) => {
                 }}
             />
             <MyTabs
-                labels={[`Counties of ${states.getStateNameByStateCode(state)} `]}
+                labels={[`Counties of ${states.getStateNameByStateCode(state)} `, "Per Capita"]}
                 tabs={tabs}
             />
         </>);

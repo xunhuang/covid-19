@@ -220,6 +220,7 @@ function getCountySummary1() {
                     State_name: c.StateName,
                     StateFIPS: c.StateFIPS,
                     CountyFIPS: c.CountyFIPS,
+                    daysToDouble: c.DaysToDouble,
                 });
             }
         }
@@ -245,6 +246,7 @@ function countyDataForState(state_short_name) {
                 state_name: c.StateName,
                 State: c.StateName,
                 Population2010: pop,
+                daysToDouble: c.DaysToDouble,
             });
 
         }
