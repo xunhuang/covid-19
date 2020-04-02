@@ -20,13 +20,11 @@ const StateGraphCaveat = (props) => {
     return <div>
         <Typography variant="body2">
             Recovery data collection started on 4/2.
-        </Typography>
 
-        {!props.stateSummary.lastRecovery ||
-            <Typography variant="body2">
-                Not recovery data for this state yet.
-             </Typography>
-        }
+        {props.stateSummary.lastRecovered > 0 ||
+                " No recovery data for this state yet."
+            }
+        </Typography>
 
         <BasicGraphRecoveryAndDeath {...props} />
     </div>;

@@ -379,7 +379,7 @@ function casesForStateSummary(state_short_name) {
         stayHomeOrder: state.Summary.StayHomeOrder,
         daysToDouble: state.Summary.DaysToDouble,
         daysToDoubleDeath: state.Summary.DaysToDoubleDeath,
-        lastRecovered: state.Summary.lastRecovered,
+        lastRecovered: state.Summary.LastRecovered,
     }
 }
 
