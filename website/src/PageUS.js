@@ -31,16 +31,8 @@ const PageUS = withHeader((props) => {
     logger.logEvent("PageUS");
 
     const tabs = [
-        <ListAllStates
-            callback={(newstate) => {
-                Util.browseToState(props.history, newstate);
-            }}
-        ></ListAllStates>,
-        <ListAllStatesPerCapita
-            callback={(newstate) => {
-                Util.browseToState(props.history, newstate);
-            }}
-        ></ListAllStatesPerCapita>
+        <ListAllStates />,
+        <ListAllStatesPerCapita />
     ];
     return (
         <>
@@ -48,15 +40,8 @@ const PageUS = withHeader((props) => {
                 county={default_county_info.county}
                 state={default_county_info.state}
                 selectedTab={"usa"}
-                callback={(newcounty, newstate) => {
-                    Util.browseTo(props.history, newstate, newcounty);
-                }}
             />
-            <GraphSectionUS
-                callback={(newcounty, newstate) => {
-                    Util.browseTo(props.history, newstate, newcounty);
-                }}
-            />
+            <GraphSectionUS />
             <MyTabs
                 labels={["States of USA", "Capita"]}
                 tabs={tabs}

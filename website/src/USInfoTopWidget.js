@@ -6,7 +6,9 @@ import { myShortNumber } from "./Util.js";
 import { withRouter } from 'react-router-dom'
 import { lookupCountyInfo } from "./USCountyInfo.js";
 import { Typography } from '@material-ui/core';
-import * as Util from "./Util.js";
+import { Link } from 'react-router-dom';
+import { reverse } from 'named-urls';
+import routes from "./Routes.js";
 
 const states = require('us-state-codes');
 
@@ -36,15 +38,12 @@ const useStyles = makeStyles(theme => ({
         borderRadius: 10,
         flex: 1,
         margin: 3,
+        color: "black",
+        textDecoration: "none",
     },
     tagSelected: {
-        display: "inline-block",
-        textAlign: "center",
         color: "#FFFFFF",
         backgroundColor: "#00aeef",
-        borderRadius: 10,
-        flex: 1,
-        margin: 3,
     },
     tagTitle: {
         marginTop: 5,
@@ -108,9 +107,7 @@ const USInfoTopWidget = withRouter((props) => {
                 hospitals={countyInfo.Hospitals}
                 beds={countyInfo.HospitalBeds}
                 selected={props.selectedTab === "county"}
-                callback={() => {
-                    Util.browseTo(props.history, state, county);
-                }}
+                to={reverse(routes.county, {state, county})}
             />
             <Tag title={state_title}
                 confirmed={state_summary.confirmed}
@@ -118,9 +115,7 @@ const USInfoTopWidget = withRouter((props) => {
                 hospitals={state_hospitals.hospitals}
                 beds={state_hospitals.beds}
                 selected={props.selectedTab === "state"}
-                callback={() => {
-                    Util.browseToState(props.history, state);
-                }}
+                to={reverse(routes.state, {state})}
             />
             <Tag
                 title={US_title}
@@ -129,9 +124,7 @@ const USInfoTopWidget = withRouter((props) => {
                 hospitals={6146}
                 beds={924107}
                 selected={props.selectedTab === "usa"}
-                callback={() => {
-                    Util.browseToUSPage(props.history);
-                }}
+                to={routes.united_states}
             />
         </div>
         <div className={classes.timestamp}>
@@ -144,13 +137,7 @@ const USInfoTopWidget = withRouter((props) => {
 
 const Tag = (props) => {
     const classes = useStyles();
-    return <div className={props.selected ? classes.tagSelected : classes.tag}
-        onClick={() => {
-            if (props.callback) {
-                props.callback();
-            }
-        }}
-    >
+    return <Link className={`${classes.tag} ${props.selected ? classes.tagSelected : ''}`} to={props.to}>
         <div className={classes.tagTitle}> {props.title} </div>
         <div className={classes.row} >
             <section>
@@ -173,7 +160,7 @@ const Tag = (props) => {
                     </div>
             </section>
         </div>
-    </div >;
+    </Link>;
 };
 
 

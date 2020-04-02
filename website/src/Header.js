@@ -5,15 +5,9 @@ import Disqus from "disqus-react"
 import Typography from '@material-ui/core/Typography'
 import { makeStyles } from '@material-ui/core/styles';
 import { FacebookProvider, CommentsCount } from 'react-facebook';
-
-function browseTo(history, state, county) {
-    history.push(
-        county == null ?
-            "/state/" + encodeURIComponent(state) :
-            "/county/" + encodeURIComponent(state) + "/" + encodeURIComponent(county),
-        history.search,
-    );
-}
+import routes from './Routes';
+import { reverse } from 'named-urls';
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles(theme => ({
     topContainer: {
@@ -84,6 +78,7 @@ const SearchBox = (props) => {
                 value: c,
             };
         });
+    const history = useHistory();
     return <Select
         className="basic-single"
         classNamePrefix="select"
@@ -100,12 +95,17 @@ const SearchBox = (props) => {
         name="county_or_state_selection"
         options={search_list_final}
         onChange={param => {
-            if (props.callback) {
-                if (param && param.value) {
-                    props.callback(param.value.county, param.value.state);
+            if (param && param.value) {
+                let route;
+                if (param.value.county) {
+                    route = reverse(
+                        routes.county,
+                        {county: param.value.county, state: param.value.state});
+                } else {
+                    route = reverse(routes.state, {state: param.value.state});
                 }
+                history.push(route);
             }
-
         }}
     />;
 }
@@ -155,11 +155,7 @@ const withHeader = (comp, props) => {
             </Typography>
                 </span>
             </div>
-            <SearchBox
-                callback={(newcounty, newstate) => {
-                    browseTo(props.history, newstate, newcounty);
-                }}
-            />
+            <SearchBox />
             <div className={classes.qpContainer}>
                 <Typography variant="body1" >
                     Some problem with new number calculation. Total is correct but New is not.
