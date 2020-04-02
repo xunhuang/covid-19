@@ -192,6 +192,7 @@ function getAllStatesSummary() {
             // this can also be presummarized.
             Population2010: USState_Population[s.state],
             daysToDouble: s.daysToDouble,
+            daysToDoubleDeath: s.daysToDoubleDeath,
         }
 
     })
@@ -221,6 +222,7 @@ function getCountySummary1() {
                     StateFIPS: c.StateFIPS,
                     CountyFIPS: c.CountyFIPS,
                     daysToDouble: c.DaysToDouble,
+                    daysToDoubleDeath: c.DaysToDoubleDeath,
                 });
             }
         }
@@ -246,7 +248,7 @@ function countyDataForState(state_short_name) {
                 state_name: c.StateName,
                 State: c.StateName,
                 Population2010: pop,
-                daysToDouble: c.DaysToDouble,
+                daysToDoubleDeath: c.DaysToDoubleDeath,
             });
 
         }
@@ -355,6 +357,7 @@ function casesForStateSummary(state_short_name) {
             death: 0,
             newpercent: 0,
             daysToDouble: null,
+            daysToDoubleDeath: null,
         }
     }
     let confirmed = state.Summary.LastConfirmed;
@@ -367,6 +370,7 @@ function casesForStateSummary(state_short_name) {
         newpercent: ((newcases / (confirmed - newcases)) * 100).toFixed(0),
         stayHomeOrder: state.Summary.StayHomeOrder,
         daysToDouble: state.Summary.DaysToDouble,
+        daysToDoubleDeath: state.Summary.DaysToDoubleDeath,
     }
 }
 

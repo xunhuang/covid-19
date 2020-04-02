@@ -84,6 +84,7 @@ function prepareDataForDisplay(list) {
         newrow.partsPerMil = newrow.confirmed * 1000000 / newrow.pop;
         newrow.deathsPerMil = newrow.death * 1000000 / newrow.pop;
         newrow.daysToDouble = row.daysToDouble;
+        newrow.daysToDoubleDeath = row.daysToDoubleDeath;
         return newrow;
     });
     return extendlist;
@@ -179,6 +180,7 @@ const AllStateListRender = (props) => {
         { id: 'partsPerMil', numeric: true, disablePadding: false, label: '#/mil' },
         { id: 'death', numeric: true, disablePadding: false, label: 'Deaths' },
         { id: 'daysToDouble', numeric: true, disablePadding: false, label: 'Days 2x' },
+        { id: 'daysToDoubleDeath', numeric: true, disablePadding: false, label: 'Deaths 2x' },
     ];
 
     let extendlist = prepareDataForDisplay(list);
@@ -222,7 +224,8 @@ const AllStateListRender = (props) => {
                                     <TableCell align="right">{myGoodWholeNumber(row.partsPerMil)}</TableCell>
                                     {/* <TableCell align="right">{myGoodWholeNumber(row.deathsPerMil)}</TableCell> */}
                                     <TableCell align="right">{myGoodShortNumber(row.death)}</TableCell>
-                                    <TableCell align="right">{(row.daysToDouble === null) ? "-" : row.daysToDouble.toFixed(1)}</TableCell>
+                                    <TableCell align="right">{(!row.daysToDouble) ? "-" : row.daysToDouble.toFixed(1)}</TableCell>
+                                    <TableCell align="right">{(!row.daysToDoubleDeath) ? "-" : row.daysToDoubleDeath.toFixed(1)}</TableCell>
                                 </ThemeProvider>
                             </TableRow>;
                         })
