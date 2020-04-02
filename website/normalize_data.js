@@ -383,6 +383,7 @@ function summarize_counties() {
             county.LastDeath = DD.num;
             county.LastDeathNew = DD.newnum;
             county.DaysToDouble = getDoubleDays(county.Confirmed, c);
+            county.DaysToDoubleDeath = getDoubleDays(county.Death, c);
             setCountyNode(s, c, county);
         }
     }
@@ -416,6 +417,7 @@ function summarize_states() {
         Summary.LastDeath = DD.num;
         Summary.LastDeathNew = DD.newnum;
         Summary.DaysToDouble = getDoubleDays(Confirmed);
+        Summary.DaysToDoubleDeath = getDoubleDays(Death);
 
         state.Summary = Summary;
     }
@@ -446,6 +448,7 @@ function summarize_USA() {
     Summary.LastDeathNew = DD.newnum;
     Summary.generated = moment().format();
     Summary.DaysToDouble = getDoubleDays(USConfirmed);
+    Summary.DaysToDoubleDeath = getDoubleDays(USDeath);
 
     AllData.Summary = Summary;
 }
