@@ -9,6 +9,7 @@ import { withRouter } from 'react-router-dom'
 import { CountiesForStateWidget, ListStateCountiesCapita } from "./CountyListRender.js"
 import { GraphStateHospitalization } from './GraphHospitalization.js'
 import { BasicGraphNewCases } from "./GraphNewCases.js"
+import { Redirect } from 'react-router-dom'
 
 const moment = require("moment");
 const states = require('us-state-codes');
@@ -44,6 +45,12 @@ const GraphSectionState = withRouter((props) => {
 
 const PageState = withHeader((props) => {
     const state = props.match.params.state;
+    // Validate state name
+    const stateFullName = states.getStateNameByStateCode(state);
+    if (stateFullName === null) {
+      return <Redirect to={'/page-not-found'} />;
+    }
+
     const county = Util.getDefaultCountyForState(
         props.match.params.state,
         props.match.params.county);
