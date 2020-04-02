@@ -34,6 +34,11 @@ const DataCreditWidget = () => {
                         Wikidata query for stay-at-home orders
                     </a>
                 </li>
+                <li>
+                    <a target="_blank" href="https://bnonews.com/index.php/2020/04/the-latest-coronavirus-cases/" rel="noopener noreferrer">
+                        BNO News
+                    </a>
+                </li>
             </Typography>
         </div>
     );
