@@ -248,6 +248,7 @@ function countyDataForState(state_short_name) {
                 state_name: c.StateName,
                 State: c.StateName,
                 Population2010: pop,
+                daysToDouble: c.DaysToDouble,
                 daysToDoubleDeath: c.DaysToDoubleDeath,
             });
 
@@ -451,7 +452,7 @@ function getAllProperCountyDataForState(statekey) {
  */
 function getAllProperCountyKeysForState(statekey) {
     const stateData = AllData[statekey];
-    return Object.keys(stateData).filter((k) => k !== 'Summary' && k !== 'Metros' && k != '0');
+    return Object.keys(stateData).filter((k) => k !== 'Summary' && k !== 'Metros' && k !== '0');
 }
 
 /**

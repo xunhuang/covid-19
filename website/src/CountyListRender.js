@@ -97,6 +97,7 @@ const ListStateCountiesCapita = (props) => {
 
 function prepCountyDataForDisplay(list) {
     let extendlist = list.map(row => {
+        console.log(row);
         let newrow = {};
         let sum = USCounty.casesForCountySummary(row.State, row.County);
         let newcases = sum.newcases;
@@ -131,8 +132,7 @@ function prepCountyDataForDisplay(list) {
         newrow.deathsPerMil = sum.death * 1000000 / population;
         newrow.death = sum.death;
         newrow.daysToDouble = row.daysToDouble;
-        console.log(row);
-        console.log(sum);
+        newrow.daysToDoubleDeath = row.daysToDoubleDeath;
         return newrow;
     });
     return extendlist;
@@ -191,6 +191,8 @@ const CountyListRender = (props) => {
                                         {myShortNumber(row.newcases)} </div>
                                 </section>;
                             }
+
+                            console.log(row);
 
                             return <TableRow key={row.County}>
                                 <ThemeProvider theme={compact}>
