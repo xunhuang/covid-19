@@ -351,7 +351,11 @@ function getValueFromLastDate(v, comment) {
         return { num: 0, newnum: 0 }
     }
     if (Object.keys(v).length === 1) {
-        return { num: v[0], newnum: v[0] }
+        let ret = {
+            num: Object.values(v)[0],
+            newnum: Object.values(v)[0],
+        }
+        return ret;
     }
     let nv = Object.keys(v).sort((a, b) => moment(b, "MM/DD/YYYY").toDate() - moment(a, "MM/DD/YYYY").toDate());
 
@@ -650,6 +654,9 @@ function processBNO(dataset, date) {
                 console.log("Recovery for " + state_name + " is " + recovery_number)
             }
             AllData[state_fips].Summary.Recovered = Recovered;
+            const RR = getValueFromLastDate(Recovered, "debug");
+            AllData[state_fips].Summary.LastRecovered = RR.num;
+            AllData[state_fips].Summary.LastRecoveredNew = RR.newnum;
         } else {
             console.log("FIXME: no state node for " + state_name);
         }
