@@ -8,6 +8,7 @@ import { logger } from "./AppModule"
 import { PageUS } from "./PageUS"
 import { PageState } from "./PageState"
 import { PageCounty } from "./PageCounty"
+import { Page404 } from "./Page404"
 import { reverse } from 'named-urls';
 import routes from "./Routes"
 
@@ -90,6 +91,7 @@ const MainApp = withRouter((props) => {
         <MyRoute exact path={routes.county} render={(props) => <PageCounty {...props} state={state} county={county} />} />
         <MyRoute exact path={routes.state} render={(props) => <PageState {...props} state={state} county={county} />} />
         <MyRoute exact path={routes.united_states} render={(props) => <PageUS {...props} state={state} county={county} />} />
+        <Route exact path="*" render={() => <Page404 />} status={404}/>
       </Switch>
     </div>
   );
