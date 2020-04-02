@@ -279,7 +279,9 @@ function processJHUDataPoint(c, date) {
     let b = c.attributes;
     let county_fips = b.FIPS;
     let state_fips = STATE_Name_To_FIPS[b.Province_State];
-    if (county_fips === null) {
+    if (county_fips === null && b.Admin2 ==="Harris" && b.Province_State === "Texas") {
+        county_fips = "48201";
+    } else if (county_fips === null) {
         county_fips = "0";
     } else{
     if (county_fips.slice(0,2) === "90") {
