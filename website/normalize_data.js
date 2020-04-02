@@ -281,6 +281,10 @@ function processJHUDataPoint(c, date) {
     let state_fips = STATE_Name_To_FIPS[b.Province_State];
     if (county_fips === null) {
         county_fips = "0";
+    } else{
+    if (county_fips.slice(0,2) === "90") {
+        county_fips = "0"; // until we find a better solution, JHU data change at 4/2
+    }
     }
     let county = getCountyNode(state_fips, county_fips);
     if (!county) {

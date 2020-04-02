@@ -396,7 +396,7 @@ function casesForUSSummary() {
 }
 
 function myFipsCode(state, county) {
-    if (!county || county === "Statewide Unallocated") {
+    if (!county || county === "Statewide Unallocated" || county === "Unassigned" ) {
         let statefips = STATE_Name_To_FIPS[states.getStateNameByStateCode(state)];
         return [statefips, "0"];
     }
