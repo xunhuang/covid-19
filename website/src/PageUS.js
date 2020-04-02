@@ -2,6 +2,7 @@ import React from 'react';
 import { withRouter } from 'react-router-dom'
 import * as USCounty from "./USCountyInfo.js";
 import { BasicGraphNewCases } from "./GraphNewCases.js"
+import { BasicGraphRecoveryAndDeath } from "./GraphRecoveryAndDeath.js"
 import { GraphUSTesting } from "./GraphTestingEffort"
 import { withHeader } from "./Header.js"
 import { MyTabs } from "./MyTabs.js"
@@ -14,13 +15,15 @@ import { logger } from "./AppModule"
 
 const GraphSectionUS = withRouter((props) => {
     let graphdata = USCounty.getUSDataForGrapth();
+    console.log(graphdata);
     const tabs = [
         <BasicGraphNewCases data={graphdata} logScale={false} />,
+        <BasicGraphRecoveryAndDeath data={graphdata} logScale={false} />,
         <GraphUSTesting />,
         <GraphUSHospitalization />,
     ]
     let graphlistSection = <MyTabs
-        labels={["Cases", `USA Testing`, "Hospitalization"]}
+        labels={["Cases", `Recovery & Death`, `Testing`, "Hospitalization"]}
         tabs={tabs}
     />;
     return graphlistSection;

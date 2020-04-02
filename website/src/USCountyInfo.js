@@ -298,6 +298,9 @@ function dataMapToGraphSeriesNew(data) {
         let key = keys[i];
         entry.confirmed = data.Confirmed[key];
         entry.death = data.Death[key];
+        if (data.Recovered) {
+            entry.recovery = data.Recovered[key];
+        }
         entry.fulldate = key;
         arr.push(entry);
     }
