@@ -30,18 +30,19 @@ class MyRoute extends Route {
     let titlePrefix = '';
     let desc;
     if (state === undefined && county === undefined) {
-      // Case 1: US page
-      titlePrefix = 'US';
+      // Case 1: 404 page
+      // Case 2: US page
+      titlePrefix = (this.props.status === 404) ? 'Page Not Found' : 'US';
       desc = "US county-level COVID-19 30-day data visualized: confirmed cases, "
         + "new cases & death curves. State-level testing results & hospitalization numbers.";
     } else if (county === undefined) {
-      // Case 2: state page
+      // Case 3: state page
       let stateFullName = states.getStateNameByStateCode(state);
       titlePrefix = stateFullName;
       desc = `${stateFullName} COVID-19 30-day data visualized: confirmed cases, `
         + "new cases & death curves, testing results & hospitalization numbers.";
     } else {
-      // Case 3: county page
+      // Case 4: county page
       titlePrefix = `${county}, ${state}`;
       desc = `${county} county COVID-19 30-day data visualized: confirmed cases, new cases & death curves.`;
     }
@@ -91,7 +92,7 @@ const MainApp = withRouter((props) => {
         <MyRoute exact path={routes.county} render={(props) => <PageCounty {...props} state={state} county={county} />} />
         <MyRoute exact path={routes.state} render={(props) => <PageState {...props} state={state} county={county} />} />
         <MyRoute exact path={routes.united_states} render={(props) => <PageUS {...props} state={state} county={county} />} />
-        <Route exact path="*" render={() => <Page404 />} status={404}/>
+        <MyRoute exact path="*" render={() => <Page404 />} status={404}/>
       </Switch>
     </div>
   );
