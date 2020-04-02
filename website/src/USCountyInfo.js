@@ -379,6 +379,7 @@ function casesForStateSummary(state_short_name) {
         stayHomeOrder: state.Summary.StayHomeOrder,
         daysToDouble: state.Summary.DaysToDouble,
         daysToDoubleDeath: state.Summary.DaysToDoubleDeath,
+        lastRecovered: state.Summary.lastRecovered,
     }
 }
 
@@ -396,7 +397,7 @@ function casesForUSSummary() {
 }
 
 function myFipsCode(state, county) {
-    if (!county || county === "Statewide Unallocated" || county === "Unassigned" ) {
+    if (!county || county === "Statewide Unallocated" || county === "Unassigned") {
         let statefips = STATE_Name_To_FIPS[states.getStateNameByStateCode(state)];
         return [statefips, "0"];
     }

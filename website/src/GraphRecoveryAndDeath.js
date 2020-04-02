@@ -1,5 +1,5 @@
 import React from 'react';
-import { ResponsiveContainer, LineChart, Line, YAxis, XAxis, CartesianGrid } from 'recharts';
+import { ResponsiveContainer, Tooltip, LineChart, Line, YAxis, XAxis, CartesianGrid } from 'recharts';
 import { Typography } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
 import { scaleSymlog } from 'd3-scale';
@@ -84,6 +84,8 @@ const BasicGraphRecoveryAndDeath = (props) => {
                         <YAxis yAxisId={0} scale={scale} /> :
                         <YAxis yAxisId={0} tickFormatter={formatYAxis} />
                 }
+
+                <Tooltip />
 
                 <CartesianGrid stroke="#d5d5d5" strokeDasharray="5 5" />
                 <Line type="monotone" dataKey="recovery" stroke="#387908" yAxisId={0} strokeWidth={2} />

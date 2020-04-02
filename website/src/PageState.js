@@ -9,10 +9,28 @@ import { withRouter } from 'react-router-dom'
 import { CountiesForStateWidget, ListStateCountiesCapita } from "./CountyListRender.js"
 import { GraphStateHospitalization } from './GraphHospitalization.js'
 import { BasicGraphNewCases } from "./GraphNewCases.js"
+import Typography from '@material-ui/core/Typography'
+import { BasicGraphRecoveryAndDeath } from "./GraphRecoveryAndDeath.js"
 import { Redirect } from 'react-router-dom'
 
 const moment = require("moment");
 const states = require('us-state-codes');
+
+const StateGraphCaveat = (props) => {
+    return <div>
+        <Typography variant="body2">
+            Recovery data collection started on 4/2.
+        </Typography>
+
+        {!props.stateSummary.lastRecovery ||
+            <Typography variant="body2">
+                Not recovery data for this state yet.
+             </Typography>
+        }
+
+        <BasicGraphRecoveryAndDeath {...props} />
+    </div>;
+}
 
 const GraphSectionState = withRouter((props) => {
     const state = props.state;
@@ -33,11 +51,15 @@ const GraphSectionState = withRouter((props) => {
                         label: "Stay-At-Home Order",
                     }] : []
             } />,
+        <StateGraphCaveat stateSummary={stateSummary} data={graphdata} logScale={false} />,
         < GraphStateTesting state={state} />,
         <GraphStateHospitalization state={state} />,
     ]
     let graphlistSection = <MyTabs
-        labels={["Cases", `${state_title} Testing`, "Hospitalization"]}
+        labels={["Cases",
+            `${state} State Recovery`,
+            `${state} Test`,
+            "Hospitalization"]}
         tabs={tabs}
     />;
     return graphlistSection;
@@ -48,7 +70,7 @@ const PageState = withHeader((props) => {
     // Validate state name
     const stateFullName = states.getStateNameByStateCode(state);
     if (stateFullName === null) {
-      return <Redirect to={'/page-not-found'} />;
+        return <Redirect to={'/page-not-found'} />;
     }
 
     const county = Util.getDefaultCountyForState(
