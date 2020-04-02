@@ -426,6 +426,41 @@ function myFipsCode(state, county) {
     return [a.fips.slice(0, 2), a.fips]
 }
 
+/**
+* Returns a flat array containing all counties in AllData (excluding special items like Summary, unallocated)
+*/
+function getAllProperCountyDataForUS() {
+    return getAllProperStateKeys().reduce((acc, statekey) => {
+        const all_county_data = getAllProperCountyDataForState(statekey);
+        return acc.concat(all_county_data);
+    }, []);
+}
+
+/**
+ * Returns data for all counties in given state found in AllData excluding data for Summary, unallocated, etc.
+ * @param {*} statekey 
+ */
+function getAllProperCountyDataForState(statekey) {
+    const stateData = AllData[statekey];
+    return getAllProperCountyKeysForState(statekey).map((k) => stateData[k])
+}
+
+/**
+ * Returns keys for all counties in a given state found in AllData excluding data for Summary, unallocated, etc.
+ * @param {*} statekey 
+ */
+function getAllProperCountyKeysForState(statekey) {
+    const stateData = AllData[statekey];
+    return Object.keys(stateData).filter((k) => k !== 'Summary' && k !== 'Metros' && k != '0');
+}
+
+/**
+ * Returns the state keys used in AllData excluding "non-state" data (e.g Summary)
+ */
+function getAllProperStateKeys() {
+    return Object.keys(AllData).filter((k) => k !== 'Summary' && k !== 'Metros');
+}
+
 export {
     countyModuleInit,
     lookupCountyInfo,
@@ -441,4 +476,8 @@ export {
     getStateDataForGrapth, // check
     getUSDataForGrapth, //Check
     myFipsCode,
+    getAllProperStateKeys,
+    getAllProperCountyKeysForState,
+    getAllProperCountyDataForState,
+    getAllProperCountyDataForUS,
 }
