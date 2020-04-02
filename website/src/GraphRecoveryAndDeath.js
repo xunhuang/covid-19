@@ -1,6 +1,5 @@
 import React from 'react';
-import { ResponsiveContainer, LineChart, Label, Line, ReferenceLine, ReferenceArea, YAxis, XAxis, Tooltip, CartesianGrid, Legend } from 'recharts';
-import { makeStyles, withStyles } from '@material-ui/core/styles';
+import { ResponsiveContainer, LineChart, Line, YAxis, XAxis, CartesianGrid } from 'recharts';
 import { Typography } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
 import { scaleSymlog } from 'd3-scale';
@@ -11,23 +10,8 @@ const moment = require("moment");
 
 const scale = scaleSymlog().domain([0, 'dataMax']);
 
-const useStyles = makeStyles(theme => ({
-    customtooltip: {
-        backgroundColor: "#FFFFFF",
-    },
-    grow: {
-        flex: 1,
-    },
-    formControl: {
-        margin: theme.spacing(1),
-        minWidth: 130,
-        maxWidth: 300,
-    },
-}));
-
 const BasicGraphRecoveryAndDeath = (props) => {
 
-    const classes = useStyles();
     const [state, setState] = React.useState({
         showlog: false,
         show2weeks: false,
@@ -61,13 +45,10 @@ const BasicGraphRecoveryAndDeath = (props) => {
 
 
     const formatYAxis = (tickItem) => {
-        console.log(tickItem);
         return myShortNumber(tickItem);
     }
 
     data = data.sort((a, b) => moment(a.fulldate, "MM/DD/YYYY").isAfter(moment(b.fulldate, "MM/DD/YYYY")));
-
-    console.log(data)
 
     return <>
         <Grid container alignItems="center" spacing={1}>

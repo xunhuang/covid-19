@@ -129,22 +129,10 @@ const AllStateListCapita = (props) => {
                 {
                     stableSort(extendlist, getComparator(order, orderBy))
                         .map(row => {
-                            let newcolumn = row.newcases ? `${myShortNumber(row.newcases)}(${row.newEntry})` : 0;
-                            if (row.newcases === 0) {
-                                newcolumn = "-";
-                            } else {
-                                newcolumn = <section>
-                                    <div className={classes.topTag}>
-                                        +{row.newEntry}
-                                    </div>
-                                    <div className={classes.mainTag}>
-                                        {myShortNumber(row.newcases)} </div>
-                                </section>;
-                            }
                             return <TableRow key={row.state}>
                                 <ThemeProvider theme={compact}>
                                     <TableCell component="th" scope="row">
-                                        <MaterialLink component={RouterLink} to={reverse(routes.state, {state: row.state})}>
+                                        <MaterialLink component={RouterLink} to={reverse(routes.state, { state: row.state })}>
                                             {row.statename}
                                         </MaterialLink>
                                     </TableCell>
@@ -214,7 +202,7 @@ const AllStateListRender = (props) => {
                             return <TableRow key={row.state}>
                                 <ThemeProvider theme={compact}>
                                     <TableCell component="th" scope="row">
-                                        <MaterialLink component={RouterLink} to={reverse(routes.state, {state: row.state})}>
+                                        <MaterialLink component={RouterLink} to={reverse(routes.state, { state: row.state })}>
                                             {row.statename}
                                         </MaterialLink>
                                     </TableCell>

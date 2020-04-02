@@ -13,9 +13,14 @@ import { ListAllStates, ListAllStatesPerCapita } from "./ListAllStates.js"
 
 import { logger } from "./AppModule"
 
+const GraphTabIndex = {
+    "/US/Recovery": 1,
+}
+
 const GraphSectionUS = withRouter((props) => {
     let graphdata = USCounty.getUSDataForGrapth();
-    console.log(graphdata);
+    let tabIndex = GraphTabIndex[props.match.url];
+
     const tabs = [
         <BasicGraphNewCases data={graphdata} logScale={false} />,
         <BasicGraphRecoveryAndDeath data={graphdata} logScale={false} />,
@@ -25,6 +30,7 @@ const GraphSectionUS = withRouter((props) => {
     let graphlistSection = <MyTabs
         labels={["Cases", `Recovery & Death`, `Testing`, "Hospitalization"]}
         tabs={tabs}
+        startTab={tabIndex}
     />;
     return graphlistSection;
 });

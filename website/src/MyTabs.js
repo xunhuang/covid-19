@@ -50,8 +50,9 @@ function LinkTab(props) {
 const MyTabs = (props) => {
     const tabs = props.tabs;
     const labels = props.labels;
+    const startIndex = props.startTab ? props.startTab : 0;
+    const [tabvalue, setTabvalue] = React.useState(startIndex);
 
-    const [tabvalue, setTabvalue] = React.useState(0);
     const handleChange = (event, newValue) => {
         setTabvalue(newValue);
     }

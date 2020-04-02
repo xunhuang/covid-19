@@ -248,19 +248,6 @@ const CountyListRenderCapita = (props) => {
                 {
                     stableSort(extendlist, getComparator(order, orderBy))
                         .map(row => {
-                            let newcolumn = row.newcases ? `+${row.newcases}(${row.newEntry})` : 0;
-                            if (row.newcases === 0) {
-                                newcolumn = "-";
-                            } else {
-                                newcolumn = <section>
-                                    <div className={classes.topTag}>
-                                        +{row.newEntry}
-                                    </div>
-                                    <div className={classes.mainTag}>
-                                        {myShortNumber(row.newcases)} </div>
-                                </section>;
-                            }
-
                             return <TableRow key={row.County}>
                                 <ThemeProvider theme={compact}>
                                     <TableCell component="th" scope="row">

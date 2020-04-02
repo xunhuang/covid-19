@@ -83,7 +83,7 @@ const MainApp = withRouter((props) => {
   }
 
   if (props.location.pathname === "/") {
-    return <Redirect to={reverse(routes.county, {state, county})} />;
+    return <Redirect to={reverse(routes.county, { state, county })} />;
   }
   return (
     <div>
@@ -92,7 +92,8 @@ const MainApp = withRouter((props) => {
         <MyRoute exact path={routes.county} render={(props) => <PageCounty {...props} state={state} county={county} />} />
         <MyRoute exact path={routes.state} render={(props) => <PageState {...props} state={state} county={county} />} />
         <MyRoute exact path={routes.united_states} render={(props) => <PageUS {...props} state={state} county={county} />} />
-        <MyRoute exact path="*" render={() => <Page404 />} status={404}/>
+        <MyRoute exact path={routes.united_states_recovery} render={(props) => <PageUS {...props} state={state} county={county} />} />
+        <MyRoute exact path="*" render={() => <Page404 />} status={404} />
       </Switch>
     </div>
   );
