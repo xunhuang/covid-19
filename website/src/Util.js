@@ -48,27 +48,6 @@ function myToNumber(n) {
     return ret;
 }
 
-function browseTo(history, state, county) {
-    history.push(
-        "/county/" + encodeURIComponent(state) + "/" + encodeURIComponent(county),
-        history.search,
-    );
-}
-
-function browseToState(history, state) {
-    history.push(
-        "/state/" + encodeURIComponent(state),
-        history.search,
-    );
-}
-
-function browseToUSPage(history) {
-    history.push(
-        "/US",
-        history.search,
-    );
-}
-
 function CookieGetLastCounty() {
     let county_info = Cookies.getJSON("LastCounty");
     return county_info;
@@ -120,9 +99,6 @@ export {
     myGoodShortNumber,
     myGoodWholeNumber,
     myToNumber,
-    browseTo,
-    browseToState,
-    browseToUSPage,
 
     CookieGetLastCounty,
     CookieSetLastCounty,

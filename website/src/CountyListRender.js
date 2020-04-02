@@ -9,8 +9,11 @@ import TableRow from '@material-ui/core/TableRow';
 import { myShortNumber, myToNumber, myGoodWholeNumber, myGoodShortNumber } from "./Util.js";
 import { ThemeProvider } from '@material-ui/core'
 import { createMuiTheme } from '@material-ui/core/styles';
-import { Link } from '@material-ui/core';
+import { Link as MaterialLink } from '@material-ui/core';
+import { Link as RouterLink } from 'react-router-dom';
 import { EnhancedTableHead, stableSort, getComparator } from "./TableSortHelper";
+import { reverse } from 'named-urls';
+import routes from "./Routes"
 
 const compact = createMuiTheme({
     overrides: {
@@ -44,8 +47,13 @@ const useStyles = makeStyles(theme => ({
         fontSize: "0.5rem",
     },
     table: {
-        width: "100%"
-    }
+        width: "100%",
+        "& a": {
+          display: "inline-block",
+          height: "100%",
+          width: "100%",
+        },
+    },
 }));
 
 const NearbyCounties = (props) => {
@@ -68,7 +76,7 @@ const NearbyCounties = (props) => {
                     a.County !== "Bronx" && a.County !== "Richmond"))
             .sort((a, b) => a.distance - b.distance)
             .slice(0, 10);
-        countySummary = <CountyListRender countylist={nearby} callback={props.callback} />
+        countySummary = <CountyListRender countylist={nearby} />
     }
     console.log(countySummary)
     return countySummary;
@@ -79,7 +87,7 @@ const CountiesForStateWidget = (props) => {
     if (countyInfo) {
         let list = USCounty.countyDataForState(props.state);
         countySummary =
-            <CountyListRender countylist={list} callback={props.callback} />
+            <CountyListRender countylist={list} />
     }
     return countySummary;
 }
@@ -90,7 +98,7 @@ const ListStateCountiesCapita = (props) => {
     if (countyInfo) {
         let list = USCounty.countyDataForState(props.state);
         countySummary =
-            <CountyListRenderCapita countylist={list} callback={props.callback} />
+            <CountyListRenderCapita countylist={list} />
     }
     return countySummary;
 }
@@ -141,12 +149,6 @@ function prepCountyDataForDisplay(list) {
 const CountyListRender = (props) => {
     const list = props.countylist.sort((a, b) => b.total - a.total);
     const classes = useStyles();
-    function clicked(newcounty, newstate) {
-        if (props.callback) {
-            props.callback(newcounty, newstate);
-        }
-    }
-
     const [order, setOrder] = React.useState('desc');
     const [orderBy, setOrderBy] = React.useState('confirmed');
     const handleRequestSort = (event, property) => {
@@ -196,10 +198,10 @@ const CountyListRender = (props) => {
 
                             return <TableRow key={row.County}>
                                 <ThemeProvider theme={compact}>
-                                    <TableCell component="th" scope="row" onClick={() => { clicked(row.County, row.State); }}>
-                                        <Link>
+                                    <TableCell component="th" scope="row">
+                                        <MaterialLink component={RouterLink} to={reverse(routes.county, {state: row.State, county: row.County})}>
                                             {row.County}
-                                        </Link>
+                                        </MaterialLink>
                                     </TableCell>
                                     <TableCell align="right">{row.confirmed}</TableCell>
                                     <TableCell align="right"> {newcolumn} </TableCell>
@@ -218,12 +220,6 @@ const CountyListRender = (props) => {
 const CountyListRenderCapita = (props) => {
     const list = props.countylist.sort((a, b) => b.total - a.total);
     const classes = useStyles();
-    function clicked(newcounty, newstate) {
-        if (props.callback) {
-            props.callback(newcounty, newstate);
-        }
-    }
-
     const [order, setOrder] = React.useState('desc');
     const [orderBy, setOrderBy] = React.useState('confirmed');
     const handleRequestSort = (event, property) => {
@@ -271,10 +267,10 @@ const CountyListRenderCapita = (props) => {
 
                             return <TableRow key={row.County}>
                                 <ThemeProvider theme={compact}>
-                                    <TableCell component="th" scope="row" onClick={() => { clicked(row.County, row.State); }}>
-                                        <Link>
+                                    <TableCell component="th" scope="row">
+                                        <MaterialLink component={RouterLink} to={reverse(routes.county, {county: row.County, state: row.State})}>
                                             {row.County}
-                                        </Link>
+                                        </MaterialLink>
                                     </TableCell>
                                     <TableCell align="right">{row.confirmed}</TableCell>
                                     <TableCell align="right">{myGoodWholeNumber(row.partsPerMil)}</TableCell>

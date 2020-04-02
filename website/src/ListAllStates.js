@@ -8,8 +8,11 @@ import TableRow from '@material-ui/core/TableRow';
 import { myShortNumber, myToNumber, myGoodWholeNumber, myGoodShortNumber } from "./Util.js";
 import { ThemeProvider } from '@material-ui/core'
 import { createMuiTheme } from '@material-ui/core/styles';
-import { Link } from '@material-ui/core';
+import { Link as MaterialLink } from '@material-ui/core';
+import { Link as RouterLink } from 'react-router-dom';
 import { EnhancedTableHead, stableSort, getComparator } from "./TableSortHelper";
+import { reverse } from 'named-urls';
+import routes from "./Routes"
 
 const compact = createMuiTheme({
     overrides: {
@@ -52,7 +55,7 @@ const ListAllStates = (props) => {
     let list = USCounty.getAllStatesSummary()
         .sort((a, b) => b.confirmed - a.confirmed);
     let countySummary =
-        <AllStateListRender countylist={list} callback={props.callback} />
+        <AllStateListRender countylist={list} />
     return countySummary;
 }
 
@@ -60,7 +63,7 @@ const ListAllStatesPerCapita = (props) => {
     let list = USCounty.getAllStatesSummary()
         .sort((a, b) => b.confirmed - a.confirmed);
     let countySummary =
-        <AllStateListCapita countylist={list} callback={props.callback} />
+        <AllStateListCapita countylist={list} />
     return countySummary;
 }
 
@@ -140,12 +143,10 @@ const AllStateListCapita = (props) => {
                             }
                             return <TableRow key={row.state}>
                                 <ThemeProvider theme={compact}>
-                                    <TableCell component="th" scope="row" onClick={() => {
-                                        props.callback(row.state)
-                                    }}>
-                                        <Link>
+                                    <TableCell component="th" scope="row">
+                                        <MaterialLink component={RouterLink} to={reverse(routes.state, {state: row.state})}>
                                             {row.statename}
-                                        </Link>
+                                        </MaterialLink>
                                     </TableCell>
                                     <TableCell align="right">{row.confirmed}</TableCell>
                                     <TableCell align="right">{myGoodWholeNumber(row.partsPerMil)}</TableCell>
@@ -212,12 +213,10 @@ const AllStateListRender = (props) => {
                             }
                             return <TableRow key={row.state}>
                                 <ThemeProvider theme={compact}>
-                                    <TableCell component="th" scope="row" onClick={() => {
-                                        props.callback(row.state)
-                                    }}>
-                                        <Link>
+                                    <TableCell component="th" scope="row">
+                                        <MaterialLink component={RouterLink} to={reverse(routes.state, {state: row.state})}>
                                             {row.statename}
-                                        </Link>
+                                        </MaterialLink>
                                     </TableCell>
                                     <TableCell align="right">{row.confirmed}</TableCell>
                                     <TableCell align="right"> {newcolumn} </TableCell>

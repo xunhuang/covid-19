@@ -52,16 +52,10 @@ const PageState = withHeader((props) => {
         <CountiesForStateWidget
             county={county}
             state={state}
-            callback={(newcounty, newstate) => {
-                Util.browseTo(props.history, newstate, newcounty);
-            }}
         />,
         <ListStateCountiesCapita
             county={county}
             state={state}
-            callback={(newcounty, newstate) => {
-                Util.browseTo(props.history, newstate, newcounty);
-            }}
         />,
     ];
 
@@ -71,15 +65,9 @@ const PageState = withHeader((props) => {
                 county={county}
                 state={state}
                 selectedTab={"state"}
-                callback={(newcounty, newstate) => {
-                    Util.browseTo(props.history, newstate, newcounty);
-                }}
             />
             <GraphSectionState
                 state={state}
-                callback={(newcounty, newstate) => {
-                    Util.browseTo(props.history, newstate, newcounty);
-                }}
             />
             <MyTabs
                 labels={[`Counties of ${states.getStateNameByStateCode(state)} `, "Per Capita"]}

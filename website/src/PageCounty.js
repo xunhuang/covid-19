@@ -54,9 +54,6 @@ const PageCounty = withHeader((props) => {
         <NearbyCounties
             county={county}
             state={state}
-            callback={(newcounty, newstate) => {
-                Util.browseTo(props.history, newstate, newcounty);
-            }}
         />,
         <CountyHospitalsWidget
             county={county}
@@ -70,16 +67,10 @@ const PageCounty = withHeader((props) => {
                 county={county}
                 state={state}
                 selectedTab={"county"}
-                callback={(newcounty, newstate) => {
-                    Util.browseTo(props.history, newstate, newcounty);
-                }}
             />
             <GraphSectionCounty
                 county={county}
                 state={state}
-                callback={(newcounty, newstate) => {
-                    Util.browseTo(props.history, newstate, newcounty);
-                }}
             />
             <MyTabs
                 labels={["Nearby", "Hospitals"]}

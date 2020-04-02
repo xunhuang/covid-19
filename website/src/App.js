@@ -1,5 +1,5 @@
 import React from 'react';
-import { Switch, Route, withRouter } from 'react-router-dom'
+import { Switch, Redirect, Route, withRouter } from 'react-router-dom'
 import { BrowserRouter } from 'react-router-dom';
 import { countyModuleInit } from "./USCountyInfo.js";
 import { Splash } from './Splash.js';
@@ -8,7 +8,8 @@ import { logger } from "./AppModule"
 import { PageUS } from "./PageUS"
 import { PageState } from "./PageState"
 import { PageCounty } from "./PageCounty"
-import * as Util from "./Util"
+import { reverse } from 'named-urls';
+import routes from "./Routes"
 
 const App = (props) => {
   return <BrowserRouter>
@@ -80,15 +81,15 @@ const MainApp = withRouter((props) => {
   }
 
   if (props.location.pathname === "/") {
-    Util.browseTo(props.history, state, county);
+    return <Redirect to={reverse(routes.county, {state, county})} />;
   }
   return (
     <div>
       <Switch>
         {/* <Route exact path='/' component={App2} /> */}
-        <MyRoute exact path='/county/:state/:county' render={(props) => <PageCounty {...props} state={state} county={county} />} />
-        <MyRoute exact path='/state/:state' render={(props) => <PageState {...props} state={state} county={county} />} />
-        <MyRoute exact path='/US' render={(props) => <PageUS {...props} state={state} county={county} />} />
+        <MyRoute exact path={routes.county} render={(props) => <PageCounty {...props} state={state} county={county} />} />
+        <MyRoute exact path={routes.state} render={(props) => <PageState {...props} state={state} county={county} />} />
+        <MyRoute exact path={routes.united_states} render={(props) => <PageUS {...props} state={state} county={county} />} />
       </Switch>
     </div>
   );
