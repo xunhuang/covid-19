@@ -49,9 +49,9 @@ const useStyles = makeStyles(theme => ({
     table: {
         width: "100%",
         "& a": {
-          display: "inline-block",
-          height: "100%",
-          width: "100%",
+            display: "inline-block",
+            height: "100%",
+            width: "100%",
         },
     },
 }));
@@ -78,7 +78,6 @@ const NearbyCounties = (props) => {
             .slice(0, 10);
         countySummary = <CountyListRender countylist={nearby} />
     }
-    console.log(countySummary)
     return countySummary;
 }
 const CountiesForStateWidget = (props) => {
@@ -105,7 +104,6 @@ const ListStateCountiesCapita = (props) => {
 
 function prepCountyDataForDisplay(list) {
     let extendlist = list.map(row => {
-        console.log(row);
         let newrow = {};
         let sum = USCounty.casesForCountySummary(row.State, row.County);
         let newcases = sum.newcases;
@@ -139,8 +137,8 @@ function prepCountyDataForDisplay(list) {
         newrow.County = row.County;
         newrow.deathsPerMil = sum.death * 1000000 / population;
         newrow.death = sum.death;
-        newrow.daysToDouble = row.daysToDouble;
-        newrow.daysToDoubleDeath = row.daysToDoubleDeath;
+        newrow.daysToDouble = sum.daysToDouble;
+        newrow.daysToDoubleDeath = sum.daysToDoubleDeath;
         return newrow;
     });
     return extendlist;
@@ -194,12 +192,10 @@ const CountyListRender = (props) => {
                                 </section>;
                             }
 
-                            console.log(row);
-
                             return <TableRow key={row.County}>
                                 <ThemeProvider theme={compact}>
                                     <TableCell component="th" scope="row">
-                                        <MaterialLink component={RouterLink} to={reverse(routes.county, {state: row.State, county: row.County})}>
+                                        <MaterialLink component={RouterLink} to={reverse(routes.county, { state: row.State, county: row.County })}>
                                             {row.County}
                                         </MaterialLink>
                                     </TableCell>
@@ -268,7 +264,7 @@ const CountyListRenderCapita = (props) => {
                             return <TableRow key={row.County}>
                                 <ThemeProvider theme={compact}>
                                     <TableCell component="th" scope="row">
-                                        <MaterialLink component={RouterLink} to={reverse(routes.county, {county: row.County, state: row.State})}>
+                                        <MaterialLink component={RouterLink} to={reverse(routes.county, { county: row.County, state: row.State })}>
                                             {row.County}
                                         </MaterialLink>
                                     </TableCell>

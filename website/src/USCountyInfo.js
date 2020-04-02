@@ -332,6 +332,8 @@ function casesForCountySummary(state_short_name, county_name) {
             newcases: 0,
             death: 0,
             newpercent: 0,
+            daysToDouble: null,
+            daysToDoubleDeath: null,
         }
     }
     let today = c.LastConfirmed;
@@ -342,6 +344,8 @@ function casesForCountySummary(state_short_name, county_name) {
         death: c.LastDeath,
         newpercent: (newcase) / (today - newcase),
         stayHomeOrder: c.StayHomeOrder,
+        daysToDouble: c.DaysToDouble,
+        daysToDoubleDeath: c.DaysToDoubleDeath,
     }
 }
 
