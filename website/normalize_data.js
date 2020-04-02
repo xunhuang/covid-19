@@ -279,14 +279,14 @@ function processJHUDataPoint(c, date) {
     let b = c.attributes;
     let county_fips = b.FIPS;
     let state_fips = STATE_Name_To_FIPS[b.Province_State];
-    if (county_fips === null && b.Admin2 ==="Harris" && b.Province_State === "Texas") {
+    if (county_fips === null && b.Admin2 === "Harris" && b.Province_State === "Texas") {
         county_fips = "48201";
     } else if (county_fips === null) {
         county_fips = "0";
-    } else{
-    if (county_fips.slice(0,2) === "90") {
-        county_fips = "0"; // until we find a better solution, JHU data change at 4/2
-    }
+    } else {
+        if (county_fips.slice(0, 2) === "90") {
+            county_fips = "0"; // until we find a better solution, JHU data change at 4/2
+        }
     }
     let county = getCountyNode(state_fips, county_fips);
     if (!county) {
@@ -509,15 +509,6 @@ function processsShelterInPlace() {
     });
 }
 
-process_USAFACTS();
-for (let d = moment("03/25/2020", "MM/DD/YYYY"); d.isBefore(moment()); d = d.add(1, "days")) {
-    let file = `../data/archive/JHU-${d.format("MM-DD-YYYY")}.json`;
-    let contents = fs.readFileSync(file);
-    let data = JSON.parse(contents);
-
-    console.log("DOing JHU " + d.format("MM/DD/YYYY"));
-    processJHU(data, d.format("MM/DD/YYYY"));
-}
 
 function getCountyByFips(fips) {
     return AllData[fips.slice(0, 2)][fips];
@@ -623,6 +614,64 @@ function getDoubleDays(data, fips) {
     return 1 / m;
 }
 
+function processAllJHU() {
+
+    for (let d = moment("03/25/2020", "MM/DD/YYYY"); d.isBefore(moment()); d = d.add(1, "days")) {
+        let file = `../data/archive/JHU-${d.format("MM-DD-YYYY")}.json`;
+        let contents = fs.readFileSync(file);
+        let data = JSON.parse(contents);
+
+        console.log("processing JHU " + d.format("MM/DD/YYYY"));
+        processJHU(data, d.format("MM/DD/YYYY"));
+    }
+}
+
+function processBNO(dataset, date) {
+    let data = dataset;
+    for (let i = 0; i < data.length; i++) {
+        let datapoint = data[i];
+        // console.log(datapoint);
+        let state_name = datapoint["UNITED STATES"];
+        let state_fips = STATE_Name_To_FIPS[state_name];
+        if (!state_fips) {
+            console.log("can't find state fips for " + state_name);
+            continue;
+        }
+
+        if (AllData[state_fips]) {
+
+            let Recovered = AllData[state_fips].Summary.Recovered;
+            if (!Recovered) {
+                Recovered = {};
+            }
+            let recovery_number = parseInt(datapoint.Recovered.replace(/,/g, ""));
+            if (recovery_number !== null && !isNaN(recovery_number)) {
+                Recovered[date] = recovery_number;
+                console.log("Recovery for " + state_name + " is " + recovery_number)
+            }
+            AllData[state_fips].Summary.Recovered = Recovered;
+        } else {
+            console.log("FIXME: no state node for " + state_name);
+        }
+    }
+}
+
+function addStateRecovery() {
+    for (let d = moment("04/02/2020", "MM/DD/YYYY"); d.isBefore(moment()); d = d.add(1, "days")) {
+        let file = `../data/archive/BNO-${d.format("MM-DD-YYYY")}.json`;
+        let contents = fs.readFileSync(file);
+        let data = JSON.parse(contents);
+        console.log(file);
+        console.log(data);
+
+        console.log("Processing BNO " + d.format("MM/DD/YYYY"));
+        processBNO(data, d.format("MM/DD/YYYY"));
+    }
+}
+
+process_USAFACTS();
+processAllJHU();
+
 fillholes();
 
 summarize_counties();
@@ -632,6 +681,7 @@ addMetros();
 
 processsShelterInPlace();
 addUSRecovery();
+addStateRecovery();
 
 let content = JSON.stringify(AllData, 2, 2);
 fs.writeFileSync("./src/data/AllData.json", content);
