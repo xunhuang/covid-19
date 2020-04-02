@@ -88,6 +88,7 @@ function prepareDataForDisplay(list) {
         newrow.deathsPerMil = newrow.death * 1000000 / newrow.pop;
         newrow.daysToDouble = row.daysToDouble;
         newrow.daysToDoubleDeath = row.daysToDoubleDeath;
+        newrow.recovered = row.recovered;
         return newrow;
     });
     return extendlist;
@@ -166,7 +167,7 @@ const AllStateListRender = (props) => {
         { id: 'state', numeric: false, disablePadding: false, label: 'Name' },
         { id: 'confirmed', numeric: true, disablePadding: true, label: 'Total' },
         { id: 'newcases', numeric: true, disablePadding: false, label: 'New' },
-        { id: 'partsPerMil', numeric: true, disablePadding: false, label: '#/mil' },
+        { id: 'recovered', numeric: true, disablePadding: false, label: 'Recovered' },
         { id: 'death', numeric: true, disablePadding: false, label: 'Deaths' },
         { id: 'daysToDouble', numeric: true, disablePadding: false, label: 'Days 2x' },
         { id: 'daysToDoubleDeath', numeric: true, disablePadding: false, label: 'Deaths 2x' },
@@ -208,8 +209,7 @@ const AllStateListRender = (props) => {
                                     </TableCell>
                                     <TableCell align="right">{row.confirmed}</TableCell>
                                     <TableCell align="right"> {newcolumn} </TableCell>
-                                    <TableCell align="right">{myGoodWholeNumber(row.partsPerMil)}</TableCell>
-                                    {/* <TableCell align="right">{myGoodWholeNumber(row.deathsPerMil)}</TableCell> */}
+                                    <TableCell align="right">{row.recovered ? myGoodShortNumber(row.recovered) : "-"}</TableCell>
                                     <TableCell align="right">{myGoodShortNumber(row.death)}</TableCell>
                                     <TableCell align="right">{(!row.daysToDouble) ? "-" : row.daysToDouble.toFixed(1)}</TableCell>
                                     <TableCell align="right">{(!row.daysToDoubleDeath) ? "-" : row.daysToDoubleDeath.toFixed(1)}</TableCell>

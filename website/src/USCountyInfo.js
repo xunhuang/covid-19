@@ -193,6 +193,7 @@ function getAllStatesSummary() {
             Population2010: USState_Population[s.state],
             daysToDouble: s.daysToDouble,
             daysToDoubleDeath: s.daysToDoubleDeath,
+            recovered: s.lastRecovered,
         }
 
     })
@@ -366,6 +367,7 @@ function casesForStateSummary(state_short_name) {
             newpercent: 0,
             daysToDouble: null,
             daysToDoubleDeath: null,
+            lastRecovered: null,
         }
     }
     let confirmed = state.Summary.LastConfirmed;
