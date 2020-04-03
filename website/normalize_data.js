@@ -68,7 +68,8 @@ const state_fips_to_name =
     "72": "Puerto Rico",
     "66": "Guam",
     "78": "Virgin Islands",
-    "60": "American Samoa"
+    "60": "American Samoa",
+    "69": "Northern Mariana Islands",
 };
 
 const STATE_Name_To_FIPS = (() => {
@@ -284,6 +285,7 @@ function processJHUDataPoint(c, date) {
     }
     let county = getCountyNode(state_fips, county_fips);
     if (!county) {
+        console.log(c);
         county = createCountyObject(
             state_fips,
             states.getStateCodeByStateName(b.Province_State),
