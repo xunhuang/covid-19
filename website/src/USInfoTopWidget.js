@@ -97,6 +97,8 @@ const USInfoTopWidget = withRouter((props) => {
     let county_summary = USCounty.casesForCountySummary(state, county);
     let us_summary = USCounty.casesForUSSummary();
     let state_hospitals = USCounty.hospitalsForState(state);
+    const metro = props.metro;
+    let metro_info = USCounty.getMetro(metro);
 
     return <div className={classes.tagSticky} >
         <div className={classes.tagContainer} >
@@ -107,15 +109,26 @@ const USInfoTopWidget = withRouter((props) => {
                 hospitals={countyInfo.Hospitals}
                 beds={countyInfo.HospitalBeds}
                 selected={props.selectedTab === "county"}
-                to={reverse(routes.county, {state, county})}
+                to={reverse(routes.county, { state, county })}
             />
+            {metro &&
+                <Tag
+                    title={metro_info.Name}
+                    confirmed={metro_info.Summary.LastConfirmed}
+                    newcases={metro_info.Summary.LastConfirmedNew}
+                    selected={props.selectedTab === "metro"}
+                    to={reverse(routes.metro, { metro })}
+                // hospitals={}
+                // beds={}
+                />
+            }
             <Tag title={state_title}
                 confirmed={state_summary.confirmed}
                 newcases={state_summary.newcases}
                 hospitals={state_hospitals.hospitals}
                 beds={state_hospitals.beds}
                 selected={props.selectedTab === "state"}
-                to={reverse(routes.state, {state})}
+                to={reverse(routes.state, { state })}
             />
             <Tag
                 title={US_title}
@@ -164,4 +177,4 @@ const Tag = (props) => {
 };
 
 
-export { USInfoTopWidget }
+export { USInfoTopWidget, Tag }

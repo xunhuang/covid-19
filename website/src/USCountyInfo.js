@@ -353,6 +353,18 @@ function casesForCountySummary(state_short_name, county_name) {
     }
 }
 
+function getMetro(m) {
+    return AllData.Metros[m];
+}
+
+function getMetroSummary(m) {
+    const metro = getMetro(m);
+    if (!metro) {
+        return null;
+    }
+    return metro.Summary;
+}
+
 function casesForStateSummary(state_short_name) {
     const [sfips] = myFipsCode(state_short_name);
     const state = AllData[sfips];
@@ -476,6 +488,11 @@ export {
     countyModuleInit,
     lookupCountyInfo,
     nearbyCounties,
+
+    getMetro,
+    getMetroSummary,
+
+    // 
     casesForCountySummary, // check
     casesForStateSummary, // check
     casesForUSSummary, // check
