@@ -50,6 +50,8 @@ const PageCounty = withHeader((props) => {
 
     Util.CookieSetLastCounty(state, county);
 
+    const metro = USCounty.getMetroNameFromCounty(state, county);
+
     const tabs = [
         <NearbyCounties
             county={county}
@@ -66,6 +68,7 @@ const PageCounty = withHeader((props) => {
             <USInfoTopWidget
                 county={county}
                 state={state}
+                metro={metro}
                 selectedTab={"county"}
             />
             <GraphSectionCounty

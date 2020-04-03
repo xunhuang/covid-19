@@ -39,6 +39,10 @@ const PageUS = withHeader((props) => {
     const default_county_info = Util.getDefaultCounty();
     logger.logEvent("PageUS");
 
+    const metro = USCounty.getMetroNameFromCounty(
+        default_county_info.state,
+        default_county_info.county);
+
     const tabs = [
         <ListAllStates />,
         <ListAllStatesPerCapita />
@@ -48,6 +52,7 @@ const PageUS = withHeader((props) => {
             <USInfoTopWidget
                 county={default_county_info.county}
                 state={default_county_info.state}
+                metro={metro}
                 selectedTab={"usa"}
             />
             <GraphSectionUS />

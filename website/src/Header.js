@@ -173,7 +173,7 @@ const withHeader = (comp, props) => {
             ...props,
         });
         let footer = <div>
-            {/* <ResourceSection /> */}
+            {false && <ResourceSection />}
             <Typography variant="h5" noWrap>
                 Discussions
                     </Typography>

@@ -75,6 +75,8 @@ const PageState = withHeader((props) => {
         props.match.params.state,
         props.match.params.county);
 
+    const metro = USCounty.getMetroNameFromCounty(state, county);
+
     const tabs = [
         <CountiesForStateWidget
             county={county}
@@ -91,6 +93,7 @@ const PageState = withHeader((props) => {
             <USInfoTopWidget
                 county={county}
                 state={state}
+                metro={metro}
                 selectedTab={"state"}
             />
             <GraphSectionState

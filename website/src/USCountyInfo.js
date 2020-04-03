@@ -495,11 +495,59 @@ function getAllProperStateKeys() {
     return Object.keys(AllData).filter((k) => k !== 'Summary' && k !== 'Metros');
 }
 
+/**
+ * Returns the metro keys used in AllData 
+ */
+function getAllMetroKeys() {
+    return Object.keys(AllData.Metros);
+}
+
+function fixCountyFips(fips) {
+    if (fips.length === 4) {
+        return "0" + fips;
+    }
+    return fips;
+}
+
+/**
+ *     ("CA", "Alameda") --> "06001"
+ */
+function getCountyFipsCode(state, county) {
+    let county_info = lookupCountyInfo(state, county);
+    if (county_info) {
+        return fixCountyFips(county_info.FIPS);
+    }
+    return null;
+}
+
+/**
+ * Returns metro name from County and State name
+ *    ("CA", "Santa Clara") --> "BayArea"
+ *    returns null if not found
+ */
+function getMetroNameFromCounty(state, county) {
+    let county_fips = getCountyFipsCode(state, county);
+    if (!county_fips) {
+        return null;
+    }
+
+    let result;
+    getAllMetroKeys().map(key => {
+        let metro_info = getMetro(key);
+        if (metro_info.Counties.includes(county_fips)) {
+            result = key;
+        }
+        return null;
+    });
+    return result;
+}
+
 export {
     countyModuleInit,
     lookupCountyInfo,
     nearbyCounties,
 
+    getMetroNameFromCounty,
     getMetro,
     getMetroSummary,
     getMetroDataForGrapth,

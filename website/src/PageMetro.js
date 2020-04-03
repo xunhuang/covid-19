@@ -16,22 +16,19 @@ const GraphSectionMetro = withRouter((props) => {
             data={graphdata}
             logScale={false}
         />,
-        // <GraphStateTesting state={state} />,
     ]
     let graphlistSection = <MyTabs
         labels={["Confirmed Cases"]}
-        // labels={["Confirmed Cases", `${state_title} Testing`]}
         tabs={tabs}
     />;
     return graphlistSection;
 });
 
 const PageMetro = withHeader((props) => {
-    const state = props.match.params.state;
-    const county = props.match.params.county;
-
-    Util.CookieSetLastCounty(state, county);
-    let metro = "BayArea"
+    let metro = "BayArea";
+    let county = Util.getDefaultCountyForMetro(metro);
+    let metro_info = USCounty.getMetro(metro);
+    const state = metro_info.State;
 
     const tabs = [
         <ListCountiesForMetro
@@ -56,7 +53,7 @@ const PageMetro = withHeader((props) => {
                 metro={metro}
             />
             <MyTabs
-                labels={["Nearby", "Hospitals"]}
+                labels={[metro_info.Name]}
                 tabs={tabs}
             />
         </>
