@@ -5,13 +5,14 @@ import { countyModuleInit } from "./USCountyInfo.js";
 import { Splash } from './Splash.js';
 import { fetchCounty } from "./GeoLocation"
 import { logger } from "./AppModule"
+import { InfectionMap } from "./Maps";
 import { PageUS } from "./PageUS"
 import { PageState } from "./PageState"
 import { PageCounty } from "./PageCounty"
 import { PageMetro } from "./PageMetro"
 import { Page404 } from "./Page404"
 import { reverse } from 'named-urls';
-import routes from "./Routes"
+import routes from "./Routes";
 
 const App = (props) => {
   return <BrowserRouter>
@@ -94,6 +95,7 @@ const MainApp = withRouter((props) => {
         <MyRoute exact path={routes.state} render={(props) => <PageState {...props} state={state} county={county} />} />
         <MyRoute exact path={routes.united_states} render={(props) => <PageUS {...props} state={state} county={county} />} />
         <MyRoute exact path={routes.metro} render={(props) => <PageMetro {...props} state={state} county={county} />} />
+        <MyRoute exact path={routes.united_states_map} component={InfectionMap} />
         <MyRoute exact path={routes.united_states_recovery} render={(props) => <PageUS {...props} state={state} county={county} />} />
         <MyRoute exact path="*" render={() => <Page404 />} status={404} />
       </Switch>
