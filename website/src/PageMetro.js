@@ -12,32 +12,19 @@ import * as Util from "./Util"
 const moment = require("moment");
 const states = require('us-state-codes');
 
-const GraphSectionCounty = withRouter((props) => {
-    const state = props.state;
-    const county = props.county;
-    let state_title = states.getStateNameByStateCode(state);
-
-    let graphdata = USCounty.getCountyDataForGrapth(state, county);
-    let countySummary = USCounty.casesForCountySummary(state, county);
-    let stayHomeOrder = countySummary.stayHomeOrder;
+const GraphSectionMetro = withRouter((props) => {
+    let graphdata = USCounty.getMetroDataForGrapth(props.metro);
 
     const tabs = [
         <BasicGraphNewCases
             data={graphdata}
             logScale={false}
-            vRefLines={
-                stayHomeOrder ?
-                    [{
-                        date: moment(stayHomeOrder.StartDate
-                        ).format("M/D"),
-                        label: "Stay-At-Home Order",
-                    }] : []
-            }
         />,
-        <GraphStateTesting state={state} />,
+        // <GraphStateTesting state={state} />,
     ]
     let graphlistSection = <MyTabs
-        labels={["Confirmed Cases", `${state_title} Testing`]}
+        labels={["Confirmed Cases"]}
+        // labels={["Confirmed Cases", `${state_title} Testing`]}
         tabs={tabs}
     />;
     return graphlistSection;
@@ -60,23 +47,23 @@ const PageMetro = withHeader((props) => {
         // >
         // </CountyHospitalsWidget >,
     ];
+    let metro = "BayArea"
 
     return (
         <>
             <USInfoTopWidget
                 county={county}
                 state={state}
-                metro={"BayArea"}
+                metro={metro}
                 selectedTab={"metro"}
             />
-            <graphsectioncounty
-                county={county}
-                state={state}
+            <GraphSectionMetro
+                metro={metro}
             />
-            <myTabs
+            {/* <myTabs
                 labels={["Nearby", "Hospitals"]}
                 tabs={tabs}
-            />
+            /> */}
         </>
     );
 });

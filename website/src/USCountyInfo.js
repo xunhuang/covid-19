@@ -320,6 +320,12 @@ function getStateDataForGrapth(state_short_name) {
     return (result);
 }
 
+function getMetroDataForGrapth(metro) {
+    let data = getMetroSummary(metro);
+    let result = dataMapToGraphSeriesNew(data);
+    return (result);
+}
+
 function getUSDataForGrapth() {
     let data = AllData.Summary;
     let result = dataMapToGraphSeriesNew(data);
@@ -491,6 +497,7 @@ export {
 
     getMetro,
     getMetroSummary,
+    getMetroDataForGrapth,
 
     // 
     casesForCountySummary, // check
