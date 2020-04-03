@@ -33,12 +33,17 @@ const useStyles = makeStyles(theme => ({
         justifyContent: "space-between",
         display: "flex",
     },
+    rowNoBeds: {
+        justifyContent: "center",
+    },
     tag: {
-        display: "inline-block",
+        display: "flex",
+        justifyContent: "space-between",
+        flexDirection: "column",
         textAlign: "center",
         backgroundColor: "#f3f3f3",
         borderRadius: 10,
-        flex: 1,
+        flexGrow: "1",
         margin: 3,
         color: "black",
         textDecoration: "none",
@@ -49,6 +54,12 @@ const useStyles = makeStyles(theme => ({
     },
     tagTitle: {
         marginTop: 5,
+    },
+    tagSection: {
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        alignContent: "flex-end",
     },
     topTag: {
         fontSize: "0.5rem",
@@ -167,8 +178,8 @@ const Tag = (props) => {
     const classes = useStyles();
     return <Link className={`${classes.tag} ${props.selected ? classes.tagSelected : ''}`} to={props.to}>
         <div className={classes.tagTitle}> {props.title} </div>
-        <div className={classes.row} >
-            <section>
+        <div className={`${classes.row} ${props.showBeds ? '' : classes.rowNoBeds}`} >
+            <section className={classes.tagSection}>
                 <div className={classes.topTag}>
                     +{myShortNumber(props.newcases)}
                 </div>
@@ -177,7 +188,7 @@ const Tag = (props) => {
                 <div className={classes.smallTag}>
                     Confirmed </div>
             </section>
-            {props.showBeds && <section>
+            {props.showBeds && <section className={classes.tagSection}>
                 <Typography className={classes.topTag} variant="body2" noWrap >
                     {myShortNumber(props.hospitals)} Hosp.
           </Typography>
