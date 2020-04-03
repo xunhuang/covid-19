@@ -80,25 +80,25 @@ const NearbyCounties = (props) => {
     }
     return countySummary;
 }
+
+const ListCountiesForMetro = (props) => {
+    let list = USCounty.countyDataForMetro(props.metro);
+    let countySummary =
+        <CountyListRender countylist={list} />
+    return countySummary;
+}
+
 const CountiesForStateWidget = (props) => {
-    let countyInfo = true;
-    let countySummary = <div></div>;
-    if (countyInfo) {
-        let list = USCounty.countyDataForState(props.state);
-        countySummary =
-            <CountyListRender countylist={list} />
-    }
+    let list = USCounty.countyDataForState(props.state);
+    let countySummary =
+        <CountyListRender countylist={list} />
     return countySummary;
 }
 
 const ListStateCountiesCapita = (props) => {
-    let countyInfo = true;
-    let countySummary = <div></div>;
-    if (countyInfo) {
-        let list = USCounty.countyDataForState(props.state);
-        countySummary =
-            <CountyListRenderCapita countylist={list} />
-    }
+    let list = USCounty.countyDataForState(props.state);
+    let countySummary =
+        <CountyListRenderCapita countylist={list} />
     return countySummary;
 }
 
@@ -164,6 +164,7 @@ const CountyListRender = (props) => {
         { id: 'daysToDouble', numeric: true, disablePadding: false, label: 'Days 2x' },
     ];
 
+    console.log(list);
     let extendlist = prepCountyDataForDisplay(list);
 
     let countySummary =
@@ -274,4 +275,5 @@ export {
     NearbyCounties,
     CountiesForStateWidget,
     ListStateCountiesCapita,
+    ListCountiesForMetro,
 }

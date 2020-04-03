@@ -1,16 +1,12 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom'
 import * as USCounty from "./USCountyInfo.js";
-import { NearbyCounties } from "./CountyListRender.js"
+import { ListCountiesForMetro } from "./CountyListRender.js"
 import { BasicGraphNewCases } from "./GraphNewCases.js"
-import { GraphStateTesting } from "./GraphTestingEffort"
 import { withHeader } from "./Header.js"
 import { MyTabs } from "./MyTabs.js"
 import { USInfoTopWidget } from './USInfoTopWidget.js'
 import * as Util from "./Util"
-
-const moment = require("moment");
-const states = require('us-state-codes');
 
 const GraphSectionMetro = withRouter((props) => {
     let graphdata = USCounty.getMetroDataForGrapth(props.metro);
@@ -35,11 +31,11 @@ const PageMetro = withHeader((props) => {
     const county = props.match.params.county;
 
     Util.CookieSetLastCounty(state, county);
+    let metro = "BayArea"
 
     const tabs = [
-        <NearbyCounties
-            county={county}
-            state={state}
+        <ListCountiesForMetro
+            metro={metro}
         />,
         // <CountyHospitalsWidget
         //     county={county}
@@ -47,7 +43,6 @@ const PageMetro = withHeader((props) => {
         // >
         // </CountyHospitalsWidget >,
     ];
-    let metro = "BayArea"
 
     return (
         <>
@@ -60,10 +55,10 @@ const PageMetro = withHeader((props) => {
             <GraphSectionMetro
                 metro={metro}
             />
-            {/* <myTabs
+            <MyTabs
                 labels={["Nearby", "Hospitals"]}
                 tabs={tabs}
-            /> */}
+            />
         </>
     );
 });

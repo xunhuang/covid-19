@@ -199,6 +199,25 @@ function getAllStatesSummary() {
     })
 }
 
+function convertCountyObjectToSummaryObject(c) {
+    let c_info = lookupCountyInfo(c.StateName, c.CountyName);
+    let pop = c_info ? c_info.Population2010 : NaN;
+
+    return {
+        total: c.LastConfirmed,
+        county: c.CountyName,
+        County: c.CountyName,
+        State: c.StateName,
+        state_name: c.StateName,
+        State_name: c.StateName,
+        StateFIPS: c.StateFIPS,
+        CountyFIPS: c.CountyFIPS,
+        daysToDouble: c.DaysToDouble,
+        daysToDoubleDeath: c.DaysToDoubleDeath,
+        Population2010: pop,
+    };
+}
+
 function getCountySummary1() {
     let result = [];
     for (let s in AllData) {
@@ -207,28 +226,28 @@ function getCountySummary1() {
         }
         let state = AllData[s];
         for (let cfips in state) {
-
             if (cfips.length === 5) {
                 let c = state[cfips];
                 if (!c.CountyName) {
                     console.log("no name: " + c.StateFIPS + " " + c.CountyFIPS)
                     console.log(c);
                 }
-                result.push({
-                    total: c.LastConfirmed,
-                    county: c.CountyName,
-                    County: c.CountyName,
-                    state_name: c.StateName,
-                    State_name: c.StateName,
-                    StateFIPS: c.StateFIPS,
-                    CountyFIPS: c.CountyFIPS,
-                    daysToDouble: c.DaysToDouble,
-                    daysToDoubleDeath: c.DaysToDoubleDeath,
-                });
+                result.push(convertCountyObjectToSummaryObject(c));
             }
         }
     }
     return result;
+}
+
+function countyDataForMetro(metro) {
+    let metro_info = getMetro(metro);
+    var m = [];
+    metro_info.Counties.map(cfips => {
+        let c = AllData[metro_info.StateFIPS][cfips];
+        m.push(convertCountyObjectToSummaryObject(c));
+        return null;
+    });
+    return m;
 }
 
 function countyDataForState(state_short_name) {
@@ -238,21 +257,7 @@ function countyDataForState(state_short_name) {
     for (let cfips in state) {
         if (cfips !== "Summary") {
             let c = state[cfips];
-            let c_info = lookupCountyInfo(state_short_name, c.CountyName);
-            let pop = c_info ? c_info.Population2010 : NaN;
-            m.push({
-                total: c.LastConfirmed,
-                confirmed: c.LastConfirmed,
-                death: c.LastDeath,
-                county: c.CountyName,
-                County: c.CountyName,
-                state_name: c.StateName,
-                State: c.StateName,
-                Population2010: pop,
-                daysToDouble: c.DaysToDouble,
-                daysToDoubleDeath: c.DaysToDoubleDeath,
-            });
-
+            m.push(convertCountyObjectToSummaryObject(c));
         }
     }
     return m;
@@ -498,6 +503,7 @@ export {
     getMetro,
     getMetroSummary,
     getMetroDataForGrapth,
+    countyDataForMetro,
 
     // 
     casesForCountySummary, // check

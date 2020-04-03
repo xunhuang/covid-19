@@ -3,18 +3,12 @@ const moment = require("moment");
 const CountyList = require("./src/data/county_gps.json");
 const ConfirmedData = require("./src/data/covid_confirmed_usafacts.json");
 const DeathData = require("./src/data/covid_death_usafacts.json");
-const LatestData03252020 = require("../data/archive/JHU-03-25-2020.json");
-const LatestData03262020 = require("../data/archive/JHU-03-26-2020.json");
-const LatestData03272020 = require("../data/archive/JHU-03-27-2020.json");
-const LatestData03282020 = require("../data/archive/JHU-03-28-2020.json");
-const LatestData = require("./src/data/latest.json");
 const { linearRegression } = require('simple-statistics');
 const ShelterInPlace = require("../data/shelter-in-place/shelter.json");
 const USRecovery = require("./src/data/us_recovery.json");
 
 const states = require('us-state-codes');
 const fs = require('fs');
-// const myFipsCode = require("./src/USCountyInfo.js").myFipsCode
 
 function pad(n) { return n < 10 ? '0' + n : n }
 
@@ -522,6 +516,8 @@ function addMetros() {
     let Metros = {
         BayArea: {
             Name: "SF Bay Area",
+            StateFIPS: "06",
+            StateName: "CA",
             Counties: [
                 "06001",
                 "06075",
@@ -668,9 +664,6 @@ function addStateRecovery() {
         let file = `../data/archive/BNO-${d.format("MM-DD-YYYY")}.json`;
         let contents = fs.readFileSync(file);
         let data = JSON.parse(contents);
-        console.log(file);
-        console.log(data);
-
         console.log("Processing BNO " + d.format("MM/DD/YYYY"));
         processBNO(data, d.format("MM/DD/YYYY"));
     }
