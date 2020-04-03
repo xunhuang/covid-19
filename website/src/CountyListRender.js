@@ -164,7 +164,6 @@ const CountyListRender = (props) => {
         { id: 'daysToDouble', numeric: true, disablePadding: false, label: 'Days 2x' },
     ];
 
-    console.log(list);
     let extendlist = prepCountyDataForDisplay(list);
 
     let countySummary =
