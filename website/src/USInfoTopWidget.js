@@ -9,6 +9,7 @@ import { Typography } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import { reverse } from 'named-urls';
 import routes from "./Routes.js";
+import { useScrollPosition } from '@n8tb1t/use-scroll-position';
 
 const states = require('us-state-codes');
 
@@ -71,6 +72,12 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const USInfoTopWidget = withRouter((props) => {
+    const [hideOnScroll, setHideOnScroll] = React.useState(true)
+    useScrollPosition(({ prevPos, currPos }) => {
+      const isShow = currPos.y > prevPos.y
+      if (isShow !== hideOnScroll) setHideOnScroll(isShow)
+    }, [hideOnScroll], null, false, 300);
+  
     const classes = useStyles();
     const state = props.state ? props.state : "CA";
     const county = props.county ? props.county : USCounty.countyDataForState(state)[0].County;
@@ -110,6 +117,7 @@ const USInfoTopWidget = withRouter((props) => {
                 beds={countyInfo.HospitalBeds}
                 selected={props.selectedTab === "county"}
                 to={reverse(routes.county, { state, county })}
+                showBeds={hideOnScroll}
             />
             {metro &&
                 <Tag
@@ -121,6 +129,7 @@ const USInfoTopWidget = withRouter((props) => {
                     /* hardcoded to bay area */
                     hospitals={69}
                     beds={16408}
+                    showBeds={hideOnScroll}
                 />
             }
             <Tag title={state_title}
@@ -130,6 +139,7 @@ const USInfoTopWidget = withRouter((props) => {
                 beds={state_hospitals.beds}
                 selected={props.selectedTab === "state"}
                 to={reverse(routes.state, { state })}
+                showBeds={hideOnScroll}
             />
             <Tag
                 title={US_title}
@@ -139,6 +149,7 @@ const USInfoTopWidget = withRouter((props) => {
                 beds={924107}
                 selected={props.selectedTab === "usa"}
                 to={routes.united_states}
+                showBeds={hideOnScroll}
             />
         </div>
         <div className={classes.timestamp}>
@@ -163,7 +174,7 @@ const Tag = (props) => {
                 <div className={classes.smallTag}>
                     Confirmed </div>
             </section>
-            <section>
+            {props.showBeds && <section>
                 <Typography className={classes.topTag} variant="body2" noWrap >
                     {myShortNumber(props.hospitals)} Hosp.
           </Typography>
@@ -172,7 +183,7 @@ const Tag = (props) => {
                 <div className={classes.smallTag}>
                     Beds
                     </div>
-            </section>
+            </section>}
         </div>
     </Link>;
 };
