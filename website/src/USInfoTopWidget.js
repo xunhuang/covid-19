@@ -118,8 +118,9 @@ const USInfoTopWidget = withRouter((props) => {
                     newcases={metro_info.Summary.LastConfirmedNew}
                     selected={props.selectedTab === "metro"}
                     to={reverse(routes.metro, { metro })}
-                // hospitals={}
-                // beds={}
+                    /* hardcoded to bay area */
+                    hospitals={69}
+                    beds={16408}
                 />
             }
             <Tag title={state_title}
