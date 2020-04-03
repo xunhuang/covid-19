@@ -8,6 +8,13 @@ import { FacebookProvider, CommentsCount } from 'react-facebook';
 import routes from './Routes';
 import { reverse } from 'named-urls';
 import { useHistory } from "react-router-dom";
+import { MyTabs } from "./MyTabs.js"
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import { Link as MaterialLink } from '@material-ui/core';
+import ListItemText from '@material-ui/core/ListItemText';
+
+const MentalHealthResources = require("./data/mentalhealth.json");
 
 const useStyles = makeStyles(theme => ({
     topContainer: {
@@ -40,6 +47,46 @@ const useStyles = makeStyles(theme => ({
         flex: 1,
     }
 }));
+
+const ResourceSectionOne = (props) => {
+    return <List>
+        {props.tab.map(item =>
+            <ListItem>
+                <MaterialLink href={item.Url}>
+                    <ListItemText
+                        primary={item.Title}
+                    // secondary={secondary ? 'Secondary text' : null}
+                    >
+                    </ListItemText>
+                </MaterialLink>
+            </ListItem>
+        )}
+    </List>;
+
+};
+
+const ResourceSection = (props) => {
+    const resmap = MentalHealthResources.reduce((m, item) => {
+        let section = m[item.Tab];
+        if (!section) {
+            section = [];
+        }
+        section.push(item);
+        m[item.Tab] = section;
+        return m;
+    }, {})
+    const tablist = [
+        <ResourceSectionOne tab={resmap[1]} />,
+        <ResourceSectionOne tab={resmap[2]} />,
+        <ResourceSectionOne tab={resmap[3]} />,
+        <ResourceSectionOne tab={resmap[4]} />,
+    ]
+    let tabs = <MyTabs
+        labels={["Meditation", `Stress Mgmt`, `Education`, "Kido Talks"]}
+        tabs={tablist}
+    />;
+    return tabs;
+};
 
 const SearchBox = (props) => {
     const counties = USCounty.getCountySummary1().map(
@@ -100,9 +147,9 @@ const SearchBox = (props) => {
                 if (param.value.county) {
                     route = reverse(
                         routes.county,
-                        {county: param.value.county, state: param.value.state});
+                        { county: param.value.county, state: param.value.state });
                 } else {
-                    route = reverse(routes.state, {state: param.value.state});
+                    route = reverse(routes.state, { state: param.value.state });
                 }
                 history.push(route);
             }
@@ -126,6 +173,7 @@ const withHeader = (comp, props) => {
             ...props,
         });
         let footer = <div>
+            {/* <ResourceSection /> */}
             <Typography variant="h5" noWrap>
                 Discussions
                     </Typography>
@@ -134,7 +182,6 @@ const withHeader = (comp, props) => {
                 config={disqusConfig}
             />
         </div>;
-
         let fbcomment =
             <FacebookProvider appId="201788627783795">
                 <CommentsCount href="http://www.facebook.com" />

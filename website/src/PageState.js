@@ -32,7 +32,7 @@ const StateGraphCaveat = (props) => {
 
 const GraphSectionState = withRouter((props) => {
     const state = props.state;
-    let state_title = states.getStateNameByStateCode(state);
+    // let state_title = states.getStateNameByStateCode(state);
     let graphdata = USCounty.getStateDataForGrapth(state);
     let stateSummary = USCounty.casesForStateSummary(state);
     let stayHomeOrder = stateSummary.stayHomeOrder;
