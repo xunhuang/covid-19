@@ -110,6 +110,9 @@ class RawMap extends React.Component {
 
     // React doesn't support passive events yet
     for (const [name, fn] of [
+          ['gesturestart', this.gestureStart_],
+          ['gesturechange', this.gestureChange_],
+          ['gestureend', this.gestureEnd_],
           ['mousedown', this.mouseDown_],
           ['mousemove', this.mouseMove_],
           ['mouseup', this.mouseUp_],
@@ -121,8 +124,6 @@ class RawMap extends React.Component {
       this.element.current.addEventListener(
           name, fn.bind(this), {passive: false});
     }
-    this.element.current.addEventListener(
-          'touchcancel', (e) => {e.preventDefault();}, {passive: false});
   };
 
   renderColors_() {
@@ -149,6 +150,37 @@ class RawMap extends React.Component {
         this.setColorsBatch_(entries, nextBatch);
       }
     });
+  }
+
+  gestureStart_(e) {
+    e.preventDefault();
+
+    if (this.activeGesture) {
+      return;
+    }
+
+    this.activeGesture = {
+      name: 'pinch-safari',
+      baseZoom: this.transform.zoom,
+      center: {x: e.clientX, y: e.clientY},
+    };
+  }
+
+  gestureChange_(e) {
+    e.preventDefault();
+
+    // If touch events are firing, lets do nothing and hope it helps.
+    if (!this.activeGesture || this.activeGesture.name !== 'pinch-safari') {
+      return;
+    }
+
+    this.zoom_(this.activeGesture.baseZoom + (e.scale - 1), this.activeGesture.center);
+  }
+
+  gestureEnd_(e) {
+    e.preventDefault();
+
+    this.activeGesture = undefined;
   }
 
   mouseDown_(e) {
@@ -180,12 +212,12 @@ class RawMap extends React.Component {
   touchStart_(e) {
     e.preventDefault();
 
-    if (e.touches.length == 1) {
+    if (e.touches.length === 1) {
       this.activeGesture = {
         name: 'select',
         center: touchCenter(e.touches),
       };
-    } else if (e.touches.length == 2) {
+    } else if (e.touches.length === 2) {
       this.activeGesture = {
         name: 'pinch',
         center: touchCenter(e.touches),
@@ -205,10 +237,10 @@ class RawMap extends React.Component {
       return;
     }
 
-    if (e.touches.length == 1) {
+    if (e.touches.length === 1) {
       const touch = e.touches.item(0);
       this.maybeDrag_({x: touch.clientX, y: touch.clientY});
-    } else if (e.touches.length == 2) {
+    } else if (e.touches.length === 2) {
       const apart = touchDistance(e.touches.item(0), e.touches.item(1));
       const delta = (apart - this.activeGesture.apart) / this.activeGesture.apart;
       this.zoom_(this.activeGesture.baseZoom + delta, this.activeGesture.center);
@@ -222,9 +254,9 @@ class RawMap extends React.Component {
       return;
     }
 
-    if (e.touches.length == 0) {
+    if (e.touches.length === 0) {
       this.maybeClick_(touchCenter(e.changedTouches), e.target);
-    } else if (e.touches.length == 1) {
+    } else if (e.touches.length === 1) {
       // End the pinch
       this.activeGesture = undefined;
     }
