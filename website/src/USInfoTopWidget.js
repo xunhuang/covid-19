@@ -10,6 +10,7 @@ import { Link } from 'react-router-dom';
 import { reverse } from 'named-urls';
 import routes from "./Routes.js";
 import { useScrollPosition } from '@n8tb1t/use-scroll-position';
+import { isMobile } from 'react-device-detect';
 
 const states = require('us-state-codes');
 
@@ -72,17 +73,19 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const USInfoTopWidget = withRouter((props) => {
-    const [hideOnScroll, setHideOnScroll] = React.useState(true)
-    useScrollPosition(({ prevPos, currPos }) => {
-      const isShow = currPos.y > prevPos.y
-      if (isShow !== hideOnScroll) setHideOnScroll(isShow)
-    }, [hideOnScroll], null, false, 300);
+    const [showBeds, setShowBedsOnScroll] = React.useState(true)
+    if (isMobile) {
+        useScrollPosition(({ prevPos, currPos }) => {
+        const isShow = currPos.y > -10;
+        if (isShow !== showBeds) setShowBedsOnScroll(isShow)
+        }, [showBeds]);
+    }
   
     const classes = useStyles();
     const state = props.state ? props.state : "CA";
     const county = props.county ? props.county : USCounty.countyDataForState(state)[0].County;
 
-    let state_title = states.getStateNameByStateCode(state);
+    let state_title = showBeds ? states.getStateNameByStateCode(state) : state;
     let county_title = county;
     let US_title = "US";
 
@@ -117,7 +120,7 @@ const USInfoTopWidget = withRouter((props) => {
                 beds={countyInfo.HospitalBeds}
                 selected={props.selectedTab === "county"}
                 to={reverse(routes.county, { state, county })}
-                showBeds={hideOnScroll}
+                showBeds={showBeds}
             />
             {metro &&
                 <Tag
@@ -129,7 +132,7 @@ const USInfoTopWidget = withRouter((props) => {
                     /* hardcoded to bay area */
                     hospitals={69}
                     beds={16408}
-                    showBeds={hideOnScroll}
+                    showBeds={showBeds}
                 />
             }
             <Tag title={state_title}
@@ -139,7 +142,7 @@ const USInfoTopWidget = withRouter((props) => {
                 beds={state_hospitals.beds}
                 selected={props.selectedTab === "state"}
                 to={reverse(routes.state, { state })}
-                showBeds={hideOnScroll}
+                showBeds={showBeds}
             />
             <Tag
                 title={US_title}
@@ -149,7 +152,7 @@ const USInfoTopWidget = withRouter((props) => {
                 beds={924107}
                 selected={props.selectedTab === "usa"}
                 to={routes.united_states}
-                showBeds={hideOnScroll}
+                showBeds={showBeds}
             />
         </div>
         <div className={classes.timestamp}>
