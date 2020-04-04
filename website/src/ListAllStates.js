@@ -5,7 +5,13 @@ import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableRow from '@material-ui/core/TableRow';
-import { myShortNumber, myToNumber, myGoodWholeNumber, myGoodShortNumber } from "./Util.js";
+import {
+    myShortNumber,
+    myToNumber,
+    myGoodWholeNumber,
+    myGoodShortNumber,
+    getStateNameByStateCode,
+} from "./Util.js";
 import { ThemeProvider } from '@material-ui/core'
 import { createMuiTheme } from '@material-ui/core/styles';
 import { Link as MaterialLink } from '@material-ui/core';
@@ -17,7 +23,7 @@ import routes from "./Routes"
 const compact = createMuiTheme({
     overrides: {
         MuiTableCell: {
-            sizeSmall: {  //This can be referred from Material UI API documentation. 
+            sizeSmall: {  //This can be referred from Material UI API documentation.
                 padding: '1px 1px 1px 1px',
             },
         },
@@ -64,6 +70,14 @@ const ListAllStatesPerCapita = (props) => {
         .sort((a, b) => b.confirmed - a.confirmed);
     let countySummary =
         <AllStateListCapita countylist={list} />
+    return countySummary;
+}
+
+const ListAllStatesTesting = (props) => {
+    let list = USCounty.getAllStatesSummary()
+        .sort((a, b) => b.confirmed - a.confirmed);
+    let countySummary =
+        <AllStateListTesting countylist={list} />
     return countySummary;
 }
 
@@ -222,7 +236,95 @@ const AllStateListRender = (props) => {
     return countySummary;
 };
 
+function prepareStatesTestingDataForDisplay(list) {
+    let extendlist = list.map(row => {
+        let newrow = {};
+        let totalTested = row.positive + row.negative;
+        newrow.statename = getStateNameByStateCode(row.state);
+        newrow.positiveNumber = row.positive ?? 0;
+        newrow.positiveRate = `${(row.positive / totalTested * 100).toFixed(1)}%`;
+        newrow.negativeNumber = row.negative ?? 0;
+        newrow.negativeRate = `${(row.negative / totalTested * 100).toFixed(1)}%`;
+        newrow.pending = row.pending ?? "-";
+        newrow.total = row.total;
+        return newrow;
+    });
+    return extendlist;
+}
+
+const AllStateListTesting = (props) => {
+    const raw_data = require("./data/state_testing.json");
+    // Find the latest data for each state
+    let states_data = {};
+    for (let i = 0; i < raw_data.length; i++) {
+        let record = raw_data[i];
+        let state = record.state;
+        if ((state in states_data) && (states_data[state].date > record.date)) {
+            continue;
+        }
+        states_data[state] = record;
+    }
+
+    const classes = useStyles();
+
+    const [order, setOrder] = React.useState('desc');
+    const [orderBy, setOrderBy] = React.useState('confirmed');
+    const handleRequestSort = (event, property) => {
+        const isAsc = orderBy === property && order === 'asc';
+        setOrder(isAsc ? 'desc' : 'asc');
+        setOrderBy(property);
+    };
+
+    const myHeadCells = [
+        { id: 'statename', numeric: false, disablePadding: false, label: 'Name' },
+        { id: 'positiveNumber', numeric: true, disablePadding: false, label: 'Pos' },
+        { id: 'positiveRate', numeric: true, disablePadding: false, label: 'Pos%' },
+        { id: 'negativeNumber', numeric: true, disablePadding: false, label: 'Neg' },
+        { id: 'negativeRate', numeric: true, disablePadding: false, label: 'Neg%' },
+        { id: 'pending', numeric: true, disablePadding: false, label: 'Pending' },
+        { id: 'total', numeric: true, disablePadding: false, label: 'Total' },
+    ];
+
+    let list = Object.values(states_data);
+    let extendlist = prepareStatesTestingDataForDisplay(list);
+
+    let table =
+        <Table className={classes.table} size="small" aria-label="simple table">
+            <EnhancedTableHead
+                classes={classes}
+                order={order}
+                orderBy={orderBy}
+                onRequestSort={handleRequestSort}
+                headCells={myHeadCells}
+            />
+            <TableBody>
+                {
+                    stableSort(extendlist, getComparator(order, orderBy))
+                        .map(row => {
+                            return <TableRow key={row.state}>
+                                <ThemeProvider theme={compact}>
+                                    <TableCell component="th" scope="row">
+                                        <MaterialLink component={RouterLink} to={reverse(routes.state, { state: row.state })}>
+                                            {row.statename}
+                                        </MaterialLink>
+                                    </TableCell>
+                                    <TableCell align="right">{row.positiveNumber}</TableCell>
+                                    <TableCell align="right">{row.positiveRate}</TableCell>
+                                    <TableCell align="right">{row.negativeNumber}</TableCell>
+                                    <TableCell align="right">{row.negativeRate}</TableCell>
+                                    <TableCell align="right">{row.pending}</TableCell>
+                                    <TableCell align="right">{row.total}</TableCell>
+                                </ThemeProvider>
+                            </TableRow>;
+                        })
+                }
+            </TableBody>
+        </Table>
+    return table;
+};
+
 export {
     ListAllStates,
     ListAllStatesPerCapita,
+    ListAllStatesTesting,
 }

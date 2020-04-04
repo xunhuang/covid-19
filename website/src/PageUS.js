@@ -9,7 +9,11 @@ import { MyTabs } from "./MyTabs.js"
 import * as Util from "./Util.js"
 import { USInfoTopWidget } from './USInfoTopWidget.js'
 import { GraphUSHospitalization } from './GraphHospitalization.js'
-import { ListAllStates, ListAllStatesPerCapita } from "./ListAllStates.js"
+import {
+    ListAllStates,
+    ListAllStatesPerCapita,
+    ListAllStatesTesting,
+} from "./ListAllStates.js"
 
 import { logger } from "./AppModule"
 
@@ -45,7 +49,8 @@ const PageUS = withHeader((props) => {
 
     const tabs = [
         <ListAllStates />,
-        <ListAllStatesPerCapita />
+        <ListAllStatesTesting />,
+        <ListAllStatesPerCapita />,
     ];
     return (
         <>
@@ -57,7 +62,7 @@ const PageUS = withHeader((props) => {
             />
             <GraphSectionUS />
             <MyTabs
-                labels={["States of USA", "Capita"]}
+                labels={["States of USA", "Testing", "Capita"]}
                 tabs={tabs}
             />
         </>

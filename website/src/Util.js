@@ -1,6 +1,7 @@
 import * as USCounty from "./USCountyInfo.js"
 var shortNumber = require('short-number');
 const Cookies = require("js-cookie");
+const states = require('us-state-codes');
 
 function myShortNumber(n) {
     if (!n) {
@@ -107,6 +108,21 @@ function CookieSetLastCounty(state, county) {
     });
 }
 
+function getStateNameByStateCode(stateCode) {
+    switch (stateCode) {
+        case "AS":
+            return "American Samoa";
+        case "GU":
+            return "Guam";
+        case "MP":
+            return "Northern Marianas";
+        case "VI":
+            return "Virgin Islands";
+        default:
+            return states.getStateNameByStateCode(stateCode);
+    }
+}
+
 export {
     myShortNumber,
     myGoodNumber,
@@ -119,4 +135,5 @@ export {
     getDefaultCountyForState,
     getDefaultCounty,
     getDefaultCountyForMetro,
+    getStateNameByStateCode,
 }
