@@ -294,7 +294,6 @@ function processJHUDataPoint(c, date) {
     }
     let county = getCountyNode(state_fips, county_fips);
     if (!county) {
-        console.log(c);
         county = createCountyObject(
             state_fips,
             states.getStateCodeByStateName(b.Province_State),
@@ -646,7 +645,6 @@ function processBNO(dataset, date) {
     let data = dataset;
     for (let i = 0; i < data.length; i++) {
         let datapoint = data[i];
-        // console.log(datapoint);
         let state_name = datapoint["UNITED STATES"];
         let state_fips = STATE_Name_To_FIPS[state_name];
         if (!state_fips) {
@@ -688,16 +686,58 @@ function addStateRecovery() {
 process_USAFACTS();
 processAllJHU();
 
+/*
 fillholes();
 
 summarize_counties();
 summarize_states();
 summarize_USA();
 addMetros();
+*/
 
+// special_processing
+const NYC_STARTER = require("../data/archive/NYC-BOROS-04-03-2020.json")
+
+
+let NYC = {}
+
+NYC_STARTER.map(entry => {
+    let state_fips = "36";
+    let county_fips = entry.FIPS;
+    let county_info = getCountyNode(state_fips, county_fips);
+    if (!county_info) {
+        county_info = createCountyObject(
+            state_fips,
+            states.getStateCodeByStateName("New York"),
+            county_fips,
+            entry.Name,
+        )
+    }
+
+    if (entry.FIPS.length !== 5) {
+        return null;
+    }
+    delete entry["Name"];
+    delete entry["FIPS"];
+
+    let Confirmed = {};
+    for (i in entry) {
+        Confirmed[i] = parseInt(entry[i]);
+    }
+
+    county_info.Confirmed = Confirmed;
+
+    NYC[county_fips] = county_info;
+});
+
+console.log(NYC);
+
+
+/*
 processsShelterInPlace();
 addUSRecovery();
 addStateRecovery();
+*/
 
 let content = JSON.stringify(AllData, 2, 2);
-fs.writeFileSync("./src/data/AllData.json", content);
+//fs.writeFileSync("./src/data/AllData.json", content);
