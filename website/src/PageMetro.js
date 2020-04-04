@@ -25,10 +25,11 @@ const GraphSectionMetro = withRouter((props) => {
 });
 
 const PageMetro = withHeader((props) => {
-    let metro = "BayArea";
+    const metro = props.match.params.metro;
     let county = Util.getDefaultCountyForMetro(metro);
     let metro_info = USCounty.getMetro(metro);
-    const state = metro_info.State;
+    const state = metro_info.StateName;
+    console.log(metro_info);
 
     const tabs = [
         <ListCountiesForMetro

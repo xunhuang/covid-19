@@ -677,7 +677,6 @@ function processBNO(dataset, date) {
             let recovery_number = parseInt(datapoint.Recovered.replace(/,/g, ""));
             if (recovery_number !== null && !isNaN(recovery_number)) {
                 Recovered[date] = recovery_number;
-                console.log("Recovery for " + state_name + " is " + recovery_number)
             }
             AllData[state_fips].Summary.Recovered = Recovered;
             const RR = getValueFromLastDate(Recovered, "debug");

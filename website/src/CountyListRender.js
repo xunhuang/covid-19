@@ -71,9 +71,9 @@ const NearbyCounties = (props) => {
             // data source combined all NYC Boroughs into New York, NY
             // this is a hack to remove these counties and they showed up as
             // zeros.
-            .filter(a => a.State !== "NY" ||
-                (a.County !== "Queens" && a.County !== "Kings" && a.County !== "New York" &&
-                    a.County !== "Bronx" && a.County !== "Richmond"))
+            // .filter(a => a.State !== "NY" ||
+            // (a.County !== "Queens" && a.County !== "Kings" && a.County !== "New York" &&
+            // a.County !== "Bronx" && a.County !== "Richmond"))
             .sort((a, b) => a.distance - b.distance)
             .slice(0, 10);
         countySummary = <CountyListRender countylist={nearby} />
