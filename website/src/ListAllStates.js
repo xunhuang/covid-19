@@ -242,9 +242,9 @@ function prepareStatesTestingDataForDisplay(list) {
         let totalTested = row.positive + row.negative;
         newrow.statename = getStateNameByStateCode(row.state);
         newrow.positiveNumber = row.positive ?? 0;
-        newrow.positiveRate = `${(row.positive / totalTested * 100).toFixed(1)}%`;
+        newrow.positiveRate = row.positive / totalTested * 100;
         newrow.negativeNumber = row.negative ?? 0;
-        newrow.negativeRate = `${(row.negative / totalTested * 100).toFixed(1)}%`;
+        newrow.negativeRate = row.negative / totalTested * 100;
         newrow.pending = row.pending ?? "-";
         newrow.total = row.total;
         return newrow;
@@ -314,9 +314,9 @@ const AllStateListTesting = (props) => {
                                         </MaterialLink>
                                     </TableCell>
                                     <TableCell align="right">{row.positiveNumber}</TableCell>
-                                    <TableCell align="right">{row.positiveRate}</TableCell>
+                                    <TableCell align="right">{row.positiveRate.toFixed(1)}%</TableCell>
                                     <TableCell align="right">{row.negativeNumber}</TableCell>
-                                    <TableCell align="right">{row.negativeRate}</TableCell>
+                                    <TableCell align="right">{row.negativeRate.toFixed(1)}%</TableCell>
                                     <TableCell align="right">{!isFinite(row.pending) ? "-" : row.pending}</TableCell>
                                     <TableCell align="right">{row.total}</TableCell>
                                 </ThemeProvider>
