@@ -423,7 +423,7 @@ function casesForUSSummary() {
         newcases: newcases,
         deaths: deaths,
         deathsNew: deathsNew,
-        recovered: newcases,
+        recovered: recovered,
         recoveredNew: recoveredNew,
         newpercent: ((newcases / (confirmed - newcases)) * 100).toFixed(0),
         generatedTime: generatedTime,
