@@ -129,11 +129,20 @@ function fix_county_name(county_name, county_fips) {
 
 function createCountyObject(state_fips, state_name, county_fips, county_name) {
 
+    if (!state_fips || !state_name) {
+        console.log("badddd ---------");
+        console.log(county_fips);
+        console.log(county_name);
+        return null;
+    }
+
     if (county_name === "Grand Princess Cruise Ship") {
         county_fips = "06000";
     }
 
     let countyObject = {};
+    console.log(state_name);
+    console.log(state_fips);
 
     countyObject.CountyName = fix_county_name(county_name, county_fips);
     countyObject.StateName = state_name;
@@ -292,6 +301,11 @@ function processJHUDataPoint(c, date) {
             county_fips,
             b.Admin2,
         )
+        if (!county) {
+            console.log("bad JHU data point");
+            console.log(b);
+            return;
+        }
     }
 
     let datekey = date;
