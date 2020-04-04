@@ -400,21 +400,31 @@ function casesForStateSummary(state_short_name) {
         confirmed: confirmed,
         newcases: newcases,
         death: state.Summary.LastDeath,
+        deathNew: state.Summary.LastDeathNew,
         newpercent: ((newcases / (confirmed - newcases)) * 100).toFixed(0),
         stayHomeOrder: state.Summary.StayHomeOrder,
         daysToDouble: state.Summary.DaysToDouble,
         daysToDoubleDeath: state.Summary.DaysToDoubleDeath,
         lastRecovered: state.Summary.LastRecovered,
+        lastRecoveredNew: state.Summary.LastRecoveredNew,
     }
 }
 
 function casesForUSSummary() {
     const confirmed = AllData.Summary.LastConfirmed;
     const newcases = AllData.Summary.LastConfirmedNew;
+    const deaths = AllData.Summary.LastDeath;
+    const deathsNew = AllData.Summary.LastDeathNew;
+    const recovered = AllData.Summary.LastRecovered;
+    const recoveredNew = AllData.Summary.LastRecoveredNew;
     const generatedTime = (new Date(AllData.Summary.generated)).toString();
     return {
         confirmed: confirmed,
         newcases: newcases,
+        deaths: deaths,
+        deathsNew: deathsNew,
+        recovered: newcases,
+        recoveredNew: recoveredNew,
         newpercent: ((newcases / (confirmed - newcases)) * 100).toFixed(0),
         generatedTime: generatedTime,
     }
@@ -472,7 +482,7 @@ function getAllProperCountyDataForUS() {
 
 /**
  * Returns data for all counties in given state found in AllData excluding data for Summary, unallocated, etc.
- * @param {*} statekey 
+ * @param {*} statekey
  */
 function getAllProperCountyDataForState(statekey) {
     const stateData = AllData[statekey];
@@ -481,7 +491,7 @@ function getAllProperCountyDataForState(statekey) {
 
 /**
  * Returns keys for all counties in a given state found in AllData excluding data for Summary, unallocated, etc.
- * @param {*} statekey 
+ * @param {*} statekey
  */
 function getAllProperCountyKeysForState(statekey) {
     const stateData = AllData[statekey];
@@ -496,7 +506,7 @@ function getAllProperStateKeys() {
 }
 
 /**
- * Returns the metro keys used in AllData 
+ * Returns the metro keys used in AllData
  */
 function getAllMetroKeys() {
     return Object.keys(AllData.Metros);
@@ -553,7 +563,7 @@ export {
     getMetroDataForGrapth,
     countyDataForMetro,
 
-    // 
+    //
     casesForCountySummary, // check
     casesForStateSummary, // check
     casesForUSSummary, // check

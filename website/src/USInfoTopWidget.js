@@ -85,11 +85,17 @@ const useStyles = makeStyles(theme => ({
 
 const USInfoTopWidget = withRouter((props) => {
     const [showBeds, setShowBedsOnScroll] = React.useState(true)
+    const [showDeaths, setShowDeaths] = React.useState(true)
+    const [showRecovered, setShowRecovered] = React.useState(true)
     if (isMobile) {
         useScrollPosition(({ prevPos, currPos }) => {
             const isShow = currPos.y > -100;
-            if (isShow !== showBeds) setShowBedsOnScroll(isShow)
-        }, [showBeds]);
+            if (isShow !== showBeds) {
+                setShowBedsOnScroll(isShow)
+                setShowDeaths(isShow)
+                setShowRecovered(isShow)
+            }
+        }, [showBeds, showDeaths, showRecovered]);
     }
 
     const classes = useStyles();
@@ -149,21 +155,35 @@ const USInfoTopWidget = withRouter((props) => {
             <Tag title={state_title}
                 confirmed={state_summary.confirmed}
                 newcases={state_summary.newcases}
+                deaths={state_summary.death}
+                deathsNew={state_summary.deathNew}
+                recovered={state_summary.lastRecovered}
+                recoveredNew={state_summary.lastRecoveredNew}
                 hospitals={state_hospitals.hospitals}
                 beds={state_hospitals.beds}
                 selected={props.selectedTab === "state"}
                 to={reverse(routes.state, { state })}
                 showBeds={showBeds}
+                // showRecovered={showRecovered}
+                // showDeaths={showDeaths}
+                showRecovered={false}
+                showDeaths={false}
             />
             <Tag
                 title={US_title}
                 confirmed={us_summary.confirmed}
                 newcases={us_summary.newcases}
+                deaths={us_summary.deaths}
+                deathsNew={us_summary.deathsNew}
+                recovered={us_summary.recovered}
+                recoveredNew={us_summary.recoveredNew}
                 hospitals={6146}
                 beds={924107}
                 selected={props.selectedTab === "usa"}
                 to={routes.united_states}
                 showBeds={showBeds}
+                showRecovered={showRecovered}
+                showDeaths={showDeaths}
             />
         </div>
         <div className={classes.timestamp}>
@@ -188,6 +208,33 @@ const Tag = (props) => {
                 <div className={classes.smallTag}>
                     Confirmed </div>
             </section>
+
+            {props.showRecovered &&
+                <section className={classes.tagSection}>
+                    <Typography className={classes.topTag} variant="body2" noWrap >
+                        +{myShortNumber(props.recoveredNew)}
+                    </Typography>
+                    <div className={classes.mainTag}>
+                        {myShortNumber(props.recovered)}</div>
+                    <div className={classes.smallTag}>
+                        Recovered
+                    </div>
+                </section>
+            }
+
+            {props.showDeaths &&
+                <section className={classes.tagSection}>
+                    <Typography className={classes.topTag} variant="body2" noWrap >
+                        +{myShortNumber(props.deathsNew)}
+                    </Typography>
+                    <div className={classes.mainTag}>
+                        {myShortNumber(props.deaths)}</div>
+                    <div className={classes.smallTag}>
+                        Deaths
+                    </div>
+                </section>
+            }
+
             {props.showBeds && <section className={classes.tagSection}>
                 <Typography className={classes.topTag} variant="body2" noWrap >
                     {myShortNumber(props.hospitals)} Hosp.
