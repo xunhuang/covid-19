@@ -130,9 +130,7 @@ function fix_county_name(county_name, county_fips) {
 function createCountyObject(state_fips, state_name, county_fips, county_name) {
 
     if (!state_fips || !state_name) {
-        console.log("badddd ---------");
-        console.log(county_fips);
-        console.log(county_name);
+        console.log("creating to create null state and fips ---------");
         return null;
     }
 
@@ -141,8 +139,6 @@ function createCountyObject(state_fips, state_name, county_fips, county_name) {
     }
 
     let countyObject = {};
-    console.log(state_name);
-    console.log(state_fips);
 
     countyObject.CountyName = fix_county_name(county_name, county_fips);
     countyObject.StateName = state_name;
@@ -483,7 +479,6 @@ function processsShelterInPlace() {
             // state
             //
             if (state_fips_to_name[fips] === p.CountyName) {
-                console.log("------------------- good");
             } else {
                 console.log(`**************** Mismatch ${p.CountyName} `);
                 // console.log("************** url: " + p.Url);
@@ -568,7 +563,6 @@ function addMetros() {
         Confirmed = {};
         Death = {};
 
-        console.log(metro);
         let Summary = {};
 
         if (m !== "NYC") {
@@ -732,9 +726,7 @@ NYC_run1.map(entry => {
             county_fips,
             entry.Name,
         )
-    } else {
-        console.log(county_info);
-    }
+    } 
 
     if (entry.FIPS.length !== 5) {
         return null;
@@ -768,7 +760,7 @@ function processNYCBOROS_NEW() {
             if (line.BOROUGH_GROUP === "COVID_CASE_COUNT") {
                 let dd = d.format("MM/DD/YYYY");
                 AllData["36"]["36061"].Confirmed[dd] = parseInt(line.MANHATTAN);
-                AllData["36"]["36047"].Confirmed[dd] = parseInt(line.KINGS);
+                AllData["36"]["36047"].Confirmed[dd] = parseInt(line.BROOKLYN);
                 AllData["36"]["36081"].Confirmed[dd] = parseInt(line.QUEENS);
                 AllData["36"]["36005"].Confirmed[dd] = parseInt(line.BRONX);
                 AllData["36"]["36085"].Confirmed[dd] = parseInt(line["STATEN ISLAND"]);
