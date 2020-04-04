@@ -20,7 +20,7 @@ def translate(point, id, group):
 def main():
     g = generator.Generator(
             Assigner(),
-            'COUNTYFP',
+            'GEOID',
             dest_id_attr='data-id',
             filter=filter,
             translator=translate)
