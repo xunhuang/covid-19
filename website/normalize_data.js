@@ -545,6 +545,18 @@ function addMetros() {
                 "06041",
             ]
         },
+        NYC: {
+            Name: "New York City",
+            StateFIPS: "36",
+            StateName: "NY",
+            Counties: [
+                "36061",
+                "36047",
+                "36081",
+                "36005",
+                "36085",
+            ]
+        },
     }
 
     for (m in Metros) {
@@ -553,27 +565,28 @@ function addMetros() {
         Death = {};
 
         console.log(metro);
-
-        for (let i = 0; i < metro.Counties.length; i++) {
-            let countyfips = metro.Counties[i];
-            let county = getCountyByFips(countyfips);
-
-            mergeTwoMapValues(Confirmed, county.Confirmed)
-            mergeTwoMapValues(Death, county.Death)
-
-        }
         let Summary = {};
-        Summary.Confirmed = Confirmed;
-        Summary.Death = Death;
 
-        const CC = getValueFromLastDate(Confirmed, s);
-        const DD = getValueFromLastDate(Death);
+        if (m !== "NYC") {
+            for (let i = 0; i < metro.Counties.length; i++) {
+                let countyfips = metro.Counties[i];
+                let county = getCountyByFips(countyfips);
 
-        Summary.LastConfirmed = CC.num;
-        Summary.LastConfirmedNew = CC.newnum;
-        Summary.LastDeath = DD.num;
-        Summary.LastDeathNew = DD.newnum;
+                mergeTwoMapValues(Confirmed, county.Confirmed)
+                mergeTwoMapValues(Death, county.Death)
 
+            }
+            Summary.Confirmed = Confirmed;
+            Summary.Death = Death;
+
+            const CC = getValueFromLastDate(Confirmed);
+            const DD = getValueFromLastDate(Death);
+
+            Summary.LastConfirmed = CC.num;
+            Summary.LastConfirmedNew = CC.newnum;
+            Summary.LastDeath = DD.num;
+            Summary.LastDeathNew = DD.newnum;
+        }
         metro.Summary = Summary;
     }
     AllData.Metros = Metros;
@@ -689,13 +702,11 @@ function addStateRecovery() {
 process_USAFACTS();
 processAllJHU();
 
-/*
 fillholes();
 
 summarize_counties();
 summarize_states();
 summarize_USA();
-*/
 addMetros();
 
 // special_processing
@@ -738,17 +749,14 @@ NYC_STARTER.map(entry => {
 
     let county = summarize_one_county(county_info);
 
-    // NYC[county_fips] = county;
     AllData[state_fips][county_fips] = county;
 });
 
-// console.log(NYC);
+AllData.Metros.NYC.Summary = NYC_METRO;
 
-/*
 processsShelterInPlace();
 addUSRecovery();
 addStateRecovery();
-*/
 
 let content = JSON.stringify(AllData, 2, 2);
-fs.writeFileSync("./src/data/AllData1.json", content);
+fs.writeFileSync("./src/data/AllData.json", content);
