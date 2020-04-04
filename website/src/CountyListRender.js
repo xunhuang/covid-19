@@ -18,7 +18,7 @@ import routes from "./Routes"
 const compact = createMuiTheme({
     overrides: {
         MuiTableCell: {
-            sizeSmall: {  //This can be referred from Material UI API documentation. 
+            sizeSmall: {  //This can be referred from Material UI API documentation.
                 padding: '1px 1px 1px 1px',
                 // backgroundColor: "#eaeaea",
             },
@@ -69,8 +69,8 @@ const NearbyCounties = (props) => {
     if (countyInfo) {
         let nearby = nearbyCounties(props.state, county)
             // data source combined all NYC Boroughs into New York, NY
-            // this is a hack to remove these counties and they showed up as 
-            // zeros. 
+            // this is a hack to remove these counties and they showed up as
+            // zeros.
             .filter(a => a.State !== "NY" ||
                 (a.County !== "Queens" && a.County !== "Kings" && a.County !== "New York" &&
                     a.County !== "Bronx" && a.County !== "Richmond"))
@@ -226,7 +226,7 @@ const CountyListRenderCapita = (props) => {
 
     const myHeadCells = [
         { id: 'County', numeric: false, disablePadding: false, label: 'Name' },
-        { id: 'newcases', numeric: true, disablePadding: false, label: 'New' },
+        { id: 'confirmed', numeric: true, disablePadding: false, label: 'Total' },
         { id: 'partsPerMil', numeric: true, disablePadding: false, label: '#/Mil' },
         { id: 'deathsPerMil', numeric: true, disablePadding: false, label: 'D/Mil' },
         { id: 'death', numeric: true, disablePadding: false, label: 'Deaths' },
