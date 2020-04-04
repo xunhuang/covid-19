@@ -87,11 +87,11 @@ const USInfoTopWidget = withRouter((props) => {
     const [showBeds, setShowBedsOnScroll] = React.useState(true)
     if (isMobile) {
         useScrollPosition(({ prevPos, currPos }) => {
-        const isShow = currPos.y > -10;
-        if (isShow !== showBeds) setShowBedsOnScroll(isShow)
+            const isShow = currPos.y > -100;
+            if (isShow !== showBeds) setShowBedsOnScroll(isShow)
         }, [showBeds]);
     }
-  
+
     const classes = useStyles();
     const state = props.state ? props.state : "CA";
     const county = props.county ? props.county : USCounty.countyDataForState(state)[0].County;
