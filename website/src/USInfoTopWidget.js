@@ -28,6 +28,9 @@ const useStyles = makeStyles(theme => ({
         display: "flex",
         flexWrap: "wrap",
     },
+    tagContainerNoBeds: {
+        flexWrap: "nowrap",
+    },
     row: {
         padding: theme.spacing(1, 1),
         justifyContent: "space-between",
@@ -122,7 +125,7 @@ const USInfoTopWidget = withRouter((props) => {
     let metro_info = USCounty.getMetro(metro);
 
     return <div className={classes.tagSticky} >
-        <div className={classes.tagContainer} >
+        <div className={`${classes.tagContainer} ${showBeds ? '' : classes.tagContainerNoBeds}`} >
             <Tag
                 title={county_title}
                 confirmed={county_summary.confirmed}
