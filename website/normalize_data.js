@@ -720,7 +720,8 @@ let NYC = {}
 let NYC_METRO = AllData["36"]["36061"];
 AllData["36"]["36061"] = null;
 
-NYC_STARTER.map(entry => {
+NYC_run1 = JSON.parse(JSON.stringify(NYC_STARTER));
+NYC_run1.map(entry => {
     let state_fips = "36";
     let county_fips = entry.FIPS;
     let county_info = getCountyNode(state_fips, county_fips);
@@ -733,7 +734,6 @@ NYC_STARTER.map(entry => {
         )
     } else {
         console.log(county_info);
-
     }
 
     if (entry.FIPS.length !== 5) {
@@ -756,6 +756,45 @@ NYC_STARTER.map(entry => {
 });
 
 AllData.Metros.NYC.Summary = NYC_METRO;
+
+function processNYCBOROS_NEW() {
+
+    for (let d = moment("04/03/2020", "MM/DD/YYYY"); d.isBefore(moment()); d = d.add(1, "days")) {
+        let file = `../data/archive/NYC-BOROUGHS-${d.format("MM-DD-YYYY")}.json`;
+        console.log("processing NYC " + file);
+        let contents = fs.readFileSync(file);
+        let data = JSON.parse(contents);
+        data.map(line => {
+            if (line.BOROUGH_GROUP === "COVID_CASE_COUNT") {
+                let dd = d.format("MM/DD/YYYY");
+                AllData["36"]["36061"].Confirmed[dd] = parseInt(line.MANHATTAN);
+                AllData["36"]["36047"].Confirmed[dd] = parseInt(line.KINGS);
+                AllData["36"]["36081"].Confirmed[dd] = parseInt(line.QUEENS);
+                AllData["36"]["36005"].Confirmed[dd] = parseInt(line.BRONX);
+                AllData["36"]["36085"].Confirmed[dd] = parseInt(line["STATEN ISLAND"]);
+
+            }
+        });
+    }
+
+}
+
+processNYCBOROS_NEW();
+
+NYC_STARTER.map(entry => {
+    let state_fips = "36";
+    let county_fips = entry.FIPS;
+    let county_info = getCountyNode(state_fips, county_fips);
+    if (county_info) {
+        let county = summarize_one_county(county_info);
+        AllData[state_fips][county_fips] = county;
+    } else {
+
+        console.log("Unknown line in NYC");
+        console.log(entry);
+
+    }
+});
 
 processsShelterInPlace();
 addUSRecovery();
