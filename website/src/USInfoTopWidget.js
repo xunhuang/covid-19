@@ -134,7 +134,8 @@ const USInfoTopWidget = withRouter((props) => {
             Hospitals: "N/A",
         }
     }
-    if (county === "New York City" || county === "New York") {
+    if (county === "New York City") {
+        // this should never happen any more
         countyInfo = {
             HospitalBeds: 23639,
             Hospitals: 58,
@@ -187,8 +188,8 @@ const USInfoTopWidget = withRouter((props) => {
                     selected={props.selectedTab === "metro"}
                     to={reverse(routes.metro, { metro })}
                     /* hardcoded to bay area */
-                    hospitals={69}
-                    beds={16408}
+                    hospitals={metro_info.Hospitals}
+                    beds={metro_info.HospitalBeds}
                     showBeds={showBeds}
                 />
             }

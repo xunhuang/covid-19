@@ -536,6 +536,8 @@ function addMetros() {
             Name: "Bay Area",
             StateFIPS: "06",
             StateName: "CA",
+            HospitalBeds: 16408,
+            Hospitals: 69,
             Counties: [
                 "06001",
                 "06075",
@@ -549,6 +551,8 @@ function addMetros() {
             Name: "New York City",
             StateFIPS: "36",
             StateName: "NY",
+            HospitalBeds: 23639,
+            Hospitals: 58,
             Counties: [
                 "36061",
                 "36047",
