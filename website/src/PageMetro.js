@@ -19,7 +19,10 @@ const GraphSectionMetro = withRouter((props) => {
     ]
     let graphlistSection = <MyTabs
         labels={["Cases"]}
+        urlQueryKey="graph"
+        urlQueryValues={['cases']}
         tabs={tabs}
+        history={props.history}
     />;
     return graphlistSection;
 });
@@ -55,7 +58,10 @@ const PageMetro = withHeader((props) => {
             />
             <MyTabs
                 labels={[metro_info.Name]}
+                urlQueryKey="table"
+                urlQueryValues={['cases']}
                 tabs={tabs}
+                history={props.history}
             />
         </>
     );

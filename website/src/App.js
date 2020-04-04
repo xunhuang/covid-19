@@ -13,10 +13,11 @@ import { PageMetro } from "./PageMetro"
 import { Page404 } from "./Page404"
 import { reverse } from 'named-urls';
 import routes from "./Routes";
+import history from "./history";
 
 const App = (props) => {
   return <BrowserRouter>
-    <MainApp  {...props} />
+    <MainApp  {...props} history={history} />
   </BrowserRouter>;
 };
 

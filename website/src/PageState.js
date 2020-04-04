@@ -58,7 +58,10 @@ const GraphSectionState = withRouter((props) => {
             `${state} State Recovery`,
             `${state} Test`,
             "Hospitalization"]}
+        urlQueryKey="graph"
+        urlQueryValues={['cases', 'recovery', 'testing', 'hospitalization']}
         tabs={tabs}
+        history={props.history}
     />;
     return graphlistSection;
 });
@@ -101,7 +104,10 @@ const PageState = withHeader((props) => {
             />
             <MyTabs
                 labels={[`Counties of ${states.getStateNameByStateCode(state)} `, "Per Capita"]}
+                urlQueryKey="table"
+                urlQueryValues={['cases', 'capita']}
                 tabs={tabs}
+                history={props.history}
             />
         </>);
 });

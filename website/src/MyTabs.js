@@ -63,11 +63,28 @@ const LinkTab = withStyles((theme) => ({
 const MyTabs = (props) => {
     const tabs = props.tabs;
     const labels = props.labels;
-    const startIndex = props.startTab ? props.startTab : 0;
-    const [tabvalue, setTabvalue] = React.useState(startIndex);
+    let selectedTabIdx = 0;
+    if (("history" in props) && ("location" in props.history)) {
+        // e.g. {'graph': 'cases', 'table': 'testing'}
+        let searchParams = new URLSearchParams(props.history.location.search);
+        // e.g. 'testing'
+        let selectedTabName = searchParams.get(props.urlQueryKey);
+        selectedTabIdx = props.urlQueryValues.findIndex(name => name === selectedTabName);
+        if (selectedTabIdx === -1) {
+            // The active tab is not specified in the url query
+            selectedTabIdx = 0;
+        }
+    }
+
+    const [tabvalue, setTabvalue] = React.useState(selectedTabIdx);
 
     const handleChange = (event, newValue) => {
         setTabvalue(newValue);
+        // Change url without reloading the page
+        let searchParams = new URLSearchParams(props.history.location.search);
+        searchParams.set(props.urlQueryKey, props.urlQueryValues[newValue]);
+        props.history.location.search = searchParams.toString();
+        props.history.push(props.history.location)
     }
     let c = 0;
     let labelcomp = labels.map(l =>
