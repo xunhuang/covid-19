@@ -262,6 +262,11 @@ const AllStateListTesting = (props) => {
         if ((state in states_data) && (states_data[state].date > record.date)) {
             continue;
         }
+        if (record.pending === null) {
+            // have to do this other sort doesn't work
+            record.pending = Number.NEGATIVE_INFINITY;
+        }
+
         states_data[state] = record;
     }
 
@@ -312,7 +317,7 @@ const AllStateListTesting = (props) => {
                                     <TableCell align="right">{row.positiveRate}</TableCell>
                                     <TableCell align="right">{row.negativeNumber}</TableCell>
                                     <TableCell align="right">{row.negativeRate}</TableCell>
-                                    <TableCell align="right">{row.pending}</TableCell>
+                                    <TableCell align="right">{!isFinite(row.pending) ? "-" : row.pending}</TableCell>
                                     <TableCell align="right">{row.total}</TableCell>
                                 </ThemeProvider>
                             </TableRow>;
