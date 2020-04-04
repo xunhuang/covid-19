@@ -517,7 +517,7 @@ function getCountyByFips(fips) {
 function addMetros() {
     let Metros = {
         BayArea: {
-            Name: "SF Bay Area",
+            Name: "Bay Area",
             StateFIPS: "06",
             StateName: "CA",
             Counties: [
