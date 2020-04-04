@@ -385,29 +385,32 @@ function mergeTwoMapValues(m1, m2) {
     }
 }
 
+function summarize_one_county(county) {
+    county.LastConfirmed = 0;
+    county.LastDeath = 0;
+
+    const CC = getValueFromLastDate(county.Confirmed, county.CountyName + " " + county.StateName);
+    const DD = getValueFromLastDate(county.Death);
+
+    county.LastConfirmed = CC.num;
+    county.LastConfirmedNew = CC.newnum;
+    county.LastDeath = DD.num;
+    county.LastDeathNew = DD.newnum;
+    county.DaysToDouble = getDoubleDays(county.Confirmed);
+    county.DaysToDoubleDeath = getDoubleDays(county.Death);
+    return county;
+}
 
 function summarize_counties() {
     for (s in AllData) {
         state = AllData[s];
         for (c in state) {
             county = state[c];
-            county.LastConfirmed = 0;
-            county.LastDeath = 0;
-
-            const CC = getValueFromLastDate(county.Confirmed, county.CountyName + " " + county.StateName);
-            const DD = getValueFromLastDate(county.Death);
-
-            county.LastConfirmed = CC.num;
-            county.LastConfirmedNew = CC.newnum;
-            county.LastDeath = DD.num;
-            county.LastDeathNew = DD.newnum;
-            county.DaysToDouble = getDoubleDays(county.Confirmed, c);
-            county.DaysToDoubleDeath = getDoubleDays(county.Death, c);
+            county = summarize_one_county(county);
             setCountyNode(s, c, county);
         }
     }
 }
-
 
 // summarize data for states
 
@@ -692,14 +695,16 @@ fillholes();
 summarize_counties();
 summarize_states();
 summarize_USA();
-addMetros();
 */
+addMetros();
 
 // special_processing
 const NYC_STARTER = require("../data/archive/NYC-BOROS-04-03-2020.json")
 
-
 let NYC = {}
+
+let NYC_METRO = AllData["36"]["36061"];
+AllData["36"]["36061"] = null;
 
 NYC_STARTER.map(entry => {
     let state_fips = "36";
@@ -712,6 +717,9 @@ NYC_STARTER.map(entry => {
             county_fips,
             entry.Name,
         )
+    } else {
+        console.log(county_info);
+
     }
 
     if (entry.FIPS.length !== 5) {
@@ -726,12 +734,15 @@ NYC_STARTER.map(entry => {
     }
 
     county_info.Confirmed = Confirmed;
+    county_info.Death = {};
 
-    NYC[county_fips] = county_info;
+    let county = summarize_one_county(county_info);
+
+    // NYC[county_fips] = county;
+    AllData[state_fips][county_fips] = county;
 });
 
-console.log(NYC);
-
+// console.log(NYC);
 
 /*
 processsShelterInPlace();
@@ -740,4 +751,4 @@ addStateRecovery();
 */
 
 let content = JSON.stringify(AllData, 2, 2);
-//fs.writeFileSync("./src/data/AllData.json", content);
+fs.writeFileSync("./src/data/AllData1.json", content);
