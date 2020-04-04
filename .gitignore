@@ -1,5 +1,10 @@
 .DS_Store
+__pycache__
 data/.DS_Store
 data/node_modules/
 website/src/data/latest.json
+*.pyc
 *.swp
+maps/out
+maps/sources
+maps/venv
