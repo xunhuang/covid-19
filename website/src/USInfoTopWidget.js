@@ -23,7 +23,7 @@ const useStyles = makeStyles(theme => ({
         zIndex: "1",
     },
     tagContainer: {
-        padding: theme.spacing(1, 1),
+        padding: theme.spacing(1, 1, 0, 1),
         justifyContent: "space-between",
         display: "flex",
         flexWrap: "wrap",
@@ -33,6 +33,11 @@ const useStyles = makeStyles(theme => ({
     },
     row: {
         padding: theme.spacing(1, 1),
+        justifyContent: "space-between",
+        display: "flex",
+    },
+    rowSummary: {
+        padding: theme.spacing(0.25, 1),
         justifyContent: "space-between",
         display: "flex",
     },
@@ -48,6 +53,18 @@ const useStyles = makeStyles(theme => ({
         borderRadius: 10,
         flexGrow: "1",
         margin: 3,
+        color: "black",
+        textDecoration: "none",
+    },
+    summary_section: {
+        display: "flex",
+        justifyContent: "space-between",
+        flexDirection: "column",
+        textAlign: "center",
+        backgroundColor: "#f3f3f3",
+        // borderRadius: 10,
+        flexGrow: "1",
+        margin: 0,
         color: "black",
         textDecoration: "none",
     },
@@ -87,19 +104,20 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const USInfoTopWidget = withRouter((props) => {
-    const [showBeds, setShowBedsOnScroll] = React.useState(true)
-    const [showDeaths, setShowDeaths] = React.useState(true)
-    const [showRecovered, setShowRecovered] = React.useState(true)
-    if (isMobile) {
-        useScrollPosition(({ prevPos, currPos }) => {
-            const isShow = currPos.y > -100;
-            if (isShow !== showBeds) {
-                setShowBedsOnScroll(isShow)
-                setShowDeaths(isShow)
-                setShowRecovered(isShow)
-            }
-        }, [showBeds, showDeaths, showRecovered]);
-    }
+    const [showBeds, setShowBedsOnScroll] = React.useState(!props.metro)
+    const [showDeaths, setShowDeaths] = React.useState(false)
+    const [showRecovered, setShowRecovered] = React.useState(false)
+
+    // if (isMobile) {
+    //     useScrollPosition(({ prevPos, currPos }) => {
+    //         const isShow = currPos.y > -100;
+    //         if (isShow !== showBeds) {
+    //             setShowBedsOnScroll(isShow)
+    //             setShowDeaths(isShow)
+    //             setShowRecovered(isShow)
+    //         }
+    //     }, [showBeds, showDeaths, showRecovered]);
+    // }
 
     const classes = useStyles();
     const state = props.state ? props.state : "CA";
@@ -129,6 +147,25 @@ const USInfoTopWidget = withRouter((props) => {
     let state_hospitals = USCounty.hospitalsForState(state);
     const metro = props.metro;
     let metro_info = USCounty.getMetro(metro);
+    let summary_section = null;
+    if (props.selectedTab === "usa") {
+        summary_section = <ShortSummary
+            title={""}
+            confirmed={us_summary.confirmed}
+            newcases={us_summary.newcases}
+            deaths={us_summary.deaths}
+            deathsNew={us_summary.deathsNew}
+            recovered={us_summary.recovered}
+            recoveredNew={us_summary.recoveredNew}
+            hospitals={6146}
+            beds={924107}
+            selected={false}
+            // to={routes.united_states}
+            showBeds={true}
+            showRecovered={true}
+            showDeaths={true}
+        />;
+    }
 
     return <div className={classes.tagSticky} >
         <div className={`${classes.tagContainer} ${showBeds ? '' : classes.tagContainerNoBeds}`} >
@@ -189,6 +226,7 @@ const USInfoTopWidget = withRouter((props) => {
                 showDeaths={showDeaths}
             />
         </div>
+        {summary_section}
         <div className={classes.timestamp}>
             <Typography variant="body2" >
                 Updated: {moment(us_summary.generatedTime).format('lll')}
@@ -197,11 +235,10 @@ const USInfoTopWidget = withRouter((props) => {
     </div >;
 });
 
-const Tag = (props) => {
+const ShortSummary = (props) => {
     const classes = useStyles();
-    return <Link className={`${classes.tag} ${props.selected ? classes.tagSelected : ''}`} to={props.to}>
-        <div className={classes.tagTitle}> {props.title} </div>
-        <div className={`${classes.row} ${props.showBeds ? '' : classes.rowNoBeds}`} >
+    return <Link className={classes.summary_section} to={props.to}>
+        <div className={`${classes.rowSummary} ${props.showBeds ? '' : classes.rowNoBeds}`} >
             <section className={classes.tagSection}>
                 <div className={classes.topTag}>
                     +{myShortNumber(props.newcases)}
@@ -252,5 +289,34 @@ const Tag = (props) => {
     </Link>;
 };
 
+
+const Tag = (props) => {
+    const classes = useStyles();
+    return <Link className={`${classes.tag} ${props.selected ? classes.tagSelected : ''}`} to={props.to}>
+        <div className={classes.tagTitle}> {props.title} </div>
+        <div className={`${classes.row} ${props.showBeds ? '' : classes.rowNoBeds}`} >
+            <section className={classes.tagSection}>
+                <div className={classes.topTag}>
+                    +{myShortNumber(props.newcases)}
+                </div>
+                <div className={classes.mainTag}>
+                    {myShortNumber(props.confirmed)} </div>
+                <div className={classes.smallTag}>
+                    Confirmed </div>
+            </section>
+
+            {props.showBeds && <section className={classes.tagSection}>
+                <Typography className={classes.topTag} variant="body2" noWrap >
+                    {myShortNumber(props.hospitals)} Hosp.
+          </Typography>
+                <div className={classes.mainTag}>
+                    {myShortNumber(props.beds)}</div>
+                <div className={classes.smallTag}>
+                    Beds
+                    </div>
+            </section>}
+        </div>
+    </Link>;
+};
 
 export { USInfoTopWidget, Tag }
