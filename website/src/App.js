@@ -28,25 +28,30 @@ class MyRoute extends Route {
     let params = this.props.computedMatch.params;
     let state = params.state;
     let county = params.county;
+    let metro = params.metro;
 
-    let titlePrefix = '';
+    let titlePrefix;
     let desc;
-    if (state === undefined && county === undefined) {
-      // Case 1: 404 page
-      // Case 2: US page
-      titlePrefix = (this.props.status === 404) ? 'Page Not Found' : 'US';
-      desc = "US county-level COVID-19 30-day data visualized: confirmed cases, "
-        + "new cases & death curves. State-level testing results & hospitalization numbers.";
-    } else if (county === undefined) {
-      // Case 3: state page
+    if (state !== undefined && county !== undefined) {
+      // county page
+      titlePrefix = `${county}, ${state}`;
+      desc = `${county} county COVID-19 30-day data visualized: confirmed cases, new cases & death curves.`;
+    } else if (state !== undefined && county === undefined) {
+      // state page
       let stateFullName = states.getStateNameByStateCode(state);
       titlePrefix = stateFullName;
       desc = `${stateFullName} COVID-19 30-day data visualized: confirmed cases, `
         + "new cases & death curves, testing results & hospitalization numbers.";
+    } else if (metro !== undefined) {
+      // metro page
+      titlePrefix = metro;
+      desc = `${metro} COVID-19 30-day data visualized: confirmed cases, `
+        + "new cases & death curves.";
     } else {
-      // Case 4: county page
-      titlePrefix = `${county}, ${state}`;
-      desc = `${county} county COVID-19 30-day data visualized: confirmed cases, new cases & death curves.`;
+      // 404 page or US page
+      titlePrefix = (this.props.status === 404) ? 'Page Not Found' : 'US';
+      desc = "US county-level COVID-19 30-day data visualized: confirmed cases, "
+        + "new cases & death curves. State-level testing results & hospitalization numbers.";
     }
     let title = `${titlePrefix} | COVID-19 Daily Numbers Visualized`;
     document.title = title;
