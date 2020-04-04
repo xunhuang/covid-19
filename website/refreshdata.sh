@@ -14,6 +14,18 @@ else
     echo "File size $filesize too small"
 fi
 
+curl -s  "https://raw.githubusercontent.com/nychealth/coronavirus-data/master/tests-by-zcta.csv" \
+   |perl -pe 's/\r//g' \
+   | ruby -rcsv -e 'puts CSV.parse(STDIN).transpose.map &:to_csv' \
+   | csvtojson  > $temp_file
+filesize=$(wc -c <"$temp_file")
+if  [ "$filesize" -ge "200" ]; then
+    echo "Updated NYC-ZIP-$d.json ($filesize) "
+   mv $temp_file ../data/archive/NYC-ZIP-$d.json
+else 
+    echo "File size $filesize too small"
+fi
+
 curl -s https://covidtracking.com/api/states/daily |jq >$temp_file
 filesize=$(wc -c <"$temp_file")
 if  [ "$filesize" -ge "100000" ]; then
@@ -50,5 +62,3 @@ if  [ "$filesize" -ge "10000" ]; then
 else 
     echo "file size $filesize too small"
 fi
-
-
