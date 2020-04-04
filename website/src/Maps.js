@@ -99,7 +99,7 @@ class RawMap extends React.Component {
   }
 
   svgLoaded_ = () => {
-    const [x, y, width, height] =
+    const [,, width, height] =
         this.element.current.getAttribute('viewBox')
             .split(' ')
             .map(n => parseInt(n));
@@ -193,7 +193,7 @@ class RawMap extends React.Component {
     e.preventDefault();
 
     if (!this.activeGesture) {
-      return true;
+      return;
     }
 
     this.maybeDrag_({x: e.clientX, y: e.clientY});
@@ -203,11 +203,11 @@ class RawMap extends React.Component {
     e.preventDefault();
 
     if (!this.activeGesture) {
-      return true;
+      return;
     }
 
     this.maybeClick_({x: e.clientX, y: e.clientY}, e.target);
-  };
+  }
 
   touchStart_(e) {
     e.preventDefault();
@@ -290,9 +290,9 @@ class RawMap extends React.Component {
 
         this.updatePinTransform_();
       }
-
-      this.activeGesture = undefined;
     }
+
+    this.activeGesture = undefined;
   }
 
   maybeDrag_(at) {
@@ -400,7 +400,7 @@ class InfectionMap extends React.Component {
 
   componentDidMount() {
     const colors = {};
-    for (const [state, counties] of Object.entries(AllData)) {
+    for (const [, counties] of Object.entries(AllData)) {
       for (const [id, county] of Object.entries(counties)) {
         this.mapping[id] = {
           name: county.CountyName,
