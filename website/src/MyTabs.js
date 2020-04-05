@@ -37,16 +37,29 @@ function a11yProps(index) {
     };
 }
 
-const LinkTab = withStyles((theme) => ({
+const LinkTab1 = withStyles((theme) => ({
     root: {
         textTransform: 'none',
-        // color: '#fff',
         fontWeight: theme.typography.fontWeightBold,
         // fontSize: theme.typography.pxToRem(15),
         // marginRight: theme.spacing(1),
+        background: "#c3c3c3",
+        borderRadius: 25,
+        borderWidth: 2,
+        borderColor: "#000000",
+        margin: 2,
+        padding: 3,
         '&:focus': {
             opacity: 1,
+            background: "#00ffff",
         },
+        '&$selected': {
+            color: '#0090ff',
+            background: "#000000",
+            fontWeight: theme.typography.fontWeightMedium,
+        },
+        selected: {},
+
     },
 }))((props) => {
     return (
@@ -59,6 +72,45 @@ const LinkTab = withStyles((theme) => ({
         />
     );
 });
+
+const LinkTab = withStyles((theme) => ({
+    root: {
+        textTransform: 'none',
+        // minWidth: 72,
+        fontWeight: theme.typography.fontWeightRegular,
+        // marginRight: theme.spacing(4),
+        background: "#c3c3c3",
+        borderRadius: 25,
+        margin: 2,
+        minHeight: 0,
+        fontFamily: [
+            '-apple-system',
+            'BlinkMacSystemFont',
+            '"Segoe UI"',
+            'Roboto',
+            '"Helvetica Neue"',
+            'Arial',
+            'sans-serif',
+            '"Apple Color Emoji"',
+            '"Segoe UI Emoji"',
+            '"Segoe UI Symbol"',
+        ].join(','),
+        '&:hover': {
+            color: '#40a9ff',
+            opacity: 1,
+        },
+        '&$selected': {
+            color: '#0090ff',
+            background: "#ffffff",
+            fontWeight: theme.typography.fontWeightBold,
+        },
+        '&:focus': {
+            color: '#00a9ff',
+        },
+    },
+    selected: {},
+}))((props) => <Tab disableRipple {...props} />);
+
 
 const MyTabs = (props) => {
     const tabs = props.tabs;
