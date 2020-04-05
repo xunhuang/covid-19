@@ -85,7 +85,6 @@ function prepareDataForDisplay(list) {
         newrow.confirmed = row.confirmed;
         newrow.newpercent = row.newpercent;
         newrow.death = row.death;
-        console.log(newrow.newpercent);
         newrow.newEntry = (Number.isNaN(newrow.newpercent) || !isFinite(newrow.newpercent))
             ? newrow.newcases
             : `${(newrow.newpercent * 100).toFixed(1)}%`;
@@ -99,7 +98,7 @@ function prepareDataForDisplay(list) {
         newrow.deathsPerMil = newrow.death * 1000000 / newrow.pop;
         newrow.daysToDouble = row.daysToDouble;
         newrow.daysToDoubleDeath = row.daysToDoubleDeath;
-        newrow.recovered = row.recovered;
+        newrow.recovered = row.lastRecovered;
         return newrow;
     });
     return extendlist;
