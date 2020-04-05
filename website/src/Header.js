@@ -12,6 +12,7 @@ import ListItem from '@material-ui/core/ListItem';
 import { Link as MaterialLink } from '@material-ui/core';
 import ListItemText from '@material-ui/core/ListItemText';
 import { Grid } from '@material-ui/core';
+import { SectionHeader } from "./CovidUI"
 
 const MentalHealthResources = require("./data/mentalhealth.json");
 const moment = require("moment");
@@ -95,13 +96,13 @@ const ResourceSection = (props) => {
 const SearchBox = (props) => {
     const country = useContext(CountryContext);
     const counties =
-          country.allStates().flatMap(s => s.allCounties()).map(county => {
-              return {
-                  display_name: `${county.name}, ${county.state().name}`,
-                  county: county,
-                  total: county.totalConfirmed(),
-              };
-          });
+        country.allStates().flatMap(s => s.allCounties()).map(county => {
+            return {
+                display_name: `${county.name}, ${county.state().name}`,
+                county: county,
+                total: county.totalConfirmed(),
+            };
+        });
     const states = country.allStates().map(
         state => {
             return {
@@ -174,21 +175,23 @@ const withHeader = (comp, props) => {
         });
         let footer = <div>
             {false && <ResourceSection />}
-            <Grid container alignItems="center" justifyContent="center">
-                <Grid item>
-                    <Typography variant="h5" noWrap>
-                        Discussions
+            <SectionHeader>
+                <Grid container alignItems="center" justifyContent="center">
+                    <Grid item>
+                        <Typography variant="h5" noWrap>
+                            Discussions
                     </Typography>
-                </Grid>
-                <Grid xs/>
-                <Grid item>
-                    <Typography noWrap variant="body2" className={classes.supportUs}>
-                        <MaterialLink target="_blank" href={donationPageUrl}>
-                            Like our site? Support us!
+                    </Grid>
+                    <Grid xs />
+                    <Grid item>
+                        <Typography noWrap variant="body2" className={classes.supportUs}>
+                            <MaterialLink target="_blank" href={donationPageUrl}>
+                                Like our site? Support us!
                         </MaterialLink>
-                    </Typography>
+                        </Typography>
+                    </Grid>
                 </Grid>
-            </Grid>
+            </SectionHeader>
             <Disqus.DiscussionEmbed
                 shortname={disqusShortname}
                 config={disqusConfig}

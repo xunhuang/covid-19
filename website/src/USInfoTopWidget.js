@@ -4,6 +4,7 @@ import { myShortNumber } from "./Util.js";
 import { withRouter } from 'react-router-dom'
 import { Typography } from '@material-ui/core';
 import { Link } from 'react-router-dom';
+import { SectionHeader } from "./CovidUI"
 
 const useStyles = makeStyles(theme => ({
     tagSticky: {
@@ -208,15 +209,6 @@ const USInfoTopWidget = withRouter((props) => {
     </div >;
 });
 
-const SectionHeader = (props) => {
-    const classes = useStyles();
-    return (
-        <div className={classes.sectionHeader}>
-            {props.children}
-        </div>
-    );
-}
-
 const ShortSummary = (props) => {
     const classes = useStyles();
     return (
@@ -308,4 +300,4 @@ const Tag = (props) => {
     </Link>;
 };
 
-export { USInfoTopWidget, Tag, USSummarySection, SectionHeader }
+export { USInfoTopWidget, Tag, USSummarySection }
