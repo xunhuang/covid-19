@@ -15,6 +15,7 @@ import { Link as MaterialLink } from '@material-ui/core';
 import ListItemText from '@material-ui/core/ListItemText';
 
 const MentalHealthResources = require("./data/mentalhealth.json");
+const moment = require("moment");
 
 const useStyles = makeStyles(theme => ({
     topContainer: {
@@ -187,17 +188,22 @@ const withHeader = (comp, props) => {
                 <CommentsCount href="http://www.facebook.com" />
             </FacebookProvider>;
 
+        let us_summary = USCounty.casesForUSSummary();
+
         let header = <header className="App-header">
             <div className={classes.topContainer}>
                 <span className={classes.title}>
                     <Typography variant="h6" >
                         COVID-19.direct
             </Typography>
+                    <Typography variant="body2" >
+                        Updated: {moment(us_summary.generatedTime).format('lll')}
+                    </Typography>
                 </span>
                 <span className={classes.grow}></span>
                 {/* <span className={classes.keepclam}> Keep Clam, #StayHome</span> */}
                 <span className={classes.title}>
-                    <Typography variant="body2" >
+                    <Typography variant="body1" >
                         #StayHome #StayInformed
             </Typography>
                 </span>

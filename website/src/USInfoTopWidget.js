@@ -1,5 +1,4 @@
 import React from 'react';
-import moment from 'moment';
 import { makeStyles } from '@material-ui/core/styles';
 import * as USCounty from "./USCountyInfo.js";
 import { myShortNumber } from "./Util.js";
@@ -9,8 +8,6 @@ import { Typography } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import { reverse } from 'named-urls';
 import routes from "./Routes.js";
-import { useScrollPosition } from '@n8tb1t/use-scroll-position';
-import { isMobile } from 'react-device-detect';
 
 const states = require('us-state-codes');
 
@@ -107,17 +104,6 @@ const USInfoTopWidget = withRouter((props) => {
     const [showBeds, setShowBedsOnScroll] = React.useState(!props.metro)
     const [showDeaths, setShowDeaths] = React.useState(false)
     const [showRecovered, setShowRecovered] = React.useState(false)
-
-    // if (isMobile) {
-    //     useScrollPosition(({ prevPos, currPos }) => {
-    //         const isShow = currPos.y > -100;
-    //         if (isShow !== showBeds) {
-    //             setShowBedsOnScroll(isShow)
-    //             setShowDeaths(isShow)
-    //             setShowRecovered(isShow)
-    //         }
-    //     }, [showBeds, showDeaths, showRecovered]);
-    // }
 
     const classes = useStyles();
     const state = props.state ? props.state : "CA";
@@ -228,11 +214,6 @@ const USInfoTopWidget = withRouter((props) => {
             />
         </div>
         {summary_section}
-        <div className={classes.timestamp}>
-            <Typography variant="body2" >
-                Updated: {moment(us_summary.generatedTime).format('lll')}
-            </Typography>
-        </div>
     </div >;
 });
 
