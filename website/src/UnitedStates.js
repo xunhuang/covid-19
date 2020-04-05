@@ -323,7 +323,7 @@ export class State {
       newcases: newcases,
       death: this.covidRaw_.Summary.LastDeath,
       deathNew: this.covidRaw_.Summary.LastDeathNew,
-      newpercent: ((newcases / (confirmed - newcases)) * 100).toFixed(0),
+      newpercent: newcases / (confirmed - newcases),
       daysToDouble: this.covidRaw_.Summary.DaysToDouble,
       daysToDoubleDeath: this.covidRaw_.Summary.DaysToDoubleDeath,
       lastRecovered: this.covidRaw_.Summary.LastRecovered,

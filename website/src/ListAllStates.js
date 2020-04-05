@@ -85,6 +85,7 @@ function prepareDataForDisplay(list) {
         newrow.confirmed = row.confirmed;
         newrow.newpercent = row.newpercent;
         newrow.death = row.death;
+        console.log(newrow.newpercent);
         newrow.newEntry = (Number.isNaN(newrow.newpercent) || !isFinite(newrow.newpercent))
             ? newrow.newcases
             : `${(newrow.newpercent * 100).toFixed(1)}%`;
