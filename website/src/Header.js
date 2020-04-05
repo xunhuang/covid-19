@@ -190,7 +190,7 @@ const withHeader = (comp, props) => {
                     <Typography variant="h6" >
                         COVID-19.direct
             </Typography>
-                    <Typography variant="body2" >
+                    <Typography variant="body2" noWrap>
                         Updated: {moment(us_summary.generatedTime).format('lll')}
                     </Typography>
                 </span>

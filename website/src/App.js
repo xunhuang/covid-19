@@ -14,10 +14,11 @@ import { Country } from "./UnitedStates";
 import { CountryContext } from "./CountryContext";
 import { reverse } from 'named-urls';
 import routes from "./Routes";
+import history from "./history";
 
 const App = (props) => {
   return <BrowserRouter>
-    <MainApp  {...props} />
+    <MainApp  {...props} history={history} />
   </BrowserRouter>;
 };
 
