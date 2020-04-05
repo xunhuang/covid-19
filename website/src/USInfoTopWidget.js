@@ -128,9 +128,9 @@ const USInfoTopWidget = withRouter((props) => {
     const state = county.state();
     const country = state.country();
 
-    const [showBeds, setShowBedsOnScroll] = React.useState(!metro)
-    const [showDeaths, setShowDeaths] = React.useState(false)
-    const [showRecovered, setShowRecovered] = React.useState(false)
+    const [showBeds] = React.useState(!metro)
+    const [showDeaths] = React.useState(false)
+    const [showRecovered] = React.useState(false)
 
     const classes = useStyles();
 

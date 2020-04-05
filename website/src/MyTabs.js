@@ -37,42 +37,6 @@ function a11yProps(index) {
     };
 }
 
-const LinkTab1 = withStyles((theme) => ({
-    root: {
-        textTransform: 'none',
-        fontWeight: theme.typography.fontWeightBold,
-        // fontSize: theme.typography.pxToRem(15),
-        // marginRight: theme.spacing(1),
-        background: "#c3c3c3",
-        borderRadius: 25,
-        borderWidth: 2,
-        borderColor: "#000000",
-        margin: 2,
-        padding: 3,
-        '&:focus': {
-            opacity: 1,
-            background: "#00ffff",
-        },
-        '&$selected': {
-            color: '#0090ff',
-            background: "#000000",
-            fontWeight: theme.typography.fontWeightMedium,
-        },
-        selected: {},
-
-    },
-}))((props) => {
-    return (
-        <Tab
-            component="a"
-            onClick={event => {
-                event.preventDefault();
-            }}
-            {...props}
-        />
-    );
-});
-
 const LinkTab = withStyles((theme) => ({
     root: {
         textTransform: 'none',

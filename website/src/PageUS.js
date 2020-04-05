@@ -17,10 +17,6 @@ import {
 
 import { logger } from "./AppModule"
 
-const GraphTabIndex = {
-    "/US/Recovery": 1,
-}
-
 const GraphSectionUS = withRouter((props) => {
     const country = props.country;
     let graphdata = country.dataPoints();
