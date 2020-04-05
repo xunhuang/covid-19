@@ -14,8 +14,7 @@ class Assigner(object):
         return self.zip_to_states[zipcode]
 
 def main():
-    g = generator.Generator(
-            Assigner(), 'ZCTA5CE10', dest_id_attr='data-zip')
+    g = generator.Generator(Assigner(), 'ZCTA5CE10')
     g.generate('cb_2018_us_zcta510_500k.kml', 'state-zips')
 
 if __name__ == '__main__':

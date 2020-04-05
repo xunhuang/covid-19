@@ -21,7 +21,6 @@ def main():
     g = generator.Generator(
             Assigner(),
             'GEOID',
-            dest_id_attr='data-id',
             filter=filter,
             translator=translate)
     g.generate('cb_2018_us_county_5m.kml', 'state-counties')

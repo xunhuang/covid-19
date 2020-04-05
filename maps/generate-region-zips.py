@@ -21,8 +21,7 @@ class Assigner(object):
         return None
 
 def main():
-    g = generator.Generator(
-            Assigner(), 'ZCTA5CE10', dest_id_attr='data-zip')
+    g = generator.Generator(Assigner(), 'ZCTA5CE10')
     g.generate('cb_2018_us_zcta510_500k.kml', 'region-zips')
 
 if __name__ == '__main__':

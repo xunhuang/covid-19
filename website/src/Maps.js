@@ -139,7 +139,7 @@ class RawMap extends React.Component {
       for (let i = index; i < nextBatch; i += 1) {
         const [id, color] = entries[i];
         const county =
-            this.element.current.querySelector(`[data-id="${parseInt(id)}"]`);
+            this.element.current.querySelector(`[id="${parseInt(id)}"]`);
         if (county) {
           county.style.fill = color;
         } else {
@@ -275,9 +275,9 @@ class RawMap extends React.Component {
     if (gesture.name === 'select'
         && distance(at, gesture.center) < DRAG_SENSITIVITY
         && this.props.getPinText) {
-      if (target.hasAttribute('data-id')) {
+      if (target.hasAttribute('id')) {
         const text = this.props.getPinText(
-            target.getAttribute('data-id').padStart(5, '0'));
+            target.getAttribute('id').padStart(5, '0'));
         this.pin.current.setState(prevState => ({
           ...prevState,
           ...text,
