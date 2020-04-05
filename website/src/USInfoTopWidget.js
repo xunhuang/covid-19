@@ -100,10 +100,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const USSummarySection = withRouter((props) => {
-    const county = props.county;
-    const state = county.state();
-    const country = state.country();
-
+    const country = props.country;
     const us_summary = country.summary();
 
     return <ShortSummary
@@ -211,10 +208,19 @@ const USInfoTopWidget = withRouter((props) => {
     </div >;
 });
 
-const ShortSummary = (props) => {
+const SectionHeader = (props) => {
     const classes = useStyles();
     return (
         <div className={classes.sectionHeader}>
+            {props.children}
+        </div>
+    );
+}
+
+const ShortSummary = (props) => {
+    const classes = useStyles();
+    return (
+        <SectionHeader>
             <Typography variant="h6" noWrap >
                 US Summary
             </Typography>
@@ -268,7 +274,8 @@ const ShortSummary = (props) => {
                 </section>}
                 <div></div>
             </div>
-        </div>);
+        </SectionHeader>
+    );
 };
 
 
@@ -301,4 +308,4 @@ const Tag = (props) => {
     </Link>;
 };
 
-export { USInfoTopWidget, Tag, USSummarySection }
+export { USInfoTopWidget, Tag, USSummarySection, SectionHeader }

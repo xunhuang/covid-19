@@ -59,7 +59,7 @@ const PageUS = withHeader((props) => {
     return (
         <>
             <USInfoTopWidget county={county} selectedTab={"usa"} />
-            <USSummarySection county={county} />
+            <USSummarySection country={country} />
             <GraphSectionUS country={country} />
             <MyTabs
                 labels={["States of USA", "Testing", "Capita"]}
