@@ -1,4 +1,3 @@
-import * as USCounty from "./USCountyInfo.js"
 var shortNumber = require('short-number');
 const Cookies = require("js-cookie");
 const states = require('us-state-codes');
@@ -14,13 +13,6 @@ function myShortNumber(n) {
     return shortNumber(n);
 }
 
-function myGoodNumber(n) {
-    if (Number.isNaN(n) || !isFinite(n)) {
-        return "-";
-    }
-    return n;
-}
-
 function myGoodWholeNumber(n) {
     if (Number.isNaN(n) || !isFinite(n)) {
         return "-";
@@ -34,19 +26,6 @@ function myGoodShortNumber(n) {
         return "-";
     }
     return myShortNumber(n);
-}
-
-function myToNumber(n) {
-    let ret;
-    if (!n) {
-        return 0;
-    }
-    if (isNaN(n) || typeof n === "string") {
-        ret = Number(n.replace(/,/g, ''));
-    } else {
-        ret = n;
-    }
-    return ret;
 }
 
 function CookieGetLastCounty() {
@@ -65,35 +44,34 @@ function getDefaultCounty() {
     }
 }
 function getDefaultCountyForMetro(metro) {
-    let metro_info = USCounty.getMetro(metro);
     let county_info = CookieGetLastCounty();
     if (county_info) {
-        if (county_info.state === metro_info.State) {
-            return county_info.county;
+        if (county_info.state === metro.state().id) {
+            return metro.state().countyForName(county_info.county);
         }
     }
 
     // cookie county not match, return the top county
-    let counties = USCounty.countyDataForMetro(metro).sort((a, b) => b.total - a.total);
-    let topcounty = counties[0].County;
-    return topcounty;
+    return metro
+        .allCounties()
+        .sort((a, b) => b.totalConfirmed() - a.totalConfirmed())[0];
 }
-function getDefaultCountyForState(state, county) {
-    if (county) {
-        return county;
-    }
+function getDefaultCountyForState(state) {
     let county_info = CookieGetLastCounty();
     if (county_info) {
-        if (county_info.state === state) {
-            return county_info.county;
+        if (county_info.state === state.twoLetterName) {
+            return state.countyForName(county_info.county);
         }
     }
 
     // cookie county not match, return the top county
-    let counties = USCounty.countyDataForState(state).sort((a, b) => b.total - a.total);
-    let topcounty = counties[0].County;
-    if (topcounty === "Statewide Unallocated") {
-        topcounty = counties[1].County;
+    let counties =
+          state
+                .allCounties()
+                .sort((a, b) => b.totalConfirmed() - a.totalConfirmed());
+    let topcounty = counties[0];
+    if (topcounty.name === "Statewide Unallocated") {
+        topcounty = counties[1];
     }
     return topcounty;
 }
@@ -125,10 +103,8 @@ function getStateNameByStateCode(stateCode) {
 
 export {
     myShortNumber,
-    myGoodNumber,
     myGoodShortNumber,
     myGoodWholeNumber,
-    myToNumber,
 
     CookieGetLastCounty,
     CookieSetLastCounty,

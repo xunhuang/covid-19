@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { withHeader } from "./Header.js"
+import { CountryContext } from "./CountryContext";
 import { USInfoTopWidget } from './USInfoTopWidget.js'
 import * as Util from "./Util.js"
 import { Box } from '@material-ui/core'
@@ -10,14 +11,15 @@ const textStyle = {
 }
 
 const Page404 = withHeader(() => {
+    const country = useContext(CountryContext);
     const default_county_info = Util.getDefaultCounty();
+    const county =
+        country
+            .stateForTwoLetterName(default_county_info.state)
+            .countyForName(default_county_info.county)
     return (
         <>
-            <USInfoTopWidget
-                county={default_county_info.county}
-                state={default_county_info.state}
-                selectedTab={"usa"}
-            />
+            <USInfoTopWidget county={county} selectedTab={"usa"} />
             <Box
                 display="flex"
                 height={80}

@@ -1,5 +1,5 @@
-import React from 'react';
-import * as USCounty from "./USCountyInfo.js";
+import React, { useContext } from 'react';
+import { CountryContext } from "./CountryContext";
 import * as Util from "./Util"
 import { GraphStateTesting } from "./GraphTestingEffort"
 import { withHeader } from "./Header.js"
@@ -14,7 +14,6 @@ import { BasicGraphRecoveryAndDeath } from "./GraphRecoveryAndDeath.js"
 import { Redirect } from 'react-router-dom'
 
 const moment = require("moment");
-const states = require('us-state-codes');
 
 const StateGraphCaveat = (props) => {
     return <div>
@@ -32,10 +31,9 @@ const StateGraphCaveat = (props) => {
 
 const GraphSectionState = withRouter((props) => {
     const state = props.state;
-    // let state_title = states.getStateNameByStateCode(state);
-    let graphdata = USCounty.getStateDataForGrapth(state);
-    let stateSummary = USCounty.casesForStateSummary(state);
-    let stayHomeOrder = stateSummary.stayHomeOrder;
+    let graphdata = state.dataPoints();
+    let stateSummary = state.summary();
+    let stayHomeOrder = state.stayHomeOrder();
 
     const tabs = [
         <BasicGraphNewCases
@@ -50,13 +48,13 @@ const GraphSectionState = withRouter((props) => {
                     }] : []
             } />,
         <StateGraphCaveat stateSummary={stateSummary} data={graphdata} logScale={false} />,
-        < GraphStateTesting state={state} />,
+        <GraphStateTesting state={state} />,
         <GraphStateHospitalization state={state} />,
     ]
     let graphlistSection = <MyTabs
         labels={["Cases",
-            `${state} State Recovery`,
-            `${state} Test`,
+            `${state.name} State Recovery`,
+            `${state.name} Test`,
             "Hospitalization"]}
         urlQueryKey="graph"
         urlQueryValues={['cases', 'recovery', 'testing', 'hospitalization']}
@@ -67,43 +65,25 @@ const GraphSectionState = withRouter((props) => {
 });
 
 const PageState = withHeader((props) => {
-    const state = props.match.params.state;
-    // Validate state name
-    const stateFullName = states.getStateNameByStateCode(state);
-    if (stateFullName === null) {
+    const country = useContext(CountryContext);
+    const state = country.stateForTwoLetterName(props.match.params.state);
+    if (!state) {
         return <Redirect to={'/page-not-found'} />;
     }
 
-    const county = Util.getDefaultCountyForState(
-        props.match.params.state,
-        props.match.params.county);
-
-    const metro = USCounty.getMetroNameFromCounty(state, county);
+    const county = Util.getDefaultCountyForState(state);
 
     const tabs = [
-        <CountiesForStateWidget
-            county={county}
-            state={state}
-        />,
-        <ListStateCountiesCapita
-            county={county}
-            state={state}
-        />,
+        <CountiesForStateWidget state={state} />,
+        <ListStateCountiesCapita state={state} />,
     ];
 
     return (
         <>
-            <USInfoTopWidget
-                county={county}
-                state={state}
-                metro={metro}
-                selectedTab={"state"}
-            />
-            <GraphSectionState
-                state={state}
-            />
+            <USInfoTopWidget county={county} selectedTab={"state"} />
+            <GraphSectionState state={state} />
             <MyTabs
-                labels={[`Counties of ${states.getStateNameByStateCode(state)} `, "Per Capita"]}
+                labels={[`Counties of ${state.name} `, "Per Capita"]}
                 urlQueryKey="table"
                 urlQueryValues={['cases', 'capita']}
                 tabs={tabs}
