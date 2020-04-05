@@ -1,15 +1,9 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import * as USCounty from "./USCountyInfo.js";
 import { myShortNumber } from "./Util.js";
 import { withRouter } from 'react-router-dom'
-import { lookupCountyInfo } from "./USCountyInfo.js";
 import { Typography } from '@material-ui/core';
 import { Link } from 'react-router-dom';
-import { reverse } from 'named-urls';
-import routes from "./Routes.js";
-
-const states = require('us-state-codes');
 
 const useStyles = makeStyles(theme => ({
     tagSticky: {
@@ -101,39 +95,31 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const USInfoTopWidget = withRouter((props) => {
-    const [showBeds, setShowBedsOnScroll] = React.useState(!props.metro)
+    const county = props.county;
+    const metro = county.metro();
+    const state = county.state();
+    const country = state.country();
+
+    const [showBeds, setShowBedsOnScroll] = React.useState(!metro)
     const [showDeaths, setShowDeaths] = React.useState(false)
     const [showRecovered, setShowRecovered] = React.useState(false)
 
     const classes = useStyles();
-    const state = props.state ? props.state : "CA";
-    const county = props.county ? props.county : USCounty.countyDataForState(state)[0].County;
 
-    let state_title = showBeds ? states.getStateNameByStateCode(state) : state;
-    let county_title = county;
-    let US_title = "US";
+    const county_hospitals = county.hospitals() || {
+      'bedCount': "N/A",
+      'count': "N/A",
+    };
+    const county_summary = county.summary();
 
-    let countyInfo = lookupCountyInfo(state, county);
-    if (!countyInfo) {
-        countyInfo = {
-            HospitalBeds: "N/A",
-            Hospitals: "N/A",
-        }
-    }
-    if (county === "New York City") {
-        // this should never happen any more
-        countyInfo = {
-            HospitalBeds: 23639,
-            Hospitals: 58,
-        }
-    }
+    const metro_hospitals = metro ? metro.hospitals() : undefined;
 
-    let state_summary = USCounty.casesForStateSummary(state);
-    let county_summary = USCounty.casesForCountySummary(state, county);
-    let us_summary = USCounty.casesForUSSummary();
-    let state_hospitals = USCounty.hospitalsForState(state);
-    const metro = props.metro;
-    let metro_info = USCounty.getMetro(metro);
+    const state_title = showBeds ? state.name : state.twoLetterName;
+    const state_hospitals = state.hospitals();
+    const state_summary = state.summary();
+
+    const us_summary = country.summary();
+
     let summary_section = null;
     if (props.selectedTab === "usa") {
         summary_section = <ShortSummary
@@ -157,25 +143,25 @@ const USInfoTopWidget = withRouter((props) => {
     return <div className={classes.tagSticky} >
         <div className={`${classes.tagContainer} ${showBeds ? '' : classes.tagContainerNoBeds}`} >
             <Tag
-                title={county_title}
+                title={county.name}
                 confirmed={county_summary.confirmed}
                 newcases={county_summary.newcases}
-                hospitals={countyInfo.Hospitals}
-                beds={countyInfo.HospitalBeds}
+                hospitals={county_hospitals.count}
+                beds={county_hospitals.bedCount}
                 selected={props.selectedTab === "county"}
-                to={reverse(routes.county, { state, county })}
+                to={county.routeTo()}
                 showBeds={showBeds}
             />
             {metro &&
                 <Tag
-                    title={metro_info.Name}
-                    confirmed={metro_info.Summary.LastConfirmed}
-                    newcases={metro_info.Summary.LastConfirmedNew}
+                    title={metro.name}
+                    confirmed={metro.summary().LastConfirmed}
+                    newcases={metro.summary().LastConfirmedNew}
                     selected={props.selectedTab === "metro"}
-                    to={reverse(routes.metro, { metro })}
+                    to={metro.routeTo()}
                     /* hardcoded to bay area */
-                    hospitals={metro_info.Hospitals}
-                    beds={metro_info.HospitalBeds}
+                    hospitals={metro_hospitals.count}
+                    beds={metro_hospitals.bedCount}
                     showBeds={showBeds}
                 />
             }
@@ -186,10 +172,10 @@ const USInfoTopWidget = withRouter((props) => {
                 deathsNew={state_summary.deathNew}
                 recovered={state_summary.lastRecovered}
                 recoveredNew={state_summary.lastRecoveredNew}
-                hospitals={state_hospitals.hospitals}
-                beds={state_hospitals.beds}
+                hospitals={state_hospitals.count}
+                beds={state_hospitals.bedCount}
                 selected={props.selectedTab === "state"}
-                to={reverse(routes.state, { state })}
+                to={state.routeTo()}
                 showBeds={showBeds}
                 // showRecovered={showRecovered}
                 // showDeaths={showDeaths}
@@ -197,7 +183,7 @@ const USInfoTopWidget = withRouter((props) => {
                 showDeaths={false}
             />
             <Tag
-                title={US_title}
+                title={country.name}
                 confirmed={us_summary.confirmed}
                 newcases={us_summary.newcases}
                 deaths={us_summary.deaths}
@@ -207,7 +193,7 @@ const USInfoTopWidget = withRouter((props) => {
                 hospitals={6146}
                 beds={924107}
                 selected={props.selectedTab === "usa"}
-                to={routes.united_states}
+                to={country.routeTo()}
                 showBeds={showBeds}
                 showRecovered={showRecovered}
                 showDeaths={showDeaths}

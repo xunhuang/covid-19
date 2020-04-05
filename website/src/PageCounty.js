@@ -1,30 +1,24 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { withRouter } from 'react-router-dom'
-import * as USCounty from "./USCountyInfo.js";
 import { NearbyCounties } from "./CountyListRender.js"
 import { BasicGraphNewCases } from "./GraphNewCases.js"
 import { GraphStateTesting } from "./GraphTestingEffort"
 import { withHeader } from "./Header.js"
 import { MyTabs } from "./MyTabs.js"
+import { CountryContext } from "./CountryContext";
 import { USInfoTopWidget } from './USInfoTopWidget.js'
 import { CountyHospitalsWidget } from "./Hospitals"
 import * as Util from "./Util"
 
-const moment = require("moment");
-const states = require('us-state-codes');
+const moment = require('moment');
 
 const GraphSectionCounty = withRouter((props) => {
-    const state = props.state;
     const county = props.county;
-    let state_title = states.getStateNameByStateCode(state);
-
-    let graphdata = USCounty.getCountyDataForGrapth(state, county);
-    let countySummary = USCounty.casesForCountySummary(state, county);
-    let stayHomeOrder = countySummary.stayHomeOrder;
+    const stayHomeOrder = county.stayHomeOrder();
 
     const tabs = [
         <BasicGraphNewCases
-            data={graphdata}
+            data={county.dataPoints()}
             logScale={false}
             vRefLines={
                 stayHomeOrder ?
@@ -35,10 +29,10 @@ const GraphSectionCounty = withRouter((props) => {
                     }] : []
             }
         />,
-        <GraphStateTesting state={state} />,
+        <GraphStateTesting state={county.state()} />,
     ]
     let graphlistSection = <MyTabs
-        labels={["Cases", `${state_title} Testing`]}
+        labels={["Cases", `${county.state().name} Testing`]}
         urlQueryKey="graph"
         urlQueryValues={['cases', 'testing']}
         tabs={tabs}
@@ -48,36 +42,20 @@ const GraphSectionCounty = withRouter((props) => {
 });
 
 const PageCounty = withHeader((props) => {
-    const state = props.match.params.state;
-    const county = props.match.params.county;
+    const country = useContext(CountryContext);
+    const state = country.stateForTwoLetterName(props.match.params.state);
+    const county = state.countyForName(props.match.params.county);
 
-    Util.CookieSetLastCounty(state, county);
-
-    const metro = USCounty.getMetroNameFromCounty(state, county);
+    Util.CookieSetLastCounty(state.twoLetterName, county.name);
 
     const tabs = [
-        <NearbyCounties
-            county={county}
-            state={state}
-        />,
-        <CountyHospitalsWidget
-            county={county}
-            state={state}
-        >
-        </CountyHospitalsWidget >,
+        <NearbyCounties county={county} />,
+        <CountyHospitalsWidget county={county} />,
     ];
     return (
         <>
-            <USInfoTopWidget
-                county={county}
-                state={state}
-                metro={metro}
-                selectedTab={"county"}
-            />
-            <GraphSectionCounty
-                county={county}
-                state={state}
-            />
+            <USInfoTopWidget county={county} selectedTab={"county"} />
+            <GraphSectionCounty county={county} />
             <MyTabs
                 labels={["Nearby", "Hospitals"]}
                 urlQueryKey="table"

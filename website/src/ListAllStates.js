@@ -1,13 +1,11 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import * as USCounty from "./USCountyInfo.js";
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableRow from '@material-ui/core/TableRow';
 import {
     myShortNumber,
-    myToNumber,
     myGoodWholeNumber,
     myGoodShortNumber,
     getStateNameByStateCode,
@@ -29,8 +27,6 @@ const compact = createMuiTheme({
         },
     },
 });
-
-const states = require('us-state-codes');
 
 const useStyles = makeStyles(theme => ({
     row: {
@@ -58,31 +54,32 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const ListAllStates = (props) => {
-    let list = USCounty.getAllStatesSummary()
-        .sort((a, b) => b.confirmed - a.confirmed);
+    let list = props.country.allStates()
+        .sort((a, b) => b.confirmed() - a.confirmed());
     let countySummary =
-        <AllStateListRender countylist={list} />
+        <AllStateListRender states={list} />
     return countySummary;
 }
 
 const ListAllStatesPerCapita = (props) => {
-    let list = USCounty.getAllStatesSummary()
-        .sort((a, b) => b.confirmed - a.confirmed);
+    let list = props.country.allStates()
+        .sort((a, b) => b.confirmed() - a.confirmed());
     let countySummary =
-        <AllStateListCapita countylist={list} />
+        <AllStateListCapita states={list} />
     return countySummary;
 }
 
 const ListAllStatesTesting = (props) => {
-    let list = USCounty.getAllStatesSummary()
-        .sort((a, b) => b.confirmed - a.confirmed);
+    let list = props.country.allStates()
+        .sort((a, b) => b.confirmed() - a.confirmed());
     let countySummary =
-        <AllStateListTesting countylist={list} />
+        <AllStateListTesting states={list} />
     return countySummary;
 }
 
 function prepareDataForDisplay(list) {
-    let extendlist = list.map(row => {
+    let extendlist = list.map(state => {
+        const row = state.summary();
         let newrow = {};
         newrow.newcases = row.newcases;
         newrow.confirmed = row.confirmed;
@@ -94,10 +91,9 @@ function prepareDataForDisplay(list) {
         if (newrow.newcases === 0) {
             newrow.newEntry = 0;
         }
-        let statename = states.getStateNameByStateCode(row.state);
-        newrow.pop = myToNumber(row.Population2010);
-        newrow.statename = statename;
-        newrow.state = row.state;
+        newrow.pop = state.population();
+        newrow.statename = state.name;
+        newrow.state = state.twoLetterName;
         newrow.partsPerMil = newrow.confirmed * 1000000 / newrow.pop;
         newrow.deathsPerMil = newrow.death * 1000000 / newrow.pop;
         newrow.daysToDouble = row.daysToDouble;
@@ -109,7 +105,7 @@ function prepareDataForDisplay(list) {
 }
 
 const AllStateListCapita = (props) => {
-    const list = props.countylist;
+    const list = props.states;
     const classes = useStyles();
 
     const [order, setOrder] = React.useState('desc');
@@ -166,7 +162,7 @@ const AllStateListCapita = (props) => {
 };
 
 const AllStateListRender = (props) => {
-    const list = props.countylist;
+    const list = props.states;
     const classes = useStyles();
 
     const [order, setOrder] = React.useState('desc');
