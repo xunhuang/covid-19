@@ -276,7 +276,7 @@ export class State {
   }
 
   routeTo() {
-    return reverse(routes.state, {state: this.twoLetterName});
+    return reverse(routes.state, { state: this.twoLetterName });
   }
 
   confirmed() {
@@ -374,7 +374,7 @@ export class Metro {
   }
 
   routeTo() {
-    return reverse(routes.metro, {metro: this.id});
+    return reverse(routes.metro, { metro: this.id });
   }
 
   dataPoints() {
@@ -434,29 +434,29 @@ export class County {
         }
 
         if (Math.abs(this.center_.lat - candidate.center_.lat) < 1.5
-            && Math.abs(this.center_.lng - candidate.center_.lng) < 1.5) {
+          && Math.abs(this.center_.lng - candidate.center_.lng) < 1.5) {
           candidates.push(candidate);
         }
       }
     }
 
     return candidates.sort((a, b) => {
-      const da = 
-          geolib.getDistance({
-            latitude: this.center_.lat,
-            longitude: this.center_.lng,
-          }, {
-            latitude: a.center_.lat,
-            longitude: a.center_.lng,
-          });
-      const db = 
-          geolib.getDistance({
-            latitude: this.center_.lat,
-            longitude: this.center_.lng,
-          }, {
-            latitude: b.center_.lat,
-            longitude: b.center_.lng,
-          });
+      const da =
+        geolib.getDistance({
+          latitude: this.center_.lat,
+          longitude: this.center_.lng,
+        }, {
+          latitude: a.center_.lat,
+          longitude: a.center_.lng,
+        });
+      const db =
+        geolib.getDistance({
+          latitude: this.center_.lat,
+          longitude: this.center_.lng,
+        }, {
+          latitude: b.center_.lat,
+          longitude: b.center_.lng,
+        });
       return da - db;
     });
   }
@@ -483,7 +483,7 @@ export class County {
   stayHomeOrder() {
     return this.covidRaw_.StayHomeOrder;
   }
-  
+
   summary() {
     if (!this.covidRaw_) {
       return {
@@ -542,7 +542,7 @@ export class County {
     }
 
     if (data['Population2010']) {
-      this.population_ = parseInt(data['Population2010'].replace(',', ''));
+      this.population_ = parseInt(data['Population2010'].replace(/,/g, ''));
     }
     // hard coding a special here for NYC because
     // all 5 boroughs are lumped together. terrible hack
