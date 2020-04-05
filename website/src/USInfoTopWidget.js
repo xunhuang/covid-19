@@ -205,56 +205,62 @@ const USInfoTopWidget = withRouter((props) => {
 
 const ShortSummary = (props) => {
     const classes = useStyles();
-    return <Link className={classes.summary_section} to={props.to}>
-        <div className={`${classes.rowSummary} ${props.showBeds ? '' : classes.rowNoBeds}`} >
-            <section className={classes.tagSection}>
-                <div className={classes.topTag}>
-                    +{myShortNumber(props.newcases)}
-                </div>
-                <div className={classes.mainTag}>
-                    {myShortNumber(props.confirmed)} </div>
-                <div className={classes.smallTag}>
-                    Confirmed </div>
-            </section>
-
-            {props.showRecovered &&
+    return (
+        <div>
+            <Typography variant="h6" noWrap >
+                US Summary
+            </Typography>
+            <div className={`${classes.rowSummary} ${props.showBeds ? '' : classes.rowNoBeds}`} >
+                <div></div>
                 <section className={classes.tagSection}>
-                    <Typography className={classes.topTag} variant="body2" noWrap >
-                        +{myShortNumber(props.recoveredNew)}
-                    </Typography>
-                    <div className={classes.mainTag}>
-                        {myShortNumber(props.recovered)}</div>
-                    <div className={classes.smallTag}>
-                        Recovered
+                    <div className={classes.topTag}>
+                        +{myShortNumber(props.newcases)}
                     </div>
-                </section>
-            }
-
-            {props.showDeaths &&
-                <section className={classes.tagSection}>
-                    <Typography className={classes.topTag} variant="body2" noWrap >
-                        +{myShortNumber(props.deathsNew)}
-                    </Typography>
                     <div className={classes.mainTag}>
-                        {myShortNumber(props.deaths)}</div>
+                        {myShortNumber(props.confirmed)} </div>
                     <div className={classes.smallTag}>
-                        Deaths
-                    </div>
+                        Confirmed </div>
                 </section>
-            }
 
-            {props.showBeds && <section className={classes.tagSection}>
-                <Typography className={classes.topTag} variant="body2" noWrap >
-                    {myShortNumber(props.hospitals)} Hosp.
+                {props.showRecovered &&
+                    <section className={classes.tagSection}>
+                        <Typography className={classes.topTag} variant="body2" noWrap >
+                            +{myShortNumber(props.recoveredNew)}
+                        </Typography>
+                        <div className={classes.mainTag}>
+                            {myShortNumber(props.recovered)}</div>
+                        <div className={classes.smallTag}>
+                            Recovered
+                    </div>
+                    </section>
+                }
+
+                {props.showDeaths &&
+                    <section className={classes.tagSection}>
+                        <Typography className={classes.topTag} variant="body2" noWrap >
+                            +{myShortNumber(props.deathsNew)}
+                        </Typography>
+                        <div className={classes.mainTag}>
+                            {myShortNumber(props.deaths)}</div>
+                        <div className={classes.smallTag}>
+                            Deaths
+                    </div>
+                    </section>
+                }
+
+                {props.showBeds && <section className={classes.tagSection}>
+                    <Typography className={classes.topTag} variant="body2" noWrap >
+                        {myShortNumber(props.hospitals)} Hosp.
           </Typography>
-                <div className={classes.mainTag}>
-                    {myShortNumber(props.beds)}</div>
-                <div className={classes.smallTag}>
-                    Beds
+                    <div className={classes.mainTag}>
+                        {myShortNumber(props.beds)}</div>
+                    <div className={classes.smallTag}>
+                        Beds
                     </div>
-            </section>}
-        </div>
-    </Link>;
+                </section>}
+                <div></div>
+            </div>
+        </div>);
 };
 
 
