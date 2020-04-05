@@ -23,7 +23,6 @@ const GraphTabIndex = {
 
 const GraphSectionUS = withRouter((props) => {
     let graphdata = USCounty.getUSDataForGrapth();
-    let tabIndex = GraphTabIndex[props.match.url];
 
     const tabs = [
         <BasicGraphNewCases data={graphdata} logScale={false} />,
@@ -33,8 +32,10 @@ const GraphSectionUS = withRouter((props) => {
     ]
     let graphlistSection = <MyTabs
         labels={["Cases", `Recovery & Death`, `Testing`, "Hospitalization"]}
+        urlQueryKey="graph"
+        urlQueryValues={['cases', 'recovery_death', 'testing', 'hospitalization']}
         tabs={tabs}
-        startTab={tabIndex}
+        history={props.history}
     />;
     return graphlistSection;
 });
@@ -63,7 +64,10 @@ const PageUS = withHeader((props) => {
             <GraphSectionUS />
             <MyTabs
                 labels={["States of USA", "Testing", "Capita"]}
+                urlQueryKey="table"
+                urlQueryValues={['cases', 'testing', 'capita']}
                 tabs={tabs}
+                history={props.history}
             />
         </>
     );

@@ -39,7 +39,10 @@ const GraphSectionCounty = withRouter((props) => {
     ]
     let graphlistSection = <MyTabs
         labels={["Cases", `${state_title} Testing`]}
+        urlQueryKey="graph"
+        urlQueryValues={['cases', 'testing']}
         tabs={tabs}
+        history={props.history}
     />;
     return graphlistSection;
 });
@@ -77,7 +80,10 @@ const PageCounty = withHeader((props) => {
             />
             <MyTabs
                 labels={["Nearby", "Hospitals"]}
+                urlQueryKey="table"
+                urlQueryValues={['nearby', 'hospitals']}
                 tabs={tabs}
+                history={props.history}
             />
         </>
     );
