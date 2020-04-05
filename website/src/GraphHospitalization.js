@@ -1,6 +1,7 @@
 import React from 'react';
 import { ResponsiveContainer, LineChart, Line, YAxis, XAxis, Tooltip, CartesianGrid, Legend } from 'recharts';
 import { Typography } from '@material-ui/core';
+import { myShortNumber } from './Util';
 
 const GraphTestingWidget = (props) => {
     let data = props.data.map(t => {
@@ -14,6 +15,10 @@ const GraphTestingWidget = (props) => {
         return a.date - b.date;
     });
 
+    const formatYAxis = (tickItem) => {
+        return myShortNumber(tickItem);
+    }
+
     return <div>
         <Typography variant="body2" >
             Partial data coming in starting 3/21 for some states. Please be patient.
@@ -23,7 +28,7 @@ const GraphTestingWidget = (props) => {
                 data={data}
                 margin={{ top: 5, right: 30, left: 5, bottom: 5 }}
             >
-                <YAxis />
+                <YAxis tickFormatter={formatYAxis} />
                 <XAxis dataKey="name" />
                 <CartesianGrid stroke="#d5d5d5" strokeDasharray="5 5" />
                 <Line type="monotone" name="Positive" dataKey="positive" stroke="#ff7300" yAxisId={0} strokeWidth={3} />
