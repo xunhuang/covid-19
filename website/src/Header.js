@@ -13,6 +13,7 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import { Link as MaterialLink } from '@material-ui/core';
 import ListItemText from '@material-ui/core/ListItemText';
+import { Grid } from '@material-ui/core';
 
 const MentalHealthResources = require("./data/mentalhealth.json");
 const moment = require("moment");
@@ -46,7 +47,11 @@ const useStyles = makeStyles(theme => ({
     },
     grow: {
         flex: 1,
-    }
+    },
+    supportUs: {
+        padding: 2,
+        margin: 2,
+    },
 }));
 
 const ResourceSectionOne = (props) => {
@@ -166,6 +171,7 @@ const withHeader = (comp, props) => {
         identifier: "article-id",
         title: "main page"
     };
+    const donationPageUrl = "https://www.gofundme.com/f/covid19direct-operating-cost";
 
     return (props) => {
         const classes = useStyles();
@@ -175,9 +181,21 @@ const withHeader = (comp, props) => {
         });
         let footer = <div>
             {false && <ResourceSection />}
-            <Typography variant="h5" noWrap>
-                Discussions
+            <Grid container alignItems="center" justifyContent="center">
+                <Grid item>
+                    <Typography variant="h5" noWrap>
+                        Discussions
                     </Typography>
+                </Grid>
+                <Grid xs/>
+                <Grid item>
+                    <Typography noWrap variant="body2" className={classes.supportUs}>
+                        <MaterialLink target="_blank" href={donationPageUrl}>
+                            Like our site? Support us!
+                        </MaterialLink>
+                    </Typography>
+                </Grid>
+            </Grid>
             <Disqus.DiscussionEmbed
                 shortname={disqusShortname}
                 config={disqusConfig}
