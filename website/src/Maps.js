@@ -4,6 +4,9 @@ import { withStyles } from "@material-ui/core/styles";
 
 const AllData = require("./data/AllData.json");
 
+const DRAG_SENSITIVITY = 4;
+const MAX_MAP_ZOOM = 4;
+
 const useStyles = theme => ({
   mapContainer: {
     height: '100vh', // for full screen page, not required
@@ -65,8 +68,6 @@ class RawPin extends React.Component {
 
 const Pin = withStyles(useStyles)(RawPin);
 
-const MAX_MAP_ZOOM = 4;
-
 class RawMap extends React.Component {
   constructor(props) {
     super(props);
@@ -93,7 +94,7 @@ class RawMap extends React.Component {
               onLoad={this.svgLoaded_}
               innerRef={this.element}
               className={classes.map}
-              src={process.env.PUBLIC_URL + '/us_counties_map.svg'} />
+              src={this.props.src} />
         <Pin ref={this.pin} center={this.pinCenter} />
       </div>);
   }
@@ -138,7 +139,7 @@ class RawMap extends React.Component {
       for (let i = index; i < nextBatch; i += 1) {
         const [id, color] = entries[i];
         const county =
-            this.element.current.querySelector(`[data-fips="${parseInt(id)}"]`);
+            this.element.current.querySelector(`[data-id="${parseInt(id)}"]`);
         if (county) {
           county.style.fill = color;
         } else {
@@ -238,9 +239,11 @@ class RawMap extends React.Component {
     }
 
     if (e.touches.length === 1) {
-      const touch = e.touches.item(0);
-      this.maybeDrag_({x: touch.clientX, y: touch.clientY});
+      if (distance(touchCenter(e.touches), this.activeGesture.center) >= DRAG_SENSITIVITY) {
+        this.activeGesture = undefined;
+      }
     } else if (e.touches.length === 2) {
+      this.maybeDrag_(touchCenter(e.touches));
       const apart = touchDistance(e.touches.item(0), e.touches.item(1));
       const delta = (apart - this.activeGesture.apart) / this.activeGesture.apart;
       this.zoom_(this.activeGesture.baseZoom + delta, this.activeGesture.center);
@@ -270,11 +273,11 @@ class RawMap extends React.Component {
   maybeClick_(at, target) {
     const gesture = this.activeGesture;
     if (gesture.name === 'select'
-        && distance(at, gesture.center) < 4
+        && distance(at, gesture.center) < DRAG_SENSITIVITY
         && this.props.getPinText) {
-      if (target.hasAttribute('data-fips')) {
+      if (target.hasAttribute('data-id')) {
         const text = this.props.getPinText(
-            target.getAttribute('data-fips').padStart(5, '0'));
+            target.getAttribute('data-id').padStart(5, '0'));
         this.pin.current.setState(prevState => ({
           ...prevState,
           ...text,
@@ -298,7 +301,7 @@ class RawMap extends React.Component {
   maybeDrag_(at) {
     const gesture = this.activeGesture;
     if (gesture.name === 'select') {
-      if (distance(gesture.center, at) > 4) {
+      if (distance(gesture.center, at) >= DRAG_SENSITIVITY) {
         gesture.name = 'drag';
       }
     }
@@ -419,7 +422,11 @@ class InfectionMap extends React.Component {
   }
 
   render() {
-    return <Map colors={this.state.colors} getPinText={this.getPinText_} />;
+    return (
+        <Map
+            colors={this.state.colors}
+            getPinText={this.getPinText_}
+            src={process.env.PUBLIC_URL + '/us_counties_map_fips.svg'} />);
   }
 
   getPinText_ = (county) => {
@@ -432,7 +439,7 @@ class InfectionMap extends React.Component {
     } else {
       return {
         header: '',
-        content: 'no deaths',
+        content: 'no cases',
       };
     }
   };
