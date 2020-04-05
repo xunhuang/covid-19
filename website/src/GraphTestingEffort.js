@@ -195,7 +195,7 @@ const GraphUSTesting = (props) => {
 
 const GraphStateTesting = (props) => {
     const usdata = require("./data/state_testing.json");
-    const statedata = usdata.filter(d => d.state === props.state)
+    const statedata = usdata.filter(d => d.state === props.state.twoLetterName)
         .sort((a, b) => a.date - b.date);
 
     return <GraphTestingWidget data={statedata} />;

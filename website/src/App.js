@@ -1,7 +1,6 @@
 import React from 'react';
 import { Switch, Redirect, Route, withRouter } from 'react-router-dom'
 import { BrowserRouter } from 'react-router-dom';
-import { countyModuleInit } from "./USCountyInfo.js";
 import { Splash } from './Splash.js';
 import { fetchCounty } from "./GeoLocation"
 import { logger } from "./AppModule"
@@ -11,6 +10,8 @@ import { PageState } from "./PageState"
 import { PageCounty } from "./PageCounty"
 import { PageMetro } from "./PageMetro"
 import { Page404 } from "./Page404"
+import { Country } from "./UnitedStates";
+import { CountryContext } from "./CountryContext";
 import { reverse } from 'named-urls';
 import routes from "./Routes";
 
@@ -70,41 +71,50 @@ class MyRoute extends Route {
 }
 
 const MainApp = withRouter((props) => {
-  const [county, setCounty] = React.useState(null);
-  const [state, setState] = React.useState(null);
+  const [country, setCountry] = React.useState(null);
+  const [myCounty, setMyCounty] = React.useState(null);
   React.useEffect(() => {
-    fetchCounty().then(mycounty => {
-      countyModuleInit([]);
-      setCounty(mycounty.county)
-      setState(mycounty.state);
+    const myCountry = new Country();
+    setCountry(myCountry);
+
+    fetchCounty().then(myCounty => {
+      const state = myCountry.stateForTwoLetterName(myCounty.state);
+      const county = state.countyForName(myCounty.county);
+      setMyCounty(county);
       logger.logEvent("AppStart", {
-        county: mycounty.county,
-        state: mycounty.state,
+        myCounty: county,
       });
     });
   }, []);
 
-  // return <Splash />
-  if (state === null) {
+  if (country === null) {
     return <Splash />
   }
 
   if (props.location.pathname === "/") {
-    return <Redirect to={reverse(routes.county, { state, county })} />;
+    if (myCounty === null) {
+      return <Splash />
+    } else {
+      return <Redirect to={reverse(routes.county, {
+        state: myCounty.state().twoLetterName,
+        county: myCounty.name,
+      })} />;
+    }
   }
+
   return (
-    <div>
+    <CountryContext.Provider value={country}>
       <Switch>
         {/* <Route exact path='/' component={App2} /> */}
-        <MyRoute exact path={routes.county} render={(props) => <PageCounty {...props} state={state} county={county} />} />
-        <MyRoute exact path={routes.state} render={(props) => <PageState {...props} state={state} county={county} />} />
-        <MyRoute exact path={routes.united_states} render={(props) => <PageUS {...props} state={state} county={county} />} />
-        <MyRoute exact path={routes.metro} render={(props) => <PageMetro {...props} state={state} county={county} />} />
+        <MyRoute exact path={routes.county} component={PageCounty} />
+        <MyRoute exact path={routes.state} component={PageState} />
+        <MyRoute exact path={routes.united_states} component={PageUS} />
+        <MyRoute exact path={routes.metro} component={PageMetro} />
         <MyRoute exact path={routes.united_states_map} component={InfectionMap} />
-        <MyRoute exact path={routes.united_states_recovery} render={(props) => <PageUS {...props} state={state} county={county} />} />
-        <MyRoute exact path="*" render={() => <Page404 />} status={404} />
+        <MyRoute exact path={routes.united_states_recovery} component={PageUS} />
+        <MyRoute exact path="*" component={Page404} status={404} />
       </Switch>
-    </div>
+    </CountryContext.Provider>
   );
 });
 

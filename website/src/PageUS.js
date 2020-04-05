@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { withRouter } from 'react-router-dom'
-import * as USCounty from "./USCountyInfo.js";
+import { CountryContext } from "./CountryContext";
 import { BasicGraphNewCases } from "./GraphNewCases.js"
 import { BasicGraphRecoveryAndDeath } from "./GraphRecoveryAndDeath.js"
 import { GraphUSTesting } from "./GraphTestingEffort"
@@ -22,7 +22,8 @@ const GraphTabIndex = {
 }
 
 const GraphSectionUS = withRouter((props) => {
-    let graphdata = USCounty.getUSDataForGrapth();
+    const country = props.country;
+    let graphdata = country.dataPoints();
     let tabIndex = GraphTabIndex[props.match.url];
 
     const tabs = [
@@ -40,27 +41,24 @@ const GraphSectionUS = withRouter((props) => {
 });
 
 const PageUS = withHeader((props) => {
+    const country = useContext(CountryContext);
+
     const default_county_info = Util.getDefaultCounty();
+    const county =
+        country
+            .stateForTwoLetterName(default_county_info.state)
+            .countyForName(default_county_info.county)
     logger.logEvent("PageUS");
 
-    const metro = USCounty.getMetroNameFromCounty(
-        default_county_info.state,
-        default_county_info.county);
-
     const tabs = [
-        <ListAllStates />,
-        <ListAllStatesTesting />,
-        <ListAllStatesPerCapita />,
+        <ListAllStates country={country} />,
+        <ListAllStatesTesting country={country} />,
+        <ListAllStatesPerCapita country={country} />,
     ];
     return (
         <>
-            <USInfoTopWidget
-                county={default_county_info.county}
-                state={default_county_info.state}
-                metro={metro}
-                selectedTab={"usa"}
-            />
-            <GraphSectionUS />
+            <USInfoTopWidget county={county} selectedTab={"usa"} />
+            <GraphSectionUS country={country} />
             <MyTabs
                 labels={["States of USA", "Testing", "Capita"]}
                 tabs={tabs}

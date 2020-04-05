@@ -10,8 +10,6 @@ import { createMuiTheme } from '@material-ui/core/styles';
 import { Typography } from '@material-ui/core';
 import { Link } from '@material-ui/core';
 
-const states = require('us-state-codes');
-
 const useStyles = makeStyles(theme => ({
     table: {
         width: "100%"
@@ -94,12 +92,12 @@ function snapshotToArray(snapshot) {
     return returnArr;
 };
 
-async function fetchCountyHospitals(state, county) {
+async function fetchCountyHospitals(county) {
     const firebase = require("firebase");
     const db = firebase.firestore();
     return await db.collection("DEFINITIVE_HOSPITALS")
-        .where("COUNTY_NAME", "==", county)
-        .where("STATE_NAME", "==", states.getStateNameByStateCode(state))
+        .where("COUNTY_NAME", "==", county.name)
+        .where("STATE_NAME", "==", county.state().name)
         .get().then((querySnapshot) => {
             return snapshotToArray(querySnapshot);
         });
@@ -108,7 +106,7 @@ async function fetchCountyHospitals(state, county) {
 const CountyHospitalsWidget = (props) => {
     const [county_hospitals, setHospitals] = React.useState(null);
     React.useEffect(() => {
-        fetchCountyHospitals(props.state, props.county).then((result, b) => {
+        fetchCountyHospitals(props.county).then((result, b) => {
             setHospitals(result);
         });
     }, [props.state, props.county]);

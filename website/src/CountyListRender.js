@@ -1,12 +1,10 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { lookupCountyInfo, nearbyCounties } from "./USCountyInfo.js";
-import * as USCounty from "./USCountyInfo.js";
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableRow from '@material-ui/core/TableRow';
-import { myShortNumber, myToNumber, myGoodWholeNumber, myGoodShortNumber } from "./Util.js";
+import { myShortNumber, myGoodWholeNumber, myGoodShortNumber } from "./Util.js";
 import { ThemeProvider } from '@material-ui/core'
 import { createMuiTheme } from '@material-ui/core/styles';
 import { Link as MaterialLink } from '@material-ui/core';
@@ -57,65 +55,49 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const NearbyCounties = (props) => {
-    let county = props.county;
-
-    if (county === "New York City") {
-        console.log("NYC");
-        county = "New York";
+    const county = props.county;
+    const allNearby = county.nearby();
+          // data source combined all NYC Boroughs into New York, NY
+          // this is a hack to remove these counties and they showed up as
+          // zeros.
+          // .filter(a => a.State !== "NY" ||
+          // (a.County !== "Queens" && a.County !== "Kings" && a.County !== "New York" &&
+          // a.County !== "Bronx" && a.County !== "Richmond"))
+    if (allNearby) {
+      const nearby = allNearby.slice(0, 10);
+      return <CountyListRender countylist={nearby} />
+    } else {
+      return <></>;
     }
-
-    let countyInfo = lookupCountyInfo(props.state, county);
-    let countySummary = <div></div>;
-    if (countyInfo) {
-        let nearby = nearbyCounties(props.state, county)
-            // data source combined all NYC Boroughs into New York, NY
-            // this is a hack to remove these counties and they showed up as
-            // zeros.
-            // .filter(a => a.State !== "NY" ||
-            // (a.County !== "Queens" && a.County !== "Kings" && a.County !== "New York" &&
-            // a.County !== "Bronx" && a.County !== "Richmond"))
-            .sort((a, b) => a.distance - b.distance)
-            .slice(0, 10);
-        countySummary = <CountyListRender countylist={nearby} />
-    }
-    return countySummary;
 }
 
 const ListCountiesForMetro = (props) => {
-    let list = USCounty.countyDataForMetro(props.metro);
-    let countySummary =
-        <CountyListRender countylist={list} />
-    return countySummary;
+    return <CountyListRender countylist={props.metro.allCounties()} />
+}
+
+function positiveCountiesIn(state) {
+    return state.allCounties().filter(c => c.totalConfirmed() > 0);
 }
 
 const CountiesForStateWidget = (props) => {
-    let list = USCounty.countyDataForState(props.state);
-    let countySummary =
-        <CountyListRender countylist={list} />
-    return countySummary;
+    return <CountyListRender countylist={positiveCountiesIn(props.state)} />;
 }
 
 const ListStateCountiesCapita = (props) => {
-    let list = USCounty.countyDataForState(props.state);
-    let countySummary =
-        <CountyListRenderCapita countylist={list} />
-    return countySummary;
+    return <CountyListRenderCapita countylist={positiveCountiesIn(props.state)} />;
 }
 
 function prepCountyDataForDisplay(list) {
-    let extendlist = list.map(row => {
+    let extendlist =
+        list
+            .map(county => [county, county.summary()])
+            .filter(([c, s]) => s)
+            .map(([county, sum]) => {
         let newrow = {};
-        let sum = USCounty.casesForCountySummary(row.State, row.County);
         let newcases = sum.newcases;
         let confirmed = sum.confirmed;
         let newpercent = sum.newpercent;
-        let population = myToNumber(row.Population2010);
-
-        // hard coding a special here for NYC because
-        // all 5 boroughs are lumped together. terrible hack
-        if (row.State === "NY" && (row.County === "New York City")) {
-            population = 8500000;
-        }
+        let population = county.population();
 
         newrow.partsPerMil = confirmed * 1000000 / population;
 
@@ -124,17 +106,17 @@ function prepCountyDataForDisplay(list) {
             newrow.newEntry = 0;
         }
 
-        if (row.County === "Statewide Unallocated") {
+        if (county.name === "Statewide Unallocated") {
             population = 0;
             newrow.newEntry = newcases;
         }
         // note. doing this row overwrite can be dangerous... references.
         newrow.newcases = newcases;
-        newrow.State = row.State;
+        newrow.State = county.state().twoLetterName;
         newrow.confirmed = confirmed;
         newrow.newpercent = newpercent;
         newrow.population = population;
-        newrow.County = row.County;
+        newrow.County = county.name;
         newrow.deathsPerMil = sum.death * 1000000 / population;
         newrow.death = sum.death;
         newrow.daysToDouble = sum.daysToDouble;

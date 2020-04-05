@@ -1,12 +1,10 @@
-import React from 'react';
-import * as USCounty from "./USCountyInfo.js";
+import React, { useContext } from 'react';
+import { CountryContext } from "./CountryContext";
 import Select from 'react-select';
 import Disqus from "disqus-react"
 import Typography from '@material-ui/core/Typography'
 import { makeStyles } from '@material-ui/core/styles';
 import { FacebookProvider, CommentsCount } from 'react-facebook';
-import routes from './Routes';
-import { reverse } from 'named-urls';
 import { useHistory } from "react-router-dom";
 import { MyTabs } from "./MyTabs.js"
 import List from '@material-ui/core/List';
@@ -90,26 +88,23 @@ const ResourceSection = (props) => {
 };
 
 const SearchBox = (props) => {
-    const counties = USCounty.getCountySummary1().map(
-        county => {
-            return {
-                display_name: `${county.county}, ${county.state_name}`,
-                county: county.county,
-                state: county.state_name,
-                total: county.total,
-            }
-        }
-    );
-    const states = USCounty.getAllStatesSummary().map(
+    const country = useContext(CountryContext);
+    const counties =
+          country.allStates().flatMap(s => s.allCounties()).map(county => {
+              return {
+                  display_name: `${county.name}, ${county.state().name}`,
+                  county: county,
+                  total: county.totalConfirmed(),
+              };
+          });
+    const states = country.allStates().map(
         state => {
             return {
-                display_name: `${state.full_name} (${state.state})`,
-                county: null,
-                state: state.state,
-                total: state.confirmed + state.newcases
+                display_name: `${state.name} (${state.twoLetterName})`,
+                state: state,
+                total: state.totalConfirmed() + state.newCases(),
             }
-        }
-    );
+        });
     const search_list = counties.concat(states)
     let search_list_sorted = search_list.sort((a, b) => {
         let x = a.total;
@@ -146,11 +141,9 @@ const SearchBox = (props) => {
             if (param && param.value) {
                 let route;
                 if (param.value.county) {
-                    route = reverse(
-                        routes.county,
-                        { county: param.value.county, state: param.value.state });
+                    route = param.value.county.routeTo();
                 } else {
-                    route = reverse(routes.state, { state: param.value.state });
+                    route = param.value.state.routeTo();
                 }
                 history.push(route);
             }
@@ -188,7 +181,8 @@ const withHeader = (comp, props) => {
                 <CommentsCount href="http://www.facebook.com" />
             </FacebookProvider>;
 
-        let us_summary = USCounty.casesForUSSummary();
+        const country = useContext(CountryContext);
+        let us_summary = country.summary();
 
         let header = <header className="App-header">
             <div className={classes.topContainer}>
