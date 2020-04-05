@@ -18,7 +18,7 @@ const GraphSectionMetro = withRouter((props) => {
         />,
     ]
     let graphlistSection = <MyTabs
-        labels={["Confirmed Cases"]}
+        labels={["Cases"]}
         tabs={tabs}
     />;
     return graphlistSection;

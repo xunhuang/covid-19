@@ -4,6 +4,7 @@ import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import PropTypes from 'prop-types';
+import { withStyles } from "@material-ui/core/styles";
 
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
@@ -30,12 +31,24 @@ TabPanel.propTypes = {
 
 function a11yProps(index) {
     return {
+        textTransform: 'none',
         id: `nav-tab-${index}`,
         'aria-controls': `nav-tabpanel-${index}`,
     };
 }
 
-function LinkTab(props) {
+const LinkTab = withStyles((theme) => ({
+    root: {
+        textTransform: 'none',
+        // color: '#fff',
+        fontWeight: theme.typography.fontWeightBold,
+        // fontSize: theme.typography.pxToRem(15),
+        // marginRight: theme.spacing(1),
+        '&:focus': {
+            opacity: 1,
+        },
+    },
+}))((props) => {
     return (
         <Tab
             component="a"
@@ -45,7 +58,7 @@ function LinkTab(props) {
             {...props}
         />
     );
-}
+});
 
 const MyTabs = (props) => {
     const tabs = props.tabs;

@@ -38,7 +38,7 @@ const GraphSectionCounty = withRouter((props) => {
         <GraphStateTesting state={state} />,
     ]
     let graphlistSection = <MyTabs
-        labels={["Confirmed Cases", `${state_title} Testing`]}
+        labels={["Cases", `${state_title} Testing`]}
         tabs={tabs}
     />;
     return graphlistSection;
