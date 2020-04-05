@@ -765,6 +765,23 @@ function processNYCBOROS_NEW() {
                 AllData["36"]["36005"].Confirmed[dd] = parseInt(line.BRONX);
                 AllData["36"]["36085"].Confirmed[dd] = parseInt(line["STATEN ISLAND"]);
 
+                if ( !  AllData["36"]["36061"].Confirmed[dd]) {
+                 AllData["36"]["36061"].Confirmed[dd] = parseInt(line.Manhattan);
+                }
+                if (!AllData["36"]["36047"].Confirmed[dd] ){
+                AllData["36"]["36047"].Confirmed[dd] = parseInt(line.Brooklyn);
+                }
+
+                if (!AllData["36"]["36081"].Confirmed[dd] ){
+                AllData["36"]["36081"].Confirmed[dd] = parseInt(line.Queens);
+                }
+
+                if (!AllData["36"]["36005"].Confirmed[dd] ){
+                AllData["36"]["36005"].Confirmed[dd] = parseInt(line["The Bronx"]);
+                }
+                if (!AllData["36"]["36085"].Confirmed[dd] ){
+                AllData["36"]["36085"].Confirmed[dd] = parseInt(line["Staten Island"]);
+                }
             }
         });
     }
