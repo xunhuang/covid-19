@@ -7,7 +7,7 @@ import { GraphUSTesting } from "./GraphTestingEffort"
 import { withHeader } from "./Header.js"
 import { MyTabs } from "./MyTabs.js"
 import * as Util from "./Util.js"
-import { USInfoTopWidget } from './USInfoTopWidget.js'
+import { USInfoTopWidget, USSummarySection } from './USInfoTopWidget.js'
 import { GraphUSHospitalization } from './GraphHospitalization.js'
 import {
     ListAllStates,
@@ -59,6 +59,7 @@ const PageUS = withHeader((props) => {
     return (
         <>
             <USInfoTopWidget county={county} selectedTab={"usa"} />
+            <USSummarySection county={county} />
             <GraphSectionUS country={country} />
             <MyTabs
                 labels={["States of USA", "Testing", "Capita"]}

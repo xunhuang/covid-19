@@ -99,6 +99,31 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
+const USSummarySection = withRouter((props) => {
+    const county = props.county;
+    const state = county.state();
+    const country = state.country();
+
+    const us_summary = country.summary();
+
+    return <ShortSummary
+        title={""}
+        confirmed={us_summary.confirmed}
+        newcases={us_summary.newcases}
+        deaths={us_summary.deaths}
+        deathsNew={us_summary.deathsNew}
+        recovered={us_summary.recovered}
+        recoveredNew={us_summary.recoveredNew}
+        hospitals={6146}
+        beds={924107}
+        selected={false}
+        // to={routes.united_states}
+        showBeds={true}
+        showRecovered={true}
+        showDeaths={true}
+    />;
+});
+
 const USInfoTopWidget = withRouter((props) => {
     const county = props.county;
     const metro = county.metro();
@@ -122,28 +147,7 @@ const USInfoTopWidget = withRouter((props) => {
     const state_title = showBeds ? state.name : state.twoLetterName;
     const state_hospitals = state.hospitals();
     const state_summary = state.summary();
-
     const us_summary = country.summary();
-
-    let summary_section = null;
-    if (props.selectedTab === "usa") {
-        summary_section = <ShortSummary
-            title={""}
-            confirmed={us_summary.confirmed}
-            newcases={us_summary.newcases}
-            deaths={us_summary.deaths}
-            deathsNew={us_summary.deathsNew}
-            recovered={us_summary.recovered}
-            recoveredNew={us_summary.recoveredNew}
-            hospitals={6146}
-            beds={924107}
-            selected={false}
-            // to={routes.united_states}
-            showBeds={true}
-            showRecovered={true}
-            showDeaths={true}
-        />;
-    }
 
     return <div className={classes.tagSticky} >
         <div className={`${classes.tagContainer} ${showBeds ? '' : classes.tagContainerNoBeds}`} >
@@ -204,7 +208,6 @@ const USInfoTopWidget = withRouter((props) => {
                 showDeaths={showDeaths}
             />
         </div>
-        {summary_section}
     </div >;
 });
 
@@ -298,4 +301,4 @@ const Tag = (props) => {
     </Link>;
 };
 
-export { USInfoTopWidget, Tag }
+export { USInfoTopWidget, Tag, USSummarySection }
