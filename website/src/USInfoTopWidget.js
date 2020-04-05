@@ -92,6 +92,11 @@ const useStyles = makeStyles(theme => ({
         padding: theme.spacing(0, 1),
         textAlign: "left",
     },
+    sectionHeader: {
+        "border-left": ".1rem solid #f50057",
+        margin: 3,
+        padding: 3,
+    }
 }));
 
 const USInfoTopWidget = withRouter((props) => {
@@ -107,8 +112,8 @@ const USInfoTopWidget = withRouter((props) => {
     const classes = useStyles();
 
     const county_hospitals = county.hospitals() || {
-      'bedCount': "N/A",
-      'count': "N/A",
+        'bedCount': "N/A",
+        'count': "N/A",
     };
     const county_summary = county.summary();
 
@@ -206,7 +211,7 @@ const USInfoTopWidget = withRouter((props) => {
 const ShortSummary = (props) => {
     const classes = useStyles();
     return (
-        <div>
+        <div className={classes.sectionHeader}>
             <Typography variant="h6" noWrap >
                 US Summary
             </Typography>
