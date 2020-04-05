@@ -5,7 +5,8 @@ import math
 import os
 import sys
 
-PRECISION = 1
+PRECISION = 0
+MIN_WRITABLE = 0.5
 MAX_WIDTH = 1000
 LEVEL = 12
 
@@ -25,7 +26,7 @@ class Generator(object):
             source_id_attr,
             filter=None,
             translator=None,
-            dest_id_attr='data-id'):
+            dest_id_attr='id'):
         self.root = os.path.dirname(sys.argv[0])
         if not self.root:
             self.root = '.'
@@ -37,8 +38,10 @@ class Generator(object):
 
         parser = argparse.ArgumentParser()
         parser.add_argument('--crush', action='store_true', required=False)
+        parser.add_argument('--exact', action='store_true', required=False)
         args = parser.parse_args()
         self.pretty_print = not args.crush
+        self.print_exact = args.exact
 
     def generate(self, source, output_type):
         with open('{}/sources/{}'.format(self.root, source)) as f:
@@ -153,53 +156,85 @@ class Generator(object):
         if self.pretty_print:
             f.write('  ')
 
-        if len(shape['polygons']) > 1:
-            f.write('<g {}="{}">'.format(self.dest_id_attr, shape['id']))
+        f.write('<path {}="{}" d="'.format(self.dest_id_attr, shape['id']))
+
+        cursor = [scale * top_left['x'], scale * bottom_right['y']]
+        for polygon in shape['polygons']:
+            cursor = self.print_polygon(f, polygon, scale, cursor)
             if self.pretty_print:
                 f.write('\n')
 
-            for polygon in shape['polygons']:
-                if self.pretty_print:
-                    f.write('    ')
-                self.print_polygon(
-                        f, polygon, {}, scale, top_left, bottom_right)
-            if self.pretty_print:
-                f.write('  </g>\n')
-            else:
-                f.write('</g>')
-        else:
-            self.print_polygon(
-                    f,
-                    shape['polygons'][0],
-                    {self.dest_id_attr: shape['id']},
-                    scale,
-                    top_left,
-                    bottom_right)
-
-    def print_polygon(self, f, polygon, attrs, scale, top_left, bottom_right):
-        f.write('<path')
-        for key, value in attrs.items():
-            f.write(' {}="{}"'.format(key, value))
-        f.write(' d="')
-
-        projected = project(polygon[0])
-        f.write('m%g %g' % (round(scale * (projected['x'] - top_left['x']), PRECISION), round(scale * (projected['y'] - bottom_right['y']), PRECISION)))
-        acc = (0, 0)
-        for point in polygon:
-            last = projected
-            projected = project(point)
-            transformed = (
-                    round(scale * (projected['x'] - last['x']), PRECISION) + acc[0],
-                    round(scale * (projected['y'] - last['y']), PRECISION) + acc[1])
-            if abs(transformed[0]) < 1 and abs(transformed[1]) < 1:
-                acc = transformed
-                continue
-            else:
-                acc = (0, 0)
-
-            f.write('l%g %g' % transformed)
         if self.pretty_print:
-            f.write('z" />\n')
+            f.write('" />\n')
         else:
-            f.write('z"/>')
+            f.write('"/>')
+
+    def print_polygon(self, f, polygon, scale, cursor):
+        projected = project(polygon[0])
+        last = projected
+        transformed = {
+                'x': scale * projected['x'] - cursor[0],
+                'y': scale * projected['y'] - cursor[1],
+        }
+        acc = self.write_vertex(f, 'm', transformed)
+        cursor[0] += transformed['x'] + acc['x']
+        cursor[1] += transformed['y'] + acc['y']
+
+        for point in polygon[1:-1]:
+            projected = project(point)
+            transformed = {
+                    'x': scale * (projected['x'] - last['x']) - acc['x'],
+                    'y': scale * (projected['y'] - last['y']) - acc['y'],
+            }
+            if abs(transformed['x']) < MIN_WRITABLE and not self.print_exact:
+                acc['x'] = -transformed['x']
+                transformed['x'] = 0
+            else:
+                acc['x'] = 0
+            last['x'] = projected['x']
+
+            if abs(transformed['y']) < MIN_WRITABLE and not self.print_exact:
+                acc['y'] = -transformed['y']
+                transformed['y'] = 0
+            else:
+                acc['y'] = 0
+            last['y'] = projected['y']
+
+            diff = self.write_vertex(f, 'l', transformed)
+            acc['x'] += diff['x']
+            acc['y'] += diff['y']
+        f.write('z')
+        return cursor
+
+    def write_vertex(self, f, command, vertex):
+        rounded = [
+                self.maybe_round(vertex['x']),
+                self.maybe_round(vertex['y']),
+        ]
+
+        if rounded[0] == 0 and rounded[1] == 0:
+            if command == 'm':
+                f.write('m0 0')
+            return {'x': -vertex['x'], 'y': -vertex['y']}
+
+        x = '{:g}'.format(rounded[0]).lstrip('0').replace('-0', '-') or '0'
+        if x == '-':
+            x = '0'
+        y = '{:g}'.format(rounded[1]).lstrip('0').replace('-0', '-') or '0'
+        if y == '-':
+            y = '0'
+
+        if (x != '0' and y != '0') or command == 'm':
+            f.write('{}{}{}{}'.format(command, x, '' if not self.pretty_print and y[0] == '-' else ' ', y))
+        elif x != '0':
+            f.write('h{}'.format(x))
+        elif y != '0':
+            f.write('v{}'.format(y))
+        return {'x': rounded[0] - vertex['x'], 'y': rounded[1] - vertex['y']}
+
+    def maybe_round(self, x):
+        if self.print_exact:
+            return x
+        else:
+            return round(x, PRECISION)
 
