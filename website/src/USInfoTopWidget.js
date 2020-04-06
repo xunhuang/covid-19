@@ -178,7 +178,7 @@ const CountySummarySection = withRouter((props) => {
     };
 
     return <ShortSummary
-        title={`${county.name} Summary`}
+        title={`${county.name}, ${county.state().name} Summary`}
         confirmed={county_summary.confirmed}
         newcases={county_summary.newcases}
         deaths={county_summary.death}
