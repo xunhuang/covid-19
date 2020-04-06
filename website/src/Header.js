@@ -229,11 +229,11 @@ const withHeader = (comp, props) => {
             ...props,
         });
         let footer = <div>
-            <SectionHeader>
+            {/* <SectionHeader>
                 <Typography variant="h5" noWrap>
                     Resources
                     </Typography>
-            </SectionHeader>
+            </SectionHeader> */}
             {false && <ResourceSection />}
             <SectionHeader>
                 <Grid container alignItems="center" justifyContent="center">
