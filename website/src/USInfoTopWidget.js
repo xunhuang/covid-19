@@ -5,6 +5,7 @@ import { withRouter } from 'react-router-dom'
 import { Typography } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import { SectionHeader } from "./CovidUI"
+import Hidden from '@material-ui/core/Hidden';
 
 const useStyles = makeStyles(theme => ({
     tagSticky: {
@@ -25,16 +26,18 @@ const useStyles = makeStyles(theme => ({
     },
     row: {
         padding: theme.spacing(1, 1),
-        justifyContent: "space-between",
+        [theme.breakpoints.up('xs')]: {
+            justifyContent: "space-between",
+        },
+        [theme.breakpoints.down('xs')]: {
+            justifyContent: "center",
+        },
         display: "flex",
     },
     rowSummary: {
         padding: theme.spacing(0.25, 1),
         justifyContent: "space-between",
         display: "flex",
-    },
-    rowNoBeds: {
-        justifyContent: "center",
     },
     tag: {
         display: "flex",
@@ -275,7 +278,7 @@ const Tag = (props) => {
     const classes = useStyles();
     return <Link className={`${classes.tag} ${props.selected ? classes.tagSelected : ''}`} to={props.to}>
         <div className={classes.tagTitle}> {props.title} </div>
-        <div className={`${classes.row} ${props.showBeds ? '' : classes.rowNoBeds}`} >
+        <div className={classes.row}>
             <section className={classes.tagSection}>
                 <div className={classes.topTag}>
                     +{myShortNumber(props.newcases)}
@@ -286,16 +289,18 @@ const Tag = (props) => {
                     Confirmed </div>
             </section>
 
-            {props.showBeds && <section className={classes.tagSection}>
-                <Typography className={classes.topTag} variant="body2" noWrap >
-                    {myShortNumber(props.hospitals)} Hosp.
-          </Typography>
-                <div className={classes.mainTag}>
-                    {myShortNumber(props.beds)}</div>
-                <div className={classes.smallTag}>
-                    Beds
+            <Hidden xsDown>
+                <section className={classes.tagSection}>
+                    <Typography className={classes.topTag} variant="body2" noWrap >
+                        {myShortNumber(props.hospitals)} Hosp.
+                    </Typography>
+                    <div className={classes.mainTag}>
+                        {myShortNumber(props.beds)}</div>
+                    <div className={classes.smallTag}>
+                        Beds
                     </div>
-            </section>}
+                </section>
+            </Hidden>
         </div>
     </Link>;
 };
