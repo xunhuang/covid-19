@@ -1,11 +1,11 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, useTheme } from '@material-ui/core/styles';
 import { myShortNumber } from "./Util.js";
 import { withRouter } from 'react-router-dom'
 import { Typography } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import { SectionHeader } from "./CovidUI"
-import Hidden from '@material-ui/core/Hidden';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 const useStyles = makeStyles(theme => ({
     tagSticky: {
@@ -26,13 +26,11 @@ const useStyles = makeStyles(theme => ({
     },
     row: {
         padding: theme.spacing(1, 1),
-        [theme.breakpoints.up('xs')]: {
-            justifyContent: "space-between",
-        },
-        [theme.breakpoints.down('xs')]: {
-            justifyContent: "center",
-        },
+        justifyContent: "space-between",
         display: "flex",
+    },
+    rowNoBeds: {
+        justifyContent: "center",
     },
     rowSummary: {
         padding: theme.spacing(0.25, 1),
@@ -276,9 +274,12 @@ const ShortSummary = (props) => {
 
 const Tag = (props) => {
     const classes = useStyles();
+    const theme = useTheme();
+    const matchesXS = useMediaQuery(theme.breakpoints.down('xs'));
+    const hideBeds = !props.showBeds || matchesXS;
     return <Link className={`${classes.tag} ${props.selected ? classes.tagSelected : ''}`} to={props.to}>
         <div className={classes.tagTitle}> {props.title} </div>
-        <div className={classes.row}>
+        <div className={`${classes.row} ${hideBeds ? classes.rowNoBeds : ''}`} >
             <section className={classes.tagSection}>
                 <div className={classes.topTag}>
                     +{myShortNumber(props.newcases)}
@@ -289,18 +290,16 @@ const Tag = (props) => {
                     Confirmed </div>
             </section>
 
-            <Hidden xsDown>
-                <section className={classes.tagSection}>
-                    <Typography className={classes.topTag} variant="body2" noWrap >
-                        {myShortNumber(props.hospitals)} Hosp.
-                    </Typography>
-                    <div className={classes.mainTag}>
-                        {myShortNumber(props.beds)}</div>
-                    <div className={classes.smallTag}>
-                        Beds
-                    </div>
-                </section>
-            </Hidden>
+            {!hideBeds && <section className={classes.tagSection}>
+                <Typography className={classes.topTag} variant="body2" noWrap >
+                    {myShortNumber(props.hospitals)} Hosp.
+                </Typography>
+                <div className={classes.mainTag}>
+                    {myShortNumber(props.beds)}</div>
+                <div className={classes.smallTag}>
+                    Beds
+                </div>
+            </section>}
         </div>
     </Link>;
 };

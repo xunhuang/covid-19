@@ -2,10 +2,10 @@ import React from 'react';
 import SVG from 'react-inlinesvg';
 import { withStyles } from "@material-ui/core/styles";
 
-const AllData = require("./data/AllData.json");
+import { CountryContext } from "./CountryContext";
 
 const DRAG_SENSITIVITY = 4;
-const MAX_MAP_ZOOM = 4;
+const MAX_MAP_ZOOM = 6;
 
 const useStyles = theme => ({
   mapContainer: {
@@ -15,7 +15,7 @@ const useStyles = theme => ({
     width: '100%', // for full screen page, not required
   },
   map: {
-    height: 'auto',
+    maxHeight: '100%',
     touchAction: 'none',
     transformOrigin: 'top left',
     width: '100%',
@@ -115,6 +115,7 @@ class RawMap extends React.Component {
           ['gesturechange', this.gestureChange_],
           ['gestureend', this.gestureEnd_],
           ['mousedown', this.mouseDown_],
+          ['mouseleave', this.mouseLeave_],
           ['mousemove', this.mouseMove_],
           ['mouseup', this.mouseUp_],
           ['touchstart', this.touchStart_],
@@ -139,7 +140,7 @@ class RawMap extends React.Component {
       for (let i = index; i < nextBatch; i += 1) {
         const [id, color] = entries[i];
         const county =
-            this.element.current.querySelector(`[id="${parseInt(id)}"]`);
+            this.element.current.querySelector(`[id="${id}"]`);
         if (county) {
           county.style.fill = color;
         } else {
@@ -175,18 +176,16 @@ class RawMap extends React.Component {
       return;
     }
 
-    this.zoom_(this.activeGesture.baseZoom + (e.scale - 1), this.activeGesture.center);
+    this.zoom_(this.activeGesture.baseZoom * e.scale, this.activeGesture.center);
   }
 
   gestureEnd_(e) {
     e.preventDefault();
-
     this.activeGesture = undefined;
   }
 
   mouseDown_(e) {
     e.preventDefault();
-
     this.activeGesture = {name: 'select', center: {x: e.clientX, y: e.clientY}};
   }
 
@@ -198,6 +197,12 @@ class RawMap extends React.Component {
     }
 
     this.maybeDrag_({x: e.clientX, y: e.clientY});
+  }
+
+  mouseLeave_(e) {
+    e.preventDefault();
+
+    this.activeGesture = undefined;
   }
 
   mouseUp_(e) {
@@ -267,7 +272,7 @@ class RawMap extends React.Component {
 
   wheel_(e) {
     e.preventDefault();
-    this.zoom_(this.transform.zoom + -0.01 * e.deltaY, {x: e.clientX, y: e.clientY});
+    this.zoom_(this.transform.zoom * (-0.01 * e.deltaY + 1), {x: e.clientX, y: e.clientY});
   }
 
   maybeClick_(at, target) {
@@ -338,15 +343,7 @@ class RawMap extends React.Component {
     this.transform.y = cy + dy;
 
     requestAnimationFrame(() => {
-      // There's a time and a place for will-change (panning), but scaling is not
-      // it.
-      // See: https://greensock.com/will-change/ (Partial solution)
-      this.element.current.style.willChange = 'initial';
       this.updateTransform_();
-
-      requestAnimationFrame(() => {
-        this.element.current.style.willChange = '';
-      });
     });
   };
 
@@ -354,6 +351,7 @@ class RawMap extends React.Component {
     this.clampTransform_();
     this.updateMapTransform_();
     this.updatePinTransform_();
+    this.debounceEndTransform_();
   }
 
   clampTransform_() {
@@ -390,11 +388,30 @@ class RawMap extends React.Component {
       }));
     }
   }
+
+  debounceEndTransform_() {
+    if (this.lastEndTransformDebounce) {
+      clearTimeout(this.lastEndTransformDebounce);
+    }
+
+    this.lastEndTransformDebounce = setTimeout(() => {
+      // Web browsers are allowed to not re-render despite scaling if will-change
+      // is set, so unset it.
+      requestAnimationFrame(() => {
+        this.element.current.style.willChange = 'initial';
+        requestAnimationFrame(() => {
+          this.element.current.style.willChange = '';
+        });
+      });
+    }, 50);
+  }
 }
 
 const Map = withStyles(useStyles)(RawMap);
 
 class InfectionMap extends React.Component {
+  static contextType = CountryContext;
+
   constructor(props) {
     super(props);
     this.state = {colors: {}};
@@ -403,18 +420,20 @@ class InfectionMap extends React.Component {
 
   componentDidMount() {
     const colors = {};
-    for (const [, counties] of Object.entries(AllData)) {
-      for (const [id, county] of Object.entries(counties)) {
-        this.mapping[id] = {
-          name: county.CountyName,
-          state: county.StateName,
-          deaths: county.LastConfirmed,
+    const country = this.context;
+    for (const state of country.allStates()) {
+      for (const county of state.allCounties()) {
+        this.mapping[county.id] = {
+          name: county.name,
+          state: state.name,
+          cases: county.totalConfirmed(),
         };
 
-        if (county.LastConfirmed > 0) {
-          colors[id] = `hsla(0, 100%, ${80 - 7 * Math.log(county.LastConfirmed)}%, 1)`;
+        if (county.totalConfirmed() > 0) {
+          colors[county.id] =
+              `hsla(0, 100%, ${80 - 7 * Math.log(county.totalConfirmed())}%, 1)`;
         } else {
-          colors[id] = '';
+          colors[county.id] = '';
         }
       }
     }
@@ -434,7 +453,7 @@ class InfectionMap extends React.Component {
     if (info) {
       return {
         header: `${info.name}, ${info.state}`,
-        content: `${info.deaths}`,
+        content: `${info.cases}`,
       };
     } else {
       return {

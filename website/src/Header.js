@@ -35,6 +35,10 @@ const useStyles = makeStyles(theme => ({
         padding: 2,
         margin: 2,
     },
+    searchContainer: {
+	paddingLeft: 10,
+	paddingRight: 10,
+    },
     qpContainer: {
         display: 'none',
         // color: '#FFFFFF',
@@ -228,7 +232,9 @@ const withHeader = (comp, props) => {
             </Typography>
                 </span>
             </div>
-            <SearchBox />
+	    <div className={classes.searchContainer}>
+	        <SearchBox/>
+	    </div>
             <div className={classes.qpContainer}>
                 <Typography variant="body1" >
                     Some problem with new number calculation. Total is correct but New is not.
