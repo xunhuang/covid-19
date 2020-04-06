@@ -106,7 +106,7 @@ const USSummarySection = withRouter((props) => {
     const us_summary = country.summary();
 
     return <ShortSummary
-        title={""}
+        title={"US Summary"}
         confirmed={us_summary.confirmed}
         newcases={us_summary.newcases}
         deaths={us_summary.deaths}
@@ -117,6 +117,28 @@ const USSummarySection = withRouter((props) => {
         beds={924107}
         selected={false}
         // to={routes.united_states}
+        showBeds={true}
+        showRecovered={true}
+        showDeaths={true}
+    />;
+});
+
+const StateSummarySection = withRouter((props) => {
+    const state = props.state;
+    const state_summary = state.summary();
+    const state_hospitals = state.hospitals();
+
+    return <ShortSummary
+        title={`${state.name} Summary`}
+        confirmed={state_summary.confirmed}
+        newcases={state_summary.newcases}
+        deaths={state_summary.death}
+        deathsNew={state_summary.deathNew}
+        recovered={state_summary.lastRecovered}
+        recoveredNew={state_summary.lastRecovered}
+        hospitals={state_hospitals.count}
+        beds={state_hospitals.bedCount}
+        selected={false}
         showBeds={true}
         showRecovered={true}
         showDeaths={true}
@@ -219,7 +241,7 @@ const ShortSummary = (props) => {
     return (
         <SectionHeader>
             <Typography variant="h6" noWrap >
-                US Summary
+                {props.title}
             </Typography>
             <div className={`${classes.rowSummary} ${props.showBeds ? '' : classes.rowNoBeds}`} >
                 <div></div>
@@ -305,4 +327,9 @@ const Tag = (props) => {
     </Link>;
 };
 
-export { USInfoTopWidget, Tag, USSummarySection }
+export {
+    USInfoTopWidget,
+    Tag,
+    USSummarySection,
+    StateSummarySection,
+}

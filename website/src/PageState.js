@@ -4,7 +4,7 @@ import * as Util from "./Util"
 import { GraphStateTesting } from "./GraphTestingEffort"
 import { withHeader } from "./Header.js"
 import { MyTabs } from "./MyTabs.js"
-import { USInfoTopWidget } from './USInfoTopWidget.js'
+import { USInfoTopWidget, StateSummarySection } from './USInfoTopWidget.js'
 import { withRouter } from 'react-router-dom'
 import { CountiesForStateWidget, ListStateCountiesCapita } from "./CountyListRender.js"
 import { GraphStateHospitalization } from './GraphHospitalization.js'
@@ -81,6 +81,7 @@ const PageState = withHeader((props) => {
     return (
         <>
             <USInfoTopWidget county={county} selectedTab={"state"} />
+            <StateSummarySection state={state} />
             <GraphSectionState state={state} />
             <MyTabs
                 labels={[`Counties of ${state.name} `, "Per Capita"]}
