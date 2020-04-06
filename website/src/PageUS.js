@@ -28,7 +28,7 @@ const GraphSectionUS = withRouter((props) => {
         <GraphUSHospitalization />,
     ]
     let graphlistSection = <MyTabs
-        labels={["Cases", `Recovery`, `Testing`, "Hospitalization"]}
+        labels={["Cases", `Recovery`, `Tests`, "Hospitalization"]}
         urlQueryKey="graph"
         urlQueryValues={['cases', 'recovery_death', 'testing', 'hospitalization']}
         tabs={tabs}

@@ -11,11 +11,17 @@ const GraphTestingWidget = (props) => {
         t.name = `${m}/${d}`;
         return t;
     })
+    console.log(data);
     data = data.sort(function (a, b) {
         return a.date - b.date;
     });
 
     const formatYAxis = (tickItem) => {
+        console.log(tickItem);
+        if (!isFinite(tickItem)) {
+            return tickItem;
+
+        }
         return myShortNumber(tickItem);
     }
 
@@ -50,7 +56,7 @@ const GraphUSHospitalization = (props) => {
 
 const GraphStateHospitalization = (props) => {
     const usdata = require("./data/state_testing.json");
-    const statedata = usdata.filter(d => d.state === props.state)
+    const statedata = usdata.filter(d => d.state === props.state.twoLetterName)
         .sort((a, b) => a.date - b.date);
 
     return <GraphTestingWidget data={statedata} />;
