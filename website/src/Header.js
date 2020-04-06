@@ -234,7 +234,7 @@ const withHeader = (comp, props) => {
                     Resources
                     </Typography>
             </SectionHeader>
-            {<ResourceSection />}
+            {false && <ResourceSection />}
             <SectionHeader>
                 <Grid container alignItems="center" justifyContent="center">
                     <Grid item>
