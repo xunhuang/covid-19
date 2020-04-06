@@ -5,7 +5,7 @@ import { ListCountiesForMetro } from "./CountyListRender.js"
 import { BasicGraphNewCases } from "./GraphNewCases.js"
 import { withHeader } from "./Header.js"
 import { MyTabs } from "./MyTabs.js"
-import { USInfoTopWidget } from './USInfoTopWidget.js'
+import { USInfoTopWidget, MetroSummarySection } from './USInfoTopWidget.js'
 import * as Util from "./Util"
 
 const GraphSectionMetro = withRouter((props) => {
@@ -42,6 +42,7 @@ const PageMetro = withHeader((props) => {
     return (
         <>
             <USInfoTopWidget county={county} selectedTab={"metro"} />
+            <MetroSummarySection metro={metro} selectedTab={"metro"} />
             <GraphSectionMetro metro={metro} />
             <MyTabs
                 labels={[metro.name]}

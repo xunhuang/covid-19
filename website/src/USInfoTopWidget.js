@@ -145,6 +145,28 @@ const StateSummarySection = withRouter((props) => {
     />;
 });
 
+const MetroSummarySection = withRouter((props) => {
+    const metro = props.metro;
+    const metro_summary = metro.summary();
+    const metro_hospitals = metro.hospitals();
+
+    return <ShortSummary
+        title={`${metro.name} Summary`}
+        confirmed={metro_summary.LastConfirmed}
+        newcases={metro_summary.LastConfirmedNew}
+        deaths={metro_summary.LastDeath}
+        deathsNew={metro_summary.LastDeathNew}
+        recovered={metro_summary.lastRecovered}
+        recoveredNew={metro_summary.lastRecovered}
+        hospitals={metro_hospitals.count}
+        beds={metro_hospitals.bedCount}
+        selected={false}
+        showBeds={true}
+        showRecovered={false}
+        showDeaths={true}
+    />;
+});
+
 const USInfoTopWidget = withRouter((props) => {
     const county = props.county;
     const metro = county.metro();
@@ -332,4 +354,5 @@ export {
     Tag,
     USSummarySection,
     StateSummarySection,
+    MetroSummarySection,
 }
