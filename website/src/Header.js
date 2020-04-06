@@ -25,7 +25,15 @@ const useStyles = makeStyles(theme => ({
     title: {
         display: 'block',
         padding: 2,
+        paddingRight: 10,
         margin: 2,
+    },
+    tagline: {
+        display: 'block',
+        padding: 0,
+        paddingRight: 10,
+        margin: 0,
+        alignSelf: "flex-start",
     },
     keepclam: {
         display: 'block',
@@ -36,17 +44,15 @@ const useStyles = makeStyles(theme => ({
         margin: 2,
     },
     searchContainer: {
-	paddingLeft: 10,
-	paddingRight: 10,
+        paddingLeft: 10,
+        paddingRight: 10,
     },
     qpContainer: {
         display: 'none',
-        // color: '#FFFFFF',
         background: '#e3e3e3',
         borderWidth: "1px",
         padding: 15,
         margin: 15,
-        // borderRadius: 20,
     },
     grow: {
         flex: 1,
@@ -54,6 +60,15 @@ const useStyles = makeStyles(theme => ({
     supportUs: {
         padding: 2,
         margin: 2,
+    },
+    buyUsACoffee: {
+        padding: 2,
+        margin: 2,
+        background: '#00aeef',
+        borderRadius: 15,
+        justifyContent: "center",
+        display: "flex",
+        color: "white",
     },
 }));
 
@@ -160,6 +175,42 @@ const SearchBox = (props) => {
         }}
     />;
 }
+const DonateButton = (props) => {
+    const classes = useStyles();
+    const donationPageUrl = "https://ko-fi.com/covid19direct";
+    return (
+        <Typography noWrap variant="body2" className={classes.buyUsACoffee}>
+            <MaterialLink target="_blank" href={donationPageUrl} className={classes.buyUsACoffee}>
+                Buy Us A Coffee
+            </MaterialLink>
+        </Typography>);
+}
+
+const Banner = (props) => {
+    const classes = useStyles();
+    const country = useContext(CountryContext);
+    let us_summary = country.summary();
+    return (
+        <div className={classes.topContainer}>
+            <span className={classes.title}>
+                <Typography variant="h6" >
+                    COVID-19.direct
+            </Typography>
+                <Typography variant="body2" noWrap>
+                    Updated: {moment(us_summary.generatedTime).format('lll')}
+                </Typography>
+            </span>
+            <span className={classes.grow}></span>
+            {/* <span className={classes.keepclam}> Keep Clam, #StayHome</span> */}
+            <span className={classes.tagline}>
+                <Typography variant="body1" >
+                    {/* #StayHome #StayInformed */}
+                        this too shall pass
+            </Typography>
+                <DonateButton />
+            </span>
+        </div>);
+};
 
 const withHeader = (comp, props) => {
 
@@ -211,30 +262,12 @@ const withHeader = (comp, props) => {
                 <CommentsCount href="http://www.facebook.com" />
             </FacebookProvider>;
 
-        const country = useContext(CountryContext);
-        let us_summary = country.summary();
 
         let header = <header className="App-header">
-            <div className={classes.topContainer}>
-                <span className={classes.title}>
-                    <Typography variant="h6" >
-                        COVID-19.direct
-            </Typography>
-                    <Typography variant="body2" noWrap>
-                        Updated: {moment(us_summary.generatedTime).format('lll')}
-                    </Typography>
-                </span>
-                <span className={classes.grow}></span>
-                {/* <span className={classes.keepclam}> Keep Clam, #StayHome</span> */}
-                <span className={classes.title}>
-                    <Typography variant="body1" >
-                        #StayHome #StayInformed
-            </Typography>
-                </span>
+            <Banner></Banner>
+            <div className={classes.searchContainer}>
+                <SearchBox />
             </div>
-	    <div className={classes.searchContainer}>
-	        <SearchBox/>
-	    </div>
             <div className={classes.qpContainer}>
                 <Typography variant="body1" >
                     Some problem with new number calculation. Total is correct but New is not.
