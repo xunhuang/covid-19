@@ -156,8 +156,9 @@ const MetroSummarySection = withRouter((props) => {
         newcases={metro_summary.LastConfirmedNew}
         deaths={metro_summary.LastDeath}
         deathsNew={metro_summary.LastDeathNew}
-        recovered={metro_summary.lastRecovered}
-        recoveredNew={metro_summary.lastRecovered}
+        // recovered={metro_summary.lastRecovered}
+        recovered={"-"}
+        // recoveredNew={metro_summary.lastRecovered}
         hospitals={metro_hospitals.count}
         beds={metro_hospitals.bedCount}
         selected={false}
@@ -166,6 +167,33 @@ const MetroSummarySection = withRouter((props) => {
         showDeaths={true}
     />;
 });
+
+const CountySummarySection = withRouter((props) => {
+    const county = props.county;
+    const county_summary = county.summary();
+
+    const county_hospitals = county.hospitals() || {
+        'bedCount': "N/A",
+        'count': "N/A",
+    };
+
+    return <ShortSummary
+        title={`${county.name} Summary`}
+        confirmed={county_summary.confirmed}
+        newcases={county_summary.newcases}
+        deaths={county_summary.death}
+        deathsNew={county_summary.deathNew}
+        recovered={county_summary.recovered}
+        recoveredNew={county_summary.recoveredNew}
+        hospitals={county_hospitals.count}
+        beds={county_hospitals.bedCount}
+        selected={false}
+        showBeds={true}
+        showRecovered={false}
+        showDeaths={true}
+    />;
+});
+
 
 const USInfoTopWidget = withRouter((props) => {
     const county = props.county;
@@ -355,4 +383,5 @@ export {
     USSummarySection,
     StateSummarySection,
     MetroSummarySection,
+    CountySummarySection,
 }

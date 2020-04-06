@@ -6,7 +6,7 @@ import { GraphStateTesting } from "./GraphTestingEffort"
 import { withHeader } from "./Header.js"
 import { MyTabs } from "./MyTabs.js"
 import { CountryContext } from "./CountryContext";
-import { USInfoTopWidget } from './USInfoTopWidget.js'
+import { USInfoTopWidget, CountySummarySection } from './USInfoTopWidget.js'
 import { CountyHospitalsWidget } from "./Hospitals"
 import * as Util from "./Util"
 
@@ -55,6 +55,7 @@ const PageCounty = withHeader((props) => {
     return (
         <>
             <USInfoTopWidget county={county} selectedTab={"county"} />
+            <CountySummarySection county={county} />
             <GraphSectionCounty county={county} />
             <MyTabs
                 labels={["Nearby", "Hospitals"]}
