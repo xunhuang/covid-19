@@ -129,9 +129,13 @@ const USInfoTopWidget = withRouter((props) => {
     const state = county.state();
     const country = state.country();
 
-    const [showBeds] = React.useState(!metro)
+    const [notMetro] = React.useState(!metro)
     const [showDeaths] = React.useState(false)
     const [showRecovered] = React.useState(false)
+
+    const theme = useTheme();
+    const downXS = useMediaQuery(theme.breakpoints.down('xs'));
+    const showBeds = notMetro && !downXS;
 
     const classes = useStyles();
 
@@ -274,12 +278,9 @@ const ShortSummary = (props) => {
 
 const Tag = (props) => {
     const classes = useStyles();
-    const theme = useTheme();
-    const matchesXS = useMediaQuery(theme.breakpoints.down('xs'));
-    const hideBeds = !props.showBeds || matchesXS;
     return <Link className={`${classes.tag} ${props.selected ? classes.tagSelected : ''}`} to={props.to}>
         <div className={classes.tagTitle}> {props.title} </div>
-        <div className={`${classes.row} ${hideBeds ? classes.rowNoBeds : ''}`} >
+        <div className={`${classes.row} ${props.showBeds ? '' : classes.rowNoBeds}`} >
             <section className={classes.tagSection}>
                 <div className={classes.topTag}>
                     +{myShortNumber(props.newcases)}
@@ -290,7 +291,7 @@ const Tag = (props) => {
                     Confirmed </div>
             </section>
 
-            {!hideBeds && <section className={classes.tagSection}>
+            {props.showBeds && <section className={classes.tagSection}>
                 <Typography className={classes.topTag} variant="body2" noWrap >
                     {myShortNumber(props.hospitals)} Hosp.
                 </Typography>
