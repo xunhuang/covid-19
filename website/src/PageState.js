@@ -12,6 +12,7 @@ import { BasicGraphNewCases } from "./GraphNewCases.js"
 import Typography from '@material-ui/core/Typography'
 import { BasicGraphRecoveryAndDeath } from "./GraphRecoveryAndDeath.js"
 import { Redirect } from 'react-router-dom'
+import { InfectionMap } from "./Maps";
 
 const moment = require("moment");
 
@@ -50,14 +51,19 @@ const GraphSectionState = withRouter((props) => {
         <StateGraphCaveat stateSummary={stateSummary} data={graphdata} logScale={false} />,
         <GraphStateTesting state={state} />,
         <GraphStateHospitalization state={state} />,
+        <InfectionMap state={state} />
+
     ]
     let graphlistSection = <MyTabs
         labels={["Cases",
             `Recovery`,
             `Tests`,
-            "Hospitalization"]}
+            "Hospitalization",
+            "Map",
+        ]}
         urlQueryKey="graph"
         urlQueryValues={['cases', 'recovery', 'testing', 'hospitalization']}
+        // urlQueryValues={['cases', 'recovery', 'testing', 'hospitalization', "map"]}
         tabs={tabs}
         history={props.history}
     />;

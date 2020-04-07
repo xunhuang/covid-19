@@ -9,10 +9,10 @@ const MAX_MAP_ZOOM = 6;
 
 const useStyles = theme => ({
   mapContainer: {
-    height: '100vh', // for full screen page, not required
+    // height: '100vh', // for full screen page, not required
     overflow: 'hidden',
     position: 'relative',
-    width: '100%', // for full screen page, not required
+    // width: '100%', // for full screen page, not required
   },
   map: {
     maxHeight: '100%',
@@ -52,7 +52,7 @@ class RawPin extends React.Component {
       return <div></div>;
     }
 
-    const {classes} = this.props;
+    const { classes } = this.props;
     const divStyle = {
       left: this.state.center.x,
       top: this.state.center.y,
@@ -85,46 +85,46 @@ class RawMap extends React.Component {
   }
 
   render() {
-    const {classes} = this.props;
+    const { classes } = this.props;
     return (
-        <div
-            className={classes.mapContainer}
-            ref={this.container}>
-          <SVG
-              onLoad={this.svgLoaded_}
-              innerRef={this.element}
-              className={classes.map}
-              src={this.props.src} />
+      <div
+        className={classes.mapContainer}
+        ref={this.container}>
+        <SVG
+          onLoad={this.svgLoaded_}
+          innerRef={this.element}
+          className={classes.map}
+          src={this.props.src} />
         <Pin ref={this.pin} center={this.pinCenter} />
       </div>);
   }
 
   svgLoaded_ = () => {
-    const [,, width, height] =
-        this.element.current.getAttribute('viewBox')
-            .split(' ')
-            .map(n => parseInt(n));
-    this.viewBoxSize = {width, height};
-    this.transform = {x: 0, y: 0, zoom: 1};
+    const [, , width, height] =
+      this.element.current.getAttribute('viewBox')
+        .split(' ')
+        .map(n => parseInt(n));
+    this.viewBoxSize = { width, height };
+    this.transform = { x: 0, y: 0, zoom: 1 };
     this.updateTransform_();
     this.renderColors_();
 
     // React doesn't support passive events yet
     for (const [name, fn] of [
-          ['gesturestart', this.gestureStart_],
-          ['gesturechange', this.gestureChange_],
-          ['gestureend', this.gestureEnd_],
-          ['mousedown', this.mouseDown_],
-          ['mouseleave', this.mouseLeave_],
-          ['mousemove', this.mouseMove_],
-          ['mouseup', this.mouseUp_],
-          ['touchstart', this.touchStart_],
-          ['touchmove', this.touchMove_],
-          ['touchend', this.touchEnd_],
-          ['wheel', this.wheel_],
-        ]) {
+      ['gesturestart', this.gestureStart_],
+      ['gesturechange', this.gestureChange_],
+      ['gestureend', this.gestureEnd_],
+      ['mousedown', this.mouseDown_],
+      ['mouseleave', this.mouseLeave_],
+      ['mousemove', this.mouseMove_],
+      ['mouseup', this.mouseUp_],
+      ['touchstart', this.touchStart_],
+      ['touchmove', this.touchMove_],
+      ['touchend', this.touchEnd_],
+      ['wheel', this.wheel_],
+    ]) {
       this.element.current.addEventListener(
-          name, fn.bind(this), {passive: false});
+        name, fn.bind(this), { passive: false });
     }
   };
 
@@ -140,7 +140,7 @@ class RawMap extends React.Component {
       for (let i = index; i < nextBatch; i += 1) {
         const [id, color] = entries[i];
         const county =
-            this.element.current.querySelector(`[id="${id}"]`);
+          this.element.current.querySelector(`[id="${id}"]`);
         if (county) {
           county.style.fill = color;
         } else {
@@ -164,7 +164,7 @@ class RawMap extends React.Component {
     this.activeGesture = {
       name: 'pinch-safari',
       baseZoom: this.transform.zoom,
-      center: {x: e.clientX, y: e.clientY},
+      center: { x: e.clientX, y: e.clientY },
     };
   }
 
@@ -186,7 +186,7 @@ class RawMap extends React.Component {
 
   mouseDown_(e) {
     e.preventDefault();
-    this.activeGesture = {name: 'select', center: {x: e.clientX, y: e.clientY}};
+    this.activeGesture = { name: 'select', center: { x: e.clientX, y: e.clientY } };
   }
 
   mouseMove_(e) {
@@ -196,7 +196,7 @@ class RawMap extends React.Component {
       return;
     }
 
-    this.maybeDrag_({x: e.clientX, y: e.clientY});
+    this.maybeDrag_({ x: e.clientX, y: e.clientY });
   }
 
   mouseLeave_(e) {
@@ -212,7 +212,7 @@ class RawMap extends React.Component {
       return;
     }
 
-    this.maybeClick_({x: e.clientX, y: e.clientY}, e.target);
+    this.maybeClick_({ x: e.clientX, y: e.clientY }, e.target);
   }
 
   touchStart_(e) {
@@ -272,17 +272,17 @@ class RawMap extends React.Component {
 
   wheel_(e) {
     e.preventDefault();
-    this.zoom_(this.transform.zoom * (-0.01 * e.deltaY + 1), {x: e.clientX, y: e.clientY});
+    this.zoom_(this.transform.zoom * (-0.01 * e.deltaY + 1), { x: e.clientX, y: e.clientY });
   }
 
   maybeClick_(at, target) {
     const gesture = this.activeGesture;
     if (gesture.name === 'select'
-        && distance(at, gesture.center) < DRAG_SENSITIVITY
-        && this.props.getPinText) {
+      && distance(at, gesture.center) < DRAG_SENSITIVITY
+      && this.props.getPinText) {
       if (target.hasAttribute('id')) {
         const text = this.props.getPinText(
-            target.getAttribute('id').padStart(5, '0'));
+          target.getAttribute('id').padStart(5, '0'));
         this.pin.current.setState(prevState => ({
           ...prevState,
           ...text,
@@ -291,9 +291,9 @@ class RawMap extends React.Component {
         const rect = target.getBoundingClientRect();
         this.pinCenter = {
           x: (rect.x + rect.width / 2 - this.transform.x)
-              / this.transform.zoom,
+            / this.transform.zoom,
           y: (rect.y + rect.height / 2 - this.transform.y)
-              / this.transform.zoom,
+            / this.transform.zoom,
         };
 
         this.updatePinTransform_();
@@ -358,27 +358,27 @@ class RawMap extends React.Component {
     const containerRect = this.container.current.getBoundingClientRect();
     const elementRect = this.element.current.getBoundingClientRect();
     this.transform.x = clamp(
-            this.transform.x,
-            containerRect.width - elementRect.width,
-            0);
+      this.transform.x,
+      containerRect.width - elementRect.width,
+      0);
     this.transform.y =
-        clamp(
-            this.transform.y,
-            containerRect.height - elementRect.height,
-            0);
+      clamp(
+        this.transform.y,
+        containerRect.height - elementRect.height,
+        0);
     this.transform.zoom = clamp(this.transform.zoom, 1, MAX_MAP_ZOOM);
   }
 
   updateMapTransform_() {
-    const {x, y, zoom} = this.transform;
+    const { x, y, zoom } = this.transform;
     this.element.current.style.transform =
-        `matrix(${zoom}, 0, 0, ${zoom}, ${x}, ${y})`;
+      `matrix(${zoom}, 0, 0, ${zoom}, ${x}, ${y})`;
   }
 
   updatePinTransform_() {
     if (this.pin.current && this.pinCenter) {
       const center = this.pinCenter;
-      const {x, y, zoom} = this.transform;
+      const { x, y, zoom } = this.transform;
       this.pin.current.setState(prevState => ({
         ...prevState,
         center: {
@@ -414,7 +414,8 @@ class InfectionMap extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {colors: {}};
+    this.us_state = props.state;
+    this.state = { colors: {} };
     this.mapping = {};
   }
 
@@ -431,21 +432,26 @@ class InfectionMap extends React.Component {
 
         if (county.totalConfirmed() > 0) {
           colors[county.id] =
-              `hsla(0, 100%, ${80 - 7 * Math.log(county.totalConfirmed())}%, 1)`;
+            `hsla(0, 100%, ${80 - 7 * Math.log(county.totalConfirmed())}%, 1)`;
         } else {
           colors[county.id] = '';
         }
       }
     }
-    this.setState({colors});
+    this.setState({ colors });
   }
 
   render() {
+    let mapSrc = process.env.PUBLIC_URL + '/us_counties_map_fips.svg';
+    if (this.us_state) {
+      mapSrc = process.env.PUBLIC_URL + `/maps/us/states/${this.us_state.fips()}/counties.svg`;
+      console.log(mapSrc);
+    }
     return (
-        <Map
-            colors={this.state.colors}
-            getPinText={this.getPinText_}
-            src={process.env.PUBLIC_URL + '/us_counties_map_fips.svg'} />);
+      <Map
+        colors={this.state.colors}
+        getPinText={this.getPinText_}
+        src={mapSrc} />);
   }
 
   getPinText_ = (county) => {
@@ -479,11 +485,11 @@ function clamp(x, l, h) {
 }
 
 function distance(a, b) {
-  return (a.x - b.x)**2 + (a.y - b.y)**2;
+  return (a.x - b.x) ** 2 + (a.y - b.y) ** 2;
 }
 
 function touchCenter(touches) {
-  const center = {x: 0, y: 0};
+  const center = { x: 0, y: 0 };
   for (let i = 0; i < touches.length; ++i) {
     center.x += touches.item(i).clientX;
     center.y += touches.item(i).clientY;
@@ -494,7 +500,7 @@ function touchCenter(touches) {
 }
 
 function touchDistance(a, b) {
-  return distance({x: a.clientX, y: a.clientY}, {x: b.clientX, y: b.clientY});
+  return distance({ x: a.clientX, y: a.clientY }, { x: b.clientX, y: b.clientY });
 }
 
 export { InfectionMap }

@@ -244,6 +244,10 @@ export class State {
     this.reindex();
   }
 
+  fips() {
+    return this.id;
+  }
+
   country() {
     return this.country_;
   }
