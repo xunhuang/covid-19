@@ -1,0 +1,77 @@
+import React from 'react';
+import { ResponsiveContainer, Tooltip, LineChart, Line, YAxis, XAxis, CartesianGrid, Legend } from 'recharts';
+import { Typography } from '@material-ui/core';
+import Grid from '@material-ui/core/Grid';
+import { myShortNumber } from './Util';
+import { AntSwitch } from "./GraphNewCases.js"
+
+const moment = require("moment");
+
+const GraphDaysToDoubleOverTime = (props) => {
+
+    const [state, setState] = React.useState({
+        show2weeks: false,
+    });
+
+    const handle2WeeksToggle = event => {
+        setState({ ...state, show2weeks: !state.show2weeks });
+    };
+
+    let data = props.data;
+    data = data.map(d => {
+        d.name = moment(d.fulldate, "MM/DD/YYYY").format("M/D");
+        return d;
+    });
+
+    if (state.show2weeks) {
+        const cutoff = moment().subtract(14, 'days')
+        data = data.filter(d => {
+            return moment(d.fulldate, "MM/DD/YYYY").isAfter(cutoff)
+        });
+    } else {
+        const cutoff = moment().subtract(30, 'days')
+        data = data.filter(d => {
+            return moment(d.fulldate, "MM/DD/YYYY").isAfter(cutoff)
+        });
+    }
+    const formatYAxis = (tickItem) => {
+        return myShortNumber(tickItem);
+    }
+
+    data = data.sort((a, b) => moment(a.fulldate, "MM/DD/YYYY").isAfter(moment(b.fulldate, "MM/DD/YYYY")));
+
+    return <>
+        <Grid container alignItems="center" spacing={1}>
+            <Grid item>
+                <AntSwitch checked={state.show30days} onClick={handle2WeeksToggle} />
+            </Grid>
+            <Grid item onClick={handle2WeeksToggle}>
+                <Typography>
+                    2 weeks
+                </Typography>
+            </Grid>
+            <Grid item >
+                <Typography>
+                    High Days-to-2x means slower spread.
+                </Typography>
+            </Grid>
+        </Grid >
+        <ResponsiveContainer height={300} >
+            <LineChart
+                data={data}
+                margin={{ top: 5, right: 30, left: 5, bottom: 5 }}
+            >
+                <XAxis dataKey="name" />
+                <YAxis yAxisId={0} tickFormatter={formatYAxis} />
+                <Tooltip />
+
+                <CartesianGrid stroke="#d5d5d5" strokeDasharray="5 5" />
+                <Line type="monotone" dataKey="confirmed" stroke="#387908" yAxisId={0} strokeWidth={2} />
+                <Line type="monotone" dataKey="death" stroke="#000000" yAxisId={0} strokeWidth={3} />
+                <Legend verticalAlign="top" />
+
+            </LineChart></ResponsiveContainer>
+    </>
+}
+
+export { GraphDaysToDoubleOverTime };

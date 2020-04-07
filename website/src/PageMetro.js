@@ -7,6 +7,7 @@ import { withHeader } from "./Header.js"
 import { MyTabs } from "./MyTabs.js"
 import { USInfoTopWidget, MetroSummarySection } from './USInfoTopWidget.js'
 import * as Util from "./Util"
+import { GraphDaysToDoubleOverTime } from "./GraphDaysToDoubleOverTime"
 
 const GraphSectionMetro = withRouter((props) => {
     const tabs = [
@@ -14,11 +15,12 @@ const GraphSectionMetro = withRouter((props) => {
             data={props.metro.dataPoints()}
             logScale={false}
         />,
+        <GraphDaysToDoubleOverTime data={props.metro.daysToDoubleTimeSeries()} />
     ]
     let graphlistSection = <MyTabs
-        labels={["Cases"]}
+        labels={["Cases", "Days to 2x"]}
         urlQueryKey="graph"
-        urlQueryValues={['cases']}
+        urlQueryValues={['cases', 'days2x']}
         tabs={tabs}
         history={props.history}
     />;
@@ -32,14 +34,8 @@ const PageMetro = withHeader((props) => {
 
     const tabs = [
         <ListCountiesForMetro metro={metro} />,
-        // <CountyHospitalsWidget
-        //     county={county}
-        //     state={state}
-        // >
-        // </CountyHospitalsWidget >,
     ];
 
-    console.log(metro.daysToDoubleTimeSeries())
 
     return (
         <>

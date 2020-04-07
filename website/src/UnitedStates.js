@@ -1,8 +1,8 @@
 import routes from "./Routes";
 import { reverse } from 'named-urls';
 import { trimLastDaysData, getDay2DoubleTimeSeries } from "./CovidAnalysis";
+import { keys } from "@material-ui/core/styles/createBreakpoints";
 
-const { linearRegression } = require('simple-statistics');
 const CovidData = require('./data/AllData.json');
 const CountyGeoData = require('./data/county_gps.json');
 const geolib = require('geolib');
@@ -423,16 +423,22 @@ export class Metro {
   }
 
   daysToDoubleTimeSeries() {
-    let Day2DoubleConfirmed = getDay2DoubleTimeSeries(
+    let confirmed = getDay2DoubleTimeSeries(
       trimLastDaysData(this.covidRaw_.Summary.Confirmed)
     );
-    let Day2DoubleDeath = getDay2DoubleTimeSeries(
+    let death = getDay2DoubleTimeSeries(
       trimLastDaysData(this.covidRaw_.Summary.Death)
     );
-    return {
-      Day2DoubleConfirmedTimeSeries: Day2DoubleConfirmed,
-      Day2DoubleDeathTimeSeries: Day2DoubleDeath,
+
+    let result = [];
+    for (let k in confirmed) {
+      result.push({
+        fulldate: k,
+        confirmed: confirmed[k],
+        death: death[k],
+      });
     }
+    return result;
   }
 }
 
@@ -579,7 +585,6 @@ export class County {
     if (data['HospitalBeds']) {
       this.hospitals_['bedCount'] = data['HospitalBeds'];
     }
-
     if (data['Population2010']) {
       this.population_ = parseInt(data['Population2010'].replace(/,/g, ''));
     }
