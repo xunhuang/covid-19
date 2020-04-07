@@ -11,6 +11,7 @@ fbcli.setup.web().then(config => {
     config.ipgeolocation_key = geokey.ipgeolocation;
     config.ipdataco_key = geokey.ipdataco_key;
     config.ipdataco_key2 = geokey.ipdataco_key2;
+    config.ipdataco_key3 = geokey.ipdataco_key3;
   }
   fs.writeFileSync(
     'src/firebaseConfig.json',

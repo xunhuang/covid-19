@@ -30,10 +30,6 @@ US Summary
 
 cat src/data/AllData.json |jq ".Summary"
 
-US Summary 
-----------
-
-cat src/data/AllData.json | jq ' ."06" .Summary .Confirmed'
 
 Flattern AllData to CSV file 
 ----------
