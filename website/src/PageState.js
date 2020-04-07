@@ -59,7 +59,7 @@ const GraphSectionState = withRouter((props) => {
             `Recovery`,
             `Tests`,
             "Hospitalization",
-            "Map",
+            // "Map",
         ]}
         urlQueryKey="graph"
         urlQueryValues={['cases', 'recovery', 'testing', 'hospitalization']}
