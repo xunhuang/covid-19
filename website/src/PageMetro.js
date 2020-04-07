@@ -39,6 +39,8 @@ const PageMetro = withHeader((props) => {
         // </CountyHospitalsWidget >,
     ];
 
+    console.log(metro.daysToDoubleTimeSeries())
+
     return (
         <>
             <USInfoTopWidget county={county} selectedTab={"metro"} />

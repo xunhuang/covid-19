@@ -1,6 +1,8 @@
 import routes from "./Routes";
 import { reverse } from 'named-urls';
+import { trimLastDaysData, getDay2DoubleTimeSeries } from "./CovidAnalysis";
 
+const { linearRegression } = require('simple-statistics');
 const CovidData = require('./data/AllData.json');
 const CountyGeoData = require('./data/county_gps.json');
 const geolib = require('geolib');
@@ -217,6 +219,18 @@ export class Country {
       generatedTime: generatedTime,
     }
   }
+  daysToDoubleTimeSeries() {
+    let Day2DoubleConfirmed = getDay2DoubleTimeSeries(
+      trimLastDaysData(this.covidRaw_.Summary.Confirmed)
+    );
+    let Day2DoubleDeath = getDay2DoubleTimeSeries(
+      trimLastDaysData(this.covidRaw_.Summary.Death)
+    );
+    return {
+      Day2DoubleConfirmedTimeSeries: Day2DoubleConfirmed,
+      Day2DoubleDeathTimeSeries: Day2DoubleDeath,
+    }
+  }
 }
 
 export class State {
@@ -358,6 +372,18 @@ export class State {
       });
     });
   }
+  daysToDoubleTimeSeries() {
+    let Day2DoubleConfirmed = getDay2DoubleTimeSeries(
+      trimLastDaysData(this.covidRaw_.Summary.Confirmed)
+    );
+    let Day2DoubleDeath = getDay2DoubleTimeSeries(
+      trimLastDaysData(this.covidRaw_.Summary.Death)
+    );
+    return {
+      Day2DoubleConfirmedTimeSeries: Day2DoubleConfirmed,
+      Day2DoubleDeathTimeSeries: Day2DoubleDeath,
+    }
+  }
 }
 
 export class Metro {
@@ -394,6 +420,19 @@ export class Metro {
 
   summary() {
     return this.covidRaw_['Summary'];
+  }
+
+  daysToDoubleTimeSeries() {
+    let Day2DoubleConfirmed = getDay2DoubleTimeSeries(
+      trimLastDaysData(this.covidRaw_.Summary.Confirmed)
+    );
+    let Day2DoubleDeath = getDay2DoubleTimeSeries(
+      trimLastDaysData(this.covidRaw_.Summary.Death)
+    );
+    return {
+      Day2DoubleConfirmedTimeSeries: Day2DoubleConfirmed,
+      Day2DoubleDeathTimeSeries: Day2DoubleDeath,
+    }
   }
 }
 
@@ -545,4 +584,18 @@ export class County {
       this.population_ = parseInt(data['Population2010'].replace(/,/g, ''));
     }
   }
+
+  daysToDoubleTimeSeries() {
+    let Day2DoubleConfirmed = getDay2DoubleTimeSeries(
+      trimLastDaysData(this.covidRaw_.Confirmed)
+    );
+    let Day2DoubleDeath = getDay2DoubleTimeSeries(
+      trimLastDaysData(this.covidRaw_.Death)
+    );
+    return {
+      Day2DoubleConfirmedTimeSeries: Day2DoubleConfirmed,
+      Day2DoubleDeathTimeSeries: Day2DoubleDeath,
+    }
+  }
+
 }
