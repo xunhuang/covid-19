@@ -13,6 +13,7 @@ import Typography from '@material-ui/core/Typography'
 import { BasicGraphRecoveryAndDeath } from "./GraphRecoveryAndDeath.js"
 import { Redirect } from 'react-router-dom'
 import { InfectionMap } from "./Maps";
+import { MapState } from "./MapNew";
 
 const moment = require("moment");
 
@@ -51,6 +52,7 @@ const GraphSectionState = withRouter((props) => {
         <StateGraphCaveat stateSummary={stateSummary} data={graphdata} logScale={false} />,
         <GraphStateTesting state={state} />,
         <GraphStateHospitalization state={state} />,
+        <MapState state={state} />,
         <InfectionMap state={state} />
 
     ]
@@ -62,8 +64,7 @@ const GraphSectionState = withRouter((props) => {
             // "Map",
         ]}
         urlQueryKey="graph"
-        urlQueryValues={['cases', 'recovery', 'testing', 'hospitalization']}
-        // urlQueryValues={['cases', 'recovery', 'testing', 'hospitalization', "map"]}
+        urlQueryValues={['cases', 'recovery', 'testing', 'hospitalization', "map"]}
         tabs={tabs}
         history={props.history}
     />;
