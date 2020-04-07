@@ -9,6 +9,7 @@ import { MyTabs } from "./MyTabs.js"
 import * as Util from "./Util.js"
 import { USInfoTopWidget, USSummarySection } from './USInfoTopWidget.js'
 import { GraphUSHospitalization } from './GraphHospitalization.js'
+import { GraphDaysToDoubleOverTime } from "./GraphDaysToDoubleOverTime"
 import {
     ListAllStates,
     ListAllStatesPerCapita,
@@ -24,13 +25,14 @@ const GraphSectionUS = withRouter((props) => {
     const tabs = [
         <BasicGraphNewCases data={graphdata} logScale={false} />,
         <BasicGraphRecoveryAndDeath data={graphdata} logScale={false} />,
+        <GraphDaysToDoubleOverTime data={props.country.daysToDoubleTimeSeries()} />,
         <GraphUSTesting />,
         <GraphUSHospitalization />,
     ]
     let graphlistSection = <MyTabs
-        labels={["Cases", `Recovery`, `Tests`, "Hospitalization"]}
+        labels={["Cases", `Recovery`, "Days to 2x", `Tests`, "Hospitalization"]}
         urlQueryKey="graph"
-        urlQueryValues={['cases', 'recovery_death', 'testing', 'hospitalization']}
+        urlQueryValues={['cases', 'recovery_death', "days2x", 'testing', 'hospitalization']}
         tabs={tabs}
         history={props.history}
     />;

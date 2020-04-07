@@ -14,6 +14,7 @@ import { BasicGraphRecoveryAndDeath } from "./GraphRecoveryAndDeath.js"
 import { Redirect } from 'react-router-dom'
 import { InfectionMap } from "./Maps";
 import { MapState } from "./MapNew";
+import { GraphDaysToDoubleOverTime } from "./GraphDaysToDoubleOverTime"
 
 const moment = require("moment");
 
@@ -49,6 +50,7 @@ const GraphSectionState = withRouter((props) => {
                         label: "Stay-At-Home Order",
                     }] : []
             } />,
+        <GraphDaysToDoubleOverTime data={props.state.daysToDoubleTimeSeries()} />,
         <StateGraphCaveat stateSummary={stateSummary} data={graphdata} logScale={false} />,
         <GraphStateTesting state={state} />,
         <GraphStateHospitalization state={state} />,
@@ -58,13 +60,14 @@ const GraphSectionState = withRouter((props) => {
     ]
     let graphlistSection = <MyTabs
         labels={["Cases",
+            `Days to 2x`,
             `Recovery`,
             `Tests`,
             "Hospitalization",
             // "Map",
         ]}
         urlQueryKey="graph"
-        urlQueryValues={['cases', 'recovery', 'testing', 'hospitalization', "map"]}
+        urlQueryValues={['cases', 'days2x', 'recovery', 'testing', 'hospitalization', "map"]}
         tabs={tabs}
         history={props.history}
     />;

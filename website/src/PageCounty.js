@@ -9,6 +9,7 @@ import { CountryContext } from "./CountryContext";
 import { USInfoTopWidget, CountySummarySection } from './USInfoTopWidget.js'
 import { CountyHospitalsWidget } from "./Hospitals"
 import * as Util from "./Util"
+import { GraphDaysToDoubleOverTime } from "./GraphDaysToDoubleOverTime"
 
 const moment = require('moment');
 
@@ -29,12 +30,14 @@ const GraphSectionCounty = withRouter((props) => {
                     }] : []
             }
         />,
+        <GraphDaysToDoubleOverTime data={county.daysToDoubleTimeSeries()} />,
         <GraphStateTesting state={county.state()} />,
     ]
     let graphlistSection = <MyTabs
-        labels={["Cases", `${county.state().name} Testing`]}
+        labels={["Cases", "Days to 2x",
+            `${county.state().name} Testing`]}
         urlQueryKey="graph"
-        urlQueryValues={['cases', 'testing']}
+        urlQueryValues={['cases', 'days2x', 'testing']}
         tabs={tabs}
         history={props.history}
     />;
