@@ -540,18 +540,9 @@ export class County {
     if (data['HospitalBeds']) {
       this.hospitals_['bedCount'] = data['HospitalBeds'];
     }
-    if (this.state_.twoLetterName === "NY" && this.name === "New York") {
-      this.hospitals_['bedCount'] = 23639;
-      this.hospitals_['count'] = 58;
-    }
 
     if (data['Population2010']) {
       this.population_ = parseInt(data['Population2010'].replace(/,/g, ''));
-    }
-    // hard coding a special here for NYC because
-    // all 5 boroughs are lumped together. terrible hack
-    if (this.state_.twoLetterName === "NY" && this.name === "New York") {
-      this.population_ = 8500000;
     }
   }
 }
