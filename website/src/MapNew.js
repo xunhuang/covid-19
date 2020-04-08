@@ -5,11 +5,41 @@ import { scaleQuantile } from "d3-scale";
 import ReactTooltip from "react-tooltip";
 const geoUrl = "https://cdn.jsdelivr.net/npm/us-atlas@3/counties-10m.json";
 const unemployment = require("./unemployment-by-county-2017.json");
+const stateBounds = require("./data/states-bounding.json");
+
+const statemap = stateBounds.reduce((m, b) => {
+    m[b.STATEFP] = b;
+    return m;
+}, {});
+
+function getProjectionConfig(state_fips) {
+    let state1 = statemap[state_fips];
+    let x = (parseFloat(state1.xmin) + parseFloat(state1.xmax)) / 2;
+    let y = (parseFloat(state1.ymin) + parseFloat(state1.ymax)) / 2;
+    let xscale =
+        (800 * 180) / (parseFloat(state1.xmax) - parseFloat(state1.xmin));
+    let yscale =
+        (600 * 180) / (parseFloat(state1.ymax) - parseFloat(state1.ymin));
+    let scale = xscale > yscale ? yscale : xscale;
+    scale = scale * 0.3;
+
+    // manually tune some state that doens't show up well.
+    if (state_fips === "02") {
+        return {
+            scale: 2000,
+            rotate: [149.4937, -64.2008, 0]
+        };
+    }
+
+    return {
+        scale: scale,
+        rotate: [-x, -y, 0]
+    };
+}
 
 const MapNew = (props) => {
     let setTooltipContent = props.setTooltipContent;
     let data = unemployment;
-
     const colorScale = scaleQuantile()
         .domain(data.map(d => d.unemployment_rate))
         .range([
@@ -23,7 +53,6 @@ const MapNew = (props) => {
             "#9a311f",
             "#782618"
         ]);
-
     const state = props.state;
     console.log(state);
     let url = geoUrl;
@@ -34,16 +63,11 @@ const MapNew = (props) => {
         console.log(url);
     }
 
+    let projection = getProjectionConfig(state.fips());
     return (
         // <ComposableMap data-tip="" projection="geoAlbersUsa"
         <ComposableMap data-tip="" projection="geoMercator"
-            projectionConfig={{
-                scale: 100,
-                // xOffset: 100,
-                // yOffset: 100,
-                // rotation: [+10, 0, 0],
-            }
-            }
+            projectionConfig={projection}
         >
             <Geographies geography={url}>
                 {({ geographies }) =>
