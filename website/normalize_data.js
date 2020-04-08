@@ -726,7 +726,7 @@ NYC_run1.map(entry => {
             county_fips,
             entry.Name,
         )
-    } 
+    }
 
     if (entry.FIPS.length !== 5) {
         return null;
@@ -765,30 +765,58 @@ function processNYCBOROS_NEW() {
                 AllData["36"]["36005"].Confirmed[dd] = parseInt(line.BRONX);
                 AllData["36"]["36085"].Confirmed[dd] = parseInt(line["STATEN ISLAND"]);
 
-                if ( !  AllData["36"]["36061"].Confirmed[dd]) {
-                 AllData["36"]["36061"].Confirmed[dd] = parseInt(line.Manhattan);
+                if (!AllData["36"]["36061"].Confirmed[dd]) {
+                    AllData["36"]["36061"].Confirmed[dd] = parseInt(line.Manhattan);
                 }
-                if (!AllData["36"]["36047"].Confirmed[dd] ){
-                AllData["36"]["36047"].Confirmed[dd] = parseInt(line.Brooklyn);
-                }
-
-                if (!AllData["36"]["36081"].Confirmed[dd] ){
-                AllData["36"]["36081"].Confirmed[dd] = parseInt(line.Queens);
+                if (!AllData["36"]["36047"].Confirmed[dd]) {
+                    AllData["36"]["36047"].Confirmed[dd] = parseInt(line.Brooklyn);
                 }
 
-                if (!AllData["36"]["36005"].Confirmed[dd] ){
-                AllData["36"]["36005"].Confirmed[dd] = parseInt(line["The Bronx"]);
+                if (!AllData["36"]["36081"].Confirmed[dd]) {
+                    AllData["36"]["36081"].Confirmed[dd] = parseInt(line.Queens);
                 }
-                if (!AllData["36"]["36085"].Confirmed[dd] ){
-                AllData["36"]["36085"].Confirmed[dd] = parseInt(line["Staten Island"]);
+
+                if (!AllData["36"]["36005"].Confirmed[dd]) {
+                    AllData["36"]["36005"].Confirmed[dd] = parseInt(line["The Bronx"]);
+                }
+                if (!AllData["36"]["36085"].Confirmed[dd]) {
+                    AllData["36"]["36085"].Confirmed[dd] = parseInt(line["Staten Island"]);
                 }
             }
         });
     }
 
+    AllData["36"]["36061"].Confirmed = fillarrayholes(AllData["36"]["36061"].Confirmed);
+    AllData["36"]["36047"].Confirmed = fillarrayholes(AllData["36"]["36047"].Confirmed);
+    AllData["36"]["36081"].Confirmed = fillarrayholes(AllData["36"]["36081"].Confirmed);
+    AllData["36"]["36005"].Confirmed = fillarrayholes(AllData["36"]["36005"].Confirmed);
+    AllData["36"]["36085"].Confirmed = fillarrayholes(AllData["36"]["36085"].Confirmed);
 }
 
 processNYCBOROS_NEW();
+
+
+console.log("Processing NYC Death");
+
+const NYC_DEATH = require("../data/archive/NYC-Deaths.json");
+NYC_DEATH.map(boro => {
+    let fips = boro.FIPS;
+    let newdata = {}
+    for (i in boro) {
+        if (i === "Name" || i === "FIPS") {
+            // delete boro[i];
+        } else {
+            if (boro[i] !== "" && boro[i] !== "0") {
+                newdata[i] = parseInt(boro[i]);
+            }
+        }
+    }
+    AllData["36"][fips].Death = fillarrayholes(newdata);
+});
+
+console.log("Processing done NYC Death");
+
+// fillholes();
 
 NYC_STARTER.map(entry => {
     let state_fips = "36";
@@ -804,6 +832,8 @@ NYC_STARTER.map(entry => {
 
     }
 });
+
+console.log("Summarizing NYC ");
 
 processsShelterInPlace();
 addUSRecovery();
