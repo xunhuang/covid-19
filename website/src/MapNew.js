@@ -35,7 +35,16 @@ const MapNew = (props) => {
     }
 
     return (
-        <ComposableMap data-tip="" projection="geoAlbersUsa">
+        // <ComposableMap data-tip="" projection="geoAlbersUsa"
+        <ComposableMap data-tip="" projection="geoMercator"
+            projectionConfig={{
+                scale: 100,
+                // xOffset: 100,
+                // yOffset: 100,
+                // rotation: [+10, 0, 0],
+            }
+            }
+        >
             <Geographies geography={url}>
                 {({ geographies }) =>
                     geographies.map(geo => {
@@ -60,7 +69,7 @@ const MapNew = (props) => {
                     })
                 }
             </Geographies>
-        </ComposableMap>
+        </ComposableMap >
     );
 };
 
