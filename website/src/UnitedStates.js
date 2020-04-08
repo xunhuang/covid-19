@@ -626,7 +626,7 @@ export class County {
       result.push({
         fulldate: k,
         confirmed: confirmed[k],
-        death: death[k],
+        death: death ? death[k] : null,
       });
     }
     return result;
