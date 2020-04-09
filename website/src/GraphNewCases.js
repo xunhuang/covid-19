@@ -174,8 +174,6 @@ const BasicGraphNewCases = (props) => {
             expires: 100
         });
     }
-    function CookieGetLastCounty() {
-    }
     const CookieGetPreference = () => {
         let pref = Cookies.getJSON("BasicGraphPreference");
         if (!pref) {

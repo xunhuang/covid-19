@@ -17,10 +17,29 @@ import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import { withRouter } from 'react-router-dom'
 import Avatar from '@material-ui/core/Avatar';
 
+import {
+    EmailShareButton,
+    FacebookShareButton,
+    PinterestShareButton,
+    TwitterShareButton,
+    RedditShareButton,
+    EmailIcon,
+    RedditIcon,
+    FacebookIcon,
+    PinterestIcon,
+    TwitterIcon,
+} from "react-share";
+
 const MentalHealthResources = require("./data/mentalhealth.json");
 const moment = require("moment");
 
 const useStyles = makeStyles(theme => ({
+    SocialMediaRow: {
+        display: 'flex',
+        alignItems: 'baseline',
+        padding: 5,
+    },
+
     topContainer: {
         display: 'flex',
         alignItems: 'baseline',
@@ -34,6 +53,7 @@ const useStyles = makeStyles(theme => ({
     tagline: {
         display: 'block',
         padding: 0,
+        paddingTop: 10,
         paddingRight: 10,
         margin: 0,
         alignSelf: "flex-start",
@@ -207,6 +227,46 @@ const DonateButton = (props) => {
         </Typography>);
 }
 
+const SocialMediaButtons = (props) => {
+    const classes = useStyles();
+    return <div className={classes.SocialMediaRow}>
+        <FacebookShareButton
+            url={props.url}
+            quote={props.quote}
+        >
+            <FacebookIcon size={24} round={true} />
+        </FacebookShareButton>
+        <TwitterShareButton
+            url={props.url}
+            quote={props.quote}
+        >
+            <TwitterIcon size={24} round={true} />
+        </TwitterShareButton>
+
+        <RedditShareButton
+            url={props.url}
+            quote={props.quote}
+        >
+            <RedditIcon size={24} round={true} />
+        </RedditShareButton>
+
+        <PinterestShareButton
+            url={props.url}
+            quote={props.quote}
+        >
+            <PinterestIcon size={24} round={true} />
+        </PinterestShareButton>
+
+        <EmailShareButton
+            url={props.url}
+            quote={props.quote}
+        >
+            <EmailIcon size={24} round={true} />
+        </EmailShareButton>
+
+    </div>
+}
+
 const Banner = (props) => {
     const classes = useStyles();
     const country = useContext(CountryContext);
@@ -217,6 +277,10 @@ const Banner = (props) => {
                 <Typography variant="h6" >
                     COVID-19.direct
             </Typography>
+                <SocialMediaButtons
+                    url={"https://covid-19.direct"}
+                    quote={"US County Covid-19 Information #StayHome #StayInformed #share "}
+                />
                 <Typography variant="body2" noWrap>
                     Updated: {moment(us_summary.generatedTime).format('lll')}
                 </Typography>
@@ -230,7 +294,7 @@ const Banner = (props) => {
             </Typography>
                 <DonateButton />
             </span>
-        </div>);
+        </div >);
 };
 
 const withHeader = (comp, props) => {
