@@ -48,6 +48,7 @@ filesize=$(wc -c <"$temp_file")
 if  [ "$filesize" -ge "200" ]; then
     echo "Updated NYC-BOROUGHS-$d.json ($filesize) "
    mv $temp_file ../data/archive/NYC-BOROUGHS-$d.json
+   git add ../data/archive/NYC-BOROUGHS-$d.json
 else 
     echo "File size $filesize too small"
 fi
@@ -60,6 +61,7 @@ filesize=$(wc -c <"$temp_file")
 if  [ "$filesize" -ge "200" ]; then
     echo "Updated NYC-ZIP-$d.json ($filesize) "
    mv $temp_file ../data/archive/NYC-ZIP-$d.json
+   git add ../data/archive/NYC-ZIP-$d.json
 else 
     echo "File size $filesize too small"
 fi
@@ -96,6 +98,7 @@ filesize=$(wc -c <"$temp_file")
 if  [ "$filesize" -ge "10000" ]; then
     echo "Updated BNO-$d.json ($filesize) "
    mv $temp_file ../data/archive/BNO-$d.json
+   git add ../data/archive/BNO-$d.json
 else 
     echo "file size $filesize too small"
 fi
