@@ -52,9 +52,6 @@ const MapNew = (props) => {
             <Geographies geography={url}>
                 {({ geographies }) =>
                     geographies.map(geo => {
-                        /// console.log(geo)
-                        // const cur = data.find(s => s.id === geo.id);
-                        // const cur = state.counties.find(s => s.fips() === geo.properties.STATEFP + geo.properties.COUNTYFP);
                         const county = state.countyForId(geo.properties.STATEFP + geo.properties.COUNTYFP);
                         const summary = county.summary();
                         const color = `hsla(0, 100%, ${80 - 7 * Math.log(summary.confirmed)}%, 1)`;
