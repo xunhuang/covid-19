@@ -4,7 +4,7 @@ temp_file=$(mktemp)
 d=`date "+%m-%d-%Y"` 
 
 fetchNYCDeath () {
-   curl -s "https://docs.google.com/spreadsheets/d/e/2PACX-1vTwQ7_6yDDF_pwfl8hNLXX-EX5IYNO_UrgbBDlr7MQXW70kE4kcl-CUNz_6e229lJK9GsgU6yRYuBqt/pub?gid=2045108071&single=true&output=csv" | tail -n +4 |head -6 |csvtojson > $temp_file
+   curl -s "https://docs.google.com/spreadsheets/d/e/2PACX-1vTwQ7_6yDDF_pwfl8hNLXX-EX5IYNO_UrgbBDlr7MQXW70kE4kcl-CUNz_6e229lJK9GsgU6yRYuBqt/pub?gid=2045108071&single=true&output=csv" | tail -n +4 |head -6 |csvtojson |jq > $temp_file
    filesize=$(wc -c <"$temp_file")
    if  [ "$filesize" -ge "1000" ]; then
        echo "Updated NYC-Deaths.json ($filesize) "
@@ -14,7 +14,31 @@ fetchNYCDeath () {
    fi
 }
 
+fetchUSTerritoriesConfirmed () {
+   curl -s  "https://docs.google.com/spreadsheets/d/e/2PACX-1vRY5QQp-yHO9Lf9gye0211xxGM_oYiIOnrtIy89YJFS_tNm_MSrV5o2pT6w7MD4Jj6S-RTCCGyvn9as/pub?gid=0&single=true&output=csv" |csvtojson  |jq> $temp_file
+   filesize=$(wc -c <"$temp_file")
+   if  [ "$filesize" -ge "1000" ]; then
+       echo "Updated US-territories-confirm.json ($filesize) "
+       mv $temp_file ../data/archive/US-territories-confirmed.json
+   else 
+       echo "file size $filesize too small"
+   fi
+}
+
+fetchUSTerritoriesDeath () {
+   curl -s  "https://docs.google.com/spreadsheets/d/e/2PACX-1vRY5QQp-yHO9Lf9gye0211xxGM_oYiIOnrtIy89YJFS_tNm_MSrV5o2pT6w7MD4Jj6S-RTCCGyvn9as/pub?gid=699244347&single=true&output=csv" |csvtojson  |jq> $temp_file
+   filesize=$(wc -c <"$temp_file")
+   if  [ "$filesize" -ge "1000" ]; then
+       echo "Updated US-territories-death.json ($filesize) "
+       mv $temp_file ../data/archive/US-territories-death.json
+   else 
+       echo "file size $filesize too small"
+   fi
+}
+
 fetchNYCDeath
+fetchUSTerritoriesConfirmed
+fetchUSTerritoriesDeath
 
 curl -s  "https://raw.githubusercontent.com/nychealth/coronavirus-data/master/boro.csv" \
    |perl -pe 's/\r//g' \

@@ -36,6 +36,7 @@ function getProjectionConfig(state_fips) {
     return {
         scale: scale,
         rotate: [-x, -y, 0]
+        // center: [x, y],
     };
 }
 
