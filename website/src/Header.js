@@ -267,6 +267,8 @@ const SocialMediaButtons = (props) => {
     </div>
 }
 
+const quote = "Best real-time county-level COVID-19 dashboard. Get the latest trends about cases, recovery, testing and hospitalization as well as resources for mental health and well-being.";
+
 const Banner = (props) => {
     const classes = useStyles();
     const country = useContext(CountryContext);
@@ -279,7 +281,7 @@ const Banner = (props) => {
             </Typography>
                 <SocialMediaButtons
                     url={"https://covid-19.direct"}
-                    quote={"US County Covid-19 Information #StayHome #StayInformed #share "}
+                    quote={quote}
                 />
                 <Typography variant="body2" noWrap>
                     Updated: {moment(us_summary.generatedTime).format('lll')}
