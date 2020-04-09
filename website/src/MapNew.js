@@ -3,6 +3,8 @@ import { ComposableMap, Geographies, Geography } from "react-simple-maps";
 import { scaleQuantile } from "d3-scale";
 
 import ReactTooltip from "react-tooltip";
+import { sum } from "simple-statistics";
+import Typography from "material-ui/styles/typography";
 const geoUrl = "https://cdn.jsdelivr.net/npm/us-atlas@3/counties-10m.json";
 const unemployment = require("./unemployment-by-county-2017.json");
 const stateBounds = require("./data/states-bounding.json");
@@ -54,39 +56,36 @@ const MapNew = (props) => {
             "#782618"
         ]);
     const state = props.state;
-    console.log(state);
     let url = geoUrl;
     if (state) {
         url = process.env.PUBLIC_URL + `/topojson/us-states/${state.twoLetterName}-${state.fips()}-${state.name.toLowerCase().replace(" ", "-")}-counties.json`;
-        // url = process.env.PUBLIC_URL + `/topojson/us-states/CA-06-california-counties.json`;
-        // url = process.env.PUBLIC_URL + `/topojson/us-states/FL-12-florida-counties.json`;
-        console.log(url);
     }
 
     let projection = getProjectionConfig(state.fips());
     return (
-        // <ComposableMap data-tip="" projection="geoAlbersUsa"
         <ComposableMap data-tip="" projection="geoMercator"
             projectionConfig={projection}
         >
             <Geographies geography={url}>
                 {({ geographies }) =>
                     geographies.map(geo => {
-                        console.log(geo)
+                        /// console.log(geo)
                         // const cur = data.find(s => s.id === geo.id);
-                        const cur = data.find(s => s.id === geo.properties.STATEFP + geo.properties.COUNTYFP);
+                        // const cur = state.counties.find(s => s.fips() === geo.properties.STATEFP + geo.properties.COUNTYFP);
+                        const county = state.countyForId(geo.properties.STATEFP + geo.properties.COUNTYFP);
+                        const summary = county.summary();
+                        const color = `hsla(0, 100%, ${80 - 7 * Math.log(summary.confirmed)}%, 1)`;
                         return (
                             <Geography
                                 key={geo.rsmKey}
                                 geography={geo}
-                                fill={cur ? colorScale(cur.unemployment_rate) : "#EEE"}
+                                fill={summary.confirmed ? color : "#FFF"}
                                 onMouseEnter={() => {
                                     const name = geo.properties.NAME;
-                                    // console.log(name);
-                                    setTooltipContent(name);
+                                    setTooltipContent(county);
                                 }}
                                 onMouseLeave={() => {
-                                    setTooltipContent("");
+                                    setTooltipContent(null);
                                 }}
                             />
                         );
@@ -98,17 +97,23 @@ const MapNew = (props) => {
 };
 
 const MapState = React.memo((props) => {
-    const [content, setContent] = React.useState("");
+    const [county, setContent] = React.useState("");
     const state = props.state;
-    function aaa(a) {
-        setContent(a)
+    function setCounty(c) {
+        setContent(c)
+    }
+    let content;
+    if (county) {
+        content =
+            `${county.name} Confirmed: \n${county.summary().confirmed} \nDeaths: ${county.summary().death}`
     }
 
     return (
         <div>
-            <MapNew setTooltipContent={aaa} state={state} />
-            <ReactTooltip>{content}</ReactTooltip>
-            {content}
+            <MapNew setTooltipContent={setCounty} state={state} />
+            <ReactTooltip>
+                {content}
+            </ReactTooltip>
         </div>
     );
 });
