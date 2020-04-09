@@ -59,6 +59,7 @@ const MapNew = (props) => {
                             <Geography
                                 key={geo.rsmKey}
                                 geography={geo}
+                                stroke="#FFF"
                                 fill={summary.confirmed ? color : "#FFF"}
                                 onMouseEnter={() => {
                                     setTooltipContent(county);
