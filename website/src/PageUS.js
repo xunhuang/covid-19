@@ -60,7 +60,7 @@ const PageUS = withHeader((props) => {
                 metro={county ? county.metro() : null}
                 state={state}
                 country={country}
-                selectedTab={"usa"} />
+                selectedTab={"usa"}
             />
             <USSummarySection country={country} />
             <GraphSectionUS country={country} />
