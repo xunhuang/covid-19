@@ -19,7 +19,7 @@ function getDoubleDays7DayLinearRegression(data, fips) {
     if (prepared_data[0][1] <= log2(10)) { // number too small tomake predictions
         return null;
     }
-    const { m, b } = linearRegression(prepared_data);
+    const { m, } = linearRegression(prepared_data);
     return 1 / m;
 }
 

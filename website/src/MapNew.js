@@ -1,12 +1,8 @@
 import React from "react";
 import { ComposableMap, Geographies, Geography } from "react-simple-maps";
-import { scaleQuantile } from "d3-scale";
 
 import ReactTooltip from "react-tooltip";
-import { sum } from "simple-statistics";
-import Typography from "material-ui/styles/typography";
 const geoUrl = "https://cdn.jsdelivr.net/npm/us-atlas@3/counties-10m.json";
-const unemployment = require("./unemployment-by-county-2017.json");
 const stateBounds = require("./data/states-bounding.json");
 
 const statemap = stateBounds.reduce((m, b) => {
@@ -42,20 +38,6 @@ function getProjectionConfig(state_fips) {
 
 const MapNew = (props) => {
     let setTooltipContent = props.setTooltipContent;
-    let data = unemployment;
-    const colorScale = scaleQuantile()
-        .domain(data.map(d => d.unemployment_rate))
-        .range([
-            "#ffedea",
-            "#ffcec5",
-            "#ffad9f",
-            "#ff8a75",
-            "#ff5533",
-            "#e2492d",
-            "#be3d26",
-            "#9a311f",
-            "#782618"
-        ]);
     const state = props.state;
     let url = geoUrl;
     if (state) {
@@ -82,7 +64,6 @@ const MapNew = (props) => {
                                 geography={geo}
                                 fill={summary.confirmed ? color : "#FFF"}
                                 onMouseEnter={() => {
-                                    const name = geo.properties.NAME;
                                     setTooltipContent(county);
                                 }}
                                 onMouseLeave={() => {

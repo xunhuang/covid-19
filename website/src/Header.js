@@ -16,7 +16,6 @@ import { SectionHeader } from "./CovidUI"
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import { withRouter } from 'react-router-dom'
 import Avatar from '@material-ui/core/Avatar';
-import { reverse } from 'named-urls';
 
 const MentalHealthResources = require("./data/mentalhealth.json");
 const moment = require("moment");

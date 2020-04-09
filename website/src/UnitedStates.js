@@ -1,13 +1,11 @@
 import routes from "./Routes";
 import { reverse } from 'named-urls';
 import { trimLastDaysData, getDay2DoubleTimeSeries } from "./CovidAnalysis";
-import { keys } from "@material-ui/core/styles/createBreakpoints";
 
 const CovidData = require('./data/AllData.json');
 const CountyGeoData = require('./data/county_gps.json');
 const geolib = require('geolib');
 const moment = require('moment');
-const states = require('us-state-codes');
 
 const STATE_FIPS_TO_NAME = {
   "10": "Delaware",
@@ -467,18 +465,6 @@ export class Country {
       recoveredNew: recoveredNew,
       newpercent: ((newcases / (confirmed - newcases)) * 100).toFixed(0),
       generatedTime: generatedTime,
-    }
-  }
-  daysToDoubleTimeSeries() {
-    let Day2DoubleConfirmed = getDay2DoubleTimeSeries(
-      trimLastDaysData(this.covidRaw_.Summary.Confirmed)
-    );
-    let Day2DoubleDeath = getDay2DoubleTimeSeries(
-      trimLastDaysData(this.covidRaw_.Summary.Death)
-    );
-    return {
-      Day2DoubleConfirmedTimeSeries: Day2DoubleConfirmed,
-      Day2DoubleDeathTimeSeries: Day2DoubleDeath,
     }
   }
   daysToDoubleTimeSeries() {
