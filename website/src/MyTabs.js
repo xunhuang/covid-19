@@ -114,6 +114,7 @@ const MyTabs = (props) => {
     )
     return <>
         <Tabs
+            variant="scrollable"
             value={tabvalue}
             onChange={handleChange}
             aria-label=""
