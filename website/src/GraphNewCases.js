@@ -22,6 +22,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import { myShortNumber } from './Util';
+const Cookies = require("js-cookie");
 
 const fileDownload = require('js-file-download');
 const moment = require("moment");
@@ -165,17 +166,32 @@ const daysToDoubleLabelChildren = (options) => {
     ];
 }
 
+
 const BasicGraphNewCases = (props) => {
 
+    const CookieSetPreference = (state) => {
+        Cookies.set("BasicGraphPreference", state, {
+            expires: 100
+        });
+    }
+    function CookieGetLastCounty() {
+    }
+    const CookieGetPreference = () => {
+        let pref = Cookies.getJSON("BasicGraphPreference");
+        if (!pref) {
+            return {
+                showlog: false,
+                show2weeks: false,
+                showConfirmed: true,
+                showNewCase: true,
+                showDeath: true,
+            }
+        }
+        return pref;
+    }
+
     const classes = useStyles();
-    const [state, setState] = React.useState({
-        showlog: false,
-        show2weeks: false,
-        plusNearby: false,
-        showConfirmed: true,
-        showNewCase: true,
-        showDeath: true,
-    });
+    const [state, setState] = React.useState(CookieGetPreference());
 
     const [open, setOpen] = React.useState(false);
     const [openDownload, setOpenDownload] = React.useState(false);
@@ -190,12 +206,17 @@ const BasicGraphNewCases = (props) => {
         setOpenDownload(false);
     };
 
+    const setStateSticky = (state) => {
+        setState(state);
+        CookieSetPreference(state);
+    }
+
     const handleLogScaleToggle = event => {
-        setState({ ...state, showlog: !state.showlog });
+        setStateSticky({ ...state, showlog: !state.showlog });
     };
 
     const handle2WeeksToggle = event => {
-        setState({ ...state, show2weeks: !state.show2weeks });
+        setStateSticky({ ...state, show2weeks: !state.show2weeks });
     };
 
     let graphOptions = [
@@ -206,7 +227,7 @@ const BasicGraphNewCases = (props) => {
 
     const handleGraphOptionsChange = event => {
         let selected = event.target.value;
-        setState({
+        setStateSticky({
             ...state,
             showConfirmed: selected.includes('Total'),
             showNewCase: selected.includes('New'),
