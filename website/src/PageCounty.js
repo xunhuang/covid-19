@@ -57,7 +57,13 @@ const PageCounty = withHeader((props) => {
     ];
     return (
         <>
-            <USInfoTopWidget county={county} selectedTab={"county"} />
+            <USInfoTopWidget
+                county={county}
+                metro={county.metro()}
+                state={county.state()}
+                country={country}
+                selectedTab={"county"}
+            />
             <CountySummarySection county={county} />
             <GraphSectionCounty county={county} />
             <MyTabs

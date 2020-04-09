@@ -82,6 +82,11 @@ const STATE_Name_To_FIPS = (() => {
 
 let AllData = {};
 
+for (let state_fips in state_fips_to_name) {
+    AllData[state_fips] = {};
+}
+
+
 function getStateNode(state_fips) {
     return AllData[state_fips];
 }
@@ -703,13 +708,76 @@ fillholes();
 
 summarize_counties();
 summarize_states();
+
+//
+// add territories here because these are states without counties. 
+// 
+
+const USTR_Confirmed = require("../data/archive/US-territories-confirmed.json");
+const USTR_Death = require("../data/archive/US-territories-death.json");
+function addTerrtories() {
+    console.log("Add confirm for territories")
+    USTR_Confirmed.map(tr => {
+        let fips = tr.FIPS;
+        let newdata = {}
+        for (i in tr) {
+            if (i === "Name" || i === "FIPS") {
+                // delete boro[i];
+            } else {
+                if (tr[i] !== "" && tr[i] !== "0") {
+                    newdata[i] = parseInt(tr[i]);
+                }
+            }
+        }
+        let Summary = {};
+        console.log(newdata);
+        if (Object.keys(newdata).length > 0) {
+            Summary.Confirmed = fillarrayholes(newdata);
+            console.log("done filling holes");
+            AllData[fips].Summary = Summary;
+        }
+    });
+
+    console.log("Add death for territories")
+
+    USTR_Death.map(tr => {
+        let fips = tr.FIPS;
+        let newdata = {}
+        for (i in tr) {
+            if (i === "Name" || i === "FIPS") {
+                // delete boro[i];
+            } else {
+                if (tr[i] !== "" && tr[i] !== "0") {
+                    newdata[i] = parseInt(tr[i]);
+                }
+            }
+        }
+        let Summary = AllData[fips].Summary;
+        if (Object.keys(newdata).length > 0) {
+            Summary.Death = fillarrayholes(newdata);
+
+            const CC = getValueFromLastDate(Summary.Confirmed);
+            const DD = getValueFromLastDate(Summary.Death);
+
+            Summary.LastConfirmed = CC.num;
+            Summary.LastConfirmedNew = CC.newnum;
+            Summary.LastDeath = DD.num;
+            Summary.LastDeathNew = DD.newnum;
+            Summary.DaysToDouble = getDoubleDays(Confirmed);
+            Summary.DaysToDoubleDeath = getDoubleDays(Death);
+            AllData[fips].Summary = Summary;
+        }
+    });
+    console.log("done with US territories")
+}
+
+addTerrtories();
+
 summarize_USA();
 addMetros();
 
 // special_processing
 const NYC_STARTER = require("../data/archive/NYC-BOROS-04-03-2020.json")
-
-let NYC = {}
 
 let NYC_METRO = AllData["36"]["36061"];
 AllData["36"]["36061"] = null;

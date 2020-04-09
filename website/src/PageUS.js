@@ -43,10 +43,8 @@ const PageUS = withHeader((props) => {
     const country = useContext(CountryContext);
 
     const default_county_info = Util.getDefaultCounty();
-    const county =
-        country
-            .stateForTwoLetterName(default_county_info.state)
-            .countyForName(default_county_info.county)
+    const state = country.stateForTwoLetterName(default_county_info.state);
+    const county = state.countyForName(default_county_info.county)
     logger.logEvent("PageUS");
 
     const tabs = [
@@ -54,9 +52,16 @@ const PageUS = withHeader((props) => {
         <ListAllStatesTesting country={country} />,
         <ListAllStatesPerCapita country={country} />,
     ];
+
     return (
         <>
-            <USInfoTopWidget county={county} selectedTab={"usa"} />
+            <USInfoTopWidget
+                county={county}
+                metro={county ? county.metro() : null}
+                state={state}
+                country={country}
+                selectedTab={"usa"} />
+            />
             <USSummarySection country={country} />
             <GraphSectionUS country={country} />
             <MyTabs

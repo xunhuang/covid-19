@@ -83,6 +83,8 @@ const PageState = withHeader((props) => {
 
     const county = Util.getDefaultCountyForState(state);
 
+    Util.CookieSetLastCounty(state.twoLetterName, county ? county.name : null);
+
     const tabs = [
         <CountiesForStateWidget state={state} />,
         <ListStateCountiesCapita state={state} />,
@@ -90,7 +92,13 @@ const PageState = withHeader((props) => {
 
     return (
         <>
-            <USInfoTopWidget county={county} selectedTab={"state"} />
+            <USInfoTopWidget
+                county={county}
+                metro={county ? county.metro() : null}
+                state={state}
+                country={country}
+                selectedTab={"state"}
+            />
             <StateSummarySection state={state} />
             <GraphSectionState state={state} />
             <MyTabs

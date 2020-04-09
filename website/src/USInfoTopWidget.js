@@ -197,9 +197,9 @@ const CountySummarySection = withRouter((props) => {
 
 const USInfoTopWidget = withRouter((props) => {
     const county = props.county;
-    const metro = county.metro();
-    const state = county.state();
-    const country = state.country();
+    const metro = props.metro;
+    const state = props.state;
+    const country = props.country;
 
     const [notMetro] = React.useState(!metro)
     const [showDeaths] = React.useState(false)
@@ -211,11 +211,11 @@ const USInfoTopWidget = withRouter((props) => {
 
     const classes = useStyles();
 
-    const county_hospitals = county.hospitals() || {
+    const county_hospitals = (county && county.hospitals()) || {
         'bedCount': "N/A",
         'count': "N/A",
     };
-    const county_summary = county.summary();
+    const county_summary = county ? county.summary() : undefined;
 
     const metro_hospitals = metro ? metro.hospitals() : undefined;
 
@@ -226,16 +226,18 @@ const USInfoTopWidget = withRouter((props) => {
 
     return <div className={classes.tagSticky} >
         <div className={`${classes.tagContainer} ${showBeds ? '' : classes.tagContainerNoBeds}`} >
-            <Tag
-                title={county.name}
-                confirmed={county_summary.confirmed}
-                newcases={county_summary.newcases}
-                hospitals={county_hospitals.count}
-                beds={county_hospitals.bedCount}
-                selected={props.selectedTab === "county"}
-                to={county.routeTo()}
-                showBeds={showBeds}
-            />
+            {county &&
+                <Tag
+                    title={county.name}
+                    confirmed={county_summary.confirmed}
+                    newcases={county_summary.newcases}
+                    hospitals={county_hospitals.count}
+                    beds={county_hospitals.bedCount}
+                    selected={props.selectedTab === "county"}
+                    to={county.routeTo()}
+                    showBeds={showBeds}
+                />
+            }
             {metro &&
                 <Tag
                     title={metro.name}

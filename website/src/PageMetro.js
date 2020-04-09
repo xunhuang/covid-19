@@ -39,7 +39,13 @@ const PageMetro = withHeader((props) => {
 
     return (
         <>
-            <USInfoTopWidget county={county} selectedTab={"metro"} />
+            <USInfoTopWidget
+                county={county}
+                metro={metro}
+                state={county.state()}
+                country={country}
+                selectedTab={"metro"}
+            />
             <MetroSummarySection metro={metro} selectedTab={"metro"} />
             <GraphSectionMetro metro={metro} />
             <MyTabs

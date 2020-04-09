@@ -66,10 +66,14 @@ function getDefaultCountyForState(state) {
 
     // cookie county not match, return the top county
     let counties =
-          state
-                .allCounties()
-                .sort((a, b) => b.totalConfirmed() - a.totalConfirmed());
+        state
+            .allCounties()
+            .sort((a, b) => b.totalConfirmed() - a.totalConfirmed());
     let topcounty = counties[0];
+    if (!topcounty) {
+        // some "state" like Puerto Rico has no counties
+        return;
+    }
     if (topcounty.name === "Statewide Unallocated") {
         topcounty = counties[1];
     }
