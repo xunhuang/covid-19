@@ -52,9 +52,9 @@ const GraphSectionState = withRouter((props) => {
             } />,
         <GraphDaysToDoubleOverTime data={props.state.daysToDoubleTimeSeries()} />,
         <StateGraphCaveat stateSummary={stateSummary} data={graphdata} logScale={false} />,
+        <MapState state={state} />,
         <GraphStateTesting state={state} />,
         <GraphStateHospitalization state={state} />,
-        <MapState state={state} />,
         <InfectionMap state={state} />
 
     ]
@@ -62,12 +62,12 @@ const GraphSectionState = withRouter((props) => {
         labels={["Cases",
             `Days to 2x`,
             `Recovery`,
+            "Map",
             `Tests`,
             "Hospitalization",
-            // "Map",
         ]}
         urlQueryKey="graph"
-        urlQueryValues={['cases', 'days2x', 'recovery', 'testing', 'hospitalization', "map"]}
+        urlQueryValues={['cases', 'days2x', 'recovery', 'map', 'testing', 'hospitalization', "map"]}
         tabs={tabs}
         history={props.history}
     />;
