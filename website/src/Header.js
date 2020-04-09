@@ -269,7 +269,7 @@ const SocialMediaButtons = (props) => {
 
 const quote = "Best real-time county-level COVID-19 dashboard. Get the latest trends about cases, recovery, testing and hospitalization as well as resources for mental health and well-being.";
 
-const Banner = (props) => {
+const Banner = withRouter((props) => {
     const classes = useStyles();
     const country = useContext(CountryContext);
     let us_summary = country.summary();
@@ -280,7 +280,7 @@ const Banner = (props) => {
                     COVID-19.direct
             </Typography>
                 <SocialMediaButtons
-                    url={"https://covid-19.direct"}
+                    url={"https://covid-19.direct" + props.match.url}
                     quote={quote}
                 />
                 <Typography variant="body2" noWrap>
@@ -297,7 +297,7 @@ const Banner = (props) => {
                 <DonateButton />
             </span>
         </div >);
-};
+});
 
 const withHeader = (comp, props) => {
 
