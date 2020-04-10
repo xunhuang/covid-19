@@ -181,7 +181,7 @@ const CountySummarySection = withRouter((props) => {
     if (county.fips() === "06085") {
         county_specifc =
             <SectionHeader>
-                <Link target="_blank" href="https://www.sccgov.org/sites/phd/DiseaseInformation/novel-coronavirus/Pages/dashboard.aspx" rel="noopener noreferrer" >
+                <Link target="_blank" to="https://www.sccgov.org/sites/phd/DiseaseInformation/novel-coronavirus/Pages/dashboard.aspx" rel="noopener noreferrer" >
                     Santa Clara County Coronavirus Data Dashboard
              </Link>
             </SectionHeader>
@@ -189,7 +189,7 @@ const CountySummarySection = withRouter((props) => {
     if (county.fips() === "06081") {
         county_specifc =
             <SectionHeader>
-                <Link target="_blank" href="https://www.smchealth.org/post/san-mateo-county-covid-19-data-1" rel="noopener noreferrer" >
+                <Link target="_blank" to="https://www.smchealth.org/post/san-mateo-county-covid-19-data-1" rel="noopener noreferrer" >
                     SAN MATEO COUNTY COVID-19 DATA
              </Link>
             </SectionHeader>
