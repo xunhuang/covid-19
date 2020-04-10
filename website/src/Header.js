@@ -273,6 +273,10 @@ const Banner = withRouter((props) => {
     const classes = useStyles();
     const country = useContext(CountryContext);
     let us_summary = country.summary();
+    let url_shared =
+        "https://covid-19.direct" +
+        props.match.url +
+        props.history.location.search;
     return (
         <div className={classes.topContainer}>
             <span className={classes.title}>
@@ -280,7 +284,7 @@ const Banner = withRouter((props) => {
                     COVID-19.direct
             </Typography>
                 <SocialMediaButtons
-                    url={"https://covid-19.direct" + props.match.url}
+                    url={url_shared}
                     quote={quote}
                 />
                 <Typography variant="body2" noWrap>
@@ -351,7 +355,7 @@ const withHeader = (comp, props) => {
 
 
         let header = <header className="App-header">
-            <Banner></Banner>
+            <Banner history={props.history}></Banner>
             <div className={classes.searchContainer}>
                 <SearchBox />
             </div>
