@@ -335,6 +335,10 @@ function fillarrayholes(v) {
         let nextvalue = v[nextkey];
         if (nextvalue === null || nextvalue === undefined) {
             v[nextkey] = lastvalue;
+        } else {
+            if (nextvalue < lastvalue) {
+                v[nextkey] = lastvalue;
+            }
         }
         key = nextkey;
     }
