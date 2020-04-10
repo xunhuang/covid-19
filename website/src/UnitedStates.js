@@ -739,6 +739,10 @@ export class County {
     return this.state_;
   }
 
+  fips() {
+    return this.id;
+  }
+
   nearby() {
     if (!this.center_) {
       return undefined;

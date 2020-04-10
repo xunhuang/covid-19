@@ -177,21 +177,42 @@ const CountySummarySection = withRouter((props) => {
         'count': "N/A",
     };
 
-    return <ShortSummary
-        title={`${county.name}, ${county.state().name}`}
-        confirmed={county_summary.confirmed}
-        newcases={county_summary.newcases}
-        deaths={county_summary.death}
-        deathsNew={county_summary.deathNew}
-        recovered={county_summary.recovered}
-        recoveredNew={county_summary.recoveredNew}
-        hospitals={county_hospitals.count}
-        beds={county_hospitals.bedCount}
-        selected={false}
-        showBeds={true}
-        showRecovered={false}
-        showDeaths={true}
-    />;
+    let county_specifc;
+    if (county.fips() === "06085") {
+        county_specifc =
+            <SectionHeader>
+                <Link target="_blank" href="https://www.sccgov.org/sites/phd/DiseaseInformation/novel-coronavirus/Pages/dashboard.aspx" rel="noopener noreferrer" >
+                    Santa Clara County Coronavirus Data Dashboard
+             </Link>
+            </SectionHeader>
+    }
+    if (county.fips() === "06081") {
+        county_specifc =
+            <SectionHeader>
+                <Link target="_blank" href="https://www.smchealth.org/post/san-mateo-county-covid-19-data-1" rel="noopener noreferrer" >
+                    SAN MATEO COUNTY COVID-19 DATA
+             </Link>
+            </SectionHeader>
+    }
+
+    return <div>
+        <ShortSummary
+            title={`${county.name}, ${county.state().name}`}
+            confirmed={county_summary.confirmed}
+            newcases={county_summary.newcases}
+            deaths={county_summary.death}
+            deathsNew={county_summary.deathNew}
+            recovered={county_summary.recovered}
+            recoveredNew={county_summary.recoveredNew}
+            hospitals={county_hospitals.count}
+            beds={county_hospitals.bedCount}
+            selected={false}
+            showBeds={true}
+            showRecovered={false}
+            showDeaths={true}
+        />
+        {county_specifc}
+    </div>;
 });
 
 
