@@ -58,14 +58,14 @@ const MapNew = (props) => {
                 {({ geographies }) =>
                     geographies.map(geo => {
                         const county = state.countyForId(geo.properties.STATEFP + geo.properties.COUNTYFP);
-                        const summary = county.summary();
-                        const color = `hsla(0, 100%, ${80 - 7 * Math.log(summary.confirmed)}%, 1)`;
+                        const color = props.colorFunction(county);
+
                         return (
                             <Geography
                                 key={geo.rsmKey}
                                 geography={geo}
-                                stroke="#FFF"
-                                fill={summary.confirmed ? color : "#FFF"}
+                                stroke={props.stroke}
+                                fill={color}
                                 onMouseEnter={() => {
                                     setTooltipContent(county);
                                 }}
@@ -119,10 +119,81 @@ const MapState = (props) => {
         {(alignment === "left") &&
             <MapStateConfirmed {...props} />
         }
+        {(alignment === "center") &&
+            <MapStateDeath {...props} />
+        }
+        {(alignment === "right") &&
+            <MapStateDay2Doulbe {...props} />
+        }
     </div>
 
 
 };
+
+const MapStateDay2Doulbe = React.memo((props) => {
+    const [county, setContent] = React.useState("");
+    const state = props.state;
+    function setCounty(c) {
+        setContent(c)
+    }
+    let content;
+    if (county) {
+
+        let days = county.summary().daysToDouble;
+        days = days ? days.toFixed(1) + " days" : "no data"
+        content =
+            `${county.name} Days to 2x: \n${days}`
+    }
+
+    return (
+        <div>
+            <MapNew setTooltipContent={setCounty} state={state}
+                stroke={"#000"}
+                colorFunction={(county) => {
+                    if (!county || !county.summary().daysToDouble) {
+                        return "#FFF";
+                    }
+                    return `hsla(120, 100%, ${80 - 7 * Math.log(county.summary().daysToDouble * 100)}%, 1)`;
+                }
+                }
+            />
+            <ReactTooltip>
+                {content}
+            </ReactTooltip>
+        </div>
+    );
+});
+
+const MapStateDeath = React.memo((props) => {
+    const [county, setContent] = React.useState("");
+    const state = props.state;
+    function setCounty(c) {
+        setContent(c)
+    }
+    let content;
+    if (county) {
+        content =
+            `${county.name} Confirmed: \n${county.summary().confirmed} \nDeaths: ${county.summary().death}`
+    }
+
+    return (
+        <div>
+            <MapNew setTooltipContent={setCounty} state={state}
+                stroke={"#000"}
+                colorFunction={(county) => {
+                    if (!county || !county.summary().death) {
+                        return "#FFF";
+                    }
+                    return `hsla(240, 100%, ${80 - 7 * Math.log(county.summary().death)}%, 1)`;
+                }
+                }
+            />
+            <ReactTooltip>
+                {content}
+            </ReactTooltip>
+        </div>
+    );
+});
 
 const MapStateConfirmed = React.memo((props) => {
     const [county, setContent] = React.useState("");
@@ -138,7 +209,16 @@ const MapStateConfirmed = React.memo((props) => {
 
     return (
         <div>
-            <MapNew setTooltipContent={setCounty} state={state} />
+            <MapNew setTooltipContent={setCounty} state={state}
+                stroke={"#FFF"}
+                colorFunction={(county) => {
+                    if (!county || !county.summary().confirmed) {
+                        return "#FFF";
+                    }
+                    return `hsla(0, 100%, ${80 - 7 * Math.log(county.summary().confirmed)}%, 1)`;
+                }
+                }
+            />
             <ReactTooltip>
                 {content}
             </ReactTooltip>
