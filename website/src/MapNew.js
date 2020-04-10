@@ -1,7 +1,12 @@
 import React from "react";
 import { ComposableMap, Geographies, Geography } from "react-simple-maps";
-
+import ToggleButton from '@material-ui/lab/ToggleButton';
+import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
 import ReactTooltip from "react-tooltip";
+import { createMuiTheme } from "@material-ui/core/styles";
+import { ThemeProvider } from "@material-ui/core";
+
+
 const geoUrl = "https://cdn.jsdelivr.net/npm/us-atlas@3/counties-10m.json";
 const stateBounds = require("./data/states-bounding.json");
 
@@ -53,13 +58,14 @@ const MapNew = (props) => {
                 {({ geographies }) =>
                     geographies.map(geo => {
                         const county = state.countyForId(geo.properties.STATEFP + geo.properties.COUNTYFP);
-                        const summary = county.summary();
-                        const color = `hsla(0, 100%, ${80 - 7 * Math.log(summary.confirmed)}%, 1)`;
+                        const color = props.colorFunction(county);
+
                         return (
                             <Geography
                                 key={geo.rsmKey}
                                 geography={geo}
-                                fill={summary.confirmed ? color : "#FFF"}
+                                stroke={props.stroke}
+                                fill={color}
                                 onMouseEnter={() => {
                                     setTooltipContent(county);
                                 }}
@@ -75,7 +81,90 @@ const MapNew = (props) => {
     );
 };
 
-const MapState = React.memo((props) => {
+const compact = createMuiTheme({
+    overrides: {
+        MuiToggleButton: {
+            sizeSmall: {
+                //This can be referred from Material UI API documentation.
+                maxHeight: 24,
+            }
+        }
+    }
+});
+
+const MapState = (props) => {
+    const [alignment, setAlignment] = React.useState('left');
+
+    const handleAlignment = (event, newAlignment) => {
+        setAlignment(newAlignment);
+    };
+    return <div>
+        <ThemeProvider theme={compact}>
+
+            <ToggleButtonGroup
+                value={alignment}
+                exclusive
+                size="small"
+                onChange={handleAlignment}
+                aria-label="text alignment"
+            >
+                <ToggleButton size="small" value="left" aria-label="left aligned">
+                    Confirmed            </ToggleButton>
+                <ToggleButton value="center" aria-label="centered">
+                    Death </ToggleButton>
+                <ToggleButton value="right" aria-label="right aligned">
+                    Days to Double            </ToggleButton>
+            </ToggleButtonGroup>
+        </ThemeProvider>
+        {(alignment === "left") &&
+            <MapStateConfirmed {...props} />
+        }
+        {(alignment === "center") &&
+            <MapStateDeath {...props} />
+        }
+        {(alignment === "right") &&
+            <MapStateDay2Doulbe {...props} />
+        }
+    </div>
+
+
+};
+
+const MapStateDay2Doulbe = React.memo((props) => {
+    const [county, setContent] = React.useState("");
+    const state = props.state;
+    function setCounty(c) {
+        setContent(c)
+    }
+    let content;
+    if (county) {
+
+        let days = county.summary().daysToDouble;
+        days = days ? days.toFixed(1) + " days" : "no data"
+        content =
+            `${county.name} Days to 2x: \n${days}`
+    }
+
+    return (
+        <div>
+            <MapNew setTooltipContent={setCounty} state={state}
+                stroke={"#000"}
+                colorFunction={(county) => {
+                    if (!county || !county.summary().daysToDouble) {
+                        return "#FFF";
+                    }
+                    return `hsla(120, 100%, ${80 - 7 * Math.log(county.summary().daysToDouble * 100)}%, 1)`;
+                }
+                }
+            />
+            <ReactTooltip>
+                {content}
+            </ReactTooltip>
+        </div>
+    );
+});
+
+const MapStateDeath = React.memo((props) => {
     const [county, setContent] = React.useState("");
     const state = props.state;
     function setCounty(c) {
@@ -89,7 +178,47 @@ const MapState = React.memo((props) => {
 
     return (
         <div>
-            <MapNew setTooltipContent={setCounty} state={state} />
+            <MapNew setTooltipContent={setCounty} state={state}
+                stroke={"#000"}
+                colorFunction={(county) => {
+                    if (!county || !county.summary().death) {
+                        return "#FFF";
+                    }
+                    return `hsla(240, 100%, ${80 - 7 * Math.log(county.summary().death)}%, 1)`;
+                }
+                }
+            />
+            <ReactTooltip>
+                {content}
+            </ReactTooltip>
+        </div>
+    );
+});
+
+const MapStateConfirmed = React.memo((props) => {
+    const [county, setContent] = React.useState("");
+    const state = props.state;
+    function setCounty(c) {
+        setContent(c)
+    }
+    let content;
+    if (county) {
+        content =
+            `${county.name} Confirmed: \n${county.summary().confirmed} \nDeaths: ${county.summary().death}`
+    }
+
+    return (
+        <div>
+            <MapNew setTooltipContent={setCounty} state={state}
+                stroke={"#FFF"}
+                colorFunction={(county) => {
+                    if (!county || !county.summary().confirmed) {
+                        return "#FFF";
+                    }
+                    return `hsla(0, 100%, ${80 - 7 * Math.log(county.summary().confirmed)}%, 1)`;
+                }
+                }
+            />
             <ReactTooltip>
                 {content}
             </ReactTooltip>
