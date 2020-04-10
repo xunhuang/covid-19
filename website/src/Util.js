@@ -109,7 +109,7 @@ function pad(n) { return n < 10 ? '0' + n : n }
 
 function normalize_date(k) {
     let p = k.split("/");
-    if (p.length != 3) {
+    if (p.length !== 3) {
         return null;
     }
     let m = pad(parseInt(p[0]));

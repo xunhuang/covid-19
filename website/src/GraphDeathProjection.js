@@ -11,7 +11,7 @@ import Grid from '@material-ui/core/Grid';
 import { myShortNumber } from './Util';
 import { AntSwitch } from "./GraphNewCases.js"
 import * as Util from "./Util";
-import { makeStyles, withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 
 const moment = require("moment");
 
@@ -37,6 +37,7 @@ const CustomTooltip = (props) => {
             if ("deathsTotal_mean" in p) {
                 deathsTotal_mean = p.deathsTotal_mean;
             }
+            return null;
         });
 
         return (
@@ -59,14 +60,14 @@ const CustomTooltip = (props) => {
 const GraphDeathProjection = (props) => {
 
     const usdata = require("./data/us_only.json")
-    let data = usdata.filter(d => d.location_name == props.state.name)
+    let data = usdata.filter(d => d.location_name === props.state.name);
 
     const [state, setState] = React.useState({
-        showlog: false,
+        showall: false,
     });
 
     const handleLogScaleToggle = event => {
-        setState({ ...state, showlog: !state.showlog });
+        setState({ ...state, showall: !state.showall });
     };
 
     data = data.map(d => {
@@ -118,7 +119,7 @@ const GraphDeathProjection = (props) => {
     return <>
         <Grid container alignItems="center" spacing={1}>
             <Grid item>
-                <AntSwitch checked={state.showlog} onClick={handleLogScaleToggle} />
+                <AntSwitch checked={state.showall} onClick={handleLogScaleToggle} />
             </Grid>
             <Grid item onClick={handleLogScaleToggle}>
                 <Typography>
@@ -136,14 +137,14 @@ const GraphDeathProjection = (props) => {
                 <Line type="monotone" dataKey="deaths_mean" stroke="#000000" dot={{ r: 1 }} yAxisId={0} strokeWidth={3} />
                 <Area type='monotone' dataKey='deaths_lower' stackId="1" stroke='#8884d8' fill='#FFFFFF' />
                 <Area type='monotone' dataKey='delta' stackId="1" stroke='#82ca9d' fill='#82ca9d' />
-                {state.showlog && <Line type="monotone" dataKey="deathsTotal_mean" stroke="#000000" yAxisId={0} strokeWidth={3} />}
-                {state.showlog && <Area type='monotone' dataKey='deathsTotal_lower' stackId="2" stroke='#8884d8' fill='#FFFFFF' />}
-                {state.showlog && <Area type='monotone' dataKey='deathsTotal_delta' stackId="2" stroke='#82ca9d' fill='#82ca9d' />}
+                {state.showall && <Line type="monotone" dataKey="deathsTotal_mean" stroke="#000000" yAxisId={0} strokeWidth={3} />}
+                {state.showall && <Area type='monotone' dataKey='deathsTotal_lower' stackId="2" stroke='#8884d8' fill='#FFFFFF' />}
+                {state.showall && <Area type='monotone' dataKey='deathsTotal_delta' stackId="2" stroke='#82ca9d' fill='#82ca9d' />}
                 <Tooltip content={<CustomTooltip />} />
             </ComposedChart>
         </ResponsiveContainer>
-        <Typography variant="body2" noWrap>
-            Source: NPR
+        <Typography variant="body2">
+            Source: NPR, University of Washington, Census Bureau
                 </Typography>
     </>
 }

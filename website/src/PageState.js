@@ -51,23 +51,23 @@ const GraphSectionState = withRouter((props) => {
                     }] : []
             } />,
         <GraphDaysToDoubleOverTime data={props.state.daysToDoubleTimeSeries()} />,
+        <GraphDeathProjection state={state} />,
         <StateGraphCaveat stateSummary={stateSummary} data={graphdata} logScale={false} />,
         <MapState state={state} />,
         <GraphStateTesting state={state} />,
         <GraphStateHospitalization state={state} />,
-        <GraphDeathProjection state={state} />
     ]
     let graphlistSection = <MyTabs
         labels={["Cases",
-            `Days to 2x`,
-            `Recovery`,
+            "Days to 2x",
+            "Peak Death",
+            "Recovery",
             "Map",
-            `Tests`,
+            "Tests",
             "Hospitalization",
-            "Death Projection",
         ]}
         urlQueryKey="graph"
-        urlQueryValues={['cases', 'days2x', 'recovery', 'map', 'testing', 'hospitalization', "deathprojection"]}
+        urlQueryValues={['cases', 'days2x', 'peakdeath', 'recovery', 'map', 'testing', 'hospitalization']}
         tabs={tabs}
         history={props.history}
     />;

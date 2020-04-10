@@ -126,8 +126,6 @@ const MapState = (props) => {
             <MapStateDay2Doulbe {...props} />
         }
     </div>
-
-
 };
 
 const MapStateDay2Doulbe = React.memo((props) => {
