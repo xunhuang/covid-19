@@ -367,6 +367,10 @@ const STATE_TWO_LETTER_TO_POPULATIONS = {
   "DC": 720687,
   "VT": 628061,
   "WY": 567025,
+  "GU": 164229,
+  "VI": 107268,
+  "AS": 55641,
+  "MP": 55144,
 };
 
 const UNKNOWN_COUNTY_NAME = "Unknown";
