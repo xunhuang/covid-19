@@ -20,6 +20,8 @@ const GraphDaysToDoubleOverTime = (props) => {
     let data = props.data;
     data = data.map(d => {
         d.name = moment(d.fulldate, "MM/DD/YYYY").format("M/D");
+        d.confirmed = d.confirmed ? parseFloat(d.confirmed.toFixed(1)) : null;
+        d.death = d.death ? parseFloat(d.death.toFixed(1)) : null;
         return d;
     });
 

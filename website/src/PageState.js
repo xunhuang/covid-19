@@ -12,9 +12,9 @@ import { BasicGraphNewCases } from "./GraphNewCases.js"
 import Typography from '@material-ui/core/Typography'
 import { BasicGraphRecoveryAndDeath } from "./GraphRecoveryAndDeath.js"
 import { Redirect } from 'react-router-dom'
-import { InfectionMap } from "./Maps";
 import { MapState } from "./MapNew";
 import { GraphDaysToDoubleOverTime } from "./GraphDaysToDoubleOverTime"
+import { GraphDeathProjection } from "./GraphDeathProjection.js"
 
 const moment = require("moment");
 
@@ -55,8 +55,7 @@ const GraphSectionState = withRouter((props) => {
         <MapState state={state} />,
         <GraphStateTesting state={state} />,
         <GraphStateHospitalization state={state} />,
-        <InfectionMap state={state} />
-
+        <GraphDeathProjection state={state} />
     ]
     let graphlistSection = <MyTabs
         labels={["Cases",
@@ -65,9 +64,10 @@ const GraphSectionState = withRouter((props) => {
             "Map",
             `Tests`,
             "Hospitalization",
+            "Death Projection",
         ]}
         urlQueryKey="graph"
-        urlQueryValues={['cases', 'days2x', 'recovery', 'map', 'testing', 'hospitalization', "map"]}
+        urlQueryValues={['cases', 'days2x', 'recovery', 'map', 'testing', 'hospitalization', "deathprojection"]}
         tabs={tabs}
         history={props.history}
     />;
