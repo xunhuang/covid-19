@@ -33,6 +33,12 @@ function getProjectionConfig(state_fips) {
             rotate: [149.4937, -64.2008, 0]
         };
     }
+    if (state_fips === "15") {
+        return {
+            scale: 5836,
+            rotate: [157.57, -19.65624, 0]
+        };
+    }
 
     return {
         scale: scale,
@@ -47,6 +53,7 @@ const MapNew = (props) => {
     let url = geoUrl;
     if (state) {
         url = process.env.PUBLIC_URL + `/topojson/us-states/${state.twoLetterName}-${state.fips()}-${state.name.toLowerCase().replace(" ", "-")}-counties.json`;
+        // console.log(url);
     }
 
     let projection = getProjectionConfig(state.fips());
