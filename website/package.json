@@ -47,7 +47,8 @@
     "superagent": "^5.2.2",
     "tsutils": "^3.17.1",
     "typescript": "^3.8.3",
-    "us-state-codes": "^1.1.2"
+    "us-state-codes": "^1.1.2",
+    "covidmodule": "file:covidmodule"
   },
   "scripts": {
     "start": "react-scripts start",
