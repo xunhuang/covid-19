@@ -16,7 +16,9 @@ import { SectionHeader } from "./CovidUI"
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import { withRouter } from 'react-router-dom'
 import Avatar from '@material-ui/core/Avatar';
-
+import Link from '@material-ui/core/Link';
+import IconButton from '@material-ui/core/IconButton';
+import CloseIcon from '@material-ui/icons/Close';
 import {
     EmailShareButton,
     FacebookShareButton,
@@ -30,6 +32,7 @@ import {
     TwitterIcon,
 } from "react-share";
 
+const Cookies = require("js-cookie");
 const MentalHealthResources = require("./data/mentalhealth.json");
 const moment = require("moment");
 
@@ -39,7 +42,6 @@ const useStyles = makeStyles(theme => ({
         alignItems: 'baseline',
         padding: 5,
     },
-
     topContainer: {
         display: 'flex',
         alignItems: 'baseline',
@@ -71,11 +73,16 @@ const useStyles = makeStyles(theme => ({
         paddingRight: 10,
     },
     qpContainer: {
-        display: 'none',
+        display: 'flex',
         background: '#e3e3e3',
         borderWidth: "1px",
         padding: 15,
         margin: 15,
+    },
+    qpBox: {
+        display: 'flex',
+        justifyContent: "space-between",
+        width: "100%",
     },
     grow: {
         flex: 1,
@@ -303,6 +310,36 @@ const Banner = withRouter((props) => {
         </div >);
 });
 
+const QPArea = (props) => {
+    const QPID = "qpid_metro3";
+    const classes = useStyles();
+    const [open, setOpen] = React.useState(Cookies.get(QPID) === undefined);
+
+    const handleClose = (qpid) => {
+        Cookies.set(qpid, 1, 10000);
+        setOpen(false);
+    }
+
+    if (!open) {
+        return null;
+    }
+
+    return <div className={classes.qpContainer}>
+        <div className={classes.qpBox} >
+            <div>
+                We added NYC and Bay Area as a "Metro" area with multiple counties. What new metro areas
+                should we include?
+                    <Link href="#discussion">
+                    Make a suggestion here.
+                    </Link>
+            </div>
+            <IconButton size="small" aria-label="close" color="inherit" onClick={() => { handleClose(QPID) }}>
+                <CloseIcon fontSize="small" />
+            </IconButton>
+        </div>
+    </div>
+}
+
 const withHeader = (comp, props) => {
 
     const disqusShortname = "covid19direct";
@@ -326,10 +363,10 @@ const withHeader = (comp, props) => {
                     </Typography>
             </SectionHeader>
             <ResourceSection />
-            <SectionHeader>
+            <SectionHeader id="discussion">
                 <Grid container alignItems="center" justifyContent="center">
                     <Grid item>
-                        <Typography variant="h5" noWrap>
+                        <Typography variant="h5" noWrap id="discussion">
                             Discussions
                     </Typography>
                     </Grid>
@@ -356,17 +393,10 @@ const withHeader = (comp, props) => {
 
         let header = <header className="App-header">
             <Banner history={props.history}></Banner>
+            <QPArea />
             <div className={classes.searchContainer}>
                 <SearchBox />
             </div>
-            <div className={classes.qpContainer}>
-                <Typography variant="body1" >
-                    Some problem with new number calculation. Total is correct but New is not.
-                    investigating.
-            </Typography>
-
-            </div>
-
 
             {component}
             {footer}
