@@ -35,6 +35,7 @@ export class Country {
     this.metrosById_ = new Map();
     this.statesById_ = new Map();
     this.statesByTwoLetterName_ = new Map();
+    this.countiesById_ = new Map();
     this.name = "US";
 
     for (const [id, data] of Object.entries(this.covidRaw_)) {
@@ -46,11 +47,15 @@ export class Country {
       const state = new State(id, data, this);
       this.statesById_.set(id, state);
       this.statesByTwoLetterName_.set(state.twoLetterName, state);
+
+      for (const county of state.allCounties()) {
+        this.countiesById_.set(county.id, county)
+      }
     }
 
     for (const [id, data] of Object.entries(this.covidRaw_.Metros)) {
       const state = this.statesById_.get(data.StateFIPS);
-      state.addMetro(id, data);
+      state.addMetro(id, data, this);
       this.metrosById_.set(id, state.metroForId(id));
     }
 
@@ -61,6 +66,10 @@ export class Country {
     }
 
     this.statesById_.forEach(state => state.reindex());
+  }
+
+  countyForId(id) {
+    return this.countiesById_.get(id);
   }
 
   allStates() {
@@ -166,8 +175,8 @@ export class State {
     return this.country_;
   }
 
-  addMetro(id, data) {
-    this.metros_.set(id, new Metro(id, data, this));
+  addMetro(id, data, country) {
+    this.metros_.set(id, new Metro(id, data, this, country));
   }
 
   allCounties() {
@@ -293,12 +302,16 @@ export class State {
 }
 
 export class Metro {
-  constructor(id, covidRaw_, state) {
+  constructor(id, covidRaw_, state, country) {
     this.id = id;
     this.covidRaw_ = covidRaw_;
     this.state_ = state;
     this.name = covidRaw_['Name'];
-    this.counties_ = this.covidRaw_.Counties.map(id => state.countyForId(id));
+    this.counties_ = this.covidRaw_.Counties.map(id => {
+      // not all counties in a metro belong to the same state
+      // can't call state.countyForId() directly
+      return country.countyForId(id);
+    }).filter(c => c); // some county may not have data
   }
 
   allCounties() {

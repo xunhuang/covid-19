@@ -8,12 +8,48 @@ const { linearRegression } = require('simple-statistics');
 const ShelterInPlace = require("../data/shelter-in-place/shelter.json");
 const USRecovery = require("./src/data/us_recovery.json");
 const CountyInfo = require('covidmodule').CountyInfo;
+const fips = require('fips-county-codes');
 
 const states = require('us-state-codes');
 const fs = require('fs');
 function pad(n) { return n < 10 ? '0' + n : n }
 let AllData = {};
 
+const MetroInfo = require("./src/data/metrolist.json");
+
+function getFipsFromStateCountyName(state_two_letter, countyname) {
+    let ret = fips.get({
+        "state": state_two_letter,
+        "county": countyname,
+    });
+    return ret.fips;
+}
+
+const metrokeys = MetroInfo.reduce((m, a) => {
+    m[a.UrlName] = 1;
+    return m;
+}, {});
+
+let extraMetro = {};
+for (let key in metrokeys) {
+    let entries = MetroInfo.filter(s => s.UrlName === key);
+    let newMetro = {};
+    newMetro.Counties = entries.map(s => {
+        return getFipsFromStateCountyName(s.State, s.County);
+    });
+    newMetro.Name = entries[0].Friendly;
+    newMetro.StateName = entries[0].State;
+    newMetro.StateFIPS = CountyInfo.getFipsFromStateShortName(entries[0].State);
+    extraMetro[key] = newMetro;
+}
+
+console.log(extraMetro)
+
+// process.exit(0);
+
+/**
+ * Initialize State Nodes
+ */
 const AllStateFips = CountyInfo.getAllStateFips();
 AllStateFips.map(statefips => AllData[statefips] = {})
 
@@ -81,17 +117,6 @@ function createCountyObject(state_fips, state_name, county_fips, county_name) {
     countyObject.StateFIPS = fixStateFips(state_fips);
     countyObject.Confirmed = {};
     countyObject.Death = {};
-
-    /* double check...
-    const [s_fips, c_fips] = myFipsCode(countyObject.StateName, countyObject.CountyName);
-    if (s_fips !== countyObject.StateFIPS || c_fips !== county_fips) {
-        console.log(`bad state county name ${state_name},  ${county_name}`)
-        console.log(` ${s_fips},  ${countyObject.StateFIPS}`)
-        console.log(s_fips === countyObject.StateFIPS);
-        console.log(` ${c_fips},  ${county_fips}`)
-        console.log(c_fips === county_fips);
-    }
-    */
 
     setCountyNode(state_fips, county_fips, countyObject);
 
@@ -465,6 +490,7 @@ function getCountyByFips(fips) {
 }
 function addMetros() {
     let Metros = {
+        ...extraMetro,
         BayArea: {
             Name: "Bay Area",
             StateFIPS: "06",
@@ -498,8 +524,6 @@ function addMetros() {
             Name: "Austin",
             StateFIPS: "48",
             StateName: "TX",
-            HospitalBeds: 23639,
-            Hospitals: 58,
             Counties: [
                 "48021",
                 "48055",
@@ -528,8 +552,10 @@ function addMetros() {
                 Hospitals += county_info.Hospitals;
                 HospitalBeds += county_info.HospitalBeds;
 
-                mergeTwoMapValues(Confirmed, county.Confirmed)
-                mergeTwoMapValues(Death, county.Death)
+                if (county) {
+                    mergeTwoMapValues(Confirmed, county.Confirmed)
+                    mergeTwoMapValues(Death, county.Death)
+                }
 
             }
             Summary.Confirmed = Confirmed;

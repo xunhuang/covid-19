@@ -363,6 +363,13 @@ const fipsToState =
   },
 }
 
+const STATE_SHORTNAME_TO_FIPS = (() => {
+  return Object.keys(fipsToState).reduce((m, k) => {
+    m[fipsToState[k].abbreviation] = k;
+    return m;
+  }, {});
+})();
+
 const STATE_Name_To_FIPS = (() => {
   return Object.keys(STATE_FIPS_TO_NAME).reduce((m, k) => {
     m[STATE_FIPS_TO_NAME[k]] = k
@@ -382,14 +389,16 @@ function getStateAbbreviationFromFips(state_fips) {
   return fipsToState[state_fips].abbreviation;
 }
 
-
 function getFipsFromStateName(state_name) {
   return STATE_Name_To_FIPS[state_name];
 }
 
+function getFipsFromStateShortName(state_name_short) {
+  return STATE_SHORTNAME_TO_FIPS[state_name_short];
+}
+
 function getAllStateFips() {
   return Object.keys(STATE_FIPS_TO_NAME);
-
 }
 
 const CountyInfo = {
@@ -397,6 +406,7 @@ const CountyInfo = {
   getStateNameFromFips,
   getStateAbbreviationFromFips,
   getFipsFromStateName,
+  getFipsFromStateShortName,
   getAllStateFips,
 }
 

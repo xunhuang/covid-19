@@ -57,17 +57,17 @@ const useStyles = makeStyles(theme => ({
 const NearbyCounties = (props) => {
     const county = props.county;
     const allNearby = county.nearby();
-          // data source combined all NYC Boroughs into New York, NY
-          // this is a hack to remove these counties and they showed up as
-          // zeros.
-          // .filter(a => a.State !== "NY" ||
-          // (a.County !== "Queens" && a.County !== "Kings" && a.County !== "New York" &&
-          // a.County !== "Bronx" && a.County !== "Richmond"))
+    // data source combined all NYC Boroughs into New York, NY
+    // this is a hack to remove these counties and they showed up as
+    // zeros.
+    // .filter(a => a.State !== "NY" ||
+    // (a.County !== "Queens" && a.County !== "Kings" && a.County !== "New York" &&
+    // a.County !== "Bronx" && a.County !== "Richmond"))
     if (allNearby) {
-      const nearby = allNearby.slice(0, 10);
-      return <CountyListRender countylist={nearby} />
+        const nearby = allNearby.slice(0, 10);
+        return <CountyListRender countylist={nearby} />
     } else {
-      return <></>;
+        return <></>;
     }
 }
 
@@ -93,41 +93,42 @@ function prepCountyDataForDisplay(list) {
             .map(county => [county, county.summary()])
             .filter(([c, s]) => s)
             .map(([county, sum]) => {
-        let newrow = {};
-        let newcases = sum.newcases;
-        let confirmed = sum.confirmed;
-        let newpercent = sum.newpercent;
-        let population = county.population();
+                let newrow = {};
+                let newcases = sum.newcases;
+                let confirmed = sum.confirmed;
+                let newpercent = sum.newpercent;
+                let population = county.population();
 
-        newrow.partsPerMil = confirmed * 1000000 / population;
+                newrow.partsPerMil = confirmed * 1000000 / population;
 
-        newrow.newEntry = (Number.isNaN(newpercent) || !isFinite(newpercent)) ? newcases : `${(newpercent * 100).toFixed(1)}%`;
-        if (newcases === 0) {
-            newrow.newEntry = 0;
-        }
+                newrow.newEntry = (Number.isNaN(newpercent) || !isFinite(newpercent)) ? newcases : `${(newpercent * 100).toFixed(1)}%`;
+                if (newcases === 0) {
+                    newrow.newEntry = 0;
+                }
 
-        if (county.name === "Statewide Unallocated") {
-            population = 0;
-            newrow.newEntry = newcases;
-        }
-        // note. doing this row overwrite can be dangerous... references.
-        newrow.newcases = newcases;
-        newrow.State = county.state().twoLetterName;
-        newrow.confirmed = confirmed;
-        newrow.newpercent = newpercent;
-        newrow.population = population;
-        newrow.County = county.name;
-        newrow.deathsPerMil = sum.death * 1000000 / population;
-        newrow.death = sum.death;
-        newrow.daysToDouble = sum.daysToDouble;
-        newrow.daysToDoubleDeath = sum.daysToDoubleDeath;
-        return newrow;
-    });
+                if (county.name === "Statewide Unallocated") {
+                    population = 0;
+                    newrow.newEntry = newcases;
+                }
+                // note. doing this row overwrite can be dangerous... references.
+                newrow.newcases = newcases;
+                newrow.State = county.state().twoLetterName;
+                newrow.confirmed = confirmed;
+                newrow.newpercent = newpercent;
+                newrow.population = population;
+                newrow.County = county.name;
+                newrow.deathsPerMil = sum.death * 1000000 / population;
+                newrow.death = sum.death;
+                newrow.daysToDouble = sum.daysToDouble;
+                newrow.daysToDoubleDeath = sum.daysToDoubleDeath;
+                return newrow;
+            });
     return extendlist;
 }
 
 const CountyListRender = (props) => {
     const list = props.countylist.sort((a, b) => b.total - a.total);
+    console.log(list);
     const classes = useStyles();
     const [order, setOrder] = React.useState('desc');
     const [orderBy, setOrderBy] = React.useState('confirmed');
@@ -146,6 +147,7 @@ const CountyListRender = (props) => {
         { id: 'daysToDouble', numeric: true, disablePadding: false, label: 'Days 2x' },
     ];
 
+    console.log(list);
     let extendlist = prepCountyDataForDisplay(list);
 
     let countySummary =
