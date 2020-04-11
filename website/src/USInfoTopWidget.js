@@ -211,7 +211,7 @@ const CountySummarySection = withRouter((props) => {
             showRecovered={false}
             showDeaths={true}
         />
-        {county_specifc}
+        {/* {county_specifc} */}
     </div>;
 });
 
