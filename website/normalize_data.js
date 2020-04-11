@@ -1,4 +1,5 @@
 
+
 const moment = require("moment");
 const CountyList = require("./src/data/county_gps.json");
 const ConfirmedData = require("./src/data/covid_confirmed_usafacts.json");
@@ -6,86 +7,15 @@ const DeathData = require("./src/data/covid_death_usafacts.json");
 const { linearRegression } = require('simple-statistics');
 const ShelterInPlace = require("../data/shelter-in-place/shelter.json");
 const USRecovery = require("./src/data/us_recovery.json");
+const CountyInfo = require('covidmodule').CountyInfo;
 
 const states = require('us-state-codes');
 const fs = require('fs');
-
 function pad(n) { return n < 10 ? '0' + n : n }
-
-const state_fips_to_name =
-{
-    "10": "Delaware",
-    "11": "District of Columbia",
-    "12": "Florida",
-    "13": "Georgia",
-    "15": "Hawaii",
-    "16": "Idaho",
-    "17": "Illinois",
-    "18": "Indiana",
-    "19": "Iowa",
-    "20": "Kansas",
-    "21": "Kentucky",
-    "22": "Louisiana",
-    "23": "Maine",
-    "24": "Maryland",
-    "25": "Massachusetts",
-    "26": "Michigan",
-    "27": "Minnesota",
-    "28": "Mississippi",
-    "29": "Missouri",
-    "30": "Montana",
-    "31": "Nebraska",
-    "32": "Nevada",
-    "33": "New Hampshire",
-    "34": "New Jersey",
-    "35": "New Mexico",
-    "36": "New York",
-    "37": "North Carolina",
-    "38": "North Dakota",
-    "39": "Ohio",
-    "40": "Oklahoma",
-    "41": "Oregon",
-    "42": "Pennsylvania",
-    "44": "Rhode Island",
-    "45": "South Carolina",
-    "46": "South Dakota",
-    "47": "Tennessee",
-    "48": "Texas",
-    "49": "Utah",
-    "50": "Vermont",
-    "51": "Virginia",
-    "53": "Washington",
-    "54": "West Virginia",
-    "55": "Wisconsin",
-    "56": "Wyoming",
-    "01": "Alabama",
-    "02": "Alaska",
-    "04": "Arizona",
-    "05": "Arkansas",
-    "06": "California",
-    "08": "Colorado",
-    "09": "Connecticut",
-    "72": "Puerto Rico",
-    "66": "Guam",
-    "78": "Virgin Islands",
-    "60": "American Samoa",
-    "69": "Northern Mariana Islands",
-};
-
-const STATE_Name_To_FIPS = (() => {
-    return Object.keys(state_fips_to_name).reduce((m, k) => {
-        m[state_fips_to_name[k]] = k
-        return m;
-    }, {});
-})();
-
-
 let AllData = {};
 
-for (let state_fips in state_fips_to_name) {
-    AllData[state_fips] = {};
-}
-
+const AllStateFips = CountyInfo.getAllStateFips();
+AllStateFips.map(statefips => AllData[statefips] = {})
 
 function getStateNode(state_fips) {
     return AllData[state_fips];
@@ -283,7 +213,7 @@ function process_USAFACTS() {
 function processJHUDataPoint(c, date) {
     let b = c.attributes;
     let county_fips = b.FIPS;
-    let state_fips = STATE_Name_To_FIPS[b.Province_State];
+    let state_fips = CountyInfo.getFipsFromStateName(b.Province_State);
     if (county_fips === null && b.Admin2 === "Harris" && b.Province_State === "Texas") {
         county_fips = "48201";
     } else if (county_fips === null) {
@@ -487,10 +417,9 @@ function processsShelterInPlace() {
         if (fips.length === 2) {
             // state
             //
-            if (state_fips_to_name[fips] === p.CountyName) {
+            if (CountyInfo.getStateNameFromFips(fips) === p.CountyName) {
             } else {
                 console.log(`**************** Mismatch ${p.CountyName} `);
-                // console.log("************** url: " + p.Url);
             }
             let state = AllData[fips];
             if (state) {
@@ -575,7 +504,7 @@ function addMetros() {
                 "48021",
                 "48055",
                 "48209",
-                "48453", 
+                "48453",
                 "48491",
             ]
         },
@@ -591,7 +520,7 @@ function addMetros() {
         if (m !== "NYC") {
             let Hospitals = 0;
             let HospitalBeds = 0;
-             
+
             for (let i = 0; i < metro.Counties.length; i++) {
                 let countyfips = metro.Counties[i];
                 let county = getCountyByFips(countyfips);
@@ -692,7 +621,7 @@ function processBNO(dataset, date) {
     for (let i = 0; i < data.length; i++) {
         let datapoint = data[i];
         let state_name = datapoint["UNITED STATES"];
-        let state_fips = STATE_Name_To_FIPS[state_name];
+        let state_fips = CountyInfo.getFipsFromStateName(state_name);
         if (!state_fips) {
             console.log("can't find state fips for " + state_name);
             continue;
