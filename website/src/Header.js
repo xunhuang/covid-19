@@ -241,34 +241,34 @@ const SocialMediaButtons = (props) => {
             url={props.url}
             quote={props.quote}
         >
-            <FacebookIcon size={24} round={true} />
+            <FacebookIcon size={32} round={true} />
         </FacebookShareButton>
         <TwitterShareButton
             url={props.url}
             quote={props.quote}
         >
-            <TwitterIcon size={24} round={true} />
+            <TwitterIcon size={32} round={true} />
         </TwitterShareButton>
 
         <RedditShareButton
             url={props.url}
             quote={props.quote}
         >
-            <RedditIcon size={24} round={true} />
+            <RedditIcon size={32} round={true} />
         </RedditShareButton>
 
         <PinterestShareButton
             url={props.url}
             quote={props.quote}
         >
-            <PinterestIcon size={24} round={true} />
+            <PinterestIcon size={32} round={true} />
         </PinterestShareButton>
 
         <EmailShareButton
             url={props.url}
             quote={props.quote}
         >
-            <EmailIcon size={24} round={true} />
+            <EmailIcon size={32} round={true} />
         </EmailShareButton>
 
     </div>
