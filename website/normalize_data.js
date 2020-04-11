@@ -565,6 +565,20 @@ function addMetros() {
                 "36085",
             ]
         },
+        Austin: {
+            Name: "Austin",
+            StateFIPS: "48",
+            StateName: "TX",
+            HospitalBeds: 23639,
+            Hospitals: 58,
+            Counties: [
+                "48021",
+                "48055",
+                "48209",
+                "48453", 
+                "48491",
+            ]
+        },
     }
 
     for (m in Metros) {
@@ -575,9 +589,15 @@ function addMetros() {
         let Summary = {};
 
         if (m !== "NYC") {
+            let Hospitals = 0;
+            let HospitalBeds = 0;
+             
             for (let i = 0; i < metro.Counties.length; i++) {
                 let countyfips = metro.Counties[i];
                 let county = getCountyByFips(countyfips);
+                let county_info = TableLookup[countyfips];
+                Hospitals += county_info.Hospitals;
+                HospitalBeds += county_info.HospitalBeds;
 
                 mergeTwoMapValues(Confirmed, county.Confirmed)
                 mergeTwoMapValues(Death, county.Death)
@@ -593,6 +613,9 @@ function addMetros() {
             Summary.LastConfirmedNew = CC.newnum;
             Summary.LastDeath = DD.num;
             Summary.LastDeathNew = DD.newnum;
+
+            metro.Hospitals = Hospitals;
+            metro.HospitalBeds = HospitalBeds;
         }
         metro.Summary = Summary;
     }
