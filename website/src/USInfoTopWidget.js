@@ -190,7 +190,7 @@ const CountySummarySection = withRouter((props) => {
         county_specifc =
             <SectionHeader>
                 <Link target="_blank" to="https://www.smchealth.org/post/san-mateo-county-covid-19-data-1" rel="noopener noreferrer" >
-                    SAN MATEO COUNTY COVID-19 DATA
+                    San Mateo County COVID-19 Data
              </Link>
             </SectionHeader>
     }

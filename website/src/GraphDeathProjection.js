@@ -56,20 +56,21 @@ const CustomTooltip = (props) => {
     }
     return null;
 }
+const usdata = require("./data/us_only.json")
 
-const GraphDeathProjection = (props) => {
-
-    const usdata = require("./data/us_only.json")
+const GraphDeathProjectionState = (props) => {
     let data = usdata.filter(d => d.location_name === props.state.name);
+    const [formateddata, max_date] = formatData(data);
+    return <GraphDeathProjectionRender data={formateddata} max_date={max_date} />;
+}
 
-    const [state, setState] = React.useState({
-        showall: false,
-    });
+const GraphDeathProjectionUS = (props) => {
+    let data = usdata.filter(d => d.location_name === "United States of America");
+    const [formateddata, max_date] = formatData(data);
+    return <GraphDeathProjectionRender data={formateddata} max_date={max_date} />;
+}
 
-    const handleLogScaleToggle = event => {
-        setState({ ...state, showall: !state.showall });
-    };
-
+const formatData = (data) => {
     data = data.map(d => {
         d.fulldate = Util.normalize_date(d.date);
         d.name = moment(d.fulldate, "MM/DD/YYYY").format("M/D");
@@ -77,7 +78,6 @@ const GraphDeathProjection = (props) => {
     });
 
     data = data.sort((a, b) => moment(a.fulldate, "MM/DD/YYYY").isAfter(moment(b.fulldate, "MM/DD/YYYY")));
-
     let deathsTotal_mean = 0;
     let deathsTotal_upper = 0;
     let deathsTotal_lower = 0;
@@ -106,6 +106,20 @@ const GraphDeathProjection = (props) => {
         d.deathsTotal_delta = deathsTotal_upper - deathsTotal_lower;
         return d;
     });
+    return [data, max_date];
+}
+
+const GraphDeathProjectionRender = (props) => {
+    let data = props.data;
+    const max_date = props.max_date;
+
+    const [state, setState] = React.useState({
+        showall: false,
+    });
+
+    const handleLogScaleToggle = event => {
+        setState({ ...state, showall: !state.showall });
+    };
     const cutoff = moment().subtract(30, 'days')
     const future = moment().add(30, 'days')
     data = data.filter(d => {
@@ -149,4 +163,4 @@ const GraphDeathProjection = (props) => {
     </>
 }
 
-export { GraphDeathProjection };
+export { GraphDeathProjectionState, GraphDeathProjectionUS };

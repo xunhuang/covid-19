@@ -14,7 +14,7 @@ import { BasicGraphRecoveryAndDeath } from "./GraphRecoveryAndDeath.js"
 import { Redirect } from 'react-router-dom'
 import { MapState } from "./MapNew";
 import { GraphDaysToDoubleOverTime } from "./GraphDaysToDoubleOverTime"
-import { GraphDeathProjection } from "./GraphDeathProjection.js"
+import { GraphDeathProjectionState } from "./GraphDeathProjection.js"
 
 const moment = require("moment");
 
@@ -51,7 +51,7 @@ const GraphSectionState = withRouter((props) => {
                     }] : []
             } />,
         <GraphDaysToDoubleOverTime data={props.state.daysToDoubleTimeSeries()} />,
-        <GraphDeathProjection state={state} />,
+        <GraphDeathProjectionState state={state} />,
         <StateGraphCaveat stateSummary={stateSummary} data={graphdata} logScale={false} />,
         <MapState state={state} />,
         <GraphStateTesting state={state} />,
