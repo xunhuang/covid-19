@@ -128,7 +128,6 @@ function prepCountyDataForDisplay(list) {
 
 const CountyListRender = (props) => {
     const list = props.countylist.sort((a, b) => b.total - a.total);
-    console.log(list);
     const classes = useStyles();
     const [order, setOrder] = React.useState('desc');
     const [orderBy, setOrderBy] = React.useState('confirmed');
@@ -147,7 +146,6 @@ const CountyListRender = (props) => {
         { id: 'daysToDouble', numeric: true, disablePadding: false, label: 'Days 2x' },
     ];
 
-    console.log(list);
     let extendlist = prepCountyDataForDisplay(list);
 
     let countySummary =

@@ -21,14 +21,13 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-const CustomTooltip = (props) => {
+const DeathTooltip = (props) => {
     const classes = useStyles();
     const { active } = props;
     if (active) {
         const { payload, label } = props;
         let deaths_mean;
         let deathsTotal_mean;
-
         payload.map(p => {
             p = p.payload;
             if ("deaths_mean" in p) {
@@ -39,7 +38,6 @@ const CustomTooltip = (props) => {
             }
             return null;
         });
-
         return (
             <div className={classes.customtooltip}>
                 <Typography variant="body1" noWrap>
@@ -60,41 +58,43 @@ const usdata = require("./data/us_only.json")
 
 const GraphDeathProjectionState = (props) => {
     let data = usdata.filter(d => d.location_name === props.state.name);
-    const [formateddata, max_date] = formatData(data);
+    const [formateddata, max_date] = formatData(data, keydeath);
     return <GraphDeathProjectionRender
         data={formateddata}
         max_date={max_date}
-        key_lower="deaths_lower"
-        key_delta="delta"
-        key_mean="deaths_mean"
-        key_lower_cumulative="deathsTotal_lower"
-        key_delta_cumulative="deathsTotal_delta"
-        key_mean_cumulative="deathsTotal_mean"
+        data_keys={keydeath}
+        tooltip={<DeathTooltip />}
     />;
+}
+const keydeath = {
+    key_lower: "deaths_lower",
+    key_upper: "deaths_upper",
+    key_delta: "delta",
+    key_mean: "deaths_mean",
+    key_upper_cumulative: "deathsTotal_upper",
+    key_lower_cumulative: "deathsTotal_lower",
+    key_delta_cumulative: "deathsTotal_delta",
+    key_mean_cumulative: "deathsTotal_mean",
 }
 
 const GraphDeathProjectionUS = (props) => {
     let data = usdata.filter(d => d.location_name === "United States of America");
-    const [formateddata, max_date] = formatData(data);
+    const [formateddata, max_date] = formatData(data, keydeath);
+
     return <GraphDeathProjectionRender
         data={formateddata}
         max_date={max_date}
-        key_lower="deaths_lower"
-        key_delta="delta"
-        key_mean="deaths_mean"
-        key_lower_cumulative="deathsTotal_lower"
-        key_delta_cumulative="deathsTotal_delta"
-        key_mean_cumulative="deathsTotal_mean"
+        data_keys={keydeath}
+        tooltip={<DeathTooltip />}
     />;
 }
 
-const formatData = (data) => {
+const formatData = (data, keys) => {
     data = data.map(d => {
         d.fulldate = Util.normalize_date(d.date);
         d.name = moment(d.fulldate, "MM/DD/YYYY").format("M/D");
         return d;
     });
-
     data = data.sort((a, b) => moment(a.fulldate, "MM/DD/YYYY").isAfter(moment(b.fulldate, "MM/DD/YYYY")));
     let deathsTotal_mean = 0;
     let deathsTotal_upper = 0;
@@ -102,27 +102,31 @@ const formatData = (data) => {
     let max_death = 0;
     let max_date = 0;
     data = data.map(d => {
-        d.deaths_mean = Math.floor(d.deaths_mean);
-        d.deaths_lower = Math.floor(d.deaths_lower);
-        d.deaths_upper = Math.floor(d.deaths_upper);
-
-        if (max_death < d.deaths_mean) {
-            max_death = d.deaths_mean;
+        let r = {};
+        let mean = Math.floor(d[keys.key_mean]);
+        let lower = Math.floor(d[keys.key_lower]);
+        let upper = Math.floor(d[keys.key_upper]);
+        r[keys.key_mean] = mean;
+        r[keys.key_lower] = lower;
+        r[keys.key_upper] = upper;
+        r[keys.key_delta] = upper - lower;
+        if (max_death < mean) {
+            max_death = mean;
             max_date = d.fulldate;
         }
+        deathsTotal_mean += mean;
+        r[keys.key_mean_cumulative] = deathsTotal_mean;
 
-        deathsTotal_mean += d.deaths_mean;
-        d.deathsTotal_mean = deathsTotal_mean;
+        deathsTotal_upper += upper;
+        deathsTotal_lower += lower;
 
-        deathsTotal_upper += d.deaths_upper;
-        d.deathsTotal_upper = deathsTotal_upper;
+        r[keys.key_lower_cumulative] = deathsTotal_lower;
+        r[keys.key_delta_cumulative] = deathsTotal_upper - deathsTotal_lower;
 
-        deathsTotal_lower += d.deaths_lower;
-        d.deathsTotal_lower = deathsTotal_lower;
+        r.fulldate = d.fulldate;
+        r.name = d.name;
 
-        d.delta = d.deaths_upper - d.deaths_lower;
-        d.deathsTotal_delta = deathsTotal_upper - deathsTotal_lower;
-        return d;
+        return r;
     });
     return [data, max_date];
 }
@@ -130,6 +134,7 @@ const formatData = (data) => {
 const GraphDeathProjectionRender = (props) => {
     let data = props.data;
     const max_date = props.max_date;
+    const data_keys = props.data_keys;
 
     const [state, setState] = React.useState({
         showall: false,
@@ -166,13 +171,13 @@ const GraphDeathProjectionRender = (props) => {
                 <YAxis yAxisId={0} tickFormatter={formatYAxis} />
                 <ReferenceLine x={moment(max_date, "MM/DD/YYYY").format("M/D")} label={{ value: "Peak Death", fill: '#a3a3a3' }} stroke="#e3e3e3" strokeWidth={3} />
                 <CartesianGrid stroke="#d5d5d5" strokeDasharray="5 5" />
-                <Line type="monotone" dataKey={props.key_mean} stroke="#000000" dot={{ r: 1 }} yAxisId={0} strokeWidth={3} />
-                <Area type='monotone' dataKey={props.key_lower} stackId="1" stroke='#8884d8' fill='#FFFFFF' />
-                <Area type='monotone' dataKey={props.key_delta} stackId="1" stroke='#82ca9d' fill='#82ca9d' />
-                {state.showall && <Line type="monotone" dataKey={props.key_lower_mean} stroke="#000000" yAxisId={0} strokeWidth={3} />}
-                {state.showall && <Area type='monotone' dataKey={props.key_lower_cumulative} stackId="2" stroke='#8884d8' fill='#FFFFFF' />}
-                {state.showall && <Area type='monotone' dataKey={props.key_lower_upper} stackId="2" stroke='#82ca9d' fill='#82ca9d' />}
-                <Tooltip content={<CustomTooltip />} />
+                <Line type="monotone" dataKey={data_keys.key_mean} stroke="#000000" dot={{ r: 1 }} yAxisId={0} strokeWidth={3} />
+                <Area type='monotone' dataKey={data_keys.key_lower} stackId="1" stroke='#8884d8' fill='#FFFFFF' />
+                <Area type='monotone' dataKey={data_keys.key_delta} stackId="1" stroke='#82ca9d' fill='#82ca9d' />
+                {state.showall && <Line type="monotone" dataKey={data_keys.key_mean_cumulative} stroke="#000000" yAxisId={0} strokeWidth={3} />}
+                {state.showall && <Area type='monotone' dataKey={data_keys.key_lower_cumulative} stackId="2" stroke='#8884d8' fill='#FFFFFF' />}
+                {state.showall && <Area type='monotone' dataKey={data_keys.key_delta_cumulative} stackId="2" stroke='#82ca9d' fill='#82ca9d' />}
+                <Tooltip content={props.tooltip} />
             </ComposedChart>
         </ResponsiveContainer>
         <Typography variant="body2">
