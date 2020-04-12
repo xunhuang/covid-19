@@ -1,7 +1,7 @@
 
 
 const moment = require("moment");
-const CountyList = require("./src/data/county_gps.json");
+const CountyList = require("./public/data/county_gps.json");
 const ConfirmedData = require("./src/data/covid_confirmed_usafacts.json");
 const DeathData = require("./src/data/covid_death_usafacts.json");
 const { linearRegression } = require('simple-statistics');
@@ -892,5 +892,8 @@ processsShelterInPlace();
 addUSRecovery();
 addStateRecovery();
 
-let content = JSON.stringify(AllData, 2, 2);
-fs.writeFileSync("./src/data/AllData.json", content);
+const contentCrushed = JSON.stringify(AllData, null, 0);
+fs.writeFileSync("./public/data/AllData.min.json", contentCrushed);
+const contentPretty = JSON.stringify(AllData, null, 2);
+fs.writeFileSync("./public/data/AllData.json", contentPretty);
+fs.writeFileSync("./src/data/AllData.json", contentPretty);

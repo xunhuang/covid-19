@@ -159,8 +159,8 @@ const daysToDoubleLabelChildren = (options) => {
     const { x, y, showlog, daysToDouble } = options;
     return [
         // Placeholder to accomodate label
-        <ReferenceArea fillOpacity="0" alwaysShow x1={x} x2={x} y1={y * (showlog ? 4 : 1.1)} y2={y * (showlog ? 4 : 1.1)} />,
-        <ReferenceArea fillOpacity="0" x1={x} x2={x} y1={y} y2={y}>
+        <ReferenceArea fillOpacity="0" alwaysShow x1={x} x2={x} y1={y * (showlog ? 4 : 1.1)} y2={y * (showlog ? 4 : 1.1)} key={0} />,
+        <ReferenceArea fillOpacity="0" x1={x} x2={x} y1={y} y2={y} key={1}>
             <Label value={`Double every ${daysToDouble.toFixed(1)} days*`} offset={5} position="insideBottomRight" />
         </ReferenceArea>
     ];

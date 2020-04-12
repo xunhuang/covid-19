@@ -31,7 +31,6 @@ TabPanel.propTypes = {
 
 function a11yProps(index) {
     return {
-        textTransform: 'none',
         id: `nav-tab-${index}`,
         'aria-controls': `nav-tabpanel-${index}`,
     };
@@ -102,16 +101,14 @@ const MyTabs = (props) => {
         props.history.location.search = searchParams.toString();
         props.history.push(props.history.location)
     }
-    let c = 0;
-    let labelcomp = labels.map(l =>
-        <LinkTab label={l} key={c} {...a11yProps(c++)} />
-    )
-    let d = 0;
-    let tabscomp = tabs.map(tab =>
+    const labelcomp = labels.map((l, c) =>
+        <LinkTab label={l} key={c} {...a11yProps(c)} />
+    );
+    const tabscomp = tabs.map((tab, d) =>
         <TabPanel value={tabvalue} index={d} key={d}>
-            {tabs[d++]}
+            {tab}
         </TabPanel>
-    )
+    );
     return <>
         <Tabs
             variant="scrollable"
