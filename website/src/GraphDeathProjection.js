@@ -1,7 +1,7 @@
 import React from 'react';
 import {
     ResponsiveContainer, Tooltip,
-    Line, Area,
+    Line, Area, Legend,
     ReferenceLine,
     YAxis, XAxis, CartesianGrid,
     ComposedChart,
@@ -250,10 +250,14 @@ const GraphDeathProjectionRender = (props) => {
                 <Line type="monotone" dataKey={data_keys.key_mean} stroke="#000000" dot={{ r: 1 }} yAxisId={0} strokeWidth={3} />
                 <Area type='monotone' dataKey={data_keys.key_lower} stackId="1" stroke='#8884d8' fill='#FFFFFF' />
                 <Area type='monotone' dataKey={data_keys.key_delta} stackId="1" stroke='#82ca9d' fill='#82ca9d' />
-                {state.showall && <Line type="monotone" dataKey={data_keys.key_mean_cumulative} stroke="#000000" yAxisId={0} strokeWidth={3} />}
+                {state.showall && <Line type="monotone" dataKey={data_keys.key_mean_cumulative} stroke="#ff0000" yAxisId={0} strokeWidth={3} />}
                 {state.showall && <Area type='monotone' dataKey={data_keys.key_lower_cumulative} stackId="2" stroke='#8884d8' fill='#FFFFFF' />}
                 {state.showall && <Area type='monotone' dataKey={data_keys.key_delta_cumulative} stackId="2" stroke='#82ca9d' fill='#82ca9d' />}
                 <Tooltip content={props.tooltip} />
+                <Legend verticalAlign="top" payload={[
+                    { value: 'Cumulative ', type: 'line', color: '#ff0000' },
+                    { value: 'Daily', type: 'line', color: '#000000' },
+                ]} />
             </ComposedChart>
         </ResponsiveContainer>
         <Typography variant="body2">

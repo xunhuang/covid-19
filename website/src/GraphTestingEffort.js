@@ -144,7 +144,7 @@ const GraphTestingWidget = (props) => {
             <Line type="monotone" name="Daily" dataKey="testsThatDay" stroke="#387908" yAxisId={0} strokeWidth={3} />
             <Line type="monotone" name="Positive" dataKey="positiveThatDay" stroke="#a3a3a3" yAxisId={0} strokeWidth={3} />
             {/* <Line type="monotone" name="Negative" dataKey="negativeThatDay" stroke="#00aeef" yAxisId={0} strokeWidth={3} /> */}
-            <Legend verticalAlign="top" />kkkk
+            <Legend verticalAlign="top" />
             <Tooltip content={<CustomTooltip />} />
         </LineChart>;
 

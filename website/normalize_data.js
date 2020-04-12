@@ -305,7 +305,6 @@ function fillarrayholes(v, increaseonly = true) {
 }
 
 function fillholes() {
-
     for (s in AllData) {
         state = AllData[s];
         for (c in state) {
