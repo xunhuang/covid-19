@@ -25,16 +25,20 @@ const GraphSectionUS = withRouter((props) => {
     const tabs = [
         <BasicGraphNewCases data={graphdata} logScale={false} />,
         <GraphDeathProjectionUS />,
-        <GraphAllBedProjectionUS />,
+        // <GraphAllBedProjectionUS />,
         <BasicGraphRecoveryAndDeath data={graphdata} logScale={false} />,
         <GraphDaysToDoubleOverTime data={props.country.daysToDoubleTimeSeries()} />,
         <GraphUSTesting />,
         <GraphUSHospitalization />,
     ]
     let graphlistSection = <MyTabs
-        labels={["Cases", "Peak Death", "Peak Hospitalization", "Recovery", "Days to 2x", "Tests", "Hospitalization"]}
+        labels={["Cases", "Peak Death",
+            // "Peak Hospitalization", 
+            "Recovery", "Days to 2x", "Tests", "Hospitalization"]}
         urlQueryKey="graph"
-        urlQueryValues={['cases', "peakdeath", "peakhospital", 'recovery_death', "days2x", 'testing', 'hospitalization']}
+        urlQueryValues={['cases', "peakdeath",
+            // "peakhospital", 
+            'recovery_death', "days2x", 'testing', 'hospitalization']}
         tabs={tabs}
         history={props.history}
     />;
