@@ -109,8 +109,8 @@ const useStyles = makeStyles(theme => ({
 const ResourceSectionOne = (props) => {
     const classes = useStyles();
     return <List>
-        {props.tab.map(item =>
-            <ListItem onClick={() => { window.open(item.Url) }} >
+        {props.tab.map((item, i) =>
+            <ListItem onClick={() => { window.open(item.Url) }} key={i}>
                 <ListItemAvatar>
                     <Avatar variant="rounded" src={item.ThumbnailURL} />
                 </ListItemAvatar>
@@ -245,8 +245,8 @@ const SocialMediaButtons = (props) => {
                 [RedditShareButton, RedditIcon],
                 [PinterestShareButton, PinterestIcon],
                 [EmailShareButton, EmailIcon],
-            ].map(([Button, Icon]) => (
-                <Button url={props.url} quote={props.quote}>
+            ].map(([Button, Icon], i) => (
+                <Button url={props.url} quote={props.quote} key={i}>
                   <Icon size={32} round={true} />
                 </Button>
             ))}
@@ -344,13 +344,13 @@ const withHeader = (comp, props) => {
             </SectionHeader>
             <ResourceSection />
             <SectionHeader id="discussion">
-                <Grid container alignItems="center" justifyContent="center">
+                <Grid container alignItems="center">
                     <Grid item>
                         <Typography variant="h5" noWrap id="discussion">
                             Discussions
                     </Typography>
                     </Grid>
-                    <Grid xs />
+                    <Grid item xs />
                     <Grid item>
                         <Typography noWrap variant="body2" className={classes.supportUs}>
                             <MaterialLink target="_blank" href={donationPageUrl}>
