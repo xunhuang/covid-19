@@ -17,6 +17,7 @@ const fitExponentialTrendingLine = (xs, ys, minY) => {
     }
     return {
         daysToDouble: 1 / results.slope,
+        dailyGrowthRate: Math.exp(Math.log(2) * results.slope) - 1,
         fittedYs: results.fittedYs.map(y => Math.exp(y * Math.log(2)))
     };
 };

@@ -155,13 +155,13 @@ const GraphOptionsMenuProps = {
     },
 };
 
-const daysToDoubleLabelChildren = (options) => {
-    const { x, y, showlog, daysToDouble } = options;
+const trendingLineLabelChildren = (options) => {
+    const { x, y, showlog, dailyGrowthRate } = options;
     return [
         // Placeholder to accomodate label
         <ReferenceArea fillOpacity="0" alwaysShow x1={x} x2={x} y1={y * (showlog ? 4 : 1.1)} y2={y * (showlog ? 4 : 1.1)} key={0} />,
         <ReferenceArea fillOpacity="0" x1={x} x2={x} y1={y} y2={y} key={1}>
-            <Label value={`Double every ${daysToDouble.toFixed(1)} days*`} offset={5} position="insideBottomRight" />
+            <Label value={`Grew by ${(dailyGrowthRate * 100).toFixed(0)}% per day*`} offset={5} position="insideBottomRight" />
         </ReferenceArea>
     ];
 }
@@ -278,14 +278,14 @@ const BasicGraphNewCases = (props) => {
     const daysFromStart = datesToDays(startDate, dates);
     const confirmed = data.map(d => d.confirmed);
     const results = fitExponentialTrendingLine(daysFromStart, confirmed, 10);
-    let daysToDouble = null;
+    let dailyGrowthRate = null;
     let lastTrendingData = null;
     if (results != null) {
         data = data.map((d, idx) => {
             d.trending_line = results.fittedYs[idx];
             return d;
         });
-        daysToDouble = results.daysToDouble;
+        dailyGrowthRate = results.dailyGrowthRate;
         lastTrendingData = data[data.length - 1];
     }
 
@@ -426,10 +426,10 @@ const BasicGraphNewCases = (props) => {
                 {vRefLines}
                 {hRefLines}
 
-                {state.showConfirmed && lastTrendingData != null && daysToDoubleLabelChildren({
+                {state.showConfirmed && lastTrendingData != null && trendingLineLabelChildren({
                     x: lastTrendingData.name,
                     y: lastTrendingData.trending_line,
-                    daysToDouble,
+                    dailyGrowthRate,
                     showlog: state.showlog
                 }
                 )}
