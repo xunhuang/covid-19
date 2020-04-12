@@ -156,12 +156,12 @@ const GraphOptionsMenuProps = {
 };
 
 const trendingLineLabelChildren = (options) => {
-    const { x, y, showlog, dailyGrowthRate } = options;
+    const { x, y, showlog, dailyGrowthRate, daysToDouble } = options;
     return [
         // Placeholder to accomodate label
         <ReferenceArea fillOpacity="0" alwaysShow x1={x} x2={x} y1={y * (showlog ? 4 : 1.1)} y2={y * (showlog ? 4 : 1.1)} key={0} />,
         <ReferenceArea fillOpacity="0" x1={x} x2={x} y1={y} y2={y} key={1}>
-            <Label value={`Grew by ${(dailyGrowthRate * 100).toFixed(0)}% per day*`} offset={5} position="insideBottomRight" />
+            <Label value={`${daysToDouble.toFixed(0)} days to double (+${(dailyGrowthRate * 100).toFixed(0)}% daily)`} offset={5} position="insideBottomRight" />
         </ReferenceArea>
     ];
 }
@@ -279,6 +279,7 @@ const BasicGraphNewCases = (props) => {
     const confirmed = data.map(d => d.confirmed);
     const results = fitExponentialTrendingLine(daysFromStart, confirmed, 10);
     let dailyGrowthRate = null;
+    let daysToDouble = null;
     let lastTrendingData = null;
     if (results != null) {
         data = data.map((d, idx) => {
@@ -286,6 +287,7 @@ const BasicGraphNewCases = (props) => {
             return d;
         });
         dailyGrowthRate = results.dailyGrowthRate;
+        daysToDouble = results.daysToDouble;
         lastTrendingData = data[data.length - 1];
     }
 
@@ -430,6 +432,7 @@ const BasicGraphNewCases = (props) => {
                     x: lastTrendingData.name,
                     y: lastTrendingData.trending_line,
                     dailyGrowthRate,
+                    daysToDouble,
                     showlog: state.showlog
                 }
                 )}
