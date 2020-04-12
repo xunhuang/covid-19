@@ -3,6 +3,7 @@ import { makeStyles, useTheme } from '@material-ui/core/styles';
 import { myShortNumber } from "./Util.js";
 import { withRouter } from 'react-router-dom'
 import { Typography } from '@material-ui/core';
+import Paper from '@material-ui/core/Paper';
 import { Link } from 'react-router-dom';
 import { SectionHeader } from "./CovidUI"
 import useMediaQuery from '@material-ui/core/useMediaQuery';
@@ -20,6 +21,7 @@ const useStyles = makeStyles(theme => ({
         justifyContent: "space-between",
         display: "flex",
         flexWrap: "wrap",
+        margin: '16px 0',
     },
     tagContainerNoBeds: {
         flexWrap: "nowrap",
@@ -94,11 +96,23 @@ const useStyles = makeStyles(theme => ({
         padding: theme.spacing(0, 1),
         textAlign: "left",
     },
-    sectionHeader: {
-        "border-left": ".1rem solid #f50057",
-        margin: 3,
-        padding: 3,
-    }
+    summary: {
+        alignItems: 'center',
+        display: 'flex',
+        flexWrap: 'wrap',
+        padding: '12px',
+        margin: '16px 8px',
+    },
+    summaryLabel: {
+        width: '100%',
+    },
+    summaryTotal: {
+        flexGrow: 1,
+        fontSize: '2em',
+    },
+    summaryChange: {
+        flexGrow: 1,
+    },
 }));
 
 const USSummarySection = withRouter((props) => {
@@ -311,61 +325,41 @@ const USInfoTopWidget = withRouter((props) => {
 
 const ShortSummary = (props) => {
     const classes = useStyles();
+
+    const pop = (label, total, change) =>
+        <Paper className={classes.summary}>
+            <div className={classes.summaryLabel}>
+                {label}
+            </div>
+            <div className={classes.summaryTotal}>
+                {total}
+            </div>
+            <div className={classes.summaryChange}>
+                {change}
+            </div>
+        </Paper>;
+
     return (
         <SectionHeader>
-            <Typography variant="h6" noWrap >
-                {props.title}
-            </Typography>
-            <div className={`${classes.rowSummary} ${props.showBeds ? '' : classes.rowNoBeds}`} >
-                <div></div>
-                <section className={classes.tagSection}>
-                    <div className={classes.topTag}>
-                        +{myShortNumber(props.newcases)}
-                    </div>
-                    <div className={classes.mainTag}>
-                        {myShortNumber(props.confirmed)} </div>
-                    <div className={classes.smallTag}>
-                        Confirmed </div>
-                </section>
-
-                {props.showRecovered &&
-                    <section className={classes.tagSection}>
-                        <Typography className={classes.topTag} variant="body2" noWrap >
-                            +{myShortNumber(props.recoveredNew)}
-                        </Typography>
-                        <div className={classes.mainTag}>
-                            {myShortNumber(props.recovered)}</div>
-                        <div className={classes.smallTag}>
-                            Recovered
-                    </div>
-                    </section>
-                }
-
-                {props.showDeaths &&
-                    <section className={classes.tagSection}>
-                        <Typography className={classes.topTag} variant="body2" noWrap >
-                            +{myShortNumber(props.deathsNew)}
-                        </Typography>
-                        <div className={classes.mainTag}>
-                            {myShortNumber(props.deaths)}</div>
-                        <div className={classes.smallTag}>
-                            Deaths
-                    </div>
-                    </section>
-                }
-
-                {props.showBeds && <section className={classes.tagSection}>
-                    <Typography className={classes.topTag} variant="body2" noWrap >
-                        {myShortNumber(props.hospitals)} Hosp.
-          </Typography>
-                    <div className={classes.mainTag}>
-                        {myShortNumber(props.beds)}</div>
-                    <div className={classes.smallTag}>
-                        Beds
-                    </div>
-                </section>}
-                <div></div>
-            </div>
+            {pop(
+                'Confirmed',
+                myShortNumber(props.confirmed),
+                `+${myShortNumber(props.newcases)}`)}
+            {props.showRecovered &&
+                pop(
+                    'Recovered',
+                    myShortNumber(props.recovered),
+                    `+${myShortNumber(props.recoveredNew)}`)}
+            {props.showDeaths &&
+                pop(
+                    'Deaths',
+                    myShortNumber(props.deaths),
+                    `+${myShortNumber(props.deathsNew)}`)}
+            {props.showBeds &&
+                pop(
+                    'Hospitalized',
+                    myShortNumber(props.beds),
+                    '')}
         </SectionHeader>
     );
 };

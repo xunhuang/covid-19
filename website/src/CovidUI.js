@@ -1,22 +1,21 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import Divider from '@material-ui/core/Divider';
 
 const useStyles = makeStyles(theme => ({
     sectionHeader: {
-        "border-left": ".1rem solid #f50057",
-        "border-bottom": ".1rem solid #f3f3f3",
-        margin: 3,
-        padding: 3,
+      display: 'flex',
+      justifyContent: 'center',
     }
 }));
 
 const SectionHeader = (props) => {
     const classes = useStyles();
-    return (
+    return <>
         <div className={classes.sectionHeader}>
             {props.children}
         </div>
-    );
+    </>;
 }
 
 
