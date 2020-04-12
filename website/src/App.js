@@ -1,10 +1,10 @@
 import React from 'react';
 import { Switch, Redirect, Route, withRouter } from 'react-router-dom'
 import { BrowserRouter } from 'react-router-dom';
+import { ThemeProvider } from '@material-ui/core/styles';
 import { Splash } from './Splash.js';
 import { fetchCounty } from "./GeoLocation"
 import { logger } from "./AppModule"
-import { InfectionMap } from "./Maps";
 import { PageUS } from "./PageUS"
 import { PageState } from "./PageState"
 import { PageCounty } from "./PageCounty"
@@ -12,13 +12,16 @@ import { PageMetro } from "./PageMetro"
 import { Page404 } from "./Page404"
 import { Country } from "./UnitedStates";
 import { CountryContext } from "./CountryContext";
+import { compactTheme } from "./Theme.js";
 import { reverse } from 'named-urls';
 import routes from "./Routes";
 import history from "./history";
 
 const App = (props) => {
   return <BrowserRouter>
-    <MainApp  {...props} history={history} />
+    <ThemeProvider theme={compactTheme}>
+      <MainApp  {...props} history={history} />
+    </ThemeProvider>
   </BrowserRouter>;
 };
 
@@ -111,7 +114,6 @@ const MainApp = withRouter((props) => {
         <MyRoute exact path={routes.state} component={PageState} />
         <MyRoute exact path={routes.united_states} component={PageUS} />
         <MyRoute exact path={routes.metro} component={PageMetro} />
-        <MyRoute exact path={routes.united_states_map} component={InfectionMap} />
         <MyRoute exact path={routes.united_states_recovery} component={PageUS} />
         <MyRoute exact path="*" component={Page404} status={404} />
       </Switch>

@@ -236,42 +236,22 @@ const DonateButton = (props) => {
 
 const SocialMediaButtons = (props) => {
     const classes = useStyles();
-    return <div className={classes.SocialMediaRow}>
-        <FacebookShareButton
-            url={props.url}
-            quote={props.quote}
-        >
-            <FacebookIcon size={32} round={true} />
-        </FacebookShareButton>
-        <TwitterShareButton
-            url={props.url}
-            quote={props.quote}
-        >
-            <TwitterIcon size={32} round={true} />
-        </TwitterShareButton>
 
-        <RedditShareButton
-            url={props.url}
-            quote={props.quote}
-        >
-            <RedditIcon size={32} round={true} />
-        </RedditShareButton>
-
-        <PinterestShareButton
-            url={props.url}
-            quote={props.quote}
-        >
-            <PinterestIcon size={32} round={true} />
-        </PinterestShareButton>
-
-        <EmailShareButton
-            url={props.url}
-            quote={props.quote}
-        >
-            <EmailIcon size={32} round={true} />
-        </EmailShareButton>
-
-    </div>
+    return (
+        <div className={classes.SocialMediaRow}>
+            {[
+                [FacebookShareButton, FacebookIcon],
+                [TwitterShareButton, TwitterIcon],
+                [RedditShareButton, RedditIcon],
+                [PinterestShareButton, PinterestIcon],
+                [EmailShareButton, EmailIcon],
+            ].map(([Button, Icon]) => (
+                <Button url={props.url} quote={props.quote}>
+                  <Icon size={32} round={true} />
+                </Button>
+            ))}
+        </div>
+    );
 }
 
 const quote = "Best real-time county-level COVID-19 dashboard. Get the latest trends about cases, recovery, testing and hospitalization as well as resources for mental health and well-being.";

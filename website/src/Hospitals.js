@@ -5,8 +5,6 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import { makeStyles } from '@material-ui/core/styles';
-import { ThemeProvider } from '@material-ui/core'
-import { createMuiTheme } from '@material-ui/core/styles';
 import { Typography } from '@material-ui/core';
 import { Link } from '@material-ui/core';
 
@@ -14,21 +12,7 @@ const useStyles = makeStyles(theme => ({
     table: {
         width: "100%"
     },
-    link: {
-        padding: "5",
-        marign: "5",
-    },
 }));
-
-const compact = createMuiTheme({
-    overrides: {
-        MuiTableCell: {
-            sizeSmall: {  //This can be referred from Material UI API documentation. 
-                padding: '1px 1px 1px 1px',
-            },
-        },
-    },
-});
 
 const DetailCaseListWidget = (props) => {
     const classes = useStyles();
@@ -40,10 +24,11 @@ const DetailCaseListWidget = (props) => {
         <>
             <Typography variant="body1">
                 Please follow
-                <Link className={classes.link} href="https://www.cdc.gov/coronavirus/2019-ncov/if-you-are-sick/steps-when-sick.html">
+                {' '}
+                <Link href="https://www.cdc.gov/coronavirus/2019-ncov/if-you-are-sick/steps-when-sick.html">
                     CDC guidance.
                 </Link>
-
+                {' '}
                 Make contact
                 with your doctor to make arrangments if
                 you suspect you are sick. Do not show up at a hospital unannounced
@@ -60,19 +45,17 @@ const DetailCaseListWidget = (props) => {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    <ThemeProvider theme={compact}>
-                        {hospitals.map(row => (
-                            <TableRow key={row.id}>
-                                <TableCell component="th" scope="row">
-                                    {row.HOSPITAL_NAME}
-                                </TableCell>
-                                <TableCell align="center">{row.HQ_CITY}</TableCell>
-                                <TableCell align="left">{row.NUM_LICENSED_BEDS ? row.NUM_LICENSED_BEDS : "-"}</TableCell>
-                                <TableCell align="left">{row.NUM_STAFFED_BEDS ? row.NUM_STAFFED_BEDS : "-"}</TableCell>
-                                <TableCell align="left">{row.NUM_ICU_BEDS ? row.NUM_ICU_BEDS : "-"}</TableCell>
-                            </TableRow>
-                        ))}
-                    </ThemeProvider>
+                    {hospitals.map(row => (
+                        <TableRow key={row.id}>
+                            <TableCell component="th" scope="row">
+                                {row.HOSPITAL_NAME}
+                            </TableCell>
+                            <TableCell align="center">{row.HQ_CITY}</TableCell>
+                            <TableCell align="left">{row.NUM_LICENSED_BEDS ? row.NUM_LICENSED_BEDS : "-"}</TableCell>
+                            <TableCell align="left">{row.NUM_STAFFED_BEDS ? row.NUM_STAFFED_BEDS : "-"}</TableCell>
+                            <TableCell align="left">{row.NUM_ICU_BEDS ? row.NUM_ICU_BEDS : "-"}</TableCell>
+                        </TableRow>
+                    ))}
                 </TableBody>
             </Table >
             <Typography variant="body2" noWrap>
@@ -85,11 +68,7 @@ const DetailCaseListWidget = (props) => {
 }
 
 function snapshotToArray(snapshot) {
-    var returnArr = []
-    snapshot.forEach(function (childSnapshot) {
-        returnArr.push(childSnapshot.data());
-    });
-    return returnArr;
+    return snapshot.map(childSnapshot => childSnapshot.data());
 };
 
 async function fetchCountyHospitals(county) {
@@ -98,9 +77,7 @@ async function fetchCountyHospitals(county) {
     return await db.collection("DEFINITIVE_HOSPITALS")
         .where("COUNTY_NAME", "==", county.name)
         .where("STATE_NAME", "==", county.state().name)
-        .get().then((querySnapshot) => {
-            return snapshotToArray(querySnapshot);
-        });
+        .get().then(querySnapshot => snapshotToArray(querySnapshot));
 }
 
 const CountyHospitalsWidget = (props) => {

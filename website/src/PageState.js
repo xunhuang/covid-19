@@ -12,7 +12,7 @@ import { BasicGraphNewCases } from "./GraphNewCases.js"
 import Typography from '@material-ui/core/Typography'
 import { BasicGraphRecoveryAndDeath } from "./GraphRecoveryAndDeath.js"
 import { Redirect } from 'react-router-dom'
-import { MapState } from "./MapNew";
+import { MapState } from "./Map";
 import { GraphDaysToDoubleOverTime } from "./GraphDaysToDoubleOverTime"
 import { GraphDeathProjectionState, GraphAllBedProjectionState } from "./GraphDeathProjection.js"
 
