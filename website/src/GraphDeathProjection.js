@@ -21,6 +21,40 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
+const AllBedsTooltip = (props) => {
+    const classes = useStyles();
+    const { active } = props;
+    if (active) {
+        const { payload, label } = props;
+        let allbed_mean;
+        let allbedTotal_mean;
+        payload.map(p => {
+            p = p.payload;
+            if ("allbed_mean" in p) {
+                allbed_mean = p.allbed_mean;
+            }
+            if ("allbedTotal_mean" in p) {
+                allbedTotal_mean = p.allbedTotal_mean;
+            }
+            return null;
+        });
+        return (
+            <div className={classes.customtooltip}>
+                <Typography variant="body1" noWrap>
+                    {label}
+                </Typography>
+                <Typography variant="body2" noWrap>
+                    {`Projected Daily Hospitalization: ${allbed_mean}`}
+                </Typography>
+                <Typography variant="body2" noWrap>
+                    {`Projected Total: ${allbedTotal_mean}`}
+                </Typography>
+            </div>
+        );
+    }
+    return null;
+}
+
 const DeathTooltip = (props) => {
     const classes = useStyles();
     const { active } = props;
@@ -56,16 +90,6 @@ const DeathTooltip = (props) => {
 }
 const usdata = require("./data/us_only.json")
 
-const GraphDeathProjectionState = (props) => {
-    let data = usdata.filter(d => d.location_name === props.state.name);
-    const [formateddata, max_date] = formatData(data, keydeath);
-    return <GraphDeathProjectionRender
-        data={formateddata}
-        max_date={max_date}
-        data_keys={keydeath}
-        tooltip={<DeathTooltip />}
-    />;
-}
 const keydeath = {
     key_lower: "deaths_lower",
     key_upper: "deaths_upper",
@@ -77,6 +101,29 @@ const keydeath = {
     key_mean_cumulative: "deathsTotal_mean",
 }
 
+const keybeds = {
+    key_lower: "allbed_lower",
+    key_upper: "allbed_upper",
+    key_delta: "delta",
+    key_mean: "allbed_mean",
+    key_upper_cumulative: "dallbedotal_upper",
+    key_lower_cumulative: "allbedTotal_lower",
+    key_delta_cumulative: "allbedTotal_delta",
+    key_mean_cumulative: "allbedTotal_mean",
+}
+
+const GraphDeathProjectionState = (props) => {
+    let data = usdata.filter(d => d.location_name === props.state.name);
+    const [formateddata, max_date] = formatData(data, keydeath);
+    return <GraphDeathProjectionRender
+        data={formateddata}
+        max_date={max_date}
+        max_label="Peak Death"
+        data_keys={keydeath}
+        tooltip={<DeathTooltip />}
+    />;
+}
+
 const GraphDeathProjectionUS = (props) => {
     let data = usdata.filter(d => d.location_name === "United States of America");
     const [formateddata, max_date] = formatData(data, keydeath);
@@ -84,8 +131,37 @@ const GraphDeathProjectionUS = (props) => {
     return <GraphDeathProjectionRender
         data={formateddata}
         max_date={max_date}
+        max_label="Peak Death"
         data_keys={keydeath}
         tooltip={<DeathTooltip />}
+    />;
+}
+
+//
+// beds
+//
+const GraphAllBedProjectionState = (props) => {
+    let data = usdata.filter(d => d.location_name === props.state.name);
+    const [formateddata, max_date] = formatData(data, keybeds);
+    return <GraphDeathProjectionRender
+        data={formateddata}
+        max_date={max_date}
+        max_label="Peak Hospitalization"
+        data_keys={keybeds}
+        tooltip={<AllBedsTooltip />}
+    />;
+}
+
+const GraphAllBedProjectionUS = (props) => {
+    let data = usdata.filter(d => d.location_name === "United States of America");
+    const [formateddata, max_date] = formatData(data, keybeds);
+
+    return <GraphDeathProjectionRender
+        data={formateddata}
+        max_date={max_date}
+        max_label="Peak Hospitalization"
+        data_keys={keybeds}
+        tooltip={<AllBedsTooltip />}
     />;
 }
 
@@ -169,7 +245,7 @@ const GraphDeathProjectionRender = (props) => {
             <ComposedChart data={data} margin={{ top: 5, right: 30, left: 5, bottom: 5 }} >
                 <XAxis dataKey="name" />
                 <YAxis yAxisId={0} tickFormatter={formatYAxis} />
-                <ReferenceLine x={moment(max_date, "MM/DD/YYYY").format("M/D")} label={{ value: "Peak Death", fill: '#a3a3a3' }} stroke="#e3e3e3" strokeWidth={3} />
+                <ReferenceLine x={moment(max_date, "MM/DD/YYYY").format("M/D")} label={{ value: props.max_label, fill: '#a3a3a3' }} stroke="#e3e3e3" strokeWidth={3} />
                 <CartesianGrid stroke="#d5d5d5" strokeDasharray="5 5" />
                 <Line type="monotone" dataKey={data_keys.key_mean} stroke="#000000" dot={{ r: 1 }} yAxisId={0} strokeWidth={3} />
                 <Area type='monotone' dataKey={data_keys.key_lower} stackId="1" stroke='#8884d8' fill='#FFFFFF' />
@@ -186,4 +262,9 @@ const GraphDeathProjectionRender = (props) => {
     </>
 }
 
-export { GraphDeathProjectionState, GraphDeathProjectionUS };
+export {
+    GraphDeathProjectionState,
+    GraphDeathProjectionUS,
+    GraphAllBedProjectionState,
+    GraphAllBedProjectionUS,
+}
