@@ -155,13 +155,13 @@ const GraphOptionsMenuProps = {
     },
 };
 
-const daysToDoubleLabelChildren = (options) => {
-    const { x, y, showlog, daysToDouble } = options;
+const trendingLineLabelChildren = (options) => {
+    const { x, y, showlog, dailyGrowthRate, daysToDouble } = options;
     return [
         // Placeholder to accomodate label
         <ReferenceArea fillOpacity="0" alwaysShow x1={x} x2={x} y1={y * (showlog ? 4 : 1.1)} y2={y * (showlog ? 4 : 1.1)} key={0} />,
         <ReferenceArea fillOpacity="0" x1={x} x2={x} y1={y} y2={y} key={1}>
-            <Label value={`Double every ${daysToDouble.toFixed(1)} days*`} offset={5} position="insideBottomRight" />
+            <Label value={`${daysToDouble.toFixed(0)} days to double (+${(dailyGrowthRate * 100).toFixed(0)}% daily)`} offset={5} position="insideBottomRight" />
         </ReferenceArea>
     ];
 }
@@ -278,6 +278,7 @@ const BasicGraphNewCases = (props) => {
     const daysFromStart = datesToDays(startDate, dates);
     const confirmed = data.map(d => d.confirmed);
     const results = fitExponentialTrendingLine(daysFromStart, confirmed, 10);
+    let dailyGrowthRate = null;
     let daysToDouble = null;
     let lastTrendingData = null;
     if (results != null) {
@@ -285,6 +286,7 @@ const BasicGraphNewCases = (props) => {
             d.trending_line = results.fittedYs[idx];
             return d;
         });
+        dailyGrowthRate = results.dailyGrowthRate;
         daysToDouble = results.daysToDouble;
         lastTrendingData = data[data.length - 1];
     }
@@ -426,9 +428,10 @@ const BasicGraphNewCases = (props) => {
                 {vRefLines}
                 {hRefLines}
 
-                {state.showConfirmed && lastTrendingData != null && daysToDoubleLabelChildren({
+                {state.showConfirmed && lastTrendingData != null && trendingLineLabelChildren({
                     x: lastTrendingData.name,
                     y: lastTrendingData.trending_line,
+                    dailyGrowthRate,
                     daysToDouble,
                     showlog: state.showlog
                 }
