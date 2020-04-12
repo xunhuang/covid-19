@@ -33,6 +33,7 @@ export class Country {
   constructor() {
     this.covidRaw_ = CovidData;
     this.metrosById_ = new Map();
+    this.metrosByCountyId_ = new Map();
     this.statesById_ = new Map();
     this.statesByTwoLetterName_ = new Map();
     this.countiesById_ = new Map();
@@ -56,7 +57,13 @@ export class Country {
     for (const [id, data] of Object.entries(this.covidRaw_.Metros)) {
       const state = this.statesById_.get(data.StateFIPS);
       state.addMetro(id, data, this);
+
       this.metrosById_.set(id, state.metroForId(id));
+      let metro = state.metroForId(id);
+      this.metrosById_.set(id, metro);
+      for (const county of metro.allCounties()) {
+        this.metrosByCountyId_.set(county.id, metro);
+      }
     }
 
     for (const data of CountyGeoData) {
@@ -66,6 +73,10 @@ export class Country {
     }
 
     this.statesById_.forEach(state => state.reindex());
+  }
+
+  metroContainingCounty(county) {
+    return this.metrosByCountyId_.get(county.id);
   }
 
   countyForId(id) {
@@ -380,7 +391,7 @@ export class County {
   }
 
   metro() {
-    return this.state_.metroContainingCounty(this);
+    return this.state_.country().metroContainingCounty(this);
   }
 
   state() {

@@ -73,7 +73,7 @@ const useStyles = makeStyles(theme => ({
         paddingRight: 10,
     },
     qpContainer: {
-        display: 'flex',
+        display: 'none',
         background: '#e3e3e3',
         borderWidth: "1px",
         padding: 15,
