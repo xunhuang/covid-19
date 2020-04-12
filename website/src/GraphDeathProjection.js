@@ -61,13 +61,31 @@ const usdata = require("./data/us_only.json")
 const GraphDeathProjectionState = (props) => {
     let data = usdata.filter(d => d.location_name === props.state.name);
     const [formateddata, max_date] = formatData(data);
-    return <GraphDeathProjectionRender data={formateddata} max_date={max_date} />;
+    return <GraphDeathProjectionRender
+        data={formateddata}
+        max_date={max_date}
+        key_lower="deaths_lower"
+        key_delta="delta"
+        key_mean="deaths_mean"
+        key_lower_cumulative="deathsTotal_lower"
+        key_delta_cumulative="deathsTotal_delta"
+        key_mean_cumulative="deathsTotal_mean"
+    />;
 }
 
 const GraphDeathProjectionUS = (props) => {
     let data = usdata.filter(d => d.location_name === "United States of America");
     const [formateddata, max_date] = formatData(data);
-    return <GraphDeathProjectionRender data={formateddata} max_date={max_date} />;
+    return <GraphDeathProjectionRender
+        data={formateddata}
+        max_date={max_date}
+        key_lower="deaths_lower"
+        key_delta="delta"
+        key_mean="deaths_mean"
+        key_lower_cumulative="deathsTotal_lower"
+        key_delta_cumulative="deathsTotal_delta"
+        key_mean_cumulative="deathsTotal_mean"
+    />;
 }
 
 const formatData = (data) => {
@@ -148,12 +166,12 @@ const GraphDeathProjectionRender = (props) => {
                 <YAxis yAxisId={0} tickFormatter={formatYAxis} />
                 <ReferenceLine x={moment(max_date, "MM/DD/YYYY").format("M/D")} label={{ value: "Peak Death", fill: '#a3a3a3' }} stroke="#e3e3e3" strokeWidth={3} />
                 <CartesianGrid stroke="#d5d5d5" strokeDasharray="5 5" />
-                <Line type="monotone" dataKey="deaths_mean" stroke="#000000" dot={{ r: 1 }} yAxisId={0} strokeWidth={3} />
-                <Area type='monotone' dataKey='deaths_lower' stackId="1" stroke='#8884d8' fill='#FFFFFF' />
-                <Area type='monotone' dataKey='delta' stackId="1" stroke='#82ca9d' fill='#82ca9d' />
-                {state.showall && <Line type="monotone" dataKey="deathsTotal_mean" stroke="#000000" yAxisId={0} strokeWidth={3} />}
-                {state.showall && <Area type='monotone' dataKey='deathsTotal_lower' stackId="2" stroke='#8884d8' fill='#FFFFFF' />}
-                {state.showall && <Area type='monotone' dataKey='deathsTotal_delta' stackId="2" stroke='#82ca9d' fill='#82ca9d' />}
+                <Line type="monotone" dataKey={props.key_mean} stroke="#000000" dot={{ r: 1 }} yAxisId={0} strokeWidth={3} />
+                <Area type='monotone' dataKey={props.key_lower} stackId="1" stroke='#8884d8' fill='#FFFFFF' />
+                <Area type='monotone' dataKey={props.key_delta} stackId="1" stroke='#82ca9d' fill='#82ca9d' />
+                {state.showall && <Line type="monotone" dataKey={props.key_lower_mean} stroke="#000000" yAxisId={0} strokeWidth={3} />}
+                {state.showall && <Area type='monotone' dataKey={props.key_lower_cumulative} stackId="2" stroke='#8884d8' fill='#FFFFFF' />}
+                {state.showall && <Area type='monotone' dataKey={props.key_lower_upper} stackId="2" stroke='#82ca9d' fill='#82ca9d' />}
                 <Tooltip content={<CustomTooltip />} />
             </ComposedChart>
         </ResponsiveContainer>
