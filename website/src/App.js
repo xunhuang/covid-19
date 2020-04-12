@@ -5,7 +5,6 @@ import { ThemeProvider } from '@material-ui/core/styles';
 import { Splash } from './Splash.js';
 import { fetchCounty } from "./GeoLocation"
 import { logger } from "./AppModule"
-import { InfectionMap } from "./Maps";
 import { PageUS } from "./PageUS"
 import { PageState } from "./PageState"
 import { PageCounty } from "./PageCounty"
@@ -115,7 +114,6 @@ const MainApp = withRouter((props) => {
         <MyRoute exact path={routes.state} component={PageState} />
         <MyRoute exact path={routes.united_states} component={PageUS} />
         <MyRoute exact path={routes.metro} component={PageMetro} />
-        <MyRoute exact path={routes.united_states_map} component={InfectionMap} />
         <MyRoute exact path={routes.united_states_recovery} component={PageUS} />
         <MyRoute exact path="*" component={Page404} status={404} />
       </Switch>
