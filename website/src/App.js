@@ -1,6 +1,7 @@
 import React from 'react';
 import { Switch, Redirect, Route, withRouter } from 'react-router-dom'
 import { BrowserRouter } from 'react-router-dom';
+import { ThemeProvider } from '@material-ui/core/styles';
 import { Splash } from './Splash.js';
 import { fetchCounty } from "./GeoLocation"
 import { logger } from "./AppModule"
@@ -12,13 +13,16 @@ import { PageMetro } from "./PageMetro"
 import { Page404 } from "./Page404"
 import { Country } from "./UnitedStates";
 import { CountryContext } from "./CountryContext";
+import { compactTheme } from "./Theme.js";
 import { reverse } from 'named-urls';
 import routes from "./Routes";
 import history from "./history";
 
 const App = (props) => {
   return <BrowserRouter>
-    <MainApp  {...props} history={history} />
+    <ThemeProvider theme={compactTheme}>
+      <MainApp  {...props} history={history} />
+    </ThemeProvider>
   </BrowserRouter>;
 };
 

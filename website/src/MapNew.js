@@ -3,8 +3,6 @@ import { ComposableMap, Geographies, Geography } from "react-simple-maps";
 import ToggleButton from '@material-ui/lab/ToggleButton';
 import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
 import ReactTooltip from "react-tooltip";
-import { createMuiTheme } from "@material-ui/core/styles";
-import { ThemeProvider } from "@material-ui/core";
 
 
 const geoUrl = "https://cdn.jsdelivr.net/npm/us-atlas@3/counties-10m.json";
@@ -88,17 +86,6 @@ const MapNew = (props) => {
     );
 };
 
-const compact = createMuiTheme({
-    overrides: {
-        MuiToggleButton: {
-            sizeSmall: {
-                //This can be referred from Material UI API documentation.
-                maxHeight: 24,
-            }
-        }
-    }
-});
-
 const MapState = (props) => {
     const [alignment, setAlignment] = React.useState('left');
 
@@ -106,23 +93,20 @@ const MapState = (props) => {
         setAlignment(newAlignment);
     };
     return <div>
-        <ThemeProvider theme={compact}>
-
-            <ToggleButtonGroup
-                value={alignment}
-                exclusive
-                size="small"
-                onChange={handleAlignment}
-                aria-label="text alignment"
-            >
-                <ToggleButton size="small" value="left" aria-label="left aligned">
-                    Confirmed            </ToggleButton>
-                <ToggleButton value="center" aria-label="centered">
-                    Death </ToggleButton>
-                <ToggleButton value="right" aria-label="right aligned">
-                    Days to Double            </ToggleButton>
-            </ToggleButtonGroup>
-        </ThemeProvider>
+        <ToggleButtonGroup
+            value={alignment}
+            exclusive
+            size="small"
+            onChange={handleAlignment}
+            aria-label="text alignment"
+        >
+            <ToggleButton size="small" value="left" aria-label="left aligned">
+                Confirmed            </ToggleButton>
+            <ToggleButton value="center" aria-label="centered">
+                Death </ToggleButton>
+            <ToggleButton value="right" aria-label="right aligned">
+                Days to Double            </ToggleButton>
+        </ToggleButtonGroup>
         {(alignment === "left") &&
             <MapStateConfirmed {...props} />
         }

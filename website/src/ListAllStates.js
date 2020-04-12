@@ -10,23 +10,11 @@ import {
     myGoodShortNumber,
     getStateNameByStateCode,
 } from "./Util.js";
-import { ThemeProvider } from '@material-ui/core'
-import { createMuiTheme } from '@material-ui/core/styles';
 import { Link as MaterialLink } from '@material-ui/core';
 import { Link as RouterLink } from 'react-router-dom';
 import { EnhancedTableHead, stableSort, getComparator } from "./TableSortHelper";
 import { reverse } from 'named-urls';
 import routes from "./Routes"
-
-const compact = createMuiTheme({
-    overrides: {
-        MuiTableCell: {
-            sizeSmall: {  //This can be referred from Material UI API documentation.
-                padding: '1px 1px 1px 1px',
-            },
-        },
-    },
-});
 
 const useStyles = makeStyles(theme => ({
     row: {
@@ -141,18 +129,16 @@ const AllStateListCapita = (props) => {
                     stableSort(extendlist, getComparator(order, orderBy))
                         .map(row => {
                             return <TableRow key={row.state}>
-                                <ThemeProvider theme={compact}>
-                                    <TableCell component="th" scope="row">
-                                        <MaterialLink component={RouterLink} to={reverse(routes.state, { state: row.state })}>
-                                            {row.statename}
-                                        </MaterialLink>
-                                    </TableCell>
-                                    <TableCell align="right">{row.confirmed}</TableCell>
-                                    <TableCell align="right">{myGoodWholeNumber(row.partsPerMil)}</TableCell>
-                                    <TableCell align="right">{myGoodShortNumber(row.death)}</TableCell>
-                                    <TableCell align="right">{myGoodWholeNumber(row.deathsPerMil)}</TableCell>
-                                    <TableCell align="right">{(row.pop === 0) ? "-" : myGoodShortNumber(row.pop)}</TableCell>
-                                </ThemeProvider>
+                                <TableCell component="th" scope="row">
+                                    <MaterialLink component={RouterLink} to={reverse(routes.state, { state: row.state })}>
+                                        {row.statename}
+                                    </MaterialLink>
+                                </TableCell>
+                                <TableCell align="right">{row.confirmed}</TableCell>
+                                <TableCell align="right">{myGoodWholeNumber(row.partsPerMil)}</TableCell>
+                                <TableCell align="right">{myGoodShortNumber(row.death)}</TableCell>
+                                <TableCell align="right">{myGoodWholeNumber(row.deathsPerMil)}</TableCell>
+                                <TableCell align="right">{(row.pop === 0) ? "-" : myGoodShortNumber(row.pop)}</TableCell>
                             </TableRow>;
                         })
                 }
@@ -211,19 +197,17 @@ const AllStateListRender = (props) => {
                                 </section>;
                             }
                             return <TableRow key={row.state}>
-                                <ThemeProvider theme={compact}>
-                                    <TableCell component="th" scope="row">
-                                        <MaterialLink component={RouterLink} to={reverse(routes.state, { state: row.state })}>
-                                            {row.statename}
-                                        </MaterialLink>
-                                    </TableCell>
-                                    <TableCell align="right">{row.confirmed}</TableCell>
-                                    <TableCell align="right"> {newcolumn} </TableCell>
-                                    <TableCell align="right">{row.recovered ? myGoodShortNumber(row.recovered) : "-"}</TableCell>
-                                    <TableCell align="right">{myGoodShortNumber(row.death)}</TableCell>
-                                    <TableCell align="right">{(!row.daysToDouble) ? "-" : row.daysToDouble.toFixed(1)}</TableCell>
-                                    <TableCell align="right">{(!row.daysToDoubleDeath) ? "-" : row.daysToDoubleDeath.toFixed(1)}</TableCell>
-                                </ThemeProvider>
+                                <TableCell component="th" scope="row">
+                                    <MaterialLink component={RouterLink} to={reverse(routes.state, { state: row.state })}>
+                                        {row.statename}
+                                    </MaterialLink>
+                                </TableCell>
+                                <TableCell align="right">{row.confirmed}</TableCell>
+                                <TableCell align="right"> {newcolumn} </TableCell>
+                                <TableCell align="right">{row.recovered ? myGoodShortNumber(row.recovered) : "-"}</TableCell>
+                                <TableCell align="right">{myGoodShortNumber(row.death)}</TableCell>
+                                <TableCell align="right">{(!row.daysToDouble) ? "-" : row.daysToDouble.toFixed(1)}</TableCell>
+                                <TableCell align="right">{(!row.daysToDoubleDeath) ? "-" : row.daysToDoubleDeath.toFixed(1)}</TableCell>
                             </TableRow>;
                         })
                 }
@@ -303,19 +287,17 @@ const AllStateListTesting = (props) => {
                     stableSort(extendlist, getComparator(order, orderBy))
                         .map(row => {
                             return <TableRow key={row.state}>
-                                <ThemeProvider theme={compact}>
-                                    <TableCell component="th" scope="row">
-                                        <MaterialLink component={RouterLink} to={reverse(routes.state, { state: row.state })}>
-                                            {row.statename}
-                                        </MaterialLink>
-                                    </TableCell>
-                                    <TableCell align="right">{row.positiveNumber}</TableCell>
-                                    <TableCell align="right">{row.positiveRate.toFixed(1)}%</TableCell>
-                                    <TableCell align="right">{row.negativeNumber}</TableCell>
-                                    <TableCell align="right">{row.negativeRate.toFixed(1)}%</TableCell>
-                                    <TableCell align="right">{!isFinite(row.pending) ? "-" : row.pending}</TableCell>
-                                    <TableCell align="right">{row.total}</TableCell>
-                                </ThemeProvider>
+                                <TableCell component="th" scope="row">
+                                    <MaterialLink component={RouterLink} to={reverse(routes.state, { state: row.state })}>
+                                        {row.statename}
+                                    </MaterialLink>
+                                </TableCell>
+                                <TableCell align="right">{row.positiveNumber}</TableCell>
+                                <TableCell align="right">{row.positiveRate.toFixed(1)}%</TableCell>
+                                <TableCell align="right">{row.negativeNumber}</TableCell>
+                                <TableCell align="right">{row.negativeRate.toFixed(1)}%</TableCell>
+                                <TableCell align="right">{!isFinite(row.pending) ? "-" : row.pending}</TableCell>
+                                <TableCell align="right">{row.total}</TableCell>
                             </TableRow>;
                         })
                 }

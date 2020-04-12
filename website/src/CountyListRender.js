@@ -5,24 +5,11 @@ import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableRow from '@material-ui/core/TableRow';
 import { myShortNumber, myGoodWholeNumber, myGoodShortNumber } from "./Util.js";
-import { ThemeProvider } from '@material-ui/core'
-import { createMuiTheme } from '@material-ui/core/styles';
 import { Link as MaterialLink } from '@material-ui/core';
 import { Link as RouterLink } from 'react-router-dom';
 import { EnhancedTableHead, stableSort, getComparator } from "./TableSortHelper";
 import { reverse } from 'named-urls';
 import routes from "./Routes"
-
-const compact = createMuiTheme({
-    overrides: {
-        MuiTableCell: {
-            sizeSmall: {  //This can be referred from Material UI API documentation.
-                padding: '1px 1px 1px 1px',
-                // backgroundColor: "#eaeaea",
-            },
-        },
-    },
-});
 
 const useStyles = makeStyles(theme => ({
     row: {
@@ -175,18 +162,16 @@ const CountyListRender = (props) => {
                             }
 
                             return <TableRow key={row.County}>
-                                <ThemeProvider theme={compact}>
-                                    <TableCell component="th" scope="row">
-                                        <MaterialLink component={RouterLink} to={reverse(routes.county, { state: row.State, county: row.County })}>
-                                            {row.County}
-                                        </MaterialLink>
-                                    </TableCell>
-                                    <TableCell align="right">{row.confirmed}</TableCell>
-                                    <TableCell align="right"> {newcolumn} </TableCell>
-                                    <TableCell align="right">{myGoodWholeNumber(row.partsPerMil)}</TableCell>
-                                    <TableCell align="right">{myGoodShortNumber(row.death)}</TableCell>
-                                    <TableCell align="right">{(!row.daysToDouble) ? "-" : ((row.daysToDouble > 10000) ? "-" : row.daysToDouble.toFixed(1))}</TableCell>
-                                </ThemeProvider>
+                                <TableCell component="th" scope="row">
+                                    <MaterialLink component={RouterLink} to={reverse(routes.county, { state: row.State, county: row.County })}>
+                                        {row.County}
+                                    </MaterialLink>
+                                </TableCell>
+                                <TableCell align="right">{row.confirmed}</TableCell>
+                                <TableCell align="right"> {newcolumn} </TableCell>
+                                <TableCell align="right">{myGoodWholeNumber(row.partsPerMil)}</TableCell>
+                                <TableCell align="right">{myGoodShortNumber(row.death)}</TableCell>
+                                <TableCell align="right">{(!row.daysToDouble) ? "-" : ((row.daysToDouble > 10000) ? "-" : row.daysToDouble.toFixed(1))}</TableCell>
                             </TableRow>;
                         })
                 }
@@ -231,18 +216,16 @@ const CountyListRenderCapita = (props) => {
                     stableSort(extendlist, getComparator(order, orderBy))
                         .map(row => {
                             return <TableRow key={row.County}>
-                                <ThemeProvider theme={compact}>
-                                    <TableCell component="th" scope="row">
-                                        <MaterialLink component={RouterLink} to={reverse(routes.county, { county: row.County, state: row.State })}>
-                                            {row.County}
-                                        </MaterialLink>
-                                    </TableCell>
-                                    <TableCell align="right">{row.confirmed}</TableCell>
-                                    <TableCell align="right">{myGoodWholeNumber(row.partsPerMil)}</TableCell>
-                                    <TableCell align="right">{myGoodWholeNumber(row.deathsPerMil)}</TableCell>
-                                    <TableCell align="right">{myGoodShortNumber(row.death)}</TableCell>
-                                    <TableCell align="right">{(row.population === 0) ? '-' : myGoodShortNumber(row.population)}</TableCell>
-                                </ThemeProvider>
+                                <TableCell component="th" scope="row">
+                                    <MaterialLink component={RouterLink} to={reverse(routes.county, { county: row.County, state: row.State })}>
+                                        {row.County}
+                                    </MaterialLink>
+                                </TableCell>
+                                <TableCell align="right">{row.confirmed}</TableCell>
+                                <TableCell align="right">{myGoodWholeNumber(row.partsPerMil)}</TableCell>
+                                <TableCell align="right">{myGoodWholeNumber(row.deathsPerMil)}</TableCell>
+                                <TableCell align="right">{myGoodShortNumber(row.death)}</TableCell>
+                                <TableCell align="right">{(row.population === 0) ? '-' : myGoodShortNumber(row.population)}</TableCell>
                             </TableRow>;
                         })
                 }
