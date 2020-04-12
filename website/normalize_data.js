@@ -281,7 +281,7 @@ const today = moment().format("MM/DD/YYYY");
 
 // back fill holes in the data
 
-function fillarrayholes(v) {
+function fillarrayholes(v, increaseonly = true) {
     let keys = Object.keys(v).sort((a, b) => moment(a, "MM/DD/YYYY").toDate() - moment(b, "MM/DD/YYYY").toDate());
     let key = keys[0];
     while (key !== today) {
@@ -291,8 +291,12 @@ function fillarrayholes(v) {
         if (nextvalue === null || nextvalue === undefined) {
             v[nextkey] = lastvalue;
         } else {
-            if (nextvalue < lastvalue) {
-                v[nextkey] = lastvalue;
+            if (increaseonly) {
+                if (nextvalue < lastvalue) {
+                    v[nextkey] = lastvalue;
+                }
+            } else {
+                console.log("notincreasing  ");
             }
         }
         key = nextkey;
@@ -306,7 +310,7 @@ function fillholes() {
         state = AllData[s];
         for (c in state) {
             let county = state[c];
-            county.Confirmed = fillarrayholes(county.Confirmed);
+            county.Confirmed = fillarrayholes(county.Confirmed, c !== "0");
             county.Death = fillarrayholes(county.Death);
             setCountyNode(s, c, county);
         }
