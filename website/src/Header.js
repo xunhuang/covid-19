@@ -167,7 +167,7 @@ const SearchBox = (props) => {
             return {
                 display_name: `${county.name}, ${county.state().name}`,
                 county: county,
-                total: county.totalConfirmed(),
+                total: county.totalConfirmed() + county.newCases(),
             };
         });
     const states = country.allStates().map(
@@ -178,7 +178,15 @@ const SearchBox = (props) => {
                 total: state.totalConfirmed() + state.newCases(),
             }
         });
-    const search_list = counties.concat(states)
+    const metros = country.allMetros().map(
+        metro => {
+            return {
+                display_name: `${metro.name}, ${metro.state().name}`,
+                metro: metro,
+                total: metro.totalConfirmed() + metro.newCases(),
+            }
+        });
+    const search_list = counties.concat(states).concat(metros)
     let search_list_sorted = search_list.sort((a, b) => {
         let x = a.total;
         let y = b.total;
@@ -215,6 +223,8 @@ const SearchBox = (props) => {
                 let route;
                 if (param.value.county) {
                     route = param.value.county.routeTo();
+                } else if (param.value.metro) {
+                    route = param.value.metro.routeTo();
                 } else {
                     route = param.value.state.routeTo();
                 }
