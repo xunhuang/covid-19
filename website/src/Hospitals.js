@@ -68,7 +68,11 @@ const DetailCaseListWidget = (props) => {
 }
 
 function snapshotToArray(snapshot) {
-    return snapshot.map(childSnapshot => childSnapshot.data());
+    var returnArr = []
+    snapshot.forEach(function (childSnapshot) {
+        returnArr.push(childSnapshot.data());
+    });
+    return returnArr;
 };
 
 async function fetchCountyHospitals(county) {

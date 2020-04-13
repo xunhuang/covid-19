@@ -65,17 +65,6 @@ const keydeath = {
     key_mean_cumulative: "deathsTotal_mean",
 }
 
-const keybeds = {
-    key_lower: "allbed_lower",
-    key_upper: "allbed_upper",
-    key_delta: "delta",
-    key_mean: "allbed_mean",
-    key_upper_cumulative: "dallbedotal_upper",
-    key_lower_cumulative: "allbedTotal_lower",
-    key_delta_cumulative: "allbedTotal_delta",
-    key_mean_cumulative: "allbedTotal_mean",
-}
-
 const GraphDeathProjection = (props) => {
     const [formateddata, max_date] =
         formatData(props.source.projections(), keydeath);
