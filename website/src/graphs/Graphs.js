@@ -32,43 +32,5 @@ export const GraphSection = (props) => {
             return <Graph key={desc.id} source={source} />;
         })}
     />;
-    //let graphlistSection = <MyTabs
-    //    labels={['Cases',
-    //        'Days to 2x',
-    //        'Peak Death',
-    //        // 'Peak Hospitalization',
-    //        'Recovery',
-    //        'Map',
-    //        'Tests',
-    //        'Hospitalization',
-    //    ]}
-    //    urlQueryKey='graph'
-    //    urlQueryValues={['cases', 'days2x', 'peakdeath',
-    //        // 'peakhospital', 
-    //        'recovery', 'map', 'testing', 'hospitalization']}
-    //    tabs={tabs}
-    //    history={props.history}
-    ///>;
-  //
-    //let graphlistSection = <MyTabs
-    //    labels={["Cases", "Days to 2x",
-    //        `${county.state().name} Testing`]}
-    //    urlQueryKey="graph"
-    //    urlQueryValues={['cases', 'days2x', 'testing']}
-    //    tabs={tabs}
-    //    history={props.history}
-    ///>;
-  //
-    //let graphlistSection = <MyTabs
-    //    labels={["Cases", "Peak Death",
-    //        // "Peak Hospitalization", 
-    //        "Recovery", "Days to 2x", "Tests", "Hospitalization"]}
-    //    urlQueryKey="graph"
-    //    urlQueryValues={['cases', "peakdeath",
-    //        // "peakhospital", 
-    //        'recovery_death', "days2x", 'testing', 'hospitalization']}
-    //    tabs={tabs}
-    //    history={props.history}
-    ///>;
 };
 
