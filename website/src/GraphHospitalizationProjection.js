@@ -23,15 +23,25 @@ const AllBedsTooltip = (props) => {
     const { active } = props;
     if (active) {
         const { payload, label } = props;
+
         let allbed_mean;
         let hospitalized;
+        let inIcuCurrently;
+        let onVentilatorCurrently;
+
         payload.map(p => {
             p = p.payload;
             if ("allbed_mean" in p) {
                 allbed_mean = p.allbed_mean;
             }
+            if ("inIcuCurrently" in p) {
+                inIcuCurrently = p.inIcuCurrently;
+            }
             if ("hospitalized" in p) {
                 hospitalized = p.hospitalized;
+            }
+            if ("onVentilatorCurrently" in p) {
+                onVentilatorCurrently = p.onVentilatorCurrently;
             }
             return null;
         });
@@ -41,10 +51,16 @@ const AllBedsTooltip = (props) => {
                     {label}
                 </Typography>
                 <Typography variant="body2" noWrap>
-                    {`Projected Total Hospitalization: ${allbed_mean}`}
+                    {`Projected Total : ${allbed_mean}`}
                 </Typography>
                 <Typography variant="body2" noWrap>
-                    {`Actual Total Hospitalization: ${hospitalized ?? "-"}`}
+                    {`Actual Total: ${hospitalized ?? "-"}`}
+                </Typography>
+                <Typography variant="body2" noWrap>
+                    {`In ICU: ${inIcuCurrently ?? "-"}`}
+                </Typography>
+                <Typography variant="body2" noWrap>
+                    {`On Ventilator: ${onVentilatorCurrently ?? "-"}`}
                 </Typography>
             </div>
         );
@@ -93,6 +109,8 @@ const GraphAllBedProjectionUS = (props) => {
         })
         if (entry) {
             item.hospitalized = entry.hospitalized;
+            item.inIcuCurrently = entry.inIcuCurrently;
+            item.onVentilatorCurrently = entry.onVentilatorCurrently;
         }
     }
 
@@ -161,7 +179,6 @@ const GraphDeathProjectionRender = (props) => {
     const formatYAxis = (tickItem) => {
         return myShortNumber(tickItem);
     }
-    console.log(data)
 
     return <>
         <ResponsiveContainer height={300} >
@@ -171,13 +188,17 @@ const GraphDeathProjectionRender = (props) => {
                 <ReferenceLine x={moment(max_date, "MM/DD/YYYY").format("M/D")} label={{ value: props.max_label, fill: '#a3a3a3' }} stroke="#e3e3e3" strokeWidth={3} />
                 <CartesianGrid stroke="#d5d5d5" strokeDasharray="5 5" />
                 <Line type="monotone" dataKey={data_keys.key_mean} stroke="#000000" dot={{ r: 1 }} yAxisId={0} strokeWidth={3} />
-                <Line type="monotone" dataKey={"hospitalized"} stroke="#FF0000" dot={{ r: 1 }} yAxisId={0} strokeWidth={3} />
+                <Line type="monotone" dataKey={"hospitalized"} stroke="#00aeef" dot={{ r: 1 }} yAxisId={0} strokeWidth={3} />
+                <Line type="monotone" dataKey={"inIcuCurrently"} stroke="#0000FF" dot={{ r: 1 }} yAxisId={0} strokeWidth={3} />
+                <Line type="monotone" dataKey={"onVentilatorCurrently"} stroke="#FF0000" dot={{ r: 1 }} yAxisId={0} strokeWidth={3} />
                 <Area type='monotone' dataKey={data_keys.key_lower} stackId="1" stroke='#8884d8' fill='#FFFFFF' />
                 <Area type='monotone' dataKey={data_keys.key_delta} stackId="1" stroke='#82ca9d' fill='#82ca9d' />
                 <Tooltip content={props.tooltip} />
                 <Legend verticalAlign="top" payload={[
-                    { value: 'Cumulative Projection', type: 'line', color: '#000000' },
-                    { value: 'Cumulative Actual', type: 'line', color: '#FF0000' },
+                    { value: 'Projection', type: 'line', color: '#000000' },
+                    { value: 'Total Actual', type: 'line', color: '#00aeef' },
+                    { value: 'In ICU', type: 'line', color: '#0000FF' },
+                    { value: 'On Ventilator', type: 'line', color: '#FF0000' },
                 ]} />
             </ComposedChart>
         </ResponsiveContainer>
