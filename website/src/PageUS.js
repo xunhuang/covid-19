@@ -15,7 +15,8 @@ import {
     ListAllStatesPerCapita,
     ListAllStatesTesting,
 } from "./ListAllStates.js"
-import { GraphDeathProjectionUS, GraphAllBedProjectionUS } from "./GraphDeathProjection.js"
+import { GraphDeathProjectionUS } from "./GraphDeathProjection.js"
+import { GraphAllBedProjectionUS } from "./GraphHospitalizationProjection.js"
 import { logger } from "./AppModule"
 
 const GraphSectionUS = withRouter((props) => {
@@ -25,20 +26,19 @@ const GraphSectionUS = withRouter((props) => {
     const tabs = [
         <BasicGraphNewCases data={graphdata} logScale={false} />,
         <GraphDeathProjectionUS />,
-        // <GraphAllBedProjectionUS />,
+        <GraphAllBedProjectionUS />,
         <BasicGraphRecoveryAndDeath data={graphdata} logScale={false} />,
         <GraphDaysToDoubleOverTime data={props.country.daysToDoubleTimeSeries()} />,
         <GraphUSTesting />,
-        <GraphUSHospitalization />,
     ]
     let graphlistSection = <MyTabs
         labels={["Cases", "Peak Death",
-            // "Peak Hospitalization", 
-            "Recovery", "Days to 2x", "Tests", "Hospitalization"]}
+            "Hospitalization(New)",
+            "Recovery", "Days to 2x", "Tests"]}
         urlQueryKey="graph"
         urlQueryValues={['cases', "peakdeath",
-            // "peakhospital", 
-            'recovery_death', "days2x", 'testing', 'hospitalization']}
+            "peakhospital",
+            'recovery_death', "days2x", 'testing']}
         tabs={tabs}
         history={props.history}
     />;

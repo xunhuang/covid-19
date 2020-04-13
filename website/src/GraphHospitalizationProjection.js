@@ -7,9 +7,7 @@ import {
     ComposedChart,
 } from 'recharts';
 import { Typography } from '@material-ui/core';
-import Grid from '@material-ui/core/Grid';
 import { myShortNumber } from './Util';
-import { AntSwitch } from "./GraphNewCases.js"
 import { makeStyles } from '@material-ui/core/styles';
 
 const moment = require("moment");
@@ -26,14 +24,14 @@ const AllBedsTooltip = (props) => {
     if (active) {
         const { payload, label } = props;
         let allbed_mean;
-        let allbedTotal_mean;
+        let hospitalized;
         payload.map(p => {
             p = p.payload;
             if ("allbed_mean" in p) {
                 allbed_mean = p.allbed_mean;
             }
-            if ("allbedTotal_mean" in p) {
-                allbedTotal_mean = p.allbedTotal_mean;
+            if ("hospitalized" in p) {
+                hospitalized = p.hospitalized;
             }
             return null;
         });
@@ -43,10 +41,10 @@ const AllBedsTooltip = (props) => {
                     {label}
                 </Typography>
                 <Typography variant="body2" noWrap>
-                    {`Projected Daily Hospitalization: ${allbed_mean}`}
+                    {`Projected Total Hospitalization: ${allbed_mean}`}
                 </Typography>
                 <Typography variant="body2" noWrap>
-                    {`Projected Total: ${allbedTotal_mean}`}
+                    {`Actual Total Hospitalization: ${hospitalized ?? "-"}`}
                 </Typography>
             </div>
         );
@@ -54,74 +52,56 @@ const AllBedsTooltip = (props) => {
     return null;
 }
 
-const DeathTooltip = (props) => {
-    const classes = useStyles();
-    const { active } = props;
-    if (active) {
-        const { payload, label } = props;
-        let deaths_mean;
-        let deathsTotal_mean;
-        payload.map(p => {
-            p = p.payload;
-            if ("deaths_mean" in p) {
-                deaths_mean = p.deaths_mean;
-            }
-            if ("deathsTotal_mean" in p) {
-                deathsTotal_mean = p.deathsTotal_mean;
-            }
-            return null;
-        });
-        return (
-            <div className={classes.customtooltip}>
-                <Typography variant="body1" noWrap>
-                    {label}
-                </Typography>
-                <Typography variant="body2" noWrap>
-                    {`Projected Daily Death: ${deaths_mean}`}
-                </Typography>
-                <Typography variant="body2" noWrap>
-                    {`Projected Total: ${deathsTotal_mean}`}
-                </Typography>
-            </div>
-        );
-    }
-    return null;
-}
 const usdata = require("./data/us_only.json")
 
-const keydeath = {
-    key_lower: "deaths_lower",
-    key_upper: "deaths_upper",
+const keybeds = {
+    key_lower: "allbed_lower",
+    key_upper: "allbed_upper",
     key_delta: "delta",
-    key_mean: "deaths_mean",
-    key_upper_cumulative: "deathsTotal_upper",
-    key_lower_cumulative: "deathsTotal_lower",
-    key_delta_cumulative: "deathsTotal_delta",
-    key_mean_cumulative: "deathsTotal_mean",
+    key_mean: "allbed_mean",
+    key_upper_cumulative: "dallbedotal_upper",
+    key_lower_cumulative: "allbedTotal_lower",
+    key_delta_cumulative: "allbedTotal_delta",
+    key_mean_cumulative: "allbedTotal_mean",
 }
 
-const GraphDeathProjectionState = (props) => {
+const GraphAllBedProjectionState = (props) => {
     let data = usdata.filter(d => d.location_name === props.state.name);
-    const [formateddata, max_date] = formatData(data, keydeath);
+    const [formateddata, max_date] = formatData(data, keybeds);
     return <GraphDeathProjectionRender
         data={formateddata}
         max_date={max_date}
-        max_label="Peak Death"
-        data_keys={keydeath}
-        tooltip={<DeathTooltip />}
+        max_label="Peak Hospitalization"
+        data_keys={keybeds}
+        tooltip={<AllBedsTooltip />}
     />;
 }
 
-const GraphDeathProjectionUS = (props) => {
+const GraphAllBedProjectionUS = (props) => {
     let data = usdata.filter(d => d.location_name === "United States of America");
-    const [formateddata, max_date] = formatData(data, keydeath);
+    const testingActual = require("./data/us_testing.json");
+    const [formateddata, max_date] = formatData(data, keybeds);
+
+    for (let item of formateddata) {
+        let entry = testingActual.find(t => {
+            let d = t.date.toString();
+            let year = d.slice(0, 4);
+            let month = d.slice(4, 6);
+            let day = d.slice(6, 8);
+            let date = `${month}/${day}/${year}`;
+            return item.fulldate === date;
+        })
+        if (entry) {
+            item.hospitalized = entry.hospitalized;
+        }
+    }
 
     return <GraphDeathProjectionRender
         data={formateddata}
         max_date={max_date}
-        max_label="Peak Death"
-        data_keys={keydeath}
-        tooltip={<DeathTooltip />}
+        max_label="Peak Hospitalization"
+        data_keys={keybeds}
+        tooltip={<AllBedsTooltip />}
     />;
 }
 
@@ -172,13 +152,6 @@ const GraphDeathProjectionRender = (props) => {
     const max_date = props.max_date;
     const data_keys = props.data_keys;
 
-    const [state, setState] = React.useState({
-        showall: false,
-    });
-
-    const handleLogScaleToggle = event => {
-        setState({ ...state, showall: !state.showall });
-    };
     const cutoff = moment().subtract(30, 'days')
     const future = moment().add(30, 'days')
     data = data.filter(d => {
@@ -188,19 +161,9 @@ const GraphDeathProjectionRender = (props) => {
     const formatYAxis = (tickItem) => {
         return myShortNumber(tickItem);
     }
+    console.log(data)
 
     return <>
-        <Grid container alignItems="center" spacing={1}>
-            <Grid item>
-                <AntSwitch checked={state.showall} onClick={handleLogScaleToggle} />
-            </Grid>
-            <Grid item onClick={handleLogScaleToggle}>
-                <Typography>
-                    Show Cumulative
-                </Typography>
-            </Grid>
-            <Grid item></Grid>
-        </Grid>
         <ResponsiveContainer height={300} >
             <ComposedChart data={data} margin={{ top: 5, right: 30, left: 5, bottom: 5 }} >
                 <XAxis dataKey="name" />
@@ -208,15 +171,13 @@ const GraphDeathProjectionRender = (props) => {
                 <ReferenceLine x={moment(max_date, "MM/DD/YYYY").format("M/D")} label={{ value: props.max_label, fill: '#a3a3a3' }} stroke="#e3e3e3" strokeWidth={3} />
                 <CartesianGrid stroke="#d5d5d5" strokeDasharray="5 5" />
                 <Line type="monotone" dataKey={data_keys.key_mean} stroke="#000000" dot={{ r: 1 }} yAxisId={0} strokeWidth={3} />
+                <Line type="monotone" dataKey={"hospitalized"} stroke="#FF0000" dot={{ r: 1 }} yAxisId={0} strokeWidth={3} />
                 <Area type='monotone' dataKey={data_keys.key_lower} stackId="1" stroke='#8884d8' fill='#FFFFFF' />
                 <Area type='monotone' dataKey={data_keys.key_delta} stackId="1" stroke='#82ca9d' fill='#82ca9d' />
-                {state.showall && <Line type="monotone" dataKey={data_keys.key_mean_cumulative} stroke="#ff0000" yAxisId={0} strokeWidth={3} />}
-                {state.showall && <Area type='monotone' dataKey={data_keys.key_lower_cumulative} stackId="2" stroke='#8884d8' fill='#FFFFFF' />}
-                {state.showall && <Area type='monotone' dataKey={data_keys.key_delta_cumulative} stackId="2" stroke='#82ca9d' fill='#82ca9d' />}
                 <Tooltip content={props.tooltip} />
                 <Legend verticalAlign="top" payload={[
-                    { value: 'Cumulative ', type: 'line', color: '#ff0000' },
-                    { value: 'Daily', type: 'line', color: '#000000' },
+                    { value: 'Cumulative Projection', type: 'line', color: '#000000' },
+                    { value: 'Cumulative Actual', type: 'line', color: '#FF0000' },
                 ]} />
             </ComposedChart>
         </ResponsiveContainer>
@@ -227,6 +188,6 @@ const GraphDeathProjectionRender = (props) => {
 }
 
 export {
-    GraphDeathProjectionState,
-    GraphDeathProjectionUS,
+    GraphAllBedProjectionState,
+    GraphAllBedProjectionUS,
 }
