@@ -7,7 +7,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Typography } from '@material-ui/core';
 import { Grid } from '@material-ui/core';
 import { AntSwitch } from "./GraphNewCases.js"
-import { myShortNumber } from './Util.js';
+import { myShortNumber } from '../Util.js';
 
 const useStyles = makeStyles(theme => ({
     customtooltip: {
@@ -88,8 +88,16 @@ const formatYAxis = (tickItem) => {
     return myShortNumber(tickItem);
 }
 
+function maybeFindTesting(source) {
+    let ancestor = source;
+    while (!ancestor.testing && ancestor.parent) {
+        ancestor = ancestor.parent();
+    }
+    return ancestor;
+}
+
 const GraphTestingWidget = (props) => {
-    let data = props.data.map(t => {
+    let data = maybeFindTesting(props.source).testing().map(t => {
         let md = t.date % 1000;
         let m = Math.floor(md / 100);
         let d = md % 100;
@@ -188,17 +196,25 @@ const GraphTestingWidget = (props) => {
     </div>;
 }
 
-const GraphUSTesting = (props) => {
-    const data = require("./data/us_testing.json");
-    return <GraphTestingWidget data={data} />;
+function maybeTestingTabFor(source) {
+    if (source.testing) {
+        return {
+            id: 'testing',
+            label: 'Tests',
+            graph: GraphTestingWidget,
+        };
+    } else {
+        const maybeAncestor = maybeFindTesting(source);
+        if (maybeAncestor.testing) {
+            return {
+                id: 'testing',
+                label: `${maybeAncestor.name} Testing`,
+                graph: GraphTestingWidget,
+            };
+        } else {
+            return undefined;
+        }
+    }
 }
 
-const GraphStateTesting = (props) => {
-    const usdata = require("./data/state_testing.json");
-    const statedata = usdata.filter(d => d.state === props.state.twoLetterName)
-        .sort((a, b) => a.date - b.date);
-
-    return <GraphTestingWidget data={statedata} />;
-}
-
-export { GraphUSTesting, GraphStateTesting };
+export { maybeTestingTabFor };

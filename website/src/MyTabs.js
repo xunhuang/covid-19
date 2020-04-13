@@ -4,6 +4,7 @@ import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import PropTypes from 'prop-types';
+import { useHistory } from 'react-router-dom'
 import { withStyles } from "@material-ui/core/styles";
 
 function TabPanel(props) {
@@ -76,12 +77,14 @@ const LinkTab = withStyles((theme) => ({
 
 
 const MyTabs = (props) => {
+    const history = useHistory();
+
     const tabs = props.tabs;
     const labels = props.labels;
     let selectedTabIdx = 0;
-    if (("history" in props) && ("location" in props.history)) {
+    if (history) {
         // e.g. {'graph': 'cases', 'table': 'testing'}
-        let searchParams = new URLSearchParams(props.history.location.search);
+        let searchParams = new URLSearchParams(history.location.search);
         // e.g. 'testing'
         let selectedTabName = searchParams.get(props.urlQueryKey);
         selectedTabIdx = props.urlQueryValues.findIndex(name => name === selectedTabName);
@@ -96,10 +99,10 @@ const MyTabs = (props) => {
     const handleChange = (event, newValue) => {
         setTabvalue(newValue);
         // Change url without reloading the page
-        let searchParams = new URLSearchParams(props.history.location.search);
+        let searchParams = new URLSearchParams(history.location.search);
         searchParams.set(props.urlQueryKey, props.urlQueryValues[newValue]);
-        props.history.location.search = searchParams.toString();
-        props.history.push(props.history.location)
+        history.location.search = searchParams.toString();
+        history.push(history.location)
     }
     const labelcomp = labels.map((l, c) =>
         <LinkTab label={l} key={c} {...a11yProps(c)} />

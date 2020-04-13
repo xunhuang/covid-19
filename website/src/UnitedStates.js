@@ -7,6 +7,9 @@ const CovidData = require('./data/AllData.json');
 const CountyGeoData = require('./data/county_gps.json');
 const geolib = require('geolib');
 const moment = require('moment');
+const projectionsUs = require("./data/us_only.json")
+const testingStates = require("./data/state_testing.json");
+const testingUs = require("./data/us_testing.json");
 
 const UNKNOWN_COUNTY_NAME = "Unknown";
 
@@ -111,6 +114,11 @@ export class Country {
     return datesToDataPoints(this.covidRaw_.Summary);
   }
 
+  projections() {
+    return projectionsUs.filter(
+        d => d.location_name === "United States of America");
+  }
+
   summary() {
     const confirmed = this.covidRaw_.Summary.LastConfirmed;
     const newcases = this.covidRaw_.Summary.LastConfirmedNew;
@@ -130,6 +138,11 @@ export class Country {
       generatedTime: generatedTime,
     }
   }
+
+  testing() {
+    return testingUs;
+  }
+
   daysToDoubleTimeSeries() {
     let confirmed = getDay2DoubleTimeSeries(
       trimLastDaysData(this.covidRaw_.Summary.Confirmed)
@@ -188,6 +201,10 @@ export class State {
 
   country() {
     return this.country_;
+  }
+
+  parent() {
+    return this.country();
   }
 
   addMetro(id, data, country) {
@@ -252,6 +269,10 @@ export class State {
     return CountyInfo.getStatePopulation(this.twoLetterName);
   }
 
+  projections() {
+    return projectionsUs.filter(d => d.location_name === this.name);
+  }
+
   stayHomeOrder() {
     return this.covidRaw_.Summary.StayHomeOrder;
   }
@@ -268,9 +289,14 @@ export class State {
       newpercent: newcases / (confirmed - newcases),
       daysToDouble: this.covidRaw_.Summary.DaysToDouble,
       daysToDoubleDeath: this.covidRaw_.Summary.DaysToDoubleDeath,
-      lastRecovered: this.covidRaw_.Summary.LastRecovered,
-      lastRecoveredNew: this.covidRaw_.Summary.LastRecoveredNew,
+      recovered: this.covidRaw_.Summary.LastRecovered,
+      recoveredNew: this.covidRaw_.Summary.LastRecoveredNew,
     }
+  }
+
+  testing() {
+    return testingStates.filter(d => d.state === this.twoLetterName)
+        .sort((a, b) => a.date - b.date);
   }
 
   totalConfirmed() {
@@ -335,6 +361,10 @@ export class Metro {
 
   state() {
     return this.state_;
+  }
+
+  parent() {
+    return this.state();
   }
 
   routeTo() {
@@ -412,6 +442,10 @@ export class County {
 
   state() {
     return this.state_;
+  }
+
+  parent() {
+    return this.state();
   }
 
   fips() {
