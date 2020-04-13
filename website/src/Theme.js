@@ -1,6 +1,11 @@
 import { createMuiTheme } from '@material-ui/core/styles';
 
 export const compactTheme = createMuiTheme({
+    palette: {
+        secondary: {
+            main: '#00aeef',
+        },
+    },
     overrides: {
         MuiTableCell: {
             sizeSmall: {  //This can be referred from Material UI API documentation.

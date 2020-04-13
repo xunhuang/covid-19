@@ -22,6 +22,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import { myShortNumber } from '../Util';
+import { Summary } from './Summary';
 const Cookies = require("js-cookie");
 
 const fileDownload = require('js-file-download');
@@ -341,6 +342,7 @@ const BasicGraphNewCases = (props) => {
         )
 
     return <>
+        <Summary source={props.source} />
         <Grid container alignItems="center" spacing={1}>
             <Grid item>
                 <AntSwitch checked={state.showlog} onClick={handleLogScaleToggle} />
@@ -496,12 +498,4 @@ const BasicGraphNewCases = (props) => {
     </>
 }
 
-function newCasesTab() {
-    return {
-        id: 'cases',
-        label: 'Cases',
-        graph: BasicGraphNewCases,
-    };
-}
-
-export { AntSwitch, newCasesTab };
+export { AntSwitch, BasicGraphNewCases };
