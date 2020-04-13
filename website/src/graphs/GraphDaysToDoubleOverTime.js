@@ -76,12 +76,4 @@ const GraphDaysToDoubleOverTime = (props) => {
     </>
 }
 
-function daysToDoubleTab() {
-    return {
-        id: 'days2x',
-        label: 'Days to 2x',
-        graph: GraphDaysToDoubleOverTime,
-    };
-}
-
-export { daysToDoubleTab };
+export { GraphDaysToDoubleOverTime };

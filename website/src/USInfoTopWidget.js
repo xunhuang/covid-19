@@ -4,7 +4,6 @@ import { myShortNumber } from "./Util.js";
 import { withRouter } from 'react-router-dom'
 import { Typography } from '@material-ui/core';
 import { Link } from 'react-router-dom';
-import { SectionHeader } from "./CovidUI"
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 const useStyles = makeStyles(theme => ({
@@ -20,6 +19,7 @@ const useStyles = makeStyles(theme => ({
         justifyContent: "space-between",
         display: "flex",
         flexWrap: "wrap",
+        margin: '24px 0',
     },
     tagContainerNoBeds: {
         flexWrap: "nowrap",
@@ -31,11 +31,6 @@ const useStyles = makeStyles(theme => ({
     },
     rowNoBeds: {
         justifyContent: "center",
-    },
-    rowSummary: {
-        padding: theme.spacing(0.25, 1),
-        justifyContent: "space-between",
-        display: "flex",
     },
     tag: {
         display: "flex",
@@ -101,120 +96,6 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-const USSummarySection = withRouter((props) => {
-    const country = props.country;
-    const us_summary = country.summary();
-
-    return <ShortSummary
-        title={"US Summary"}
-        confirmed={us_summary.confirmed}
-        newcases={us_summary.newcases}
-        deaths={us_summary.deaths}
-        deathsNew={us_summary.deathsNew}
-        recovered={us_summary.recovered}
-        recoveredNew={us_summary.recoveredNew}
-        hospitals={6146}
-        beds={924107}
-        selected={false}
-        // to={routes.united_states}
-        showBeds={true}
-        showRecovered={true}
-        showDeaths={true}
-    />;
-});
-
-const StateSummarySection = withRouter((props) => {
-    const state = props.state;
-    const state_summary = state.summary();
-    const state_hospitals = state.hospitals();
-
-    return <ShortSummary
-        title={`${state.name} Summary`}
-        confirmed={state_summary.confirmed}
-        newcases={state_summary.newcases}
-        deaths={state_summary.death}
-        deathsNew={state_summary.deathNew}
-        recovered={state_summary.recovered}
-        recoveredNew={state_summary.recovered}
-        hospitals={state_hospitals.count}
-        beds={state_hospitals.bedCount}
-        selected={false}
-        showBeds={true}
-        showRecovered={true}
-        showDeaths={true}
-    />;
-});
-
-const MetroSummarySection = withRouter((props) => {
-    const metro = props.metro;
-    const metro_summary = metro.summary();
-    const metro_hospitals = metro.hospitals();
-
-    return <ShortSummary
-        title={`${metro.name} Summary`}
-        confirmed={metro_summary.LastConfirmed}
-        newcases={metro_summary.LastConfirmedNew}
-        deaths={metro_summary.LastDeath}
-        deathsNew={metro_summary.LastDeathNew}
-        // recovered={metro_summary.recovered}
-        recovered={"-"}
-        // recoveredNew={metro_summary.recovered}
-        hospitals={metro_hospitals.count}
-        beds={metro_hospitals.bedCount}
-        selected={false}
-        showBeds={true}
-        showRecovered={false}
-        showDeaths={true}
-    />;
-});
-
-const CountySummarySection = withRouter((props) => {
-    const county = props.county;
-    const county_summary = county.summary();
-
-    const county_hospitals = county.hospitals() || {
-        'bedCount': "N/A",
-        'count': "N/A",
-    };
-
-    let county_specifc;
-    if (county.fips() === "06085") {
-        county_specifc =
-            <SectionHeader>
-                <a target="_blank" href="https://www.sccgov.org/sites/phd/DiseaseInformation/novel-coronavirus/Pages/dashboard.aspx" rel="noopener noreferrer" >
-                    Santa Clara County Coronavirus Data Dashboard
-             </a>
-            </SectionHeader>
-    }
-    if (county.fips() === "06081") {
-        county_specifc =
-            <SectionHeader>
-                <a target="_blank" href="https://www.smchealth.org/post/san-mateo-county-covid-19-data-1" rel="noopener noreferrer" >
-                    San Mateo County COVID-19 Data
-             </a>
-            </SectionHeader>
-    }
-
-    return <div>
-        <ShortSummary
-            title={`${county.name}, ${county.state().name}`}
-            confirmed={county_summary.confirmed}
-            newcases={county_summary.newcases}
-            deaths={county_summary.death}
-            deathsNew={county_summary.deathNew}
-            recovered={county_summary.recovered}
-            recoveredNew={county_summary.recoveredNew}
-            hospitals={county_hospitals.count}
-            beds={county_hospitals.bedCount}
-            selected={false}
-            showBeds={true}
-            showRecovered={false}
-            showDeaths={true}
-        />
-        {county_specifc}
-    </div>;
-});
-
 
 const USInfoTopWidget = withRouter((props) => {
     const county = props.county;
@@ -275,8 +156,8 @@ const USInfoTopWidget = withRouter((props) => {
             <Tag title={state_title}
                 confirmed={state_summary.confirmed}
                 newcases={state_summary.newcases}
-                deaths={state_summary.death}
-                deathsNew={state_summary.deathNew}
+                deaths={state_summary.deaths}
+                deathsNew={state_summary.deathsNew}
                 recovered={state_summary.recovered}
                 recoveredNew={state_summary.recoveredNew}
                 hospitals={state_hospitals.count}
@@ -308,68 +189,6 @@ const USInfoTopWidget = withRouter((props) => {
         </div>
     </div >;
 });
-
-const ShortSummary = (props) => {
-    const classes = useStyles();
-    return (
-        <SectionHeader>
-            <Typography variant="h6" noWrap >
-                {props.title}
-            </Typography>
-            <div className={`${classes.rowSummary} ${props.showBeds ? '' : classes.rowNoBeds}`} >
-                <div></div>
-                <section className={classes.tagSection}>
-                    <div className={classes.topTag}>
-                        +{myShortNumber(props.newcases)}
-                    </div>
-                    <div className={classes.mainTag}>
-                        {myShortNumber(props.confirmed)} </div>
-                    <div className={classes.smallTag}>
-                        Confirmed </div>
-                </section>
-
-                {props.showRecovered &&
-                    <section className={classes.tagSection}>
-                        <Typography className={classes.topTag} variant="body2" noWrap >
-                            +{myShortNumber(props.recoveredNew)}
-                        </Typography>
-                        <div className={classes.mainTag}>
-                            {myShortNumber(props.recovered)}</div>
-                        <div className={classes.smallTag}>
-                            Recovered
-                    </div>
-                    </section>
-                }
-
-                {props.showDeaths &&
-                    <section className={classes.tagSection}>
-                        <Typography className={classes.topTag} variant="body2" noWrap >
-                            +{myShortNumber(props.deathsNew)}
-                        </Typography>
-                        <div className={classes.mainTag}>
-                            {myShortNumber(props.deaths)}</div>
-                        <div className={classes.smallTag}>
-                            Deaths
-                    </div>
-                    </section>
-                }
-
-                {props.showBeds && <section className={classes.tagSection}>
-                    <Typography className={classes.topTag} variant="body2" noWrap >
-                        {myShortNumber(props.hospitals)} Hosp.
-          </Typography>
-                    <div className={classes.mainTag}>
-                        {myShortNumber(props.beds)}</div>
-                    <div className={classes.smallTag}>
-                        Beds
-                    </div>
-                </section>}
-                <div></div>
-            </div>
-        </SectionHeader>
-    );
-};
-
 
 const Tag = (props) => {
     const classes = useStyles();
@@ -403,8 +222,4 @@ const Tag = (props) => {
 export {
     USInfoTopWidget,
     Tag,
-    USSummarySection,
-    StateSummarySection,
-    MetroSummarySection,
-    CountySummarySection,
 }

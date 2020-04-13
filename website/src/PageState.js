@@ -3,7 +3,7 @@ import { CountryContext } from "./CountryContext";
 import * as Util from "./Util"
 import { withHeader } from "./Header.js"
 import { MyTabs } from "./MyTabs.js"
-import { USInfoTopWidget, StateSummarySection } from './USInfoTopWidget.js'
+import { USInfoTopWidget } from './USInfoTopWidget.js'
 import { CountiesForStateWidget, ListStateCountiesCapita } from "./CountyListRender.js"
 import { Redirect } from 'react-router-dom'
 import { GraphSection } from './graphs/Graphs';
@@ -33,7 +33,6 @@ const PageState = withHeader((props) => {
                 country={country}
                 selectedTab={"state"}
             />
-            <StateSummarySection state={state} />
             <GraphSection source={state} />
             <MyTabs
                 labels={[`Counties of ${state.name} `, "Per Capita"]}

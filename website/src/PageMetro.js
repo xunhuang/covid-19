@@ -3,7 +3,7 @@ import { CountryContext } from "./CountryContext";
 import { ListCountiesForMetro } from "./CountyListRender.js"
 import { withHeader } from "./Header.js"
 import { MyTabs } from "./MyTabs.js"
-import { USInfoTopWidget, MetroSummarySection } from './USInfoTopWidget.js'
+import { USInfoTopWidget } from './USInfoTopWidget.js'
 import * as Util from "./Util"
 import { GraphSection } from "./graphs/Graphs"
 
@@ -26,7 +26,6 @@ const PageMetro = withHeader((props) => {
                 country={country}
                 selectedTab={"metro"}
             />
-            <MetroSummarySection metro={metro} selectedTab={"metro"} />
             <GraphSection source={metro} />
             <MyTabs
                 labels={[metro.name]}

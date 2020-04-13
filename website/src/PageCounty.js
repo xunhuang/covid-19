@@ -3,10 +3,11 @@ import { NearbyCounties } from "./CountyListRender.js"
 import { withHeader } from "./Header.js"
 import { MyTabs } from "./MyTabs.js"
 import { CountryContext } from "./CountryContext";
-import { USInfoTopWidget, CountySummarySection } from './USInfoTopWidget.js'
+import { USInfoTopWidget } from './USInfoTopWidget.js'
 import { CountyHospitalsWidget } from "./Hospitals"
 import * as Util from "./Util"
 import { GraphSection } from './graphs/Graphs';
+import { SectionHeader } from "./CovidUI"
 
 const PageCounty = withHeader((props) => {
     const country = useContext(CountryContext);
@@ -28,8 +29,8 @@ const PageCounty = withHeader((props) => {
                 country={country}
                 selectedTab={"county"}
             />
-            <CountySummarySection county={county} />
             <GraphSection source={county} />
+            <BonusDashboards county={county} />
             <MyTabs
                 labels={["Nearby", "Hospitals"]}
                 urlQueryKey="table"
@@ -39,4 +40,29 @@ const PageCounty = withHeader((props) => {
         </>
     );
 });
+
+const BonusDashboards = (props) => {
+    const fips = props.county.fips();
+
+    if (fips === "06085") {
+        return (
+            <SectionHeader>
+                <a target="_blank" href="https://www.sccgov.org/sites/phd/DiseaseInformation/novel-coronavirus/Pages/dashboard.aspx" rel="noopener noreferrer" >
+                    Santa Clara County Coronavirus Data Dashboard
+               </a>
+            </SectionHeader>
+        );
+    } else if (fips === "06081") {
+        return (
+            <SectionHeader>
+                <a target="_blank" href="https://www.smchealth.org/post/san-mateo-county-covid-19-data-1" rel="noopener noreferrer" >
+                    San Mateo County COVID-19 Data
+                </a>
+            </SectionHeader>
+        );
+    } else {
+        return null;
+    }
+};
+
 export { PageCounty }

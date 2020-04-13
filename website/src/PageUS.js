@@ -3,7 +3,7 @@ import { CountryContext } from "./CountryContext";
 import { withHeader } from "./Header.js"
 import { MyTabs } from "./MyTabs.js"
 import * as Util from "./Util.js"
-import { USInfoTopWidget, USSummarySection } from './USInfoTopWidget.js'
+import { USInfoTopWidget } from './USInfoTopWidget.js'
 import { GraphSection } from './graphs/Graphs';
 import {
     ListAllStates,
@@ -35,7 +35,6 @@ const PageUS = withHeader((props) => {
                 country={country}
                 selectedTab={"usa"}
             />
-            <USSummarySection country={country} />
             <GraphSection source={country} />
             <MyTabs
                 labels={["States of USA", "Testing", "Capita"]}

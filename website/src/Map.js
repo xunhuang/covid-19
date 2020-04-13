@@ -225,7 +225,7 @@ function maybeMapTabFor(source) {
         return {
             id: 'map',
             label: 'Map',
-            graph: Map,
+            content: Map,
         };
     } else {
         return undefined;

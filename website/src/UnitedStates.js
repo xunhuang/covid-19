@@ -41,6 +41,7 @@ export class Country {
     this.statesByTwoLetterName_ = new Map();
     this.countiesById_ = new Map();
     this.name = "US";
+    this.longName = "United States";
 
     for (const [id, data] of Object.entries(this.covidRaw_)) {
       // Check if this looks like a state FIPS id
@@ -114,6 +115,13 @@ export class Country {
     return datesToDataPoints(this.covidRaw_.Summary);
   }
 
+  hospitals() {
+    return {
+      'bedCount': 924107,
+      'count': 6146,
+    };
+  }
+
   projections() {
     return projectionsUs.filter(
         d => d.location_name === "United States of America");
@@ -169,6 +177,7 @@ export class State {
     this.covidRaw_ = covidRaw_;
     this.country_ = country;
     this.name = CountyInfo.getStateNameFromFips(id);
+    this.longName = this.name;
     this.twoLetterName = Object.values(covidRaw_)[0]['StateName']
     if (!this.twoLetterName) {
       this.twoLetterName = CountyInfo.getStateAbbreviationFromFips(this.id);
@@ -284,8 +293,8 @@ export class State {
       state: this.twoLetterName,
       confirmed: confirmed,
       newcases: newcases,
-      death: this.covidRaw_.Summary.LastDeath,
-      deathNew: this.covidRaw_.Summary.LastDeathNew,
+      deaths: this.covidRaw_.Summary.LastDeath,
+      deathsNew: this.covidRaw_.Summary.LastDeathNew,
       newpercent: newcases / (confirmed - newcases),
       daysToDouble: this.covidRaw_.Summary.DaysToDouble,
       daysToDoubleDeath: this.covidRaw_.Summary.DaysToDoubleDeath,
@@ -348,6 +357,7 @@ export class Metro {
     this.covidRaw_ = covidRaw_;
     this.state_ = state;
     this.name = covidRaw_['Name'];
+    this.longName = `${this.name}, ${this.state_.longName}`;
     this.counties_ = this.covidRaw_.Counties.map(id => {
       // not all counties in a metro belong to the same state
       // can't call state.countyForId() directly
@@ -383,7 +393,14 @@ export class Metro {
   }
 
   summary() {
-    return this.covidRaw_['Summary'];
+    const raw = Object.assign({}, this.covidRaw_['Summary']);
+    return Object.assign(raw, {
+      confirmed: raw.LastConfirmed,
+      newcases: raw.LastConfirmedNew,
+      deaths: raw.LastDeath,
+      deathsNew: raw.LastDeathNew,
+      recovered: '-', // raw.recovered
+    });
   }
 
   totalConfirmed() {
@@ -434,6 +451,7 @@ export class County {
     }
 
     this.state_ = state;
+    this.longName = `${this.name}, ${this.state_.longName}`;
   }
 
   metro() {
@@ -534,7 +552,7 @@ export class County {
     return {
       confirmed: today,
       newcases: newcase,
-      death: this.covidRaw_.LastDeath,
+      deaths: this.covidRaw_.LastDeath,
       newpercent: (newcase) / (today - newcase),
       daysToDouble: this.covidRaw_.DaysToDouble,
       daysToDoubleDeath: this.covidRaw_.DaysToDoubleDeath,
