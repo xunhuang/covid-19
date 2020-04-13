@@ -190,15 +190,15 @@ const GraphDeathProjectionRender = (props) => {
 }
 
 function maybeDeathProjectionTabFor(source) {
-  if (source.projections) {
-      return {
-          id: 'peakdeath',
-          label: 'Peak Death',
-          graph: GraphDeathProjection,
-      };
-  } else {
-      return undefined;
-  }
+    if (source.projections) {
+        return {
+            id: 'peakdeath',
+            label: 'Death*',
+            graph: GraphDeathProjection,
+        };
+    } else {
+        return undefined;
+    }
 }
 
 export {

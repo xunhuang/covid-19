@@ -41,10 +41,6 @@ export const GraphSection = (props) => {
         label: "At a glance",
         content: BasicGraphNewCases,
     });
-    tabs.set('detailed', {
-        label: "Detailed",
-        content: DetailedGraphs,
-    });
 
     [maybeDeathProjectionTabFor, maybeHospitalizationProjectionTabFor]
         .map(factory => factory(source))
@@ -67,6 +63,11 @@ export const GraphSection = (props) => {
             content: maybeMap.content,
         });
     }
+
+    tabs.set('detailed', {
+        label: "Detailed",
+        content: DetailedGraphs,
+    });
 
     const headings = [...tabs.keys()];
     const [viewing, setViewing] =

@@ -53,7 +53,7 @@ export const Summary = (props) => {
     const pop = (label, total, change) =>
         <Paper className={classes.aspect}>
             <div className={classes.change}>
-                {change > 0 ? change : "-"}
+                {change ? change : "-"}
             </div>
             <div className={classes.total}>
                 {total}
@@ -62,13 +62,12 @@ export const Summary = (props) => {
                 {label}
             </div>
         </Paper>;
-
     return (
         <div className={classes.container}>
             {pop(
                 'Confirmed',
                 myShortNumber(summary.confirmed),
-                `+${myShortNumber(summary.newcases)}`)}
+                `+ ${myShortNumber(summary.newcases)}`)}
             {summary.recovered > 0 &&
                 pop(
                     'Recovered',
@@ -80,7 +79,7 @@ export const Summary = (props) => {
                 `+${myShortNumber(summary.deathsNew)}`)}
             {maybeHospitals &&
                 pop(
-                    'Hospitalized',
+                    'Beds',
                     myShortNumber(maybeHospitals.bedCount),
                     '')}
         </div>

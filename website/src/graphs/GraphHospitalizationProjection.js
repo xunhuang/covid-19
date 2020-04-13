@@ -240,13 +240,13 @@ function maybeHospitalizationProjectionTabFor(source) {
     if (source instanceof Country) {
         return {
             id: 'peakhospitalization',
-            label: 'Peak Hospitalization',
+            label: 'Hosp.*',
             graph: (props) => <GraphAllBedProjectionUS />,
         };
     } else if (source instanceof State) {
         return {
             id: 'peakhospitalization',
-            label: 'Peak Hospitalization',
+            label: 'Hosp.*',
             graph: (props) => <GraphAllBedProjectionState state={props.source} />,
         };
     } else {
