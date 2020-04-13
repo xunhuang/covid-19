@@ -91,6 +91,10 @@ export class Country {
     return this.metrosById_.get(id);
   }
 
+  allMetros() {
+    return [...this.metrosById_.values()];
+  }
+
   stateForId(id) {
     return this.statesById_.get(id);
   }
@@ -352,6 +356,18 @@ export class Metro {
     return this.covidRaw_['Summary'];
   }
 
+  totalConfirmed() {
+    if (!this.covidRaw_) {
+      return 0;
+    }
+
+    return this.covidRaw_.Summary.LastConfirmed;
+  }
+
+  newCases() {
+    return this.covidRaw_.Summary.LastConfirmedNew;
+  }
+
   daysToDoubleTimeSeries() {
     let confirmed = getDay2DoubleTimeSeries(
       trimLastDaysData(this.covidRaw_.Summary.Confirmed)
@@ -497,6 +513,14 @@ export class County {
     }
 
     return this.covidRaw_.LastConfirmed;
+  }
+
+  newCases() {
+    if (!this.covidRaw_) {
+      return 0;
+    }
+
+    return this.covidRaw_.LastConfirmedNew;
   }
 
   update(data) {
