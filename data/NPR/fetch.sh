@@ -1,0 +1,2 @@
+curl -s "https://apps.npr.org/dailygraphics/graphics/coronavirus-joy-model-20200331/?initialWidth=889&childId=responsive-embed-coronavirus-joy-model-20200331&parentTitle=Coronavirus%20Peaks%20By%20State%3A%20How%20Social%20Distancing%20Measures%20Are%20Helping%20%3A%20Shots%20-%20Health%20News%20%3A%20NPR&parentUrl=https%3A%2F%2Fwww.npr.org%2Fsections%2Fhealth-shots%2F2020%2F04%2F07%2F825479416%2Fnew-yorks-coronavirus-deaths-may-level-off-soon-when-might-your-state-s-peak%3Ffbclid%3DIwAR2OJkg5-6aLVNhQs6PVnE0e5ewFxARHf-5_6oO0Y09iSbLASbgWqcMQDJs" > peak.html
+
