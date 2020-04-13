@@ -27,6 +27,8 @@ const DeathTooltip = (props) => {
         const { payload, label } = props;
         let deaths_mean;
         let deathsTotal_mean;
+        let actualDeath_total;
+        let actualDeath_daily;
         payload.map(p => {
             p = p.payload;
             if ("deaths_mean" in p) {
@@ -34,6 +36,12 @@ const DeathTooltip = (props) => {
             }
             if ("deathsTotal_mean" in p) {
                 deathsTotal_mean = p.deathsTotal_mean;
+            }
+            if ("actualDeath_total" in p) {
+                actualDeath_total = p.actualDeath_total;
+            }
+            if ("actualDeath_daily" in p) {
+                actualDeath_daily = p.actualDeath_daily;
             }
             return null;
         });
@@ -45,9 +53,19 @@ const DeathTooltip = (props) => {
                 <Typography variant="body2" noWrap>
                     {`Projected Daily Death: ${deaths_mean}`}
                 </Typography>
+                {actualDeath_daily &&
+                    <Typography variant="body2" noWrap>
+                        {`Actual Daily: ${actualDeath_daily}`}
+                    </Typography>
+                }
                 <Typography variant="body2" noWrap>
                     {`Projected Total: ${deathsTotal_mean}`}
                 </Typography>
+                {actualDeath_total &&
+                    <Typography variant="body2" noWrap>
+                        {`Actual Total: ${actualDeath_total}`}
+                    </Typography>
+                }
             </div>
         );
     }
@@ -68,6 +86,21 @@ const keydeath = {
 const GraphDeathProjection = (props) => {
     const [formateddata, max_date] =
         formatData(props.source.projections(), keydeath);
+    const actual_deaths_total = props.source.deaths();
+
+    for (let item of formateddata) {
+        let entry = actual_deaths_total[item.fulldate];
+        if (entry) {
+            item.actualDeath_total = entry;
+            let lastday = moment(item.fulldate, "MM/DD/YYYY").subtract(1, "days").format("MM/DD/YYYY");
+            let lastentry = actual_deaths_total[lastday];
+            if (lastentry !== null) {
+                item.actualDeath_daily = entry - lastentry;
+            }
+        }
+    }
+    console.log(formateddata);
+
     return <GraphDeathProjectionRender
         data={formateddata}
         max_date={max_date}
@@ -143,12 +176,17 @@ const GraphDeathProjectionRender = (props) => {
 
     return <>
         <Grid container alignItems="center" spacing={1}>
+            <Grid item onClick={handleLogScaleToggle}>
+                <Typography>
+                    Daily
+                </Typography>
+            </Grid>
             <Grid item>
                 <AntSwitch checked={state.showall} onClick={handleLogScaleToggle} />
             </Grid>
             <Grid item onClick={handleLogScaleToggle}>
                 <Typography>
-                    Show Cumulative
+                    Total
                 </Typography>
             </Grid>
             <Grid item></Grid>
@@ -162,13 +200,15 @@ const GraphDeathProjectionRender = (props) => {
                 <Line type="monotone" dataKey={data_keys.key_mean} stroke="#000000" dot={{ r: 1 }} yAxisId={0} strokeWidth={3} />
                 <Area type='monotone' dataKey={data_keys.key_lower} stackId="1" stroke='#8884d8' fill='#FFFFFF' />
                 <Area type='monotone' dataKey={data_keys.key_delta} stackId="1" stroke='#82ca9d' fill='#82ca9d' />
-                {state.showall && <Line type="monotone" dataKey={data_keys.key_mean_cumulative} stroke="#ff0000" yAxisId={0} strokeWidth={3} />}
+                <Line type="monotone" dataKey="actualDeath_daily" stroke="#FF0000" dot={{ r: 1 }} yAxisId={0} strokeWidth={3} />
+                {state.showall && <Line type="monotone" dataKey={data_keys.key_mean_cumulative} stroke="#000000" yAxisId={0} strokeWidth={3} />}
+                {state.showall && <Line type="monotone" dataKey="actualDeath_total" stroke="#ff0000" yAxisId={0} strokeWidth={3} />}
                 {state.showall && <Area type='monotone' dataKey={data_keys.key_lower_cumulative} stackId="2" stroke='#8884d8' fill='#FFFFFF' />}
                 {state.showall && <Area type='monotone' dataKey={data_keys.key_delta_cumulative} stackId="2" stroke='#82ca9d' fill='#82ca9d' />}
                 <Tooltip content={props.tooltip} />
                 <Legend verticalAlign="top" payload={[
-                    { value: 'Cumulative ', type: 'line', color: '#ff0000' },
-                    { value: 'Daily', type: 'line', color: '#000000' },
+                    { value: 'Actual Death', type: 'line', color: '#ff0000' },
+                    { value: 'Projection', type: 'line', color: '#000000' },
                 ]} />
             </ComposedChart>
         </ResponsiveContainer>

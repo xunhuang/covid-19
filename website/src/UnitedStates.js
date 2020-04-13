@@ -115,6 +115,10 @@ export class Country {
     return datesToDataPoints(this.covidRaw_.Summary);
   }
 
+  deaths() {
+    return this.covidRaw_.Summary.Death;
+  }
+
   hospitals() {
     return {
       'bedCount': 924107,
@@ -124,7 +128,7 @@ export class Country {
 
   projections() {
     return projectionsUs.filter(
-        d => d.location_name === "United States of America");
+      d => d.location_name === "United States of America");
   }
 
   summary() {
@@ -255,6 +259,10 @@ export class State {
     return datesToDataPoints(this.covidRaw_.Summary);
   }
 
+  deaths() {
+    return this.covidRaw_.Summary.Death;
+  }
+
   hospitals() {
     const aggregate = {
       'bedCount': 0,
@@ -305,7 +313,7 @@ export class State {
 
   testing() {
     return testingStates.filter(d => d.state === this.twoLetterName)
-        .sort((a, b) => a.date - b.date);
+      .sort((a, b) => a.date - b.date);
   }
 
   totalConfirmed() {
