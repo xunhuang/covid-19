@@ -86,7 +86,7 @@ function prepareDataForDisplay(list) {
         newrow.deathsPerMil = newrow.death * 1000000 / newrow.pop;
         newrow.daysToDouble = row.daysToDouble;
         newrow.daysToDoubleDeath = row.daysToDoubleDeath;
-        newrow.recovered = row.lastRecovered;
+        newrow.recovered = row.recovered;
         return newrow;
     });
     return extendlist;

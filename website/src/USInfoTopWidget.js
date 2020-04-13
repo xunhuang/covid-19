@@ -134,8 +134,8 @@ const StateSummarySection = withRouter((props) => {
         newcases={state_summary.newcases}
         deaths={state_summary.death}
         deathsNew={state_summary.deathNew}
-        recovered={state_summary.lastRecovered}
-        recoveredNew={state_summary.lastRecovered}
+        recovered={state_summary.recovered}
+        recoveredNew={state_summary.recovered}
         hospitals={state_hospitals.count}
         beds={state_hospitals.bedCount}
         selected={false}
@@ -156,9 +156,9 @@ const MetroSummarySection = withRouter((props) => {
         newcases={metro_summary.LastConfirmedNew}
         deaths={metro_summary.LastDeath}
         deathsNew={metro_summary.LastDeathNew}
-        // recovered={metro_summary.lastRecovered}
+        // recovered={metro_summary.recovered}
         recovered={"-"}
-        // recoveredNew={metro_summary.lastRecovered}
+        // recoveredNew={metro_summary.recovered}
         hospitals={metro_hospitals.count}
         beds={metro_hospitals.bedCount}
         selected={false}
@@ -277,8 +277,8 @@ const USInfoTopWidget = withRouter((props) => {
                 newcases={state_summary.newcases}
                 deaths={state_summary.death}
                 deathsNew={state_summary.deathNew}
-                recovered={state_summary.lastRecovered}
-                recoveredNew={state_summary.lastRecoveredNew}
+                recovered={state_summary.recovered}
+                recoveredNew={state_summary.recoveredNew}
                 hospitals={state_hospitals.count}
                 beds={state_hospitals.bedCount}
                 selected={props.selectedTab === "state"}

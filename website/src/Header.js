@@ -155,7 +155,6 @@ const ResourceSection = withRouter((props) => {
         urlQueryKey="resources"
         urlQueryValues={['medication', 'stressmgmt', 'kids']}
         tabs={tablist}
-        history={props.history}
     />;
     return tabs;
 });
@@ -267,13 +266,14 @@ const SocialMediaButtons = (props) => {
 const quote = "Best real-time county-level COVID-19 dashboard. Get the latest trends about cases, recovery, testing and hospitalization as well as resources for mental health and well-being.";
 
 const Banner = withRouter((props) => {
+    const history = useHistory();
     const classes = useStyles();
     const country = useContext(CountryContext);
     let us_summary = country.summary();
     let url_shared =
         "https://covid-19.direct" +
         props.match.url +
-        props.history.location.search;
+        history.location.search;
     return (
         <div className={classes.topContainer}>
             <span className={classes.title}>
@@ -382,7 +382,7 @@ const withHeader = (comp, props) => {
 
 
         let header = <header className="App-header">
-            <Banner history={props.history}></Banner>
+            <Banner />
             <QPArea />
             <div className={classes.searchContainer}>
                 <SearchBox />

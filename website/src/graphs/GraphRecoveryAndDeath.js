@@ -3,8 +3,9 @@ import { ResponsiveContainer, Tooltip, LineChart, Line, YAxis, XAxis, CartesianG
 import { Typography } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
 import { scaleSymlog } from 'd3-scale';
-import { myShortNumber } from './Util';
+import { myShortNumber } from '../Util';
 import { AntSwitch } from "./GraphNewCases.js"
+import { State } from '../UnitedStates';
 
 const moment = require("moment");
 
@@ -25,7 +26,7 @@ const BasicGraphRecoveryAndDeath = (props) => {
         setState({ ...state, show2weeks: !state.show2weeks });
     };
 
-    let data = props.data;
+    let data = props.source.dataPoints();
     data = data.map(d => {
         d.name = moment(d.fulldate, "MM/DD/YYYY").format("M/D");
         return d;
@@ -95,4 +96,36 @@ const BasicGraphRecoveryAndDeath = (props) => {
     </>
 }
 
-export { BasicGraphRecoveryAndDeath };
+const CaveatStateGraph = (props) => {
+    return (
+        <>
+            <Typography variant="body2">
+              Recovery data collection started on 4/2.
+              {props.source.summary().recovered > 0 ||
+                  " No recovery data for this state yet."
+              }
+            </Typography>
+            <BasicGraphRecoveryAndDeath source={props.source} />
+        </>
+    );
+}
+
+function maybeRecoveryAndDeathTabFor(source) {
+    let graph;
+    if (source instanceof State) {
+        graph = CaveatStateGraph;
+    } else if (source.summary().recovered) {
+        graph = BasicGraphRecoveryAndDeath;
+    } else {
+        // Avoid showing hopeless graphs
+        return undefined;
+    }
+
+    return {
+        id: 'recovery',
+        label: 'Recovery',
+        graph,
+    };
+}
+
+export { maybeRecoveryAndDeathTabFor };

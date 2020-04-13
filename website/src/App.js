@@ -15,12 +15,11 @@ import { CountryContext } from "./CountryContext";
 import { compactTheme } from "./Theme.js";
 import { reverse } from 'named-urls';
 import routes from "./Routes";
-import history from "./history";
 
 const App = (props) => {
   return <BrowserRouter>
     <ThemeProvider theme={compactTheme}>
-      <MainApp  {...props} history={history} />
+      <MainApp  {...props} />
     </ThemeProvider>
   </BrowserRouter>;
 };

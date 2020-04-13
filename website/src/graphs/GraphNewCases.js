@@ -21,7 +21,7 @@ import Link from '@material-ui/core/Link';
 import ListItemText from '@material-ui/core/ListItemText';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
-import { myShortNumber } from './Util';
+import { myShortNumber } from '../Util';
 const Cookies = require("js-cookie");
 
 const fileDownload = require('js-file-download');
@@ -233,7 +233,7 @@ const BasicGraphNewCases = (props) => {
         });
     };
 
-    let data = props.data;
+    let data = props.source.dataPoints();
     data = data.map(d => {
         d.name = moment(d.fulldate, "MM/DD/YYYY").format("M/D");
         return d;
@@ -496,4 +496,12 @@ const BasicGraphNewCases = (props) => {
     </>
 }
 
-export { BasicGraphNewCases, AntSwitch };
+function newCasesTab() {
+    return {
+        id: 'cases',
+        label: 'Cases',
+        graph: BasicGraphNewCases,
+    };
+}
+
+export { AntSwitch, newCasesTab };

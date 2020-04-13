@@ -2,7 +2,7 @@ import React from 'react';
 import { ResponsiveContainer, Tooltip, LineChart, Line, YAxis, XAxis, CartesianGrid, Legend } from 'recharts';
 import { Typography } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
-import { myShortNumber } from './Util';
+import { myShortNumber } from '../Util';
 import { AntSwitch } from "./GraphNewCases.js"
 
 const moment = require("moment");
@@ -17,7 +17,7 @@ const GraphDaysToDoubleOverTime = (props) => {
         setState({ ...state, show2weeks: !state.show2weeks });
     };
 
-    let data = props.data;
+    let data = props.source.daysToDoubleTimeSeries();
     data = data.map(d => {
         d.name = moment(d.fulldate, "MM/DD/YYYY").format("M/D");
         d.confirmed = d.confirmed ? parseFloat(d.confirmed.toFixed(1)) : null;
@@ -76,4 +76,12 @@ const GraphDaysToDoubleOverTime = (props) => {
     </>
 }
 
-export { GraphDaysToDoubleOverTime };
+function daysToDoubleTab() {
+    return {
+        id: 'days2x',
+        label: 'Days to 2x',
+        graph: GraphDaysToDoubleOverTime,
+    };
+}
+
+export { daysToDoubleTab };

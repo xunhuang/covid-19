@@ -7,8 +7,9 @@ import {
     ComposedChart,
 } from 'recharts';
 import { Typography } from '@material-ui/core';
-import { myShortNumber } from './Util';
+import { myShortNumber } from '../Util';
 import { makeStyles } from '@material-ui/core/styles';
+import { Country, State } from '../UnitedStates';
 
 const moment = require("moment");
 
@@ -74,7 +75,7 @@ const AllBedsTooltip = (props) => {
     return null;
 }
 
-const usdata = require("./data/us_only.json")
+const usdata = require("../data/us_only.json")
 
 const keybeds = {
     key_lower: "allbed_lower",
@@ -91,7 +92,7 @@ const GraphAllBedProjectionState = (props) => {
     let data = usdata.filter(d => d.location_name === props.state.name);
     const [formateddata, max_date] = formatData(data, keybeds);
 
-    const us_testing_data = require("./data/state_testing.json");
+    const us_testing_data = require("../data/state_testing.json");
     const state_testing_data = us_testing_data.filter(d => d.state === props.state.twoLetterName);
 
     for (let item of formateddata) {
@@ -121,7 +122,7 @@ const GraphAllBedProjectionState = (props) => {
 
 const GraphAllBedProjectionUS = (props) => {
     let data = usdata.filter(d => d.location_name === "United States of America");
-    const testingActual = require("./data/us_testing.json");
+    const testingActual = require("../data/us_testing.json");
     const [formateddata, max_date] = formatData(data, keybeds);
 
     for (let item of formateddata) {
@@ -234,7 +235,25 @@ const GraphDeathProjectionRender = (props) => {
     </>
 }
 
+function maybeHospitalizationProjectionTabFor(source) {
+    // Fuck this
+    if (source instanceof Country) {
+        return {
+            id: 'peakhospitalization',
+            label: 'Peak Hospitalization',
+            graph: (props) => <GraphAllBedProjectionUS />,
+        };
+    } else if (source instanceof State) {
+        return {
+            id: 'peakhospitalization',
+            label: 'Peak Hospitalization',
+            graph: (props) => <GraphAllBedProjectionState state={props.source} />,
+        };
+    } else {
+        return undefined;
+    }
+}
+
 export {
-    GraphAllBedProjectionState,
-    GraphAllBedProjectionUS,
+    maybeHospitalizationProjectionTabFor,
 }

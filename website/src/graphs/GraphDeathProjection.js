@@ -8,7 +8,7 @@ import {
 } from 'recharts';
 import { Typography } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
-import { myShortNumber } from './Util';
+import { myShortNumber } from '../Util';
 import { AntSwitch } from "./GraphNewCases.js"
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -53,7 +53,6 @@ const DeathTooltip = (props) => {
     }
     return null;
 }
-const usdata = require("./data/us_only.json")
 
 const keydeath = {
     key_lower: "deaths_lower",
@@ -66,22 +65,20 @@ const keydeath = {
     key_mean_cumulative: "deathsTotal_mean",
 }
 
-const GraphDeathProjectionState = (props) => {
-    let data = usdata.filter(d => d.location_name === props.state.name);
-    const [formateddata, max_date] = formatData(data, keydeath);
-    return <GraphDeathProjectionRender
-        data={formateddata}
-        max_date={max_date}
-        max_label="Peak Death"
-        data_keys={keydeath}
-        tooltip={<DeathTooltip />}
-    />;
+const keybeds = {
+    key_lower: "allbed_lower",
+    key_upper: "allbed_upper",
+    key_delta: "delta",
+    key_mean: "allbed_mean",
+    key_upper_cumulative: "dallbedotal_upper",
+    key_lower_cumulative: "allbedTotal_lower",
+    key_delta_cumulative: "allbedTotal_delta",
+    key_mean_cumulative: "allbedTotal_mean",
 }
 
-const GraphDeathProjectionUS = (props) => {
-    let data = usdata.filter(d => d.location_name === "United States of America");
-    const [formateddata, max_date] = formatData(data, keydeath);
-
+const GraphDeathProjection = (props) => {
+    const [formateddata, max_date] =
+        formatData(props.source.projections(), keydeath);
     return <GraphDeathProjectionRender
         data={formateddata}
         max_date={max_date}
@@ -192,7 +189,18 @@ const GraphDeathProjectionRender = (props) => {
     </>
 }
 
+function maybeDeathProjectionTabFor(source) {
+  if (source.projections) {
+      return {
+          id: 'peakdeath',
+          label: 'Peak Death',
+          graph: GraphDeathProjection,
+      };
+  } else {
+      return undefined;
+  }
+}
+
 export {
-    GraphDeathProjectionState,
-    GraphDeathProjectionUS,
+    maybeDeathProjectionTabFor,
 }

@@ -1,48 +1,16 @@
 import React, { useContext } from 'react';
-import { withRouter } from 'react-router-dom'
 import { CountryContext } from "./CountryContext";
-import { BasicGraphNewCases } from "./GraphNewCases.js"
-import { BasicGraphRecoveryAndDeath } from "./GraphRecoveryAndDeath.js"
-import { GraphUSTesting } from "./GraphTestingEffort"
 import { withHeader } from "./Header.js"
 import { MyTabs } from "./MyTabs.js"
 import * as Util from "./Util.js"
 import { USInfoTopWidget, USSummarySection } from './USInfoTopWidget.js'
-import { GraphDaysToDoubleOverTime } from "./GraphDaysToDoubleOverTime"
+import { GraphSection } from './graphs/Graphs';
 import {
     ListAllStates,
     ListAllStatesPerCapita,
     ListAllStatesTesting,
 } from "./ListAllStates.js"
-import { GraphDeathProjectionUS } from "./GraphDeathProjection.js"
-import { GraphAllBedProjectionUS } from "./GraphHospitalizationProjection.js"
 import { logger } from "./AppModule"
-
-const GraphSectionUS = withRouter((props) => {
-    const country = props.country;
-    let graphdata = country.dataPoints();
-
-    const tabs = [
-        <BasicGraphNewCases data={graphdata} logScale={false} />,
-        <GraphDeathProjectionUS />,
-        <GraphAllBedProjectionUS />,
-        <BasicGraphRecoveryAndDeath data={graphdata} logScale={false} />,
-        <GraphDaysToDoubleOverTime data={props.country.daysToDoubleTimeSeries()} />,
-        <GraphUSTesting />,
-    ]
-    let graphlistSection = <MyTabs
-        labels={["Cases", "Peak Death",
-            "Hospitalization(New)",
-            "Recovery", "Days to 2x", "Tests"]}
-        urlQueryKey="graph"
-        urlQueryValues={['cases', "peakdeath",
-            "peakhospital",
-            'recovery_death', "days2x", 'testing']}
-        tabs={tabs}
-        history={props.history}
-    />;
-    return graphlistSection;
-});
 
 const PageUS = withHeader((props) => {
     const country = useContext(CountryContext);
@@ -68,13 +36,12 @@ const PageUS = withHeader((props) => {
                 selectedTab={"usa"}
             />
             <USSummarySection country={country} />
-            <GraphSectionUS country={country} />
+            <GraphSection source={country} />
             <MyTabs
                 labels={["States of USA", "Testing", "Capita"]}
                 urlQueryKey="table"
                 urlQueryValues={['cases', 'testing', 'capita']}
                 tabs={tabs}
-                history={props.history}
             />
         </>
     );

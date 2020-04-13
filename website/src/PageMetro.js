@@ -1,31 +1,11 @@
 import React, { useContext } from 'react';
-import { withRouter } from 'react-router-dom'
 import { CountryContext } from "./CountryContext";
 import { ListCountiesForMetro } from "./CountyListRender.js"
-import { BasicGraphNewCases } from "./GraphNewCases.js"
 import { withHeader } from "./Header.js"
 import { MyTabs } from "./MyTabs.js"
 import { USInfoTopWidget, MetroSummarySection } from './USInfoTopWidget.js'
 import * as Util from "./Util"
-import { GraphDaysToDoubleOverTime } from "./GraphDaysToDoubleOverTime"
-
-const GraphSectionMetro = withRouter((props) => {
-    const tabs = [
-        <BasicGraphNewCases
-            data={props.metro.dataPoints()}
-            logScale={false}
-        />,
-        <GraphDaysToDoubleOverTime data={props.metro.daysToDoubleTimeSeries()} />
-    ]
-    let graphlistSection = <MyTabs
-        labels={["Cases", "Days to 2x"]}
-        urlQueryKey="graph"
-        urlQueryValues={['cases', 'days2x']}
-        tabs={tabs}
-        history={props.history}
-    />;
-    return graphlistSection;
-});
+import { GraphSection } from "./graphs/Graphs"
 
 const PageMetro = withHeader((props) => {
     const country = useContext(CountryContext);
@@ -47,13 +27,12 @@ const PageMetro = withHeader((props) => {
                 selectedTab={"metro"}
             />
             <MetroSummarySection metro={metro} selectedTab={"metro"} />
-            <GraphSectionMetro metro={metro} />
+            <GraphSection source={metro} />
             <MyTabs
                 labels={[metro.name]}
                 urlQueryKey="table"
                 urlQueryValues={['cases']}
                 tabs={tabs}
-                history={props.history}
             />
         </>
     );

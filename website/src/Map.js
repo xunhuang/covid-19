@@ -3,7 +3,7 @@ import { ComposableMap, Geographies, Geography } from "react-simple-maps";
 import ToggleButton from '@material-ui/lab/ToggleButton';
 import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
 import ReactTooltip from "react-tooltip";
-
+import { State } from './UnitedStates';
 
 const geoUrl = "https://cdn.jsdelivr.net/npm/us-atlas@3/counties-10m.json";
 const stateBounds = require("./data/states-bounding.json");
@@ -215,4 +215,21 @@ const MapStateConfirmed = React.memo((props) => {
     );
 });
 
-export { MapState }
+const Map = (props) => {
+    // Seems like a great place to yolo this since we check 4 lines below
+    return <MapState state={props.source} />
+};
+
+function maybeMapTabFor(source) {
+    if (source instanceof State) {
+        return {
+            id: 'map',
+            label: 'Map',
+            graph: Map,
+        };
+    } else {
+        return undefined;
+    }
+}
+
+export { maybeMapTabFor }
