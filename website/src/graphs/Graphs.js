@@ -17,16 +17,16 @@ import { maybeTestingTabFor } from './GraphTestingEffort'
 
 const useStyles = makeStyles(theme => ({
     content: {
-      margin: '0 8px 16px 8px',
+        margin: '0 2px 2px 2px',
     },
     location: {
-      margin: '16px 0',
+        margin: '2px 0',
     },
     detailedToggles: {
-      margin: '12px 0',
+        margin: '12px 0',
     },
     tabContent: {
-        padding: '8px',
+        padding: '2px',
     }
 }));
 
@@ -59,7 +59,7 @@ export const GraphSection = (props) => {
         label: "Doubling",
         content: GraphDaysToDoubleOverTime,
     });
-  
+
     const maybeMap = maybeMapTabFor(source);
     if (maybeMap) {
         tabs.set(maybeMap.id, {
@@ -70,7 +70,7 @@ export const GraphSection = (props) => {
 
     const headings = [...tabs.keys()];
     const [viewing, setViewing] =
-            React.useState(getOrDefaultFrom(history, 'tab', headings));
+        React.useState(getOrDefaultFrom(history, 'tab', headings));
     const switchTo = (e, index) => {
         const desire = headings[index];
         setViewing(desire);
@@ -80,16 +80,16 @@ export const GraphSection = (props) => {
 
     return (
         <div className={classes.content}>
-            <Typography variant="h2" className={classes.location}>
+            {/* <Typography variant="h6" className={classes.location}>
                 {source.longName}
-            </Typography>
-            <Tabs 
-                    value={headings.indexOf(viewing)}
-                    onChange={switchTo}
-                    variant="scrollable"
-                    scrollButtons="auto">
+            </Typography> */}
+            <Tabs
+                value={headings.indexOf(viewing)}
+                onChange={switchTo}
+                variant="scrollable"
+                scrollButtons="auto">
                 {[...tabs.values()].map(tab =>
-                  <Tab label={tab.label} key={tab.label} />
+                    <Tab label={tab.label} key={tab.label} />
                 )}
             </Tabs>
             <Paper className={classes.tabContent}>
@@ -114,8 +114,8 @@ const DetailedGraphs = (props) => {
     }).map(desc => [desc.label, desc]));
 
     const [viewing, setViewing] =
-            React.useState(
-                  getOrDefaultFrom(history, 'detailed', [...graphs.keys()]));
+        React.useState(
+            getOrDefaultFrom(history, 'detailed', [...graphs.keys()]));
     const switchTo = (e, desire) => {
         // Having a strange problem where if only one ToggleButton desire is
         // null
@@ -130,18 +130,18 @@ const DetailedGraphs = (props) => {
     return (
         <div>
             <ToggleButtonGroup
-                    className={classes.detailedToggles}
-                    exclusive
-                    onChange={switchTo}
-                    value={viewing}
-                    aria-label="Detailed graph"
-                    size="small">
-                {[...graphs.keys()].map(label => 
+                className={classes.detailedToggles}
+                exclusive
+                onChange={switchTo}
+                value={viewing}
+                aria-label="Detailed graph"
+                size="small">
+                {[...graphs.keys()].map(label =>
                     <ToggleButton
-                            key={label}
-                            value={label}
-                            aria-label={label}
-                            size="small">
+                        key={label}
+                        value={label}
+                        aria-label={label}
+                        size="small">
                         {label}
                     </ToggleButton>
                 )}

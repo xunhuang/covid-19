@@ -19,7 +19,7 @@ const useStyles = makeStyles(theme => ({
         justifyContent: "space-between",
         display: "flex",
         flexWrap: "wrap",
-        margin: '24px 0',
+        // margin: '24px 0',
     },
     tagContainerNoBeds: {
         flexWrap: "nowrap",

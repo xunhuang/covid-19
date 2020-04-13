@@ -5,62 +5,66 @@ import { County } from '../UnitedStates';
 import { myShortNumber } from '../Util';
 
 const useStyles = makeStyles(theme => ({
-		container: {
-			display: 'flex',
-      flexWrap: 'wrap',
-			justifyContent: 'center',
-		},
+    container: {
+        display: 'flex',
+        flexWrap: 'wrap',
+        alignItems: 'center',
+        justifyContent: "space-around",
+    },
     aspect: {
+        flexDirection: "column",
         alignContent: 'flex-start',
         alignItems: 'center',
         display: 'flex',
         flexWrap: 'wrap',
-        padding: '12px',
-        margin: '16px 8px',
+        padding: '4px',
+        margin: '8px 8px',
+        flexGrow: 1,
     },
     label: {
-        width: '100%',
+        fontSize: '.8em',
     },
     total: {
         flexGrow: 1,
-        fontSize: '2em',
+        fontSize: '1.1em',
     },
     change: {
         flexGrow: 1,
-        minHeight: '1em',
+        fontSize: '0.5em',
+        minHeight: "0.5em"
     },
 }));
 
 export const Summary = (props) => {
     const classes = useStyles();
 
-		const source = props.source;
-		const summary = source.summary();
+    const source = props.source;
+    const summary = source.summary();
 
-		// Where does this even belong...
-		let maybeHospitals = source.hospitals && source.hospitals();
-		if (!maybeHospitals && source instanceof County) {
+    // Where does this even belong...
+    let maybeHospitals = source.hospitals && source.hospitals();
+    if (!maybeHospitals && source instanceof County) {
         maybeHospitals = {
-						'bedCount': "N/A",
-						'count': "N/A",
-				};
-		}
+            'bedCount': "N/A",
+            'count': "N/A",
+        };
+    }
 
     const pop = (label, total, change) =>
         <Paper className={classes.aspect}>
-            <div className={classes.label}>
-                {label}
+            <div className={classes.change}>
+                {change > 0 ? change : "-"}
             </div>
             <div className={classes.total}>
                 {total}
             </div>
-            <div className={classes.change}>
-                {change > 0 && change}
+            <div className={classes.label}>
+                {label}
             </div>
         </Paper>;
 
     return (
-				<div className={classes.container}>
+        <div className={classes.container}>
             {pop(
                 'Confirmed',
                 myShortNumber(summary.confirmed),
@@ -70,10 +74,10 @@ export const Summary = (props) => {
                     'Recovered',
                     myShortNumber(summary.recovered),
                     `+${myShortNumber(summary.recoveredNew)}`)}
-						{pop(
-								'Deaths',
-								myShortNumber(summary.deaths),
-								`+${myShortNumber(summary.deathsNew)}`)}
+            {pop(
+                'Deaths',
+                myShortNumber(summary.deaths),
+                `+${myShortNumber(summary.deathsNew)}`)}
             {maybeHospitals &&
                 pop(
                     'Hospitalized',
