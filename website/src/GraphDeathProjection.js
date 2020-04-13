@@ -10,7 +10,6 @@ import { Typography } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
 import { myShortNumber } from './Util';
 import { AntSwitch } from "./GraphNewCases.js"
-import * as Util from "./Util";
 import { makeStyles } from '@material-ui/core/styles';
 
 const moment = require("moment");
@@ -167,7 +166,7 @@ const GraphAllBedProjectionUS = (props) => {
 
 const formatData = (data, keys) => {
     data = data.map(d => {
-        d.fulldate = Util.normalize_date(d.date);
+        d.fulldate = moment(d.date, "YYYY-MM-DD").format("MM/DD/YYYY");
         d.name = moment(d.fulldate, "MM/DD/YYYY").format("M/D");
         return d;
     });
@@ -179,9 +178,9 @@ const formatData = (data, keys) => {
     let max_date = 0;
     data = data.map(d => {
         let r = {};
-        let mean = Math.floor(d[keys.key_mean]);
-        let lower = Math.floor(d[keys.key_lower]);
-        let upper = Math.floor(d[keys.key_upper]);
+        let mean = Math.round(d[keys.key_mean]);
+        let lower = Math.round(d[keys.key_lower]);
+        let upper = Math.round(d[keys.key_upper]);
         r[keys.key_mean] = mean;
         r[keys.key_lower] = lower;
         r[keys.key_upper] = upper;
