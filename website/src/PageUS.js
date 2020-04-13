@@ -8,7 +8,6 @@ import { withHeader } from "./Header.js"
 import { MyTabs } from "./MyTabs.js"
 import * as Util from "./Util.js"
 import { USInfoTopWidget, USSummarySection } from './USInfoTopWidget.js'
-import { GraphUSHospitalization } from './GraphHospitalization.js'
 import { GraphDaysToDoubleOverTime } from "./GraphDaysToDoubleOverTime"
 import {
     ListAllStates,

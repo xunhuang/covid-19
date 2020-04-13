@@ -20,40 +20,6 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-const AllBedsTooltip = (props) => {
-    const classes = useStyles();
-    const { active } = props;
-    if (active) {
-        const { payload, label } = props;
-        let allbed_mean;
-        let allbedTotal_mean;
-        payload.map(p => {
-            p = p.payload;
-            if ("allbed_mean" in p) {
-                allbed_mean = p.allbed_mean;
-            }
-            if ("allbedTotal_mean" in p) {
-                allbedTotal_mean = p.allbedTotal_mean;
-            }
-            return null;
-        });
-        return (
-            <div className={classes.customtooltip}>
-                <Typography variant="body1" noWrap>
-                    {label}
-                </Typography>
-                <Typography variant="body2" noWrap>
-                    {`Projected Daily Hospitalization: ${allbed_mean}`}
-                </Typography>
-                <Typography variant="body2" noWrap>
-                    {`Projected Total: ${allbedTotal_mean}`}
-                </Typography>
-            </div>
-        );
-    }
-    return null;
-}
-
 const DeathTooltip = (props) => {
     const classes = useStyles();
     const { active } = props;

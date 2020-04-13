@@ -7,14 +7,14 @@ import { MyTabs } from "./MyTabs.js"
 import { USInfoTopWidget, StateSummarySection } from './USInfoTopWidget.js'
 import { withRouter } from 'react-router-dom'
 import { CountiesForStateWidget, ListStateCountiesCapita } from "./CountyListRender.js"
-import { GraphStateHospitalization } from './GraphHospitalization.js'
 import { BasicGraphNewCases } from "./GraphNewCases.js"
 import Typography from '@material-ui/core/Typography'
 import { BasicGraphRecoveryAndDeath } from "./GraphRecoveryAndDeath.js"
 import { Redirect } from 'react-router-dom'
 import { MapState } from "./Map";
 import { GraphDaysToDoubleOverTime } from "./GraphDaysToDoubleOverTime"
-import { GraphDeathProjectionState, GraphAllBedProjectionState } from "./GraphDeathProjection.js"
+import { GraphAllBedProjectionState } from "./GraphHospitalizationProjection.js"
+import { GraphDeathProjectionState } from "./GraphDeathProjection.js"
 
 const moment = require("moment");
 
@@ -51,26 +51,24 @@ const GraphSectionState = withRouter((props) => {
             } />,
         <GraphDaysToDoubleOverTime data={props.state.daysToDoubleTimeSeries()} />,
         <GraphDeathProjectionState state={state} />,
-        // <GraphAllBedProjectionState state={state} />,
+        <GraphAllBedProjectionState state={state} />,
         <StateGraphCaveat stateSummary={stateSummary} data={graphdata} logScale={false} />,
         <MapState state={state} />,
         <GraphStateTesting state={state} />,
-        <GraphStateHospitalization state={state} />,
     ]
     let graphlistSection = <MyTabs
         labels={["Cases",
             "Days to 2x",
             "Peak Death",
-            // "Peak Hospitalization",
+            "Peak Hospitalization",
             "Recovery",
             "Map",
             "Tests",
-            "Hospitalization",
         ]}
         urlQueryKey="graph"
         urlQueryValues={['cases', 'days2x', 'peakdeath',
-            // 'peakhospital', 
-            'recovery', 'map', 'testing', 'hospitalization']}
+            'peakhospital',
+            'recovery', 'map', 'testing',]}
         tabs={tabs}
         history={props.history}
     />;

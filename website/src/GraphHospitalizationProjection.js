@@ -53,15 +53,21 @@ const AllBedsTooltip = (props) => {
                 <Typography variant="body2" noWrap>
                     {`Projected Total : ${allbed_mean}`}
                 </Typography>
-                <Typography variant="body2" noWrap>
-                    {`Actual Total: ${hospitalized ?? "-"}`}
-                </Typography>
-                <Typography variant="body2" noWrap>
-                    {`In ICU: ${inIcuCurrently ?? "-"}`}
-                </Typography>
-                <Typography variant="body2" noWrap>
-                    {`On Ventilator: ${onVentilatorCurrently ?? "-"}`}
-                </Typography>
+                {hospitalized &&
+                    <Typography variant="body2" noWrap>
+                        {`Hospitalized: ${hospitalized}`}
+                    </Typography>
+                }
+                {inIcuCurrently &&
+                    <Typography variant="body2" noWrap>
+                        {`In ICU: ${inIcuCurrently}`}
+                    </Typography>
+                }
+                {onVentilatorCurrently &&
+                    <Typography variant="body2" noWrap>
+                        {`On Ventilator: ${onVentilatorCurrently}`}
+                    </Typography>
+                }
             </div>
         );
     }
@@ -84,6 +90,26 @@ const keybeds = {
 const GraphAllBedProjectionState = (props) => {
     let data = usdata.filter(d => d.location_name === props.state.name);
     const [formateddata, max_date] = formatData(data, keybeds);
+
+    const us_testing_data = require("./data/state_testing.json");
+    const state_testing_data = us_testing_data.filter(d => d.state === props.state.twoLetterName);
+
+    for (let item of formateddata) {
+        let entry = state_testing_data.find(t => {
+            let d = t.date.toString();
+            let year = d.slice(0, 4);
+            let month = d.slice(4, 6);
+            let day = d.slice(6, 8);
+            let date = `${month}/${day}/${year}`;
+            return item.fulldate === date;
+        })
+        if (entry) {
+            item.hospitalized = entry.hospitalizedCurrently ?? entry.hospitalized;
+            item.inIcuCurrently = entry.inIcuCurrently;
+            item.onVentilatorCurrently = entry.onVentilatorCurrently;
+        }
+    }
+
     return <GraphDeathProjectionRender
         data={formateddata}
         max_date={max_date}
@@ -196,7 +222,7 @@ const GraphDeathProjectionRender = (props) => {
                 <Tooltip content={props.tooltip} />
                 <Legend verticalAlign="top" payload={[
                     { value: 'Projection', type: 'line', color: '#000000' },
-                    { value: 'Total Actual', type: 'line', color: '#00aeef' },
+                    { value: 'Hospitalized Total', type: 'line', color: '#00aeef' },
                     { value: 'In ICU', type: 'line', color: '#0000FF' },
                     { value: 'On Ventilator', type: 'line', color: '#FF0000' },
                 ]} />
