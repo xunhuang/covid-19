@@ -8,7 +8,6 @@ const { linearRegression } = require('simple-statistics');
 const ShelterInPlace = require("../data/shelter-in-place/shelter.json");
 const USRecovery = require("./src/data/us_recovery.json");
 const CountyInfo = require('covidmodule').CountyInfo;
-const fips = require('fips-county-codes');
 
 const states = require('us-state-codes');
 const fs = require('fs');
@@ -16,15 +15,6 @@ function pad(n) { return n < 10 ? '0' + n : n }
 let AllData = {};
 
 const MetroInfo = require("./src/data/metrolist.json");
-
-function getFipsFromStateCountyName(state_two_letter, countyname) {
-    let ret = fips.get({
-        "state": state_two_letter,
-        "county": countyname,
-    });
-    return ret.fips;
-}
-
 const metrokeys = MetroInfo.reduce((m, a) => {
     m[a.UrlName] = 1;
     return m;
@@ -35,7 +25,11 @@ for (let key in metrokeys) {
     let entries = MetroInfo.filter(s => s.UrlName === key);
     let newMetro = {};
     newMetro.Counties = entries.map(s => {
-        return getFipsFromStateCountyName(s.State, s.County);
+        let countyfips = CountyInfo.getFipsFromStateCountyName(s.State, s.County);
+        if (!countyfips) {
+            console.log("Can't find metro county for " + s.State + " " + s.County);
+        }
+        return countyfips
     });
     newMetro.Name = entries[0].Friendly;
     newMetro.StateName = entries[0].State;
@@ -44,8 +38,7 @@ for (let key in metrokeys) {
 }
 
 console.log(extraMetro)
-
-// process.exit(0);
+process.exit(0);
 
 /**
  * Initialize State Nodes

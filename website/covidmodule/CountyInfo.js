@@ -1,3 +1,36 @@
+const CountyGeoData = require('../public/data/county_gps.json');
+
+function findCountyStrict(state_two_letter, countyname) {
+  return CountyGeoData.find(s => s.State == state_two_letter && s.County === countyname);
+}
+
+function getFipsFromStateCountyName(state_two_letter, countyname) {
+
+  const methods = [
+    () => findCountyStrict(state_two_letter, countyname),
+    () => findCountyStrict(state_two_letter, countyname.replace(" County", "")),
+    () => findCountyStrict(state_two_letter, countyname.replace(" Parish", "")),
+    () => findCountyStrict(state_two_letter, countyname.replace(" city", "")),
+    () => findCountyStrict(state_two_letter, countyname.replace(" city", " City")),
+  ];
+
+
+  let county;
+  for (const method of methods) {
+    try {
+      county = method();
+      if (county)
+        break;
+    } catch (err) {
+      continue;
+    }
+  }
+  if (county) {
+    return county.FIPS.padStart(5, "0");
+  }
+  return null;
+}
+
 const STATE_TWO_LETTER_TO_POPULATIONS = {
   "CA": 39937489,
   "TX": 29472295,
@@ -408,6 +441,7 @@ const CountyInfo = {
   getFipsFromStateName,
   getFipsFromStateShortName,
   getAllStateFips,
+  getFipsFromStateCountyName,
 }
 
 exports.CountyInfo = CountyInfo;
