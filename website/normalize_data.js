@@ -696,7 +696,7 @@ function processBNO(dataset, date) {
         let state_name = datapoint["UNITED STATES"];
         let state_fips = CountyInfo.getFipsFromStateName(state_name);
         if (!state_fips) {
-            console.log("can't find state fips for " + state_name);
+            // console.log("can't find state fips for " + state_name);
             continue;
         }
 
@@ -759,10 +759,8 @@ function addTerrtories() {
             }
         }
         let Summary = {};
-        console.log(newdata);
         if (Object.keys(newdata).length > 0) {
             Summary.Confirmed = fillarrayholes(newdata);
-            console.log("done filling holes");
             AllData[fips].Summary = Summary;
         }
     });
