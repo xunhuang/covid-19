@@ -104,8 +104,8 @@ function prepCountyDataForDisplay(list) {
                 newrow.newpercent = newpercent;
                 newrow.population = population;
                 newrow.County = county.name;
-                newrow.deathsPerMil = sum.death * 1000000 / population;
-                newrow.death = sum.death;
+                newrow.deathsPerMil = sum.deaths * 1000000 / population;
+                newrow.death = sum.deaths;
                 newrow.daysToDouble = sum.daysToDouble;
                 newrow.daysToDoubleDeath = sum.daysToDoubleDeath;
                 return newrow;
