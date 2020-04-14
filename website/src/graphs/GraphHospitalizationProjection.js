@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { CountryContext } from "../CountryContext"
 import {
     ResponsiveContainer, Tooltip,
     Line, Area, Legend,
@@ -117,10 +118,12 @@ const GraphAllBedProjectionState = (props) => {
         max_label="Peak Hospitalization"
         data_keys={keybeds}
         tooltip={<AllBedsTooltip />}
+        hospitals={props.state.hospitals()}
     />;
 }
 
 const GraphAllBedProjectionUS = (props) => {
+    const country = useContext(CountryContext);
     let data = usdata.filter(d => d.location_name === "United States of America");
     const testingActual = require("../data/us_testing.json");
     const [formateddata, max_date] = formatData(data, keybeds);
@@ -147,6 +150,7 @@ const GraphAllBedProjectionUS = (props) => {
         max_label="Peak Hospitalization"
         data_keys={keybeds}
         tooltip={<AllBedsTooltip />}
+        hospitals={country.hospitals()}
     />;
 }
 
@@ -214,6 +218,19 @@ const GraphDeathProjectionRender = (props) => {
                 <YAxis yAxisId={0} tickFormatter={formatYAxis} />
                 <ReferenceLine x={moment(max_date, "MM/DD/YYYY").format("M/D")} label={{ value: props.max_label, fill: '#a3a3a3' }} stroke="#e3e3e3" strokeWidth={3} />
                 <CartesianGrid stroke="#d5d5d5" strokeDasharray="5 5" />
+
+                <ReferenceLine key={`hreflineicu`} y={props.hospitals.bedsICU} stroke="#e3e3e3" strokeWidth={2} >
+                    <Label value="ICU Beds" position="insideRight" />
+                </ReferenceLine>/>
+
+                <ReferenceLine key={`hreflineavail`} y={props.hospitals.bedsAvail} stroke="#e3e3e3" strokeWidth={2} >
+                    <Label value="Avg Avail. Beds" position="insideRight" />
+                </ReferenceLine>/>
+
+                <ReferenceLine key={`hreflineavail`} y={props.hospitals.beds} stroke="#e3e3e3" strokeWidth={2} >
+                    <Label value="Total Beds" position="insideRight" />
+                </ReferenceLine>/>
+
                 <Line type="monotone" dataKey={data_keys.key_mean} stroke="#000000" dot={{ r: 1 }} yAxisId={0} strokeWidth={3} />
                 <Line type="monotone" dataKey={"hospitalized"} stroke="#00aeef" dot={{ r: 1 }} yAxisId={0} strokeWidth={3} />
                 <Line type="monotone" dataKey={"inIcuCurrently"} stroke="#0000FF" dot={{ r: 1 }} yAxisId={0} strokeWidth={3} />
@@ -227,9 +244,6 @@ const GraphDeathProjectionRender = (props) => {
                     { value: 'In ICU', type: 'line', color: '#0000FF' },
                     { value: 'On Ventilator', type: 'line', color: '#FF0000' },
                 ]} />
-                {/* <ReferenceLine key={`hrefline123`} y={15000} stroke="#e3e3e3" strokeWidth={2} >
-                    <Label value="ICU Max Beds" position="insideRight" />
-                </ReferenceLine>/> */}
             </ComposedChart>
         </ResponsiveContainer>
         <Typography variant="body2">
