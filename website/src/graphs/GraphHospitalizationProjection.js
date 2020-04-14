@@ -2,7 +2,7 @@ import React from 'react';
 import {
     ResponsiveContainer, Tooltip,
     Line, Area, Legend,
-    ReferenceLine,
+    ReferenceLine, Label,
     YAxis, XAxis, CartesianGrid,
     ComposedChart,
 } from 'recharts';
@@ -227,6 +227,9 @@ const GraphDeathProjectionRender = (props) => {
                     { value: 'In ICU', type: 'line', color: '#0000FF' },
                     { value: 'On Ventilator', type: 'line', color: '#FF0000' },
                 ]} />
+                {/* <ReferenceLine key={`hrefline123`} y={15000} stroke="#e3e3e3" strokeWidth={2} >
+                    <Label value="ICU Max Beds" position="insideRight" />
+                </ReferenceLine>/> */}
             </ComposedChart>
         </ResponsiveContainer>
         <Typography variant="body2">
