@@ -528,8 +528,6 @@ function addMetros() {
             Name: "Bay Area",
             StateFIPS: "06",
             StateName: "CA",
-            HospitalBeds: 16408,
-            Hospitals: 69,
             Counties: [
                 "06001",
                 "06075",
@@ -543,8 +541,6 @@ function addMetros() {
             Name: "New York City",
             StateFIPS: "36",
             StateName: "NY",
-            HospitalBeds: 23639,
-            Hospitals: 58,
             Counties: [
                 "36061",
                 "36047",
@@ -563,15 +559,10 @@ function addMetros() {
         let Summary = {};
 
         if (m !== "NYC") {
-            let Hospitals = 0;
-            let HospitalBeds = 0;
-
             for (let i = 0; i < metro.Counties.length; i++) {
                 let countyfips = metro.Counties[i];
                 let county = getCountyByFips(countyfips);
                 let county_info = TableLookup[countyfips];
-                Hospitals += county_info.Hospitals;
-                HospitalBeds += county_info.HospitalBeds;
                 if (county) {
                     mergeTwoMapValues(Confirmed, county.Confirmed)
                     mergeTwoMapValues(Death, county.Death)
@@ -587,9 +578,6 @@ function addMetros() {
             Summary.LastConfirmedNew = CC.newnum;
             Summary.LastDeath = DD.num;
             Summary.LastDeathNew = DD.newnum;
-
-            metro.Hospitals = Hospitals;
-            metro.HospitalBeds = HospitalBeds;
         }
 
         let beds = 0;
