@@ -206,8 +206,8 @@ const BasicGraphNewCases = (props) => {
     };
 
     const setStateSticky = (state) => {
-        setState(state);
         CookieSetPreference(state);
+        setState(state);
     }
 
     const handleLogScaleToggle = event => {
@@ -215,7 +215,8 @@ const BasicGraphNewCases = (props) => {
     };
 
     const handle2WeeksToggle = event => {
-        setStateSticky({ ...state, show2weeks: !state.show2weeks });
+        let newstate = { ...state, show2weeks: !state.show2weeks };
+        setStateSticky(newstate);
     };
 
     let graphOptions = [
@@ -355,7 +356,7 @@ const BasicGraphNewCases = (props) => {
             <Grid item></Grid>
 
             <Grid item>
-                <AntSwitch checked={state.show30days} onClick={handle2WeeksToggle} />
+                <AntSwitch checked={state.show2weeks} onClick={handle2WeeksToggle} />
             </Grid>
             <Grid item onClick={handle2WeeksToggle}>
                 <Typography>
