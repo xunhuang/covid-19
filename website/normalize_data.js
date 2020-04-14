@@ -9,6 +9,10 @@ const ShelterInPlace = require("../data/shelter-in-place/shelter.json");
 const USRecovery = require("./src/data/us_recovery.json");
 const CountyInfo = require('covidmodule').CountyInfo;
 
+const DFHCounty = require("./src/data/DFH-County.json");
+const DFHState = require("./src/data/DFH-State.json");
+const DFHUSA = require("./src/data/DFH-USA.json");
+
 const states = require('us-state-codes');
 const fs = require('fs');
 function pad(n) { return n < 10 ? '0' + n : n }
@@ -110,6 +114,15 @@ function createCountyObject(state_fips, state_name, county_fips, county_name) {
     countyObject.StateFIPS = fixStateFips(state_fips);
     countyObject.Confirmed = {};
     countyObject.Death = {};
+    // add beds data for county
+
+    let hospinfo = DFHCounty[county_fips];
+    if (hospinfo) {
+        countyObject.beds = hospinfo.NUM_LICENSED_BEDS;
+        countyObject.bedsICU = hospinfo.NUM_ICU_BEDS;
+        countyObject.hospitals = hospinfo.NUM_HOSPITALS;
+        countyObject.bedsAvail = Math.round(hospinfo.AVG_AVAIL_BEDS);
+    }
 
     setCountyNode(state_fips, county_fips, countyObject);
 
@@ -309,8 +322,6 @@ function fillholes() {
     }
 }
 
-
-
 function getValueFromLastDate(v, comment) {
     if (!v || Object.keys(v).length === 0) {
         return { num: 0, newnum: 0 }
@@ -354,6 +365,16 @@ function summarize_one_county(county) {
     county.LastDeathNew = DD.newnum;
     county.DaysToDouble = getDoubleDays(county.Confirmed);
     county.DaysToDoubleDeath = getDoubleDays(county.Death);
+
+
+    let hospinfo = DFHCounty[county.CountyFIPS];
+    if (hospinfo) {
+        county.beds = hospinfo.NUM_LICENSED_BEDS;
+        county.bedsICU = hospinfo.NUM_ICU_BEDS;
+        county.hospitals = hospinfo.NUM_HOSPITALS;
+        county.bedsAvail = Math.round(hospinfo.AVG_AVAIL_BEDS);
+    }
+
     return county;
 }
 
@@ -397,6 +418,14 @@ function summarize_states() {
         Summary.DaysToDouble = getDoubleDays(Confirmed);
         Summary.DaysToDoubleDeath = getDoubleDays(Death);
 
+        let hospinfo = DFHState[s];
+        if (hospinfo) {
+            Summary.beds = hospinfo.NUM_LICENSED_BEDS;
+            Summary.bedsICU = hospinfo.NUM_ICU_BEDS;
+            Summary.hospitals = hospinfo.NUM_HOSPITALS;
+            Summary.bedsAvail = Math.round(hospinfo.AVG_AVAIL_BEDS);
+        }
+
         state.Summary = Summary;
     }
 }
@@ -427,6 +456,14 @@ function summarize_USA() {
     Summary.generated = moment().format();
     Summary.DaysToDouble = getDoubleDays(USConfirmed);
     Summary.DaysToDoubleDeath = getDoubleDays(USDeath);
+
+    let hospinfo = DFHUSA;
+    if (hospinfo) {
+        Summary.beds = hospinfo.NUM_LICENSED_BEDS;
+        Summary.bedsICU = hospinfo.NUM_ICU_BEDS;
+        Summary.hospitals = hospinfo.NUM_HOSPITALS;
+        Summary.bedsAvail = Math.round(hospinfo.AVG_AVAIL_BEDS);
+    }
 
     AllData.Summary = Summary;
 }
@@ -535,12 +572,10 @@ function addMetros() {
                 let county_info = TableLookup[countyfips];
                 Hospitals += county_info.Hospitals;
                 HospitalBeds += county_info.HospitalBeds;
-
                 if (county) {
                     mergeTwoMapValues(Confirmed, county.Confirmed)
                     mergeTwoMapValues(Death, county.Death)
                 }
-
             }
             Summary.Confirmed = Confirmed;
             Summary.Death = Death;
@@ -555,6 +590,34 @@ function addMetros() {
 
             metro.Hospitals = Hospitals;
             metro.HospitalBeds = HospitalBeds;
+        }
+
+        let beds = 0;
+        let bedsICU = 0;
+        let hospitals = 0;
+        let bedsAvail = 0;
+
+        for (let i = 0; i < metro.Counties.length; i++) {
+            let countyfips = metro.Counties[i];
+            let hospinfo = DFHCounty[countyfips];
+
+
+            if (hospinfo) {
+                beds += hospinfo.NUM_LICENSED_BEDS;
+                bedsICU += hospinfo.NUM_ICU_BEDS;
+                hospitals += hospinfo.NUM_HOSPITALS;
+                bedsAvail += Math.round(hospinfo.AVG_AVAIL_BEDS);
+            }
+
+        }
+
+        Summary.beds = beds;
+        Summary.bedsICU = bedsICU;
+        Summary.hospitals = hospitals;
+        Summary.bedsAvail = bedsAvail;
+
+        if (m === "NYC") {
+            console.log(Summary);
         }
         metro.Summary = Summary;
     }
@@ -740,11 +803,25 @@ function addTerrtories() {
 addTerrtories();
 
 summarize_USA();
+
+const NYC_STARTER = require("../data/archive/NYC-BOROS-04-03-2020.json")
+for (let boro of NYC_STARTER) {
+    let state_fips = "36";
+    let county_fips = boro.FIPS;
+    let county_info = getCountyNode(state_fips, county_fips);
+    if (!county_info) {
+        county_info = createCountyObject(
+            state_fips,
+            states.getStateCodeByStateName("New York"),
+            county_fips,
+            boro.Name,
+        )
+    }
+}
+
 addMetros();
 
 // special_processing
-const NYC_STARTER = require("../data/archive/NYC-BOROS-04-03-2020.json")
-
 let NYC_METRO = AllData["36"]["36061"];
 AllData["36"]["36061"] = null;
 
@@ -781,7 +858,12 @@ NYC_run1.map(entry => {
     AllData[state_fips][county_fips] = county;
 });
 
+let oldSummary = AllData.Metros.NYC.Summary;
 AllData.Metros.NYC.Summary = NYC_METRO;
+AllData.Metros.NYC.Summary.beds = oldSummary.beds;
+AllData.Metros.NYC.Summary.bedsICU = oldSummary.bedsICU;
+AllData.Metros.NYC.Summary.hospitals = oldSummary.hospitals;
+AllData.Metros.NYC.Summary.bedsAvail = oldSummary.bedsAvail;
 
 function processNYCBOROS_NEW() {
 
