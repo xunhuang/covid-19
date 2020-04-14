@@ -37,8 +37,8 @@ for (let key in metrokeys) {
     extraMetro[key] = newMetro;
 }
 
-console.log(extraMetro)
-process.exit(0);
+// console.log(extraMetro)
+// process.exit(0);
 
 /**
  * Initialize State Nodes
