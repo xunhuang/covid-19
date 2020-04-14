@@ -37,7 +37,8 @@ for (let key in metrokeys) {
     extraMetro[key] = newMetro;
 }
 
-// console.log(extraMetro)
+console.log(extraMetro)
+process.exit(0);
 
 /**
  * Initialize State Nodes
@@ -288,7 +289,7 @@ function fillarrayholes(v, increaseonly = true) {
                     v[nextkey] = lastvalue;
                 }
             } else {
-                console.log("notincreasing  ");
+                // console.log("notincreasing  ");
             }
         }
         key = nextkey;
@@ -513,18 +514,6 @@ function addMetros() {
                 "36081",
                 "36005",
                 "36085",
-            ]
-        },
-        Austin: {
-            Name: "Austin",
-            StateFIPS: "48",
-            StateName: "TX",
-            Counties: [
-                "48021",
-                "48055",
-                "48209",
-                "48453",
-                "48491",
             ]
         },
     }
