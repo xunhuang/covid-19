@@ -1,4 +1,4 @@
-const CountyGeoData = require('../public/data/county_gps.json');
+const CountyGeoData = require('../src/data/county_gps.json');
 
 function findCountyStrict(state_two_letter, countyname) {
   return CountyGeoData.find(s => s.State == state_two_letter && s.County === countyname);

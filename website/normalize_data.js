@@ -1,7 +1,7 @@
 
 
 const moment = require("moment");
-const CountyList = require("./public/data/county_gps.json");
+const CountyList = require("./src/data/county_gps.json");
 const ConfirmedData = require("./src/data/covid_confirmed_usafacts.json");
 const DeathData = require("./src/data/covid_death_usafacts.json");
 const { linearRegression } = require('simple-statistics');
