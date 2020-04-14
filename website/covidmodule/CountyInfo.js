@@ -12,6 +12,7 @@ function getFipsFromStateCountyName(state_two_letter, countyname) {
     () => findCountyStrict(state_two_letter, countyname.replace(" Parish", "")),
     () => findCountyStrict(state_two_letter, countyname.replace(" city", "")),
     () => findCountyStrict(state_two_letter, countyname.replace(" city", " City")),
+    () => findCountyStrict(state_two_letter, countyname.replace(" City", "")),
     () => findCountyStrict(state_two_letter, countyname.replace(" Borough", "")),
   ];
 

@@ -162,6 +162,42 @@
     "County": "Rockwall County"
   },
   {
+    "ID": "1920",
+    "UrlName": "Dallas",
+    "Friendly": "Greater Dallas",
+    "CenterState": "TX",
+    "Name": "Dallas, TX",
+    "State": "TX",
+    "County": "Hood County"
+  },
+  {
+    "ID": "1920",
+    "UrlName": "Dallas",
+    "Friendly": "Greater Dallas",
+    "CenterState": "TX",
+    "Name": "Dallas, TX",
+    "State": "TX",
+    "County": "Johnson County"
+  },
+  {
+    "ID": "1920",
+    "UrlName": "Dallas",
+    "Friendly": "Greater Dallas",
+    "CenterState": "TX",
+    "Name": "Dallas, TX",
+    "State": "TX",
+    "County": "Parker County"
+  },
+  {
+    "ID": "1920",
+    "UrlName": "Dallas",
+    "Friendly": "Greater Dallas",
+    "CenterState": "TX",
+    "Name": "Dallas, TX",
+    "State": "TX",
+    "County": "Tarrant County"
+  },
+  {
     "ID": "6160",
     "UrlName": "Philly",
     "Friendly": "Philadelphia",
@@ -639,24 +675,6 @@
     "County": "Taylor County"
   },
   {
-    "ID": "80",
-    "UrlName": "Akron",
-    "Friendly": "Akron Area",
-    "CenterState": "OH",
-    "Name": "Akron, OH",
-    "State": "OH",
-    "County": "Portage County"
-  },
-  {
-    "ID": "80",
-    "UrlName": "Akron",
-    "Friendly": "Akron Area",
-    "CenterState": "OH",
-    "Name": "Akron, OH",
-    "State": "OH",
-    "County": "Summit County"
-  },
-  {
     "ID": "120",
     "UrlName": "AlbanyGA",
     "Friendly": "Albany (GA) Area",
@@ -756,15 +774,6 @@
     "County": "Valencia County"
   },
   {
-    "ID": "220",
-    "UrlName": "Alexandria",
-    "Friendly": "Alexandria Area",
-    "CenterState": "LA",
-    "Name": "Alexandria, LA",
-    "State": "LA",
-    "County": "Rapides Parish"
-  },
-  {
     "ID": "240",
     "UrlName": "Allentown",
     "Friendly": "Allentown Area",
@@ -792,15 +801,6 @@
     "County": "Northampton County"
   },
   {
-    "ID": "280",
-    "UrlName": "Altoona",
-    "Friendly": "Altoona Area",
-    "CenterState": "PA",
-    "Name": "Altoona, PA",
-    "State": "PA",
-    "County": "Blair County"
-  },
-  {
     "ID": "320",
     "UrlName": "Amarillo",
     "Friendly": "Amarillo Area",
@@ -817,15 +817,6 @@
     "Name": "Amarillo, TX",
     "State": "TX",
     "County": "Randall County"
-  },
-  {
-    "ID": "380",
-    "UrlName": "Anchorage",
-    "Friendly": "Anchorage Area",
-    "CenterState": "AK",
-    "Name": "Anchorage, AK",
-    "State": "AK",
-    "County": "Anchorage Borough"
   },
   {
     "ID": "440",
@@ -855,15 +846,6 @@
     "County": "Washtenaw County"
   },
   {
-    "ID": "450",
-    "UrlName": "Anniston",
-    "Friendly": "Anniston Area",
-    "CenterState": "AL",
-    "Name": "Anniston, AL",
-    "State": "AL",
-    "County": "Calhoun County"
-  },
-  {
     "ID": "460",
     "UrlName": "Appleton",
     "Friendly": "Appleton",
@@ -889,24 +871,6 @@
     "Name": "Appleton/Oshkosh/Neenah, WI",
     "State": "WI",
     "County": "Winnebago County"
-  },
-  {
-    "ID": "480",
-    "UrlName": "Asheville",
-    "Friendly": "Asheville Area",
-    "CenterState": "NC",
-    "Name": "Asheville, NC",
-    "State": "NC",
-    "County": "Buncombe County"
-  },
-  {
-    "ID": "480",
-    "UrlName": "Asheville",
-    "Friendly": "Asheville Area",
-    "CenterState": "NC",
-    "Name": "Asheville, NC",
-    "State": "NC",
-    "County": "Madison County"
   },
   {
     "ID": "500",
@@ -1035,15 +999,6 @@
     "County": "Williamson County"
   },
   {
-    "ID": "680",
-    "UrlName": "Bakersfield",
-    "Friendly": "Bakersfield",
-    "CenterState": "CA",
-    "Name": "Bakersfield, CA",
-    "State": "CA",
-    "County": "Kern County"
-  },
-  {
     "ID": "720",
     "UrlName": "Baltimore",
     "Friendly": "Greater Baltimore",
@@ -1105,5 +1060,761 @@
     "Name": "Baltimore, MD",
     "State": "MD",
     "County": "Baltimore City"
+  },
+  {
+    "ID": "760",
+    "UrlName": "BatonRouge",
+    "Friendly": "Baton Rouge",
+    "CenterState": "LA",
+    "Name": "Baton Rouge, LA",
+    "State": "LA",
+    "County": "East Baton Rouge Parish"
+  },
+  {
+    "ID": "760",
+    "UrlName": "BatonRouge",
+    "Friendly": "Baton Rouge",
+    "CenterState": "LA",
+    "Name": "Baton Rouge, LA",
+    "State": "LA",
+    "County": "Livingston Parish"
+  },
+  {
+    "ID": "760",
+    "UrlName": "BatonRouge",
+    "Friendly": "Baton Rouge",
+    "CenterState": "LA",
+    "Name": "Baton Rouge, LA",
+    "State": "LA",
+    "County": "West Baton Rouge Parish"
+  },
+  {
+    "ID": "840",
+    "UrlName": "Beaumont",
+    "Friendly": "Beaumont/Port Arthur Area",
+    "CenterState": "TX",
+    "Name": "Beaumont/Port Arthur, TX",
+    "State": "TX",
+    "County": "Hardin County"
+  },
+  {
+    "ID": "840",
+    "UrlName": "Beaumont",
+    "Friendly": "Beaumont/Port Arthur Area",
+    "CenterState": "TX",
+    "Name": "Beaumont/Port Arthur, TX",
+    "State": "TX",
+    "County": "Jefferson County"
+  },
+  {
+    "ID": "840",
+    "UrlName": "Beaumont",
+    "Friendly": "Beaumont/Port Arthur Area",
+    "CenterState": "TX",
+    "Name": "Beaumont/Port Arthur, TX",
+    "State": "TX",
+    "County": "Orange County"
+  },
+  {
+    "ID": "920",
+    "UrlName": "Biloxi",
+    "Friendly": "Biloxi/Gulfport/Pascogoula",
+    "CenterState": "MS",
+    "Name": "Biloxi/Gulfport/Pascogoula, MS",
+    "State": "MS",
+    "County": "Hancock County"
+  },
+  {
+    "ID": "920",
+    "UrlName": "Biloxi",
+    "Friendly": "Biloxi/Gulfport/Pascogoula",
+    "CenterState": "MS",
+    "Name": "Biloxi/Gulfport/Pascogoula, MS",
+    "State": "MS",
+    "County": "Harrison County"
+  },
+  {
+    "ID": "920",
+    "UrlName": "Biloxi",
+    "Friendly": "Biloxi/Gulfport/Pascogoula",
+    "CenterState": "MS",
+    "Name": "Biloxi/Gulfport/Pascogoula, MS",
+    "State": "MS",
+    "County": "Jackson County"
+  },
+  {
+    "ID": "960",
+    "UrlName": "Binghamton",
+    "Friendly": "Binghamton",
+    "CenterState": "NY",
+    "Name": "Binghamton, NY",
+    "State": "NY",
+    "County": "Broome County"
+  },
+  {
+    "ID": "960",
+    "UrlName": "Binghamton",
+    "Friendly": "Binghamton",
+    "CenterState": "NY",
+    "Name": "Binghamton, NY",
+    "State": "NY",
+    "County": "Tioga County"
+  },
+  {
+    "ID": "1000",
+    "UrlName": "Birmingham",
+    "Friendly": "Birmingham",
+    "CenterState": "AL",
+    "Name": "Birmingham, AL",
+    "State": "AL",
+    "County": "Blount County"
+  },
+  {
+    "ID": "1000",
+    "UrlName": "Birmingham",
+    "Friendly": "Birmingham",
+    "CenterState": "AL",
+    "Name": "Birmingham, AL",
+    "State": "AL",
+    "County": "Jefferson County"
+  },
+  {
+    "ID": "1000",
+    "UrlName": "Birmingham",
+    "Friendly": "Birmingham",
+    "CenterState": "AL",
+    "Name": "Birmingham, AL",
+    "State": "AL",
+    "County": "St. Clair County"
+  },
+  {
+    "ID": "1000",
+    "UrlName": "Birmingham",
+    "Friendly": "Birmingham",
+    "CenterState": "AL",
+    "Name": "Birmingham, AL",
+    "State": "AL",
+    "County": "Shelby County"
+  },
+  {
+    "ID": "1010",
+    "UrlName": "Bismarck",
+    "Friendly": "Bismarck",
+    "CenterState": "ND",
+    "Name": "Bismarck, ND",
+    "State": "ND",
+    "County": "Burleigh County"
+  },
+  {
+    "ID": "1010",
+    "UrlName": "Bismarck",
+    "Friendly": "Bismarck",
+    "CenterState": "ND",
+    "Name": "Bismarck, ND",
+    "State": "ND",
+    "County": "Morton County"
+  },
+  {
+    "ID": "1080",
+    "UrlName": "Boise",
+    "Friendly": "Boise City",
+    "CenterState": "ID",
+    "Name": "Boise City, ID",
+    "State": "ID",
+    "County": "Ada County"
+  },
+  {
+    "ID": "1080",
+    "UrlName": "Boise",
+    "Friendly": "Boise City",
+    "CenterState": "ID",
+    "Name": "Boise City, ID",
+    "State": "ID",
+    "County": "Canyon County"
+  },
+  {
+    "ID": "1280",
+    "UrlName": "Buffalo/Niagara Falls",
+    "Friendly": "Buffalo Area",
+    "CenterState": "NY",
+    "Name": "Buffalo/Niagara Falls, NY",
+    "State": "NY",
+    "County": "Erie County"
+  },
+  {
+    "ID": "1280",
+    "UrlName": "Buffalo/Niagara Falls",
+    "Friendly": "Buffalo Area",
+    "CenterState": "NY",
+    "Name": "Buffalo/Niagara Falls, NY",
+    "State": "NY",
+    "County": "Niagara County"
+  },
+  {
+    "ID": "1303",
+    "UrlName": "Burlington",
+    "Friendly": "Burlington",
+    "CenterState": "VT",
+    "Name": "Burlington, VT",
+    "State": "VT",
+    "County": "Chittenden County"
+  },
+  {
+    "ID": "1303",
+    "UrlName": "Burlington",
+    "Friendly": "Burlington",
+    "CenterState": "VT",
+    "Name": "Burlington, VT",
+    "State": "VT",
+    "County": "Franklin County"
+  },
+  {
+    "ID": "1303",
+    "UrlName": "Burlington",
+    "Friendly": "Burlington",
+    "CenterState": "VT",
+    "Name": "Burlington, VT",
+    "State": "VT",
+    "County": "Grand Isle County"
+  },
+  {
+    "ID": "1440",
+    "UrlName": "Charleston",
+    "Friendly": "Greater Charleston Area",
+    "CenterState": "SC",
+    "Name": "Charleston/North Charlestown, SC",
+    "State": "SC",
+    "County": "Berkeley County"
+  },
+  {
+    "ID": "1440",
+    "UrlName": "Charleston",
+    "Friendly": "Greater Charleston Area",
+    "CenterState": "SC",
+    "Name": "Charleston/North Charlestown, SC",
+    "State": "SC",
+    "County": "Charleston County"
+  },
+  {
+    "ID": "1440",
+    "UrlName": "Charleston",
+    "Friendly": "Greater Charleston Area",
+    "CenterState": "SC",
+    "Name": "Charleston/North Charlestown, SC",
+    "State": "SC",
+    "County": "Dorchester County"
+  },
+  {
+    "ID": "1480",
+    "UrlName": "Charleston",
+    "Friendly": "Charleston",
+    "CenterState": "WV",
+    "Name": "Charleston, WV",
+    "State": "WV",
+    "County": "Kanawha County"
+  },
+  {
+    "ID": "1480",
+    "UrlName": "Charleston",
+    "Friendly": "Charleston",
+    "CenterState": "WV",
+    "Name": "Charleston, WV",
+    "State": "WV",
+    "County": "Putnam County"
+  },
+  {
+    "ID": "1520",
+    "UrlName": "Charlotte",
+    "Friendly": "Greater Charlotte Area",
+    "CenterState": "NC",
+    "Name": "Charlotte/Gastonia/Rock Hill, NC/SC",
+    "State": "NC",
+    "County": "Cabarrus County"
+  },
+  {
+    "ID": "1520",
+    "UrlName": "Charlotte",
+    "Friendly": "Greater Charlotte Area",
+    "CenterState": "NC",
+    "Name": "Charlotte/Gastonia/Rock Hill, NC/SC",
+    "State": "NC",
+    "County": "Gaston County"
+  },
+  {
+    "ID": "1520",
+    "UrlName": "Charlotte",
+    "Friendly": "Greater Charlotte Area",
+    "CenterState": "NC",
+    "Name": "Charlotte/Gastonia/Rock Hill, NC/SC",
+    "State": "NC",
+    "County": "Lincoln County"
+  },
+  {
+    "ID": "1520",
+    "UrlName": "Charlotte",
+    "Friendly": "Greater Charlotte Area",
+    "CenterState": "NC",
+    "Name": "Charlotte/Gastonia/Rock Hill, NC/SC",
+    "State": "NC",
+    "County": "Mecklenburg County"
+  },
+  {
+    "ID": "1520",
+    "UrlName": "Charlotte",
+    "Friendly": "Greater Charlotte Area",
+    "CenterState": "NC",
+    "Name": "Charlotte/Gastonia/Rock Hill, NC/SC",
+    "State": "NC",
+    "County": "Rowan County"
+  },
+  {
+    "ID": "1520",
+    "UrlName": "Charlotte",
+    "Friendly": "Greater Charlotte Area",
+    "CenterState": "NC",
+    "Name": "Charlotte/Gastonia/Rock Hill, NC/SC",
+    "State": "NC",
+    "County": "Union County"
+  },
+  {
+    "ID": "1520",
+    "UrlName": "Charlotte",
+    "Friendly": "Greater Charlotte Area",
+    "CenterState": "NC",
+    "Name": "Charlotte/Gastonia/Rock Hill, NC/SC",
+    "State": "SC",
+    "County": "York County"
+  },
+  {
+    "ID": "1540",
+    "UrlName": "Charlottesville",
+    "Friendly": "Charlottesville",
+    "CenterState": "VA",
+    "Name": "Charlottesville, VA",
+    "State": "VA",
+    "County": "Albemarle County"
+  },
+  {
+    "ID": "1540",
+    "UrlName": "Charlottesville",
+    "Friendly": "Charlottesville",
+    "CenterState": "VA",
+    "Name": "Charlottesville, VA",
+    "State": "VA",
+    "County": "Fluvanna County"
+  },
+  {
+    "ID": "1540",
+    "UrlName": "Charlottesville",
+    "Friendly": "Charlottesville",
+    "CenterState": "VA",
+    "Name": "Charlottesville, VA",
+    "State": "VA",
+    "County": "Greene County"
+  },
+  {
+    "ID": "1540",
+    "UrlName": "Charlottesville",
+    "Friendly": "Charlottesville",
+    "CenterState": "VA",
+    "Name": "Charlottesville, VA",
+    "State": "VA",
+    "County": "Charlottesville City"
+  },
+  {
+    "ID": "1560",
+    "UrlName": "Chattanooga",
+    "Friendly": "Chattanooga",
+    "CenterState": "TN",
+    "Name": "Chattanooga, TN/GA",
+    "State": "GA",
+    "County": "Catoosa County"
+  },
+  {
+    "ID": "1560",
+    "UrlName": "Chattanooga",
+    "Friendly": "Chattanooga",
+    "CenterState": "TN",
+    "Name": "Chattanooga, TN/GA",
+    "State": "GA",
+    "County": "Dade County"
+  },
+  {
+    "ID": "1560",
+    "UrlName": "Chattanooga",
+    "Friendly": "Chattanooga",
+    "CenterState": "TN",
+    "Name": "Chattanooga, TN/GA",
+    "State": "GA",
+    "County": "Walker County"
+  },
+  {
+    "ID": "1560",
+    "UrlName": "Chattanooga",
+    "Friendly": "Chattanooga",
+    "CenterState": "TN",
+    "Name": "Chattanooga, TN/GA",
+    "State": "TN",
+    "County": "Hamilton County"
+  },
+  {
+    "ID": "1600",
+    "UrlName": "Chicago",
+    "Friendly": "Chicagoland Area",
+    "CenterState": "IL",
+    "Name": "Chicago, IL",
+    "State": "IL",
+    "County": "Cook County"
+  },
+  {
+    "ID": "1600",
+    "UrlName": "Chicago",
+    "Friendly": "Chicagoland Area",
+    "CenterState": "IL",
+    "Name": "Chicago, IL",
+    "State": "IL",
+    "County": "DeKalb County"
+  },
+  {
+    "ID": "1600",
+    "UrlName": "Chicago",
+    "Friendly": "Chicagoland Area",
+    "CenterState": "IL",
+    "Name": "Chicago, IL",
+    "State": "IL",
+    "County": "DuPage County"
+  },
+  {
+    "ID": "1600",
+    "UrlName": "Chicago",
+    "Friendly": "Chicagoland Area",
+    "CenterState": "IL",
+    "Name": "Chicago, IL",
+    "State": "IL",
+    "County": "Grundy County"
+  },
+  {
+    "ID": "1600",
+    "UrlName": "Chicago",
+    "Friendly": "Chicagoland Area",
+    "CenterState": "IL",
+    "Name": "Chicago, IL",
+    "State": "IL",
+    "County": "Kane County"
+  },
+  {
+    "ID": "1600",
+    "UrlName": "Chicago",
+    "Friendly": "Chicagoland Area",
+    "CenterState": "IL",
+    "Name": "Chicago, IL",
+    "State": "IL",
+    "County": "Kendall County"
+  },
+  {
+    "ID": "1600",
+    "UrlName": "Chicago",
+    "Friendly": "Chicagoland Area",
+    "CenterState": "IL",
+    "Name": "Chicago, IL",
+    "State": "IL",
+    "County": "Lake County"
+  },
+  {
+    "ID": "1600",
+    "UrlName": "Chicago",
+    "Friendly": "Chicagoland Area",
+    "CenterState": "IL",
+    "Name": "Chicago, IL",
+    "State": "IL",
+    "County": "McHenry County"
+  },
+  {
+    "ID": "1600",
+    "UrlName": "Chicago",
+    "Friendly": "Chicagoland Area",
+    "CenterState": "IL",
+    "Name": "Chicago, IL",
+    "State": "IL",
+    "County": "Will County"
+  },
+  {
+    "ID": "1640",
+    "UrlName": "Cincinnati",
+    "Friendly": "Cincinnati Area",
+    "CenterState": "OH",
+    "Name": "Cincinnati, OH/KY/IN",
+    "State": "IN",
+    "County": "Dearborn County"
+  },
+  {
+    "ID": "1640",
+    "UrlName": "Cincinnati",
+    "Friendly": "Cincinnati Area",
+    "CenterState": "OH",
+    "Name": "Cincinnati, OH/KY/IN",
+    "State": "IN",
+    "County": "Ohio County"
+  },
+  {
+    "ID": "1640",
+    "UrlName": "Cincinnati",
+    "Friendly": "Cincinnati Area",
+    "CenterState": "OH",
+    "Name": "Cincinnati, OH/KY/IN",
+    "State": "OH",
+    "County": "Brown County"
+  },
+  {
+    "ID": "1640",
+    "UrlName": "Cincinnati",
+    "Friendly": "Cincinnati Area",
+    "CenterState": "OH",
+    "Name": "Cincinnati, OH/KY/IN",
+    "State": "OH",
+    "County": "Clermont County"
+  },
+  {
+    "ID": "1640",
+    "UrlName": "Cincinnati",
+    "Friendly": "Cincinnati Area",
+    "CenterState": "OH",
+    "Name": "Cincinnati, OH/KY/IN",
+    "State": "OH",
+    "County": "Hamilton County"
+  },
+  {
+    "ID": "1640",
+    "UrlName": "Cincinnati",
+    "Friendly": "Cincinnati Area",
+    "CenterState": "OH",
+    "Name": "Cincinnati, OH/KY/IN",
+    "State": "OH",
+    "County": "Warren County"
+  },
+  {
+    "ID": "1640",
+    "UrlName": "Cincinnati",
+    "Friendly": "Cincinnati Area",
+    "CenterState": "OH",
+    "Name": "Cincinnati, OH/KY/IN",
+    "State": "KY",
+    "County": "Boone County"
+  },
+  {
+    "ID": "1640",
+    "UrlName": "Cincinnati",
+    "Friendly": "Cincinnati Area",
+    "CenterState": "OH",
+    "Name": "Cincinnati, OH/KY/IN",
+    "State": "KY",
+    "County": "Campbell County"
+  },
+  {
+    "ID": "1640",
+    "UrlName": "Cincinnati",
+    "Friendly": "Cincinnati Area",
+    "CenterState": "OH",
+    "Name": "Cincinnati, OH/KY/IN",
+    "State": "KY",
+    "County": "Gallatin County"
+  },
+  {
+    "ID": "1640",
+    "UrlName": "Cincinnati",
+    "Friendly": "Cincinnati Area",
+    "CenterState": "OH",
+    "Name": "Cincinnati, OH/KY/IN",
+    "State": "KY",
+    "County": "Grant County"
+  },
+  {
+    "ID": "1640",
+    "UrlName": "Cincinnati",
+    "Friendly": "Cincinnati Area",
+    "CenterState": "OH",
+    "Name": "Cincinnati, OH/KY/IN",
+    "State": "KY",
+    "County": "Kenton County"
+  },
+  {
+    "ID": "1640",
+    "UrlName": "Cincinnati",
+    "Friendly": "Cincinnati Area",
+    "CenterState": "OH",
+    "Name": "Cincinnati, OH/KY/IN",
+    "State": "KY",
+    "County": "Pendleton County"
+  },
+  {
+    "ID": "1680",
+    "UrlName": "Cleveland",
+    "Friendly": "Cleveland Area",
+    "CenterState": "OH",
+    "Name": "Cleveland/Lorain/Elyria, OH",
+    "State": "OH",
+    "County": "Ashtabula County"
+  },
+  {
+    "ID": "1680",
+    "UrlName": "Cleveland",
+    "Friendly": "Cleveland Area",
+    "CenterState": "OH",
+    "Name": "Cleveland/Lorain/Elyria, OH",
+    "State": "OH",
+    "County": "Cuyahoga County"
+  },
+  {
+    "ID": "1680",
+    "UrlName": "Cleveland",
+    "Friendly": "Cleveland Area",
+    "CenterState": "OH",
+    "Name": "Cleveland/Lorain/Elyria, OH",
+    "State": "OH",
+    "County": "Geauga County"
+  },
+  {
+    "ID": "1680",
+    "UrlName": "Cleveland",
+    "Friendly": "Cleveland Area",
+    "CenterState": "OH",
+    "Name": "Cleveland/Lorain/Elyria, OH",
+    "State": "OH",
+    "County": "Lake County"
+  },
+  {
+    "ID": "1680",
+    "UrlName": "Cleveland",
+    "Friendly": "Cleveland Area",
+    "CenterState": "OH",
+    "Name": "Cleveland/Lorain/Elyria, OH",
+    "State": "OH",
+    "County": "Lorain County"
+  },
+  {
+    "ID": "1680",
+    "UrlName": "Cleveland",
+    "Friendly": "Cleveland Area",
+    "CenterState": "OH",
+    "Name": "Cleveland/Lorain/Elyria, OH",
+    "State": "OH",
+    "County": "Medina County"
+  },
+  {
+    "ID": "1740",
+    "UrlName": "Columbia",
+    "Friendly": "Columbia (MO)",
+    "CenterState": "MO",
+    "Name": "Columbia, MO",
+    "State": "MO",
+    "County": "Boone County"
+  },
+  {
+    "ID": "1760",
+    "UrlName": "Columbia",
+    "Friendly": "Columbia (SC)",
+    "CenterState": "SC",
+    "Name": "Columbia, SC",
+    "State": "SC",
+    "County": "Lexington County"
+  },
+  {
+    "ID": "1760",
+    "UrlName": "Columbia",
+    "Friendly": "Columbia (SC)",
+    "CenterState": "SC",
+    "Name": "Columbia, SC",
+    "State": "SC",
+    "County": "Richland County"
+  },
+  {
+    "ID": "1800",
+    "UrlName": "Columbus",
+    "Friendly": "Columbus (GA)",
+    "CenterState": "GA",
+    "Name": "Columbus, GA/AL",
+    "State": "AL",
+    "County": "Russell County"
+  },
+  {
+    "ID": "1800",
+    "UrlName": "Columbus",
+    "Friendly": "Columbus (GA)",
+    "CenterState": "GA",
+    "Name": "Columbus, GA/AL",
+    "State": "GA",
+    "County": "Chattahoochee County"
+  },
+  {
+    "ID": "1800",
+    "UrlName": "Columbus",
+    "Friendly": "Columbus (GA)",
+    "CenterState": "GA",
+    "Name": "Columbus, GA/AL",
+    "State": "GA",
+    "County": "Harris County"
+  },
+  {
+    "ID": "1800",
+    "UrlName": "Columbus",
+    "Friendly": "Columbus (GA)",
+    "CenterState": "GA",
+    "Name": "Columbus, GA/AL",
+    "State": "GA",
+    "County": "Muscogee County"
+  },
+  {
+    "ID": "1840",
+    "UrlName": "Columbus",
+    "Friendly": "Columbus (OH)",
+    "CenterState": "OH",
+    "Name": "Columbus, OH",
+    "State": "OH",
+    "County": "Delaware County"
+  },
+  {
+    "ID": "1840",
+    "UrlName": "Columbus",
+    "Friendly": "Columbus (OH)",
+    "CenterState": "OH",
+    "Name": "Columbus, OH",
+    "State": "OH",
+    "County": "Fairfield County"
+  },
+  {
+    "ID": "1840",
+    "UrlName": "Columbus",
+    "Friendly": "Columbus (OH)",
+    "CenterState": "OH",
+    "Name": "Columbus, OH",
+    "State": "OH",
+    "County": "Franklin County"
+  },
+  {
+    "ID": "1840",
+    "UrlName": "Columbus",
+    "Friendly": "Columbus (OH)",
+    "CenterState": "OH",
+    "Name": "Columbus, OH",
+    "State": "OH",
+    "County": "Licking County"
+  },
+  {
+    "ID": "1840",
+    "UrlName": "Columbus",
+    "Friendly": "Columbus (OH)",
+    "CenterState": "OH",
+    "Name": "Columbus, OH",
+    "State": "OH",
+    "County": "Madison County"
+  },
+  {
+    "ID": "1840",
+    "UrlName": "Columbus",
+    "Friendly": "Columbus (OH)",
+    "CenterState": "OH",
+    "Name": "Columbus, OH",
+    "State": "OH",
+    "County": "Pickaway County"
   }
 ]
