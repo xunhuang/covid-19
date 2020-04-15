@@ -316,7 +316,7 @@ function fillholes() {
         for (c in state) {
             let county = state[c];
             county.Confirmed = fillarrayholes(county.Confirmed, c !== "0");
-            county.Death = fillarrayholes(county.Death);
+            county.Death = fillarrayholes(county.Death, c !== "0");
             setCountyNode(s, c, county);
         }
     }
