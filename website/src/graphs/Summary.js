@@ -18,11 +18,11 @@ const useStyles = makeStyles(theme => ({
         display: 'flex',
         flexWrap: 'wrap',
         padding: '4px',
-        margin: '8px 8px',
+        margin: '5px 5px',
         flexGrow: 1,
     },
     label: {
-        fontSize: '.8em',
+        fontSize: '.7em',
     },
     total: {
         flexGrow: 1,
@@ -51,7 +51,6 @@ export const Summary = (props) => {
             'count': "N/A",
         };
     }
-
 
     const pop = (label, total, change) =>
         <Paper className={classes.aspect}>
@@ -84,7 +83,12 @@ export const Summary = (props) => {
                 pop(
                     'Beds',
                     myShortNumber(maybeHospitals.bedCount),
-                    '')}
+                    `${maybeHospitals.bedsICU} ICU Beds`)}
+            {maybeHospitalization &&
+                pop(
+                    'Tests',
+                    myShortNumber(maybeHospitalization.totalTests),
+                    `${Math.floor(maybeHospitalization.totalTestPositive / maybeHospitalization.totalTests * 100)}% pos `)}
             {maybeHospitalization &&
                 pop(
                     'Hospitalized',
