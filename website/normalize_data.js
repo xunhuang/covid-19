@@ -124,6 +124,11 @@ function createCountyObject(state_fips, state_name, county_fips, county_name) {
         countyObject.bedsAvail = Math.round(hospinfo.AVG_AVAIL_BEDS);
     }
 
+    let county = TableLookup[county_fips];
+    if (county) {
+        countyObject.Population = parseInt(county.Population2010.replace(/,/g, ''));
+    }
+
     setCountyNode(state_fips, county_fips, countyObject);
 
     return countyObject;

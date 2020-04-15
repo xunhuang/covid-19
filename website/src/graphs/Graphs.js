@@ -78,7 +78,6 @@ export const GraphSection = (props) => {
         });
     }
 
-    const maybeDetailed = maybeMapTabFor(source);
     if (source instanceof State || source instanceof Country) {
         tabs.set('detailed', {
             label: "Detailed",
