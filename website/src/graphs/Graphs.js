@@ -2,10 +2,11 @@ import React from 'react';
 import Paper from '@material-ui/core/Paper';
 import Tab from '@material-ui/core/Tab';
 import Tabs from '@material-ui/core/Tabs';
+import Badge from '@material-ui/core/Badge';
 import ToggleButton from '@material-ui/lab/ToggleButton';
 import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
 import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, withStyles } from '@material-ui/core/styles';
 import { useHistory } from 'react-router-dom'
 import { BasicGraphNewCases } from './GraphNewCases.js'
 import { GraphDaysToDoubleOverTime } from './GraphDaysToDoubleOverTime'
@@ -30,6 +31,17 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
+const RibbonBadge = withStyles({
+    badge: {
+        borderRadius: '0px',
+        fontSize: '0.3rem',
+        transform: 'rotate(15deg)',
+        height: '10px',
+        minWidth: '10px',
+        right: '-15px',
+    }
+})(Badge);
+
 export const GraphSection = (props) => {
     const classes = useStyles();
     const history = useHistory();
@@ -49,6 +61,7 @@ export const GraphSection = (props) => {
             tabs.set(tab.id, {
                 label: tab.label,
                 content: tab.graph,
+                showRibbon: true,  // TO SHOW THE RIBBON ADD A LINE LIKE THIS
             }));
 
     tabs.set('days2x', {
@@ -89,9 +102,10 @@ export const GraphSection = (props) => {
                 onChange={switchTo}
                 variant="scrollable"
                 scrollButtons="auto">
-                {[...tabs.values()].map(tab =>
-                    <Tab label={tab.label} key={tab.label} />
-                )}
+                {[...tabs.values()].map(tab => {
+                    const label = tab.showRibbon ? <RibbonBadge badgeContent='New' color="error">{tab.label}</RibbonBadge> : tab.label;
+                    return <Tab label={label} key={tab.label} />;
+                })}
             </Tabs>
             <Paper className={classes.tabContent}>
                 <TabContent source={source} />
