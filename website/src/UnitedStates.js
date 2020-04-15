@@ -2,12 +2,12 @@ import routes from "./Routes";
 import { reverse } from 'named-urls';
 import { trimLastDaysData, getDay2DoubleTimeSeries } from "./CovidAnalysis";
 import { CountyInfo } from 'covidmodule';
+import { fetchNPRProjectionData } from "./NPRProjection"
 
 const CovidData = require('./data/AllData.json');
 const CountyGeoData = require('./data/county_gps.json');
 const geolib = require('geolib');
 const moment = require('moment');
-const projectionsUs = require("./data/us_only.json")
 const testingStates = require("./data/state_testing.json");
 const testingUs = require("./data/us_testing.json");
 
@@ -130,9 +130,9 @@ export class Country {
     };
   }
 
-  projections() {
-    return projectionsUs.filter(
-      d => d.location_name === "United States of America");
+  async projectionsAsync() {
+    let data = await fetchNPRProjectionData();
+    return data.filter(d => d.location_name === "United States of America");
   }
 
   summary() {
@@ -288,8 +288,9 @@ export class State {
     return CountyInfo.getStatePopulation(this.twoLetterName);
   }
 
-  projections() {
-    return projectionsUs.filter(d => d.location_name === this.name);
+  async projectionsAsync() {
+    let data = await fetchNPRProjectionData();
+    return data.filter(d => d.location_name === this.name);
   }
 
   stayHomeOrder() {

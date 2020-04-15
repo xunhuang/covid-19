@@ -12,8 +12,6 @@ import { myShortNumber } from '../Util';
 import { makeStyles } from '@material-ui/core/styles';
 import { Country, State } from '../UnitedStates';
 
-const superagent = require("superagent");
-
 const moment = require("moment");
 
 const useStyles = makeStyles(theme => ({
@@ -92,8 +90,8 @@ const keybeds = {
 const GraphAllBedProjectionState = (props) => {
     const [USData, setUSdata] = React.useState(null);
     React.useEffect(() => {
-        getNPRProjectionData().then(data => setUSdata(data));
-    }, []);
+        props.state.projectionsAsync().then(data => setUSdata(data));
+    }, [props.state]);
 
     if (!USData || USData.length === 0) {
         return <div> Loading</div>;
@@ -132,21 +130,12 @@ const GraphAllBedProjectionState = (props) => {
     />;
 }
 
-async function getNPRProjectionData() {
-    return superagent
-        .get("/data/npr_projection.json")
-        .then(res => {
-            return res.body;
-        });
-
-}
-
 const GraphAllBedProjectionUS = (props) => {
     const country = useContext(CountryContext);
     const [USData, setUSdata] = React.useState(null);
     React.useEffect(() => {
-        getNPRProjectionData().then(data => setUSdata(data));
-    }, []);
+        country.projectionsAsync().then(data => setUSdata(data));
+    }, [country]);
 
     if (!USData || USData.length === 0) {
         return <div> Loading</div>;
@@ -256,7 +245,7 @@ const GraphDeathProjectionRender = (props) => {
                     <Label value="Avg Avail. Beds" position="insideRight" />
                 </ReferenceLine>/>
 
-                <ReferenceLine key={`hreflineavail`} y={props.hospitals.beds} stroke="#e3e3e3" strokeWidth={2} >
+                <ReferenceLine key={`hreflinetotal`} y={props.hospitals.beds} stroke="#e3e3e3" strokeWidth={2} >
                     <Label value="Total Beds" position="insideRight" />
                 </ReferenceLine>/>
 

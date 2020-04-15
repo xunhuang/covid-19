@@ -84,8 +84,18 @@ const keydeath = {
 }
 
 const GraphDeathProjection = (props) => {
+
+    const [sourceData, setSourceData] = React.useState(null);
+    React.useEffect(() => {
+        props.source.projectionsAsync()
+            .then(data => setSourceData(data));
+    }, [props.source])
+    if (!sourceData || sourceData.length === 0) {
+        return <div> Loading</div>;
+    }
+
     const [formateddata, max_date] =
-        formatData(props.source.projections(), keydeath);
+        formatData(sourceData, keydeath);
     const actual_deaths_total = props.source.deaths();
 
     for (let item of formateddata) {
@@ -218,7 +228,7 @@ const GraphDeathProjectionRender = (props) => {
 }
 
 function maybeDeathProjectionTabFor(source) {
-    if (source.projections) {
+    if (source.projectionsAsync) {
         return {
             id: 'peakdeath',
             label: 'Death*',
