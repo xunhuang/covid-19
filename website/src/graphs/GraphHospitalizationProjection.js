@@ -95,8 +95,8 @@ const GraphAllBedProjectionState = (props) => {
     const [state_testing_data, setStatesTestingData] = React.useState(null);
     React.useEffect(() => {
         props.state.projectionsAsync().then(data => setUSdata(data));
-        country.testingAllAsync().then(data => setStatesTestingData(data));
-    }, [props.state, country]);
+        props.state.testingAsync().then(data => setStatesTestingData(data));
+    }, [props.state]);
 
     if (!USData || USData.length === 0 || !state_testing_data || state_testing_data.length === 0) {
         return <div> Loading</div>;
