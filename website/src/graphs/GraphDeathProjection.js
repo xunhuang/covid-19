@@ -99,7 +99,6 @@ const GraphDeathProjection = (props) => {
             }
         }
     }
-    console.log(formateddata);
 
     return <GraphDeathProjectionRender
         data={formateddata}
