@@ -13,6 +13,9 @@ const DFHCounty = require("./src/data/DFH-County.json");
 const DFHState = require("./src/data/DFH-State.json");
 const DFHUSA = require("./src/data/DFH-USA.json");
 
+const TestingStates = require("./public/data/state_testing.json");
+const TestingUSA = require("./public/data/us_testing.json");
+
 const states = require('us-state-codes');
 const fs = require('fs');
 function pad(n) { return n < 10 ? '0' + n : n }
@@ -41,14 +44,17 @@ for (let key in metrokeys) {
     extraMetro[key] = newMetro;
 }
 
-// console.log(extraMetro)
-// process.exit(0);
+
 
 /**
  * Initialize State Nodes
  */
 const AllStateFips = CountyInfo.getAllStateFips();
-AllStateFips.map(statefips => AllData[statefips] = {})
+for (let statefips of AllStateFips) {
+    AllData[statefips] = {};
+}
+
+
 
 function getStateNode(state_fips) {
     return AllData[state_fips];
@@ -940,14 +946,45 @@ NYC_STARTER.map(entry => {
     }
 });
 
-console.log("Summarizing NYC ");
+function extractTestData(entry) {
+    let data = {};
+    data.totalTests = entry.total;
+    data.totalTestResults = entry.totalTestResults;
+    data.totalTestPositive = entry.positive;
+    data.totalRecovered = entry.recovered;
+    data.hospitalized = entry.hospitalized ? entry.hospitalized :
+        (entry.hospitalizedCurrently ? entry.hospitalizedCurrently : entry.hospitalizedCumulative);
+    data.hospitalizedIncreased = entry.hospitalizedIncrease;
+    data.inIcu = entry.inIcuCurrently ? entry.inIcuCurrently : entry.inIcuCumulative;
+    data.onVentilator = entry.onVentilatorCurrently ? entry.onVentilatorCurrently : entry.onVentilatorCumulative;
+    return data;
+}
+
+function processTestData() {
+    for (let statefips of AllStateFips) {
+        let state_short = CountyInfo.getStateAbbreviationFromFips(statefips);
+        let entry = TestingStates.filter(s => s.state === state_short).sort((a, b) => b.date - a.date)[0];
+        let data = extractTestData(entry);
+        AllData[statefips].Summary = {
+            ...AllData[statefips].Summary,
+            ...data,
+        }
+    }
+    let entry = TestingUSA.sort((a, b) => b.date - a.date)[0];
+    let data = extractTestData(entry);
+    AllData.Summary = {
+        ...AllData.Summary,
+        ...data,
+    }
+}
 
 processsShelterInPlace();
 addUSRecovery();
 addStateRecovery();
+processTestData();
 
 const contentCrushed = JSON.stringify(AllData, null, 0);
-fs.writeFileSync("./public/data/AllData.min.json", contentCrushed);
+// fs.writeFileSync("./public/data/AllData.min.json", contentCrushed);
 const contentPretty = JSON.stringify(AllData, null, 2);
-fs.writeFileSync("./public/data/AllData.json", contentPretty);
+// fs.writeFileSync("./public/data/AllData.json", contentPretty);
 fs.writeFileSync("./src/data/AllData.json", contentPretty);
