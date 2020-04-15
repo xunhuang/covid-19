@@ -14,6 +14,7 @@ import { maybeHospitalizationProjectionTabFor } from './GraphHospitalizationProj
 import { maybeMapTabFor } from '../Map';
 import { maybeRecoveryAndDeathTabFor } from './GraphRecoveryAndDeath.js'
 import { maybeTestingTabFor } from './GraphTestingEffort'
+import { Country, State } from "../UnitedStates"
 
 const useStyles = makeStyles(theme => ({
     content: {
@@ -40,6 +41,7 @@ const RibbonBadge = withStyles({
         right: '-15px',
     }
 })(Badge);
+
 
 export const GraphSection = (props) => {
     const classes = useStyles();
@@ -76,10 +78,13 @@ export const GraphSection = (props) => {
         });
     }
 
-    tabs.set('detailed', {
-        label: "Detailed",
-        content: DetailedGraphs,
-    });
+    const maybeDetailed = maybeMapTabFor(source);
+    if (source instanceof State || source instanceof Country) {
+        tabs.set('detailed', {
+            label: "Detailed",
+            content: DetailedGraphs,
+        });
+    }
 
     const headings = [...tabs.keys()];
     const [viewing, setViewing] =
@@ -139,6 +144,7 @@ const DetailedGraphs = (props) => {
         setViewing(desire);
         pushChangeTo(history, 'detailed', desire);
     };
+
     const Graph = graphs.get(viewing).graph;
 
     return (
