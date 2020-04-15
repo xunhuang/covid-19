@@ -14,6 +14,8 @@ import { Link as MaterialLink } from '@material-ui/core';
 import { Link as RouterLink } from 'react-router-dom';
 import { EnhancedTableHead, stableSort, getComparator } from "./TableSortHelper";
 import { reverse } from 'named-urls';
+import { CountryContext } from "./CountryContext";
+import { useContext } from 'react';
 import routes from "./Routes"
 
 const useStyles = makeStyles(theme => ({
@@ -233,11 +235,23 @@ function prepareStatesTestingDataForDisplay(list) {
 }
 
 const AllStateListTesting = (props) => {
-    const raw_data = require("./data/state_testing.json");
-    // Find the latest data for each state
+    const classes = useStyles();
+    const [order, setOrder] = React.useState('desc');
+    const [orderBy, setOrderBy] = React.useState('confirmed');
+
+    const country = useContext(CountryContext);
+    const [sourceData, setSourceData] = React.useState(null);
+    React.useEffect(() => {
+        country.testingAllAsync()
+            .then(data => setSourceData(data));
+    }, [country])
+    if (!sourceData || sourceData.length === 0) {
+        return <div> Loading</div>;
+    }
+
     let states_data = {};
-    for (let i = 0; i < raw_data.length; i++) {
-        let record = raw_data[i];
+    for (let i = 0; i < sourceData.length; i++) {
+        let record = sourceData[i];
         let state = record.state;
         if ((state in states_data) && (states_data[state].date > record.date)) {
             continue;
@@ -246,14 +260,10 @@ const AllStateListTesting = (props) => {
             // have to do this other sort doesn't work
             record.pending = Number.NEGATIVE_INFINITY;
         }
-
         states_data[state] = record;
     }
 
-    const classes = useStyles();
 
-    const [order, setOrder] = React.useState('desc');
-    const [orderBy, setOrderBy] = React.useState('confirmed');
     const handleRequestSort = (event, property) => {
         const isAsc = orderBy === property && order === 'asc';
         setOrder(isAsc ? 'desc' : 'asc');
