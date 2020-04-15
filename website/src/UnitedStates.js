@@ -471,6 +471,7 @@ export class County {
         hospitals: covidRaw_.hospitals,
         beds: covidRaw_.beds,
       };
+      this.population_ = covidRaw_.Population;
     } else {
       this.name = UNKNOWN_COUNTY_NAME;
     }
@@ -617,10 +618,8 @@ export class County {
     if (data['Longitude']) {
       this.center_['lng'] = parseFloat(data['Longitude']);
     }
-    if (data['Population2010']) {
-      this.population_ = parseInt(data['Population2010'].replace(/,/g, ''));
-    }
   }
+
   daysToDoubleTimeSeries() {
     let confirmed = getDay2DoubleTimeSeries(
       trimLastDaysData(this.covidRaw_.Confirmed)
