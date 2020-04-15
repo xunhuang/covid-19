@@ -3,6 +3,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Paper } from '@material-ui/core';
 import { County } from '../UnitedStates';
 import { myShortNumber } from '../Util';
+import { useHistory } from 'react-router-dom'
+import { Link as MaterialLink } from '@material-ui/core';
 
 const useStyles = makeStyles(theme => ({
     container: {
@@ -37,6 +39,7 @@ const useStyles = makeStyles(theme => ({
 
 export const Summary = (props) => {
     const classes = useStyles();
+    const history = useHistory();
 
     const source = props.source;
     const summary = source.summary();
@@ -52,8 +55,14 @@ export const Summary = (props) => {
         };
     }
 
-    const pop = (label, total, change) =>
-        <Paper className={classes.aspect}>
+    function jumpTo(target) {
+        if (target) {
+            pushChangeTo(history, "tab", target);
+        }
+    }
+
+    const pop = (label, total, change, target) =>
+        <Paper className={classes.aspect} onClick={() => { jumpTo(target) }}>
             <div className={classes.change}>
                 {change ? change : "-"}
             </div>
@@ -78,7 +87,8 @@ export const Summary = (props) => {
             {pop(
                 'Deaths',
                 myShortNumber(summary.deaths),
-                `+${myShortNumber(summary.deathsNew)}`)}
+                `+${myShortNumber(summary.deathsNew)}`,
+                "peakdeath")}
             {maybeHospitals &&
                 pop(
                     'Beds',
@@ -88,12 +98,23 @@ export const Summary = (props) => {
                 pop(
                     'Tests',
                     myShortNumber(maybeHospitalization.totalTests),
-                    `${Math.floor(maybeHospitalization.totalTestPositive / maybeHospitalization.totalTests * 100)}% pos `)}
+                    `${Math.floor(maybeHospitalization.totalTestPositive / maybeHospitalization.totalTests * 100)}% pos `,
+                )}
             {maybeHospitalization &&
                 pop(
                     'Hospitalized',
                     myShortNumber(maybeHospitalization.hospitalized),
-                    `+ ${maybeHospitalization.hospitalizedIncreased}`)}
+                    `+ ${maybeHospitalization.hospitalizedIncreased}`,
+                    "peakhospitalization"
+                )}
         </div>
     );
 };
+
+function pushChangeTo(history, key, value) {
+    const params = new URLSearchParams(history.location.search);
+    params.set(key, value);
+    history.location.search = params.toString();
+    history.push(history.location)
+    return history.location;
+}
