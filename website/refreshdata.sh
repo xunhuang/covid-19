@@ -70,7 +70,7 @@ curl -s https://covidtracking.com/api/states/daily |jq >$temp_file
 filesize=$(wc -c <"$temp_file")
 if  [ "$filesize" -ge "100000" ]; then
     echo "Updated state_testing.json ($filesize)"
-    mv $temp_file src/data/state_testing.json 
+    mv $temp_file public/data/state_testing.json 
 else 
     echo "file size $filesize too small"
 fi
@@ -79,7 +79,7 @@ curl -s https://covidtracking.com/api/us/daily |jq >$temp_file
 filesize=$(wc -c <"$temp_file")
 if  [ "$filesize" -ge "15000" ]; then
     echo "Updated us_testing.json ($filesize) "
-    mv $temp_file src/data/us_testing.json
+    mv $temp_file public/data/us_testing.json
 else 
     echo "file size $filesize too small"
 fi

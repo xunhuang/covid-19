@@ -12,6 +12,7 @@ import { myShortNumber } from '../Util';
 import { makeStyles } from '@material-ui/core/styles';
 import { Country, State } from '../UnitedStates';
 
+
 const moment = require("moment");
 
 const useStyles = makeStyles(theme => ({
@@ -88,21 +89,22 @@ const keybeds = {
 }
 
 const GraphAllBedProjectionState = (props) => {
+
+    const country = useContext(CountryContext);
     const [USData, setUSdata] = React.useState(null);
+    const [state_testing_data, setStatesTestingData] = React.useState(null);
     React.useEffect(() => {
         props.state.projectionsAsync().then(data => setUSdata(data));
-    }, [props.state]);
+        country.testingAllAsync().then(data => setStatesTestingData(data));
+    }, [props.state, country]);
 
-    if (!USData || USData.length === 0) {
+    if (!USData || USData.length === 0 || !state_testing_data || state_testing_data.length === 0) {
         return <div> Loading</div>;
     }
 
     let data = USData.filter(d => d.location_name === props.state.name);
 
     const [formateddata, max_date] = formatData(data, keybeds);
-
-    const us_testing_data = require("../data/state_testing.json");
-    const state_testing_data = us_testing_data.filter(d => d.state === props.state.twoLetterName);
 
     for (let item of formateddata) {
         let entry = state_testing_data.find(t => {
@@ -133,16 +135,17 @@ const GraphAllBedProjectionState = (props) => {
 const GraphAllBedProjectionUS = (props) => {
     const country = useContext(CountryContext);
     const [USData, setUSdata] = React.useState(null);
+    const [testingActual, setTestingActual] = React.useState(null);
     React.useEffect(() => {
         country.projectionsAsync().then(data => setUSdata(data));
+        country.testingAsync().then(data => setTestingActual(data));
     }, [country]);
 
-    if (!USData || USData.length === 0) {
+    if (!USData || USData.length === 0 || !testingActual || testingActual.length === 0) {
         return <div> Loading</div>;
     }
 
     let data = USData.filter(d => d.location_name === "United States of America");
-    const testingActual = require("../data/us_testing.json");
     const [formateddata, max_date] = formatData(data, keybeds);
 
 
