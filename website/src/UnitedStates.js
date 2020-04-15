@@ -3,13 +3,12 @@ import { reverse } from 'named-urls';
 import { trimLastDaysData, getDay2DoubleTimeSeries } from "./CovidAnalysis";
 import { CountyInfo } from 'covidmodule';
 import { fetchNPRProjectionData } from "./NPRProjection"
+import { fetchTestingDataStates, fetchTestingDataUS } from "./TestingData"
 
 const CovidData = require('./data/AllData.json');
 const CountyGeoData = require('./data/county_gps.json');
 const geolib = require('geolib');
 const moment = require('moment');
-const testingStates = require("./data/state_testing.json");
-const testingUs = require("./data/us_testing.json");
 
 const UNKNOWN_COUNTY_NAME = "Unknown";
 
@@ -155,8 +154,8 @@ export class Country {
     }
   }
 
-  testing() {
-    return testingUs;
+  async testingAsync() {
+    return await fetchTestingDataUS();
   }
 
   daysToDoubleTimeSeries() {
@@ -314,8 +313,9 @@ export class State {
     }
   }
 
-  testing() {
-    return testingStates.filter(d => d.state === this.twoLetterName)
+  async testingAsync() {
+    let data = await fetchTestingDataStates();
+    return data.filter(d => d.state === this.twoLetterName)
       .sort((a, b) => a.date - b.date);
   }
 

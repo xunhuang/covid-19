@@ -97,7 +97,19 @@ function maybeFindTesting(source) {
 }
 
 const GraphTestingWidget = (props) => {
-    let data = maybeFindTesting(props.source).testing().map(t => {
+    const [sourceData, setSourceData] = React.useState(null);
+    const [useAreaChart, setUseAreaChart] = React.useState(false);
+
+    React.useEffect(() => {
+        props.source.testingAsync()
+            .then(data => setSourceData(data));
+    }, [props.source])
+
+    if (!sourceData || sourceData.length === 0) {
+        return <div> Loading</div>;
+    }
+
+    let data = sourceData.map(t => {
         let md = t.date % 1000;
         let m = Math.floor(md / 100);
         let d = md % 100;
@@ -123,7 +135,6 @@ const GraphTestingWidget = (props) => {
 
     // If true, show area chart.
     // If false, show line chart.
-    const [useAreaChart, setUseAreaChart] = React.useState(false);
     let chart = useAreaChart ?
         <AreaChart
             data={data}
@@ -197,7 +208,7 @@ const GraphTestingWidget = (props) => {
 }
 
 function maybeTestingTabFor(source) {
-    if (source.testing) {
+    if (source.testingAsync) {
         return {
             id: 'testing',
             label: 'Tests',
