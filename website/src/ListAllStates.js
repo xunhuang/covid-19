@@ -209,7 +209,8 @@ const AllStateListRender = (props) => {
                                 <TableCell align="right">{row.recovered ? myGoodShortNumber(row.recovered) : "-"}</TableCell>
                                 <TableCell align="right">{myGoodShortNumber(row.death)}</TableCell>
                                 <TableCell align="right">{(!row.daysToDouble) ? "-" : row.daysToDouble.toFixed(1)}</TableCell>
-                                <TableCell align="right">{(!row.daysToDoubleDeath) ? "-" : row.daysToDoubleDeath.toFixed(1)}</TableCell>
+                                <TableCell align="right">{(!row.daysToDoubleDeath) ? "-" :
+                                    (row.daysToDoubleDeath > 365 ? "1 Year+" : row.daysToDoubleDeath.toFixed(1))}</TableCell>
                             </TableRow>;
                         })
                 }
