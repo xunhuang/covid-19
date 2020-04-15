@@ -12,6 +12,8 @@ import { myShortNumber } from '../Util';
 import { makeStyles } from '@material-ui/core/styles';
 import { Country, State } from '../UnitedStates';
 
+const superagent = require("superagent");
+
 const moment = require("moment");
 
 const useStyles = makeStyles(theme => ({
@@ -76,8 +78,6 @@ const AllBedsTooltip = (props) => {
     return null;
 }
 
-const usdata = require("../data/us_only.json")
-
 const keybeds = {
     key_lower: "allbed_lower",
     key_upper: "allbed_upper",
@@ -90,7 +90,17 @@ const keybeds = {
 }
 
 const GraphAllBedProjectionState = (props) => {
-    let data = usdata.filter(d => d.location_name === props.state.name);
+    const [USData, setUSdata] = React.useState(null);
+    React.useEffect(() => {
+        getNPRProjectionData().then(data => setUSdata(data));
+    }, []);
+
+    if (!USData || USData.length === 0) {
+        return <div> Loading</div>;
+    }
+
+    let data = USData.filter(d => d.location_name === props.state.name);
+
     const [formateddata, max_date] = formatData(data, keybeds);
 
     const us_testing_data = require("../data/state_testing.json");
@@ -122,11 +132,30 @@ const GraphAllBedProjectionState = (props) => {
     />;
 }
 
+async function getNPRProjectionData() {
+    return superagent
+        .get("/data/npr_projection.json")
+        .then(res => {
+            return res.body;
+        });
+
+}
+
 const GraphAllBedProjectionUS = (props) => {
     const country = useContext(CountryContext);
-    let data = usdata.filter(d => d.location_name === "United States of America");
+    const [USData, setUSdata] = React.useState(null);
+    React.useEffect(() => {
+        getNPRProjectionData().then(data => setUSdata(data));
+    }, []);
+
+    if (!USData || USData.length === 0) {
+        return <div> Loading</div>;
+    }
+
+    let data = USData.filter(d => d.location_name === "United States of America");
     const testingActual = require("../data/us_testing.json");
     const [formateddata, max_date] = formatData(data, keybeds);
+
 
     for (let item of formateddata) {
         let entry = testingActual.find(t => {

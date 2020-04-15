@@ -13,7 +13,7 @@ const useStyles = makeStyles(theme => ({
     },
     aspect: {
         flexDirection: "column",
-        alignContent: 'flex-start',
+        alignContent: 'center',
         alignItems: 'center',
         display: 'flex',
         flexWrap: 'wrap',

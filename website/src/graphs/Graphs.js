@@ -5,7 +5,6 @@ import Tabs from '@material-ui/core/Tabs';
 import Badge from '@material-ui/core/Badge';
 import ToggleButton from '@material-ui/lab/ToggleButton';
 import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
-import Typography from '@material-ui/core/Typography';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import { useHistory } from 'react-router-dom'
 import { BasicGraphNewCases } from './GraphNewCases.js'

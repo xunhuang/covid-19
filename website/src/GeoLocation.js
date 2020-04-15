@@ -29,20 +29,20 @@ async function fetchCounty() {
             // latitude: 37.333183,
             // new york city
             return {
-              longitude: -73.968723,
-              latitude: 40.775191,
+                longitude: -73.968723,
+                latitude: 40.775191,
             };
         }
     ];
 
     let location;
     for (const method of methods) {
-      try {
-        location = await method();
-        break;
-      } catch (err) {
-        continue;
-      }
+        try {
+            location = await method();
+            break;
+        } catch (err) {
+            continue;
+        }
     }
 
     console.log(location);
@@ -98,7 +98,6 @@ function fetchApproxIPLocationGoogle(key) {
 
 async function fetchApproxIPLocationIPGEOLOCATION() {
     const url = `https://api.ipgeolocation.io/ipgeo?apiKey=${firebaseConfig.ipgeolocation_key}`;
-    console.log(url);
     return superagent
         .get(url)
         .then(res => {
@@ -115,7 +114,6 @@ async function fetchApproxIPLocationIPGEOLOCATION() {
 function fetchApproxIPLocationIPDataCo(apikey) {
 
     const url = `https://api.ipdata.co/?api-key=${apikey}`;
-    console.log(url);
     return superagent
         .get(url)
         .then(res => {
