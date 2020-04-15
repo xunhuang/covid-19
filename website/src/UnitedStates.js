@@ -78,6 +78,15 @@ export class Country {
     this.statesById_.forEach(state => state.reindex());
   }
 
+  testData() {
+    return {
+      totalTests: this.covidRaw_.Summary.totalTests,
+      totalTestPositive: this.covidRaw_.Summary.totalTestPositive,
+      hospitalized: this.covidRaw_.Summary.hospitalized,
+      hospitalizedIncreased: this.covidRaw_.Summary.hospitalizedIncreased,
+    }
+  }
+
   metroContainingCounty(county) {
     return this.metrosByCountyId_.get(county.id);
   }
@@ -270,6 +279,15 @@ export class State {
 
   confirmed() {
     return this.covidRaw_.Summary.confirmed;
+  }
+
+  testData() {
+    return {
+      totalTests: this.covidRaw_.Summary.totalTests,
+      totalTestPositive: this.covidRaw_.Summary.totalTestPositive,
+      hospitalized: this.covidRaw_.Summary.hospitalized,
+      hospitalizedIncreased: this.covidRaw_.Summary.hospitalizedIncreased,
+    }
   }
 
   dataPoints() {

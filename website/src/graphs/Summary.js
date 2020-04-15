@@ -41,14 +41,17 @@ export const Summary = (props) => {
     const source = props.source;
     const summary = source.summary();
 
+    let maybeHospitalization = source.testData && source.testData();
+
     // Where does this even belong...
-    let maybeHospitals = source.hospitals && source.hospitals();
+    let maybeHospitals = !maybeHospitalization && source.hospitals && source.hospitals();
     if (!maybeHospitals && source instanceof County) {
         maybeHospitals = {
             'bedCount': "N/A",
             'count': "N/A",
         };
     }
+
 
     const pop = (label, total, change) =>
         <Paper className={classes.aspect}>
@@ -82,6 +85,11 @@ export const Summary = (props) => {
                     'Beds',
                     myShortNumber(maybeHospitals.bedCount),
                     '')}
+            {maybeHospitalization &&
+                pop(
+                    'Hospitalized',
+                    myShortNumber(maybeHospitalization.hospitalized),
+                    `+ ${maybeHospitalization.hospitalizedIncreased}`)}
         </div>
     );
 };
