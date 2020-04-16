@@ -79,7 +79,8 @@ async function deploy() {
 async function data_normalization() {
 
     var spawn = require('child_process').spawn;
-    var prc = spawn('node', ['normalize_data.js']);
+    // var prc = spawn('node', ['normalize_data.js']);
+    var prc = spawn('npm', ['run', 'data']);
     let exitCode = 0;
 
     console.log('-----------------------------');
