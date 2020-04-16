@@ -12,7 +12,6 @@ const moment = require("moment");
 const scale = scaleSymlog().domain([0, 'dataMax']);
 
 const BasicGraphRecoveryAndDeath = (props) => {
-
     const [state, setState] = React.useState({
         showlog: false,
         show2weeks: false,
@@ -59,7 +58,7 @@ const BasicGraphRecoveryAndDeath = (props) => {
         return myShortNumber(tickItem);
     }
 
-    data = data.sort((a, b) => moment(a.fulldate, "MM/DD/YYYY").isAfter(moment(b.fulldate, "MM/DD/YYYY")));
+    data = data.sort((a, b) => moment(a.fulldate, "MM/DD/YYYY").toDate() - (moment(b.fulldate, "MM/DD/YYYY")).toDate());
 
     return <>
         <Grid container alignItems="center" spacing={1}>

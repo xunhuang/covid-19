@@ -124,7 +124,7 @@ export class Country {
     return datesToDataPoints(this.covidRaw_.Summary);
   }
 
-  deaths() {
+  async deathsAsync() {
     return this.covidRaw_.Summary.Death;
   }
 
@@ -295,7 +295,7 @@ export class State {
     return datesToDataPoints(this.covidRaw_.Summary);
   }
 
-  deaths() {
+  async deathsAsync() {
     return this.covidRaw_.Summary.Death;
   }
 
@@ -426,6 +426,9 @@ export class Metro {
 
   async dataPointsAsync() {
     return datesToDataPoints(this.covidRaw_.Summary);
+  }
+  async deathsAsync() {
+    return this.covidRaw_.Summary.Death;
   }
 
   hospitals() {

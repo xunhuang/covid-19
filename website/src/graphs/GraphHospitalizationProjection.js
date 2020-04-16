@@ -180,7 +180,7 @@ const formatData = (data, keys) => {
         d.name = moment(d.fulldate, "MM/DD/YYYY").format("M/D");
         return d;
     });
-    data = data.sort((a, b) => moment(a.fulldate, "MM/DD/YYYY").isAfter(moment(b.fulldate, "MM/DD/YYYY")));
+    data = data.sort((a, b) => moment(a.fulldate, "MM/DD/YYYY").toDate() - (moment(b.fulldate, "MM/DD/YYYY")).toDate());
     let deathsTotal_mean = 0;
     let deathsTotal_upper = 0;
     let deathsTotal_lower = 0;

@@ -8,9 +8,10 @@ import {
 } from 'recharts';
 import { Typography } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
-import { myShortNumber } from '../Util';
+import { myShortNumber, CookieSetLastCounty } from '../Util';
 import { AntSwitch } from "./GraphNewCases.js"
 import { makeStyles } from '@material-ui/core/styles';
+import { isReturnStatement } from 'typescript';
 
 const moment = require("moment");
 
@@ -86,37 +87,94 @@ const keydeath = {
 const GraphDeathProjection = (props) => {
 
     const [sourceData, setSourceData] = React.useState(null);
+    const [actual_deaths_total, setActualDeath] = React.useState(null);
     React.useEffect(() => {
-        props.source.projectionsAsync()
-            .then(data => setSourceData(data));
+        if (props.source.projectionsAsync) {
+            props.source.projectionsAsync()
+                .then(data => setSourceData(data));
+        }
+
+        props.source.deathsAsync()
+            .then(data => setActualDeath(data));
     }, [props.source])
-    if (!sourceData || sourceData.length === 0) {
+
+    if (props.source.projectionsAsync && (!sourceData || sourceData.length === 0)) {
+        return <div> Loading</div>;
+    }
+    if (!actual_deaths_total) {
         return <div> Loading</div>;
     }
 
-    const [formateddata, max_date] =
-        formatData(sourceData, keydeath);
-    const actual_deaths_total = props.source.deaths();
+    console.log(actual_deaths_total);
+    let death_entrys = makeArrayEntriesFromTotal(
+        actual_deaths_total,
+        "actualDeath_total", "actualDeath_daily", "actualDeath_moving_avg")
 
-    for (let item of formateddata) {
-        let entry = actual_deaths_total[item.fulldate];
-        if (entry) {
-            item.actualDeath_total = entry;
-            let lastday = moment(item.fulldate, "MM/DD/YYYY").subtract(1, "days").format("MM/DD/YYYY");
-            let lastentry = actual_deaths_total[lastday];
-            if (lastentry !== null) {
-                item.actualDeath_daily = entry - lastentry;
+    let max_date = null;
+    if (props.source.projectionsAsync) {
+        const [formateddata, max_date2] =
+            formatData(sourceData, keydeath);
+        max_date = max_date2;
+        for (let item of formateddata) {
+            let entry = actual_deaths_total[item.fulldate];
+            if (entry) {
+                item.actualDeath_total = entry;
+                let lastday = moment(item.fulldate, "MM/DD/YYYY").subtract(1, "days").format("MM/DD/YYYY");
+                let lastentry = actual_deaths_total[lastday];
+                if (lastentry !== null) {
+                    item.actualDeath_daily = entry - lastentry;
+                }
             }
         }
+        death_entrys = mergeSeries(death_entrys, formateddata);
     }
 
     return <GraphDeathProjectionRender
-        data={formateddata}
+        data={death_entrys}
         max_date={max_date}
         max_label="Peak Death"
         data_keys={keydeath}
         tooltip={<DeathTooltip />}
     />;
+}
+
+function mergeSeries(entry1, entry2) {
+    let map1 = entry1.reduce((m, a) => {
+        m[a.fulldate] = a;
+        return m;
+    }, {});
+
+    for (let e2 of entry2) {
+        let mitem = map1[e2.fulldate] ?? {};
+        mitem = {
+            ...mitem,
+            ...e2,
+        };
+        map1[e2.fulldate] = mitem;
+    }
+    console.log(map1)
+    return Object.values(map1);
+}
+
+function makeArrayEntriesFromTotal(data, key_total, key_daily, key_moving) {
+    let sorteddata = Object.keys(data).sort((a, b) => moment(a, "MM/DD/YYYY").toDate() - (moment(b, "MM/DD/YYYY")).toDate());
+    let m = [];
+    for (let date of sorteddata) {
+        let entry = data[date];
+        if (entry) {
+            let item = {}
+            item.fulldate = date;
+            item[key_total] = entry;
+            let lastday = moment(date, "MM/DD/YYYY").subtract(1, "days").format("MM/DD/YYYY");
+            let lastentry = data[lastday];
+            if (lastentry !== null) {
+                item[key_daily] = entry - lastentry;
+            }
+            m.push(item);
+        }
+    }
+    console.log(m);
+    return m;
 }
 
 const formatData = (data, keys) => {
@@ -125,7 +183,7 @@ const formatData = (data, keys) => {
         d.name = moment(d.fulldate, "MM/DD/YYYY").format("M/D");
         return d;
     });
-    data = data.sort((a, b) => moment(a.fulldate, "MM/DD/YYYY").isAfter(moment(b.fulldate, "MM/DD/YYYY")));
+    data = data.sort((a, b) => moment(a.fulldate, "MM/DD/YYYY").toDate() - (moment(b.fulldate, "MM/DD/YYYY")).toDate());
     let deathsTotal_mean = 0;
     let deathsTotal_upper = 0;
     let deathsTotal_lower = 0;
@@ -166,6 +224,13 @@ const GraphDeathProjectionRender = (props) => {
     const max_date = props.max_date;
     const data_keys = props.data_keys;
 
+    data = data.map(d => {
+        d.name = moment(d.fulldate, "MM/DD/YYYY").format("M/D");
+        return d;
+    });
+    data = data.sort((a, b) => moment(a.fulldate, "MM/DD/YYYY").toDate() - (moment(b.fulldate, "MM/DD/YYYY")).toDate());
+
+    console.log(data);
     const [state, setState] = React.useState({
         showall: false,
     });
@@ -228,7 +293,7 @@ const GraphDeathProjectionRender = (props) => {
 }
 
 function maybeDeathProjectionTabFor(source) {
-    if (source.projectionsAsync) {
+    if (source.deathsAsync) {
         return {
             id: 'peakdeath',
             label: 'Death*',

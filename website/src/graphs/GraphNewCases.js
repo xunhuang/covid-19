@@ -317,7 +317,7 @@ const BasicGraphNewCases = (props) => {
         return myShortNumber(tickItem);
     }
 
-    data = data.sort((a, b) => moment(a.fulldate, "MM/DD/YYYY").isAfter(moment(b.fulldate, "MM/DD/YYYY")));
+    data = data.sort((a, b) => moment(a.fulldate, "MM/DD/YYYY").toDate() - (moment(b.fulldate, "MM/DD/YYYY")).toDate());
 
     /**
      * Vertical reference lines.
