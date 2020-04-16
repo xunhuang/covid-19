@@ -8,6 +8,9 @@ firebase init
 
 node setupFirebaseConfig.js
 
+
+npm run data  (this will produce the AllData.json and AllData.slim.json from raw data files, this should be run after each data update)
+
 npm start  (to start development, start local server and run browser0
 
 
