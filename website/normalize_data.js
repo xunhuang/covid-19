@@ -44,7 +44,7 @@ for (let key in metrokeys) {
     extraMetro[key] = newMetro;
 }
 
-// process.exit(0);
+process.exit(0);
 
 
 /**

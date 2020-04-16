@@ -11,7 +11,7 @@ import Grid from '@material-ui/core/Grid';
 import { myShortNumber, CookieSetLastCounty } from '../Util';
 import { AntSwitch } from "./GraphNewCases.js"
 import { makeStyles } from '@material-ui/core/styles';
-import { isReturnStatement } from 'typescript';
+import { mergeDataSeries, makeDataSeriesFromTotal } from "./DataSeries";
 
 const moment = require("moment");
 
@@ -109,8 +109,7 @@ const GraphDeathProjection = (props) => {
         return <div> Loading</div>;
     }
 
-    console.log(actual_deaths_total);
-    let death_entrys = makeArrayEntriesFromTotal(
+    let death_entrys = makeDataSeriesFromTotal(
         actual_deaths_total,
         "actualDeath_total", "actualDeath_daily", "actualDeath_moving_avg")
 
@@ -130,7 +129,7 @@ const GraphDeathProjection = (props) => {
                 }
             }
         }
-        death_entrys = mergeSeries(death_entrys, formateddata);
+        death_entrys = mergeDataSeries(death_entrys, formateddata);
     }
 
     return <GraphDeathProjectionRender
@@ -140,53 +139,6 @@ const GraphDeathProjection = (props) => {
         data_keys={keydeath}
         tooltip={<DeathTooltip />}
     />;
-}
-
-function mergeSeries(entry1, entry2) {
-    let map1 = entry1.reduce((m, a) => {
-        m[a.fulldate] = a;
-        return m;
-    }, {});
-
-    for (let e2 of entry2) {
-        let mitem = map1[e2.fulldate] ?? {};
-        mitem = {
-            ...mitem,
-            ...e2,
-        };
-        map1[e2.fulldate] = mitem;
-    }
-    console.log(map1)
-    return Object.values(map1);
-}
-
-function makeArrayEntriesFromTotal(data, key_total, key_daily, key_moving) {
-    let sorteddata = Object.keys(data).sort((a, b) => moment(a, "MM/DD/YYYY").toDate() - (moment(b, "MM/DD/YYYY")).toDate());
-    let m = [];
-    for (let date of sorteddata) {
-        let entry = data[date];
-        if (entry) {
-            let item = {}
-            item.fulldate = date;
-            item[key_total] = entry;
-            let lastday = moment(date, "MM/DD/YYYY").subtract(1, "days").format("MM/DD/YYYY");
-            let lastentry = data[lastday];
-            if (lastentry !== null) {
-                item[key_daily] = entry - lastentry;
-            }
-            m.push(item);
-        }
-    }
-
-    let len = m.length;
-    for (let i = 1; i < len - 1; i++) {
-        var mean = (m[i][key_daily] + m[i - 1][key_daily] + m[i + 1][key_daily]) / 3.0;
-        m[i][key_moving] = mean;
-    }
-    m[0][key_moving] = (m[0][key_daily] + m[1][key_daily]) / 2;
-    m[len - 1][key_moving] = (m[len - 1][key_daily] + m[len - 2][key_daily]) / 2;
-
-    return m;
 }
 
 const formatData = (data, keys) => {
@@ -286,7 +238,7 @@ const GraphDeathProjectionRender = (props) => {
                 <Line type="monotone" dataKey={data_keys.key_mean} stroke="#000000" dot={{ r: 1 }} yAxisId={0} strokeWidth={2} />
                 <Area type='monotone' dataKey={data_keys.key_lower} stackId="1" stroke='#8884d8' fill='#FFFFFF' />
                 <Area type='monotone' dataKey={data_keys.key_delta} stackId="1" stroke='#82ca9d' fill='#82ca9d' />
-                <Line type="monotone" dataKey="actualDeath_daily" stroke="#FF0000" dot={{ r: 1 }} strokeDasharray="1 1" yAxisId={0} strokeWidth={2} />
+                <Line type="monotone" dataKey="actualDeath_daily" stroke="#FF0000" dot={{ r: 1 }} strokeDasharray="2 2" yAxisId={0} strokeWidth={2} />
                 <Line type="monotone" dataKey="actualDeath_moving_avg" stroke="#FF0000" dot={{ r: 1 }} yAxisId={0} strokeWidth={3} />
                 {state.showall && <Line type="monotone" dataKey={data_keys.key_mean_cumulative} dot={{ r: 1 }} stroke="#000000" yAxisId={0} strokeWidth={1} />}
                 {state.showall && <Line type="monotone" dataKey="actualDeath_total" dot={{ r: 1 }} stroke="#ff0000" yAxisId={0} strokeWidth={2} />}

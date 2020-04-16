@@ -8,6 +8,7 @@ import { Typography } from '@material-ui/core';
 import { Grid } from '@material-ui/core';
 import { AntSwitch } from "./GraphNewCases.js"
 import { myShortNumber } from '../Util.js';
+import { mergeDataSeries, makeDataSeriesFromTotal, exportColumnFromDataSeries } from "./DataSeries";
 
 const useStyles = makeStyles(theme => ({
     customtooltip: {
@@ -114,6 +115,13 @@ const GraphTestingWidget = (props) => {
         let m = Math.floor(md / 100);
         let d = md % 100;
         t.name = `${m}/${d}`;
+
+        m = m.toString().padStart(2, "0");
+        d = d.toString().padStart(2, "0");
+        let y = Math.floor(t.date / 10000);
+
+        t.fulldate = `${m}/${d}/${y}`;
+
         return t;
     })
 
@@ -121,13 +129,16 @@ const GraphTestingWidget = (props) => {
         return a.date - b.date;
     });
 
-    for (let i = 0; i < data.length; i++) {
-        data[i].testsThatDay = (i === 0) ? data[i].total : data[i].total - data[i - 1].total;
-        data[i].positiveThatDay = (i === 0) ? data[i].positive : data[i].positive - data[i - 1].positive;
-        data[i].negativeThatDay = (i === 0) ? data[i].negative : data[i].negative - data[i - 1].negative;
-        const resultsThatDay = data[i].positivethatDay + data[i].negativeThatDay;
-        data[i].pendingThatDay = data[i].testsThatDay - resultsThatDay;
-    }
+    let testTotalArray = exportColumnFromDataSeries(data, "total");
+    let testPostives = exportColumnFromDataSeries(data, "positive");
+    let testNegatives = exportColumnFromDataSeries(data, "negative");
+    let total = makeDataSeriesFromTotal(testTotalArray, "total", "testsThatDay", "testsThatDay_avg");
+    let pos = makeDataSeriesFromTotal(testPostives, "postive", "positiveThatDay", "positiveThatDay_avg");
+    let neg = makeDataSeriesFromTotal(testNegatives, "negative", "negativeThatDay", "negativeThatDay_avg");
+
+    data = mergeDataSeries(data, total);
+    data = mergeDataSeries(data, pos);
+    data = mergeDataSeries(data, neg);
 
     let total_tests = data.reduce((m, a) => { return a.total > m ? a.total : m }, 0);
     let total_positives = data.reduce((m, a) => { return a.positive > m ? a.positive : m }, 0);
@@ -159,9 +170,11 @@ const GraphTestingWidget = (props) => {
             <YAxis tickFormatter={formatYAxis} />
             <XAxis dataKey="name" />
             <CartesianGrid stroke="#d5d5d5" strokeDasharray="5 5" />
-            <Line type="monotone" name="Total" dataKey="total" stroke="#ff7300" yAxisId={0} strokeWidth={3} />
-            <Line type="monotone" name="Daily" dataKey="testsThatDay" stroke="#387908" yAxisId={0} strokeWidth={3} />
-            <Line type="monotone" name="Positive" dataKey="positiveThatDay" stroke="#a3a3a3" yAxisId={0} strokeWidth={3} />
+            {/* <Line type="monotone" name="Total" dataKey="total" stroke="#ff7300" yAxisId={0} strokeWidth={3} /> */}
+            <Line type="monotone" name="Daily" dataKey="testsThatDay" dot={{ r: 1 }} strokeDasharray="2 2" stroke="#387908" yAxisId={0} strokeWidth={1} />
+            <Line type="monotone" name="3d daily avg" dataKey="testsThatDay_avg" dot={{ r: 1 }} stroke="#387908" yAxisId={0} strokeWidth={2} />
+            <Line type="monotone" name="Positive" dataKey="positiveThatDay" dot={{ r: 1 }} strokeDasharray="2 2" stroke="#a3a3a3" yAxisId={0} strokeWidth={1} />
+            <Line type="monotone" name="3d daily avg" dataKey="positiveThatDay_avg" dot={{ r: 1 }} stroke="#a3a3a3" yAxisId={0} strokeWidth={2} />
             {/* <Line type="monotone" name="Negative" dataKey="negativeThatDay" stroke="#00aeef" yAxisId={0} strokeWidth={3} /> */}
             <Legend verticalAlign="top" />
             <Tooltip content={<CustomTooltip />} />
