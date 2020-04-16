@@ -18,6 +18,17 @@ const BasicGraphRecoveryAndDeath = (props) => {
         show2weeks: false,
     });
 
+    const [USData, setUSdata] = React.useState(null);
+    React.useEffect(() => {
+        props.source.dataPointsAsync().then(data => setUSdata(data));
+    }, [props.source])
+
+    if (!USData || USData.length === 0) {
+        return <div> Loading</div>;
+    }
+
+    let data = USData;
+
     const handleLogScaleToggle = event => {
         setState({ ...state, showlog: !state.showlog });
     };
@@ -26,7 +37,6 @@ const BasicGraphRecoveryAndDeath = (props) => {
         setState({ ...state, show2weeks: !state.show2weeks });
     };
 
-    let data = props.source.dataPoints();
     data = data.map(d => {
         d.name = moment(d.fulldate, "MM/DD/YYYY").format("M/D");
         return d;
@@ -100,10 +110,10 @@ const CaveatStateGraph = (props) => {
     return (
         <>
             <Typography variant="body2">
-              Recovery data collection started on 4/2.
+                Recovery data collection started on 4/2.
               {props.source.summary().recovered > 0 ||
-                  " No recovery data for this state yet."
-              }
+                    " No recovery data for this state yet."
+                }
             </Typography>
             <BasicGraphRecoveryAndDeath source={props.source} />
         </>
