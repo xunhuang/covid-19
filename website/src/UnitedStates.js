@@ -6,8 +6,7 @@ import { fetchNPRProjectionData } from "./NPRProjection"
 import { fetchTestingDataStates, fetchTestingDataUS } from "./TestingData"
 import { fetchPublicCountyData } from "./PublicAllData"
 
-// const CovidData = require('./data/AllData.json');
-const CovidData = require('./abc.json');
+const CovidData = require('./data/AllData.slim.json');
 const CountyGeoData = require('./data/county_gps.json');
 const geolib = require('geolib');
 const moment = require('moment');
@@ -121,12 +120,8 @@ export class Country {
     return routes.united_states;
   }
 
-  dataPoints() {
-    return datesToDataPoints(this.covidRaw_.Summary);
-  }
-
   async dataPointsAsync() {
-    return this.dataPoints();
+    return datesToDataPoints(this.covidRaw_.Summary);
   }
 
   deaths() {
@@ -296,11 +291,8 @@ export class State {
     }
   }
 
-  dataPoints() {
-    return datesToDataPoints(this.covidRaw_.Summary);
-  }
   async dataPointsAsync() {
-    return this.dataPoints();
+    return datesToDataPoints(this.covidRaw_.Summary);
   }
 
   deaths() {
@@ -432,11 +424,8 @@ export class Metro {
     return reverse(routes.metro, { metro: this.id });
   }
 
-  dataPoints() {
-    return datesToDataPoints(this.covidRaw_.Summary);
-  }
   async dataPointsAsync() {
-    return this.dataPoints();
+    return datesToDataPoints(this.covidRaw_.Summary);
   }
 
   hospitals() {
@@ -580,10 +569,6 @@ export class County {
     });
   }
 
-  dataPoints() {
-    return datesToDataPoints(this.covidRaw_);
-  }
-
   async dataPointsAsync() {
     if (!this.covidRaw_.Confirmed) {
       console.log("fetching");
@@ -593,7 +578,7 @@ export class County {
       }
       console.log(serverdata);
     }
-    return this.dataPoints();
+    return datesToDataPoints(this.covidRaw_);
   }
 
   hospitals() {
