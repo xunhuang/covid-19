@@ -44,6 +44,7 @@ for (let key in metrokeys) {
     extraMetro[key] = newMetro;
 }
 
+// process.exit(0);
 
 
 /**
@@ -530,7 +531,6 @@ function processsShelterInPlace() {
 
 function getCountyByFips(fips) {
     return AllData[fips.slice(0, 2)][fips];
-
 }
 function addMetros() {
     let Metros = {
@@ -573,7 +573,6 @@ function addMetros() {
             for (let i = 0; i < metro.Counties.length; i++) {
                 let countyfips = metro.Counties[i];
                 let county = getCountyByFips(countyfips);
-                let county_info = TableLookup[countyfips];
                 if (county) {
                     mergeTwoMapValues(Confirmed, county.Confirmed)
                     mergeTwoMapValues(Death, county.Death)

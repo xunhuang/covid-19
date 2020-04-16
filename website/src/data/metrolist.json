@@ -162,42 +162,6 @@
     "County": "Rockwall County"
   },
   {
-    "ID": "1920",
-    "UrlName": "Dallas",
-    "Friendly": "Greater Dallas",
-    "CenterState": "TX",
-    "Name": "Dallas, TX",
-    "State": "TX",
-    "County": "Hood County"
-  },
-  {
-    "ID": "1920",
-    "UrlName": "Dallas",
-    "Friendly": "Greater Dallas",
-    "CenterState": "TX",
-    "Name": "Dallas, TX",
-    "State": "TX",
-    "County": "Johnson County"
-  },
-  {
-    "ID": "1920",
-    "UrlName": "Dallas",
-    "Friendly": "Greater Dallas",
-    "CenterState": "TX",
-    "Name": "Dallas, TX",
-    "State": "TX",
-    "County": "Parker County"
-  },
-  {
-    "ID": "1920",
-    "UrlName": "Dallas",
-    "Friendly": "Greater Dallas",
-    "CenterState": "TX",
-    "Name": "Dallas, TX",
-    "State": "TX",
-    "County": "Tarrant County"
-  },
-  {
     "ID": "6160",
     "UrlName": "Philly",
     "Friendly": "Philadelphia",
@@ -675,6 +639,24 @@
     "County": "Taylor County"
   },
   {
+    "ID": "80",
+    "UrlName": "Akron",
+    "Friendly": "Akron Area",
+    "CenterState": "OH",
+    "Name": "Akron, OH",
+    "State": "OH",
+    "County": "Portage County"
+  },
+  {
+    "ID": "80",
+    "UrlName": "Akron",
+    "Friendly": "Akron Area",
+    "CenterState": "OH",
+    "Name": "Akron, OH",
+    "State": "OH",
+    "County": "Summit County"
+  },
+  {
     "ID": "120",
     "UrlName": "AlbanyGA",
     "Friendly": "Albany (GA) Area",
@@ -774,6 +756,15 @@
     "County": "Valencia County"
   },
   {
+    "ID": "220",
+    "UrlName": "Alexandria",
+    "Friendly": "Alexandria Area",
+    "CenterState": "LA",
+    "Name": "Alexandria, LA",
+    "State": "LA",
+    "County": "Rapides Parish"
+  },
+  {
     "ID": "240",
     "UrlName": "Allentown",
     "Friendly": "Allentown Area",
@@ -819,6 +810,15 @@
     "County": "Randall County"
   },
   {
+    "ID": "380",
+    "UrlName": "Anchorage",
+    "Friendly": "Anchorage Area",
+    "CenterState": "AK",
+    "Name": "Anchorage, AK",
+    "State": "AK",
+    "County": "Anchorage Borough"
+  },
+  {
     "ID": "440",
     "UrlName": "AnnArbor",
     "Friendly": "Ann Arbor Area",
@@ -846,6 +846,15 @@
     "County": "Washtenaw County"
   },
   {
+    "ID": "450",
+    "UrlName": "Anniston",
+    "Friendly": "Anniston Area",
+    "CenterState": "AL",
+    "Name": "Anniston, AL",
+    "State": "AL",
+    "County": "Calhoun County"
+  },
+  {
     "ID": "460",
     "UrlName": "Appleton",
     "Friendly": "Appleton",
@@ -871,6 +880,24 @@
     "Name": "Appleton/Oshkosh/Neenah, WI",
     "State": "WI",
     "County": "Winnebago County"
+  },
+  {
+    "ID": "480",
+    "UrlName": "Asheville",
+    "Friendly": "Asheville Area",
+    "CenterState": "NC",
+    "Name": "Asheville, NC",
+    "State": "NC",
+    "County": "Buncombe County"
+  },
+  {
+    "ID": "480",
+    "UrlName": "Asheville",
+    "Friendly": "Asheville Area",
+    "CenterState": "NC",
+    "Name": "Asheville, NC",
+    "State": "NC",
+    "County": "Madison County"
   },
   {
     "ID": "500",
@@ -1114,6 +1141,24 @@
     "Name": "Beaumont/Port Arthur, TX",
     "State": "TX",
     "County": "Orange County"
+  },
+  {
+    "ID": "875",
+    "UrlName": "Bergen",
+    "Friendly": "Bergen/Passaic",
+    "CenterState": "NJ",
+    "Name": "Bergen/Passaic, NJ",
+    "State": "NJ",
+    "County": "Bergen County"
+  },
+  {
+    "ID": "875",
+    "UrlName": "Bergen",
+    "Friendly": "Bergen/Passaic",
+    "CenterState": "NJ",
+    "Name": "Bergen/Passaic, NJ",
+    "State": "NJ",
+    "County": "Passaic County"
   },
   {
     "ID": "920",
@@ -1647,9 +1692,27 @@
     "County": "Pendleton County"
   },
   {
+    "ID": "1660",
+    "UrlName": "Clarksville",
+    "Friendly": "Clarksville",
+    "CenterState": "TN",
+    "Name": "Clarksville/Hopkinsville, TN/KY",
+    "State": "TN",
+    "County": "Montgomery County"
+  },
+  {
+    "ID": "1660",
+    "UrlName": "Clarksville",
+    "Friendly": "Clarksville",
+    "CenterState": "TN",
+    "Name": "Clarksville/Hopkinsville, TN/KY",
+    "State": "KY",
+    "County": "Christian County"
+  },
+  {
     "ID": "1680",
     "UrlName": "Cleveland",
-    "Friendly": "Cleveland Area",
+    "Friendly": "Cleveland",
     "CenterState": "OH",
     "Name": "Cleveland/Lorain/Elyria, OH",
     "State": "OH",
@@ -1658,7 +1721,7 @@
   {
     "ID": "1680",
     "UrlName": "Cleveland",
-    "Friendly": "Cleveland Area",
+    "Friendly": "Cleveland",
     "CenterState": "OH",
     "Name": "Cleveland/Lorain/Elyria, OH",
     "State": "OH",
@@ -1667,7 +1730,7 @@
   {
     "ID": "1680",
     "UrlName": "Cleveland",
-    "Friendly": "Cleveland Area",
+    "Friendly": "Cleveland",
     "CenterState": "OH",
     "Name": "Cleveland/Lorain/Elyria, OH",
     "State": "OH",
@@ -1676,7 +1739,7 @@
   {
     "ID": "1680",
     "UrlName": "Cleveland",
-    "Friendly": "Cleveland Area",
+    "Friendly": "Cleveland",
     "CenterState": "OH",
     "Name": "Cleveland/Lorain/Elyria, OH",
     "State": "OH",
@@ -1685,7 +1748,7 @@
   {
     "ID": "1680",
     "UrlName": "Cleveland",
-    "Friendly": "Cleveland Area",
+    "Friendly": "Cleveland",
     "CenterState": "OH",
     "Name": "Cleveland/Lorain/Elyria, OH",
     "State": "OH",
@@ -1694,20 +1757,11 @@
   {
     "ID": "1680",
     "UrlName": "Cleveland",
-    "Friendly": "Cleveland Area",
+    "Friendly": "Cleveland",
     "CenterState": "OH",
     "Name": "Cleveland/Lorain/Elyria, OH",
     "State": "OH",
     "County": "Medina County"
-  },
-  {
-    "ID": "1740",
-    "UrlName": "Columbia",
-    "Friendly": "Columbia (MO)",
-    "CenterState": "MO",
-    "Name": "Columbia, MO",
-    "State": "MO",
-    "County": "Boone County"
   },
   {
     "ID": "1760",
@@ -1816,5 +1870,410 @@
     "Name": "Columbus, OH",
     "State": "OH",
     "County": "Pickaway County"
+  },
+  {
+    "ID": "1880",
+    "UrlName": "CorpusChristi",
+    "Friendly": "Corpus Christi",
+    "CenterState": "TX",
+    "Name": "Corpus Christi, TX",
+    "State": "TX",
+    "County": "Nueces County"
+  },
+  {
+    "ID": "1880",
+    "UrlName": "CorpusChristi",
+    "Friendly": "Corpus Christi",
+    "CenterState": "TX",
+    "Name": "Corpus Christi, TX",
+    "State": "TX",
+    "County": "San Patricio County"
+  },
+  {
+    "ID": "1900",
+    "UrlName": "Cumberland",
+    "Friendly": "Cumberland",
+    "CenterState": "MD",
+    "Name": "Cumberland, MD/WV",
+    "State": "MD",
+    "County": "Allegany County"
+  },
+  {
+    "ID": "1900",
+    "UrlName": "Cumberland",
+    "Friendly": "Cumberland",
+    "CenterState": "MD",
+    "Name": "Cumberland, MD/WV",
+    "State": "WV",
+    "County": "Mineral County"
+  },
+  {
+    "ID": "2000",
+    "UrlName": "Dayton",
+    "Friendly": "Dayton Area",
+    "CenterState": "OH",
+    "Name": "Dayton/Springfield, OH",
+    "State": "OH",
+    "County": "Clark County"
+  },
+  {
+    "ID": "2000",
+    "UrlName": "Dayton",
+    "Friendly": "Dayton Area",
+    "CenterState": "OH",
+    "Name": "Dayton/Springfield, OH",
+    "State": "OH",
+    "County": "Greene County"
+  },
+  {
+    "ID": "2000",
+    "UrlName": "Dayton",
+    "Friendly": "Dayton Area",
+    "CenterState": "OH",
+    "Name": "Dayton/Springfield, OH",
+    "State": "OH",
+    "County": "Miami County"
+  },
+  {
+    "ID": "2000",
+    "UrlName": "Dayton",
+    "Friendly": "Dayton Area",
+    "CenterState": "OH",
+    "Name": "Dayton/Springfield, OH",
+    "State": "OH",
+    "County": "Montgomery County"
+  },
+  {
+    "ID": "2080",
+    "UrlName": "Denver",
+    "Friendly": "Denver",
+    "CenterState": "CO",
+    "Name": "Denver, CO",
+    "State": "CO",
+    "County": "Adams County"
+  },
+  {
+    "ID": "2080",
+    "UrlName": "Denver",
+    "Friendly": "Denver",
+    "CenterState": "CO",
+    "Name": "Denver, CO",
+    "State": "CO",
+    "County": "Arapahoe County"
+  },
+  {
+    "ID": "2080",
+    "UrlName": "Denver",
+    "Friendly": "Denver",
+    "CenterState": "CO",
+    "Name": "Denver, CO",
+    "State": "CO",
+    "County": "Denver County"
+  },
+  {
+    "ID": "2080",
+    "UrlName": "Denver",
+    "Friendly": "Denver",
+    "CenterState": "CO",
+    "Name": "Denver, CO",
+    "State": "CO",
+    "County": "Douglas County"
+  },
+  {
+    "ID": "2080",
+    "UrlName": "Denver",
+    "Friendly": "Denver",
+    "CenterState": "CO",
+    "Name": "Denver, CO",
+    "State": "CO",
+    "County": "Jefferson County"
+  },
+  {
+    "ID": "2120",
+    "UrlName": "DesMoines",
+    "Friendly": "Des Moines",
+    "CenterState": "IA",
+    "Name": "Des Moines, IA",
+    "State": "IA",
+    "County": "Dallas County"
+  },
+  {
+    "ID": "2120",
+    "UrlName": "DesMoines",
+    "Friendly": "Des Moines",
+    "CenterState": "IA",
+    "Name": "Des Moines, IA",
+    "State": "IA",
+    "County": "Polk County"
+  },
+  {
+    "ID": "2120",
+    "UrlName": "DesMoines",
+    "Friendly": "Des Moines",
+    "CenterState": "IA",
+    "Name": "Des Moines, IA",
+    "State": "IA",
+    "County": "Warren County"
+  },
+  {
+    "ID": "2160",
+    "UrlName": "Detroit",
+    "Friendly": "Detroit Area",
+    "CenterState": "MI",
+    "Name": "Detroit, MI",
+    "State": "MI",
+    "County": "Lapeer County"
+  },
+  {
+    "ID": "2160",
+    "UrlName": "Detroit",
+    "Friendly": "Detroit Area",
+    "CenterState": "MI",
+    "Name": "Detroit, MI",
+    "State": "MI",
+    "County": "Macomb County"
+  },
+  {
+    "ID": "2160",
+    "UrlName": "Detroit",
+    "Friendly": "Detroit Area",
+    "CenterState": "MI",
+    "Name": "Detroit, MI",
+    "State": "MI",
+    "County": "Monroe County"
+  },
+  {
+    "ID": "2160",
+    "UrlName": "Detroit",
+    "Friendly": "Detroit Area",
+    "CenterState": "MI",
+    "Name": "Detroit, MI",
+    "State": "MI",
+    "County": "Oakland County"
+  },
+  {
+    "ID": "2160",
+    "UrlName": "Detroit",
+    "Friendly": "Detroit Area",
+    "CenterState": "MI",
+    "Name": "Detroit, MI",
+    "State": "MI",
+    "County": "St. Clair County"
+  },
+  {
+    "ID": "2160",
+    "UrlName": "Detroit",
+    "Friendly": "Detroit Area",
+    "CenterState": "MI",
+    "Name": "Detroit, MI",
+    "State": "MI",
+    "County": "Wayne County"
+  },
+  {
+    "ID": "2760",
+    "UrlName": "FortWayne",
+    "Friendly": "Fort Wayne",
+    "CenterState": "IN",
+    "Name": "Fort Wayne, IN",
+    "State": "IN",
+    "County": "Adams County"
+  },
+  {
+    "ID": "2760",
+    "UrlName": "FortWayne",
+    "Friendly": "Fort Wayne",
+    "CenterState": "IN",
+    "Name": "Fort Wayne, IN",
+    "State": "IN",
+    "County": "Allen County"
+  },
+  {
+    "ID": "2760",
+    "UrlName": "FortWayne",
+    "Friendly": "Fort Wayne",
+    "CenterState": "IN",
+    "Name": "Fort Wayne, IN",
+    "State": "IN",
+    "County": "DeKalb County"
+  },
+  {
+    "ID": "2760",
+    "UrlName": "FortWayne",
+    "Friendly": "Fort Wayne",
+    "CenterState": "IN",
+    "Name": "Fort Wayne, IN",
+    "State": "IN",
+    "County": "Huntington County"
+  },
+  {
+    "ID": "2760",
+    "UrlName": "FortWayne",
+    "Friendly": "Fort Wayne",
+    "CenterState": "IN",
+    "Name": "Fort Wayne, IN",
+    "State": "IN",
+    "County": "Wells County"
+  },
+  {
+    "ID": "2760",
+    "UrlName": "Fort Wayne",
+    "Friendly": "Fort Wayne",
+    "CenterState": "IN",
+    "Name": "Fort Wayne, IN",
+    "State": "IN",
+    "County": "Whitley County"
+  },
+  {
+    "ID": "3000",
+    "UrlName": "GrandRapids",
+    "Friendly": "Grand Rapids Area",
+    "CenterState": "MI",
+    "Name": "Grand Rapids/Muskegon/Holland, MI",
+    "State": "MI",
+    "County": "Allegan County"
+  },
+  {
+    "ID": "3000",
+    "UrlName": "GrandRapids",
+    "Friendly": "Grand Rapids Area",
+    "CenterState": "MI",
+    "Name": "Grand Rapids/Muskegon/Holland, MI",
+    "State": "MI",
+    "County": "Kent County"
+  },
+  {
+    "ID": "3000",
+    "UrlName": "GrandRapids",
+    "Friendly": "Grand Rapids Area",
+    "CenterState": "MI",
+    "Name": "Grand Rapids/Muskegon/Holland, MI",
+    "State": "MI",
+    "County": "Muskegon County"
+  },
+  {
+    "ID": "3000",
+    "UrlName": "GrandRapids",
+    "Friendly": "Grand Rapids Area",
+    "CenterState": "MI",
+    "Name": "Grand Rapids/Muskegon/Holland, MI",
+    "State": "MI",
+    "County": "Ottawa County"
+  },
+  {
+    "ID": "3120",
+    "UrlName": "Greensboro",
+    "Friendly": "Greensboro Area",
+    "CenterState": "NC",
+    "Name": "Greensboro/Winston-Salem/High Point, NC",
+    "State": "NC",
+    "County": "Alamance County"
+  },
+  {
+    "ID": "3120",
+    "UrlName": "Greensboro",
+    "Friendly": "Greensboro Area",
+    "CenterState": "NC",
+    "Name": "Greensboro/Winston-Salem/High Point, NC",
+    "State": "NC",
+    "County": "Davidson County"
+  },
+  {
+    "ID": "3120",
+    "UrlName": "Greensboro",
+    "Friendly": "Greensboro Area",
+    "CenterState": "NC",
+    "Name": "Greensboro/Winston-Salem/High Point, NC",
+    "State": "NC",
+    "County": "Davie County"
+  },
+  {
+    "ID": "3120",
+    "UrlName": "Greensboro",
+    "Friendly": "Greensboro Area",
+    "CenterState": "NC",
+    "Name": "Greensboro/Winston-Salem/High Point, NC",
+    "State": "NC",
+    "County": "Forsyth County"
+  },
+  {
+    "ID": "3120",
+    "UrlName": "Greensboro",
+    "Friendly": "Greensboro Area",
+    "CenterState": "NC",
+    "Name": "Greensboro/Winston-Salem/High Point, NC",
+    "State": "NC",
+    "County": "Guilford County"
+  },
+  {
+    "ID": "3120",
+    "UrlName": "Greensboro",
+    "Friendly": "Greensboro Area",
+    "CenterState": "NC",
+    "Name": "Greensboro/Winston-Salem/High Point, NC",
+    "State": "NC",
+    "County": "Randolph County"
+  },
+  {
+    "ID": "3120",
+    "UrlName": "Greensboro",
+    "Friendly": "Greensboro Area",
+    "CenterState": "NC",
+    "Name": "Greensboro/Winston-Salem/High Point, NC",
+    "State": "NC",
+    "County": "Stokes County"
+  },
+  {
+    "ID": "3120",
+    "UrlName": "Greensboro",
+    "Friendly": "Greensboro Area",
+    "CenterState": "NC",
+    "Name": "Greensboro/Winston-Salem/High Point, NC",
+    "State": "NC",
+    "County": "Yadkin County"
+  },
+  {
+    "ID": "3160",
+    "UrlName": "Greenville",
+    "Friendly": "Greenville Area",
+    "CenterState": "SC",
+    "Name": "Greenville/Spartanburg/Anderson, SC",
+    "State": "SC",
+    "County": "Anderson County"
+  },
+  {
+    "ID": "3160",
+    "UrlName": "Greenville",
+    "Friendly": "Greenville Area",
+    "CenterState": "SC",
+    "Name": "Greenville/Spartanburg/Anderson, SC",
+    "State": "SC",
+    "County": "Cherokee County"
+  },
+  {
+    "ID": "3160",
+    "UrlName": "Greenville",
+    "Friendly": "Greenville Area",
+    "CenterState": "SC",
+    "Name": "Greenville/Spartanburg/Anderson, SC",
+    "State": "SC",
+    "County": "Greenville County"
+  },
+  {
+    "ID": "3160",
+    "UrlName": "Greenville",
+    "Friendly": "Greenville Area",
+    "CenterState": "SC",
+    "Name": "Greenville/Spartanburg/Anderson, SC",
+    "State": "SC",
+    "County": "Pickens County"
+  },
+  {
+    "ID": "3160",
+    "UrlName": "Greenville",
+    "Friendly": "Greenville Area",
+    "CenterState": "SC",
+    "Name": "Greenville/Spartanburg/Anderson, SC",
+    "State": "SC",
+    "County": "Spartanburg County"
   }
 ]
