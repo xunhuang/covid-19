@@ -169,7 +169,6 @@ const trendingLineLabelChildren = (options) => {
 
 
 const BasicGraphNewCases = (props) => {
-
     const CookieSetPreference = (state) => {
         Cookies.set("BasicGraphPreference", state, {
             expires: 100
@@ -188,12 +187,21 @@ const BasicGraphNewCases = (props) => {
         }
         return pref;
     }
-
     const classes = useStyles();
     const [state, setState] = React.useState(CookieGetPreference());
-
     const [open, setOpen] = React.useState(false);
     const [openDownload, setOpenDownload] = React.useState(false);
+
+    const [USData, setUSdata] = React.useState(null);
+    React.useEffect(() => {
+        props.source.dataPointsAsync().then(data => setUSdata(data));
+    }, [props.source])
+
+    if (!USData || USData.length === 0) {
+        return <div> Loading</div>;
+    }
+
+    let data = USData;
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -235,7 +243,6 @@ const BasicGraphNewCases = (props) => {
         });
     };
 
-    let data = props.source.dataPoints();
     data = data.map(d => {
         d.name = moment(d.fulldate, "MM/DD/YYYY").format("M/D");
         return d;

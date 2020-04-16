@@ -1,4 +1,3 @@
-
 const fs = require('fs');
 const AllData = require("./src/data/AllData.json");
 
@@ -18,14 +17,12 @@ for (const [id, data] of Object.entries(AllData)) {
     }
     let statedir = `${topdir}/${id}`;
     mkdir_p(statedir);
-
     for (const [county_id, county] of Object.entries(data)) {
         if (isNaN(county_id)) {
             continue;
         }
         fs.writeFileSync(`${statedir}/${county_id}.json`,
             JSON.stringify(county, null, 2));
-
         AllData[id][county_id].Confirmed = null;
         AllData[id][county_id].Death = null;
         AllData[id][county_id].Recovered = null;
@@ -33,10 +30,9 @@ for (const [id, data] of Object.entries(AllData)) {
 
     fs.writeFileSync(`${statedir}/summary.json`,
         JSON.stringify(data, null, 2));
-
     // AllData[id].Summary.Confirmed = null;
     // AllData[id].Summary.Death = null;
-    // AllData[id].Summary.Recovered = null;
+    // AllData[id].Summary.Recovered = null; 
 }
 
 let metrodir = `${topdir}/metro`;
@@ -53,4 +49,5 @@ for (const [id, data] of Object.entries(AllData.Metros)) {
 // AllData.Summary.Death = null;
 // AllData.Summary.Recovered = null;
 
-console.log(JSON.stringify(AllData, null, 2))
+// console.log(JSON.stringify(AllData, null, 2))
+fs.writeFileSync('./src/data/AllData.slim.json', JSON.stringify(AllData, null, 2));
