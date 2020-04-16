@@ -90,7 +90,6 @@ const keybeds = {
 
 const GraphAllBedProjectionState = (props) => {
 
-    const country = useContext(CountryContext);
     const [USData, setUSdata] = React.useState(null);
     const [state_testing_data, setStatesTestingData] = React.useState(null);
     React.useEffect(() => {

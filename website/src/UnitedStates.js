@@ -4,8 +4,10 @@ import { trimLastDaysData, getDay2DoubleTimeSeries } from "./CovidAnalysis";
 import { CountyInfo } from 'covidmodule';
 import { fetchNPRProjectionData } from "./NPRProjection"
 import { fetchTestingDataStates, fetchTestingDataUS } from "./TestingData"
+import { fetchPublicCountyData } from "./PublicAllData"
 
-const CovidData = require('./data/AllData.json');
+// const CovidData = require('./data/AllData.json');
+const CovidData = require('./abc.json');
 const CountyGeoData = require('./data/county_gps.json');
 const geolib = require('geolib');
 const moment = require('moment');
@@ -121,6 +123,10 @@ export class Country {
 
   dataPoints() {
     return datesToDataPoints(this.covidRaw_.Summary);
+  }
+
+  async dataPointsAsync() {
+    return this.dataPoints();
   }
 
   deaths() {
@@ -293,6 +299,9 @@ export class State {
   dataPoints() {
     return datesToDataPoints(this.covidRaw_.Summary);
   }
+  async dataPointsAsync() {
+    return this.dataPoints();
+  }
 
   deaths() {
     return this.covidRaw_.Summary.Death;
@@ -425,6 +434,9 @@ export class Metro {
 
   dataPoints() {
     return datesToDataPoints(this.covidRaw_.Summary);
+  }
+  async dataPointsAsync() {
+    return this.dataPoints();
   }
 
   hospitals() {
@@ -570,6 +582,18 @@ export class County {
 
   dataPoints() {
     return datesToDataPoints(this.covidRaw_);
+  }
+
+  async dataPointsAsync() {
+    if (!this.covidRaw_.Confirmed) {
+      console.log("fetching");
+      let serverdata = await fetchPublicCountyData(this.state().fips(), this.id);
+      if (serverdata) {
+        this.covidRaw_ = serverdata;
+      }
+      console.log(serverdata);
+    }
+    return this.dataPoints();
   }
 
   hospitals() {

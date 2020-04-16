@@ -4,7 +4,6 @@ import { Paper } from '@material-ui/core';
 import { County } from '../UnitedStates';
 import { myShortNumber } from '../Util';
 import { useHistory } from 'react-router-dom'
-import { Link as MaterialLink } from '@material-ui/core';
 
 const useStyles = makeStyles(theme => ({
     container: {
