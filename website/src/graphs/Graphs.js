@@ -5,8 +5,8 @@ import Tabs from '@material-ui/core/Tabs';
 import Badge from '@material-ui/core/Badge';
 import ToggleButton from '@material-ui/lab/ToggleButton';
 import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
-import { makeStyles, withStyles } from '@material-ui/core/styles';
-import { useHistory } from 'react-router-dom'
+import { withStyles } from '@material-ui/core/styles';
+import { withRouter } from 'react-router-dom'
 import { BasicGraphNewCases } from './GraphNewCases.js'
 import { GraphDaysToDoubleOverTime } from './GraphDaysToDoubleOverTime'
 import { maybeDeathProjectionTabFor } from './GraphDeathProjection.js'
@@ -16,7 +16,7 @@ import { maybeRecoveryAndDeathTabFor } from './GraphRecoveryAndDeath.js'
 import { maybeTestingTabFor } from './GraphTestingEffort'
 import { Country, State } from "../UnitedStates"
 
-const useStyles = makeStyles(theme => ({
+const styles = theme => ({
     content: {
         margin: '0 2px 2px 2px',
     },
@@ -29,7 +29,7 @@ const useStyles = makeStyles(theme => ({
     tabContent: {
         padding: '2px',
     }
-}));
+});
 
 const RibbonBadge = withStyles({
     badge: {
@@ -43,143 +43,177 @@ const RibbonBadge = withStyles({
 })(Badge);
 
 
-export const GraphSection = (props) => {
-    const classes = useStyles();
-    const history = useHistory();
-    const source = props.source;
+class UnhookedGraphSection extends React.Component {
 
-    const tabs = new Map();
-
-    tabs.set('glance', {
-        label: "At a glance",
-        content: BasicGraphNewCases,
-    });
-
-    [maybeDeathProjectionTabFor, maybeHospitalizationProjectionTabFor]
-        .map(factory => factory(source))
-        .filter(tab => tab)
-        .forEach(tab =>
-            tabs.set(tab.id, {
-                label: tab.label,
-                content: tab.graph,
-                showRibbon: true,  // TO SHOW THE RIBBON ADD A LINE LIKE THIS
-            }));
-
-    tabs.set('days2x', {
-        label: "Doubling",
-        content: GraphDaysToDoubleOverTime,
-    });
-
-    const maybeMap = maybeMapTabFor(source);
-    if (maybeMap) {
-        tabs.set(maybeMap.id, {
-            label: maybeMap.label,
-            content: maybeMap.content,
-        });
-    }
-
-    if (source instanceof State || source instanceof Country) {
-        tabs.set('detailed', {
-            label: "Detailed",
-            content: DetailedGraphs,
-        });
-    }
-
-    const headings = [...tabs.keys()];
-    const [viewing, setViewing] =
-        React.useState(getOrDefaultFrom(history, 'tab', headings));
-    const switchTo = (e, index) => {
-        const desire = headings[index];
-        setViewing(desire);
-        pushChangeTo(history, 'tab', desire);
-    };
-    const TabContent = tabs.get(viewing).content;
-
-    return (
-        <div className={classes.content}>
-            {/* <Typography variant="h6" className={classes.location}>
-                {source.longName}
-            </Typography> */}
-            <Tabs
-                value={headings.indexOf(viewing)}
-                onChange={switchTo}
-                variant="scrollable"
-                scrollButtons="auto">
-                {[...tabs.values()].map(tab => {
-                    const label = tab.showRibbon ? <RibbonBadge badgeContent='New' color="error">{tab.label}</RibbonBadge> : tab.label;
-                    return <Tab label={label} key={tab.label} />;
-                })}
-            </Tabs>
-            <Paper className={classes.tabContent}>
-                <TabContent source={source} />
-            </Paper>
-        </div>
-    );
-};
-
-const DetailedGraphs = (props) => {
-    const classes = useStyles();
-    const history = useHistory();
-    const source = props.source;
-
-    const graphs = new Map([
-        maybeRecoveryAndDeathTabFor,
-        maybeTestingTabFor,
-    ].map(factory => {
-        return factory(source);
-    }).filter(desc => {
-        return desc !== undefined;
-    }).map(desc => [desc.label, desc]));
-
-    const [viewing, setViewing] =
-        React.useState(
-            getOrDefaultFrom(history, 'detailed', [...graphs.keys()]));
-    const switchTo = (e, desire) => {
-        // Having a strange problem where if only one ToggleButton desire is
-        // null
-        if (!desire) {
-            return;
+    static getDerivedStateFromProps(props, state) {
+        const desired = getUnvalidated(props.location, 'tab');
+        if (!state || state.tab !== desired) {
+            return {tab: desired};
+        } else {
+            return null;
         }
-        setViewing(desire);
-        pushChangeTo(history, 'detailed', desire);
-    };
+    }
 
-    const Graph = graphs.get(viewing).graph;
+    render() {
+        const classes = this.props.classes;
+        const history = this.props.history;
+        const source = this.props.source;
 
-    return (
-        <div>
-            <ToggleButtonGroup
-                className={classes.detailedToggles}
-                exclusive
-                onChange={switchTo}
-                value={viewing}
-                aria-label="Detailed graph"
-                size="small">
-                {[...graphs.keys()].map(label =>
-                    <ToggleButton
-                        key={label}
-                        value={label}
-                        aria-label={label}
-                        size="small">
-                        {label}
-                    </ToggleButton>
-                )}
-            </ToggleButtonGroup>
-            <Graph source={source} />
-        </div>
-    );
-};
+        const tabs = new Map();
 
-function getOrDefaultFrom(history, key, all) {
-    const params = new URLSearchParams(history.location.search);
+        tabs.set('glance', {
+            label: "At a glance",
+            content: BasicGraphNewCases,
+        });
+
+        [maybeDeathProjectionTabFor, maybeHospitalizationProjectionTabFor]
+            .map(factory => factory(source))
+            .filter(tab => tab)
+            .forEach(tab =>
+                tabs.set(tab.id, {
+                    label: tab.label,
+                    content: tab.graph,
+                    showRibbon: true,  // TO SHOW THE RIBBON ADD A LINE LIKE THIS
+                }));
+
+        tabs.set('days2x', {
+            label: "Doubling",
+            content: GraphDaysToDoubleOverTime,
+        });
+
+        const maybeMap = maybeMapTabFor(source);
+        if (maybeMap) {
+            tabs.set(maybeMap.id, {
+                label: maybeMap.label,
+                content: maybeMap.content,
+            });
+        }
+
+        if (source instanceof State || source instanceof Country) {
+            tabs.set('detailed', {
+                label: "Detailed",
+                content: DetailedGraphs,
+            });
+        }
+
+        const headings = [...tabs.keys()];
+        let tab;
+        if (headings.includes(this.state.tab)) {
+            tab = this.state.tab;
+        } else {
+            tab = headings[0];
+        }
+
+        const switchTo = (e, index) => {
+            const desire = headings[index];
+            this.setState({tab: desire});
+            pushChangeTo(history, 'tab', desire);
+        };
+        const TabContent = tabs.get(tab).content;
+
+        return (
+            <div className={classes.content}>
+                {/* <Typography variant="h6" className={classes.location}>
+                    {source.longName}
+                </Typography> */}
+                <Tabs
+                    value={headings.indexOf(tab)}
+                    onChange={switchTo}
+                    variant="scrollable"
+                    scrollButtons="auto">
+                    {[...tabs.values()].map(tab => {
+                        const label = tab.showRibbon ? <RibbonBadge badgeContent='New' color="error">{tab.label}</RibbonBadge> : tab.label;
+                        return <Tab label={label} key={tab.label} />;
+                    })}
+                </Tabs>
+                <Paper className={classes.tabContent}>
+                    <TabContent source={source} />
+                </Paper>
+            </div>
+        );
+    }
+}
+export const GraphSection =
+    withRouter(withStyles(styles)(UnhookedGraphSection));
+
+class UnhookedDetailedGraphs extends React.Component {
+
+    static getDerivedStateFromProps(props, state) {
+        const desired = getUnvalidated(props.location, 'detailed');
+        if (!state || state.viewing !== desired) {
+            return {viewing: desired};
+        } else {
+            return null;
+        }
+    }
+
+    render() {
+        const classes = this.props.classes;
+        const history = this.props.history;
+        const source = this.props.source;
+
+        const graphs = new Map([
+            maybeRecoveryAndDeathTabFor,
+            maybeTestingTabFor,
+        ].map(factory => {
+            return factory(source);
+        }).filter(desc => {
+            return desc !== undefined;
+        }).map(desc => [desc.label, desc]));
+
+        let viewing;
+        if ([...graphs.keys()].includes(this.state.viewing)) {
+            viewing = this.state.viewing;
+        } else {
+            viewing = graphs.keys().next().value;
+        }
+
+        const switchTo = (e, desire) => {
+            // Having a strange problem where if only one ToggleButton desire is
+            // null
+            if (!desire) {
+                return;
+            }
+            this.setState({viewing: desire});
+            pushChangeTo(history, 'detailed', desire);
+        };
+
+        const Graph = graphs.get(viewing).graph;
+
+        return (
+            <div>
+                <ToggleButtonGroup
+                    className={classes.detailedToggles}
+                    exclusive
+                    onChange={switchTo}
+                    value={viewing}
+                    aria-label="Detailed graph"
+                    size="small">
+                    {[...graphs.keys()].map(label =>
+                        <ToggleButton
+                            key={label}
+                            value={label}
+                            aria-label={label}
+                            size="small">
+                            {label}
+                        </ToggleButton>
+                    )}
+                </ToggleButtonGroup>
+                <Graph source={source} />
+            </div>
+        );
+    }
+}
+export const DetailedGraphs =
+    withRouter(withStyles(styles)(UnhookedDetailedGraphs));
+
+function getUnvalidated(location, key) {
+    const params = new URLSearchParams(location.search);
     if (params.has(key)) {
-        const desire = params.get(key);
-        if (all.includes(desire)) {
-            return desire;
-        }
+        return params.get(key);
+    } else {
+        return undefined;
     }
-
-    return all[0];
 }
 
 function pushChangeTo(history, key, value) {
