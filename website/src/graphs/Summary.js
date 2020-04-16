@@ -54,14 +54,14 @@ export const Summary = (props) => {
         };
     }
 
-    function jumpTo(target) {
+    function jumpTo(target, detailed) {
         if (target) {
-            pushChangeTo(history, "tab", target);
+            pushChangeTo(history, { "tab": target, "detailed": detailed });
         }
     }
 
-    const pop = (label, total, change, target) =>
-        <Paper className={classes.aspect} onClick={() => { jumpTo(target) }}>
+    const pop = (label, total, change, target, detailed) =>
+        <Paper className={classes.aspect} onClick={() => { jumpTo(target, detailed) }}>
             <div className={classes.change}>
                 {change ? change : "-"}
             </div>
@@ -82,7 +82,10 @@ export const Summary = (props) => {
                 pop(
                     'Recovered',
                     myShortNumber(summary.recovered),
-                    `+${myShortNumber(summary.recoveredNew)}`)}
+                    `+${myShortNumber(summary.recoveredNew)}`,
+                    'detailed',
+                    'Recovery'
+                )}
             {pop(
                 'Deaths',
                 myShortNumber(summary.deaths),
@@ -98,6 +101,8 @@ export const Summary = (props) => {
                     'Tests',
                     myShortNumber(maybeHospitalization.totalTests),
                     `${Math.floor(maybeHospitalization.totalTestPositive / maybeHospitalization.totalTests * 100)}% pos `,
+                    'detailed',
+                    "Tests",
                 )}
             {maybeHospitalization &&
                 pop(
@@ -110,9 +115,15 @@ export const Summary = (props) => {
     );
 };
 
-function pushChangeTo(history, key, value) {
+function pushChangeTo(history, input) {
     const params = new URLSearchParams(history.location.search);
-    params.set(key, value);
+    for (const [key, value] of Object.entries(input)) {
+        console.log(key);
+        console.log(value);
+        if (value) {
+            params.set(key, value);
+        }
+    }
     history.location.search = params.toString();
     history.push(history.location)
     return history.location;

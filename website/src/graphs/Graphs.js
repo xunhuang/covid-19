@@ -48,7 +48,7 @@ class UnhookedGraphSection extends React.Component {
     static getDerivedStateFromProps(props, state) {
         const desired = getUnvalidated(props.location, 'tab');
         if (!state || state.tab !== desired) {
-            return {tab: desired};
+            return { tab: desired };
         } else {
             return null;
         }
@@ -106,7 +106,7 @@ class UnhookedGraphSection extends React.Component {
 
         const switchTo = (e, index) => {
             const desire = headings[index];
-            this.setState({tab: desire});
+            this.setState({ tab: desire });
             pushChangeTo(history, 'tab', desire);
         };
         const TabContent = tabs.get(tab).content;
@@ -141,7 +141,7 @@ class UnhookedDetailedGraphs extends React.Component {
     static getDerivedStateFromProps(props, state) {
         const desired = getUnvalidated(props.location, 'detailed');
         if (!state || state.viewing !== desired) {
-            return {viewing: desired};
+            return { viewing: desired };
         } else {
             return null;
         }
@@ -153,8 +153,8 @@ class UnhookedDetailedGraphs extends React.Component {
         const source = this.props.source;
 
         const graphs = new Map([
-            maybeRecoveryAndDeathTabFor,
             maybeTestingTabFor,
+            maybeRecoveryAndDeathTabFor,
         ].map(factory => {
             return factory(source);
         }).filter(desc => {
@@ -174,7 +174,7 @@ class UnhookedDetailedGraphs extends React.Component {
             if (!desire) {
                 return;
             }
-            this.setState({viewing: desire});
+            this.setState({ viewing: desire });
             pushChangeTo(history, 'detailed', desire);
         };
 

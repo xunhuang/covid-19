@@ -13,7 +13,6 @@ export function mergeDataSeries(entry1, entry2) {
         };
         map1[e2.fulldate] = mitem;
     }
-    console.log(map1)
     return Object.values(map1);
 }
 
