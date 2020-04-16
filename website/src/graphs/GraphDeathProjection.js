@@ -51,17 +51,21 @@ const DeathTooltip = (props) => {
                 <Typography variant="body1" noWrap>
                     {label}
                 </Typography>
-                <Typography variant="body2" noWrap>
-                    {`Projected Daily Death: ${deaths_mean}`}
-                </Typography>
+                {deaths_mean &&
+                    <Typography variant="body2" noWrap>
+                        {`Projected Daily Death: ${deaths_mean}`}
+                    </Typography>
+                }
+                {deathsTotal_mean &&
+                    <Typography variant="body2" noWrap>
+                        {`Projected Total: ${deathsTotal_mean}`}
+                    </Typography>
+                }
                 {actualDeath_daily &&
                     <Typography variant="body2" noWrap>
                         {`Actual Daily: ${actualDeath_daily}`}
                     </Typography>
                 }
-                <Typography variant="body2" noWrap>
-                    {`Projected Total: ${deathsTotal_mean}`}
-                </Typography>
                 {actualDeath_total &&
                     <Typography variant="body2" noWrap>
                         {`Actual Total: ${actualDeath_total}`}
@@ -173,7 +177,15 @@ function makeArrayEntriesFromTotal(data, key_total, key_daily, key_moving) {
             m.push(item);
         }
     }
-    console.log(m);
+
+    let len = m.length;
+    for (let i = 1; i < len - 1; i++) {
+        var mean = (m[i][key_daily] + m[i - 1][key_daily] + m[i + 1][key_daily]) / 3.0;
+        m[i][key_moving] = mean;
+    }
+    m[0][key_moving] = (m[0][key_daily] + m[1][key_daily]) / 2;
+    m[len - 1][key_moving] = (m[len - 1][key_daily] + m[len - 2][key_daily]) / 2;
+
     return m;
 }
 
@@ -274,8 +286,9 @@ const GraphDeathProjectionRender = (props) => {
                 <Line type="monotone" dataKey={data_keys.key_mean} stroke="#000000" dot={{ r: 1 }} yAxisId={0} strokeWidth={2} />
                 <Area type='monotone' dataKey={data_keys.key_lower} stackId="1" stroke='#8884d8' fill='#FFFFFF' />
                 <Area type='monotone' dataKey={data_keys.key_delta} stackId="1" stroke='#82ca9d' fill='#82ca9d' />
-                <Line type="monotone" dataKey="actualDeath_daily" stroke="#FF0000" dot={{ r: 1 }} yAxisId={0} strokeWidth={3} />
-                {state.showall && <Line type="monotone" dataKey={data_keys.key_mean_cumulative} dot={{ r: 1 }} stroke="#000000" yAxisId={0} strokeWidth={2} />}
+                <Line type="monotone" dataKey="actualDeath_daily" stroke="#FF0000" dot={{ r: 1 }} strokeDasharray="1 1" yAxisId={0} strokeWidth={2} />
+                <Line type="monotone" dataKey="actualDeath_moving_avg" stroke="#FF0000" dot={{ r: 1 }} yAxisId={0} strokeWidth={3} />
+                {state.showall && <Line type="monotone" dataKey={data_keys.key_mean_cumulative} dot={{ r: 1 }} stroke="#000000" yAxisId={0} strokeWidth={1} />}
                 {state.showall && <Line type="monotone" dataKey="actualDeath_total" dot={{ r: 1 }} stroke="#ff0000" yAxisId={0} strokeWidth={2} />}
                 {state.showall && <Area type='monotone' dataKey={data_keys.key_lower_cumulative} stackId="2" stroke='#8884d8' fill='#FFFFFF' />}
                 {state.showall && <Area type='monotone' dataKey={data_keys.key_delta_cumulative} stackId="2" stroke='#82ca9d' fill='#82ca9d' />}

@@ -572,16 +572,24 @@ export class County {
     });
   }
 
+  async _fetchServerData() {
+    let serverdata = await fetchPublicCountyData(this.state().fips(), this.id);
+    if (serverdata) {
+      this.covidRaw_ = serverdata;
+    }
+  }
+
   async dataPointsAsync() {
     if (!this.covidRaw_.Confirmed) {
-      console.log("fetching");
-      let serverdata = await fetchPublicCountyData(this.state().fips(), this.id);
-      if (serverdata) {
-        this.covidRaw_ = serverdata;
-      }
-      console.log(serverdata);
+      await this._fetchServerData();
     }
     return datesToDataPoints(this.covidRaw_);
+  }
+  async deathsAsync() {
+    if (!this.covidRaw_.Death) {
+      await this._fetchServerData();
+    }
+    return this.covidRaw_.Death;
   }
 
   hospitals() {
