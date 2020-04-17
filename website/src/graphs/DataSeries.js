@@ -1,4 +1,15 @@
 const moment = require("moment")
+
+/*
+* merge array on "fulldate" keys
+*    array1 = [{ fulldate: '12/22/2292", field1: "xxx"} ]
+*    array2 = [{ fulldate: '12/22/2292", field2: "xxx"} ]
+
+* Result
+*
+*    = [{fulldate: '12/22/2292", field1:"xxx", field2: "xxx"} ]
+*/
+
 export function mergeDataSeries(entry1, entry2) {
     let map1 = entry1.reduce((m, a) => {
         m[a.fulldate] = a;

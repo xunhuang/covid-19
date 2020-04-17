@@ -426,13 +426,13 @@ const BasicGraphNewCases = (props) => {
                 <CartesianGrid stroke="#d5d5d5" strokeDasharray="5 5" />
                 {state.showConfirmed && <Line type="monotone" dataKey="trending_line" stroke="#9c9c9c" yAxisId={0} dot={false} isAnimationActive={false} strokeWidth={2} />}
                 {state.showConfirmed && <Line type="monotone" dataKey="confirmed" stroke="#ff7300" yAxisId={0} dot={{ r: 1 }} strokeWidth={2} />}
-                {state.showConfirmed && <Line type="monotone" dataKey="pending_confirmed" stroke="#ff7300" dot={{ r: 1 }} strokeDasharray="1 1" strokeWidth={2} />}
+                {state.showConfirmed && <Line type="monotone" dataKey="pending_confirmed" stroke="#ff7300" dot={{ r: 1 }} strokeDasharray="2 2" strokeWidth={2} />}
 
                 {state.showNewCase && <Line type="monotone" dataKey="newcase" stroke="#387908" yAxisId={0} dot={{ r: 1 }} strokeWidth={2} />}
-                {state.showNewCase && <Line type="monotone" dataKey="pending_newcase" stroke="#387908" dot={{ r: 1 }} strokeDasharray="1 1" strokeWidth={2} />}
+                {state.showNewCase && <Line type="monotone" dataKey="pending_newcase" stroke="#387908" dot={{ r: 1 }} strokeDasharray="2 2" strokeWidth={2} />}
 
                 {state.showDeath && <Line type="monotone" dataKey="death" stroke="#000000" yAxisId={0} dot={{ r: 1 }} strokeWidth={2} />}
-                {state.showDeath && <Line type="monotone" dataKey="pending_death" stroke="#000000" dot={{ r: 1 }} strokeDasharray="1 1" strokeWidth={2} />}
+                {state.showDeath && <Line type="monotone" dataKey="pending_death" stroke="#000000" dot={{ r: 1 }} strokeDasharray="2 2" strokeWidth={2} />}
                 <Line visibility="hidden" dataKey="pending_death" />
 
                 {vRefLines}
