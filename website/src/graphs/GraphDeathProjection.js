@@ -8,7 +8,7 @@ import {
 } from 'recharts';
 import { Typography } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
-import { myShortNumber, CookieSetLastCounty } from '../Util';
+import { myShortNumber } from '../Util';
 import { AntSwitch } from "./GraphNewCases.js"
 import { makeStyles } from '@material-ui/core/styles';
 import { mergeDataSeries, makeDataSeriesFromTotal } from "./DataSeries";
