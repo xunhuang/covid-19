@@ -162,7 +162,7 @@ const MapStateDeath = React.memo((props) => {
     let content;
     if (county) {
         content =
-            `${county.name} Confirmed: \n${county.summary().confirmed} \nDeaths: ${county.summary().death}`
+            `${county.name} Confirmed: \n${county.summary().confirmed} \nDeaths: ${county.summary().deaths}`
     }
 
     return (
@@ -170,10 +170,10 @@ const MapStateDeath = React.memo((props) => {
             <MapNew setTooltipContent={setCounty} state={state}
                 stroke={"#000"}
                 colorFunction={(county) => {
-                    if (!county || !county.summary().death) {
+                    if (!county || !county.summary().deaths) {
                         return "#FFF";
                     }
-                    return `hsla(240, 100%, ${80 - 7 * Math.log(county.summary().death)}%, 1)`;
+                    return `hsla(240, 100%, ${80 - 7 * Math.log(county.summary().deaths)}%, 1)`;
                 }
                 }
             />
@@ -193,7 +193,7 @@ const MapStateConfirmed = React.memo((props) => {
     let content;
     if (county) {
         content =
-            `${county.name} Confirmed: \n${county.summary().confirmed} \nDeaths: ${county.summary().death}`
+            `${county.name} Confirmed: \n${county.summary().confirmed} \nDeaths: ${county.summary().deaths}`
     }
 
     return (
