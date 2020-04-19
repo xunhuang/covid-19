@@ -8,8 +8,6 @@ const superagent = require('superagent');
 const fs = require('fs');
 const execSync = require('child_process').execSync;
 const URLNewCasesJHU = "https://services1.arcgis.com/0MSEUqKaxRlEPj5g/arcgis/rest/services/ncov_cases_US/FeatureServer/0/query?f=json&where=(Confirmed%20%3E%200)%20AND%20(1%3D1)&returnGeometry=false&spatialRel=esriSpatialRelIntersects&outFields=*&orderByFields=OBJECTID%20ASC&resultOffset=0&resultRecordCount=4000&cacheHint=true&quantizationParameters=%7B%22mode%22%3A%22edit%22%7D"
-// const URLNewCasesJHUTooBig = "https://services1.arcgis.com/0MSEUqKaxRlEPj5g/arcgis/rest/services/ncov_cases_US/FeatureServer/0/query?f=json&where=(Confirmed%20%3E%200)%20AND%20(1%3D1)&returnGeometry=false&spatialRel=esriSpatialRelIntersects&outFields=*&orderByFields=OBJECTID%20ASC&resultOffset=0&resultRecordCount=10000&cacheHint=true&quantizationParameters=%7B%22mode%22%3A%22edit%22%7D"
-// const URLNewCasesJHUBad = "https://services1.arcgis.com/0MSEUqKaxRlEPj5g/arcgis/rest/services/ncov_cases_US/FeatureServer/0/querysdssdd?f=json&where=(Confirmed%20%3E%200)%20AND%20(1%3D1)&returnGeometry=false&spatialRel=esriSpatialRelIntersects&outFields=*&orderByFields=OBJECTID%20ASC&resultOffset=0&resultRecordCount=10000&cacheHint=true&quantizationParameters=%7B%22mode%22%3A%22edit%22%7D"
 const latestJsonLocation = 'src/data/new-latest.json';
 const latestJsonLocationOriginal = 'src/data/latest.json';
 const archivelocation = '../data/archive';
@@ -41,9 +39,9 @@ async function processDailyNew() {
             let docstring = JSON.stringify(doc, 2, 2);
             fs.writeFileSync(latestJsonLocation, docstring);
 
-
             const archive = archivelocation + "/JHU-" + moment().format("MM-DD-YYYY") + ".json";
             fs.writeFileSync(archive, docstring);
+            execSync(`git add ${archive}`);
 
             console.log("Data file has been updated");
             return true;
@@ -144,6 +142,7 @@ async function doit() {
             execSync(`node normalize_data.js`);
             console.log("Deploying");
             await deploy();
+            execSync(`git commit -am "data push"`);
         } else {
             await data_summary();
         }
