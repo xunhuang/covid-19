@@ -9,6 +9,8 @@ function myShortNumber(n) {
     if (isNaN(n)) {
         n = n.replace(/,/g, '');
         n = Number(n);
+    } else if (!isFinite(n)) {
+        return "∞";
     }
     return shortNumber(n);
 }
