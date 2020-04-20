@@ -1,9 +1,10 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import { Paper } from '@material-ui/core';
+import { makeStyles, withStyles } from '@material-ui/core/styles';
+import { Paper, Hidden } from '@material-ui/core';
 import { County } from '../UnitedStates';
 import { myShortNumber } from '../Util';
 import { useHistory } from 'react-router-dom'
+import Badge from '@material-ui/core/Badge';
 
 const useStyles = makeStyles(theme => ({
     container: {
@@ -13,6 +14,15 @@ const useStyles = makeStyles(theme => ({
         justifyContent: "space-around",
     },
     aspect: {
+        flexDirection: "column",
+        display: 'flex',
+        flexWrap: 'wrap',
+        padding: '4px',
+        margin: '5px 5px',
+        flexGrow: 1,
+        overflow: 'hidden',
+    },
+    innerDiv: {
         flexDirection: "column",
         alignContent: 'center',
         alignItems: 'center',
@@ -35,6 +45,32 @@ const useStyles = makeStyles(theme => ({
         minHeight: "0.5em"
     },
 }));
+
+const ClickRibbonBadge = withStyles({
+    badge: {
+        display: 'flex',
+        flexGrow: 1,
+        borderRadius: '0px',
+        fontSize: '0.3rem',
+        transform: 'rotate(25deg)',
+        height: '10px',
+        minWidth: '10px',
+        left: '-15px',
+        bottom: '10px',
+        '&::before': {
+            content: "''",
+            display: 'block',
+            border: '5px solid #f00',
+            width: '-2px',
+        },
+        '&::after': {
+            content: "''",
+            display: 'block',
+            border: '5px solid #f00',
+            width: '10px',
+        },
+    }
+})(Badge);
 
 export const Summary = (props) => {
     const classes = useStyles();
@@ -60,17 +96,21 @@ export const Summary = (props) => {
         }
     }
 
-    const pop = (label, total, change, target, detailed) =>
+    const pop = (label, total, change, target, detailed) =>        
         <Paper className={classes.aspect} onClick={() => { jumpTo(target, detailed) }}>
-            <div className={classes.change}>
-                {change ? change : "-"}
-            </div>
-            <div className={classes.total}>
-                {total}
-            </div>
-            <div className={classes.label}>
-                {label}
-            </div>
+            <ClickRibbonBadge anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }} badgeContent='Click' color="error">
+                <div className={classes.innerDiv}>
+                    <div className={classes.change}>
+                        {change ? change : "-"}
+                    </div>
+                    <div className={classes.total}>
+                        {total}
+                    </div>
+                    <div className={classes.label}>
+                        {label}
+                    </div>
+                </div>
+            </ClickRibbonBadge>
         </Paper>;
     return (
         <div className={classes.container}>
