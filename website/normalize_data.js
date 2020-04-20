@@ -44,7 +44,6 @@ for (let key in metrokeys) {
     extraMetro[key] = newMetro;
 }
 
-
 /**
  * Initialize State Nodes
  */
