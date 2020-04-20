@@ -1,15 +1,6 @@
 import React from 'react';
-import {
-    ResponsiveContainer, YAxis, XAxis, Tooltip,
-    CartesianGrid, Legend, LineChart, Line
-} from 'recharts';
-import { myShortNumber } from '../Util.js';
-import { sortByFullDate, mergeDataSeries, makeDataSeriesFromTotal, exportColumnFromDataSeries } from "./DataSeries";
-const moment = require("moment");
-
-const formatYAxis = (tickItem) => {
-    return myShortNumber(tickItem);
-}
+import { GraphDailyGeneric } from "./GraphDailyGeneric"
+import { mergeDataSeries, makeDataSeriesFromTotal, exportColumnFromDataSeries } from "./DataSeries";
 
 const GraphDaily = (props) => {
     const [sourceData, setSourceData] = React.useState(null);
@@ -45,62 +36,47 @@ const GraphDaily = (props) => {
             return t;
         })
         let testTotalArray = exportColumnFromDataSeries(data, "total");
-        let total = makeDataSeriesFromTotal(testTotalArray, "total", "testsThatDay", "testsThatDay_avg");
+        let total = makeDataSeriesFromTotal(testTotalArray, "total", "testsThatDay");
         let hosptializationArray = exportColumnFromDataSeries(data, "combinedHosptializaiton");
-        let hospitizlation = makeDataSeriesFromTotal(hosptializationArray, "hospTotal", "hospDaily", "hospDaily_avg");
+        let hospitizlation = makeDataSeriesFromTotal(hosptializationArray, "hospTotal", "hospDaily");
         data = mergeDataSeries(data, total);
         data = mergeDataSeries(data, hospitizlation);
     }
 
     let deathsTotalArray = exportColumnFromDataSeries(caseData, "death");
-    let deaths = makeDataSeriesFromTotal(deathsTotalArray, "deathsTotal", "deathsDaily", "deathsDaily_avg");
+    let deaths = makeDataSeriesFromTotal(deathsTotalArray, "deathsTotal", "deathsDaily");
 
     let confirmedTotalArray = exportColumnFromDataSeries(caseData, "confirmed");
-    let confirmed = makeDataSeriesFromTotal(confirmedTotalArray, "confirmedTotal", "confirmedDaily", "confirmedDaily_avg");
+    let confirmed = makeDataSeriesFromTotal(confirmedTotalArray, "confirmedTotal", "confirmedDaily");
 
     data = mergeDataSeries(data, deaths);
     data = mergeDataSeries(data, confirmed);
 
-    // done assembly data
-    data = sortByFullDate(data);
-
-    const cutoff = moment().subtract(30, 'days')
-    data = data.filter(d => {
-        return moment(d.fulldate, "MM/DD/YYYY").isAfter(cutoff)
-    });
-
-    data = data.map(t => {
-        t.name = moment(t.fulldate, "MM/DD/YYYY").format("M/D");
-        return t;
-    })
-    let chart =
-        <LineChart
-            data={data}
-            margin={{ top: 5, right: 30, left: 5, bottom: 5 }}
-        >
-            <YAxis tickFormatter={formatYAxis} />
-            <XAxis dataKey="name" />
-            <CartesianGrid stroke="#d5d5d5" strokeDasharray="5 5" />
-            {/* <Line type="monotone" name="Testing Daily" dataKey="testsThatDay" dot={{ r: 1 }} strokeDasharray="2 2" stroke="#387908" yAxisId={0} strokeWidth={1} />
-            <Line type="monotone" name="Testing Daily Avg" dataKey="testsThatDay_avg" dot={{ r: 1 }} stroke="#387908" yAxisId={0} strokeWidth={2} /> */}
-            <Line type="monotone" name="Hospitalization Daily" dataKey="hospDaily" dot={{ r: 1 }} strokeDasharray="2 2" stroke="#00aeef" yAxisId={0} strokeWidth={1} />
-            <Line type="monotone" name="Hospitalization Daily Avg" dataKey="hospDaily_avg" dot={{ r: 1 }} stroke="#00aeef" yAxisId={0} strokeWidth={2} />
-
-            <Line type="monotone" name="Death Daily" dataKey="deathsDaily" dot={{ r: 1 }} strokeDasharray="2 2" stroke="#000000" yAxisId={0} strokeWidth={1} />
-            <Line type="monotone" name="Death Avg" dataKey="deathsDaily_avg" dot={{ r: 1 }} stroke="#000000" yAxisId={0} strokeWidth={2} />
-
-            <Line type="monotone" name="Confirmed Daily" dataKey="confirmedDaily" dot={{ r: 1 }} strokeDasharray="2 2" stroke="#0000FF" yAxisId={0} strokeWidth={1} />
-            <Line type="monotone" name="Confirmed Avg" dataKey="confirmedDaily_avg" dot={{ r: 1 }} stroke="#0000FF" yAxisId={0} strokeWidth={2} />
-            <Legend verticalAlign="top" />
-            <Tooltip />
-        </LineChart>;
-
-    return <div>
-        <ResponsiveContainer height={300} >
-            {chart}
-        </ResponsiveContainer>
-    </div>;
+    let dataDescr = [
+        // {
+        //     legendName: "Testing Daily",
+        //     dataKey: "testsThatDay",
+        //     color: "#387908",
+        // },
+        {
+            legendName: "Hospitalization Daily",
+            dataKey: "hospDaily",
+            color: "#00aeef",
+        },
+        {
+            legendName: "Death Daily",
+            dataKey: "deathsDaily",
+            color: "#000000",
+        },
+        {
+            legendName: "Confirmed Daily",
+            dataKey: "confirmedDaily",
+            color: "#0000FF",
+        }
+    ];
+    return <GraphDailyGeneric data={data} dataDescr={dataDescr} />
 }
+
 
 function maybeDailyTabFor(source) {
     return {
