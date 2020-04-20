@@ -82,11 +82,14 @@ exportColumnFromDataSeries (data, "total")
 }
 
 */
-
 export function exportColumnFromDataSeries(data, column) {
     let ret = data.reduce((m, b) => {
         m[b.fulldate] = b[column];
         return m;
     }, {})
     return ret
+}
+
+export function sortByFullDate(data) {
+    return data.sort((a, b) => moment(a.fulldate, "MM/DD/YYYY").toDate() - (moment(b.fulldate, "MM/DD/YYYY")).toDate());
 }
