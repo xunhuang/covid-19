@@ -261,7 +261,7 @@ function maybeDeathProjectionTabFor(source) {
     if (source.deathsAsync) {
         return {
             id: 'peakdeath',
-            label: 'Death*',
+            label: 'Death',
             graph: GraphDeathProjection,
         };
     } else {

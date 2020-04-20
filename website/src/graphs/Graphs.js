@@ -14,6 +14,7 @@ import { maybeHospitalizationProjectionTabFor } from './GraphHospitalizationProj
 import { maybeMapTabFor } from '../Map';
 import { maybeRecoveryAndDeathTabFor } from './GraphRecoveryAndDeath.js'
 import { maybeTestingTabFor } from './GraphTestingEffort'
+import { maybeDailyTabFor } from './GraphDaily'
 import { Country, State } from "../UnitedStates"
 
 const styles = theme => ({
@@ -58,13 +59,21 @@ class UnhookedGraphSection extends React.Component {
         const classes = this.props.classes;
         const history = this.props.history;
         const source = this.props.source;
-
         const tabs = new Map();
 
         tabs.set('glance', {
             label: "At a glance",
             content: BasicGraphNewCases,
         });
+
+        const maybeDaily = maybeDailyTabFor(source);
+        if (maybeDaily) {
+            tabs.set(maybeDaily.id, {
+                label: maybeDaily.label,
+                content: maybeDaily.graph,
+                showRibbon: true,  // TO SHOW THE RIBBON ADD A LINE LIKE THIS
+            });
+        }
 
         [maybeDeathProjectionTabFor, maybeHospitalizationProjectionTabFor]
             .map(factory => factory(source))

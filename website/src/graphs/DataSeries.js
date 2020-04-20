@@ -27,7 +27,7 @@ export function mergeDataSeries(entry1, entry2) {
     return Object.values(map1);
 }
 
-export function makeDataSeriesFromTotal(data, key_total, key_daily, key_moving) {
+export function makeDataSeriesFromTotal(data, key_total, key_daily) {
     let sorteddata = Object.keys(data).sort((a, b) => moment(a, "MM/DD/YYYY").toDate() - (moment(b, "MM/DD/YYYY")).toDate());
     let m = [];
     for (let date of sorteddata) {
@@ -45,6 +45,8 @@ export function makeDataSeriesFromTotal(data, key_total, key_daily, key_moving) 
         }
     }
 
+
+    /*
     if (key_moving) {
         let len = m.length;
         for (let i = 1; i < len - 1; i++) {
@@ -54,7 +56,20 @@ export function makeDataSeriesFromTotal(data, key_total, key_daily, key_moving) 
         m[0][key_moving] = (m[0][key_daily] + m[1][key_daily]) / 2;
         m[len - 1][key_moving] = (m[len - 1][key_daily] + m[len - 2][key_daily]) / 2;
     }
+    */
 
+    return m;
+}
+
+export function computeMovingAverage(data, key_daily, key_moving) {
+    let m = sortByFullDate(data);
+    let len = m.length;
+    for (let i = 1; i < len - 1; i++) {
+        var mean = (m[i][key_daily] + m[i - 1][key_daily] + m[i + 1][key_daily]) / 3.0;
+        m[i][key_moving] = mean;
+    }
+    m[0][key_moving] = (m[0][key_daily] + m[1][key_daily]) / 2;
+    m[len - 1][key_moving] = (m[len - 1][key_daily] + m[len - 2][key_daily]) / 2;
     return m;
 }
 
@@ -82,11 +97,14 @@ exportColumnFromDataSeries (data, "total")
 }
 
 */
-
 export function exportColumnFromDataSeries(data, column) {
     let ret = data.reduce((m, b) => {
         m[b.fulldate] = b[column];
         return m;
     }, {})
     return ret
+}
+
+export function sortByFullDate(data) {
+    return data.sort((a, b) => moment(a.fulldate, "MM/DD/YYYY").toDate() - (moment(b.fulldate, "MM/DD/YYYY")).toDate());
 }

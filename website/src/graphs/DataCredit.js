@@ -39,6 +39,12 @@ const DataCreditWidget = () => {
                         BNO News
                     </a>
                 </li>
+                <li>
+                    <a target="_blank" href="https://www.npr.org/sections/health-shots/2020/04/07/825479416/new-yorks-coronavirus-deaths-may-level-off-soon-when-might-your-state-s-peak" rel="noopener noreferrer">
+                        NPR, The Institute for Health Metrics and Evaluation at the University of Washington, Census Bureau for Death and hospitalization projection.
+                    </a>
+                </li>
+
             </Typography>
         </div>
     );
