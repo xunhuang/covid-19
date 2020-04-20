@@ -21,6 +21,7 @@ const useStyles = makeStyles(theme => ({
 
 const CustomTooltip = (props) => {
     const classes = useStyles();
+    const dataDescr = props.dataDescr;
     const { active } = props;
     if (active) {
         const { payload, label } = props;
@@ -31,12 +32,12 @@ const CustomTooltip = (props) => {
                 </Typography>
                 {
                     payload.filter(i => !i.dataKey.endsWith("_avg")).map(item => {
-                        return <Typography variant="body1" noWrap>
+                        return <div style={{ color: dataDescr.find(i => i.dataKey == item.dataKey).color }} >
                             {item.name} : {item.value}
-                        </Typography>
+                        </div>
                     })
                 }
-            </div>
+            </div >
         );
     }
     return null;
@@ -98,7 +99,7 @@ const GraphDailyGeneric = (props) => {
                     }
                 })
             } />
-            <Tooltip content={<CustomTooltip />} />
+            <Tooltip content={<CustomTooltip dataDescr={dataDescr} />} />
         </LineChart>;
 
     return <div>
