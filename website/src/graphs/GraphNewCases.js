@@ -1,8 +1,7 @@
 import React from 'react';
 import { ResponsiveContainer, LineChart, Label, Line, ReferenceLine, ReferenceArea, YAxis, XAxis, Tooltip, CartesianGrid, Legend } from 'recharts';
-import { makeStyles, withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import { Typography } from '@material-ui/core';
-import Switch from '@material-ui/core/Switch';
 import Grid from '@material-ui/core/Grid';
 import { scaleSymlog } from 'd3-scale';
 import { DataCreditWidget } from './DataCredit';
@@ -23,6 +22,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import { myShortNumber } from '../Util';
 import { Summary } from './Summary';
+import { AntSwitch } from "./AntSwitch"
 const Cookies = require("js-cookie");
 
 const fileDownload = require('js-file-download');
@@ -109,41 +109,6 @@ const CustomTooltip = (props) => {
     return null;
 }
 
-const AntSwitch = withStyles(theme => ({
-    root: {
-        width: 28,
-        height: 16,
-        padding: 0,
-        display: 'flex',
-    },
-    switchBase: {
-        padding: 2,
-        color: theme.palette.grey[500],
-        '&$checked': {
-            transform: 'translateX(12px)',
-            color: theme.palette.common.white,
-            '& + $track': {
-                opacity: 1,
-                backgroundColor: "#00aeef",
-                borderColor: theme.palette.primary.main,
-                border: `0px solid ${theme.palette.grey[500]}`,
-            },
-        },
-    },
-    thumb: {
-        width: 12,
-        height: 12,
-        boxShadow: 'none',
-    },
-    track: {
-        border: `1px solid ${theme.palette.grey[500]}`,
-        borderRadius: 16 / 2,
-        opacity: 1,
-        height: "auto",
-        backgroundColor: theme.palette.common.white,
-    },
-    checked: {},
-}))(Switch);
 
 const MENU_ITEM_HEIGHT = 48;
 const MENU_ITEM_PADDING_TOP = 8;
@@ -506,4 +471,4 @@ const BasicGraphNewCases = (props) => {
     </>
 }
 
-export { AntSwitch, BasicGraphNewCases };
+export { BasicGraphNewCases };

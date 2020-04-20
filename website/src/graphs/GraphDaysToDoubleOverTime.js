@@ -3,7 +3,7 @@ import { ResponsiveContainer, Tooltip, LineChart, Line, YAxis, XAxis, CartesianG
 import { Typography } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
 import { myShortNumber } from '../Util';
-import { AntSwitch } from "./GraphNewCases.js"
+import { AntSwitch } from "./AntSwitch.js"
 
 const moment = require("moment");
 

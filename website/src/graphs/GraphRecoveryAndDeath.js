@@ -4,7 +4,7 @@ import { Typography } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
 import { scaleSymlog } from 'd3-scale';
 import { myShortNumber } from '../Util';
-import { AntSwitch } from "./GraphNewCases.js"
+import { AntSwitch } from "./AntSwitch.js"
 import { State } from '../UnitedStates';
 
 const moment = require("moment");
