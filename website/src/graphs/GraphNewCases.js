@@ -109,18 +109,6 @@ const CustomTooltip = (props) => {
     return null;
 }
 
-
-const MENU_ITEM_HEIGHT = 48;
-const MENU_ITEM_PADDING_TOP = 8;
-const GraphOptionsMenuProps = {
-    PaperProps: {
-        style: {
-            maxHeight: MENU_ITEM_HEIGHT * 4.5 + MENU_ITEM_PADDING_TOP,
-            width: 150,
-        },
-    },
-};
-
 const trendingLineLabelChildren = (options) => {
     const { x, y, showlog, dailyGrowthRate, daysToDouble } = options;
     return [
@@ -363,7 +351,6 @@ const BasicGraphNewCases = (props) => {
                         onChange={handleGraphOptionsChange}
                         input={<Input />}
                         renderValue={selected => 'Lines'}
-                        MenuProps={GraphOptionsMenuProps}
                     >
                         {graphOptions.map((option) => (
                             <MenuItem key={option.name} value={option.name}>

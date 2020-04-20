@@ -9,6 +9,12 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Typography } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
 import { AntSwitch } from "./AntSwitch"
+import FormControl from '@material-ui/core/FormControl';
+import ListItemText from '@material-ui/core/ListItemText';
+import MenuItem from '@material-ui/core/MenuItem';
+import Select from '@material-ui/core/Select'
+import Checkbox from '@material-ui/core/Checkbox';
+import Input from '@material-ui/core/Input';
 const Cookies = require("js-cookie");
 const moment = require("moment");
 
@@ -81,6 +87,7 @@ const GraphDailyGenericInner = (props) => {
                 return <Line type="monotone"
                     name={line.legendName}
                     dataKey={line.dataKey}
+                    key={line.dataKey}
                     dot={{ r: 1 }}
                     strokeDasharray="2 2"
                     stroke={line.color}
@@ -90,6 +97,7 @@ const GraphDailyGenericInner = (props) => {
             {dataDescr.map(line => {
                 return <Line type="monotone"
                     dataKey={line.dataKey + "_avg"}
+                    key={line.dataKey + "_avg"}
                     dot={{ r: 1 }}
                     stroke={line.color}
                     yAxisId={0}
@@ -131,15 +139,31 @@ const GraphDailyGeneric = (props) => {
         }
         return pref;
     }
-
     const [state, setState] = React.useState(CookieGetPreference());
+    const classes = useStyles();
+
     const setStateSticky = (state) => {
         CookieSetPreference(state);
         setState(state);
     }
-
     const handleShowAllData = event => {
         let newstate = { ...state, showAllData: !state.showAllData };
+        setStateSticky(newstate);
+    };
+    let graphOptions = props.dataDescr.map(line => {
+        return {
+            name: line.legendName,
+            value: (state[line.dataKey] !== undefined) ? state[line.dataKey] : true,
+        }
+    });
+    let filtered_descr = props.dataDescr.filter(l => graphOptions.find(a => a.name === l.legendName).value)
+
+    const handleGraphOptionsChange = event => {
+        let selected = event.target.value;
+        let newstate = { ...state };
+        for (let line of props.dataDescr) {
+            newstate[line.dataKey] = selected.includes(line.legendName);
+        }
         setStateSticky(newstate);
     };
 
@@ -153,9 +177,29 @@ const GraphDailyGeneric = (props) => {
                     Show All Data
                 </Typography>
             </Grid>
-            <Grid item></Grid>
+            <Grid item xs></Grid>
+            <Grid item>
+                <FormControl size="medium" className={classes.formControl}>
+                    <Select
+                        id="new-case-graph-options-checkbox"
+                        multiple
+                        value={graphOptions.filter(o => o.value).map(o => o.name)}
+                        onChange={handleGraphOptionsChange}
+                        input={<Input />}
+                        renderValue={selected => 'Lines'}
+                    >
+                        {graphOptions.map((option) => (
+                            <MenuItem key={option.name} value={option.name}>
+                                <Checkbox checked={option.value} />
+                                <ListItemText primary={option.name} />
+                            </MenuItem>
+                        ))}
+                    </Select>
+                </FormControl>
+            </Grid>
         </Grid>
-        <GraphDailyGenericInner {...props} showAllData={state.showAllData} />
+        <GraphDailyGenericInner {...props} dataDescr={filtered_descr} showAllData={state.showAllData} />
+
     </div>;
 }
 

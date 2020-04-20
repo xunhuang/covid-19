@@ -18,6 +18,19 @@ const GraphDaily = (props) => {
         return <div> Loading</div>;
     }
 
+    let dataDescr = [
+        {
+            legendName: "Death Daily",
+            dataKey: "deathsDaily",
+            color: "#000000",
+        },
+        {
+            legendName: "Confirmed Daily",
+            dataKey: "confirmedDaily",
+            color: "#0000FF",
+        }
+    ];
+
     let data = [];
     if (sourceData) {
         data = sourceData.map(t => {
@@ -41,6 +54,16 @@ const GraphDaily = (props) => {
         let hospitizlation = makeDataSeriesFromTotal(hosptializationArray, "hospTotal", "hospDaily");
         data = mergeDataSeries(data, total);
         data = mergeDataSeries(data, hospitizlation);
+        // {
+        //     legendName: "Testing Daily",
+        //     dataKey: "testsThatDay",
+        //     color: "#387908",
+        // },
+        dataDescr.push({
+            legendName: "Hospitalization Daily",
+            dataKey: "hospDaily",
+            color: "#00aeef",
+        });
     }
 
     let deathsTotalArray = exportColumnFromDataSeries(caseData, "death");
@@ -52,28 +75,6 @@ const GraphDaily = (props) => {
     data = mergeDataSeries(data, deaths);
     data = mergeDataSeries(data, confirmed);
 
-    let dataDescr = [
-        // {
-        //     legendName: "Testing Daily",
-        //     dataKey: "testsThatDay",
-        //     color: "#387908",
-        // },
-        {
-            legendName: "Hospitalization Daily",
-            dataKey: "hospDaily",
-            color: "#00aeef",
-        },
-        {
-            legendName: "Death Daily",
-            dataKey: "deathsDaily",
-            color: "#000000",
-        },
-        {
-            legendName: "Confirmed Daily",
-            dataKey: "confirmedDaily",
-            color: "#0000FF",
-        }
-    ];
     return <GraphDailyGeneric data={data} dataDescr={dataDescr} />
 }
 
