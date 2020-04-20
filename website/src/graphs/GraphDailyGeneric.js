@@ -174,7 +174,7 @@ const GraphDailyGeneric = (props) => {
             </Grid>
             <Grid item onClick={handleShowAllData}>
                 <Typography>
-                    Show All Data
+                    Show All Dates
                 </Typography>
             </Grid>
             <Grid item xs></Grid>
