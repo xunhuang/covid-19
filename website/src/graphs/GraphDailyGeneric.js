@@ -24,7 +24,6 @@ const CustomTooltip = (props) => {
     const { active } = props;
     if (active) {
         const { payload, label } = props;
-        console.log(payload, label);
         return (
             <div className={classes.customtooltip}>
                 <Typography variant="body1" noWrap>
