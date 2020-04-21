@@ -28,8 +28,8 @@ const useStyles = makeStyles(theme => ({
         alignItems: 'center',
         display: 'flex',
         flexWrap: 'wrap',
-        padding: '4px',
-        margin: '5px 5px',
+        // padding: '4px',
+        // margin: '5px 5px',
         flexGrow: 1,
     },
     label: {
@@ -53,21 +53,20 @@ const ClickRibbonBadge = withStyles({
         borderRadius: '0px',
         fontSize: '0.3rem',
         transform: 'rotate(25deg)',
-        height: '10px',
+        height: '8px',
         minWidth: '10px',
         left: '-15px',
-        bottom: '10px',
+        bottom: '8px',
         '&::before': {
             content: "''",
             display: 'block',
-            border: '5px solid #f00',
+            border: '4px solid #f00',
             width: '-2px',
         },
         '&::after': {
             content: "''",
             display: 'block',
-            border: '5px solid #f00',
-            width: '10px',
+            border: '4px solid #f00',
         },
     }
 })(Badge);
