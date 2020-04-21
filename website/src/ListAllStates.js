@@ -230,6 +230,7 @@ function prepareStatesTestingDataForDisplay(list) {
         newrow.negativeRate = row.negative / totalTested * 100;
         newrow.pending = row.pending ?? "-";
         newrow.total = row.total;
+        newrow.testCoverage = row.testCoverage;
         return newrow;
     });
     return extendlist;
@@ -261,6 +262,8 @@ const AllStateListTesting = (props) => {
             // have to do this other sort doesn't work
             record.pending = Number.NEGATIVE_INFINITY;
         }
+        const stateObject = country.stateForId(record.fips);
+        record.testCoverage = record.total / stateObject.population();
         states_data[state] = record;
     }
 
@@ -278,6 +281,7 @@ const AllStateListTesting = (props) => {
         { id: 'negativeNumber', numeric: true, disablePadding: false, label: 'Neg' },
         { id: 'negativeRate', numeric: true, disablePadding: false, label: 'Neg%' },
         { id: 'pending', numeric: true, disablePadding: false, label: 'Pending' },
+        { id: 'testCoverage', numeric: true, disablePadding: false, label: 'Test Coverage' },
         { id: 'total', numeric: true, disablePadding: false, label: 'Total' },
     ];
 
@@ -308,6 +312,7 @@ const AllStateListTesting = (props) => {
                                 <TableCell align="right">{row.negativeNumber}</TableCell>
                                 <TableCell align="right">{row.negativeRate.toFixed(1)}%</TableCell>
                                 <TableCell align="right">{!isFinite(row.pending) ? "-" : row.pending}</TableCell>
+                                <TableCell align="right">{(row.testCoverage * 100).toFixed(1)} %</TableCell>
                                 <TableCell align="right">{row.total}</TableCell>
                             </TableRow>;
                         })
