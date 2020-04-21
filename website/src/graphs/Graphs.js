@@ -71,7 +71,6 @@ class UnhookedGraphSection extends React.Component {
             tabs.set(maybeDaily.id, {
                 label: maybeDaily.label,
                 content: maybeDaily.graph,
-                showRibbon: true,  // TO SHOW THE RIBBON ADD A LINE LIKE THIS
             });
         }
 
@@ -86,6 +85,7 @@ class UnhookedGraphSection extends React.Component {
             tabs.set(maybeMap.id, {
                 label: maybeMap.label,
                 content: maybeMap.content,
+                showRibbon: true,  // TO SHOW THE RIBBON ADD A LINE LIKE THIS
             });
         }
 

@@ -5,6 +5,8 @@ import ToggleButton from '@material-ui/lab/ToggleButton';
 import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
 import ReactTooltip from "react-tooltip";
 import { CountryContext } from "./CountryContext";
+import { AntSwitch } from "./graphs/AntSwitch"
+import { Grid } from '@material-ui/core';
 
 const geoUrl = "https://cdn.jsdelivr.net/npm/us-atlas@3/counties-10m.json";
 
@@ -44,34 +46,52 @@ const MapUS = (props) => {
     const country = useContext(CountryContext);
     const [alignment, setAlignment] = React.useState('left');
 
+    const [perCapita, setPerCapita] = React.useState(false);
+
+
     const handleAlignment = (event, newAlignment) => {
         setAlignment(newAlignment);
     };
+    const buttonGroup = <ToggleButtonGroup
+        value={alignment}
+        exclusive
+        size="small"
+        onChange={handleAlignment}
+        aria-label="text alignment"
+    >
+        <ToggleButton size="small" value="left" aria-label="left aligned">
+            Confirmed            </ToggleButton>
+        <ToggleButton value="center" aria-label="centered">
+            Death </ToggleButton>
+        <ToggleButton value="right" aria-label="right aligned">
+            Days to Double            </ToggleButton>
+    </ToggleButtonGroup>;
     return <div>
-        <ToggleButtonGroup
-            value={alignment}
-            exclusive
-            size="small"
-            onChange={handleAlignment}
-            aria-label="text alignment"
-        >
-            <ToggleButton size="small" value="left" aria-label="left aligned">
-                Confirmed            </ToggleButton>
-            <ToggleButton value="center" aria-label="centered">
-                Death </ToggleButton>
-            <ToggleButton value="right" aria-label="right aligned">
-                Days to Double            </ToggleButton>
-        </ToggleButtonGroup>
-        {(alignment === "left") &&
-            <MapUSConfirmed {...props} source={country} />
+        <Grid container alignItems="center">
+            <Grid item>
+                {buttonGroup}
+            </Grid>
+            {/* <Grid item xs />
+            <Grid item>
+                <AntSwitch checked={perCapita} onClick={() => { setPerCapita(!perCapita) }} />
+            </Grid>
+            <Grid item>
+                Per Capita
+            </Grid> */}
+        </Grid>
+        {
+            (alignment === "left") &&
+            <MapUSConfirmed {...props} source={country} perCapita={perCapita} />
         }
-        {(alignment === "center") &&
-            <MapStateDeath {...props} source={country} />
+        {
+            (alignment === "center") &&
+            <MapStateDeath {...props} source={country} perCapita={perCapita} />
         }
-        {(alignment === "right") &&
-            <MapStateDay2Doulbe {...props} source={country} />
+        {
+            (alignment === "right") &&
+            <MapStateDay2Doulbe {...props} source={country} perCapita={perCapita} />
         }
-    </div>
+    </div >
 };
 
 const MapStateDay2Doulbe = React.memo((props) => {
@@ -146,19 +166,35 @@ const MapUSConfirmed = React.memo((props) => {
         setContent(c)
     }
     let content;
+    let confirmed, population, deaths;
     if (county) {
+        population = county.population();
+        confirmed = county.summary().confirmed;
+        deaths = county.summary().deaths;
         content =
-            `${county.name} Confirmed: \n${county.summary().confirmed} \nDeaths: ${county.summary().deaths}`
+            `${county.name} Confirmed: \n` +
+            `${confirmed} \n` +
+            `Deaths: ${deaths} \n ` +
+            `Confirm/Millon: ${(confirmed / population * 1000000).toFixed(1)}`
     }
     return (
         <div>
+            <Grid></Grid>
             <MapNew setTooltipContent={setCounty} source={source}
                 stroke={"#FFF"}
                 colorFunction={(county) => {
-                    if (!county || !county.summary().confirmed) {
+                    if (!county) {
                         return "#FFF";
                     }
-                    return `hsla(0, 100%, ${80 - 7 * Math.log(county.summary().confirmed)}%, 1)`;
+                    let confirmed = county.summary().confirmed;
+                    let population = county.population();
+                    if (!confirmed) {
+                        return "#FFF";
+                    }
+                    if (props.perCapita) {
+                        return `hsla(0, 100%, ${80 - 7 * Math.log(confirmed / population * 1000000)}%, 1)`;
+                    }
+                    return `hsla(0, 100%, ${80 - 7 * Math.log(confirmed)}%, 1)`;
                 }
                 }
             />
