@@ -102,3 +102,13 @@ if  [ "$filesize" -ge "10000" ]; then
 else 
     echo "file size $filesize too small"
 fi
+
+curl -s "https://docs.google.com/spreadsheets/d/e/2PACX-1vT2INKOqGFCUpyx6MvrglF2ePvK_JqQofqc2frHos6acgNFXjO03JPVYUYZwEWMPLBms9PNfCUZ71Zw/pub?gid=0&single=true&output=csv" | csvtojson >$temp_file
+filesize=$(wc -c <"$temp_file")
+if  [ "$filesize" -ge "100" ]; then
+    echo "Updated News.json ($filesize) "
+   mv $temp_file ./src/data/news.json
+   git add ./src/data/news.json
+else 
+    echo "file size $filesize too small"
+fi
