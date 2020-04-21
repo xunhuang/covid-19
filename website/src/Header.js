@@ -122,7 +122,9 @@ const NewsSection = (props) => {
             .slice(0, 5);
     return <div>
         <SectionHeader>
-            News
+            <Typography variant="h5" noWrap>
+                News
+             </Typography>
         </SectionHeader>
         {data.map((item, i) =>
             <Grid container alignItems="center" wrap="nowrap">
