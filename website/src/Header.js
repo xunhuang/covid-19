@@ -414,12 +414,12 @@ const withHeader = (comp, props) => {
         let header = <header className="App-header">
             <Banner />
             <QPArea />
-            <NewsSection />
             <div className={classes.searchContainer}>
                 <SearchBox />
             </div>
 
             {component}
+            <NewsSection />
             {footer}
             {fbcomment}
         </header >
