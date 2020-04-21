@@ -6,19 +6,15 @@ import Typography from '@material-ui/core/Typography'
 import { makeStyles } from '@material-ui/core/styles';
 import { FacebookProvider, CommentsCount } from 'react-facebook';
 import { useHistory } from "react-router-dom";
-import { MyTabs } from "./MyTabs.js"
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
 import { Link as MaterialLink } from '@material-ui/core';
-import ListItemText from '@material-ui/core/ListItemText';
 import { Grid } from '@material-ui/core';
 import { SectionHeader } from "./CovidUI"
-import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import { withRouter } from 'react-router-dom'
-import Avatar from '@material-ui/core/Avatar';
 import Link from '@material-ui/core/Link';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
+import { MentalHealthResourceSection } from './MentalHealthTab';
+
 import {
     EmailShareButton,
     FacebookShareButton,
@@ -31,10 +27,8 @@ import {
     PinterestIcon,
     TwitterIcon,
 } from "react-share";
-import { moveSyntheticComments } from 'typescript';
 
 const Cookies = require("js-cookie");
-const MentalHealthResources = require("./data/mentalhealth.json");
 const moment = require("moment");
 
 const NewsData = require("./data/news.json");
@@ -138,58 +132,6 @@ const NewsSection = (props) => {
         )}
     </div >;
 };
-
-const ResourceSectionOne = (props) => {
-    const classes = useStyles();
-    return <List>
-        {props.tab.map((item, i) =>
-            <ListItem onClick={() => { window.open(item.Url) }} key={i}>
-                <ListItemAvatar>
-                    <Avatar variant="rounded" src={item.ThumbnailURL} />
-                </ListItemAvatar>
-                <ListItemText
-                    primary={item.Title}
-                    secondary={
-                        <React.Fragment>
-                            <Typography
-                                component="span"
-                                variant="body2"
-                                className={classes.inline}
-                                color="textPrimary"
-                            >
-                                {item.Subtitle}
-                            </Typography>
-                        </React.Fragment>
-                    }
-                />
-            </ListItem>
-        )}
-    </List >;
-};
-
-const ResourceSection = withRouter((props) => {
-    const resmap = MentalHealthResources.reduce((m, item) => {
-        let section = m[item.Tab];
-        if (!section) {
-            section = [];
-        }
-        section.push(item);
-        m[item.Tab] = section;
-        return m;
-    }, {})
-    const tablist = [
-        <ResourceSectionOne tab={resmap[1]} />,
-        <ResourceSectionOne tab={resmap[2]} />,
-        <ResourceSectionOne tab={resmap[3]} />,
-    ]
-    let tabs = <MyTabs
-        labels={["Meditation", `Stress Mgmt`, `Education/Kids`]}
-        urlQueryKey="resources"
-        urlQueryValues={['medication', 'stressmgmt', 'kids']}
-        tabs={tablist}
-    />;
-    return tabs;
-});
 
 const SearchBox = (props) => {
     const country = useContext(CountryContext);
@@ -384,7 +326,7 @@ const withHeader = (comp, props) => {
                     Resources
                     </Typography>
             </SectionHeader>
-            <ResourceSection />
+            <MentalHealthResourceSection />
             <SectionHeader id="discussion">
                 <Grid container alignItems="center">
                     <Grid item>
