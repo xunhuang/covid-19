@@ -31,10 +31,13 @@ import {
     PinterestIcon,
     TwitterIcon,
 } from "react-share";
+import { moveSyntheticComments } from 'typescript';
 
 const Cookies = require("js-cookie");
 const MentalHealthResources = require("./data/mentalhealth.json");
 const moment = require("moment");
+
+const NewsData = require("./data/news.json");
 
 const useStyles = makeStyles(theme => ({
     SocialMediaRow: {
@@ -104,7 +107,35 @@ const useStyles = makeStyles(theme => ({
         display: 'inline',
         // fontWeight: "fontWeightBold",
     },
+    newsDate: {
+        margin: 4,
+    },
+    newsTitle: {
+        margin: 4,
+    },
 }));
+
+const NewsSection = (props) => {
+    const classes = useStyles();
+    const data =
+        NewsData.sort((a, b) => moment(b.Date, "MM/DD/YYYY").toDate() - moment(a.Date, "MM/DD/YYYY").toDate())
+            .slice(0, 5);
+    return <div>
+        <SectionHeader>
+            News
+        </SectionHeader>
+        {data.map((item, i) =>
+            <Grid container alignItems="center" wrap="nowrap">
+                <Grid item className={classes.newsDate}>
+                    <div>{moment(item.Date, "MM/DD/YYYY").format("M/D")}</div>
+                </Grid>
+                <Grid item className={classes.newsTitle}>
+                    <a href={item.link}> {item.Title}</a>
+                </Grid>
+            </Grid >
+        )}
+    </div >;
+};
 
 const ResourceSectionOne = (props) => {
     const classes = useStyles();
@@ -132,7 +163,6 @@ const ResourceSectionOne = (props) => {
             </ListItem>
         )}
     </List >;
-
 };
 
 const ResourceSection = withRouter((props) => {
@@ -256,7 +286,7 @@ const SocialMediaButtons = (props) => {
                 [EmailShareButton, EmailIcon],
             ].map(([Button, Icon], i) => (
                 <Button url={props.url} quote={props.quote} key={i}>
-                  <Icon size={32} round={true} />
+                    <Icon size={32} round={true} />
                 </Button>
             ))}
         </div>
@@ -384,6 +414,7 @@ const withHeader = (comp, props) => {
         let header = <header className="App-header">
             <Banner />
             <QPArea />
+            <NewsSection />
             <div className={classes.searchContainer}>
                 <SearchBox />
             </div>
