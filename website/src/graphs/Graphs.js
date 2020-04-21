@@ -75,15 +75,6 @@ class UnhookedGraphSection extends React.Component {
             });
         }
 
-        [maybeDeathProjectionTabFor, maybeHospitalizationProjectionTabFor]
-            .map(factory => factory(source))
-            .filter(tab => tab)
-            .forEach(tab =>
-                tabs.set(tab.id, {
-                    label: tab.label,
-                    content: tab.graph,
-                    showRibbon: true,  // TO SHOW THE RIBBON ADD A LINE LIKE THIS
-                }));
 
         tabs.set('days2x', {
             label: "Doubling",
@@ -104,6 +95,16 @@ class UnhookedGraphSection extends React.Component {
                 content: DetailedGraphs,
             });
         }
+
+        [maybeDeathProjectionTabFor, maybeHospitalizationProjectionTabFor]
+            .map(factory => factory(source))
+            .filter(tab => tab)
+            .forEach(tab =>
+                tabs.set(tab.id, {
+                    label: tab.label,
+                    content: tab.graph,
+                    showRibbon: true,  // TO SHOW THE RIBBON ADD A LINE LIKE THIS
+                }));
 
         const headings = [...tabs.keys()];
         let tab;

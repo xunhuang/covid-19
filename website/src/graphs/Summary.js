@@ -95,21 +95,21 @@ export const Summary = (props) => {
         }
     }
 
-    const pop = (label, total, change, target, detailed) =>        
+    const pop = (label, total, change, target, detailed) =>
         <Paper className={classes.aspect} onClick={() => { jumpTo(target, detailed) }}>
-            <ClickRibbonBadge anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }} badgeContent='Click' color="error">
-                <div className={classes.innerDiv}>
-                    <div className={classes.change}>
-                        {change ? change : "-"}
-                    </div>
-                    <div className={classes.total}>
-                        {total}
-                    </div>
-                    <div className={classes.label}>
-                        {label}
-                    </div>
+            {/* <ClickRibbonBadge anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }} badgeContent='Click' color="error"> */}
+            <div className={classes.innerDiv}>
+                <div className={classes.change}>
+                    {change ? change : "-"}
                 </div>
-            </ClickRibbonBadge>
+                <div className={classes.total}>
+                    {total}
+                </div>
+                <div className={classes.label}>
+                    {label}
+                </div>
+            </div>
+            {/* </ClickRibbonBadge> */}
         </Paper>;
     return (
         <div className={classes.container}>

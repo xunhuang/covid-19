@@ -1,71 +1,24 @@
 import React from "react";
+import { useContext } from "react";
 import { ComposableMap, Geographies, Geography } from "react-simple-maps";
 import ToggleButton from '@material-ui/lab/ToggleButton';
 import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
 import ReactTooltip from "react-tooltip";
-import { State, Country } from './UnitedStates';
-import { MapUS } from './MapUS'
+import { CountryContext } from "./CountryContext";
 
 const geoUrl = "https://cdn.jsdelivr.net/npm/us-atlas@3/counties-10m.json";
-const stateBounds = require("./data/states-bounding.json");
-
-const statemap = stateBounds.reduce((m, b) => {
-    m[b.STATEFP] = b;
-    return m;
-}, {});
-
-function getProjectionConfig(state_fips) {
-    let state1 = statemap[state_fips];
-    let x = (parseFloat(state1.xmin) + parseFloat(state1.xmax)) / 2;
-    let y = (parseFloat(state1.ymin) + parseFloat(state1.ymax)) / 2;
-    let xscale =
-        (800 * 180) / (parseFloat(state1.xmax) - parseFloat(state1.xmin));
-    let yscale =
-        (600 * 180) / (parseFloat(state1.ymax) - parseFloat(state1.ymin));
-    let scale = xscale > yscale ? yscale : xscale;
-    scale = scale * 0.3;
-
-    // manually tune some state that doens't show up well.
-    if (state_fips === "02") {
-        return {
-            scale: 2000,
-            rotate: [149.4937, -64.2008, 0]
-        };
-    }
-    if (state_fips === "15") {
-        return {
-            scale: 5836,
-            rotate: [157.57, -19.65624, 0]
-        };
-    }
-
-    return {
-        scale: scale,
-        rotate: [-x, -y, 0]
-        // center: [x, y],
-    };
-}
 
 const MapNew = (props) => {
+    const source = props.source;
     let setTooltipContent = props.setTooltipContent;
-    const state = props.state;
     let url = geoUrl;
-    if (state) {
-        url = process.env.PUBLIC_URL + `/topojson/us-states/${state.twoLetterName}-${state.fips()}-${state.name.toLowerCase().replace(" ", "-")}-counties.json`;
-        // console.log(url);
-    }
-
-    let projection = getProjectionConfig(state.fips());
     return (
-        <ComposableMap data-tip="" projection="geoMercator"
-            projectionConfig={projection}
-        >
+        <ComposableMap data-tip="" projection="geoAlbersUsa" >
             <Geographies geography={url}>
                 {({ geographies }) =>
                     geographies.map(geo => {
-                        const county = state.countyForId(geo.properties.STATEFP + geo.properties.COUNTYFP);
+                        const county = source.countyForId(geo.id);
                         const color = props.colorFunction(county);
-
                         return (
                             <Geography
                                 key={geo.rsmKey}
@@ -87,7 +40,8 @@ const MapNew = (props) => {
     );
 };
 
-const MapState = (props) => {
+const MapUS = (props) => {
+    const country = useContext(CountryContext);
     const [alignment, setAlignment] = React.useState('left');
 
     const handleAlignment = (event, newAlignment) => {
@@ -109,20 +63,20 @@ const MapState = (props) => {
                 Days to Double            </ToggleButton>
         </ToggleButtonGroup>
         {(alignment === "left") &&
-            <MapStateConfirmed {...props} />
+            <MapUSConfirmed {...props} source={country} />
         }
         {(alignment === "center") &&
-            <MapStateDeath {...props} />
+            <MapStateDeath {...props} source={country} />
         }
         {(alignment === "right") &&
-            <MapStateDay2Doulbe {...props} />
+            <MapStateDay2Doulbe {...props} source={country} />
         }
     </div>
 };
 
 const MapStateDay2Doulbe = React.memo((props) => {
     const [county, setContent] = React.useState("");
-    const state = props.state;
+    const source = props.source;
     function setCounty(c) {
         setContent(c)
     }
@@ -137,7 +91,7 @@ const MapStateDay2Doulbe = React.memo((props) => {
 
     return (
         <div>
-            <MapNew setTooltipContent={setCounty} state={state}
+            <MapNew setTooltipContent={setCounty} source={source}
                 stroke={"#000"}
                 colorFunction={(county) => {
                     if (!county || !county.summary().daysToDouble) {
@@ -156,7 +110,7 @@ const MapStateDay2Doulbe = React.memo((props) => {
 
 const MapStateDeath = React.memo((props) => {
     const [county, setContent] = React.useState("");
-    const state = props.state;
+    const source = props.source;
     function setCounty(c) {
         setContent(c)
     }
@@ -168,7 +122,7 @@ const MapStateDeath = React.memo((props) => {
 
     return (
         <div>
-            <MapNew setTooltipContent={setCounty} state={state}
+            <MapNew setTooltipContent={setCounty} source={source}
                 stroke={"#000"}
                 colorFunction={(county) => {
                     if (!county || !county.summary().deaths) {
@@ -185,9 +139,9 @@ const MapStateDeath = React.memo((props) => {
     );
 });
 
-const MapStateConfirmed = React.memo((props) => {
+const MapUSConfirmed = React.memo((props) => {
     const [county, setContent] = React.useState("");
-    const state = props.state;
+    const source = props.source;
     function setCounty(c) {
         setContent(c)
     }
@@ -196,10 +150,9 @@ const MapStateConfirmed = React.memo((props) => {
         content =
             `${county.name} Confirmed: \n${county.summary().confirmed} \nDeaths: ${county.summary().deaths}`
     }
-
     return (
         <div>
-            <MapNew setTooltipContent={setCounty} state={state}
+            <MapNew setTooltipContent={setCounty} source={source}
                 stroke={"#FFF"}
                 colorFunction={(county) => {
                     if (!county || !county.summary().confirmed) {
@@ -216,27 +169,4 @@ const MapStateConfirmed = React.memo((props) => {
     );
 });
 
-const Map = (props) => {
-    // Seems like a great place to yolo this since we check 4 lines below
-    return <MapState state={props.source} />
-};
-
-function maybeMapTabFor(source) {
-    if (source instanceof State) {
-        return {
-            id: 'map',
-            label: 'Map',
-            content: Map,
-        };
-    } else if (source instanceof Country) {
-        return {
-            id: 'map',
-            label: 'Map',
-            content: MapUS,
-        };
-    } else {
-        return undefined;
-    }
-}
-
-export { maybeMapTabFor }
+export { MapUS }
