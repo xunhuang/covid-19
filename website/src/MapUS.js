@@ -7,6 +7,8 @@ import ReactTooltip from "react-tooltip";
 import { CountryContext } from "./CountryContext";
 import { AntSwitch } from "./graphs/AntSwitch"
 import { Grid } from '@material-ui/core';
+import { Country } from "./UnitedStates";
+import { withRouter } from 'react-router-dom'
 
 const geoUrl = "https://cdn.jsdelivr.net/npm/us-atlas@3/counties-10m.json";
 
@@ -33,6 +35,13 @@ const MapNew = (props) => {
                                 onMouseLeave={() => {
                                     setTooltipContent(null);
                                 }}
+                                onClick={() => {
+                                    if (props.selectionCallback) {
+                                        props.selectionCallback(county);
+                                    }
+                                }
+
+                                }
                             />
                         );
                     })
@@ -42,12 +51,36 @@ const MapNew = (props) => {
     );
 };
 
+const CountyNavButtons = withRouter((props) => {
+    const county = props.county;
+    const state = county.state();
+    const metro = county.metro();
+    const history = props.history;
+    return <ToggleButtonGroup
+        value={null}
+        exclusive
+        size="large"
+        onChange={(e, route) => {
+            history.push(route);
+        }}
+    >
+        <ToggleButton size="small" value={county.routeTo()} >
+            {county.name}
+        </ToggleButton>
+        {metro &&
+            <ToggleButton value={metro.routeTo()} >
+                {metro.name} </ToggleButton>
+        }
+        <ToggleButton value={state.routeTo()} >
+            {state.name}</ToggleButton>
+    </ToggleButtonGroup>;
+});
+
 const MapUS = (props) => {
     const country = useContext(CountryContext);
     const [alignment, setAlignment] = React.useState('left');
-
     const [perCapita, setPerCapita] = React.useState(false);
-
+    const [selectedCounty, setSelectedCounty] = React.useState(null);
 
     const handleAlignment = (event, newAlignment) => {
         setAlignment(newAlignment);
@@ -81,7 +114,7 @@ const MapUS = (props) => {
         </Grid>
         {
             (alignment === "left") &&
-            <MapUSConfirmed {...props} source={country} perCapita={perCapita} />
+            <MapUSConfirmed {...props} source={country} perCapita={perCapita} selectionCallback={setSelectedCounty} />
         }
         {
             (alignment === "center") &&
@@ -91,8 +124,14 @@ const MapUS = (props) => {
             (alignment === "right") &&
             <MapStateDay2Doulbe {...props} source={country} perCapita={perCapita} />
         }
+        {
+            selectedCounty &&
+            <CountyNavButtons county={selectedCounty} />
+        }
+
     </div >
 };
+
 
 const MapStateDay2Doulbe = React.memo((props) => {
     const [county, setContent] = React.useState("");
@@ -102,7 +141,6 @@ const MapStateDay2Doulbe = React.memo((props) => {
     }
     let content;
     if (county) {
-
         let days = county.summary().daysToDouble;
         days = days ? days.toFixed(1) + " days" : "no data"
         content =
@@ -180,7 +218,9 @@ const MapUSConfirmed = React.memo((props) => {
     return (
         <div>
             <Grid></Grid>
-            <MapNew setTooltipContent={setCounty} source={source}
+            <MapNew setTooltipContent={setCounty}
+                source={source}
+                selectionCallback={props.selectionCallback}
                 stroke={"#FFF"}
                 colorFunction={(county) => {
                     if (!county) {
