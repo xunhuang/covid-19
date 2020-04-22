@@ -13,11 +13,22 @@ const GraphDaysToDoubleOverTime = (props) => {
         show2weeks: false,
     });
 
+    const [mydata, setMydata] = React.useState(null);
+    React.useEffect(() => {
+        props.source.daysToDoubleTimeSeries()
+            .then(data => setMydata(data));
+    }, [props.source])
+
+    if (!mydata || mydata.length == 0) {
+        return <div>loading</div>;
+    }
+
+    let data = mydata;
+
     const handle2WeeksToggle = event => {
         setState({ ...state, show2weeks: !state.show2weeks });
     };
 
-    let data = props.source.daysToDoubleTimeSeries();
     data = data.map(d => {
         d.name = moment(d.fulldate, "MM/DD/YYYY").format("M/D");
         d.confirmed = d.confirmed ? parseFloat(d.confirmed.toFixed(1)) : null;
