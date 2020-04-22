@@ -1,24 +1,20 @@
 import React, { useContext } from 'react';
 import { CountryContext } from "./CountryContext";
-import Select from 'react-select';
 import Disqus from "disqus-react"
 import Typography from '@material-ui/core/Typography'
 import { makeStyles } from '@material-ui/core/styles';
 import { FacebookProvider, CommentsCount } from 'react-facebook';
 import { useHistory } from "react-router-dom";
-import { MyTabs } from "./MyTabs.js"
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
 import { Link as MaterialLink } from '@material-ui/core';
-import ListItemText from '@material-ui/core/ListItemText';
 import { Grid } from '@material-ui/core';
 import { SectionHeader } from "./CovidUI"
-import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import { withRouter } from 'react-router-dom'
-import Avatar from '@material-ui/core/Avatar';
 import Link from '@material-ui/core/Link';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
+import { MentalHealthResourceSection } from './MentalHealthTab';
+import { SearchBox } from './SearchBox';
+
 import {
     EmailShareButton,
     FacebookShareButton,
@@ -31,13 +27,12 @@ import {
     PinterestIcon,
     TwitterIcon,
 } from "react-share";
-import { moveSyntheticComments } from 'typescript';
 
 const Cookies = require("js-cookie");
-const MentalHealthResources = require("./data/mentalhealth.json");
 const moment = require("moment");
 
 const NewsData = require("./data/news.json");
+const WhatsNewData = require("./data/whatsnew.json");
 
 const useStyles = makeStyles(theme => ({
     SocialMediaRow: {
@@ -56,12 +51,14 @@ const useStyles = makeStyles(theme => ({
         margin: 2,
     },
     tagline: {
-        display: 'block',
+        display: 'flex',
         padding: 0,
         paddingTop: 10,
         paddingRight: 10,
         margin: 0,
         alignSelf: "flex-start",
+        alignItems: "center",
+        flexDirection: "column",
     },
     keepclam: {
         display: 'block',
@@ -103,25 +100,51 @@ const useStyles = makeStyles(theme => ({
         display: "flex",
         color: "white",
     },
-    inline: {
-        display: 'inline',
-        // fontWeight: "fontWeightBold",
-    },
     newsDate: {
-        margin: 4,
+        margin: 6,
     },
     newsTitle: {
         margin: 4,
     },
 }));
 
+const WhatsNewSection = (props) => {
+    const classes = useStyles();
+    const data =
+        WhatsNewData.sort((a, b) => moment(b.Date, "MM/DD/YYYY").toDate() - moment(a.Date, "MM/DD/YYYY").toDate())
+            .slice(0, 5);
+    return <div>
+        <SectionHeader>
+            <Typography variant="h5" noWrap>
+                What's New On Covid-19.Direct
+             </Typography>
+        </SectionHeader>
+        {data.map((item, i) =>
+            <Grid container wrap="nowrap">
+                <Grid item className={classes.newsDate}>
+                    <div>{moment(item.Date, "MM/DD/YYYY").format("M/D")}</div>
+                </Grid>
+                <Grid item className={classes.newsTitle}>
+                    <Typography variant="body1" noWrap>
+                        <a href={item.Link.length > 0 ? item.Link : null}> {item.Feature}</a>
+                    </Typography>
+
+                    <Typography variant="body2" noWrap>
+                        {item.commentary}
+                    </Typography>
+                </Grid>
+            </Grid >
+        )}
+    </div >;
+};
+
 const NewsSection = (props) => {
     const classes = useStyles();
     const data =
         NewsData.sort((a, b) => moment(b.Date, "MM/DD/YYYY").toDate() - moment(a.Date, "MM/DD/YYYY").toDate())
-            .slice(0, 5);
+            .slice(0, 10);
     return <div>
-        <SectionHeader>
+        <SectionHeader id="news">
             <Typography variant="h5" noWrap>
                 News
              </Typography>
@@ -139,131 +162,6 @@ const NewsSection = (props) => {
     </div >;
 };
 
-const ResourceSectionOne = (props) => {
-    const classes = useStyles();
-    return <List>
-        {props.tab.map((item, i) =>
-            <ListItem onClick={() => { window.open(item.Url) }} key={i}>
-                <ListItemAvatar>
-                    <Avatar variant="rounded" src={item.ThumbnailURL} />
-                </ListItemAvatar>
-                <ListItemText
-                    primary={item.Title}
-                    secondary={
-                        <React.Fragment>
-                            <Typography
-                                component="span"
-                                variant="body2"
-                                className={classes.inline}
-                                color="textPrimary"
-                            >
-                                {item.Subtitle}
-                            </Typography>
-                        </React.Fragment>
-                    }
-                />
-            </ListItem>
-        )}
-    </List >;
-};
-
-const ResourceSection = withRouter((props) => {
-    const resmap = MentalHealthResources.reduce((m, item) => {
-        let section = m[item.Tab];
-        if (!section) {
-            section = [];
-        }
-        section.push(item);
-        m[item.Tab] = section;
-        return m;
-    }, {})
-    const tablist = [
-        <ResourceSectionOne tab={resmap[1]} />,
-        <ResourceSectionOne tab={resmap[2]} />,
-        <ResourceSectionOne tab={resmap[3]} />,
-    ]
-    let tabs = <MyTabs
-        labels={["Meditation", `Stress Mgmt`, `Education/Kids`]}
-        urlQueryKey="resources"
-        urlQueryValues={['medication', 'stressmgmt', 'kids']}
-        tabs={tablist}
-    />;
-    return tabs;
-});
-
-const SearchBox = (props) => {
-    const country = useContext(CountryContext);
-    const counties =
-        country.allStates().flatMap(s => s.allCounties()).map(county => {
-            return {
-                display_name: `${county.name}, ${county.state().name}`,
-                county: county,
-                total: county.totalConfirmed() + county.newCases(),
-            };
-        });
-    const states = country.allStates().map(
-        state => {
-            return {
-                display_name: `${state.name} (${state.twoLetterName})`,
-                state: state,
-                total: state.totalConfirmed() + state.newCases(),
-            }
-        });
-    const metros = country.allMetros().map(
-        metro => {
-            return {
-                display_name: `${metro.name}, ${metro.state().name}`,
-                metro: metro,
-                total: metro.totalConfirmed() + metro.newCases(),
-            }
-        });
-    const search_list = counties.concat(states).concat(metros)
-    let search_list_sorted = search_list.sort((a, b) => {
-        let x = a.total;
-        let y = b.total;
-        if (!x) x = 0;
-        if (!y) y = 0;
-
-        return y - x;
-    });
-    let search_list_final = search_list_sorted
-        .map(c => {
-            return {
-                label: `${c.display_name} (${c.total})`,
-                value: c,
-            };
-        });
-    const history = useHistory();
-    return <Select
-        className="basic-single"
-        classNamePrefix="select"
-        styles={{
-            menu: provided => ({ ...provided, zIndex: 9999 })
-        }}
-        defaultValue={""}
-        placeholder={"Search for a County or a State"}
-        isDisabled={false}
-        isLoading={false}
-        isClearable={true}
-        isRtl={false}
-        isSearchable={true}
-        name="county_or_state_selection"
-        options={search_list_final}
-        onChange={param => {
-            if (param && param.value) {
-                let route;
-                if (param.value.county) {
-                    route = param.value.county.routeTo();
-                } else if (param.value.metro) {
-                    route = param.value.metro.routeTo();
-                } else {
-                    route = param.value.state.routeTo();
-                }
-                history.push(route);
-            }
-        }}
-    />;
-}
 const DonateButton = (props) => {
     const classes = useStyles();
     const donationPageUrl = "https://ko-fi.com/covid19direct";
@@ -274,6 +172,7 @@ const DonateButton = (props) => {
             </MaterialLink>
         </Typography>);
 }
+
 
 const SocialMediaButtons = (props) => {
     const classes = useStyles();
@@ -301,35 +200,46 @@ const Banner = withRouter((props) => {
     const history = useHistory();
     const classes = useStyles();
     const country = useContext(CountryContext);
+    const [showNews, setShowNews] = React.useState(false);
+
     let us_summary = country.summary();
     let url_shared =
         "https://covid-19.direct" +
         props.match.url +
         history.location.search;
     return (
-        <div className={classes.topContainer}>
-            <span className={classes.title}>
-                <Typography variant="h6" >
-                    COVID-19.direct
+        <div>
+            <div className={classes.topContainer}>
+                <span className={classes.title}>
+                    <Typography variant="h6" >
+                        COVID-19.direct
             </Typography>
-                <SocialMediaButtons
-                    url={url_shared}
-                    quote={quote}
-                />
-                <Typography variant="body2" noWrap>
-                    Updated: {moment(us_summary.generatedTime).format('lll')}
-                </Typography>
-            </span>
-            <span className={classes.grow}></span>
-            {/* <span className={classes.keepclam}> Keep Clam, #StayHome</span> */}
-            <span className={classes.tagline}>
-                <Typography variant="body1" >
-                    {/* #StayHome #StayInformed */}
+                    <SocialMediaButtons
+                        url={url_shared}
+                        quote={quote}
+                    />
+                    <Typography variant="body2" noWrap>
+                        Updated: {moment(us_summary.generatedTime).format('lll')}
+                    </Typography>
+                </span>
+                <span className={classes.grow}></span>
+                {/* <span className={classes.keepclam}> Keep Clam, #StayHome</span> */}
+                <span className={classes.tagline}>
+                    <Typography variant="body1" >
+                        {/* #StayHome #StayInformed */}
                         this too shall pass
             </Typography>
-                <DonateButton />
-            </span>
-        </div >);
+                    <DonateButton />
+                    <Typography variant="body1" onClick={() => setShowNews(!showNews)} >
+                        What's New?
+            </Typography>
+                </span>
+            </div >
+            {showNews &&
+                <WhatsNewSection />
+            }
+        </div >
+    );
 });
 
 const QPArea = (props) => {
@@ -384,7 +294,7 @@ const withHeader = (comp, props) => {
                     Resources
                     </Typography>
             </SectionHeader>
-            <ResourceSection />
+            <MentalHealthResourceSection />
             <SectionHeader id="discussion">
                 <Grid container alignItems="center">
                     <Grid item>
