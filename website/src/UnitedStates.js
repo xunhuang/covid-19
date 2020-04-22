@@ -173,7 +173,7 @@ export class Country {
     return data;
   }
 
-  daysToDoubleTimeSeries() {
+  async daysToDoubleTimeSeries() {
     let confirmed = getDay2DoubleTimeSeries(
       trimLastDaysData(this.covidRaw_.Summary.Confirmed)
     );
@@ -366,7 +366,7 @@ export class State {
       });
     });
   }
-  daysToDoubleTimeSeries() {
+  async daysToDoubleTimeSeries() {
     let confirmed = getDay2DoubleTimeSeries(
       trimLastDaysData(this.covidRaw_.Summary.Confirmed)
     );
@@ -458,7 +458,7 @@ export class Metro {
     return this.covidRaw_.Summary.LastConfirmedNew;
   }
 
-  daysToDoubleTimeSeries() {
+  async daysToDoubleTimeSeries() {
     let confirmed = getDay2DoubleTimeSeries(
       trimLastDaysData(this.covidRaw_.Summary.Confirmed)
     );
@@ -658,7 +658,11 @@ export class County {
     }
   }
 
-  daysToDoubleTimeSeries() {
+  async daysToDoubleTimeSeries() {
+    if (!this.covidRaw_.Confirmed) {
+      await this._fetchServerData();
+    }
+
     let confirmed = getDay2DoubleTimeSeries(
       trimLastDaysData(this.covidRaw_.Confirmed)
     );
