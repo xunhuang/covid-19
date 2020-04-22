@@ -113,13 +113,12 @@ const trendingLineLabelChildren = (options) => {
     const { x, y, showlog, dailyGrowthRate, daysToDouble } = options;
     return [
         // Placeholder to accomodate label
-        <ReferenceArea fillOpacity="0" alwaysShow x1={x} x2={x} y1={y * (showlog ? 4 : 1.1)} y2={y * (showlog ? 4 : 1.1)} key={0} />,
+        <ReferenceArea fillOpacity="0" x1={x} x2={x} y1={y * (showlog ? 4 : 1.1)} y2={y * (showlog ? 4 : 1.1)} key={0} />,
         <ReferenceArea fillOpacity="0" x1={x} x2={x} y1={y} y2={y} key={1}>
             <Label value={`${daysToDouble.toFixed(0)} days to double (+${(dailyGrowthRate * 100).toFixed(0)}% daily)`} offset={5} position="insideBottomRight" />
         </ReferenceArea>
     ];
 }
-
 
 const BasicGraphNewCases = (props) => {
     const CookieSetPreference = (state) => {

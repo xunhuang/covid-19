@@ -190,9 +190,11 @@ const USInfoTopWidget = withRouter((props) => {
     </div >;
 });
 
-const Tag = (props) => {
+const Tag = withRouter((props) => {
+    const params = new URLSearchParams(props.history.location.search);
+    const to = props.to + "?" + params.toString();
     const classes = useStyles();
-    return <Link className={`${classes.tag} ${props.selected ? classes.tagSelected : ''}`} to={props.to}>
+    return <Link className={`${classes.tag} ${props.selected ? classes.tagSelected : ''}`} to={to}>
         <div className={classes.tagTitle}> {props.title} </div>
         <div className={`${classes.row} ${props.showBeds ? '' : classes.rowNoBeds}`} >
             <section className={classes.tagSection}>
@@ -217,7 +219,7 @@ const Tag = (props) => {
             </section>}
         </div>
     </Link>;
-};
+});
 
 export {
     USInfoTopWidget,
