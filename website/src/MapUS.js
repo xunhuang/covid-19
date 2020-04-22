@@ -119,11 +119,11 @@ const MapUS = (props) => {
         }
         {
             (alignment === "center") &&
-            <MapStateDeath {...props} source={country} perCapita={perCapita} />
+            <MapStateDeath {...props} source={country} perCapita={perCapita} selectionCallback={setSelectedCounty} />
         }
         {
             (alignment === "right") &&
-            <MapStateDay2Doulbe {...props} source={country} perCapita={perCapita} />
+            <MapStateDay2Doulbe {...props} source={country} perCapita={perCapita} selectionCallback={setSelectedCounty} />
         }
         {
             selectedCounty &&
@@ -151,6 +151,7 @@ const MapStateDay2Doulbe = React.memo((props) => {
     return (
         <div>
             <MapNew setTooltipContent={setCounty} source={source}
+                selectionCallback={props.selectionCallback}
                 stroke={"#000"}
                 colorFunction={(county) => {
                     if (!county || !county.summary().daysToDouble) {
@@ -174,6 +175,7 @@ const MapStateDeath = React.memo((props) => {
     return (
         <div>
             <MapNew setTooltipContent={setSelectedCounty} source={source}
+                selectionCallback={props.selectionCallback}
                 stroke={"#000"}
                 colorFunction={(county) => {
                     if (!county || !county.summary().deaths) {
