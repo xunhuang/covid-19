@@ -100,6 +100,10 @@ export class Country {
     return [...this.statesById_.values()];
   }
 
+  allCounties() {
+    return [...this.countiesById_.values()];
+  }
+
   metroForId(id) {
     return this.metrosById_.get(id);
   }

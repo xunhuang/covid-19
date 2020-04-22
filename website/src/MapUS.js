@@ -5,9 +5,10 @@ import ToggleButton from '@material-ui/lab/ToggleButton';
 import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
 import ReactTooltip from "react-tooltip";
 import { CountryContext } from "./CountryContext";
+import * as d3 from "d3-scale";
+
 import { AntSwitch } from "./graphs/AntSwitch"
 import { Grid } from '@material-ui/core';
-import { Country } from "./UnitedStates";
 import { withRouter } from 'react-router-dom'
 
 const geoUrl = "https://cdn.jsdelivr.net/npm/us-atlas@3/counties-10m.json";
@@ -79,7 +80,7 @@ const CountyNavButtons = withRouter((props) => {
 const MapUS = (props) => {
     const country = useContext(CountryContext);
     const [alignment, setAlignment] = React.useState('left');
-    const [perCapita, setPerCapita] = React.useState(false);
+    const [perCapita, setPerCapita] = React.useState(true);
     const [selectedCounty, setSelectedCounty] = React.useState(null);
 
     const handleAlignment = (event, newAlignment) => {
@@ -104,13 +105,13 @@ const MapUS = (props) => {
             <Grid item>
                 {buttonGroup}
             </Grid>
-            {/* <Grid item xs />
+            <Grid item xs />
             <Grid item>
                 <AntSwitch checked={perCapita} onClick={() => { setPerCapita(!perCapita) }} />
             </Grid>
             <Grid item>
                 Per Capita
-            </Grid> */}
+            </Grid>
         </Grid>
         {
             (alignment === "left") &&
@@ -155,7 +156,7 @@ const MapStateDay2Doulbe = React.memo((props) => {
                     if (!county || !county.summary().daysToDouble) {
                         return "#FFF";
                     }
-                    return `hsla(120, 100%, ${80 - 7 * Math.log(county.summary().daysToDouble * 100)}%, 1)`;
+                    return ColorScale.timeToDouble(county.summary().daysToDouble);
                 }
                 }
             />
@@ -167,58 +168,61 @@ const MapStateDay2Doulbe = React.memo((props) => {
 });
 
 const MapStateDeath = React.memo((props) => {
-    const [county, setContent] = React.useState("");
+    const [county, setSelectedCounty] = React.useState("");
     const source = props.source;
-    function setCounty(c) {
-        setContent(c)
-    }
-    let content;
-    if (county) {
-        content =
-            `${county.name} Confirmed: \n${county.summary().confirmed} \nDeaths: ${county.summary().deaths}`
-    }
-
+    let c = source.allCounties().map(c => c.summary().deaths / c.population() * 1000000);
     return (
         <div>
-            <MapNew setTooltipContent={setCounty} source={source}
+            <MapNew setTooltipContent={setSelectedCounty} source={source}
                 stroke={"#000"}
                 colorFunction={(county) => {
                     if (!county || !county.summary().deaths) {
                         return "#FFF";
                     }
-                    return `hsla(240, 100%, ${80 - 7 * Math.log(county.summary().deaths)}%, 1)`;
+                    let deaths = county.summary().deaths;
+                    let population = county.population();
+                    return props.perCapita
+                        ? ColorScale.deathPerMillion(deaths / population * 1000000)
+                        : ColorScale.death(deaths);
                 }
                 }
             />
-            <ReactTooltip>
-                {content}
-            </ReactTooltip>
+            {county &&
+                <ReactTooltip>
+                    {
+                        `${county.name}, Deaths: ${county.summary().deaths}, \n` +
+                        `Deaths/Mil: ${(county.summary().deaths / county.population() * 1000000).toFixed(0)}`
+                    }
+                </ReactTooltip>
+            }
         </div>
     );
 });
 
+const ColorScale = {
+    confirmed: d3.scaleLog()
+        .domain([1, 200, 10000])
+        .range(["white", "red", "black"]),
+    confirmedPerMillion: d3.scaleLog()
+        .domain([100, 1000, 10000])
+        .range(["white", "red", "black"]),
+    death: d3.scaleLog()
+        .domain([1, 100, 1000])
+        .range(["white", "blue", "black"]),
+    deathPerMillion: d3.scaleLog()
+        .domain([10, 100, 1000])
+        .range(["white", "blue", "black"]),
+    timeToDouble: d3.scaleLog()
+        .domain([2, 15, 300])
+        .range(["white", "green", "black"]),
+}
+
 const MapUSConfirmed = React.memo((props) => {
-    const [county, setContent] = React.useState("");
+    const [county, setSelectedCounty] = React.useState("");
     const source = props.source;
-    function setCounty(c) {
-        setContent(c)
-    }
-    let content;
-    let confirmed, population, deaths;
-    if (county) {
-        population = county.population();
-        confirmed = county.summary().confirmed;
-        deaths = county.summary().deaths;
-        content =
-            `${county.name} Confirmed: \n` +
-            `${confirmed} \n` +
-            `Deaths: ${deaths} \n ` +
-            `Confirm/Millon: ${(confirmed / population * 1000000).toFixed(1)}`
-    }
     return (
         <div>
-            <Grid></Grid>
-            <MapNew setTooltipContent={setCounty}
+            <MapNew setTooltipContent={setSelectedCounty}
                 source={source}
                 selectionCallback={props.selectionCallback}
                 stroke={"#FFF"}
@@ -228,19 +232,20 @@ const MapUSConfirmed = React.memo((props) => {
                     }
                     let confirmed = county.summary().confirmed;
                     let population = county.population();
-                    if (!confirmed) {
-                        return "#FFF";
-                    }
-                    if (props.perCapita) {
-                        return `hsla(0, 100%, ${80 - 7 * Math.log(confirmed / population * 1000000)}%, 1)`;
-                    }
-                    return `hsla(0, 100%, ${80 - 7 * Math.log(confirmed)}%, 1)`;
+                    return props.perCapita
+                        ? ColorScale.confirmedPerMillion(confirmed / population * 1000000)
+                        : ColorScale.confirmed(confirmed);
                 }
                 }
             />
-            <ReactTooltip>
-                {content}
-            </ReactTooltip>
+            {county &&
+                <ReactTooltip>
+                    {
+                        `${county.name}, Confirmed: ${county.summary().confirmed}, \n` +
+                        `Confirm/Mil: ${(county.summary().confirmed / county.population() * 1000000).toFixed(0)}`
+                    }
+                </ReactTooltip>
+            }
         </div>
     );
 });
