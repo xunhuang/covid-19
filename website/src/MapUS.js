@@ -77,29 +77,32 @@ const CountyNavButtons = withRouter((props) => {
     </ToggleButtonGroup>;
 });
 
-const MapUS = (props) => {
+const MapUS = withRouter((props) => {
     const country = useContext(CountryContext);
-    const [alignment, setAlignment] = React.useState('left');
+    const [subtab, setAlignment] = React.useState(getURLParam(props.history.location.search, "detailed") ?? 'confirmed');
     const [perCapita, setPerCapita] = React.useState(true);
     const [selectedCounty, setSelectedCounty] = React.useState(null);
 
-    const handleAlignment = (event, newAlignment) => {
-        setAlignment(newAlignment);
-    };
     const buttonGroup = <ToggleButtonGroup
-        value={alignment}
+        value={subtab}
         exclusive
         size="small"
-        onChange={handleAlignment}
-        aria-label="text alignment"
+        onChange={(e, newvalue) => {
+            setAlignment(newvalue)
+            pushChangeTo(props.history, "detailed", newvalue);
+        }}
     >
-        <ToggleButton size="small" value="left" aria-label="left aligned">
-            Confirmed            </ToggleButton>
-        <ToggleButton value="center" aria-label="centered">
-            Death </ToggleButton>
-        <ToggleButton value="right" aria-label="right aligned">
-            Days to Double            </ToggleButton>
+        <ToggleButton size="small" value="confirmed"> Confirmed </ToggleButton>
+        <ToggleButton value="death"> Death </ToggleButton>
+        <ToggleButton value="daysToDouble"> Days to Double </ToggleButton>
     </ToggleButtonGroup>;
+
+    const MyMap = {
+        confirmed: <MapUSConfirmed {...props} source={country} perCapita={perCapita} selectionCallback={setSelectedCounty} />,
+        death: <MapStateDeath {...props} source={country} perCapita={perCapita} selectionCallback={setSelectedCounty} />,
+        daysToDouble: <MapStateDay2Doulbe {...props} source={country} perCapita={perCapita} selectionCallback={setSelectedCounty} />,
+    }
+
     return <div>
         <Grid container alignItems="center">
             <Grid item>
@@ -113,26 +116,14 @@ const MapUS = (props) => {
                 Per Capita
             </Grid>
         </Grid>
-        {
-            (alignment === "left") &&
-            <MapUSConfirmed {...props} source={country} perCapita={perCapita} selectionCallback={setSelectedCounty} />
-        }
-        {
-            (alignment === "center") &&
-            <MapStateDeath {...props} source={country} perCapita={perCapita} />
-        }
-        {
-            (alignment === "right") &&
-            <MapStateDay2Doulbe {...props} source={country} perCapita={perCapita} />
-        }
+        {MyMap[subtab]}
         {
             selectedCounty &&
             <CountyNavButtons county={selectedCounty} />
         }
 
     </div >
-};
-
+});
 
 const MapStateDay2Doulbe = React.memo((props) => {
     const [county, setContent] = React.useState("");
@@ -151,6 +142,7 @@ const MapStateDay2Doulbe = React.memo((props) => {
     return (
         <div>
             <MapNew setTooltipContent={setCounty} source={source}
+                selectionCallback={props.selectionCallback}
                 stroke={"#000"}
                 colorFunction={(county) => {
                     if (!county || !county.summary().daysToDouble) {
@@ -174,6 +166,7 @@ const MapStateDeath = React.memo((props) => {
     return (
         <div>
             <MapNew setTooltipContent={setSelectedCounty} source={source}
+                selectionCallback={props.selectionCallback}
                 stroke={"#000"}
                 colorFunction={(county) => {
                     if (!county || !county.summary().deaths) {
@@ -249,5 +242,21 @@ const MapUSConfirmed = React.memo((props) => {
         </div>
     );
 });
+
+function getURLParam(url, key) {
+    const params = new URLSearchParams(url);
+    if (params.has(key)) {
+        return params.get(key);
+    } else {
+        return undefined;
+    }
+}
+
+function pushChangeTo(history, key, value) {
+    const params = new URLSearchParams(history.location.search);
+    params.set(key, value);
+    history.location.search = params.toString();
+    history.push(history.location)
+}
 
 export { MapUS }
