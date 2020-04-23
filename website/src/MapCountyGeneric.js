@@ -54,7 +54,7 @@ const MapCountyGeneric = React.memo((props) => {
             <MapNew setTooltipContent={setSelectedCounty}
                 source={source}
                 selectionCallback={props.selectionCallback}
-                stroke={props.stroke ?? "#FFF"}
+                stroke={props.stroke ?? "#DDD"}
                 colorFunction={(county) => {
                     if (!county || !props.getCountyDataPoint(county)) {
                         return "#FFF";
