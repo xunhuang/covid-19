@@ -10,6 +10,11 @@ const CovidData = require('./data/AllData.slim.json');
 const CountyGeoData = require('./data/county_gps.json');
 const geolib = require('geolib');
 const moment = require('moment');
+const stateBounds = require("./data/states-bounding.json");
+const statemap = stateBounds.reduce((m, b) => {
+  m[b.STATEFP] = b;
+  return m;
+}, {});
 
 const UNKNOWN_COUNTY_NAME = "Unknown";
 
@@ -194,6 +199,15 @@ export class Country {
       });
     }
     return result;
+  }
+
+  mapConfig() {
+    return {
+      geoUrl: "https://cdn.jsdelivr.net/npm/us-atlas@3/counties-10m.json",
+      projection: {
+        projection: "geoAlbersUsa",
+      }
+    }
   }
 }
 
@@ -387,6 +401,46 @@ export class State {
       });
     }
     return result;
+  }
+
+  getProjectionConfig_(state_fips) {
+    let state1 = statemap[state_fips];
+    let x = (parseFloat(state1.xmin) + parseFloat(state1.xmax)) / 2;
+    let y = (parseFloat(state1.ymin) + parseFloat(state1.ymax)) / 2;
+    let xscale =
+      (800 * 180) / (parseFloat(state1.xmax) - parseFloat(state1.xmin));
+    let yscale =
+      (600 * 180) / (parseFloat(state1.ymax) - parseFloat(state1.ymin));
+    let scale = xscale > yscale ? yscale : xscale;
+    scale = scale * 0.3;
+
+    // manually tune some state that doens't show up well.
+    if (state_fips === "02") {
+      return {
+        scale: 2000,
+        rotate: [149.4937, -64.2008, 0]
+      };
+    }
+    if (state_fips === "15") {
+      return {
+        scale: 5836,
+        rotate: [157.57, -19.65624, 0]
+      };
+    }
+    return {
+      scale: scale,
+      rotate: [-x, -y, 0]
+    };
+  }
+
+  mapConfig() {
+    return {
+      geoUrl: process.env.PUBLIC_URL + `/topojson/us-states/${this.twoLetterName}-${this.fips()}-${this.name.toLowerCase().replace(" ", "-")}-counties.json`,
+      projection: {
+        projection: "geoMercator",
+        config: this.getProjectionConfig_(this.fips()),
+      }
+    }
   }
 }
 

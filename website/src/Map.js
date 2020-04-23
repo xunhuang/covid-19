@@ -226,7 +226,7 @@ function maybeMapTabFor(source) {
         return {
             id: 'map',
             label: 'Map',
-            content: Map,
+            content: MapUS,
         };
     } else if (source instanceof Country) {
         return {

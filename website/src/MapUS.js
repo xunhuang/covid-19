@@ -13,14 +13,19 @@ const geoUrl = "https://cdn.jsdelivr.net/npm/us-atlas@3/counties-10m.json";
 
 const MapNew = (props) => {
     const source = props.source;
+    const config = source.mapConfig();
     let setTooltipContent = props.setTooltipContent;
     let url = geoUrl;
     return (
-        <ComposableMap data-tip="" projection="geoAlbersUsa" >
-            <Geographies geography={url}>
+        <ComposableMap data-tip=""
+            projection={config.projection.projection}
+            projectionConfig={config.projection.config}
+        >
+            <Geographies geography={config.geoUrl}>
                 {({ geographies }) =>
                     geographies.map(geo => {
-                        const county = source.countyForId(geo.id);
+                        const county_id = geo.id ?? geo.properties.STATEFP + geo.properties.COUNTYFP;
+                        const county = source.countyForId(county_id);
                         const color = props.colorFunction(county);
                         return (
                             <Geography
@@ -191,7 +196,7 @@ const MapStateDeath = React.memo((props) => {
 
 const ColorScale = {
     confirmed: d3.scaleLog()
-        .domain([1, 200, 10000])
+        .domain([0, 200, 10000])
         .range(["white", "red", "black"]),
     confirmedPerMillion: d3.scaleLog()
         .domain([100, 1000, 10000])
@@ -217,11 +222,11 @@ const MapUSConfirmed = React.memo((props) => {
                 selectionCallback={props.selectionCallback}
                 stroke={"#FFF"}
                 colorFunction={(county) => {
-                    if (!county) {
-                        return "#FFF";
-                    }
                     let confirmed = county.summary().confirmed;
                     let population = county.population();
+                    if (!county || !confirmed) {
+                        return "#FFF";
+                    }
                     return props.perCapita
                         ? ColorScale.confirmedPerMillion(confirmed / population * 1000000)
                         : ColorScale.confirmed(confirmed);
