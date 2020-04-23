@@ -8,14 +8,12 @@ import * as d3 from "d3-scale";
 import { AntSwitch } from "./graphs/AntSwitch"
 import { Grid } from '@material-ui/core';
 import { withRouter } from 'react-router-dom'
-
-const geoUrl = "https://cdn.jsdelivr.net/npm/us-atlas@3/counties-10m.json";
+import { Metro } from "./UnitedStates";
 
 const MapNew = (props) => {
-    const source = props.source;
+    const source = props.source instanceof Metro ? props.source.state() : props.source;
     const config = source.mapConfig();
     let setTooltipContent = props.setTooltipContent;
-    let url = geoUrl;
     return (
         <ComposableMap data-tip=""
             projection={config.projection.projection}
