@@ -217,11 +217,11 @@ const MapUSConfirmed = React.memo((props) => {
                 selectionCallback={props.selectionCallback}
                 stroke={"#FFF"}
                 colorFunction={(county) => {
-                    let confirmed = county.summary().confirmed;
-                    let population = county.population();
-                    if (!county || !confirmed) {
+                    if (!county || !county.summary().confirmed) {
                         return "#FFF";
                     }
+                    let confirmed = county.summary().confirmed;
+                    let population = county.population();
                     return props.perCapita
                         ? ColorScale.confirmedPerMillion(confirmed / population * 1000000)
                         : ColorScale.confirmed(confirmed);
