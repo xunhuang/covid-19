@@ -1,4 +1,4 @@
-import { State, Country } from './UnitedStates';
+import { State, Country, Metro } from './UnitedStates';
 import { MapUS } from './MapUS'
 
 function maybeMapTabFor(source) {
@@ -9,6 +9,12 @@ function maybeMapTabFor(source) {
             content: MapUS,
         };
     } else if (source instanceof Country) {
+        return {
+            id: 'map',
+            label: 'Map',
+            content: MapUS,
+        };
+    } else if (source instanceof Metro) {
         return {
             id: 'map',
             label: 'Map',
