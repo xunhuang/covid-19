@@ -1,10 +1,8 @@
 import React from "react";
-import { useContext } from "react";
 import { ComposableMap, Geographies, Geography } from "react-simple-maps";
 import ToggleButton from '@material-ui/lab/ToggleButton';
 import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
 import ReactTooltip from "react-tooltip";
-import { CountryContext } from "./CountryContext";
 import * as d3 from "d3-scale";
 
 import { AntSwitch } from "./graphs/AntSwitch"
@@ -78,7 +76,7 @@ const CountyNavButtons = withRouter((props) => {
 });
 
 const MapUS = withRouter((props) => {
-    const country = useContext(CountryContext);
+    const country = props.source;
     const [subtab, setAlignment] = React.useState(getURLParam(props.history.location.search, "detailed") ?? 'confirmed');
     const [perCapita, setPerCapita] = React.useState(true);
     const [selectedCounty, setSelectedCounty] = React.useState(null);
@@ -162,7 +160,6 @@ const MapStateDay2Doulbe = React.memo((props) => {
 const MapStateDeath = React.memo((props) => {
     const [county, setSelectedCounty] = React.useState("");
     const source = props.source;
-    let c = source.allCounties().map(c => c.summary().deaths / c.population() * 1000000);
     return (
         <div>
             <MapNew setTooltipContent={setSelectedCounty} source={source}

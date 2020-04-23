@@ -19,7 +19,7 @@ const GraphDaysToDoubleOverTime = (props) => {
             .then(data => setMydata(data));
     }, [props.source])
 
-    if (!mydata || mydata.length == 0) {
+    if (!mydata || mydata.length === 0) {
         return <div>loading</div>;
     }
 
