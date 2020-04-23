@@ -78,7 +78,7 @@ const GraphGrowthRateOverTime = (props) => {
             >
                 <XAxis dataKey="name" />
                 <YAxis yAxisId={0} tickFormatter={formatYAxis} />
-                <Tooltip />
+                <Tooltip formatter={(value) => `${value}%`} />
 
                 <CartesianGrid stroke="#d5d5d5" strokeDasharray="5 5" />
                 <Line type="monotone" dataKey="confirmed" stroke="#387908" yAxisId={0} strokeWidth={2} dot={{ r: 1 }} />
