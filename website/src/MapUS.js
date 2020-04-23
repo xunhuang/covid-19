@@ -17,6 +17,12 @@ const ColorScale = {
     confirmedPerMillion: d3.scaleLog()
         .domain([100, 1000, 10000])
         .range(["white", "red", "black"]),
+    confirmedNew: d3.scaleLog()
+        .domain([1, 200, 2000])
+        .range(["white", "red", "black"]),
+    confirmedNewPerMillion: d3.scaleLog()
+        .domain([1, 200, 2000])
+        .range(["white", "red", "black"]),
     death: d3.scaleLog()
         .domain([1, 100, 1000])
         .range(["white", "blue", "black"]),
@@ -74,7 +80,8 @@ const MapUS = withRouter((props) => {
             pushChangeTo(props.history, "detailed", newvalue);
         }}
     >
-        <ToggleButton size="small" value="confirmed"> Confirmed </ToggleButton>
+        <ToggleButton value="confirmed"> Confirmed </ToggleButton>
+        <ToggleButton value="confirmedNew"> New </ToggleButton>
         <ToggleButton value="death"> Death </ToggleButton>
         <ToggleButton value="daysToDouble"> Days to Double </ToggleButton>
         {source instanceof Country &&
@@ -84,6 +91,7 @@ const MapUS = withRouter((props) => {
 
     const MyMap = {
         confirmed: <MapUSConfirmed {...props} source={source} perCapita={perCapita} selectionCallback={setSelectedCounty} />,
+        confirmedNew: <MapUSConfirmedNew {...props} source={source} perCapita={perCapita} selectionCallback={setSelectedCounty} />,
         death: <MapStateDeath {...props} source={source} perCapita={perCapita} selectionCallback={setSelectedCounty} />,
         daysToDouble: <MapDaysToDouble {...props} source={source} perCapita={perCapita} selectionCallback={setSelectedCounty} />,
         testCoverage: <MapUSTestCoverage {...props} source={source} perCapita={perCapita} selectionCallback={setSelectedCounty} />,
@@ -148,6 +156,27 @@ const MapUSConfirmed = React.memo((props) => {
             toolip={county => {
                 return `${county.name}, Confirmed: ${county.summary().confirmed}, \n` +
                     `Confirm/Mil: ${(county.summary().confirmed / county.population() * 1000000).toFixed(0)}`
+            }}
+        />
+    );
+});
+
+const MapUSConfirmedNew = React.memo((props) => {
+    return (
+        <MapCountyGeneric
+            {...props}
+            getCountyDataPoint={(county) => {
+                return county.summary().newcases;
+            }}
+            colorFunction={(data) => {
+                return ColorScale.confirmedNew(data);
+            }}
+            colorFunctionPerMillion={(data) => {
+                return ColorScale.confirmedNewPerMillion(data);
+            }}
+            toolip={county => {
+                return `${county.name}, New: ${county.summary().newcases}, \n` +
+                    `New/Mil: ${(county.summary().newcases / county.population() * 1000000).toFixed(0)}`
             }}
         />
     );
