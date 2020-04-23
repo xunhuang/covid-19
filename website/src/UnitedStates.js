@@ -1,6 +1,6 @@
 import routes from "./Routes";
 import { reverse } from 'named-urls';
-import { trimLastDaysData, getDay2DoubleTimeSeries } from "./CovidAnalysis";
+import { trimLastDaysData, getDay2DoubleTimeSeries, getGrowthRateTimeSeries } from "./CovidAnalysis";
 import { CountyInfo } from 'covidmodule';
 import { fetchNPRProjectionData } from "./NPRProjection"
 import { fetchTestingDataStates, fetchTestingDataUS } from "./TestingData"
@@ -160,6 +160,7 @@ export class Country {
     const deathsNew = this.covidRaw_.Summary.LastDeathNew;
     const recovered = this.covidRaw_.Summary.LastRecovered;
     const recoveredNew = this.covidRaw_.Summary.LastRecoveredNew;
+    const tests = this.covidRaw_.Summary.totalTests;
     const generatedTime = (new Date(this.covidRaw_.Summary.generated)).toString();
     return {
       confirmed: confirmed,
@@ -169,6 +170,7 @@ export class Country {
       recovered: recovered,
       recoveredNew: recoveredNew,
       newpercent: ((newcases / (confirmed - newcases)) * 100).toFixed(0),
+      tests: tests,
       generatedTime: generatedTime,
     }
   }
@@ -201,7 +203,26 @@ export class Country {
     return result;
   }
 
-  mapConfig() {
+  async growthRateTimeSeries() {
+    let confirmed = getGrowthRateTimeSeries(
+      trimLastDaysData(this.covidRaw_.Summary.Confirmed)
+    );
+    let death = getGrowthRateTimeSeries(
+      trimLastDaysData(this.covidRaw_.Summary.Death)
+    );
+
+    let result = [];
+    for (let k in confirmed) {
+      result.push({
+        fulldate: k,
+        confirmed: confirmed[k],
+        death: death ? death[k] : null,
+      });
+    }
+    return result;
+  }
+
+  countyMapConfig() {
     return {
       geoUrl: "https://cdn.jsdelivr.net/npm/us-atlas@3/counties-10m.json",
       projection: {
@@ -352,6 +373,7 @@ export class State {
       daysToDoubleDeath: this.covidRaw_.Summary.DaysToDoubleDeath,
       recovered: this.covidRaw_.Summary.LastRecovered,
       recoveredNew: this.covidRaw_.Summary.LastRecoveredNew,
+      tests: this.covidRaw_.Summary.totalTests,
     }
   }
 
@@ -403,6 +425,25 @@ export class State {
     return result;
   }
 
+  async growthRateTimeSeries() {
+    let confirmed = getGrowthRateTimeSeries(
+      trimLastDaysData(this.covidRaw_.Summary.Confirmed)
+    );
+    let death = getGrowthRateTimeSeries(
+      trimLastDaysData(this.covidRaw_.Summary.Death)
+    );
+
+    let result = [];
+    for (let k in confirmed) {
+      result.push({
+        fulldate: k,
+        confirmed: confirmed[k],
+        death: death ? death[k] : null,
+      });
+    }
+    return result;
+  }
+
   getProjectionConfig_(state_fips) {
     let state1 = statemap[state_fips];
     let x = (parseFloat(state1.xmin) + parseFloat(state1.xmax)) / 2;
@@ -433,7 +474,7 @@ export class State {
     };
   }
 
-  mapConfig() {
+  countyMapConfig() {
     return {
       geoUrl: process.env.PUBLIC_URL + `/topojson/us-states/${this.twoLetterName}-${this.fips()}-${this.name.toLowerCase().replace(" ", "-")}-counties.json`,
       projection: {
@@ -521,6 +562,25 @@ export class Metro {
       trimLastDaysData(this.covidRaw_.Summary.Confirmed)
     );
     let death = getDay2DoubleTimeSeries(
+      trimLastDaysData(this.covidRaw_.Summary.Death)
+    );
+
+    let result = [];
+    for (let k in confirmed) {
+      result.push({
+        fulldate: k,
+        confirmed: confirmed[k],
+        death: death ? death[k] : null,
+      });
+    }
+    return result;
+  }
+
+  async growthRateTimeSeries() {
+    let confirmed = getGrowthRateTimeSeries(
+      trimLastDaysData(this.covidRaw_.Summary.Confirmed)
+    );
+    let death = getGrowthRateTimeSeries(
       trimLastDaysData(this.covidRaw_.Summary.Death)
     );
 
@@ -725,6 +785,29 @@ export class County {
       trimLastDaysData(this.covidRaw_.Confirmed)
     );
     let death = getDay2DoubleTimeSeries(
+      trimLastDaysData(this.covidRaw_.Death)
+    );
+
+    let result = [];
+    for (let k in confirmed) {
+      result.push({
+        fulldate: k,
+        confirmed: confirmed[k],
+        death: death ? death[k] : null,
+      });
+    }
+    return result;
+  }
+
+  async growthRateTimeSeries() {
+    if (!this.covidRaw_.Confirmed) {
+      await this._fetchServerData();
+    }
+
+    let confirmed = getGrowthRateTimeSeries(
+      trimLastDaysData(this.covidRaw_.Confirmed)
+    );
+    let death = getGrowthRateTimeSeries(
       trimLastDaysData(this.covidRaw_.Death)
     );
 
