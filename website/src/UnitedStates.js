@@ -1,6 +1,6 @@
 import routes from "./Routes";
 import { reverse } from 'named-urls';
-import { trimLastDaysData, getDay2DoubleTimeSeries } from "./CovidAnalysis";
+import { trimLastDaysData, getDay2DoubleTimeSeries, getGrowthRateTimeSeries } from "./CovidAnalysis";
 import { CountyInfo } from 'covidmodule';
 import { fetchNPRProjectionData } from "./NPRProjection"
 import { fetchTestingDataStates, fetchTestingDataUS } from "./TestingData"
@@ -189,6 +189,25 @@ export class Country {
       trimLastDaysData(this.covidRaw_.Summary.Confirmed)
     );
     let death = getDay2DoubleTimeSeries(
+      trimLastDaysData(this.covidRaw_.Summary.Death)
+    );
+
+    let result = [];
+    for (let k in confirmed) {
+      result.push({
+        fulldate: k,
+        confirmed: confirmed[k],
+        death: death ? death[k] : null,
+      });
+    }
+    return result;
+  }
+
+  async growthRateTimeSeries() {
+    let confirmed = getGrowthRateTimeSeries(
+      trimLastDaysData(this.covidRaw_.Summary.Confirmed)
+    );
+    let death = getGrowthRateTimeSeries(
       trimLastDaysData(this.covidRaw_.Summary.Death)
     );
 
@@ -406,6 +425,25 @@ export class State {
     return result;
   }
 
+  async growthRateTimeSeries() {
+    let confirmed = getGrowthRateTimeSeries(
+      trimLastDaysData(this.covidRaw_.Summary.Confirmed)
+    );
+    let death = getGrowthRateTimeSeries(
+      trimLastDaysData(this.covidRaw_.Summary.Death)
+    );
+
+    let result = [];
+    for (let k in confirmed) {
+      result.push({
+        fulldate: k,
+        confirmed: confirmed[k],
+        death: death ? death[k] : null,
+      });
+    }
+    return result;
+  }
+
   getProjectionConfig_(state_fips) {
     let state1 = statemap[state_fips];
     let x = (parseFloat(state1.xmin) + parseFloat(state1.xmax)) / 2;
@@ -524,6 +562,25 @@ export class Metro {
       trimLastDaysData(this.covidRaw_.Summary.Confirmed)
     );
     let death = getDay2DoubleTimeSeries(
+      trimLastDaysData(this.covidRaw_.Summary.Death)
+    );
+
+    let result = [];
+    for (let k in confirmed) {
+      result.push({
+        fulldate: k,
+        confirmed: confirmed[k],
+        death: death ? death[k] : null,
+      });
+    }
+    return result;
+  }
+
+  async growthRateTimeSeries() {
+    let confirmed = getGrowthRateTimeSeries(
+      trimLastDaysData(this.covidRaw_.Summary.Confirmed)
+    );
+    let death = getGrowthRateTimeSeries(
       trimLastDaysData(this.covidRaw_.Summary.Death)
     );
 
@@ -728,6 +785,29 @@ export class County {
       trimLastDaysData(this.covidRaw_.Confirmed)
     );
     let death = getDay2DoubleTimeSeries(
+      trimLastDaysData(this.covidRaw_.Death)
+    );
+
+    let result = [];
+    for (let k in confirmed) {
+      result.push({
+        fulldate: k,
+        confirmed: confirmed[k],
+        death: death ? death[k] : null,
+      });
+    }
+    return result;
+  }
+
+  async growthRateTimeSeries() {
+    if (!this.covidRaw_.Confirmed) {
+      await this._fetchServerData();
+    }
+
+    let confirmed = getGrowthRateTimeSeries(
+      trimLastDaysData(this.covidRaw_.Confirmed)
+    );
+    let death = getGrowthRateTimeSeries(
       trimLastDaysData(this.covidRaw_.Death)
     );
 

@@ -9,6 +9,7 @@ import { withStyles } from '@material-ui/core/styles';
 import { withRouter } from 'react-router-dom'
 import { BasicGraphNewCases } from './GraphNewCases.js'
 import { GraphDaysToDoubleOverTime } from './GraphDaysToDoubleOverTime'
+import { GraphGrowthRateOverTime } from './GraphGrowthRateOverTime'
 import { maybeDeathProjectionTabFor } from './GraphDeathProjection.js'
 import { maybeHospitalizationProjectionTabFor } from './GraphHospitalizationProjection';
 import { maybeMapTabFor } from '../Map';
@@ -78,6 +79,11 @@ class UnhookedGraphSection extends React.Component {
         tabs.set('days2x', {
             label: "Doubling",
             content: GraphDaysToDoubleOverTime,
+        });
+
+        tabs.set('growthRate', {
+            label: "Growth",
+            content: GraphGrowthRateOverTime,
         });
 
         const maybeMap = maybeMapTabFor(source);
