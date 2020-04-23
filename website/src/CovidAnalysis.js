@@ -4,6 +4,13 @@ const moment = require('moment');
 const log2 = (a) => Math.log(a) / Math.log(2);
 
 /* this includes the last day */
+function getGrowthRateLinearRegression(data, fips) {
+    const daysToDouble = getDoubleDays7DayLinearRegression(data, fips);
+    const slope = 1 / daysToDouble;
+    return Math.exp(Math.log(2) * slope) - 1;
+}
+
+/* this includes the last day */
 function getDoubleDays7DayLinearRegression(data, fips) {
     let keys = Object.keys(data).sort((a, b) => moment(a, "MM/DD/YYYY").toDate() - moment(b, "MM/DD/YYYY").toDate());
     if (keys.length < 7) {
@@ -23,7 +30,7 @@ function getDoubleDays7DayLinearRegression(data, fips) {
     return 1 / m;
 }
 
-function getDay2DoubleTimeSeries(data) {
+function processForTimeSeries(data, fn) {
     let keys = getKeysSortedByDate(data);
     if (keys.length < 7) {
         return null;
@@ -35,10 +42,18 @@ function getDay2DoubleTimeSeries(data) {
             m[k] = data[k];
             return m;
         }, {});
-        let daysToDouble = getDoubleDays7DayLinearRegression(window);
+        let daysToDouble = fn(window);
         result[set[set.length - 1]] = daysToDouble;
     }
     return result;
+}
+
+function getDay2DoubleTimeSeries(data) {
+    return processForTimeSeries(data, getDoubleDays7DayLinearRegression);
+}
+
+function getGrowthRateTimeSeries(data) {
+    return processForTimeSeries(data, getGrowthRateLinearRegression);
 }
 
 function getKeysSortedByDate(data) {
@@ -55,4 +70,4 @@ function trimLastDaysData(data) {
     return window;
 }
 
-export { trimLastDaysData, getDay2DoubleTimeSeries }
+export { trimLastDaysData, getDay2DoubleTimeSeries, getGrowthRateTimeSeries }
