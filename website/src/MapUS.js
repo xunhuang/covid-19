@@ -1,14 +1,12 @@
 import React from "react";
-import { ComposableMap, Geographies, Geography } from "react-simple-maps";
 import ToggleButton from '@material-ui/lab/ToggleButton';
 import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
-import ReactTooltip from "react-tooltip";
 import * as d3 from "d3-scale";
 
 import { AntSwitch } from "./graphs/AntSwitch"
 import { Grid } from '@material-ui/core';
 import { withRouter } from 'react-router-dom'
-import { Metro } from "./UnitedStates";
+import { MapCountyGeneric } from "./MapCountyGeneric"
 
 const ColorScale = {
     confirmed: d3.scaleLog()
@@ -52,50 +50,6 @@ const CountyNavButtons = withRouter((props) => {
             {state.name}</ToggleButton>
     </ToggleButtonGroup>;
 });
-
-const MapNew = (props) => {
-    const source = props.source instanceof Metro ? props.source.state() : props.source;
-    const config = source.mapConfig();
-    let setTooltipContent = props.setTooltipContent;
-    return (
-        <ComposableMap data-tip=""
-            projection={config.projection.projection}
-            projectionConfig={config.projection.config}
-        >
-            <Geographies geography={config.geoUrl}>
-                {({ geographies }) =>
-                    geographies.map(geo => {
-                        const county_id = geo.id ?? geo.properties.STATEFP + geo.properties.COUNTYFP;
-                        const county = source.countyForId(county_id);
-                        const color = props.colorFunction(county);
-                        return (
-                            <Geography
-                                key={geo.rsmKey}
-                                geography={geo}
-                                stroke={props.stroke}
-                                fill={color}
-                                onMouseEnter={() => {
-                                    setTooltipContent(county);
-                                }}
-                                onMouseLeave={() => {
-                                    setTooltipContent(null);
-                                }}
-                                onClick={() => {
-                                    if (props.selectionCallback) {
-                                        props.selectionCallback(county);
-                                    }
-                                }
-
-                                }
-                            />
-                        );
-                    })
-                }
-            </Geographies>
-        </ComposableMap >
-    );
-};
-
 
 const MapUS = withRouter((props) => {
     const country = props.source;
@@ -144,7 +98,7 @@ const MapUS = withRouter((props) => {
 
 const MapDaysToDouble = React.memo((props) => {
     return (
-        <MapUSGenericCounty
+        <MapCountyGeneric
             {...props}
             stroke={"#000"}
             skipCapita={true}
@@ -168,7 +122,7 @@ const MapDaysToDouble = React.memo((props) => {
 
 const MapUSConfirmed = React.memo((props) => {
     return (
-        <MapUSGenericCounty
+        <MapCountyGeneric
             {...props}
             getCountyDataPoint={(county) => {
                 return county.summary().confirmed;
@@ -189,7 +143,7 @@ const MapUSConfirmed = React.memo((props) => {
 
 const MapStateDeath = React.memo((props) => {
     return (
-        <MapUSGenericCounty
+        <MapCountyGeneric
             {...props}
             stroke={"#000"}
             getCountyDataPoint={(county) => {
@@ -206,38 +160,6 @@ const MapStateDeath = React.memo((props) => {
                     `Deaths/Mil: ${(county.summary().deaths / county.population() * 1000000).toFixed(0)}`
             }}
         />
-    );
-});
-
-const MapUSGenericCounty = React.memo((props) => {
-    const [county, setSelectedCounty] = React.useState("");
-    const source = props.source;
-    return (
-        <div>
-            <MapNew setTooltipContent={setSelectedCounty}
-                source={source}
-                selectionCallback={props.selectionCallback}
-                stroke={props.stroke ?? "#FFF"}
-                colorFunction={(county) => {
-                    if (!county || !props.getCountyDataPoint(county)) {
-                        return "#FFF";
-                    }
-                    let data = props.getCountyDataPoint(county);
-                    let population = county.population();
-                    return (props.perCapita && !props.skipCapita)
-                        ? props.colorFunctionPerMillion(data / population * 1000000)
-                        : props.colorFunction(data);
-                }
-                }
-            />
-            {county &&
-                <ReactTooltip>
-                    {
-                        props.toolip(county)
-                    }
-                </ReactTooltip>
-            }
-        </div>
     );
 });
 

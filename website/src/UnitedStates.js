@@ -201,7 +201,7 @@ export class Country {
     return result;
   }
 
-  mapConfig() {
+  countyMapConfig() {
     return {
       geoUrl: "https://cdn.jsdelivr.net/npm/us-atlas@3/counties-10m.json",
       projection: {
@@ -433,7 +433,7 @@ export class State {
     };
   }
 
-  mapConfig() {
+  countyMapConfig() {
     return {
       geoUrl: process.env.PUBLIC_URL + `/topojson/us-states/${this.twoLetterName}-${this.fips()}-${this.name.toLowerCase().replace(" ", "-")}-counties.json`,
       projection: {
