@@ -160,6 +160,7 @@ export class Country {
     const deathsNew = this.covidRaw_.Summary.LastDeathNew;
     const recovered = this.covidRaw_.Summary.LastRecovered;
     const recoveredNew = this.covidRaw_.Summary.LastRecoveredNew;
+    const tests = this.covidRaw_.Summary.totalTests;
     const generatedTime = (new Date(this.covidRaw_.Summary.generated)).toString();
     return {
       confirmed: confirmed,
@@ -169,6 +170,7 @@ export class Country {
       recovered: recovered,
       recoveredNew: recoveredNew,
       newpercent: ((newcases / (confirmed - newcases)) * 100).toFixed(0),
+      tests: tests,
       generatedTime: generatedTime,
     }
   }
@@ -352,6 +354,7 @@ export class State {
       daysToDoubleDeath: this.covidRaw_.Summary.DaysToDoubleDeath,
       recovered: this.covidRaw_.Summary.LastRecovered,
       recoveredNew: this.covidRaw_.Summary.LastRecoveredNew,
+      tests: this.covidRaw_.Summary.totalTests,
     }
   }
 

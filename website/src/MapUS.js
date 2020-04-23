@@ -7,6 +7,8 @@ import { AntSwitch } from "./graphs/AntSwitch"
 import { Grid } from '@material-ui/core';
 import { withRouter } from 'react-router-dom'
 import { MapCountyGeneric } from "./MapCountyGeneric"
+import { MapStateGeneric } from "./MapStateGeneric";
+import { Country } from "./UnitedStates";
 
 const ColorScale = {
     confirmed: d3.scaleLog()
@@ -24,6 +26,12 @@ const ColorScale = {
     timeToDouble: d3.scaleLog()
         .domain([2, 15, 300])
         .range(["white", "green", "black"]),
+    tests: d3.scaleLog()
+        .domain([10000, 650000])
+        .range(["white", "green", "black"]),
+    testsPerMillions: d3.scaleLog()
+        .domain([7200, 33000])
+        .range(["white", "green"]),
 }
 
 const CountyNavButtons = withRouter((props) => {
@@ -52,7 +60,7 @@ const CountyNavButtons = withRouter((props) => {
 });
 
 const MapUS = withRouter((props) => {
-    const country = props.source;
+    const source = props.source;
     const [subtab, setAlignment] = React.useState(getURLParam(props.history.location.search, "detailed") ?? 'confirmed');
     const [perCapita, setPerCapita] = React.useState(true);
     const [selectedCounty, setSelectedCounty] = React.useState(null);
@@ -69,12 +77,16 @@ const MapUS = withRouter((props) => {
         <ToggleButton size="small" value="confirmed"> Confirmed </ToggleButton>
         <ToggleButton value="death"> Death </ToggleButton>
         <ToggleButton value="daysToDouble"> Days to Double </ToggleButton>
+        {source instanceof Country &&
+            <ToggleButton value="testCoverage"> Tests</ToggleButton>
+        }
     </ToggleButtonGroup>;
 
     const MyMap = {
-        confirmed: <MapUSConfirmed {...props} source={country} perCapita={perCapita} selectionCallback={setSelectedCounty} />,
-        death: <MapStateDeath {...props} source={country} perCapita={perCapita} selectionCallback={setSelectedCounty} />,
-        daysToDouble: <MapDaysToDouble {...props} source={country} perCapita={perCapita} selectionCallback={setSelectedCounty} />,
+        confirmed: <MapUSConfirmed {...props} source={source} perCapita={perCapita} selectionCallback={setSelectedCounty} />,
+        death: <MapStateDeath {...props} source={source} perCapita={perCapita} selectionCallback={setSelectedCounty} />,
+        daysToDouble: <MapDaysToDouble {...props} source={source} perCapita={perCapita} selectionCallback={setSelectedCounty} />,
+        testCoverage: <MapUSTestCoverage {...props} source={source} perCapita={perCapita} selectionCallback={setSelectedCounty} />,
     }
 
     return <div>
@@ -162,6 +174,28 @@ const MapStateDeath = React.memo((props) => {
         />
     );
 });
+
+const MapUSTestCoverage = React.memo((props) => {
+    return (
+        <MapStateGeneric
+            {...props}
+            getCountyDataPoint={(county) => {
+                return county.summary().tests;
+            }}
+            colorFunction={(data) => {
+                return ColorScale.tests(data);
+            }}
+            colorFunctionPerMillion={(data) => {
+                return ColorScale.testsPerMillions(data);
+            }}
+            toolip={county => {
+                return `${county.name}, Tests: ${county.summary().tests}, \n` +
+                    `Tests % : ${(county.summary().tests / county.population() * 100).toFixed(1)}%`
+            }}
+        />
+    );
+});
+
 
 function getURLParam(url, key) {
     const params = new URLSearchParams(url);
