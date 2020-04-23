@@ -1,10 +1,8 @@
 import React from "react";
-import { useContext } from "react";
 import { ComposableMap, Geographies, Geography } from "react-simple-maps";
 import ToggleButton from '@material-ui/lab/ToggleButton';
 import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
 import ReactTooltip from "react-tooltip";
-import { CountryContext } from "./CountryContext";
 import * as d3 from "d3-scale";
 
 import { AntSwitch } from "./graphs/AntSwitch"
@@ -15,14 +13,19 @@ const geoUrl = "https://cdn.jsdelivr.net/npm/us-atlas@3/counties-10m.json";
 
 const MapNew = (props) => {
     const source = props.source;
+    const config = source.mapConfig();
     let setTooltipContent = props.setTooltipContent;
     let url = geoUrl;
     return (
-        <ComposableMap data-tip="" projection="geoAlbersUsa" >
-            <Geographies geography={url}>
+        <ComposableMap data-tip=""
+            projection={config.projection.projection}
+            projectionConfig={config.projection.config}
+        >
+            <Geographies geography={config.geoUrl}>
                 {({ geographies }) =>
                     geographies.map(geo => {
-                        const county = source.countyForId(geo.id);
+                        const county_id = geo.id ?? geo.properties.STATEFP + geo.properties.COUNTYFP;
+                        const county = source.countyForId(county_id);
                         const color = props.colorFunction(county);
                         return (
                             <Geography
@@ -78,7 +81,7 @@ const CountyNavButtons = withRouter((props) => {
 });
 
 const MapUS = withRouter((props) => {
-    const country = useContext(CountryContext);
+    const country = props.source;
     const [subtab, setAlignment] = React.useState(getURLParam(props.history.location.search, "detailed") ?? 'confirmed');
     const [perCapita, setPerCapita] = React.useState(true);
     const [selectedCounty, setSelectedCounty] = React.useState(null);
@@ -104,11 +107,8 @@ const MapUS = withRouter((props) => {
     }
 
     return <div>
+        {buttonGroup}
         <Grid container alignItems="center">
-            <Grid item>
-                {buttonGroup}
-            </Grid>
-            <Grid item xs />
             <Grid item>
                 <AntSwitch checked={perCapita} onClick={() => { setPerCapita(!perCapita) }} />
             </Grid>
@@ -162,7 +162,6 @@ const MapStateDay2Doulbe = React.memo((props) => {
 const MapStateDeath = React.memo((props) => {
     const [county, setSelectedCounty] = React.useState("");
     const source = props.source;
-    let c = source.allCounties().map(c => c.summary().deaths / c.population() * 1000000);
     return (
         <div>
             <MapNew setTooltipContent={setSelectedCounty} source={source}
@@ -194,7 +193,7 @@ const MapStateDeath = React.memo((props) => {
 
 const ColorScale = {
     confirmed: d3.scaleLog()
-        .domain([1, 200, 10000])
+        .domain([0, 200, 10000])
         .range(["white", "red", "black"]),
     confirmedPerMillion: d3.scaleLog()
         .domain([100, 1000, 10000])
@@ -220,11 +219,11 @@ const MapUSConfirmed = React.memo((props) => {
                 selectionCallback={props.selectionCallback}
                 stroke={"#FFF"}
                 colorFunction={(county) => {
-                    if (!county) {
-                        return "#FFF";
-                    }
                     let confirmed = county.summary().confirmed;
                     let population = county.population();
+                    if (!county || !confirmed) {
+                        return "#FFF";
+                    }
                     return props.perCapita
                         ? ColorScale.confirmedPerMillion(confirmed / population * 1000000)
                         : ColorScale.confirmed(confirmed);
