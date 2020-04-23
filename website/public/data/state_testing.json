@@ -10750,9 +10750,9 @@
     "fips": "11",
     "deathIncrease": 5,
     "hospitalizedIncrease": 0,
-    "negativeIncrease": -132,
+    "negativeIncrease": 102,
     "positiveIncrease": 139,
-    "totalTestResultsIncrease": 7
+    "totalTestResultsIncrease": 241
   },
   {
     "date": 20200415,
@@ -12234,7 +12234,7 @@
     "date": 20200414,
     "state": "DC",
     "positive": 2058,
-    "negative": 9460,
+    "negative": 9226,
     "pending": null,
     "hospitalizedCurrently": 295,
     "hospitalizedCumulative": null,
@@ -12243,19 +12243,19 @@
     "onVentilatorCurrently": 31,
     "onVentilatorCumulative": null,
     "recovered": 518,
-    "hash": "dc7f96bf94ab41fd6342449f5b01cbfdcb6afdbe",
+    "hash": "dafa456b34fa9ba6b89253015b782876f6cbefe1",
     "dateChecked": "2020-04-14T20:00:00Z",
     "death": 67,
     "hospitalized": null,
-    "total": 11518,
-    "totalTestResults": 11518,
-    "posNeg": 11518,
+    "total": 11284,
+    "totalTestResults": 11284,
+    "posNeg": 11284,
     "fips": "11",
     "deathIncrease": 14,
     "hospitalizedIncrease": 0,
-    "negativeIncrease": 481,
+    "negativeIncrease": 247,
     "positiveIncrease": 103,
-    "totalTestResultsIncrease": 584
+    "totalTestResultsIncrease": 350
   },
   {
     "date": 20200414,
