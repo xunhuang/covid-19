@@ -75,15 +75,10 @@ class UnhookedGraphSection extends React.Component {
             });
         }
 
-
-        tabs.set('days2x', {
-            label: "Doubling",
-            content: GraphDaysToDoubleOverTime,
-        });
-
         tabs.set('growthRate', {
             label: "Growth",
             content: GraphGrowthRateOverTime,
+            showRibbon: true,
         });
 
         const maybeMap = maybeMapTabFor(source);
@@ -94,6 +89,11 @@ class UnhookedGraphSection extends React.Component {
                 showRibbon: true,  // TO SHOW THE RIBBON ADD A LINE LIKE THIS
             });
         }
+
+        tabs.set('days2x', {
+            label: "Doubling",
+            content: GraphDaysToDoubleOverTime,
+        });
 
         if (source instanceof State || source instanceof Country) {
             tabs.set('detailed', {

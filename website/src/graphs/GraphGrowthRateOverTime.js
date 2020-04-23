@@ -40,9 +40,9 @@ const GraphGrowthRateOverTime = (props) => {
 
     if (state.show2weeks) {
         const cutoff = moment().subtract(14, 'days')
-        data = data.filter(d => {
-            return moment(d.fulldate, "MM/DD/YYYY").isAfter(cutoff)
-        });
+        // data = data.filter(d => {
+        // return moment(d.fulldate, "MM/DD/YYYY").isAfter(cutoff)
+        // });
     } else {
         const cutoff = moment().subtract(30, 'days')
         data = data.filter(d => {
@@ -57,23 +57,24 @@ const GraphGrowthRateOverTime = (props) => {
 
     return <>
         <Grid container alignItems="center" spacing={1}>
+            <Grid item >
+                <Typography variant="body1">
+                    Daily Growth Rate
+                </Typography>
+            </Grid>
+            <Grid item xs />
             <Grid item>
                 <AntSwitch checked={state.show30days} onClick={handle2WeeksToggle} />
             </Grid>
             <Grid item onClick={handle2WeeksToggle}>
                 <Typography>
-                    2 weeks
-                </Typography>
-            </Grid>
-            <Grid item >
-                <Typography>
-                    Growth rate calculated using exponential fitting line over previous 7 days.
+                    All Dates
                 </Typography>
             </Grid>
         </Grid >
         <ResponsiveContainer height={300} >
             <LineChart
-                data={data}                
+                data={data}
                 margin={{ top: 5, right: 30, left: 5, bottom: 5 }}
             >
                 <XAxis dataKey="name" />
