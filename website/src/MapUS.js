@@ -10,6 +10,49 @@ import { Grid } from '@material-ui/core';
 import { withRouter } from 'react-router-dom'
 import { Metro } from "./UnitedStates";
 
+const ColorScale = {
+    confirmed: d3.scaleLog()
+        .domain([1, 200, 10000])
+        .range(["white", "red", "black"]),
+    confirmedPerMillion: d3.scaleLog()
+        .domain([100, 1000, 10000])
+        .range(["white", "red", "black"]),
+    death: d3.scaleLog()
+        .domain([1, 100, 1000])
+        .range(["white", "blue", "black"]),
+    deathPerMillion: d3.scaleLog()
+        .domain([10, 100, 1000])
+        .range(["white", "blue", "black"]),
+    timeToDouble: d3.scaleLog()
+        .domain([2, 15, 300])
+        .range(["white", "green", "black"]),
+}
+
+const CountyNavButtons = withRouter((props) => {
+    const county = props.county;
+    const state = county.state();
+    const metro = county.metro();
+    const history = props.history;
+    return <ToggleButtonGroup
+        value={null}
+        exclusive
+        size="large"
+        onChange={(e, route) => {
+            history.push(route);
+        }}
+    >
+        <ToggleButton size="small" value={county.routeTo()} >
+            {county.name}
+        </ToggleButton>
+        {metro &&
+            <ToggleButton value={metro.routeTo()} >
+                {metro.name} </ToggleButton>
+        }
+        <ToggleButton value={state.routeTo()} >
+            {state.name}</ToggleButton>
+    </ToggleButtonGroup>;
+});
+
 const MapNew = (props) => {
     const source = props.source instanceof Metro ? props.source.state() : props.source;
     const config = source.mapConfig();
@@ -53,30 +96,6 @@ const MapNew = (props) => {
     );
 };
 
-const CountyNavButtons = withRouter((props) => {
-    const county = props.county;
-    const state = county.state();
-    const metro = county.metro();
-    const history = props.history;
-    return <ToggleButtonGroup
-        value={null}
-        exclusive
-        size="large"
-        onChange={(e, route) => {
-            history.push(route);
-        }}
-    >
-        <ToggleButton size="small" value={county.routeTo()} >
-            {county.name}
-        </ToggleButton>
-        {metro &&
-            <ToggleButton value={metro.routeTo()} >
-                {metro.name} </ToggleButton>
-        }
-        <ToggleButton value={state.routeTo()} >
-            {state.name}</ToggleButton>
-    </ToggleButtonGroup>;
-});
 
 const MapUS = withRouter((props) => {
     const country = props.source;
@@ -101,7 +120,7 @@ const MapUS = withRouter((props) => {
     const MyMap = {
         confirmed: <MapUSConfirmed {...props} source={country} perCapita={perCapita} selectionCallback={setSelectedCounty} />,
         death: <MapStateDeath {...props} source={country} perCapita={perCapita} selectionCallback={setSelectedCounty} />,
-        daysToDouble: <MapStateDay2Doulbe {...props} source={country} perCapita={perCapita} selectionCallback={setSelectedCounty} />,
+        daysToDouble: <MapDaysToDouble {...props} source={country} perCapita={perCapita} selectionCallback={setSelectedCounty} />,
     }
 
     return <div>
@@ -123,91 +142,74 @@ const MapUS = withRouter((props) => {
     </div >
 });
 
-const MapStateDay2Doulbe = React.memo((props) => {
-    const [county, setContent] = React.useState("");
-    const source = props.source;
-    function setCounty(c) {
-        setContent(c)
-    }
-    let content;
-    if (county) {
-        let days = county.summary().daysToDouble;
-        days = days ? days.toFixed(1) + " days" : "no data"
-        content =
-            `${county.name} Days to 2x: \n${days}`
-    }
-
+const MapDaysToDouble = React.memo((props) => {
     return (
-        <div>
-            <MapNew setTooltipContent={setCounty} source={source}
-                selectionCallback={props.selectionCallback}
-                stroke={"#000"}
-                colorFunction={(county) => {
-                    if (!county || !county.summary().daysToDouble) {
-                        return "#FFF";
-                    }
-                    return ColorScale.timeToDouble(county.summary().daysToDouble);
-                }
-                }
-            />
-            <ReactTooltip>
-                {content}
-            </ReactTooltip>
-        </div>
+        <MapUSGenericCounty
+            {...props}
+            stroke={"#000"}
+            skipCapita={true}
+            getCountyDataPoint={(county) => {
+                return county.summary().daysToDouble;
+            }}
+            colorFunction={(data) => {
+                return ColorScale.timeToDouble(data);
+            }}
+            colorFunctionPerMillion={(data) => {
+                return ColorScale.timeToDouble(data);
+            }}
+            toolip={county => {
+                let days = county.summary().daysToDouble;
+                days = days ? days.toFixed(1) + " days" : "no data"
+                return `${county.name} Days to 2x: \n${days}`
+            }}
+        />
+    );
+});
+
+const MapUSConfirmed = React.memo((props) => {
+    return (
+        <MapUSGenericCounty
+            {...props}
+            getCountyDataPoint={(county) => {
+                return county.summary().confirmed;
+            }}
+            colorFunction={(data) => {
+                return ColorScale.confirmed(data);
+            }}
+            colorFunctionPerMillion={(data) => {
+                return ColorScale.confirmedPerMillion(data);
+            }}
+            toolip={county => {
+                return `${county.name}, Confirmed: ${county.summary().confirmed}, \n` +
+                    `Confirm/Mil: ${(county.summary().confirmed / county.population() * 1000000).toFixed(0)}`
+            }}
+        />
     );
 });
 
 const MapStateDeath = React.memo((props) => {
-    const [county, setSelectedCounty] = React.useState("");
-    const source = props.source;
     return (
-        <div>
-            <MapNew setTooltipContent={setSelectedCounty} source={source}
-                selectionCallback={props.selectionCallback}
-                stroke={"#000"}
-                colorFunction={(county) => {
-                    if (!county || !county.summary().deaths) {
-                        return "#FFF";
-                    }
-                    let deaths = county.summary().deaths;
-                    let population = county.population();
-                    return props.perCapita
-                        ? ColorScale.deathPerMillion(deaths / population * 1000000)
-                        : ColorScale.death(deaths);
-                }
-                }
-            />
-            {county &&
-                <ReactTooltip>
-                    {
-                        `${county.name}, Deaths: ${county.summary().deaths}, \n` +
-                        `Deaths/Mil: ${(county.summary().deaths / county.population() * 1000000).toFixed(0)}`
-                    }
-                </ReactTooltip>
-            }
-        </div>
+        <MapUSGenericCounty
+            {...props}
+            stroke={"#000"}
+            getCountyDataPoint={(county) => {
+                return county.summary().deaths;
+            }}
+            colorFunction={(data) => {
+                return ColorScale.death(data);
+            }}
+            colorFunctionPerMillion={(data) => {
+                return ColorScale.deathPerMillion(data);
+            }}
+            toolip={county => {
+                return `${county.name}, Deaths: ${county.summary().deaths}, \n` +
+                    `Deaths/Mil: ${(county.summary().deaths / county.population() * 1000000).toFixed(0)}`
+            }}
+        />
     );
 });
 
-const ColorScale = {
-    confirmed: d3.scaleLog()
-        .domain([1, 200, 10000])
-        .range(["white", "red", "black"]),
-    confirmedPerMillion: d3.scaleLog()
-        .domain([100, 1000, 10000])
-        .range(["white", "red", "black"]),
-    death: d3.scaleLog()
-        .domain([1, 100, 1000])
-        .range(["white", "blue", "black"]),
-    deathPerMillion: d3.scaleLog()
-        .domain([10, 100, 1000])
-        .range(["white", "blue", "black"]),
-    timeToDouble: d3.scaleLog()
-        .domain([2, 15, 300])
-        .range(["white", "green", "black"]),
-}
-
-const MapUSConfirmed = React.memo((props) => {
+const MapUSGenericCounty = React.memo((props) => {
     const [county, setSelectedCounty] = React.useState("");
     const source = props.source;
     return (
@@ -215,24 +217,23 @@ const MapUSConfirmed = React.memo((props) => {
             <MapNew setTooltipContent={setSelectedCounty}
                 source={source}
                 selectionCallback={props.selectionCallback}
-                stroke={"#FFF"}
+                stroke={props.stroke ?? "#FFF"}
                 colorFunction={(county) => {
-                    if (!county || !county.summary().confirmed) {
+                    if (!county || !props.getCountyDataPoint(county)) {
                         return "#FFF";
                     }
-                    let confirmed = county.summary().confirmed;
+                    let data = props.getCountyDataPoint(county);
                     let population = county.population();
-                    return props.perCapita
-                        ? ColorScale.confirmedPerMillion(confirmed / population * 1000000)
-                        : ColorScale.confirmed(confirmed);
+                    return (props.perCapita && !props.skipCapita)
+                        ? props.colorFunctionPerMillion(data / population * 1000000)
+                        : props.colorFunction(data);
                 }
                 }
             />
             {county &&
                 <ReactTooltip>
                     {
-                        `${county.name}, Confirmed: ${county.summary().confirmed}, \n` +
-                        `Confirm/Mil: ${(county.summary().confirmed / county.population() * 1000000).toFixed(0)}`
+                        props.toolip(county)
                     }
                 </ReactTooltip>
             }
