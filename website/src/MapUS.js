@@ -191,7 +191,7 @@ const MapStateDeath = React.memo((props) => {
 
 const ColorScale = {
     confirmed: d3.scaleLog()
-        .domain([0, 200, 10000])
+        .domain([1, 200, 10000])
         .range(["white", "red", "black"]),
     confirmedPerMillion: d3.scaleLog()
         .domain([100, 1000, 10000])
