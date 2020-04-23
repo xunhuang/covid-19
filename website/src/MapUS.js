@@ -107,11 +107,8 @@ const MapUS = withRouter((props) => {
     }
 
     return <div>
+        {buttonGroup}
         <Grid container alignItems="center">
-            <Grid item>
-                {buttonGroup}
-            </Grid>
-            <Grid item xs />
             <Grid item>
                 <AntSwitch checked={perCapita} onClick={() => { setPerCapita(!perCapita) }} />
             </Grid>
