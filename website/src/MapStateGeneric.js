@@ -36,6 +36,7 @@ const useStyles = makeStyles(theme => ({
     stroke: "#DDD",
     strokeWidth: 0.1,
     width: '95vw',
+    minHeight: 300,
   },
   marker: {
     fill: '#303030',
