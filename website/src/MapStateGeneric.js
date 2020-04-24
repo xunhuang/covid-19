@@ -9,6 +9,7 @@ import {
 import ReactTooltip from "react-tooltip";
 import { geoCentroid } from "d3-geo";
 import { CountyInfo } from 'covidmodule';
+import { makeStyles } from '@material-ui/core/styles';
 
 const geoUrl = "https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json";
 
@@ -24,10 +25,27 @@ const offsets = {
     DC: [49, 21]
 };
 
+const useStyles = makeStyles(theme => ({
+    container: {
+      display: 'flex',
+      justifyContent: 'center',
+    },
+    map: {
+      fontFamily: theme.typography.fontFamily,
+      maxHeight: '100vh',
+      strokeWidth: 0.1,
+      width: '95vw',
+    },
+    marker: {
+      fill: '#303030',
+    },
+}));
+
 const MapStates = (props) => {
-    let setTooltipContent = props.setTooltipContent;
+    const classes = useStyles();
+    const setTooltipContent = props.setTooltipContent;
     return (
-        <ComposableMap data-tip="" projection="geoAlbersUsa">
+        <ComposableMap className={classes.map} data-tip="" projection="geoAlbersUsa">
             <Geographies geography={geoUrl}>
                 {({ geographies }) => (
                     <>
@@ -61,7 +79,7 @@ const MapStates = (props) => {
                                         centroid[0] > -160 &&
                                         centroid[0] < -67 &&
                                         (Object.keys(offsets).indexOf(cur.id) === -1 ? (
-                                            <Marker coordinates={centroid}>
+                                            <Marker coordinates={centroid} className={classes.marker}>
                                                 <text y="2" fontSize={14} textAnchor="middle">
                                                     {cur.id}
                                                 </text>
@@ -90,8 +108,9 @@ const MapStates = (props) => {
 const MapStateGeneric = React.memo((props) => {
     const [state, setSelectedState] = React.useState("");
     const source = props.source;
+    const classes = useStyles();
     return (
-        <div>
+        <div className={classes.container}>
             <MapStates setTooltipContent={setSelectedState}
                 source={source}
                 selectionCallback={props.selectionCallback}

@@ -2,13 +2,39 @@ import React from "react";
 import { ComposableMap, Geographies, Geography } from "react-simple-maps";
 import ReactTooltip from "react-tooltip";
 import { Metro } from "./UnitedStates";
+import { makeStyles } from '@material-ui/core/styles';
+
+const NO_DATA_COLOR = '#fcfcfc';
+
+const useStyles = makeStyles(theme => ({
+    container: {
+      display: 'flex',
+      justifyContent: 'center',
+    },
+    map: {
+      maxHeight: '100vh',
+      stroke: '#aaaaaaaa',
+      strokeWidth: 0.1,
+      width: '95vw',
+    },
+    small: {
+      maxHeight: '50vh',
+    },
+}));
 
 const MapNew = (props) => {
+    const classes = useStyles();
+
     const source = props.source instanceof Metro ? props.source.state() : props.source;
     const config = source.countyMapConfig();
-    let setTooltipContent = props.setTooltipContent;
+    // Gross!
+    const isZoomed = !!config.projection.config;
+
+    const setTooltipContent = props.setTooltipContent;
     return (
-        <ComposableMap data-tip=""
+        <ComposableMap
+            className={`${classes.map} ${isZoomed ? classes.small : ''}`}
+            data-tip=""
             projection={config.projection.projection}
             projectionConfig={config.projection.config}
         >
@@ -22,7 +48,6 @@ const MapNew = (props) => {
                             <Geography
                                 key={geo.rsmKey}
                                 geography={geo}
-                                stroke={props.stroke}
                                 fill={color}
                                 onMouseEnter={() => {
                                     setTooltipContent(county);
@@ -49,15 +74,15 @@ const MapNew = (props) => {
 const MapCountyGeneric = React.memo((props) => {
     const [county, setSelectedCounty] = React.useState("");
     const source = props.source;
+    const classes = useStyles();
     return (
-        <div>
+        <div className={classes.container}>
             <MapNew setTooltipContent={setSelectedCounty}
                 source={source}
                 selectionCallback={props.selectionCallback}
-                stroke={props.stroke ?? "#DDD"}
                 colorFunction={(county) => {
                     if (!county || !props.getCountyDataPoint(county)) {
-                        return "#FFF";
+                        return NO_DATA_COLOR;
                     }
                     let data = props.getCountyDataPoint(county);
                     let population = county.population();
@@ -78,4 +103,4 @@ const MapCountyGeneric = React.memo((props) => {
     );
 });
 
-export { MapCountyGeneric }
+export { NO_DATA_COLOR, MapCountyGeneric }
