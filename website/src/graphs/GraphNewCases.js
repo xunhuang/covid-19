@@ -4,15 +4,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Typography } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
 import { scaleSymlog } from 'd3-scale';
-import { DataCreditWidget } from './DataCredit';
 import { datesToDays, fitExponentialTrendingLine } from './TrendFitting';
-import Button from '@material-ui/core/Button';
 import Checkbox from '@material-ui/core/Checkbox';
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
 import FormControl from '@material-ui/core/FormControl';
 import Input from '@material-ui/core/Input';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -137,7 +130,6 @@ const BasicGraphNewCases = (props) => {
   }
   const classes = useStyles();
   const [state, setState] = React.useState(CookieGetPreference());
-  const [open, setOpen] = React.useState(false);
 
   const [USData, setUSdata] = React.useState(null);
   React.useEffect(() => {
@@ -149,11 +141,6 @@ const BasicGraphNewCases = (props) => {
   }
 
   let data = USData;
-
-  const handleClose = () => {
-    setOpen(false);
-  };
-
   const setStateSticky = (state) => {
     CookieSetPreference(state);
     setState(state);
@@ -308,23 +295,6 @@ const BasicGraphNewCases = (props) => {
           2 weeks
                 </Typography>
       </Grid>
-      <Grid item></Grid>
-      <Dialog
-        open={open}
-        onClose={handleClose}
-      >
-        <DialogTitle id="alert-dialog-title">{"Data Credit"}</DialogTitle>
-        <DialogContent>
-          <DialogContentText id="alert-dialog-description">
-            <DataCreditWidget></DataCreditWidget>
-          </DialogContentText>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose} color="primary" autoFocus>
-            OK
-                    </Button>
-        </DialogActions>
-      </Dialog>
       <Grid item xs></Grid>
 
       <Grid item>
