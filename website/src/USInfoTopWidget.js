@@ -99,9 +99,9 @@ const useStyles = makeStyles(theme => ({
 
 const USInfoTopWidget = withRouter((props) => {
     const county = props.county;
-    const metro = props.metro;
-    const state = props.state;
-    const country = props.country;
+    const metro = county.metro();
+    const state = county.state();
+    const country = state.country();
 
     const [notMetro] = React.useState(!metro)
     const [showDeaths] = React.useState(false)

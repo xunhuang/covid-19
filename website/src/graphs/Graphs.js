@@ -48,12 +48,21 @@ const RibbonBadge = withStyles({
 class UnhookedGraphSection extends React.Component {
 
     static getDerivedStateFromProps(props, state) {
-        const desired = getUnvalidated(props.location, 'tab');
-        if (!state || state.tab !== desired) {
-            return { tab: desired };
+        const desired = UnhookedGraphSection.getDesiredState(props);
+        if (!state || state.tab !== desired.tab) {
+            return desired;
         } else {
             return null;
         }
+    }
+
+    static getDesiredState(props) {
+        return {tab: getUnvalidated(props.location, 'tab')};
+    }
+
+    constructor(props) {
+        super(props);
+        this.state = UnhookedGraphSection.getDesiredState(props);
     }
 
     render() {
@@ -155,12 +164,21 @@ export const GraphSection =
 class UnhookedDetailedGraphs extends React.Component {
 
     static getDerivedStateFromProps(props, state) {
-        const desired = getUnvalidated(props.location, 'detailed');
-        if (!state || state.viewing !== desired) {
-            return { viewing: desired };
+        const desired = UnhookedDetailedGraphs.getDesiredState(props);
+        if (!state || state.viewing !== desired.viewing) {
+            return desired;
         } else {
             return null;
         }
+    }
+
+    static getDesiredState(props) {
+        return {viewing: getUnvalidated(props.location, 'detailed')};
+    }
+
+    constructor(props) {
+        super(props);
+        this.state = UnhookedDetailedGraphs.getDesiredState(props);
     }
 
     render() {

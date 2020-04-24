@@ -11,6 +11,7 @@ import {
     ListAllStatesTesting,
 } from "./ListAllStates.js"
 import { logger } from "./AppModule"
+import { Title } from './Title';
 
 const PageUS = withHeader((props) => {
     const country = useContext(CountryContext);
@@ -28,13 +29,13 @@ const PageUS = withHeader((props) => {
 
     return (
         <>
-            <USInfoTopWidget
-                county={county}
-                metro={county ? county.metro() : null}
-                state={state}
-                country={country}
-                selectedTab={"usa"}
+            <Title
+                title={country.longName}
+                desc={`${country.longName} county-level COVID-19 30-day data visualized: `
+                          + `confirmed cases, new cases & death curves, `
+                          + `testing results & hospitalization numbers.`}
             />
+            <USInfoTopWidget county={county} selectedTab={"usa"} />
             <GraphSection source={country} />
             <MyTabs
                 labels={["States of USA", "Testing", "Capita"]}

@@ -3,7 +3,8 @@ import { withHeader } from "./Header.js"
 import { CountryContext } from "./CountryContext";
 import { USInfoTopWidget } from './USInfoTopWidget.js'
 import * as Util from "./Util.js"
-import { Box } from '@material-ui/core'
+import { Box } from '@material-ui/core';
+import { Title } from './Title';
 
 const textStyle = {
     color: 'white',
@@ -19,6 +20,12 @@ const Page404 = withHeader(() => {
             .countyForName(default_county_info.county)
     return (
         <>
+            <Title
+                title="Page not found"
+                desc={`${country.name} county-level COVID-19 30-day data visualized: `
+                          + `confirmed cases, new cases & death curves, `
+                          + `testing results & hospitalization numbers.`}
+            />
             <USInfoTopWidget county={county} selectedTab={"usa"} />
             <Box
                 display="flex"
