@@ -143,6 +143,7 @@ async function doit() {
             console.log("Deploying");
             await deploy();
             execSync(`git commit -am "data push"`);
+            execSync(`git push `);
         } else {
             await data_summary();
         }
