@@ -8,17 +8,17 @@ const NO_DATA_COLOR = '#fcfcfc';
 
 const useStyles = makeStyles(theme => ({
     container: {
-      display: 'flex',
-      justifyContent: 'center',
+        display: 'flex',
+        justifyContent: 'center',
     },
     map: {
-      maxHeight: '100vh',
-      stroke: '#aaaaaaaa',
-      strokeWidth: 0.1,
-      width: '95vw',
+        maxHeight: '100vh',
+        stroke: '#DDD',
+        strokeWidth: 1,
+        width: '95vw',
     },
     small: {
-      maxHeight: '50vh',
+        maxHeight: '50vh',
     },
 }));
 
