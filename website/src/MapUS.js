@@ -93,7 +93,7 @@ const MapUS = withRouter((props) => {
     <ToggleButton value="confirmed"> Confirmed </ToggleButton>
     <ToggleButton value="confirmedNew"> New </ToggleButton>
     <ToggleButton value="death"> Death </ToggleButton>
-    <ToggleButton value="daysToDouble"> Days to Double </ToggleButton>
+    <ToggleButton value="daysToDouble"> Growth </ToggleButton>
     {source instanceof Country &&
       <ToggleButton value="testCoverage"> Tests</ToggleButton>
     }
@@ -133,7 +133,7 @@ const MapDaysToDouble = React.memo((props) => {
       {...props}
       skipCapita={true}
       getCountyDataPoint={(county) => {
-        return county.summary().daysToDouble;
+        return county.summary().daysToDouble > 0 ? county.summary().daysToDouble : 0;
       }}
       colorFunction={(data) => {
         return ColorScale.timeToDouble(data);
@@ -143,8 +143,12 @@ const MapDaysToDouble = React.memo((props) => {
       }}
       toolip={county => {
         let days = county.summary().daysToDouble;
-        days = days ? days.toFixed(1) + " days" : "no data"
-        return `${county.name} Days to 2x: \n${days}`
+        let dailygrowth = Math.exp(Math.log(2) * (1 / days)) - 1;
+        if (!days) {
+          return `${county.name} no data`;
+        }
+        days = days.toFixed(1) + " days";
+        return `${county.name}, Daily Growth: ${(dailygrowth * 100).toFixed(1)}%, Days to 2x: \n${days}`
       }}
     />
   );
