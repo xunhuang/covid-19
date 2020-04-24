@@ -9,7 +9,7 @@ import { Link as MaterialLink } from '@material-ui/core';
 import { Grid } from '@material-ui/core';
 import { SectionHeader } from "./CovidUI"
 import { withRouter } from 'react-router-dom'
-import Link from '@material-ui/core/Link';
+import { Link as RouterLink } from 'react-router-dom';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import { MentalHealthResourceSection } from './MentalHealthTab';
@@ -120,13 +120,17 @@ const WhatsNewSection = (props) => {
              </Typography>
         </SectionHeader>
         {data.map((item, i) =>
-            <Grid container wrap="nowrap">
+            <Grid container wrap="nowrap" key={item.Feature}>
                 <Grid item className={classes.newsDate}>
                     <div>{moment(item.Date, "MM/DD/YYYY").format("M/D")}</div>
                 </Grid>
                 <Grid item className={classes.newsTitle}>
                     <Typography variant="body1" noWrap>
-                        <a href={item.Link.length > 0 ? item.Link : null}> {item.Feature}</a>
+                        {(item.Link &&
+                                <MaterialLink to={item.Link} component={RouterLink}>
+                                    {item.Feature}
+                                </MaterialLink>) ||
+                            item.Feature}
                     </Typography>
 
                     <Typography variant="body2" noWrap>
@@ -150,7 +154,7 @@ const NewsSection = (props) => {
              </Typography>
         </SectionHeader>
         {data.map((item, i) =>
-            <Grid container alignItems="center" wrap="nowrap">
+            <Grid container alignItems="center" wrap="nowrap" key={item.link}>
                 <Grid item className={classes.newsDate}>
                     <div>{moment(item.Date, "MM/DD/YYYY").format("M/D")}</div>
                 </Grid>
@@ -201,9 +205,13 @@ const Banner = withRouter((props) => {
     const classes = useStyles();
     const country = useContext(CountryContext);
     const [showNews, setShowNews] = React.useState(false);
+    const toggleNews = (e) => {
+        setShowNews(!showNews);
+        e.preventDefault();
+    };
 
-    let us_summary = country.summary();
-    let url_shared =
+    const us_summary = country.summary();
+    const url_shared =
         "https://covid-19.direct" +
         props.match.url +
         history.location.search;
@@ -230,8 +238,7 @@ const Banner = withRouter((props) => {
                         this too shall pass
             </Typography>
                     <DonateButton />
-                    <Typography variant="body1" onClick={() => setShowNews(!showNews)} >
-                    </Typography>
+                    <MaterialLink variant="body1" onClick={toggleNews} href="#" />
                 </span>
             </div >
             {showNews &&
@@ -260,9 +267,9 @@ const QPArea = (props) => {
             <div>
                 We added NYC and Bay Area as a "Metro" area with multiple counties. What new metro areas
                 should we include?
-                    <Link href="#discussion">
+                    <MaterialLink href="#discussion">
                     Make a suggestion here.
-                    </Link>
+                    </MaterialLink>
             </div>
             <IconButton size="small" aria-label="close" color="inherit" onClick={() => { handleClose(QPID) }}>
                 <CloseIcon fontSize="small" />
