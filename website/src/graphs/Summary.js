@@ -1,6 +1,6 @@
 import React from 'react';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
-import { Paper, Hidden } from '@material-ui/core';
+import { Paper } from '@material-ui/core';
 import { County } from '../UnitedStates';
 import { myShortNumber } from '../Util';
 import { useHistory } from 'react-router-dom'

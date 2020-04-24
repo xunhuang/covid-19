@@ -40,6 +40,9 @@ export function makeDataSeriesFromTotal(data, key_total, key_daily, key_moving) 
             let lastentry = data[lastday];
             if (lastentry !== null) {
                 item[key_daily] = entry - lastentry;
+                if (item[key_daily] < 0) {
+                    item[key_daily] = 0; // really don't like this as this implies data error
+                }
             }
             m.push(item);
         }

@@ -5,17 +5,12 @@ import { withHeader } from "./Header.js"
 import { MyTabs } from "./MyTabs.js"
 import { USInfoTopWidget } from './USInfoTopWidget.js'
 import { CountiesForStateWidget, ListStateCountiesCapita } from "./CountyListRender.js"
-import { Redirect } from 'react-router-dom'
 import { GraphSection } from './graphs/Graphs';
 import { Title } from './Title';
 
 const PageState = withHeader((props) => {
     const country = useContext(CountryContext);
     const state = country.stateForTwoLetterName(props.match.params.state);
-    if (!state) {
-        return <Redirect to={'/page-not-found'} />;
-    }
-
     const county = Util.getDefaultCountyForState(state);
 
     Util.CookieSetLastCounty(state.twoLetterName, county ? county.name : null);
