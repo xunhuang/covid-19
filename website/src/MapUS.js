@@ -6,38 +6,42 @@ import * as d3 from "d3-scale";
 import { AntSwitch } from "./graphs/AntSwitch"
 import { Grid } from '@material-ui/core';
 import { withRouter } from 'react-router-dom'
-import { MapCountyGeneric } from "./MapCountyGeneric"
+import { NO_DATA_COLOR, MapCountyGeneric } from "./MapCountyGeneric"
 import { MapStateGeneric } from "./MapStateGeneric";
 import { Country } from "./UnitedStates";
 
+const logColors = () => {
+  return d3.scaleLog().clamp(true);
+}
+
 const ColorScale = {
-    confirmed: d3.scaleLog()
+    confirmed: logColors()
         .domain([1, 200, 10000])
-        .range(["white", "red", "black"]),
-    confirmedPerMillion: d3.scaleLog()
+        .range([NO_DATA_COLOR, "#f44336", "#2f0707"]),
+    confirmedPerMillion: logColors()
         .domain([100, 1000, 10000])
-        .range(["white", "red", "black"]),
-    confirmedNew: d3.scaleLog()
+        .range([NO_DATA_COLOR, "#f44336", "#2f0707"]),
+    confirmedNew: logColors()
         .domain([1, 200, 2000])
-        .range(["white", "red", "black"]),
-    confirmedNewPerMillion: d3.scaleLog()
+        .range([NO_DATA_COLOR, "#f44336", "#2f0707"]),
+    confirmedNewPerMillion: logColors()
         .domain([1, 200, 2000])
-        .range(["white", "red", "black"]),
-    death: d3.scaleLog()
+        .range([NO_DATA_COLOR, "#f44336", "#2f0707"]),
+    death: logColors()
         .domain([1, 100, 1000])
-        .range(["white", "blue", "black"]),
-    deathPerMillion: d3.scaleLog()
+        .range([NO_DATA_COLOR, "#5d99c6", "#002171"]),
+    deathPerMillion: logColors()
         .domain([10, 100, 1000])
-        .range(["white", "blue", "black"]),
-    timeToDouble: d3.scaleLog()
-        .domain([2, 15, 300])
-        .range(["white", "green", "black"]),
-    tests: d3.scaleLog()
+        .range([NO_DATA_COLOR, "#5d99c6", "#002171"]),
+    timeToDouble: logColors()
+        .domain([1, 15, 300])
+        .range(["#004d40", "#4db6ac", NO_DATA_COLOR]),
+    tests: logColors()
         .domain([10000, 650000])
-        .range(["white", "green", "black"]),
-    testsPerMillions: d3.scaleLog()
+        .range([NO_DATA_COLOR, "#3f51b5", "#000051"]),
+    testsPerMillions: logColors()
         .domain([7200, 33000])
-        .range(["white", "green"]),
+        .range([NO_DATA_COLOR, "#3f51b5", "#000051"]),
 }
 
 const CountyNavButtons = withRouter((props) => {
@@ -90,12 +94,13 @@ const MapUS = withRouter((props) => {
     </ToggleButtonGroup>;
 
     const MyMap = {
-        confirmed: <MapUSConfirmed {...props} source={source} perCapita={perCapita} selectionCallback={setSelectedCounty} />,
-        confirmedNew: <MapUSConfirmedNew {...props} source={source} perCapita={perCapita} selectionCallback={setSelectedCounty} />,
-        death: <MapStateDeath {...props} source={source} perCapita={perCapita} selectionCallback={setSelectedCounty} />,
-        daysToDouble: <MapDaysToDouble {...props} source={source} perCapita={perCapita} selectionCallback={setSelectedCounty} />,
-        testCoverage: <MapUSTestCoverage {...props} source={source} perCapita={perCapita} selectionCallback={setSelectedCounty} />,
-    }
+        confirmed: MapUSConfirmed,
+        confirmedNew: MapUSConfirmedNew,
+        death: MapStateDeath,
+        daysToDouble: MapDaysToDouble,
+        testCoverage: MapUSTestCoverage,
+    };
+    const ChosenMap = MyMap[subtab];
 
     return <div>
         {buttonGroup}
@@ -107,7 +112,7 @@ const MapUS = withRouter((props) => {
                 Per Capita
             </Grid>
         </Grid>
-        {MyMap[subtab]}
+        <ChosenMap {...props} source={source} perCapita={perCapita} selectionCallback={setSelectedCounty} />
         {
             selectedCounty &&
             <CountyNavButtons county={selectedCounty} />
@@ -120,7 +125,6 @@ const MapDaysToDouble = React.memo((props) => {
     return (
         <MapCountyGeneric
             {...props}
-            stroke={"#000"}
             skipCapita={true}
             getCountyDataPoint={(county) => {
                 return county.summary().daysToDouble;
@@ -186,7 +190,6 @@ const MapStateDeath = React.memo((props) => {
     return (
         <MapCountyGeneric
             {...props}
-            stroke={"#000"}
             getCountyDataPoint={(county) => {
                 return county.summary().deaths;
             }}
