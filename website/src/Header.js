@@ -231,8 +231,7 @@ const Banner = withRouter((props) => {
             </Typography>
                     <DonateButton />
                     <Typography variant="body1" onClick={() => setShowNews(!showNews)} >
-                        What's New?
-            </Typography>
+                    </Typography>
                 </span>
             </div >
             {showNews &&
