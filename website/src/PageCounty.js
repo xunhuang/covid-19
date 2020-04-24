@@ -8,6 +8,7 @@ import { CountyHospitalsWidget } from "./Hospitals"
 import * as Util from "./Util"
 import { GraphSection } from './graphs/Graphs';
 import { SectionHeader } from "./CovidUI"
+import { Title } from "./Title";
 
 const PageCounty = withHeader((props) => {
     const country = useContext(CountryContext);
@@ -22,13 +23,12 @@ const PageCounty = withHeader((props) => {
     ];
     return (
         <>
-            <USInfoTopWidget
-                county={county}
-                metro={county.metro()}
-                state={county.state()}
-                country={country}
-                selectedTab={"county"}
+            <Title
+                title={`${county.name}, ${state.twoLetterName}`}
+                desc={`${county.name} County COVID-19 30-day data visualized: `
+                          + `confirmed cases, new cases & death curves.`}
             />
+            <USInfoTopWidget county={county} selectedTab={"county"} />
             <GraphSection source={county} />
             <BonusDashboards county={county} />
             <MyTabs

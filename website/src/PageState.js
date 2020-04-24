@@ -7,6 +7,7 @@ import { USInfoTopWidget } from './USInfoTopWidget.js'
 import { CountiesForStateWidget, ListStateCountiesCapita } from "./CountyListRender.js"
 import { Redirect } from 'react-router-dom'
 import { GraphSection } from './graphs/Graphs';
+import { Title } from './Title';
 
 const PageState = withHeader((props) => {
     const country = useContext(CountryContext);
@@ -26,13 +27,13 @@ const PageState = withHeader((props) => {
 
     return (
         <>
-            <USInfoTopWidget
-                county={county}
-                metro={county ? county.metro() : null}
-                state={state}
-                country={country}
-                selectedTab={"state"}
+            <Title
+                title={`${state.name}`}
+                desc={`${state.name} COVID-19 30-day data visualized: `
+                          + `confirmed cases, new cases & death curves, `
+                          + `testing results & hospitalization numbers.`}
             />
+            <USInfoTopWidget county={county} selectedTab={"state"} />
             <GraphSection source={state} />
             <MyTabs
                 labels={[`Counties of ${state.name} `, "Per Capita"]}

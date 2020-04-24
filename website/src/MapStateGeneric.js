@@ -7,7 +7,6 @@ import {
     Annotation
 } from "react-simple-maps";
 import ReactTooltip from "react-tooltip";
-import { Metro } from "./UnitedStates";
 import { geoCentroid } from "d3-geo";
 import { CountyInfo } from 'covidmodule';
 
