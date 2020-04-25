@@ -122,7 +122,6 @@ export class Country extends CovidSummarizable {
     // To make this work, we make a Metro object for every state a metro
     // intersects. metroByStatesByIds_ is a
     // Map<metro id, Map<state two letter code, Metro>>
-    // to make this work.
     this.metroByStatesByIds_ = new Map();
     this.statesById_ = new Map();
     this.statesByTwoLetterName_ = new Map();
