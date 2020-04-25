@@ -258,9 +258,9 @@ const BasicGraph = (props) => {
         {
           state.showlog ?
             <YAxis yAxisId={0} scale={scale} /> :
-            <YAxis yAxisId={0} tickFormatter={(t) => myShortNumber(t)} tick={{ fill: props.colorTotal }} />
+            <YAxis yAxisId={0} tickFormatter={(t) => myShortNumber(t)} width={30} tick={{ fill: props.colorTotal }} />
         }
-        <YAxis yAxisId={1} tickFormatter={(t) => myShortNumber(t)} tick={{ fill: props.colorNew }} orientation="right" />
+        <YAxis yAxisId={1} tickFormatter={(t) => myShortNumber(t)} width={10} tick={{ fill: props.colorNew }} orientation="right" />
 
         <CartesianGrid stroke="#d5d5d5" strokeDasharray="5 5" />
         <Line type="monotone" dataKey="trending_line" strokeDasharray="2 2" stroke="#DDD" yAxisId={0} dot={false} isAnimationActive={false} strokeWidth={2} />
