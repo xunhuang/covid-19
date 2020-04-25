@@ -122,7 +122,7 @@ const BasicGraphNewCases = (props) => {
       USData={USData}
       column="confirmed"
       labelTotal="Total Confirmed"
-      labelNew="New Cases"
+      labelNew="New (3d-avg)"
       colorTotal="#ff7300"
       colorNew="#387908"
     />
@@ -130,7 +130,7 @@ const BasicGraphNewCases = (props) => {
       USData={USData}
       column="death"
       labelTotal="Total Deaths"
-      labelNew="New Deaths"
+      labelNew="New (3d-avg)"
       colorTotal="black"
       colorNew="red"
     />
