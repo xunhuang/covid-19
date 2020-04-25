@@ -28,7 +28,7 @@ const PageCounty = withHeader((props) => {
                 desc={`${county.name} County COVID-19 30-day data visualized: `
                           + `confirmed cases, new cases & death curves.`}
             />
-            <USInfoTopWidget county={county} selectedTab={"county"} />
+            <USInfoTopWidget source={county} />
             <GraphSection source={county} />
             <BonusDashboards county={county} />
             <MyTabs
