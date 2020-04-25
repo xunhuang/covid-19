@@ -117,22 +117,17 @@ const USInfoTopWidget = withRouter((props) => {
         'bedCount': "N/A",
         'count': "N/A",
     };
-    const county_summary = county ? county.summary() : undefined;
 
     const metro_hospitals = metro ? metro.hospitals() : undefined;
 
     const state_title = showBeds ? state.name : state.twoLetterName;
     const state_hospitals = state.hospitals();
-    const state_summary = state.summary();
-    const us_summary = country.summary();
 
     return <div className={classes.tagSticky} >
         <div className={`${classes.tagContainer} ${showBeds ? '' : classes.tagContainerNoBeds}`} >
             {county &&
                 <Tag
-                    title={county.name}
-                    confirmed={county_summary.confirmed}
-                    newcases={county_summary.newcases}
+                    source={county}
                     hospitals={county_hospitals.count}
                     beds={county_hospitals.bedCount}
                     selected={props.selectedTab === "county"}
@@ -142,67 +137,51 @@ const USInfoTopWidget = withRouter((props) => {
             }
             {metro &&
                 <Tag
-                    title={metro.name}
-                    confirmed={metro.summary().LastConfirmed}
-                    newcases={metro.summary().LastConfirmedNew}
+                    source={metro}
                     selected={props.selectedTab === "metro"}
                     to={metro.routeTo()}
-                    /* hardcoded to bay area */
                     hospitals={metro_hospitals.count}
                     beds={metro_hospitals.bedCount}
                     showBeds={showBeds}
                 />
             }
-            <Tag title={state_title}
-                confirmed={state_summary.confirmed}
-                newcases={state_summary.newcases}
-                deaths={state_summary.deaths}
-                deathsNew={state_summary.deathsNew}
-                recovered={state_summary.recovered}
-                recoveredNew={state_summary.recoveredNew}
+            <Tag
+                title={state_title}
+                source={state}
                 hospitals={state_hospitals.count}
                 beds={state_hospitals.bedCount}
                 selected={props.selectedTab === "state"}
                 to={state.routeTo()}
                 showBeds={showBeds}
-                // showRecovered={showRecovered}
-                // showDeaths={showDeaths}
-                showRecovered={false}
-                showDeaths={false}
             />
             <Tag
-                title={country.name}
-                confirmed={us_summary.confirmed}
-                newcases={us_summary.newcases}
-                deaths={us_summary.deaths}
-                deathsNew={us_summary.deathsNew}
-                recovered={us_summary.recovered}
-                recoveredNew={us_summary.recoveredNew}
+                source={country}
                 hospitals={6146}
                 beds={924107}
                 selected={props.selectedTab === "usa"}
                 to={country.routeTo()}
                 showBeds={showBeds}
-                showRecovered={showRecovered}
-                showDeaths={showDeaths}
             />
         </div>
     </div >;
 });
 
 const Tag = withRouter((props) => {
+    const title = props.title ? props.title : props.source.name;
+    const summary = props.source.summary();
+
     const params = new URLSearchParams(props.history.location.search);
     const to = props.to + "?" + params.toString();
     const classes = useStyles();
     return <Link className={`${classes.tag} ${props.selected ? classes.tagSelected : ''}`} to={to}>
-        <div className={classes.tagTitle}> {props.title} </div>
+        <div className={classes.tagTitle}> {title} </div>
         <div className={`${classes.row} ${props.showBeds ? '' : classes.rowNoBeds}`} >
             <section className={classes.tagSection}>
                 <div className={classes.topTag}>
-                    +{myShortNumber(props.newcases)}
+                    +{myShortNumber(summary.newcases)}
                 </div>
                 <div className={classes.mainTag}>
-                    {myShortNumber(props.confirmed)} </div>
+                    {myShortNumber(summary.confirmed)} </div>
                 <div className={classes.smallTag}>
                     Confirmed </div>
             </section>
