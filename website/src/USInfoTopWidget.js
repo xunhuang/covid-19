@@ -97,83 +97,53 @@ const useStyles = makeStyles(theme => ({
 }));
 
 
-const USInfoTopWidget = withRouter((props) => {
-    const county = props.county;
-    const metro = county.metro();
-    const state = county.state();
-    const country = state.country();
-
-    const [notMetro] = React.useState(!metro)
-    const [showDeaths] = React.useState(false)
-    const [showRecovered] = React.useState(false)
-
-    const theme = useTheme();
-    const downXS = useMediaQuery(theme.breakpoints.down('xs'));
-    const showBeds = notMetro && !downXS;
-
+const USInfoTopWidget = (props) => {
     const classes = useStyles();
+    const theme = useTheme();
+    const squish = useMediaQuery(theme.breakpoints.down('xs'));
 
-    const county_hospitals = (county && county.hospitals()) || {
-        'bedCount': "N/A",
-        'count': "N/A",
-    };
+    const tags = [];
+    let cursor = props.source;
+    while (cursor) {
+        tags.push(cursor);
+        cursor = cursor.parent();
+    }
 
-    const metro_hospitals = metro ? metro.hospitals() : undefined;
-
-    const state_title = showBeds ? state.name : state.twoLetterName;
-    const state_hospitals = state.hospitals();
+    const showBeds = tags.length < 4 && !squish;
 
     return <div className={classes.tagSticky} >
-        <div className={`${classes.tagContainer} ${showBeds ? '' : classes.tagContainerNoBeds}`} >
-            {county &&
+        <div className={`${classes.tagContainer} ${showBeds ? '' : classes.tagContainerNoBeds}`}>
+            {tags.map(source => 
                 <Tag
-                    source={county}
-                    hospitals={county_hospitals.count}
-                    beds={county_hospitals.bedCount}
-                    selected={props.selectedTab === "county"}
-                    to={county.routeTo()}
+                    key={source.name}
+                    source={source}
+                    squish={squish}
                     showBeds={showBeds}
                 />
-            }
-            {metro &&
-                <Tag
-                    source={metro}
-                    selected={props.selectedTab === "metro"}
-                    to={metro.routeTo()}
-                    hospitals={metro_hospitals.count}
-                    beds={metro_hospitals.bedCount}
-                    showBeds={showBeds}
-                />
-            }
-            <Tag
-                title={state_title}
-                source={state}
-                hospitals={state_hospitals.count}
-                beds={state_hospitals.bedCount}
-                selected={props.selectedTab === "state"}
-                to={state.routeTo()}
-                showBeds={showBeds}
-            />
-            <Tag
-                source={country}
-                hospitals={6146}
-                beds={924107}
-                selected={props.selectedTab === "usa"}
-                to={country.routeTo()}
-                showBeds={showBeds}
-            />
+            )}
         </div>
-    </div >;
-});
+    </div>;
+};
 
 const Tag = withRouter((props) => {
-    const title = props.title ? props.title : props.source.name;
-    const summary = props.source.summary();
+    const {source, history, match} = props;
 
-    const params = new URLSearchParams(props.history.location.search);
-    const to = props.to + "?" + params.toString();
+    let title;
+    if (!props.squish || !source.shortName) {
+      title = source.name;
+    } else {
+      title = source.shortName;
+    }
+
+    const routeTo = source.routeTo();
+    const selected = match.url === routeTo;
+    const summary = source.summary();
+    const hospitals = source.hospitals();
+
+    const params = new URLSearchParams(history.location.search);
+    const to = routeTo + "?" + params.toString();
     const classes = useStyles();
-    return <Link className={`${classes.tag} ${props.selected ? classes.tagSelected : ''}`} to={to}>
+    return <Link className={`${classes.tag} ${selected ? classes.tagSelected : ''}`} to={to}>
         <div className={classes.tagTitle}> {title} </div>
         <div className={`${classes.row} ${props.showBeds ? '' : classes.rowNoBeds}`} >
             <section className={classes.tagSection}>
@@ -188,10 +158,10 @@ const Tag = withRouter((props) => {
 
             {props.showBeds && <section className={classes.tagSection}>
                 <Typography className={classes.topTag} variant="body2" noWrap >
-                    {myShortNumber(props.hospitals)} Hosp.
+                    {myShortNumber(hospitals.count)} Hosp.
                 </Typography>
                 <div className={classes.mainTag}>
-                    {myShortNumber(props.beds)}</div>
+                    {myShortNumber(hospitals.bedCount)}</div>
                 <div className={classes.smallTag}>
                     Beds
                 </div>

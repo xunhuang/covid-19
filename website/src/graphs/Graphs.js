@@ -138,9 +138,6 @@ class UnhookedGraphSection extends React.Component {
 
         return (
             <div className={classes.content}>
-                {/* <Typography variant="h6" className={classes.location}>
-                    {source.longName}
-                </Typography> */}
                 <Tabs
                     value={headings.indexOf(tab)}
                     onChange={switchTo}

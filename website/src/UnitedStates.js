@@ -48,6 +48,24 @@ export class CovidSummarizable {
     }
   }
 
+  hospitals() {
+    if (!this.normalizedRaw_) {
+      return {
+        'bedCount': "N/A",
+        'count': "N/A",
+      };
+    }
+
+    return {
+        count: this.normalizedRaw_.hospitals, // to be deprecated
+        bedCount: this.normalizedRaw_.beds,   // to be deprecated
+        bedsICU: this.normalizedRaw_.bedsICU,
+        bedsAvail: this.normalizedRaw_.bedsAvail,
+        hospitals: this.normalizedRaw_.hospitals,
+        beds: this.normalizedRaw_.beds,
+      };
+  }
+
   summary() {
     if (!this.normalizedRaw_) {
       return {
@@ -92,13 +110,18 @@ export class Country extends CovidSummarizable {
 
   constructor() {
     super(CovidData);
+
+    // Yikes...
+    this.normalizedRaw_.beds = 924107;
+    this.normalizedRaw_.hospitals = 6146;
+
     this.metrosById_ = new Map();
     this.metrosByCountyId_ = new Map();
     this.statesById_ = new Map();
     this.statesByTwoLetterName_ = new Map();
     this.countiesById_ = new Map();
-    this.name = "US";
-    this.longName = "United States";
+    this.name = "United States";
+    this.shortName = "US";
 
     for (const [id, data] of Object.entries(this.covidRaw_)) {
       // Check if this looks like a state FIPS id
@@ -134,6 +157,10 @@ export class Country extends CovidSummarizable {
     }
 
     this.statesById_.forEach(state => state.reindex());
+  }
+
+  parent() {
+    return undefined;
   }
 
   testData() {
@@ -187,17 +214,6 @@ export class Country extends CovidSummarizable {
 
   async deathsAsync() {
     return this.covidRaw_.Summary.Death;
-  }
-
-  hospitals() {
-    return {
-      count: this.covidRaw_.Summary.hospitals, // to be deprciated
-      bedCount: this.covidRaw_.Summary.beds,   // to be deprciated
-      bedsICU: this.covidRaw_.Summary.bedsICU,
-      bedsAvail: this.covidRaw_.Summary.bedsAvail,
-      hospitals: this.covidRaw_.Summary.hospitals,
-      beds: this.covidRaw_.Summary.beds,
-    };
   }
 
   async projectionsAsync() {
@@ -269,8 +285,9 @@ export class State extends CovidSummarizable {
     this.id = id;
     this.country_ = country;
     this.name = CountyInfo.getStateNameFromFips(id);
-    this.longName = this.name;
     this.twoLetterName = Object.values(covidRaw)[0]['StateName']
+    this.shortName = this.twoLetterName;
+
     if (!this.twoLetterName) {
       this.twoLetterName = CountyInfo.getStateAbbreviationFromFips(this.id);
       if (!this.twoLetterName) {
@@ -282,15 +299,6 @@ export class State extends CovidSummarizable {
     this.countiesByName_ = new Map();
     this.metros_ = new Map();
     this.metrosByCounty_ = new Map();
-
-    this.hospitals_ = {
-      count: covidRaw.Summary.hospitals, // to be deprciated
-      bedCount: covidRaw.Summary.beds,   // to be deprciated
-      bedsICU: covidRaw.Summary.bedsICU,
-      bedsAvail: covidRaw.Summary.bedsAvail,
-      hospitals: covidRaw.Summary.hospitals,
-      beds: covidRaw.Summary.beds,
-    };
 
     // Force load counties so nearby works properly and we get "Statewide
     // Unallocated"s.
@@ -367,10 +375,6 @@ export class State extends CovidSummarizable {
 
   async deathsAsync() {
     return this.covidRaw_.Summary.Death;
-  }
-
-  hospitals() {
-    return this.hospitals_;
   }
 
   newCases() {
@@ -505,20 +509,11 @@ export class Metro extends CovidSummarizable {
     this.id = id;
     this.state_ = state;
     this.name = covidRaw['Name'];
-    this.longName = `${this.name}, ${this.state_.longName}`;
     this.counties_ = this.covidRaw_.Counties.map(id => {
       // not all counties in a metro belong to the same state
       // can't call state.countyForId() directly
       return country.countyForId(id);
     }).filter(c => c); // some county may not have data
-    this.hospitals_ = {
-      count: covidRaw.Summary.hospitals, // to be deprciated
-      bedCount: covidRaw.Summary.beds,   // to be deprciated
-      bedsICU: covidRaw.Summary.bedsICU,
-      bedsAvail: covidRaw.Summary.bedsAvail,
-      hospitals: covidRaw.Summary.hospitals,
-      beds: covidRaw.Summary.beds,
-    };
   }
 
   allCounties() {
@@ -542,10 +537,6 @@ export class Metro extends CovidSummarizable {
   }
   async deathsAsync() {
     return this.covidRaw_.Summary.Death;
-  }
-
-  hospitals() {
-    return this.hospitals_;
   }
 
   totalConfirmed() {
@@ -607,14 +598,6 @@ export class County extends CovidSummarizable {
 
     if (covidRaw) {
       this.name = covidRaw['CountyName'];
-      this.hospitals_ = {
-        count: covidRaw.hospitals, // to be deprciated
-        bedCount: covidRaw.beds,   // to be deprciated
-        bedsICU: covidRaw.bedsICU,
-        bedsAvail: covidRaw.bedsAvail,
-        hospitals: covidRaw.hospitals,
-        beds: covidRaw.beds,
-      };
       this.population_ = covidRaw.Population;
     } else {
       this.name = UNKNOWN_COUNTY_NAME;
@@ -625,7 +608,6 @@ export class County extends CovidSummarizable {
     }
 
     this.state_ = state;
-    this.longName = `${this.name}, ${this.state_.longName}`;
   }
 
   metro() {
@@ -637,7 +619,7 @@ export class County extends CovidSummarizable {
   }
 
   parent() {
-    return this.state();
+    return this.metro() || this.state();
   }
 
   fips() {
@@ -711,10 +693,6 @@ export class County extends CovidSummarizable {
       await this._fetchServerData();
     }
     return this.covidRaw_.Death;
-  }
-
-  hospitals() {
-    return this.hospitals_;
   }
 
   population() {

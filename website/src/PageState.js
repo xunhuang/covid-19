@@ -28,7 +28,7 @@ const PageState = withHeader((props) => {
                           + `confirmed cases, new cases & death curves, `
                           + `testing results & hospitalization numbers.`}
             />
-            <USInfoTopWidget county={county} selectedTab={"state"} />
+            <USInfoTopWidget source={county || state} />
             <GraphSection source={state} />
             <MyTabs
                 labels={[`Counties of ${state.name} `, "Per Capita"]}

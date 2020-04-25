@@ -27,7 +27,7 @@ const PageMetro = withHeader((props) => {
                           + `confirmed cases, new cases & death curves, `
                           + `testing results & hospitalization numbers.`}
             />
-            <USInfoTopWidget county={county} selectedTab={"metro"} />
+            <USInfoTopWidget source={county} />
             <GraphSection source={metro} />
             <MyTabs
                 labels={[metro.name]}
