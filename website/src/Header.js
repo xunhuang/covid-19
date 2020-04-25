@@ -7,6 +7,7 @@ import { FacebookProvider, CommentsCount } from 'react-facebook';
 import { useHistory } from "react-router-dom";
 import { Link as MaterialLink } from '@material-ui/core';
 import { Grid } from '@material-ui/core';
+import { Paper } from '@material-ui/core';
 import { SectionHeader } from "./CovidUI"
 import { withRouter } from 'react-router-dom'
 import { Link as RouterLink } from 'react-router-dom';
@@ -106,6 +107,14 @@ const useStyles = makeStyles(theme => ({
     newsTitle: {
         margin: 4,
     },
+    disqusPaper: {
+        overflow: 'auto',
+        width: '97%',
+        padding: 10,
+        display: 'block',
+        margin: '0 auto',
+        maxHeight: "80vh",
+    }
 }));
 
 const WhatsNewSection = (props) => {
@@ -318,10 +327,12 @@ const withHeader = (comp, props) => {
                     </Grid>
                 </Grid>
             </SectionHeader>
-            <Disqus.DiscussionEmbed
-                shortname={disqusShortname}
-                config={disqusConfig}
-            />
+            <Paper elevation={3} className={classes.disqusPaper}>
+                <Disqus.DiscussionEmbed
+                    shortname={disqusShortname}
+                    config={disqusConfig}
+                />
+            </Paper>
         </div>;
         let fbcomment =
             <FacebookProvider appId="201788627783795">
