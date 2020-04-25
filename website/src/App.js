@@ -65,11 +65,23 @@ const MainApp = withRouter((props) => {
   );
 });
 
-class SafeRoutes extends React.Component {
+class UnhookedSafeRoutes extends React.Component {
+
+  static getDerivedStateFromProps(props, state) {
+    if (state.location !== props.location) {
+      return UnhookedSafeRoutes.successStateFor(props);
+    } else {
+      return null;
+    }
+  }
+
+  static successStateFor(props) {
+    return {errored: false, location: props.location};
+  }
 
   constructor(props) {
     super(props);
-    this.state = {errored: false};
+    this.state = UnhookedSafeRoutes.successStateFor(props);
   }
 
   componentDidCatch(error, info) {
@@ -94,5 +106,6 @@ class SafeRoutes extends React.Component {
     }
   }
 }
+const SafeRoutes = withRouter(UnhookedSafeRoutes);
 
 export default App;
