@@ -97,9 +97,6 @@ const CookieGetPreference = () => {
     return {
       showlog: false,
       show2weeks: false,
-      showConfirmed: true,
-      showNewCase: true,
-      showDeath: true,
     }
   }
   return pref;
@@ -159,7 +156,7 @@ const BasicGraph = (props) => {
   });
 
   let confirmedTotalArray = exportColumnFromDataSeries(data, column);
-  let confirmedArray = makeDataSeriesFromTotal(confirmedTotalArray, "total", "newcase");
+  let confirmedArray = makeDataSeriesFromTotal(confirmedTotalArray, "total", "newcase", "newcase_avg");
   data = mergeDataSeries(data, confirmedArray);
 
   if (data.length > 2) {
@@ -269,7 +266,8 @@ const BasicGraph = (props) => {
         <Line type="monotone" dataKey="trending_line" strokeDasharray="2 2" stroke="#DDD" yAxisId={0} dot={false} isAnimationActive={false} strokeWidth={2} />
         <Line type="monotone" dataKey="total" stroke={props.colorTotal} yAxisId={0} dot={{ r: 1 }} strokeWidth={2} />
         <Line type="monotone" dataKey="pending_confirmed" stroke={props.colorTotal} dot={{ r: 1 }} strokeDasharray="2 2" strokeWidth={2} />
-        <Line type="monotone" dataKey="newcase" stroke={props.colorNew} yAxisId={1} dot={{ r: 1 }} strokeWidth={2} />
+        <Line type="monotone" dataKey="newcase_avg" stroke={props.colorNew} yAxisId={1} dot={{ r: 1 }} strokeWidth={2} />
+        <Line type="monotone" dataKey="newcase" stroke={props.colorNew} strokeDasharray="1 3" yAxisId={1} dot={{ r: 1 }} strokeWidth={2} />
         <Line type="monotone" dataKey="pending_newcase" stroke={props.colorNew} yAxisId={1} dot={{ r: 1 }} strokeDasharray="2 2" strokeWidth={2} />
 
         <Line visibility="hidden" dataKey="pending_death" />
