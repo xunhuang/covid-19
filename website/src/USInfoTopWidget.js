@@ -115,7 +115,7 @@ const USInfoTopWidget = (props) => {
         <div className={`${classes.tagContainer} ${showBeds ? '' : classes.tagContainerNoBeds}`}>
             {tags.map(source => 
                 <Tag
-                    key={source.name}
+                    key={source.routeTo()}
                     source={source}
                     squish={squish}
                     showBeds={showBeds}

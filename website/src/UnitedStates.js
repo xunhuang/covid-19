@@ -115,8 +115,15 @@ export class Country extends CovidSummarizable {
     this.normalizedRaw_.beds = 924107;
     this.normalizedRaw_.hospitals = 6146;
 
-    this.metrosById_ = new Map();
-    this.metrosByCountyId_ = new Map();
+    // Metros span state lines, but we have a notion of a hierarchy in
+    // header:
+    // county -> metro (maybe) -> state -> country
+    //
+    // To make this work, we make a Metro object for every state a metro
+    // intersects. metroByStatesByIds_ is a
+    // Map<metro id, Map<state two letter code, Metro>>
+    // to make this work.
+    this.metroByStatesByIds_ = new Map();
     this.statesById_ = new Map();
     this.statesByTwoLetterName_ = new Map();
     this.countiesById_ = new Map();
@@ -132,28 +139,32 @@ export class Country extends CovidSummarizable {
       const state = new State(id, data, this);
       this.statesById_.set(id, state);
       this.statesByTwoLetterName_.set(state.twoLetterName, state);
-
-      for (const county of state.allCounties()) {
-        this.countiesById_.set(county.id, county)
-      }
-    }
-
-    for (const [id, data] of Object.entries(this.covidRaw_.Metros)) {
-      const state = this.statesById_.get(data.StateFIPS);
-      state.addMetro(id, data, this);
-
-      this.metrosById_.set(id, state.metroForId(id));
-      let metro = state.metroForId(id);
-      this.metrosById_.set(id, metro);
-      for (const county of metro.allCounties()) {
-        this.metrosByCountyId_.set(county.id, metro);
-      }
     }
 
     for (const data of CountyGeoData) {
       const id = data.FIPS.padStart(5, '0');
       const stateId = id.substring(0, 2);
       this.statesById_.get(stateId).countyForId(id).update(data);
+    }
+
+    for (const state of this.statesById_.values()) {
+      for (const county of state.allCounties()) {
+        this.countiesById_.set(county.id, county);
+      }
+    }
+
+    for (const [id, data] of Object.entries(this.covidRaw_.Metros)) {
+      const metroByStates = new Map();
+      this.metroByStatesByIds_.set(id, metroByStates);
+
+      const states = new Set();
+      for(const county of data.Counties) {
+        states.add(this.countiesById_.get(county).state());
+      }
+      states.forEach(state => {
+        state.addMetro(id, data, this);
+        metroByStates.set(state.id, state.metroForId(id));
+      });
     }
 
     this.statesById_.forEach(state => state.reindex());
@@ -172,10 +183,6 @@ export class Country extends CovidSummarizable {
     }
   }
 
-  metroContainingCounty(county) {
-    return this.metrosByCountyId_.get(county.id);
-  }
-
   countyForId(id) {
     return this.countiesById_.get(id);
   }
@@ -188,12 +195,16 @@ export class Country extends CovidSummarizable {
     return [...this.countiesById_.values()];
   }
 
-  metroForId(id) {
-    return this.metrosById_.get(id);
+  metroByStatesForId(id) {
+    return this.metroByStatesByIds_.get(id);
   }
 
   allMetros() {
-    return [...this.metrosById_.values()];
+    return Array.from(this.metroByStatesByIds_.values())
+        .map(
+            metroByStates =>
+                // Only grab one state if it spans state lines
+                metroByStates.values().next().value);
   }
 
   stateForId(id) {
@@ -611,7 +622,7 @@ export class County extends CovidSummarizable {
   }
 
   metro() {
-    return this.state_.country().metroContainingCounty(this);
+    return this.state_.metroContainingCounty(this);
   }
 
   state() {
