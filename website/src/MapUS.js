@@ -71,42 +71,54 @@ const CountyNavButtons = withRouter((props) => {
 
 const MapUS = withRouter((props) => {
   const source = props.source;
-  const [subtab, setAlignment] =
-    React.useState(getURLParam(props.history.location.search, "detailed") ?? 'confirmed');
   const [perCapita, setPerCapita] = React.useState(true);
   const [selectedCounty, setSelectedCounty] = React.useState(null);
 
-  let tabvalue = subtab;
-  if (subtab === "testCoverage" && !(source instanceof Country)) {
-    tabvalue = "confirmed";
+  const subtabs = new Map([
+    ['confirmed', {
+      label: "Confirmed",
+      map: MapUSConfirmed,
+    }],
+    ['confirmedNew', {
+      label: "New",
+      map: MapUSConfirmedNew,
+    }],
+    ['death', {
+      label: "Death",
+      map: MapStateDeath,
+    }],
+    ['daysToDouble', {
+      label: "Growth",
+      map: MapDaysToDouble,
+    }],
+  ]);
+  if (source instanceof Country) {
+    subtabs.set('testCoverage', {
+      label: "Tests",
+      map: MapUSTestCoverage,
+    });
   }
 
+  let desired = getURLParam(props.history.location.search, "detailed");
+  if (!subtabs.has(desired)) {
+    desired = subtabs.keys().next().value;
+  }
+  const [subtab, setSubtab] = React.useState(desired);
+  const ChosenMap = subtabs.get(desired).map;
+
   const buttonGroup = <ToggleButtonGroup
-    value={tabvalue}
+    value={subtab}
     exclusive
     size="small"
     onChange={(e, newvalue) => {
-      setAlignment(newvalue)
+      setSubtab(newvalue)
       pushChangeTo(props.history, "detailed", newvalue);
     }}
   >
-    <ToggleButton value="confirmed"> Confirmed </ToggleButton>
-    <ToggleButton value="confirmedNew"> New </ToggleButton>
-    <ToggleButton value="death"> Death </ToggleButton>
-    <ToggleButton value="daysToDouble"> Growth </ToggleButton>
-    {source instanceof Country &&
-      <ToggleButton value="testCoverage"> Tests</ToggleButton>
-    }
+    {[...subtabs].map(([id, {label}]) =>
+        <ToggleButton key={id} value={id}>{label}</ToggleButton>
+    )}
   </ToggleButtonGroup>;
-
-  const MyMap = {
-    confirmed: MapUSConfirmed,
-    confirmedNew: MapUSConfirmedNew,
-    death: MapStateDeath,
-    daysToDouble: MapDaysToDouble,
-    testCoverage: MapUSTestCoverage,
-  };
-  const ChosenMap = MyMap[subtab];
 
   return <div>
     {buttonGroup}
