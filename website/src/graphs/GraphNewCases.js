@@ -221,7 +221,7 @@ const BasicGraph = (props) => {
   ];
   if (hasTrendingLine) {
     legendPayload.push({
-      value:`${daysToDouble.toFixed(0)} Days to Double Trend`,
+      value:`${daysToDouble.toFixed(0)} Days to Double (+${(dailyGrowthRate * 100).toFixed(0)}% Daily)`,
       type: 'plainline',
       payload:{strokeDasharray:'2 2'},
       color: props.colorTotal
