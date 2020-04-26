@@ -45,19 +45,6 @@ function getDefaultCounty() {
         state: "CA",
     }
 }
-function getDefaultCountyForMetro(metro) {
-    let county_info = CookieGetLastCounty();
-    if (county_info) {
-        if (county_info.state === metro.state().id) {
-            return metro.state().countyForName(county_info.county);
-        }
-    }
-
-    // cookie county not match, return the top county
-    return metro
-        .allCounties()
-        .sort((a, b) => b.totalConfirmed() - a.totalConfirmed())[0];
-}
 function getDefaultCountyForState(state) {
     let county_info = CookieGetLastCounty();
     if (county_info) {
@@ -133,7 +120,6 @@ export {
     CookieSetLastCounty,
     getDefaultCountyForState,
     getDefaultCounty,
-    getDefaultCountyForMetro,
     getStateNameByStateCode,
     normalize_date,
 }
