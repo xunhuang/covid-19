@@ -15,6 +15,7 @@ import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import { MentalHealthResourceSection } from './MentalHealthTab';
 import { SearchBox } from './SearchBox';
+import { Footer } from './Footer'
 
 import {
     EmailShareButton,
@@ -303,7 +304,7 @@ const withHeader = (comp, props) => {
             // add addition things here
             ...props,
         });
-        let footer = <div>
+        let healthDiscussion = <div>
             <SectionHeader>
                 <Typography variant="h5" noWrap>
                     Resources
@@ -346,11 +347,11 @@ const withHeader = (comp, props) => {
             <div className={classes.searchContainer}>
                 <SearchBox />
             </div>
-
             {component}
             <NewsSection />
-            {footer}
+            {healthDiscussion}
             {fbcomment}
+            <Footer />
         </header >
 
         return header;
