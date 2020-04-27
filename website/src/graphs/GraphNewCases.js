@@ -91,38 +91,6 @@ const CookieGetPreference = () => {
   return pref;
 }
 
-const BasicGraphNewCases = (props) => {
-  const [USData, setUSdata] = React.useState(null);
-  React.useEffect(() => {
-    props.source.dataPointsAsync().then(data => setUSdata(data));
-  }, [props.source])
-
-  if (!USData || USData.length === 0) {
-    return <div> Loading</div>;
-  }
-
-  return <div>
-    <Summary source={props.source} />
-    <BasicGraph {...props}
-      USData={USData}
-      column="confirmed"
-      labelTotal="Total Confirmed"
-      labelNew="New (3d-avg)"
-      colorTotal="#ff7300"
-      colorNew="#387908"
-    />
-    <BasicGraph {...props}
-      USData={USData}
-      column="death"
-      labelTotal="Total Deaths"
-      labelNew="New (3d-avg)"
-      colorTotal="black"
-      colorNew="red"
-    />
-  </div>;
-
-}
-
 const BasicGraph = (props) => {
   let data = props.USData;
   const column = props.column;
@@ -216,14 +184,14 @@ const BasicGraph = (props) => {
     )
 
   const legendPayload = [
-    { value: props.labelTotal, type: 'line',  color: props.colorTotal },
-    { value: props.labelNew, type: 'line',  color: props.colorNew }
+    { value: props.labelTotal, type: 'line', color: props.colorTotal },
+    { value: props.labelNew, type: 'line', color: props.colorNew }
   ];
   if (hasTrendingLine) {
     legendPayload.push({
-      value:`${daysToDouble.toFixed(0)} Days to Double (+${(dailyGrowthRate * 100).toFixed(0)}% Daily)`,
+      value: `${daysToDouble.toFixed(0)} Days to Double (+${(dailyGrowthRate * 100).toFixed(0)}% Daily)`,
       type: 'plainline',
-      payload:{strokeDasharray:'2 2'},
+      payload: { strokeDasharray: '2 2' },
       color: props.colorTotal
     });
   }
@@ -285,4 +253,4 @@ const BasicGraph = (props) => {
   </>
 }
 
-export { BasicGraphNewCases };
+export { BasicGraph };
