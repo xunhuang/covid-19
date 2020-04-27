@@ -75,21 +75,6 @@ const CustomTooltip = (props) => {
   return null;
 }
 
-const trendingLineLabelChildren = (options) => {
-  const { x, y, showlog, dailyGrowthRate, daysToDouble } = options;
-  return [
-    // Placeholder to accomodate label
-    <ReferenceArea fillOpacity="0" x1={x} x2={x} y1={y * (showlog ? 4 : 1.1)} y2={y * (showlog ? 4 : 1.1)} key={0} />,
-    <ReferenceArea fillOpacity="0" x1={x} x2={x} y1={y} y2={y} key={1}>
-      <Label
-        value={`${daysToDouble.toFixed(0)} days to double (+${(dailyGrowthRate * 100).toFixed(0)}% daily)`}
-        offset={5}
-        stroke="#DDD"
-        position="insideTopRight" />
-    </ReferenceArea>
-  ];
-}
-
 const CookieSetPreference = (state) => {
   Cookies.set("BasicGraphPreference", state, {
     expires: 100
@@ -104,38 +89,6 @@ const CookieGetPreference = () => {
     }
   }
   return pref;
-}
-
-const BasicGraphNewCases = (props) => {
-  const [USData, setUSdata] = React.useState(null);
-  React.useEffect(() => {
-    props.source.dataPointsAsync().then(data => setUSdata(data));
-  }, [props.source])
-
-  if (!USData || USData.length === 0) {
-    return <div> Loading</div>;
-  }
-
-  return <div>
-    <Summary source={props.source} />
-    <BasicGraph {...props}
-      USData={USData}
-      column="confirmed"
-      labelTotal="Total Confirmed"
-      labelNew="New (3d-avg)"
-      colorTotal="#ff7300"
-      colorNew="#387908"
-    />
-    <BasicGraph {...props}
-      USData={USData}
-      column="death"
-      labelTotal="Total Deaths"
-      labelNew="New (3d-avg)"
-      colorTotal="black"
-      colorNew="red"
-    />
-  </div>;
-
 }
 
 const BasicGraph = (props) => {
@@ -188,11 +141,12 @@ const BasicGraph = (props) => {
   const daysFromStart = datesToDays(startDate, dates);
   const confirmed = data.map(d => d.total);
   const results = fitExponentialTrendingLine(daysFromStart, confirmed, 10);
+  const hasTrendingLine = results != null;
 
   let dailyGrowthRate = null;
   let daysToDouble = null;
   let lastTrendingData = null;
-  if (results != null) {
+  if (hasTrendingLine) {
     data = data.map((d, idx) => {
       d.trending_line = results.fittedYs[idx];
       return d;
@@ -228,6 +182,19 @@ const BasicGraph = (props) => {
     props.hRefLines.map((l, idx) =>
       <ReferenceLine key={`hrefline${idx}`} y={l.y} label={l.label} stroke="#e3e3e3" strokeWidth={2} />
     )
+
+  const legendPayload = [
+    { value: props.labelTotal, type: 'line', color: props.colorTotal },
+    { value: props.labelNew, type: 'line', color: props.colorNew }
+  ];
+  if (hasTrendingLine) {
+    legendPayload.push({
+      value: `${daysToDouble.toFixed(0)} Days to Double (+${(dailyGrowthRate * 100).toFixed(0)}% Daily)`,
+      type: 'plainline',
+      payload: { strokeDasharray: '2 2' },
+      color: props.colorTotal
+    });
+  }
 
   return <>
     <Grid container alignItems="center" spacing={1}>
@@ -267,7 +234,7 @@ const BasicGraph = (props) => {
         <YAxis yAxisId={1} tickFormatter={(t) => myShortNumber(t)} width={10} tick={{ fill: props.colorNew }} orientation="right" />
 
         <CartesianGrid stroke="#d5d5d5" strokeDasharray="5 5" />
-        <Line type="monotone" dataKey="trending_line" strokeDasharray="2 2" stroke="#DDD" yAxisId={0} dot={false} isAnimationActive={false} strokeWidth={2} />
+        <Line type="monotone" dataKey="trending_line" strokeDasharray="2 2" stroke={props.colorTotal} yAxisId={0} dot={false} strokeWidth={2} />
         <Line type="monotone" dataKey="total" stroke={props.colorTotal} yAxisId={0} dot={{ r: 1 }} strokeWidth={2} />
         <Line type="monotone" dataKey="pending_confirmed" stroke={props.colorTotal} dot={{ r: 1 }} strokeDasharray="2 2" strokeWidth={2} />
         <Line type="monotone" dataKey="newcase_avg" stroke={props.colorNew} yAxisId={1} dot={{ r: 1 }} strokeWidth={2} />
@@ -278,23 +245,12 @@ const BasicGraph = (props) => {
         {vRefLines}
         {hRefLines}
 
-        {lastTrendingData != null && trendingLineLabelChildren({
-          x: lastTrendingData.name,
-          y: lastTrendingData.trending_line,
-          dailyGrowthRate,
-          daysToDouble,
-          showlog: state.showlog
-        }
-        )}
-
         <Legend
           verticalAlign="top"
-          payload={[
-            { value: props.labelTotal, type: 'line', color: props.colorTotal },
-            { value: props.labelNew, type: 'line', color: props.colorNew },
-          ]} />
+          payload={legendPayload} />
+
       </LineChart></ResponsiveContainer>
   </>
 }
 
-export { BasicGraphNewCases };
+export { BasicGraph };
