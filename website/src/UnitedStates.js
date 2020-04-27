@@ -104,6 +104,10 @@ export class CovidSummarizable {
 
     return summarized;
   }
+
+  totalConfirmed() {
+    return this.summary().confirmed;
+  }
 }
 
 export class Country extends CovidSummarizable {
@@ -410,14 +414,6 @@ export class State extends CovidSummarizable {
       .sort((a, b) => a.date - b.date);
   }
 
-  totalConfirmed() {
-    if (!this.covidRaw_) {
-      return 0;
-    }
-
-    return this.covidRaw_.Summary.LastConfirmed;
-  }
-
   reindex() {
     this.countiesByName_.clear();
     this.counties_.forEach(county => {
@@ -547,14 +543,6 @@ export class Metro extends CovidSummarizable {
   }
   async deathsAsync() {
     return this.covidRaw_.Summary.Death;
-  }
-
-  totalConfirmed() {
-    if (!this.covidRaw_) {
-      return 0;
-    }
-
-    return this.covidRaw_.Summary.LastConfirmed;
   }
 
   newCases() {
@@ -711,14 +699,6 @@ export class County extends CovidSummarizable {
 
   stayHomeOrder() {
     return this.covidRaw_.StayHomeOrder;
-  }
-
-  totalConfirmed() {
-    if (!this.covidRaw_) {
-      return 0;
-    }
-
-    return this.covidRaw_.LastConfirmed;
   }
 
   newCases() {
