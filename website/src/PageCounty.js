@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { NearbyCounties } from "./CountyListRender.js"
-import { withHeader } from "./Header.js"
+import { withHeader } from "./ContentWrapping.js"
 import { MyTabs } from "./MyTabs.js"
 import { CountryContext } from "./CountryContext";
 import { USInfoTopWidget } from './USInfoTopWidget.js'

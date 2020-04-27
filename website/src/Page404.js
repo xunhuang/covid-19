@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { withHeader } from "./Header.js"
+import { withHeader } from "./ContentWrapping.js"
 import { CountryContext } from "./CountryContext";
 import { USInfoTopWidget } from './USInfoTopWidget.js'
 import * as Util from "./Util.js"
