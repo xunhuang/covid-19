@@ -1,4 +1,14 @@
 
+pre-setup
+---------
+
+go one directory up and run 
+
+git submodule init
+git submodule update
+
+To pull in sub modules, then come back to current directory
+
 Setup
 -----
 
