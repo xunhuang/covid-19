@@ -11,6 +11,7 @@ const { linearRegression } = require('simple-statistics');
 const ShelterInPlace = require("../data/shelter-in-place/shelter.json");
 const USRecovery = require("./src/data/us_recovery.json");
 const CountyInfo = require('covidmodule').CountyInfo;
+const Util = require('covidmodule').Util;
 
 const DFHCounty = require("./src/data/DFH-County.json");
 const DFHState = require("./src/data/DFH-State.json");
@@ -28,7 +29,10 @@ function pad(n) { return n < 10 ? '0' + n : n }
 
 const AllStateFips = CountyInfo.getAllStateFips();
 for (let statefips of AllStateFips) {
-  AllData[statefips] = {};
+  AllData[statefips] = {
+    Summary: {},
+
+  };
 }
 
 
@@ -689,6 +693,57 @@ function processAllJHU() {
   }
 }
 
+async function processAllJHUGithub() {
+  const csvFilePath = "../COVID-19/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_US.csv"
+  const csv = require('csvtojson')
+  const json = await csv().fromFile(csvFilePath);
+  processAllJHUGithubInner(json, "Confirmed");
+}
+
+async function processAllJHUGithubInner(json, mytype) {
+
+  for (let entry of json) {
+    let fips = entry.FIPS
+    if (!entry.FIPS || entry.FIPS.length === 0) {
+      // console.log(entry);
+      // need special processing
+      continue;
+    } else {
+      fips = fips.split(".")[0];
+      if (fips.length === 4) {
+        fips = "0" + fips;
+      }
+    }
+
+    let data = {};
+    for (let key in entry) {
+      if (!key.includes("/")) {
+        continue;
+      }
+      data[Util.normalize_date(key)] = parseInt(entry[key]);
+    }
+
+    // console.log(data);
+
+    if (fips.length === 2) {
+      // terortories
+      console.log(fips);
+      AllData[fips].Summary[mytype] = data;
+    } else {
+      // regular counties
+      if (fips.startsWith("80")) {
+        // OUT OF STATE
+      } else if (fips.startsWith("90")) {
+        // UNAssigned
+      } else if (fips.startsWith("99999")) {
+        // grand princess
+      } else {
+        // normal
+      }
+    }
+  }
+}
+
 function processBNO(dataset, date) {
   let data = dataset;
   for (let i = 0; i < data.length; i++) {
@@ -970,22 +1025,30 @@ function processTestData() {
 // --------------------------------------------------------------
 // ---- Processing area
 // --------------------------------------------------------------
-process_USAFACTS();
-processAllJHU();
-fillholes();
-summarize_counties();
-summarize_states();
-addTerrtories();
-summarize_USA();
-add_NYC_BOROS();
-addMetros();
-Special_NYC_METRO()
-processNYCBOROS_NEW();
-processNYC_death();
-processsShelterInPlace();
-addUSRecovery();
-addStateRecovery();
-processTestData();
+// process_USAFACTS(); // this sites tracks county level data before JHU
+// processAllJHU();
+processAllJHUGithub().then(() => {
+  const contentPretty = JSON.stringify(AllData, null, 2);
+  console.log(contentPretty);
+}
 
-const contentPretty = JSON.stringify(AllData, null, 2);
-fs.writeFileSync("./src/data/AllData.json", contentPretty);
+);
+
+// fillholes();
+// summarize_counties();
+// summarize_states();
+// addTerrtories();
+// summarize_USA();
+// add_NYC_BOROS();
+// addMetros();
+// Special_NYC_METRO()
+// processNYCBOROS_NEW();
+// processNYC_death();
+// processsShelterInPlace();
+// addUSRecovery();
+// addStateRecovery();
+// processTestData();
+
+// const contentPretty = JSON.stringify(AllData, null, 2);
+// fs.writeFileSync("./src/data/AllData.json", contentPretty);
+// console.log(contentPretty);
