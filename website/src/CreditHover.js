@@ -15,14 +15,17 @@ const useStyles = makeStyles(theme => ({
 const CreditPopover = props => {
     const classes = useStyles();
 
+    const list = props.db.Sheet1.filter(data => {
+        return data.Contributer ? true : false
+    }).map(data => {
+        return (
+            (data.Contributer) ? (" " + data.Contributer.toString()) : null
+        )
+    });
+
     return (
       <Typography variant='caption' color='textSecondary' className={classes.typography}>
-        {props.db.Sheet1.map(data => {
-            console.log(data.Contributer)
-            return (
-                data.Contributer ? <>{data.Contributer}, </> : null
-            )
-        })}
+        {list.toString().substring(1, list.toString().length - 1)}
       </Typography>
     );
 }
