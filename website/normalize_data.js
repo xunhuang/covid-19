@@ -1,7 +1,10 @@
 
 
 const moment = require("moment");
+const states = require('us-state-codes');
+const fs = require('fs');
 const CountyList = require("./src/data/county_gps_original.json");
+const NYC_STARTER = require("../data/archive/NYC-BOROS-04-03-2020.json")
 const ConfirmedData = require("./src/data/covid_confirmed_usafacts.json");
 const DeathData = require("./src/data/covid_death_usafacts.json");
 const { linearRegression } = require('simple-statistics');
@@ -16,43 +19,22 @@ const DFHUSA = require("./src/data/DFH-USA.json");
 const TestingStates = require("./public/data/state_testing.json");
 const TestingUSA = require("./public/data/us_testing.json");
 
-const states = require('us-state-codes');
-const fs = require('fs');
-function pad(n) { return n < 10 ? '0' + n : n }
 let AllData = {};
-
-const MetroInfo = require("./src/data/metrolist.json");
-const metrokeys = MetroInfo.reduce((m, a) => {
-  m[a.UrlName] = 1;
-  return m;
-}, {});
-
-let extraMetro = {};
-for (let key in metrokeys) {
-  let entries = MetroInfo.filter(s => s.UrlName === key);
-  let newMetro = {};
-  newMetro.Counties = entries.map(s => {
-    let countyfips = CountyInfo.getFipsFromStateCountyName(s.State, s.County);
-    if (!countyfips) {
-      console.log("Can't find metro county for " + s.State + " " + s.County);
-    }
-    return countyfips
-  });
-  newMetro.Name = entries[0].Friendly;
-  newMetro.StateName = entries[0].State;
-  newMetro.StateFIPS = CountyInfo.getFipsFromStateShortName(entries[0].State);
-  extraMetro[key] = newMetro;
-}
+function pad(n) { return n < 10 ? '0' + n : n }
 
 /**
  * Initialize State Nodes
  */
+
 const AllStateFips = CountyInfo.getAllStateFips();
 for (let statefips of AllStateFips) {
   AllData[statefips] = {};
 }
 
 
+// --------------------------------------------------------------
+// ---- function area
+// --------------------------------------------------------------
 
 function getStateNode(state_fips) {
   return AllData[state_fips];
@@ -155,24 +137,24 @@ function fixStateFips(cp) {
   return cp;
 }
 
-// create nodes
-ConfirmedData.map(b => {
-  if (b.stateFIPS.length === 0) {
-    return;
-  }
-  let countyObject = createCountyObject(
-    pad(parseInt(b.stateFIPS)),
-    b.State,
-    fixCountyFip(b.countyFIPS),
-    b["County Name"],
-  )
-  let county = getCountyNode(countyObject.StateFIPS, countyObject.CountyFIPS);
-  if (!county) {
-    setCountyNode(countyObject.StateFIPS, countyObject.CountyFIPS, countyObject);
-  }
-});
-
 function process_USAFACTS() {
+
+  // create nodes
+  ConfirmedData.map(b => {
+    if (b.stateFIPS.length === 0) {
+      return;
+    }
+    let countyObject = createCountyObject(
+      pad(parseInt(b.stateFIPS)),
+      b.State,
+      fixCountyFip(b.countyFIPS),
+      b["County Name"],
+    )
+    let county = getCountyNode(countyObject.StateFIPS, countyObject.CountyFIPS);
+    if (!county) {
+      setCountyNode(countyObject.StateFIPS, countyObject.CountyFIPS, countyObject);
+    }
+  });
 
   DeathData.map(b => {
     // check for empty line
@@ -291,12 +273,9 @@ function processJHU(dataset, date) {
   }
 }
 
-const today = moment().format("MM/DD/YYYY");
-
-
 // back fill holes in the data
-
 function fillarrayholes(v, increaseonly = true) {
+  const today = moment().format("MM/DD/YYYY");
   let keys = Object.keys(v).sort((a, b) => moment(a, "MM/DD/YYYY").toDate() - moment(b, "MM/DD/YYYY").toDate());
   let key = keys[0];
   while (key !== today) {
@@ -525,11 +504,35 @@ function processsShelterInPlace() {
   });
 }
 
-
 function getCountyByFips(fips) {
   return AllData[fips.slice(0, 2)][fips];
 }
+
 function addMetros() {
+
+  const MetroInfo = require("./src/data/metrolist.json");
+  const metrokeys = MetroInfo.reduce((m, a) => {
+    m[a.UrlName] = 1;
+    return m;
+  }, {});
+
+  let extraMetro = {};
+  for (let key in metrokeys) {
+    let entries = MetroInfo.filter(s => s.UrlName === key);
+    let newMetro = {};
+    newMetro.Counties = entries.map(s => {
+      let countyfips = CountyInfo.getFipsFromStateCountyName(s.State, s.County);
+      if (!countyfips) {
+        console.log("Can't find metro county for " + s.State + " " + s.County);
+      }
+      return countyfips
+    });
+    newMetro.Name = entries[0].Friendly;
+    newMetro.StateName = entries[0].State;
+    newMetro.StateFIPS = CountyInfo.getFipsFromStateShortName(entries[0].State);
+    extraMetro[key] = newMetro;
+  }
+
   let Metros = {
     ...extraMetro,
     BayArea: {
@@ -727,21 +730,13 @@ function addStateRecovery() {
   }
 }
 
-process_USAFACTS();
-processAllJHU();
-
-fillholes();
-
-summarize_counties();
-summarize_states();
-
 //
 // add territories here because these are states without counties. 
 // 
 
-const USTR_Confirmed = require("../data/archive/US-territories-confirmed.json");
-const USTR_Death = require("../data/archive/US-territories-death.json");
 function addTerrtories() {
+  const USTR_Confirmed = require("../data/archive/US-territories-confirmed.json");
+  const USTR_Death = require("../data/archive/US-territories-death.json");
   console.log("Add confirm for territories")
   USTR_Confirmed.map(tr => {
     let fips = tr.FIPS;
@@ -795,70 +790,70 @@ function addTerrtories() {
   console.log("done with US territories")
 }
 
-addTerrtories();
 
-summarize_USA();
-
-const NYC_STARTER = require("../data/archive/NYC-BOROS-04-03-2020.json")
-for (let boro of NYC_STARTER) {
-  let state_fips = "36";
-  let county_fips = boro.FIPS;
-  let county_info = getCountyNode(state_fips, county_fips);
-  if (!county_info) {
-    county_info = createCountyObject(
-      state_fips,
-      states.getStateCodeByStateName("New York"),
-      county_fips,
-      boro.Name,
-    )
+function add_NYC_BOROS() {
+  for (let boro of NYC_STARTER) {
+    let state_fips = "36";
+    let county_fips = boro.FIPS;
+    let county_info = getCountyNode(state_fips, county_fips);
+    if (!county_info) {
+      county_info = createCountyObject(
+        state_fips,
+        states.getStateCodeByStateName("New York"),
+        county_fips,
+        boro.Name,
+      )
+    }
   }
 }
 
-addMetros();
 
-// special_processing
-let NYC_METRO = AllData["36"]["36061"];
-AllData["36"]["36061"] = null;
+function Special_NYC_METRO() {
+  // special_processing
+  let NYC_METRO = AllData["36"]["36061"];
+  AllData["36"]["36061"] = null;
 
-NYC_run1 = JSON.parse(JSON.stringify(NYC_STARTER));
-NYC_run1.map(entry => {
-  let state_fips = "36";
-  let county_fips = entry.FIPS;
-  let county_info = getCountyNode(state_fips, county_fips);
-  if (!county_info) {
-    county_info = createCountyObject(
-      state_fips,
-      states.getStateCodeByStateName("New York"),
-      county_fips,
-      entry.Name,
-    )
-  }
+  NYC_run1 = JSON.parse(JSON.stringify(NYC_STARTER));
+  NYC_run1.map(entry => {
+    let state_fips = "36";
+    let county_fips = entry.FIPS;
+    let county_info = getCountyNode(state_fips, county_fips);
+    if (!county_info) {
+      county_info = createCountyObject(
+        state_fips,
+        states.getStateCodeByStateName("New York"),
+        county_fips,
+        entry.Name,
+      )
+    }
 
-  if (entry.FIPS.length !== 5) {
-    return null;
-  }
-  delete entry["Name"];
-  delete entry["FIPS"];
+    if (entry.FIPS.length !== 5) {
+      return null;
+    }
+    delete entry["Name"];
+    delete entry["FIPS"];
 
-  let Confirmed = {};
-  for (i in entry) {
-    Confirmed[i] = parseInt(entry[i]);
-  }
+    let Confirmed = {};
+    for (i in entry) {
+      Confirmed[i] = parseInt(entry[i]);
+    }
 
-  county_info.Confirmed = Confirmed;
-  county_info.Death = {};
+    county_info.Confirmed = Confirmed;
+    county_info.Death = {};
 
-  let county = summarize_one_county(county_info);
+    let county = summarize_one_county(county_info);
 
-  AllData[state_fips][county_fips] = county;
-});
+    AllData[state_fips][county_fips] = county;
+  });
 
-let oldSummary = AllData.Metros.NYC.Summary;
-AllData.Metros.NYC.Summary = NYC_METRO;
-AllData.Metros.NYC.Summary.beds = oldSummary.beds;
-AllData.Metros.NYC.Summary.bedsICU = oldSummary.bedsICU;
-AllData.Metros.NYC.Summary.hospitals = oldSummary.hospitals;
-AllData.Metros.NYC.Summary.bedsAvail = oldSummary.bedsAvail;
+  let oldSummary = AllData.Metros.NYC.Summary;
+  AllData.Metros.NYC.Summary = NYC_METRO;
+  AllData.Metros.NYC.Summary.beds = oldSummary.beds;
+  AllData.Metros.NYC.Summary.bedsICU = oldSummary.bedsICU;
+  AllData.Metros.NYC.Summary.hospitals = oldSummary.hospitals;
+  AllData.Metros.NYC.Summary.bedsAvail = oldSummary.bedsAvail;
+}
+
 
 function processNYCBOROS_NEW() {
 
@@ -904,45 +899,41 @@ function processNYCBOROS_NEW() {
   AllData["36"]["36085"].Confirmed = fillarrayholes(AllData["36"]["36085"].Confirmed);
 }
 
-processNYCBOROS_NEW();
 
-
-console.log("Processing NYC Death");
-
-const NYC_DEATH = require("../data/archive/NYC-Deaths.json");
-NYC_DEATH.map(boro => {
-  let fips = boro.FIPS;
-  let newdata = {}
-  for (i in boro) {
-    if (i === "Name" || i === "FIPS") {
-      // delete boro[i];
-    } else {
-      if (boro[i] !== "" && boro[i] !== "0") {
-        newdata[i] = parseInt(boro[i]);
+function processNYC_death() {
+  console.log("Processing NYC Death");
+  const NYC_DEATH = require("../data/archive/NYC-Deaths.json");
+  NYC_DEATH.map(boro => {
+    let fips = boro.FIPS;
+    let newdata = {}
+    for (i in boro) {
+      if (i === "Name" || i === "FIPS") {
+        // delete boro[i];
+      } else {
+        if (boro[i] !== "" && boro[i] !== "0") {
+          newdata[i] = parseInt(boro[i]);
+        }
       }
     }
-  }
-  AllData["36"][fips].Death = fillarrayholes(newdata);
-});
+    AllData["36"][fips].Death = fillarrayholes(newdata);
+  });
 
-console.log("Processing done NYC Death");
+  console.log("Processing done NYC Death");
 
-// fillholes();
+  NYC_STARTER.map(entry => {
+    let state_fips = "36";
+    let county_fips = entry.FIPS;
+    let county_info = getCountyNode(state_fips, county_fips);
+    if (county_info) {
+      let county = summarize_one_county(county_info);
+      AllData[state_fips][county_fips] = county;
+    } else {
 
-NYC_STARTER.map(entry => {
-  let state_fips = "36";
-  let county_fips = entry.FIPS;
-  let county_info = getCountyNode(state_fips, county_fips);
-  if (county_info) {
-    let county = summarize_one_county(county_info);
-    AllData[state_fips][county_fips] = county;
-  } else {
-
-    console.log("Unknown line in NYC");
-    console.log(entry);
-
-  }
-});
+      console.log("Unknown line in NYC");
+      console.log(entry);
+    }
+  });
+}
 
 function extractTestData(entry) {
   let data = {};
@@ -976,13 +967,25 @@ function processTestData() {
   }
 }
 
+// --------------------------------------------------------------
+// ---- Processing area
+// --------------------------------------------------------------
+process_USAFACTS();
+processAllJHU();
+fillholes();
+summarize_counties();
+summarize_states();
+addTerrtories();
+summarize_USA();
+add_NYC_BOROS();
+addMetros();
+Special_NYC_METRO()
+processNYCBOROS_NEW();
+processNYC_death();
 processsShelterInPlace();
 addUSRecovery();
 addStateRecovery();
 processTestData();
 
-const contentCrushed = JSON.stringify(AllData, null, 0);
-// fs.writeFileSync("./public/data/AllData.min.json", contentCrushed);
 const contentPretty = JSON.stringify(AllData, null, 2);
-// fs.writeFileSync("./public/data/AllData.json", contentPretty);
 fs.writeFileSync("./src/data/AllData.json", contentPretty);
