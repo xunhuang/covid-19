@@ -27,13 +27,15 @@ function pad(n) { return n < 10 ? '0' + n : n }
  * Initialize State Nodes
  */
 
-const AllStateFips = CountyInfo.getAllStateFips();
+const AllStateFips = CountyInfo.getAllStateFips().concat(
+  ["88", "99"]
+);
 for (let statefips of AllStateFips) {
   AllData[statefips] = {
     Summary: {},
-
   };
 }
+
 
 
 // --------------------------------------------------------------
@@ -74,7 +76,7 @@ const TableLookup = (() => {
 function fix_county_name(county_name, county_fips) {
   let county = TableLookup[county_fips];
   if (!county) {
-    if (county_name !== "Statewide Unallocated") {
+    if (county_name !== "Statewide Unallocated" && county_name !== "Unassigned") {
       console.log(`${county_name} with ${county_fips} doesn't exist`)
     }
     if (county_name != 'St. Louis County') {
@@ -700,7 +702,7 @@ async function processAllJHUGithub() {
   const json = await csv().fromFile(csvConfirmed);
   processAllJHUGithubInner(json, "Confirmed");
   const jsonDeath = await csv().fromFile(csvDeath);
-  processAllJHUGithubInner(json, "Death");
+  processAllJHUGithubInner(jsonDeath, "Death");
 }
 
 async function processAllJHUGithubInner(json, mytype) {
@@ -726,23 +728,51 @@ async function processAllJHUGithubInner(json, mytype) {
       data[Util.normalize_date(key)] = parseInt(entry[key]);
     }
 
-    // console.log(data);
-
     if (fips.length === 2) {
       // terortories
-      console.log(fips);
+      // console.log(fips);
       AllData[fips].Summary[mytype] = data;
+      continue;
     } else {
+      let state_fips;
+      let county_fips = fips;
       // regular counties
       if (fips.startsWith("80")) {
         // OUT OF STATE
+        state_fips = fips.slice(3, 5);
       } else if (fips.startsWith("90")) {
         // UNAssigned
+        county_fips = "0";
+        state_fips = fips.slice(3, 5);
+        continue;
       } else if (fips.startsWith("99999")) {
         // grand princess
+        AllData["99"].Summary[mytype] = data;
+        continue;
+      } else if (fips.startsWith("88888")) {
+        // diamond princess
+        AllData["88"].Summary[mytype] = data;
+        continue;
       } else {
         // normal
+        state_fips = fips.slice(0, 2);
+        continue; // skipping
       }
+      let county = getCountyNode(state_fips, county_fips);
+      if (!county) {
+        county = createCountyObject(
+          state_fips,
+          states.getStateCodeByStateName(entry.Province_State),
+          county_fips,
+          entry.Admin2,
+        )
+        if (!county) {
+          console.log("bad JHU data point");
+          console.log(entry);
+          return;
+        }
+      }
+      county[mytype] = data;
     }
   }
 }
