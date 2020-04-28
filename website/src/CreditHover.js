@@ -1,7 +1,7 @@
 import React from 'react';
 import Typography from '@material-ui/core/Typography'
 import { makeStyles } from '@material-ui/core/styles';
-import contributers from './data/contributers.json'
+import contributers from './data/contributors.json'
 
 const useStyles = makeStyles(theme => ({
     typography: {
