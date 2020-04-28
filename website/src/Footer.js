@@ -28,11 +28,6 @@ const useStyles = makeStyles(theme => ({
         display: 'block',
         padding: '1vh'
     },
-    root: {
-        '& > span': {
-            margin: 2,
-        },
-    },
 }));
 
 const Footer = (props) => {
@@ -47,6 +42,7 @@ const Footer = (props) => {
 
     const menuLinks = [
         ["Terms of Service", "https://docs.google.com/document/d/10bsmpX1VVi2myFAHtP_gqHeGauDHz_9t1YQnjxMc_ng/edit?usp=sharing"],
+        ["Data Credits", "/credit/data"]
     ];
 
     const [anchorEl, setAnchorEl] = React.useState(null);
