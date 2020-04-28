@@ -2,6 +2,7 @@ import React from 'react';
 import { Switch, Redirect, Route, withRouter } from 'react-router-dom'
 import { BrowserRouter } from 'react-router-dom';
 import { ThemeProvider } from '@material-ui/core/styles';
+import GoogleSheetsProvider from 'react-db-google-sheets';
 import { Splash } from './Splash.js';
 import { fetchCounty } from "./GeoLocation"
 import { logger } from "./AppModule"
@@ -20,9 +21,11 @@ import routes from "./Routes";
 const App = (props) => {
   return <BrowserRouter>
     <Title />
-    <ThemeProvider theme={compactTheme}>
-      <MainApp  {...props} />
-    </ThemeProvider>
+    <GoogleSheetsProvider>
+        <ThemeProvider theme={compactTheme}>
+          <MainApp  {...props} />
+        </ThemeProvider>
+    </GoogleSheetsProvider>
   </BrowserRouter>;
 };
 
