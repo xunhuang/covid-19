@@ -35,6 +35,7 @@ const CustomTooltip = (props) => {
     const { payload, label } = props;
     let confirmed;
     let newcase;
+    let newcase_avg;
 
     payload.map(p => {
       p = p.payload;
@@ -49,6 +50,9 @@ const CustomTooltip = (props) => {
       }
       if ("pending_newcase" in p) {
         newcase = p.pending_newcase;
+      }
+      if ("newcase_avg" in p) {
+        newcase_avg = p.newcase_avg;
       }
       return null;
     });
@@ -68,6 +72,9 @@ const CustomTooltip = (props) => {
         </Typography>
         <Typography variant="body2" noWrap>
           {`New: ${newcase}`}
+        </Typography>
+        <Typography variant="body2" noWrap>
+          {`New (3d-Avg): ${newcase_avg ? newcase_avg.toFixed(0) : ""}`}
         </Typography>
       </div>
     );
