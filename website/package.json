@@ -13,6 +13,7 @@
     "@testing-library/user-event": "^7.2.1",
     "babel-eslint": "10.0.3",
     "build-url": "^2.0.0",
+    "covidmodule": "file:covidmodule",
     "d3-scale": "^3.2.1",
     "disqus-react": "^1.0.7",
     "eslint": "^6.8.0",
@@ -31,6 +32,7 @@
     "moment": "^2.24.0",
     "named-urls": "^2.0.0",
     "react": "^16.13.0",
+    "react-db-google-sheets": "^2.0.0",
     "react-device-detect": "^1.11.14",
     "react-dom": "^16.13.0",
     "react-facebook": "^8.1.4",
@@ -48,8 +50,7 @@
     "superagent": "^5.2.2",
     "tsutils": "^3.17.1",
     "typescript": "^3.8.3",
-    "us-state-codes": "^1.1.2",
-    "covidmodule": "file:covidmodule"
+    "us-state-codes": "^1.1.2"
   },
   "scripts": {
     "start": "react-scripts start",
