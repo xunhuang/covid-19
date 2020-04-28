@@ -694,10 +694,13 @@ function processAllJHU() {
 }
 
 async function processAllJHUGithub() {
-  const csvFilePath = "../COVID-19/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_US.csv"
+  const csvConfirmed = "../COVID-19/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_US.csv"
+  const csvDeath = "../COVID-19/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_US.csv"
   const csv = require('csvtojson')
-  const json = await csv().fromFile(csvFilePath);
+  const json = await csv().fromFile(csvConfirmed);
   processAllJHUGithubInner(json, "Confirmed");
+  const jsonDeath = await csv().fromFile(csvDeath);
+  processAllJHUGithubInner(json, "Death");
 }
 
 async function processAllJHUGithubInner(json, mytype) {
