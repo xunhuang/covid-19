@@ -4,6 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Link as MaterialLink } from '@material-ui/core';
 import { Grid } from '@material-ui/core';
 import GitHubIcon from '@material-ui/icons/GitHub';
+import FacebookIcon from '@material-ui/icons/Facebook';
 import Popover from '@material-ui/core/Popover';
 import CreditPopover from './CreditHover'
 
@@ -20,14 +21,18 @@ const useStyles = makeStyles(theme => ({
     githubIcon: {
         color: '#00aeef',
         margin: '0 auto',
-        textAlign: 'center',
-        display: 'flex'
+        display: 'grid'
     },
     creditParagraph: {
         textAlign: 'center',
         display: 'block',
         padding: '1vh'
-    }
+    },
+    root: {
+        '& > span': {
+            margin: 2,
+        },
+    },
 }));
 
 const Footer = (props) => {
@@ -39,6 +44,10 @@ const Footer = (props) => {
         className: classes.footerLink,
         color: 'textSecondary'
     };
+
+    const menuLinks = [
+        ["Terms of Service", "https://docs.google.com/document/d/10bsmpX1VVi2myFAHtP_gqHeGauDHz_9t1YQnjxMc_ng/edit?usp=sharing"],
+    ];
 
     const [anchorEl, setAnchorEl] = React.useState(null);
 
@@ -57,15 +66,23 @@ const Footer = (props) => {
         <Grid container className={classes.topContainer} justify="space-evenly" alignItems="center" direction="row" >
             <Grid item xs={12} sm={1} />
             <Grid item container xs={12} sm={4} className={classes.linkContainer} justify="center" direction="column">
-                <MaterialLink {...footerLinkProps}>FAQ</MaterialLink>
-                <MaterialLink {...footerLinkProps}>Terms of Service</MaterialLink>
-                <MaterialLink {...footerLinkProps}>Data Credits</MaterialLink>
-                <MaterialLink {...footerLinkProps}>Download Raw Data</MaterialLink>
+                {menuLinks.map(linkPair => {
+                    return (<MaterialLink {...footerLinkProps} href={linkPair[1]}>{linkPair[0]}</MaterialLink>)
+                })}
             </Grid>
             <Grid item xs={12} sm={2}>
-                <MaterialLink href="https://github.com/xunhuang/covid-19" className={classes.githubIcon}>
-                    <GitHubIcon fontSize="large" className={classes.githubIcon}/>
-                </MaterialLink>
+                <Grid container className={classes.root}>
+                    <Grid item xs={6} sm={6}>
+                        <MaterialLink href="https://github.com/xunhuang/covid-19" className={classes.githubIcon}>
+                            <GitHubIcon fontSize="large" className={classes.githubIcon}/>
+                        </MaterialLink>
+                    </Grid>
+                    <Grid item xs={6} sm={6}>
+                    <MaterialLink href="https://www.facebook.com/COVID-19direct-107176574273347/" className={classes.githubIcon}>
+                        <FacebookIcon fontSize="large" className={classes.githubIcon}/>
+                    </MaterialLink>
+                    </Grid>
+                </Grid>
             </Grid>
             <Grid item xs={12} sm={4}>
                 <Typography variant='caption' color='textSecondary' className={classes.creditParagraph}>
