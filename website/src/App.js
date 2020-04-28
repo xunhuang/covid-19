@@ -20,9 +20,9 @@ import routes from "./Routes";
 const App = (props) => {
   return <BrowserRouter>
     <Title />
-        <ThemeProvider theme={compactTheme}>
-            <MainApp  {...props} />
-        </ThemeProvider>
+    <ThemeProvider theme={compactTheme}>
+      <MainApp  {...props} />
+    </ThemeProvider>
   </BrowserRouter>;
 };
 
