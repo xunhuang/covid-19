@@ -39,7 +39,7 @@ const GraphGrowthRateOverTime = (props) => {
     });
 
     if (state.show2weeks) {
-        const cutoff = moment().subtract(14, 'days')
+        // const cutoff = moment().subtract(14, 'days')
         // data = data.filter(d => {
         // return moment(d.fulldate, "MM/DD/YYYY").isAfter(cutoff)
         // });

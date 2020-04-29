@@ -7,6 +7,7 @@ import { FacebookProvider, CommentsCount } from 'react-facebook';
 import { useHistory } from "react-router-dom";
 import { Link as MaterialLink } from '@material-ui/core';
 import { Grid } from '@material-ui/core';
+import { Paper } from '@material-ui/core';
 import { SectionHeader } from "./CovidUI"
 import { withRouter } from 'react-router-dom'
 import { Link as RouterLink } from 'react-router-dom';
@@ -14,6 +15,7 @@ import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import { MentalHealthResourceSection } from './MentalHealthTab';
 import { SearchBox } from './SearchBox';
+import { Footer } from './Footer'
 
 import {
     EmailShareButton,
@@ -106,6 +108,14 @@ const useStyles = makeStyles(theme => ({
     newsTitle: {
         margin: 4,
     },
+    disqusPaper: {
+        overflow: 'auto',
+        width: '97%',
+        padding: 10,
+        display: 'block',
+        margin: '0 auto',
+        maxHeight: "80vh",
+    }
 }));
 
 const WhatsNewSection = (props) => {
@@ -294,7 +304,7 @@ const withHeader = (comp, props) => {
             // add addition things here
             ...props,
         });
-        let footer = <div>
+        let healthDiscussion = <div>
             <SectionHeader>
                 <Typography variant="h5" noWrap>
                     Resources
@@ -318,10 +328,12 @@ const withHeader = (comp, props) => {
                     </Grid>
                 </Grid>
             </SectionHeader>
-            <Disqus.DiscussionEmbed
-                shortname={disqusShortname}
-                config={disqusConfig}
-            />
+            <Paper elevation={3} className={classes.disqusPaper}>
+                <Disqus.DiscussionEmbed
+                    shortname={disqusShortname}
+                    config={disqusConfig}
+                />
+            </Paper>
         </div>;
         let fbcomment =
             <FacebookProvider appId="201788627783795">
@@ -335,11 +347,11 @@ const withHeader = (comp, props) => {
             <div className={classes.searchContainer}>
                 <SearchBox />
             </div>
-
             {component}
             <NewsSection />
-            {footer}
+            {healthDiscussion}
             {fbcomment}
+            <Footer />
         </header >
 
         return header;

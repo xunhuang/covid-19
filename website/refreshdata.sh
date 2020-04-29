@@ -1,4 +1,7 @@
 
+pushd ../COVID-19/ ; git pull; popd
+pushd  ../coronavirus-data/ ; git pull; popd
+
 temp_file=$(mktemp)
 
 d=`date "+%m-%d-%Y"` 
@@ -132,3 +135,5 @@ if  [ "$filesize" -ge "100" ]; then
 else 
     echo "file size $filesize too small"
 fi
+
+
