@@ -28,15 +28,13 @@ function pad(n) { return n < 10 ? '0' + n : n }
  */
 
 const AllStateFips = CountyInfo.getAllStateFips().concat(
-  ["88", "99"]
+  ["88", "99", "97"]
 );
 for (let statefips of AllStateFips) {
   AllData[statefips] = {
     Summary: {},
   };
 }
-
-
 
 // --------------------------------------------------------------
 // ---- function area
@@ -713,12 +711,27 @@ async function processAllJHUGithub() {
 
 async function processAllJHUGithubInner(json, mytype) {
 
+  const errataFipsMap = {
+    "Dukes and Nantucket": "25007",
+    "Kansas City": "20209",
+    "Michigan Department of Corrections (MDOC)": "26997",
+    "Federal Correctional Institution (FCI)": "97",
+    // "Bear River": ,
+    // "Central Utah": ,
+    // "Southeast Utah":,
+    // "Southwest Utah":
+    //  "TriCounty":
+    "Weber-Morgan": "49057",
+  }
+
   for (let entry of json) {
-    let fips = entry.FIPS
-    if (!entry.FIPS || entry.FIPS.length === 0) {
-      // console.log(entry);
-      // need special processing
-      continue;
+    let fips = entry.FIPS;
+    if (!fips || fips.length === 0) {
+      fips = errataFipsMap[entry.Admin2];
+      if (!fips) {
+        console.log("Don't know what to do with " + entry.Admin2)
+        continue;
+      }
     } else {
       fips = fips.split(".")[0];
       if (fips.length === 4) {
@@ -742,7 +755,9 @@ async function processAllJHUGithubInner(json, mytype) {
       let state_fips;
       let county_fips = fips;
 
-      if (fips.startsWith("80")) {
+      if (fips.startsWith("70")) {
+        state_fips = 47;
+      } else if (fips.startsWith("80")) {
         // OUT OF STATE
         state_fips = fips.slice(3, 5);
       } else if (fips.startsWith("90")) {
@@ -1084,7 +1099,6 @@ processAllJHUGithub().then(() => {
   fillholes();
   summarize_counties();
   summarize_states();
-  // addTerrtories();
   summarize_USA();
   add_NYC_BOROS();
   addMetros();
@@ -1097,6 +1111,7 @@ processAllJHUGithub().then(() => {
   processTestData();
   const contentPretty = JSON.stringify(AllData, null, 2);
   fs.writeFileSync("./src/data/AllData.json", contentPretty);
+  // console.log(contentPretty);
 }
 
 );
