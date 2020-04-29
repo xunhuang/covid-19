@@ -891,66 +891,6 @@ function addStateRecovery() {
   }
 }
 
-//
-// add territories here because these are states without counties. 
-// 
-
-function addTerrtories() {
-  const USTR_Confirmed = require("../data/archive/US-territories-confirmed.json");
-  const USTR_Death = require("../data/archive/US-territories-death.json");
-  console.log("Add confirm for territories")
-  USTR_Confirmed.map(tr => {
-    let fips = tr.FIPS;
-    let newdata = {}
-    for (i in tr) {
-      if (i === "Name" || i === "FIPS") {
-        // delete boro[i];
-      } else {
-        if (tr[i] !== "" && tr[i] !== "0") {
-          newdata[i] = parseInt(tr[i]);
-        }
-      }
-    }
-    let Summary = {};
-    if (Object.keys(newdata).length > 0) {
-      Summary.Confirmed = fillarrayholes(newdata);
-      AllData[fips].Summary = Summary;
-    }
-  });
-
-  console.log("Add death for territories")
-
-  USTR_Death.map(tr => {
-    let fips = tr.FIPS;
-    let newdata = {}
-    for (i in tr) {
-      if (i === "Name" || i === "FIPS") {
-        // delete boro[i];
-      } else {
-        if (tr[i] !== "" && tr[i] !== "0") {
-          newdata[i] = parseInt(tr[i]);
-        }
-      }
-    }
-    let Summary = AllData[fips].Summary;
-    if (Object.keys(newdata).length > 0) {
-      Summary.Death = fillarrayholes(newdata);
-
-      const CC = getValueFromLastDate(Summary.Confirmed);
-      const DD = getValueFromLastDate(Summary.Death);
-
-      Summary.LastConfirmed = CC.num;
-      Summary.LastConfirmedNew = CC.newnum;
-      Summary.LastDeath = DD.num;
-      Summary.LastDeathNew = DD.newnum;
-      Summary.DaysToDouble = getDoubleDays(Confirmed);
-      Summary.DaysToDoubleDeath = getDoubleDays(Death);
-      AllData[fips].Summary = Summary;
-    }
-  });
-  console.log("done with US territories")
-}
-
 function add_NYC_BOROS() {
   for (let boro of NYC_STARTER) {
     let state_fips = "36";
@@ -966,7 +906,6 @@ function add_NYC_BOROS() {
     }
   }
 }
-
 
 function Special_NYC_METRO() {
   // special_processing
