@@ -28,12 +28,14 @@ function pad(n) { return n < 10 ? '0' + n : n }
  */
 
 const AllStateFips = CountyInfo.getAllStateFips().concat(
-  ["88", "99", "97"]
+  ["88", "99", "97", "96"]
 );
 for (let statefips of AllStateFips) {
   AllData[statefips] = {
     Summary: {
       StateFIPS: statefips,
+      Confirmed: {},
+      Death: {},
     },
   };
 }
@@ -90,7 +92,7 @@ function fix_county_name(county_name, county_fips) {
 function createCountyObject(state_fips, state_name, county_fips, county_name) {
 
   if (!state_fips || !state_name) {
-    console.log("creating to create null state and fips ---------");
+    console.log(`creating to create null state and fips (${state_fips}, ${state_name})`);
     return null;
   }
 
@@ -244,18 +246,33 @@ function processJHUDataPoint(c, date) {
   let state_fips = CountyInfo.getFipsFromStateName(b.Province_State);
   if (county_fips === null && b.Admin2 === "Harris" && b.Province_State === "Texas") {
     county_fips = "48201";
-  } else if (county_fips === null) {
+  } else if (b.Province_State === "US Military") {
+    state_fips = "96";
+    county_fips = ("" + b.UID).slice(3, 8);
+  } else if (b.UID === 84070013 || b.UID == 84070012) { // prison
+    AllData["97"].Summary.Confirmed[date] = b.Confirmed;
+    AllData["97"].Summary.Death[date] = b.Death;
+    return;
+  } else if (b.Province_State === "Northern Mariana Islands") {
+    AllData["69"].Summary.Confirmed[date] = b.Confirmed;
+    AllData["69"].Summary.Death[date] = b.Death;
+    return;
+  }
+  else if (county_fips === null) {
     county_fips = "0";
-  } else {
-    if (county_fips.slice(0, 2) === "90") {
-      county_fips = "0"; // until we find a better solution, JHU data change at 4/2
-    }
+  } else if (county_fips.slice(0, 2) === "90") {
+    county_fips = "0"; // until we find a better solution, JHU data change at 4/2
   }
   let county = getCountyNode(state_fips, county_fips);
   if (!county) {
+    let statescode = states.getStateCodeByStateName(b.Province_State);
+    if (b.Province_State === "US Military") {
+      statescode = "AY";
+    }
+
     county = createCountyObject(
       state_fips,
-      states.getStateCodeByStateName(b.Province_State),
+      statescode,
       county_fips,
       b.Admin2,
     )
@@ -934,7 +951,6 @@ function addTerrtories() {
   console.log("done with US territories")
 }
 
-
 function add_NYC_BOROS() {
   for (let boro of NYC_STARTER) {
     let state_fips = "36";
@@ -1108,7 +1124,6 @@ function extractTestData(entry) {
 
 function processTestData() {
   for (let statefips of AllStateFips) {
-    console.log(statefips);
     let state_short = CountyInfo.getStateAbbreviationFromFips(statefips);
     let entry = TestingStates.filter(s => s.state === state_short).sort((a, b) => b.date - a.date)[0];
     let data = extractTestData(entry);
@@ -1148,22 +1163,3 @@ processAllJHUGithub().then(() => {
   fs.writeFileSync("./src/data/AllData.json", contentPretty);
   // console.log(contentPretty);
 });
-
-// fillholes();
-// summarize_counties();
-// summarize_states();
-// addTerrtories();
-// summarize_USA();
-// add_NYC_BOROS();
-// addMetros();
-// Special_NYC_METRO()
-// processNYCBOROS_NEW();
-// processNYC_death();
-// processsShelterInPlace();
-// addUSRecovery();
-// addStateRecovery();
-// processTestData();
-
-// const contentPretty = JSON.stringify(AllData, null, 2);
-// fs.writeFileSync("./src/data/AllData.json", contentPretty);
-// console.log(contentPretty);

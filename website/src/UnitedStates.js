@@ -304,10 +304,6 @@ export class State extends CovidSummarizable {
 
     if (!this.twoLetterName) {
       this.twoLetterName = CountyInfo.getStateAbbreviationFromFips(this.id);
-      if (!this.twoLetterName) {
-        console.log(this.name);
-        console.log(id);
-      }
     }
     this.counties_ = new Map();
     this.countiesByName_ = new Map();
@@ -316,7 +312,6 @@ export class State extends CovidSummarizable {
 
     if (this.id == "49") {
       console.log(this.counties_);
-
     }
 
     // Force load counties so nearby works properly and we get "Statewide
@@ -504,7 +499,7 @@ export class State extends CovidSummarizable {
 
   countyMapConfig() {
     const fips = this.fips();
-    if (fips === "88" || fips === "99") {
+    if (fips === "88" || fips === "99" || fips === "97" || fips === "98" || fips === "96") {
       return null;
     }
     return {
