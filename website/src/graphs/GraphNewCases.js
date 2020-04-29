@@ -1,5 +1,5 @@
 import React from 'react';
-import { ResponsiveContainer, LineChart, Label, Line, ReferenceLine, ReferenceArea, YAxis, XAxis, Tooltip, CartesianGrid, Legend } from 'recharts';
+import { ResponsiveContainer, LineChart, Line, ReferenceLine, YAxis, XAxis, Tooltip, CartesianGrid, Legend } from 'recharts';
 import { makeStyles } from '@material-ui/core/styles';
 import { Typography } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
@@ -7,7 +7,6 @@ import { scaleSymlog } from 'd3-scale';
 import { datesToDays, fitExponentialTrendingLine } from './TrendFitting';
 import { mergeDataSeries, makeDataSeriesFromTotal, exportColumnFromDataSeries } from "./DataSeries";
 import { myShortNumber } from '../Util';
-import { Summary } from './Summary';
 import { AntSwitch } from "./AntSwitch"
 
 const Cookies = require("js-cookie");
@@ -152,7 +151,6 @@ const BasicGraph = (props) => {
 
   let dailyGrowthRate = null;
   let daysToDouble = null;
-  let lastTrendingData = null;
   if (hasTrendingLine) {
     data = data.map((d, idx) => {
       d.trending_line = results.fittedYs[idx];
@@ -160,7 +158,6 @@ const BasicGraph = (props) => {
     });
     dailyGrowthRate = results.dailyGrowthRate;
     daysToDouble = results.daysToDouble;
-    lastTrendingData = data[data.length - 1];
   }
 
   if (state.show2weeks) {
