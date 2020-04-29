@@ -378,11 +378,13 @@ function summarize_counties() {
   for (s in AllData) {
     state = AllData[s];
     for (c in state) {
+      // if (isNaN(parseInt(c))) {
       county = state[c];
-      if (c.length === 2) {
+      if (c !== "Summary") {
         county = summarize_one_county(county);
         setCountyNode(s, c, county);
       }
+      // }
     }
   }
 }

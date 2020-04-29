@@ -28,6 +28,9 @@ const MapNew = (props) => {
 
   const source = props.source instanceof Metro ? props.source.state() : props.source;
   const config = source.countyMapConfig();
+  if (!config) {
+    return null;
+  }
   // Gross!
   const isZoomed = !!config.projection.config;
 

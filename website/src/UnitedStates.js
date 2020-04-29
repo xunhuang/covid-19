@@ -57,13 +57,13 @@ export class CovidSummarizable {
     }
 
     return {
-        count: this.normalizedRaw_.hospitals, // to be deprecated
-        bedCount: this.normalizedRaw_.beds,   // to be deprecated
-        bedsICU: this.normalizedRaw_.bedsICU,
-        bedsAvail: this.normalizedRaw_.bedsAvail,
-        hospitals: this.normalizedRaw_.hospitals,
-        beds: this.normalizedRaw_.beds,
-      };
+      count: this.normalizedRaw_.hospitals, // to be deprecated
+      bedCount: this.normalizedRaw_.beds,   // to be deprecated
+      bedsICU: this.normalizedRaw_.bedsICU,
+      bedsAvail: this.normalizedRaw_.bedsAvail,
+      hospitals: this.normalizedRaw_.hospitals,
+      beds: this.normalizedRaw_.beds,
+    };
   }
 
   summary() {
@@ -99,7 +99,7 @@ export class CovidSummarizable {
     }
     if (this.normalizedRaw_.generated) {
       summarized.generatedTime =
-          (new Date(this.normalizedRaw_.generated)).toString();
+        (new Date(this.normalizedRaw_.generated)).toString();
     }
 
     return summarized;
@@ -161,7 +161,7 @@ export class Country extends CovidSummarizable {
       this.metroByStatesByIds_.set(id, metroByStates);
 
       const states = new Set();
-      for(const county of data.Counties) {
+      for (const county of data.Counties) {
         states.add(this.countiesById_.get(county).state());
       }
       states.forEach(state => {
@@ -204,10 +204,10 @@ export class Country extends CovidSummarizable {
 
   allMetros() {
     return Array.from(this.metroByStatesByIds_.values())
-        .map(
-            metroByStates =>
-                // Only grab one state if it spans state lines
-                metroByStates.values().next().value);
+      .map(
+        metroByStates =>
+          // Only grab one state if it spans state lines
+          metroByStates.values().next().value);
   }
 
   stateForId(id) {
@@ -498,6 +498,10 @@ export class State extends CovidSummarizable {
   }
 
   countyMapConfig() {
+    const fips = this.fips();
+    if (fips === "88" || fips === "99") {
+      return null;
+    }
     return {
       geoUrl: process.env.PUBLIC_URL + `/topojson/us-states/${this.twoLetterName}-${this.fips()}-${this.name.toLowerCase().replace(" ", "-")}-counties.json`,
       projection: {
