@@ -309,9 +309,11 @@ function fillholes() {
     state = AllData[s];
     for (c in state) {
       let county = state[c];
-      county.Confirmed = fillarrayholes(county.Confirmed, c !== "0");
-      county.Death = fillarrayholes(county.Death, c !== "0");
-      setCountyNode(s, c, county);
+      if (c.length === 2) {
+        county.Confirmed = fillarrayholes(county.Confirmed, c !== "0");
+        county.Death = fillarrayholes(county.Death, c !== "0");
+        setCountyNode(s, c, county);
+      }
     }
   }
 }
@@ -377,8 +379,10 @@ function summarize_counties() {
     state = AllData[s];
     for (c in state) {
       county = state[c];
-      county = summarize_one_county(county);
-      setCountyNode(s, c, county);
+      if (c.length === 2) {
+        county = summarize_one_county(county);
+        setCountyNode(s, c, county);
+      }
     }
   }
 }
@@ -730,13 +734,12 @@ async function processAllJHUGithubInner(json, mytype) {
 
     if (fips.length === 2) {
       // terortories
-      // console.log(fips);
       AllData[fips].Summary[mytype] = data;
       continue;
     } else {
       let state_fips;
       let county_fips = fips;
-      // regular counties
+
       if (fips.startsWith("80")) {
         // OUT OF STATE
         state_fips = fips.slice(3, 5);
@@ -746,17 +749,18 @@ async function processAllJHUGithubInner(json, mytype) {
         state_fips = fips.slice(3, 5);
         continue;
       } else if (fips.startsWith("99999")) {
-        // grand princess
+        // grand princess, fake state
         AllData["99"].Summary[mytype] = data;
         continue;
       } else if (fips.startsWith("88888")) {
-        // diamond princess
+        // diamond princess, fake state
         AllData["88"].Summary[mytype] = data;
         continue;
       } else {
         // normal
+        // regular counties
         state_fips = fips.slice(0, 2);
-        continue; // skipping
+        // continue; // skipping for testing
       }
       let county = getCountyNode(state_fips, county_fips);
       if (!county) {
@@ -1024,21 +1028,35 @@ function processNYC_death() {
 }
 
 function extractTestData(entry) {
+
+
   let data = {};
-  data.totalTests = entry.total;
-  data.totalTestResults = entry.totalTestResults;
-  data.totalTestPositive = entry.positive;
-  data.totalRecovered = entry.recovered;
-  data.hospitalized = entry.hospitalized ? entry.hospitalized :
-    (entry.hospitalizedCurrently ? entry.hospitalizedCurrently : entry.hospitalizedCumulative);
-  data.hospitalizedIncreased = entry.hospitalizedIncrease;
-  data.inIcu = entry.inIcuCurrently ? entry.inIcuCurrently : entry.inIcuCumulative;
-  data.onVentilator = entry.onVentilatorCurrently ? entry.onVentilatorCurrently : entry.onVentilatorCumulative;
+  if (entry) {
+    data.totalTests = entry.total;
+    data.totalTestResults = entry.totalTestResults;
+    data.totalTestPositive = entry.positive;
+    data.totalRecovered = entry.recovered;
+    data.hospitalized = entry.hospitalized ? entry.hospitalized :
+      (entry.hospitalizedCurrently ? entry.hospitalizedCurrently : entry.hospitalizedCumulative);
+    data.hospitalizedIncreased = entry.hospitalizedIncrease;
+    data.inIcu = entry.inIcuCurrently ? entry.inIcuCurrently : entry.inIcuCumulative;
+    data.onVentilator = entry.onVentilatorCurrently ? entry.onVentilatorCurrently : entry.onVentilatorCumulative;
+  } else {
+    data.totalTests = 0;
+    data.totalTestResults = 0;
+    data.totalTestPositive = 0;
+    data.totalRecovered = 0;
+    data.hospitalized = 0;
+    data.hospitalizedIncreased = 0;
+    data.inIcu = 0;
+    data.onVentilator = 0;
+  }
   return data;
 }
 
 function processTestData() {
   for (let statefips of AllStateFips) {
+    console.log(statefips);
     let state_short = CountyInfo.getStateAbbreviationFromFips(statefips);
     let entry = TestingStates.filter(s => s.state === state_short).sort((a, b) => b.date - a.date)[0];
     let data = extractTestData(entry);
@@ -1058,11 +1076,25 @@ function processTestData() {
 // --------------------------------------------------------------
 // ---- Processing area
 // --------------------------------------------------------------
-// process_USAFACTS(); // this sites tracks county level data before JHU
-// processAllJHU();
+process_USAFACTS(); // this sites tracks county level data before JHU
 processAllJHUGithub().then(() => {
+  processAllJHU();
+  fillholes();
+  summarize_counties();
+  summarize_states();
+  // addTerrtories();
+  summarize_USA();
+  add_NYC_BOROS();
+  addMetros();
+  Special_NYC_METRO()
+  processNYCBOROS_NEW();
+  processNYC_death();
+  processsShelterInPlace();
+  addUSRecovery();
+  addStateRecovery();
+  processTestData();
   const contentPretty = JSON.stringify(AllData, null, 2);
-  console.log(contentPretty);
+  fs.writeFileSync("./src/data/AllData.json", contentPretty);
 }
 
 );

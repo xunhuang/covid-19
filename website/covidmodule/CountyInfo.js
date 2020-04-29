@@ -148,10 +148,20 @@ const STATE_FIPS_TO_NAME = {
   "78": "Virgin Islands",
   "60": "American Samoa",
   "69": "Northern Mariana Islands",
+  "88": "Grand Princess",
+  "99": "Diamond Princess",
 };
 
 const fipsToState =
 {
+  "88": {
+    "abbreviation": "GP",
+    "name": "Grand Princess"
+  },
+  "99": {
+    "abbreviation": "DP",
+    "name": "Diamond Princess"
+  },
   "01": {
     "abbreviation": "AL",
     "name": "Alabama"
