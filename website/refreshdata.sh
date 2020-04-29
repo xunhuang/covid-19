@@ -1,6 +1,6 @@
 
-pushd ../COVID-19/ ; git pull; popd
-pushd  ../coronavirus-data/ ; git pull; popd
+pushd ../COVID-19/ ; git checkout master; git pull; popd
+pushd  ../coronavirus-data/ ;  git checkout master; git pull; popd
 
 temp_file=$(mktemp)
 
