@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { CountryContext } from "./CountryContext";
 import * as Util from "./Util"
-import { withHeader } from "./Header.js"
+import { withHeader } from "./ContentWrapping.js"
 import { MyTabs } from "./MyTabs.js"
 import { USInfoTopWidget } from './USInfoTopWidget.js'
 import { CountiesForStateWidget, ListStateCountiesCapita } from "./CountyListRender.js"

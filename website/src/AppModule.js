@@ -1,4 +1,3 @@
-
 const firebase = require('firebase/app');
 require("firebase/firestore");
 require("firebase/analytics");
