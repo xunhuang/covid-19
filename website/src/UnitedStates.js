@@ -115,10 +115,6 @@ export class Country extends CovidSummarizable {
   constructor() {
     super(CovidData);
 
-    // Yikes...
-    this.normalizedRaw_.beds = 924107;
-    this.normalizedRaw_.hospitals = 6146;
-
     // Metros span state lines, but we have a notion of a hierarchy in
     // header:
     // county -> metro (maybe) -> state -> country
