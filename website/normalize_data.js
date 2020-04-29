@@ -32,7 +32,9 @@ const AllStateFips = CountyInfo.getAllStateFips().concat(
 );
 for (let statefips of AllStateFips) {
   AllData[statefips] = {
-    Summary: {},
+    Summary: {
+      StateFIPS: statefips,
+    },
   };
 }
 
@@ -281,6 +283,9 @@ function processJHU(dataset, date) {
 function fillarrayholes(v, increaseonly = true) {
   const today = moment().format("MM/DD/YYYY");
   let keys = Object.keys(v).sort((a, b) => moment(a, "MM/DD/YYYY").toDate() - moment(b, "MM/DD/YYYY").toDate());
+  if (keys.length === 0) {
+    return v;
+  }
   let key = keys[0];
   while (key !== today) {
     let lastvalue = v[key];
@@ -416,7 +421,6 @@ function summarize_states() {
 
   for (s in AllData) {
     state = AllData[s];
-    // need to 
     Confirmed = {};
     Death = {};
     for (c in state) {
@@ -425,7 +429,14 @@ function summarize_states() {
       mergeTwoMapValues(Death, county.Death)
 
     }
+
+    if (s !== "undefined") {
+      Confirmed = fillarrayholes(Confirmed, true);
+      Death = fillarrayholes(Death, true);
+    }
+
     let Summary = {};
+    Summary.StateFIPS = s;
     Summary.Confirmed = Confirmed;
     Summary.Death = Death;
 
@@ -453,6 +464,7 @@ function summarize_states() {
 
 
 function summarize_USA() {
+
   // summarize data for US
   USConfirmed = {};
   USDeath = {};
