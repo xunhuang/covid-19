@@ -387,8 +387,12 @@ function getValueFromLastDate(v, comment) {
 function mergeTwoMapValues(m1, m2) {
   for (let i in m2) {
     let a = m1[i];
-    a = a ? a : 0;
-    a += m2[i];
+    if (isNaN(a)) {
+      a = 0;
+    }
+    if (!isNaN(m2[i])) {
+      a += m2[i];
+    }
     m1[i] = a;
   }
 }
@@ -444,7 +448,6 @@ function summarize_states() {
       county = state[c];
       mergeTwoMapValues(Confirmed, county.Confirmed)
       mergeTwoMapValues(Death, county.Death)
-
     }
 
     if (s !== "undefined") {
@@ -483,8 +486,8 @@ function summarize_states() {
 function summarize_USA() {
 
   // summarize data for US
-  USConfirmed = {};
-  USDeath = {};
+  let USConfirmed = {};
+  let USDeath = {};
 
   for (s in AllData) {
     state = AllData[s];
