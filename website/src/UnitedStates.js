@@ -314,6 +314,11 @@ export class State extends CovidSummarizable {
     this.metros_ = new Map();
     this.metrosByCounty_ = new Map();
 
+    if (this.id == "49") {
+      console.log(this.counties_);
+
+    }
+
     // Force load counties so nearby works properly and we get "Statewide
     // Unallocated"s.
     for (const id of Object.keys(this.covidRaw_)) {

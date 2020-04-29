@@ -302,12 +302,37 @@ function fillarrayholes(v, increaseonly = true) {
   return v;
 }
 
+
+
 function fillholes() {
+  const deprecated_counties = {
+    "49001": true,
+    "49003": true,
+    "49005": true,
+    "49007": true,
+    "49009": true,
+    "49013": true,
+    "49015": true,
+    "49017": true,
+    "49019": true,
+    "49021": true,
+    "49023": true,
+    "49025": true,
+    "49027": true,
+    "49029": true,
+    "49031": true,
+    "49033": true,
+    "49039": true,
+    "49041": true,
+    "49047": true,
+    "49053": true,
+    "49055": true,
+  };
   for (s in AllData) {
     state = AllData[s];
     for (c in state) {
       let county = state[c];
-      if (c.length === 2) {
+      if (c.length === 5 && c !== "0" && !deprecated_counties[c]) {
         county.Confirmed = fillarrayholes(county.Confirmed, c !== "0");
         county.Death = fillarrayholes(county.Death, c !== "0");
         setCountyNode(s, c, county);
@@ -376,13 +401,11 @@ function summarize_counties() {
   for (s in AllData) {
     state = AllData[s];
     for (c in state) {
-      // if (isNaN(parseInt(c))) {
       county = state[c];
       if (c !== "Summary") {
         county = summarize_one_county(county);
         setCountyNode(s, c, county);
       }
-      // }
     }
   }
 }
@@ -714,13 +737,13 @@ async function processAllJHUGithubInner(json, mytype) {
   const errataFipsMap = {
     "Dukes and Nantucket": "25007",
     "Kansas City": "20209",
-    "Michigan Department of Corrections (MDOC)": "26997",
-    "Federal Correctional Institution (FCI)": "97",
-    // "Bear River": ,
-    // "Central Utah": ,
-    // "Southeast Utah":,
-    // "Southwest Utah":
-    //  "TriCounty":
+    "Michigan Department of Corrections (MDOC)": "26997", // made up
+    "Federal Correctional Institution (FCI)": "97", // made up
+    "Bear River": "49985", // made up
+    "Central Utah": "49986", // made up
+    "Southeast Utah": "49987", // made up
+    "Southwest Utah": "49989", // made up
+    "TriCounty": "49984", // made up
     "Weber-Morgan": "49057",
   }
 
@@ -1112,9 +1135,7 @@ processAllJHUGithub().then(() => {
   const contentPretty = JSON.stringify(AllData, null, 2);
   fs.writeFileSync("./src/data/AllData.json", contentPretty);
   // console.log(contentPretty);
-}
-
-);
+});
 
 // fillholes();
 // summarize_counties();
