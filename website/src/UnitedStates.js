@@ -115,10 +115,6 @@ export class Country extends CovidSummarizable {
   constructor() {
     super(CovidData);
 
-    // Yikes...
-    this.normalizedRaw_.beds = 924107;
-    this.normalizedRaw_.hospitals = 6146;
-
     // Metros span state lines, but we have a notion of a hierarchy in
     // header:
     // county -> metro (maybe) -> state -> country
@@ -309,10 +305,6 @@ export class State extends CovidSummarizable {
     this.countiesByName_ = new Map();
     this.metros_ = new Map();
     this.metrosByCounty_ = new Map();
-
-    if (this.id == "49") {
-      console.log(this.counties_);
-    }
 
     // Force load counties so nearby works properly and we get "Statewide
     // Unallocated"s.
