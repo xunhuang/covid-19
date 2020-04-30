@@ -158,7 +158,7 @@ const GraphAllBedProjectionUS = (props) => {
       return item.fulldate === date;
     })
     if (entry) {
-      item.hospitalized = entry.hospitalized;
+      item.hospitalized = entry.hospitalizedCurrently;
       item.inIcuCurrently = entry.inIcuCurrently;
       item.onVentilatorCurrently = entry.onVentilatorCurrently;
     }
