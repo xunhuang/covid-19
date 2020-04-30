@@ -5,5 +5,4 @@ export default {
   united_states: "/US",
   united_states_map: "/US/map",
   united_states_recovery: "/US/Recovery",
-  data_credit: "/credit/data",
 };

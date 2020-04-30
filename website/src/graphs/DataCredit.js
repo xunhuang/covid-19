@@ -1,8 +1,7 @@
 import React from 'react';
 import Typography from '@material-ui/core/Typography'
-import { withHeader } from "../ContentWrapping.js"
 
-const DataCreditWidget = withHeader((props) => {
+const DataCreditWidget = (props) => {
   return (
     <div>
       <Typography variant="body1">
@@ -59,6 +58,6 @@ const DataCreditWidget = withHeader((props) => {
       </Typography>
     </div>
   );
-});
+};
 
 export { DataCreditWidget };

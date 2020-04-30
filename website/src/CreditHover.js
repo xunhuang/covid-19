@@ -11,7 +11,7 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-const CreditPopover = props => {
+const CreditPopover = (props) => {
     const classes = useStyles();
 
     const list = contributers.map(element => {
