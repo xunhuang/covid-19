@@ -5,8 +5,9 @@ import { Link as MaterialLink } from '@material-ui/core';
 import { Grid } from '@material-ui/core';
 import GitHubIcon from '@material-ui/icons/GitHub';
 import FacebookIcon from '@material-ui/icons/Facebook';
-import Popover from '@material-ui/core/Popover';
 import CreditPopover from './CreditHover'
+import { DataCreditWidget } from "./graphs/DataCredit"
+import { asDialogue } from "./FooterDialogue"
 
 const useStyles = makeStyles(theme => ({
     topContainer: {
@@ -39,31 +40,25 @@ const Footer = (props) => {
         className: classes.footerLink,
         color: 'textSecondary'
     };
-
-    const menuLinks = [
-        ["Terms of Service", "https://docs.google.com/document/d/10bsmpX1VVi2myFAHtP_gqHeGauDHz_9t1YQnjxMc_ng/edit?usp=sharing"],
-        ["Data Credits", "/credit/data"]
+    const footerLinks = [
+        ["Terms of Service", (event) => window.location.href="https://docs.google.com/document/d/10bsmpX1VVi2myFAHtP_gqHeGauDHz_9t1YQnjxMc_ng/edit?usp=sharing"],
+        ["Data Credits", (event) => handleClick(event, 'data-cred')]
     ];
 
-    const [anchorEl, setAnchorEl] = React.useState(null);
-
-    const handleClick = (event) => {
-        setAnchorEl(event.currentTarget);
+    const [openedPopoverId, setOpenedPopoverId] = React.useState(null);
+    const handleClick = (event, popoverId) => {
+        setOpenedPopoverId(popoverId);
     };
-
     const handleClose = () => {
-        setAnchorEl(null);
-    };
-
-    const open = Boolean(anchorEl);
-    const id = open ? 'credit-popover' : undefined;
+        setOpenedPopoverId(null);
+    }
 
     return (
         <Grid container className={classes.topContainer} justify="space-evenly" alignItems="center" direction="row" >
             <Grid item xs={12} sm={1} />
             <Grid item container xs={12} sm={4} className={classes.linkContainer} justify="center" direction="column">
-                {menuLinks.map(linkPair => {
-                    return (<MaterialLink {...footerLinkProps} href={linkPair[1]}>{linkPair[0]}</MaterialLink>)
+                {footerLinks.map(linkPair => {
+                    return (<MaterialLink {...footerLinkProps} onClick={linkPair[1]}>{linkPair[0]}</MaterialLink>)
                 })}
             </Grid>
             <Grid item xs={12} sm={2}>
@@ -74,7 +69,7 @@ const Footer = (props) => {
                         </MaterialLink>
                     </Grid>
                     <Grid item xs={6} sm={6}>
-                    <MaterialLink href="https://www.facebook.com/COVID-19direct-107176574273347/" className={classes.githubIcon}>
+                    <MaterialLink href="https://www.facebook.com/groups/890203761415663" className={classes.githubIcon}>
                         <FacebookIcon fontSize="large" className={classes.githubIcon}/>
                     </MaterialLink>
                     </Grid>
@@ -83,25 +78,11 @@ const Footer = (props) => {
             <Grid item xs={12} sm={4}>
                 <Typography variant='caption' color='textSecondary' className={classes.creditParagraph}>
                     This website is is 100% volunteer developed, open source and funded by user donations.
-                    Click <MaterialLink onClick={handleClick}>here for volunteers</MaterialLink> that
+                    Click <MaterialLink onClick={(e) => handleClick(e, 'cred-popover')}>here for volunteers</MaterialLink> that
                     made significant contributions.
                 </Typography>
-                <Popover
-                    id={id}
-                    open={open}
-                    anchorEl={anchorEl}
-                    onClose={handleClose}
-                    anchorOrigin={{
-                        vertical: 'top',
-                        horizontal: 'left',
-                    }}
-                    transformOrigin={{
-                        vertical: 'bottom',
-                        horizontal: 'center',
-                    }}
-                >
-                    <CreditPopover/>
-                </Popover>
+                {asDialogue(CreditPopover, "Special Thanks To", openedPopoverId === 'cred-popover', handleClose)}
+                {asDialogue(DataCreditWidget, "Data Credits", openedPopoverId === 'data-cred', handleClose)}
             </Grid>
             <Grid item xs={12} sm={1} />
         </Grid>

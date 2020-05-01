@@ -6,7 +6,6 @@ import contributers from './data/contributors.json'
 const useStyles = makeStyles(theme => ({
     typography: {
         display: 'block',
-        maxWidth: '45vh',
         padding: '1vh'
     }
 }));
@@ -19,7 +18,7 @@ const CreditPopover = props => {
     });
 
     return (
-      <Typography variant='caption' color='textSecondary' className={classes.typography}>
+      <Typography variant='body2' color='textSecondary' className={classes.typography}>
         {list.toString().substring(1, list.toString().length - 1)}
       </Typography>
     );
