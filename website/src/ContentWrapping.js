@@ -213,7 +213,8 @@ const quote = "Best real-time county-level COVID-19 dashboard. Get the latest tr
 const Banner = withRouter((props) => {
     const history = useHistory();
     const classes = useStyles();
-    const country = useContext(CountryContext);
+    const consumedCountryState = useContext(CountryContext);
+const country = consumedCountryState.country;
     const [showNews, setShowNews] = React.useState(false);
     const toggleNews = (e) => {
         setShowNews(!showNews);

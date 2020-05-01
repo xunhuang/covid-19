@@ -26,44 +26,64 @@ const App = (props) => {
   </BrowserRouter>;
 };
 
-const MainApp = withRouter((props) => {
-  const [country, setCountry] = React.useState(null);
-  const [myCounty, setMyCounty] = React.useState(null);
-  React.useEffect(() => {
-    const myCountry = new Country();
-    setCountry(myCountry);
-
-    fetchCounty().then(myCounty => {
-      const state = myCountry.stateForTwoLetterName(myCounty.state);
-      const county = state.countyForName(myCounty.county);
-      setMyCounty(county);
-      logger.logEvent("AppStart", {
-        myCounty: county,
-      });
-    });
-  }, []);
-
-  if (country === null) {
-    return <Splash />
-  }
-
-  if (props.location.pathname === "/") {
-    if (myCounty === null) {
-      return <Splash />
-    } else {
-      return <Redirect to={reverse(routes.county, {
-        state: myCounty.state().twoLetterName,
-        county: myCounty.name,
-      })} />;
+class MainAppClass extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            country: null,
+            county: null,
+            updateCountry: this.setCountryState
+        };
     }
-  }
 
-  return (
-    <CountryContext.Provider value={country}>
-      <SafeRoutes />
-    </CountryContext.Provider>
-  );
-});
+    componentDidMount() {
+        this.state.updateCountry()
+    }
+
+    render() {
+        if (this.state.country === null) {
+          return <Splash />
+        }
+
+        if (this.props.location.pathname === "/") {
+          if (this.state.county === null) {
+            return <Splash />
+          } else {
+            return <Redirect to={reverse(routes.county, {
+              state: this.state.county.state().twoLetterName,
+              county: this.state.county.name,
+            })} />;
+          }
+        }
+
+        return (
+          <CountryContext.Provider value={this.state.country ? this.state : undefined}>
+            <SafeRoutes />
+          </CountryContext.Provider>
+        );
+    }
+
+    setCountryState = () => {
+        const myCountry = new Country();
+        this.setState({
+            country: myCountry
+        })
+
+        fetchCounty().then(myCounty => {
+          const state = myCountry.stateForTwoLetterName(myCounty.state);
+          const county = state.countyForName(myCounty.county);
+          this.setState({
+              county: county
+          });
+          logger.logEvent("AppStart", {
+            myCounty: county,
+          });
+        });
+    }
+
+}
+
+const MainApp = withRouter(MainAppClass)
 
 class UnhookedSafeRoutes extends React.Component {
 

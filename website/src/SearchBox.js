@@ -4,7 +4,8 @@ import Select from 'react-select';
 import { useHistory } from "react-router-dom";
 
 const SearchBox = (props) => {
-    const country = useContext(CountryContext);
+    const consumedCountryState = useContext(CountryContext);
+const country = consumedCountryState.country;
     const counties =
         country.allStates().flatMap(s => s.allCounties()).map(county => {
             return {

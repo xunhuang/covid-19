@@ -11,7 +11,8 @@ import { SectionHeader } from "./CovidUI"
 import { Title } from "./Title";
 
 const PageCounty = withHeader((props) => {
-    const country = useContext(CountryContext);
+    const consumedCountryState = useContext(CountryContext);
+const country = consumedCountryState.country;
     const state = country.stateForTwoLetterName(props.match.params.state);
     const county = state.countyForName(props.match.params.county);
 

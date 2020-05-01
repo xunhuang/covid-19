@@ -5,9 +5,9 @@ const superagent = require("superagent");
 
 const firebaseConfig = require('./firebaseConfig.json');
 
-async function fetchCounty() {
+async function fetchCounty(useGoogleAPI = false) {
     const cookie = Cookies.getJSON("covidLocation");
-    if (cookie) {
+    if (cookie && !useGoogleAPI) {
         if (cookie.county && cookie.state) {
             console.log("cookie hit");
             logger.logEvent("LocationFoundInCookie", cookie);
@@ -16,24 +16,21 @@ async function fetchCounty() {
     }
     logger.logEvent("LocationNoCookie");
 
-    const methods = [
-        () => fetchApproxIPLocationIPDataCo(firebaseConfig.ipdataco_key),
-        () => fetchApproxIPLocationIPDataCo(firebaseConfig.ipdataco_key2),
-        () => fetchApproxIPLocationIPDataCo(firebaseConfig.ipdataco_key3),
-        () => fetchApproxIPLocationIPGEOLOCATION(),
-        () => fetchApproxIPLocationGoogle(),
-        () => {
-            logger.logEvent("LocationNoFoundAfterAPI");
-            // santa clara
-            // longitude: -121.979891,
-            // latitude: 37.333183,
-            // new york city
-            return {
-                longitude: -73.968723,
-                latitude: 40.775191,
-            };
-        }
-    ];
+    let methods;
+
+    if (useGoogleAPI) {
+        methods = [
+            () => fetchApproxIPLocationGoogle(),
+        ];
+    } else {
+        methods = = [
+            () => fetchApproxIPLocationIPDataCo(firebaseConfig.ipdataco_key),
+            () => fetchApproxIPLocationIPDataCo(firebaseConfig.ipdataco_key2),
+            () => fetchApproxIPLocationIPDataCo(firebaseConfig.ipdataco_key3),
+            () => fetchApproxIPLocationIPGEOLOCATION(),
+            () => locationFindingError()
+        ];
+    }
 
     let location;
     for (const method of methods) {
@@ -77,11 +74,25 @@ async function fetchCounty() {
             }
         });
 
-    Cookies.set("covidLocation", county_info, {
-        expires: 1000  // too expensive.
-    });
+    if (useGoogleAPI) {
+        Cookies.set("covidLocation", county_info, {
+            expires: 1000  // too expensive.
+        });
+    }
 
     return county_info;
+}
+
+function locationFindingError() {
+    logger.logEvent("LocationNoFoundAfterAPI");
+    // santa clara
+    // longitude: -121.979891,
+    // latitude: 37.333183,
+    // new york city
+    return {
+        longitude: -73.968723,
+        latitude: 40.775191,
+    };
 }
 
 function fetchApproxIPLocationGoogle(key) {
@@ -93,7 +104,7 @@ function fetchApproxIPLocationGoogle(key) {
         }));
 }
 
-// this one is not very good - while at Alameda, it says it's in santa clara, I guess 
+// this one is not very good - while at Alameda, it says it's in santa clara, I guess
 // with google we are paying for precision.
 
 async function fetchApproxIPLocationIPGEOLOCATION() {

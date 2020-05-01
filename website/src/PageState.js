@@ -9,7 +9,8 @@ import { GraphSection } from './graphs/Graphs';
 import { Title } from './Title';
 
 const PageState = withHeader((props) => {
-    const country = useContext(CountryContext);
+    const consumedCountryState = useContext(CountryContext);
+const country = consumedCountryState.country;
     const state = country.stateForTwoLetterName(props.match.params.state);
     const county = Util.getDefaultCountyForState(state);
 
