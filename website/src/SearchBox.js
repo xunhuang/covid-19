@@ -7,6 +7,7 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography'
 import { Link as MaterialLink } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import { fetchCounty } from "./GeoLocation"
 
 const useStyles = makeStyles(theme => ({
     button: {
@@ -32,11 +33,7 @@ const useStyles = makeStyles(theme => ({
 
 const SearchBox = (props) => {
     const classes = useStyles();
-    const consumedCountryState = useContext(CountryContext);
-    const country = consumedCountryState.country;
-    const myCounty = consumedCountryState.county;
-    const myState = consumedCountryState.state;
-    console.log(myCounty)
+    const country = useContext(CountryContext);
     const counties =
         country.allStates().flatMap(s => s.allCounties()).map(county => {
             return {
@@ -113,7 +110,7 @@ const SearchBox = (props) => {
             </Grid>
             <Grid item md={2} sm={3} xs={4}>
                 <Typography noWrap variant="body2" className={`${classes.findLocation} ${classes.link}`}>
-                    <MaterialLink target="_blank" onClick={() => findLocationAndRedirect(consumedCountryState, history)} className={`${classes.findLocation}`} >
+                    <MaterialLink target="_blank" onClick={() => findLocationAndRedirect(country, history)} className={`${classes.findLocation}`} >
                         Find My Location
                     </MaterialLink>
                 </Typography>
@@ -122,23 +119,11 @@ const SearchBox = (props) => {
     );
 }
 
-const findLocationAndRedirect = (consumedCountryState, history) => {
-    consumedCountryState.updateCountry(true, (newState) => {
-        console.log("new state:")
-        console.log(newState);
-        let destination;
-        if (newState.county) {
-            destination = newState.county
-        } else if (newState.state) {
-            destination = newState.state
-        } else {
-            destination = newState.country
-        }
-        const params = new URLSearchParams(history.location.search);
-        const to = destination.routeTo() + "?" + params.toString();
-        history.push(to);
-    })
-    console.log("sent update")
+const findLocationAndRedirect = async (country, history) => {
+    let newCountyObj = await fetchCounty(country, true);
+    const params = new URLSearchParams(history.location.search);
+    const to = newCountyObj.routeTo() + "?" + params.toString();
+    history.push(to);
 }
 
 export { SearchBox }

@@ -12,8 +12,7 @@ const textStyle = {
 }
 
 const Page404 = withHeader(() => {
-    const consumedCountryState = useContext(CountryContext);
-const country = consumedCountryState.country;
+    const country = useContext(CountryContext);
     const default_county_info = Util.getDefaultCounty();
     const state = country.stateForTwoLetterName(default_county_info.state)
     const county = state.countyForName(default_county_info.county)

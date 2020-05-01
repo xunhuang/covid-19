@@ -26,66 +26,42 @@ const App = (props) => {
   </BrowserRouter>;
 };
 
-class MainAppClass extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            country: null,
-            county: null,
-            state: null,
-            updateCountry: this.setCountryState
-        };
+const MainApp = withRouter((props) => {
+  const [country, setCountry] = React.useState(null);
+  const [myCounty, setMyCounty] = React.useState(null);
+  React.useEffect(() => {
+    const myCountry = new Country();
+    setCountry(myCountry);
+
+    fetchCounty(myCountry).then(county => {
+      setMyCounty(county);
+      logger.logEvent("AppStart", {
+        myCounty: county,
+      });
+    });
+  }, []);
+
+  if (country === null) {
+    return <Splash />
+  }
+
+  if (props.location.pathname === "/") {
+    if (myCounty === null) {
+      return <Splash />
+    } else {
+      return <Redirect to={reverse(routes.county, {
+        state: myCounty.state().twoLetterName,
+        county: myCounty.name,
+      })} />;
     }
+  }
 
-    componentDidMount() {
-        this.setCountryState()
-    }
-
-    render() {
-        if (this.state.country === null) {
-          return <Splash />
-        }
-
-        if (this.props.location.pathname === "/") {
-          if (this.state.county === null) {
-            return <Splash />
-          } else {
-            return <Redirect to={reverse(routes.county, {
-              state: this.state.county.state().twoLetterName,
-              county: this.state.county.name,
-            })} />;
-          }
-        }
-
-        return (
-          <CountryContext.Provider value={this.state.country ? this.state : undefined}>
-            <SafeRoutes />
-          </CountryContext.Provider>
-        );
-    }
-
-    setCountryState = (useGoogleAPI = false, callBack = null) => {
-        const myCountry = new Country();
-        this.setState({
-            country: myCountry
-        })
-
-        fetchCounty(useGoogleAPI).then(myCounty => {
-          const state = myCountry.stateForTwoLetterName(myCounty.state);
-          const county = state.countyForName(myCounty.county);
-          this.setState({
-              county: county,
-              state: state
-          }, callBack ? (() => { callBack(this.state); }) : (null));
-          logger.logEvent("AppStart", {
-            myCounty: county,
-          });
-        });
-    }
-
-}
-
-const MainApp = withRouter(MainAppClass)
+  return (
+    <CountryContext.Provider value={country}>
+      <SafeRoutes />
+    </CountryContext.Provider>
+  );
+});
 
 class UnhookedSafeRoutes extends React.Component {
 

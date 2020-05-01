@@ -5,13 +5,13 @@ const superagent = require("superagent");
 
 const firebaseConfig = require('./firebaseConfig.json');
 
-async function fetchCounty(useGoogleAPI = false) {
+async function fetchCounty(myCountry, useGoogleAPI = false) {
     const cookie = Cookies.getJSON("covidLocation");
     if (cookie && !useGoogleAPI) {
         if (cookie.county && cookie.state) {
             console.log("cookie hit");
             logger.logEvent("LocationFoundInCookie", cookie);
-            return cookie;
+            return makeCountyObj(myCountry, cookie);
         }
     }
     logger.logEvent("LocationNoCookie");
@@ -21,9 +21,10 @@ async function fetchCounty(useGoogleAPI = false) {
     if (useGoogleAPI) {
         methods = [
             () => fetchApproxIPLocationGoogle(),
+            () => locationFindingError(),
         ];
     } else {
-        methods = = [
+        methods = [
             () => fetchApproxIPLocationIPDataCo(firebaseConfig.ipdataco_key),
             () => fetchApproxIPLocationIPDataCo(firebaseConfig.ipdataco_key2),
             () => fetchApproxIPLocationIPDataCo(firebaseConfig.ipdataco_key3),
@@ -62,7 +63,7 @@ async function fetchCounty(useGoogleAPI = false) {
             return {
                 county: c,
                 state: s,
-            }
+            };
         })
         .catch(err => {
             logger.logEvent("CensusCountyLookupFailed", location);
@@ -71,17 +72,23 @@ async function fetchCounty(useGoogleAPI = false) {
             return {
                 county: "Santa Clara",
                 state: "CA",
-            }
+            };
         });
 
-    if (useGoogleAPI) {
+    if (useGoogleAPI || !cookie) {
         Cookies.set("covidLocation", county_info, {
             expires: 1000  // too expensive.
         });
     }
 
-    return county_info;
+    return makeCountyObj(myCountry, county_info);
 }
+
+function makeCountyObj(myCountry, stateCountyObj) {
+    const state = myCountry.stateForTwoLetterName(stateCountyObj.state);
+    return state.countyForName(stateCountyObj.county);
+}
+
 
 function locationFindingError() {
     logger.logEvent("LocationNoFoundAfterAPI");
