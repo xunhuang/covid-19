@@ -15,7 +15,7 @@ import { Title } from './Title';
 
 const PageUS = withHeader((props) => {
     const consumedCountryState = useContext(CountryContext);
-const country = consumedCountryState.country;
+    const country = consumedCountryState.country;
 
     const default_county_info = Util.getDefaultCounty();
     const state = country.stateForTwoLetterName(default_county_info.state);

@@ -243,7 +243,7 @@ const AllStateListTesting = (props) => {
   const [orderBy, setOrderBy] = React.useState('confirmed');
 
   const consumedCountryState = useContext(CountryContext);
-const country = consumedCountryState.country;
+  const country = consumedCountryState.country;
   const [sourceData, setSourceData] = React.useState(null);
   React.useEffect(() => {
     country.testingAllAsync()

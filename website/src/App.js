@@ -32,12 +32,13 @@ class MainAppClass extends React.Component {
         this.state = {
             country: null,
             county: null,
+            state: null,
             updateCountry: this.setCountryState
         };
     }
 
     componentDidMount() {
-        this.state.updateCountry()
+        this.setCountryState()
     }
 
     render() {
@@ -63,18 +64,19 @@ class MainAppClass extends React.Component {
         );
     }
 
-    setCountryState = () => {
+    setCountryState = (useGoogleAPI = false, callBack = null) => {
         const myCountry = new Country();
         this.setState({
             country: myCountry
         })
 
-        fetchCounty().then(myCounty => {
+        fetchCounty(useGoogleAPI).then(myCounty => {
           const state = myCountry.stateForTwoLetterName(myCounty.state);
           const county = state.countyForName(myCounty.county);
           this.setState({
-              county: county
-          });
+              county: county,
+              state: state
+          }, callBack ? (() => { callBack(this.state); }) : (null));
           logger.logEvent("AppStart", {
             myCounty: county,
           });

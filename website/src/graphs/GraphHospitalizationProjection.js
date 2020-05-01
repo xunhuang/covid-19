@@ -133,7 +133,7 @@ const GraphAllBedProjectionState = (props) => {
 
 const GraphAllBedProjectionUS = (props) => {
   const consumedCountryState = useContext(CountryContext);
-const country = consumedCountryState.country;
+  const country = consumedCountryState.country;
   const [USData, setUSdata] = React.useState(null);
   const [testingActual, setTestingActual] = React.useState(null);
   React.useEffect(() => {

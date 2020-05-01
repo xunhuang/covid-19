@@ -10,7 +10,7 @@ import { Title } from "./Title";
 
 const PageMetro = withHeader((props) => {
     const consumedCountryState = useContext(CountryContext);
-const country = consumedCountryState.country;
+    const country = consumedCountryState.country;
     const metroByStates = country.metroByStatesForId(props.match.params.metro);
 
     // The metro may span multiple states, so we have to see if the user's
