@@ -5,9 +5,9 @@ import { Link as MaterialLink } from '@material-ui/core';
 import { Grid } from '@material-ui/core';
 import GitHubIcon from '@material-ui/icons/GitHub';
 import FacebookIcon from '@material-ui/icons/Facebook';
-import Popover from '@material-ui/core/Popover';
 import CreditPopover from './CreditHover'
 import { DataCreditWidget } from "./graphs/DataCredit"
+import { asDialogue } from "./FooterDialogue"
 
 const useStyles = makeStyles(theme => ({
     topContainer: {
@@ -40,63 +40,24 @@ const Footer = (props) => {
         className: classes.footerLink,
         color: 'textSecondary'
     };
-
-    const menuLinks = [
+    const footerLinks = [
         ["Terms of Service", (event) => window.location.href="https://docs.google.com/document/d/10bsmpX1VVi2myFAHtP_gqHeGauDHz_9t1YQnjxMc_ng/edit?usp=sharing"],
         ["Data Credits", (event) => handleClick(event, 'data-cred')]
     ];
 
     const [openedPopoverId, setOpenedPopoverId] = React.useState(null);
-    const [anchorEl, setAnchorEl] = React.useState(null);
-
     const handleClick = (event, popoverId) => {
-        setAnchorEl(event.currentTarget);
         setOpenedPopoverId(popoverId);
     };
-
     const handleClose = () => {
         setOpenedPopoverId(null);
-        setAnchorEl(null);
-    };
-
-    const asPopOver = (
-        Component,
-        id,
-        props = {
-            anchorOrigin: {
-                vertical: 'top',
-                horizontal: 'left'
-            },
-            transformOrigin: {
-                vertical: 'bottom',
-                horizontal: 'center'
-            }
-        }) => {
-        return (
-            <Popover
-                id={id}
-                open={openedPopoverId === id}
-                anchorEl={anchorEl}
-                onClose={handleClose}
-                anchorOrigin={{
-                    vertical: 'top',
-                    horizontal: 'left',
-                }}
-                transformOrigin={{
-                    vertical: 'bottom',
-                    horizontal: 'center',
-                }}
-            >
-                <Component />
-            </Popover>
-        )
     }
 
     return (
         <Grid container className={classes.topContainer} justify="space-evenly" alignItems="center" direction="row" >
             <Grid item xs={12} sm={1} />
             <Grid item container xs={12} sm={4} className={classes.linkContainer} justify="center" direction="column">
-                {menuLinks.map(linkPair => {
+                {footerLinks.map(linkPair => {
                     return (<MaterialLink {...footerLinkProps} onClick={linkPair[1]}>{linkPair[0]}</MaterialLink>)
                 })}
             </Grid>
@@ -120,8 +81,8 @@ const Footer = (props) => {
                     Click <MaterialLink onClick={(e) => handleClick(e, 'cred-popover')}>here for volunteers</MaterialLink> that
                     made significant contributions.
                 </Typography>
-                {asPopOver(CreditPopover, 'cred-popover')}
-                {asPopOver(DataCreditWidget, 'data-cred')}
+                {asDialogue(CreditPopover, "Special Thanks To", openedPopoverId === 'cred-popover', handleClose)}
+                {asDialogue(DataCreditWidget, "Data Credits", openedPopoverId === 'data-cred', handleClose)}
             </Grid>
             <Grid item xs={12} sm={1} />
         </Grid>
