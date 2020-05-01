@@ -10,7 +10,6 @@ import { PageState } from "./PageState"
 import { PageCounty } from "./PageCounty"
 import { PageMetro } from "./PageMetro"
 import { Page404 } from "./Page404"
-import { DataCreditWidget } from "./graphs/DataCredit"
 import { Country } from "./UnitedStates";
 import { CountryContext } from "./CountryContext";
 import { Title } from "./Title";
@@ -101,7 +100,6 @@ class UnhookedSafeRoutes extends React.Component {
           <Route exact path={routes.united_states} component={PageUS} />
           <Route exact path={routes.metro} component={PageMetro} />
           <Route exact path={routes.united_states_recovery} component={PageUS} />
-          <Route exact path={routes.data_credit} component={DataCreditWidget}/>
           <Route exact path="*" component={Page404} status={404} />
         </Switch>
       );
