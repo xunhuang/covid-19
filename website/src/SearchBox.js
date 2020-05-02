@@ -84,7 +84,7 @@ const SearchBox = (props) => {
     const history = useHistory();
     return (
         <Grid container justify="space-evenly" alignItems="center" direction="row">
-            <Grid item sm={10} xs={9}>
+            <Grid item xl={11} md={10} sm={9} xs={8}>
                 <Select
                     className="basic-single"
                     classNamePrefix="select"
@@ -115,9 +115,9 @@ const SearchBox = (props) => {
                     }}
                 />
             </Grid>
-            <Grid item sm={2} xs={3}>
+            <Grid item xl={1} md={2} sm={3} xs={4}>
                 <BrowserView>
-                    <Typography noWrap variant="body2" className={`${classes.findLocation} ${classes.link}`}>
+                    <Typography variant="body2" className={`${classes.findLocation} ${classes.link}`}>
                         <MaterialLink target="_blank" onClick={() => findLocationAndRedirect(country, history)} className={`${classes.findLocation}`} >
                             Find My Location
                         </MaterialLink>
@@ -125,7 +125,7 @@ const SearchBox = (props) => {
                 </BrowserView>
                 <MobileView>
                     <MaterialLink onClick={() => findLocationAndRedirect(country, history)} className={classes.gpsIcon}>
-                        <GpsFixedIcon fontSize="large" className={classes.gpsIcon}/>
+                        <GpsFixedIcon target="_blank" fontSize="large" className={classes.gpsIcon}/>
                     </MaterialLink>
                 </MobileView>
             </Grid>
