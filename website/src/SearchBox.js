@@ -6,8 +6,10 @@ import { Grid } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography'
 import { Link as MaterialLink } from '@material-ui/core';
+import GpsFixedIcon from '@material-ui/icons/GpsFixed';
 import { makeStyles } from '@material-ui/core/styles';
 import { fetchCounty } from "./GeoLocation"
+import { BrowserView, MobileView } from 'react-device-detect'
 
 const useStyles = makeStyles(theme => ({
     button: {
@@ -28,6 +30,11 @@ const useStyles = makeStyles(theme => ({
     link: {
         marginLeft: '1vw',
         marginRight: '1vw',
+    },
+    gpsIcon: {
+        color: '#00aeef',
+        margin: '0 auto',
+        display: 'grid'
     },
 }));
 
@@ -77,7 +84,7 @@ const SearchBox = (props) => {
     const history = useHistory();
     return (
         <Grid container justify="space-evenly" alignItems="center" direction="row">
-            <Grid item md={10} sm={9} xs={8}>
+            <Grid item sm={10} xs={9}>
                 <Select
                     className="basic-single"
                     classNamePrefix="select"
@@ -108,12 +115,19 @@ const SearchBox = (props) => {
                     }}
                 />
             </Grid>
-            <Grid item md={2} sm={3} xs={4}>
-                <Typography noWrap variant="body2" className={`${classes.findLocation} ${classes.link}`}>
-                    <MaterialLink target="_blank" onClick={() => findLocationAndRedirect(country, history)} className={`${classes.findLocation}`} >
-                        Find My Location
+            <Grid item sm={2} xs={3}>
+                <BrowserView>
+                    <Typography noWrap variant="body2" className={`${classes.findLocation} ${classes.link}`}>
+                        <MaterialLink target="_blank" onClick={() => findLocationAndRedirect(country, history)} className={`${classes.findLocation}`} >
+                            Find My Location
+                        </MaterialLink>
+                    </Typography>
+                </BrowserView>
+                <MobileView>
+                    <MaterialLink onClick={() => findLocationAndRedirect(country, history)} className={classes.gpsIcon}>
+                        <GpsFixedIcon fontSize="large" className={classes.gpsIcon}/>
                     </MaterialLink>
-                </Typography>
+                </MobileView>
             </Grid>
         </Grid>
     );
