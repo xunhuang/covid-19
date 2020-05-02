@@ -21,7 +21,7 @@ node setupFirebaseConfig.js
 
 npm run data  (this will produce the AllData.json and AllData.slim.json from raw data files, this should be run after each data update)
 
-npm start  (to start development, start local server and run browser0
+npm start  (to start development, start local server and run browser)
 
 
 A few tricks to query the data from command line
@@ -53,3 +53,15 @@ Flattern CA only data to CSV file
 --------------------------------
 
 sh flatAllData.sh   |grep -e CA -e CountyName
+
+
+State level Summary
+-------------------
+
+sh flatStatesData.sh
+
+State level Deaths
+------------------
+
+sh flatStatesDeath.sh
+
