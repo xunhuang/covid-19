@@ -8,17 +8,10 @@ import { Link as MaterialLink } from '@material-ui/core';
 import GpsFixedIcon from '@material-ui/icons/GpsFixed';
 import { makeStyles } from '@material-ui/core/styles';
 import { fetchCounty } from "./GeoLocation"
-import { BrowserView, MobileView } from 'react-device-detect'
+import { BrowserView, MobileView, isMobile } from 'react-device-detect'
 import { makeCountyFromDescription } from "./Util"
 
 const useStyles = makeStyles(theme => ({
-    button: {
-        display: 'block',
-        margin: '0 auto',
-        textAlign: 'center',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
     findLocation: {
         padding: 2,
         background: '#00aeef',
@@ -82,9 +75,34 @@ const SearchBox = (props) => {
             };
         });
     const history = useHistory();
+
+    const mobilePropsBar = {
+        xs: 10,
+        sm: 11
+    }
+
+    const mobilePropsButton = {
+        xs: 12 - mobilePropsBar.xs,
+        sm: 12 - mobilePropsBar.sm
+    }
+
+    const webPropsBar = {
+        xl: 11,
+        md: 10,
+        sm: 9,
+        xs: 8
+    }
+
+    const webPropsButton = {
+        xl: 12 - webPropsBar.xl,
+        md: 12 - webPropsBar.md,
+        sm: 12 - webPropsBar.sm,
+        xs: 12 - webPropsBar.md
+    }
+
     return (
         <Grid container justify="space-evenly" alignItems="center" direction="row">
-            <Grid item xl={11} md={10} sm={9} xs={8}>
+            <Grid item {...(isMobile ? mobilePropsBar : webPropsBar)}>
                 <Select
                     className="basic-single"
                     classNamePrefix="select"
@@ -115,7 +133,7 @@ const SearchBox = (props) => {
                     }}
                 />
             </Grid>
-            <Grid item xl={1} md={2} sm={3} xs={4}>
+            <Grid item {...(isMobile ? mobilePropsButton : webPropsButton)}>
                 <BrowserView>
                     <Typography variant="body2" className={`${classes.findLocation} ${classes.link}`}>
                         <MaterialLink target="_blank" onClick={() => findLocationAndRedirect(country, history)} className={`${classes.findLocation}`} >
