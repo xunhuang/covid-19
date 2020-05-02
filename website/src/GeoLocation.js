@@ -11,7 +11,7 @@ async function fetchCounty(myCountry, useGoogleAPI = false) {
         if (cookie.county && cookie.state) {
             console.log("cookie hit");
             logger.logEvent("LocationFoundInCookie", cookie);
-            return makeCountyObj(myCountry, cookie);
+            return cookie;
         }
     }
     logger.logEvent("LocationNoCookie");
@@ -79,12 +79,7 @@ async function fetchCounty(myCountry, useGoogleAPI = false) {
         expires: 1000  // too expensive.
     });
 
-    return makeCountyObj(myCountry, county_info);
-}
-
-function makeCountyObj(myCountry, stateCountyObj) {
-    const state = myCountry.stateForTwoLetterName(stateCountyObj.state);
-    return state.countyForName(stateCountyObj.county);
+    return county_info;
 }
 
 

@@ -3,13 +3,13 @@ import { CountryContext } from "./CountryContext";
 import Select from 'react-select';
 import { useHistory } from "react-router-dom";
 import { Grid } from '@material-ui/core';
-import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography'
 import { Link as MaterialLink } from '@material-ui/core';
 import GpsFixedIcon from '@material-ui/icons/GpsFixed';
 import { makeStyles } from '@material-ui/core/styles';
 import { fetchCounty } from "./GeoLocation"
 import { BrowserView, MobileView } from 'react-device-detect'
+import { makeCountyFromDescription } from "./Util"
 
 const useStyles = makeStyles(theme => ({
     button: {
@@ -134,7 +134,8 @@ const SearchBox = (props) => {
 }
 
 const findLocationAndRedirect = async (country, history) => {
-    let newCountyObj = await fetchCounty(country, true);
+    const countyDescr = await fetchCounty(true);
+    const newCountyObj = makeCountyFromDescription(country, countyDescr);
     const params = new URLSearchParams(history.location.search);
     const to = newCountyObj.routeTo() + "?" + params.toString();
     history.push(to);
