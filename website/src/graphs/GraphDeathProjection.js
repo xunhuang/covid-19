@@ -252,7 +252,7 @@ const GraphDeathProjectionRender = (props) => {
       </ComposedChart>
     </ResponsiveContainer>
     <Typography variant="body2">
-      Source: NPR, University of Washington, Census Bureau
+      Source: The Institute for Health Metrics and Evaluation
                 </Typography>
   </>
 }
