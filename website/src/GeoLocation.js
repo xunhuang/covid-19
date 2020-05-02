@@ -75,11 +75,9 @@ async function fetchCounty(myCountry, useGoogleAPI = false) {
             };
         });
 
-    if (useGoogleAPI || !cookie) {
-        Cookies.set("covidLocation", county_info, {
-            expires: 1000  // too expensive.
-        });
-    }
+    Cookies.set("covidLocation", county_info, {
+        expires: 1000  // too expensive.
+    });
 
     return makeCountyObj(myCountry, county_info);
 }
