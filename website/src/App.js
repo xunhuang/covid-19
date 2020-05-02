@@ -16,6 +16,7 @@ import { Title } from "./Title";
 import { compactTheme } from "./Theme.js";
 import { reverse } from 'named-urls';
 import routes from "./Routes";
+import { makeCountyFromDescription } from "./Util"
 
 const App = (props) => {
   return <BrowserRouter>
@@ -33,13 +34,12 @@ const MainApp = withRouter((props) => {
     const myCountry = new Country();
     setCountry(myCountry);
 
-    fetchCounty().then(myCounty => {
-      const state = myCountry.stateForTwoLetterName(myCounty.state);
-      const county = state.countyForName(myCounty.county);
-      setMyCounty(county);
-      logger.logEvent("AppStart", {
-        myCounty: county,
-      });
+    fetchCounty().then(countyDescr => {
+        const county = makeCountyFromDescription(myCountry, countyDescr);
+        setMyCounty(county);
+        logger.logEvent("AppStart", {
+            myCounty: county,
+        });
     });
   }, []);
 

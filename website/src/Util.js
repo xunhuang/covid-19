@@ -15,6 +15,11 @@ function myShortNumber(n) {
     return shortNumber(n);
 }
 
+function makeCountyFromDescription(myCountry, stateCountyDescription) {
+    const state = myCountry.stateForTwoLetterName(stateCountyDescription.state);
+    return state.countyForName(stateCountyDescription.county);
+}
+
 function myGoodWholeNumber(n) {
     if (Number.isNaN(n) || !isFinite(n)) {
         return "-";
@@ -122,4 +127,5 @@ export {
     getDefaultCounty,
     getStateNameByStateCode,
     normalize_date,
+    makeCountyFromDescription,
 }
