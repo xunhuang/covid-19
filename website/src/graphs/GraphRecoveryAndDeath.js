@@ -3,9 +3,10 @@ import { ResponsiveContainer, Tooltip, LineChart, Line, YAxis, XAxis, CartesianG
 import { Typography } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
 import { scaleSymlog } from 'd3-scale';
-import { myShortNumber } from '../Util';
+import { myShortNumber, filterDataToRecent, getOldestMomentInData } from '../Util';
 import { AntSwitch } from "./AntSwitch.js"
 import { State } from '../UnitedStates';
+import { DateRangeSlider } from "../DateRangeSlider"
 
 const moment = require("moment");
 
@@ -14,7 +15,7 @@ const scale = scaleSymlog().domain([0, 'dataMax']);
 const BasicGraphRecoveryAndDeath = (props) => {
     const [state, setState] = React.useState({
         showlog: false,
-        show2weeks: false,
+        showPastDays: 30,
     });
 
     const [USData, setUSdata] = React.useState(null);
@@ -32,31 +33,23 @@ const BasicGraphRecoveryAndDeath = (props) => {
         setState({ ...state, showlog: !state.showlog });
     };
 
-    const handle2WeeksToggle = event => {
-        setState({ ...state, show2weeks: !state.show2weeks });
-    };
-
     data = data.map(d => {
         d.name = moment(d.fulldate, "MM/DD/YYYY").format("M/D");
         return d;
     });
 
-    if (state.show2weeks) {
-        const cutoff = moment().subtract(14, 'days')
-        data = data.filter(d => {
-            return moment(d.fulldate, "MM/DD/YYYY").isAfter(cutoff)
-        });
-    } else {
-        const cutoff = moment().subtract(30, 'days')
-        data = data.filter(d => {
-            return moment(d.fulldate, "MM/DD/YYYY").isAfter(cutoff)
-        });
-    }
-
 
     const formatYAxis = (tickItem) => {
         return myShortNumber(tickItem);
     }
+
+    const handleSliderValueChange = (value) => {
+        let newstate = { ...state, showPastDays: value }
+        setState(newstate)
+    }
+
+    const oldestMoment = getOldestMomentInData(data);
+    data = filterDataToRecent(data, state.showPastDays)
 
     data = data.sort((a, b) => moment(a.fulldate, "MM/DD/YYYY").toDate() - (moment(b.fulldate, "MM/DD/YYYY")).toDate());
 
@@ -70,17 +63,21 @@ const BasicGraphRecoveryAndDeath = (props) => {
                     Log
                 </Typography>
             </Grid>
-            <Grid item></Grid>
-
+            <Grid item > </Grid>
             <Grid item>
-                <AntSwitch checked={state.show30days} onClick={handle2WeeksToggle} />
-            </Grid>
-            <Grid item onClick={handle2WeeksToggle}>
                 <Typography>
-                    2 weeks
+                  Show Data From:
                 </Typography>
             </Grid>
-            <Grid item></Grid>
+            <Grid item xs>
+              <DateRangeSlider
+                  currentDate={moment()}
+                  startDate={oldestMoment}
+                  valueChanged={handleSliderValueChange}
+                  defaultValue={state.showPastDays}
+              />
+            </Grid>
+            <Grid item > </Grid>
         </Grid>
         <ResponsiveContainer height={300} >
             <LineChart

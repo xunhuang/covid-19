@@ -6,8 +6,9 @@ import Grid from '@material-ui/core/Grid';
 import { scaleSymlog } from 'd3-scale';
 import { datesToDays, fitExponentialTrendingLine } from './TrendFitting';
 import { mergeDataSeries, makeDataSeriesFromTotal, exportColumnFromDataSeries } from "./DataSeries";
-import { myShortNumber } from '../Util';
+import { myShortNumber, filterDataToRecent, getOldestMomentInData } from '../Util';
 import { AntSwitch } from "./AntSwitch"
+import { DateRangeSlider } from "../DateRangeSlider"
 
 const Cookies = require("js-cookie");
 const moment = require("moment");
@@ -25,6 +26,9 @@ const useStyles = makeStyles(theme => ({
     minWidth: 130,
     maxWidth: 300,
   },
+  gridPadding: {
+      minWidth: '3vw'
+  }
 }));
 
 const CustomTooltip = (props) => {
@@ -82,22 +86,25 @@ const CustomTooltip = (props) => {
 }
 
 const CookieSetPreference = (state) => {
-  Cookies.set("BasicGraphPreference", state, {
-    expires: 100
-  });
+    Cookies.set("BasicGraphPreference", state, {
+        expires: 100
+    });
 }
+
 const CookieGetPreference = () => {
   let pref = Cookies.getJSON("BasicGraphPreference");
   if (!pref) {
     return {
       showlog: false,
-      show2weeks: false,
+      showPastDays: 30,
     }
   }
   return pref;
 }
 
+
 const BasicGraph = (props) => {
+  const classes = useStyles()
   let data = props.USData;
   const column = props.column;
   const [state, setState] = React.useState(CookieGetPreference());
@@ -108,10 +115,11 @@ const BasicGraph = (props) => {
   const handleLogScaleToggle = event => {
     setStateSticky({ ...state, showlog: !state.showlog });
   };
-  const handle2WeeksToggle = event => {
-    let newstate = { ...state, show2weeks: !state.show2weeks };
-    setStateSticky(newstate);
-  };
+
+  const handleSliderValueChange = (value) => {
+      let newstate = { ...state, showPastDays: value }
+      setStateSticky(newstate)
+  }
 
   data = data.map(d => {
     d.name = moment(d.fulldate, "MM/DD/YYYY").format("M/D");
@@ -139,6 +147,8 @@ const BasicGraph = (props) => {
     data = newdata;
   }
 
+
+
   /**
    * Add Trending Line
    */
@@ -160,18 +170,8 @@ const BasicGraph = (props) => {
     daysToDouble = results.daysToDouble;
   }
 
-  if (state.show2weeks) {
-    const cutoff = moment().subtract(14, 'days')
-    data = data.filter(d => {
-      return moment(d.fulldate, "MM/DD/YYYY").isAfter(cutoff)
-    });
-  } else {
-
-    const cutoff = moment().subtract(30, 'days')
-    data = data.filter(d => {
-      return moment(d.fulldate, "MM/DD/YYYY").isAfter(cutoff)
-    });
-  }
+  const oldestMoment = getOldestMomentInData(data);
+  data = filterDataToRecent(data, state.showPastDays)
 
   data = data.sort((a, b) => moment(a.fulldate, "MM/DD/YYYY").toDate() - (moment(b.fulldate, "MM/DD/YYYY")).toDate());
 
@@ -202,26 +202,32 @@ const BasicGraph = (props) => {
 
   return <>
     <Grid container alignItems="center" spacing={1}>
+        <Typography>
+          Linear
+        </Typography>
       <Grid item>
         <AntSwitch checked={state.showlog} onClick={handleLogScaleToggle} />
       </Grid>
       <Grid item onClick={handleLogScaleToggle}>
         <Typography>
           Log
-                </Typography>
+        </Typography>
       </Grid>
-      <Grid item></Grid>
-
+      <Grid item className={classes.gridPadding}> </Grid>
       <Grid item>
-        <AntSwitch checked={state.show2weeks} onClick={handle2WeeksToggle} />
+          <Typography>
+            Show Data From:
+          </Typography>
       </Grid>
-      <Grid item onClick={handle2WeeksToggle}>
-        <Typography>
-          2 weeks
-                </Typography>
+      <Grid item xs>
+        <DateRangeSlider
+            currentDate={moment()}
+            startDate={oldestMoment}
+            valueChanged={handleSliderValueChange}
+            defaultValue={state.showPastDays}
+        />
       </Grid>
-      <Grid item xs></Grid>
-
+      <Grid item className={classes.gridPadding}> </Grid>
     </Grid>
     <ResponsiveContainer height={300} >
       <LineChart
