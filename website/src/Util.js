@@ -18,7 +18,7 @@ function myShortNumber(n) {
 }
 
 function filterDataToRecent(data, numDays) {
-    const cutoff = moment().subtract(numDays, 'days')
+    const cutoff = moment().subtract(numDays + 1, 'days')
     return data.filter(d => {
         return moment(d.fulldate, "MM/DD/YYYY").isAfter(cutoff)
     });

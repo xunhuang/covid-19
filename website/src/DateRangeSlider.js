@@ -28,20 +28,21 @@ const DateRangeSlider = (props) => {
     const currentDate = moment(props.currentDate);
     const daysBetween = currentDate.diff(startDate, 'days');
     let defaultValue = props.defaultValue ? (daysBetween - props.defaultValue) : daysBetween - 30
-    defaultValue = (defaultValue > -1) ? defaultValue : daysBetween;
+    defaultValue = (defaultValue > -1) ? defaultValue : 0;
     const maxValue = (daysBetween > 13) ? daysBetween - 14 : daysBetween;
 
-    const [value, setValue] = React.useState(defaultValue)
+    const [valueState, setValueState] = React.useState(defaultValue)
 
     const constLabelFormat = (value) => {
         return moment(startDate).add(value, 'days').format("MM/DD");
     }
 
-    const valueSubmitted = (value) => {
-        props.valueChanged(daysBetween - value);
+    const handleValueChange = (value) => {
+        if (value !== valueState) {
+            setValueState(value);
+            props.valueChanged(daysBetween - value);
+        }
     }
-
-    const handleValueChange = (value) => setValue(value)
 
     const marks = [{ value: (daysBetween - 30 > -1) ? daysBetween - 30 : daysBetween }];
 
@@ -54,9 +55,8 @@ const DateRangeSlider = (props) => {
         marks: marks,
         min: 0,
         max: maxValue,
-        value: value,
-        onChangeCommitted: (event, value) => valueSubmitted(value),
-        onChange: (event, val) => handleValueChange(val)
+        value: valueState,
+        onChange: (event, value) => handleValueChange(value)
     }
 
     const sliderPropsMobile = {

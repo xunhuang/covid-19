@@ -171,6 +171,7 @@ const BasicGraph = (props) => {
   }
 
   const oldestMoment = getOldestMomentInData(data);
+
   data = filterDataToRecent(data, state.showPastDays)
 
   data = data.sort((a, b) => moment(a.fulldate, "MM/DD/YYYY").toDate() - (moment(b.fulldate, "MM/DD/YYYY")).toDate());
