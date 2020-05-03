@@ -3,6 +3,7 @@ const {linearRegression} = require('simple-statistics');
 
 const periods = {
   daily: {
+    pointConverter: (date, value) => [moment(date, 'MM/DD/YYYY'), value],
     converter: (data) =>
         Object.entries(data)
             .filter(([, value]) => value !== null)
@@ -16,9 +17,10 @@ const periods = {
 export class DataSeries {
 
   static fromFormattedDates(label, raw) {
-    const lastPoint = lastPointOf(raw, periods.daily);
-    const converter = () => periods.daily.converter(raw);
-    return new LazyDataSeries(label, raw, converter, lastPoint, periods.daily);
+    const lastPointGenerator = () => lastPointOf(raw, periods.daily);
+    const generator = () => periods.daily.converter(raw);
+    return new LazyDataSeries(
+        label, raw, generator, lastPointGenerator, periods.daily);
   }
 
   static flatten(serieses) {
@@ -110,7 +112,8 @@ export class DataSeries {
         return deltaPoints;
       };
 
-      return new LazyDataSeries(name, undefined, generator, lastPoint, this.period_);
+      return new LazyDataSeries(
+          name, undefined, generator, () => lastPoint, this.period_);
     } else {
       const points = this.points();
       const deltaPoints = [];
@@ -172,7 +175,7 @@ function lastPointOf(raw, period) {
   const all = Object.entries(raw);
   const lastTime = all[all.length - 1][0];
   const lastValue = all[all.length - 1][1];
-  return period.converter(Object.fromEntries([[lastTime, lastValue]]))[0];
+  return period.pointConverter(lastTime, lastValue);
 }
 
 function lastChangeOf(raw, period) {
@@ -183,7 +186,7 @@ function lastChangeOf(raw, period) {
 
   const lastTime = all[all.length - 1][0];
   const lastValue = all[all.length - 1][1] - all[all.length - 2][1];
-  return period.converter(Object.fromEntries([[lastTime, lastValue]]))[0];
+  return period.pointConverter(lastTime, lastValue);
 }
 
 class EmptySeries extends DataSeries {
@@ -195,10 +198,17 @@ class EmptySeries extends DataSeries {
 
 class LazyDataSeries extends DataSeries {
 
-  constructor(label, raw, generator, lastPoint, period) {
+  constructor(label, raw, generator, lastPointGenerator, period) {
     super(label, raw, period);
     this.generator_ = generator;
-    this.lastPoint_ = lastPoint;
+    this.lastPointGenerator_ = lastPointGenerator;
+  }
+
+  lastPoint() {
+    if (!this.lastPoint_) {
+      this.lastPoint_ = this.lastPointGenerator_();
+    }
+    return this.lastPoint_;
   }
 
   points() {
