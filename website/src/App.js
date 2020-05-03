@@ -9,6 +9,7 @@ import { PageUS } from "./PageUS"
 import { PageState } from "./PageState"
 import { PageCounty } from "./PageCounty"
 import { PageMetro } from "./PageMetro"
+import { PageRegion } from "./PageRegion";
 import { Page404 } from "./Page404"
 import { Country } from "./UnitedStates";
 import { CountryContext } from "./CountryContext";
@@ -17,6 +18,9 @@ import { compactTheme } from "./Theme.js";
 import { reverse } from 'named-urls';
 import routes from "./Routes";
 import { makeCountyFromDescription } from "./Util"
+
+import { WorldContext } from './WorldContext';
+import { createBasicEarth } from './models/Earth';
 
 const App = (props) => {
   return <BrowserRouter>
@@ -59,9 +63,11 @@ const MainApp = withRouter((props) => {
   }
 
   return (
-    <CountryContext.Provider value={country}>
-      <SafeRoutes />
-    </CountryContext.Provider>
+    <WorldContext.Provider value={createBasicEarth()}>
+      <CountryContext.Provider value={country}>
+        <SafeRoutes />
+      </CountryContext.Provider>
+    </WorldContext.Provider>
   );
 });
 
@@ -100,6 +106,7 @@ class UnhookedSafeRoutes extends React.Component {
           <Route exact path={routes.united_states} component={PageUS} />
           <Route exact path={routes.metro} component={PageMetro} />
           <Route exact path={routes.united_states_recovery} component={PageUS} />
+          <Route exact path={routes.region} component={PageRegion} />
           <Route exact path="*" component={Page404} status={404} />
         </Switch>
       );
