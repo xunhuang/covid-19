@@ -16,7 +16,9 @@ const periods = {
 export class DataSeries {
 
   static fromFormattedDates(label, raw) {
-    return new DataSeries(label, raw, periods.daily);
+    const lastPoint = lastPointOf(raw, periods.daily);
+    const converter = () => periods.daily.converter(raw);
+    return new LazyDataSeries(label, raw, converter, lastPoint, periods.daily);
   }
 
   static flatten(serieses) {
@@ -77,33 +79,65 @@ export class DataSeries {
     return this.points_;
   }
 
-  change() {
-    const points = this.points();
-    const deltaPoints = [];
-    for (let i = 1; i < points.length; ++i) {
-      deltaPoints.push([
-        points[i][0],
-        Math.max(0, points[i][1] - points[i - 1][1]),
-      ]);
+  lastPoint() {
+    if (!this.lastPoint_) {
+      const points = this.points();
+      this.lastPoint_ = points[points.length - 1];
     }
+    return this.lastPoint_;
+  }
 
-    const delta = new DataSeries(`New ${this.label_}`, undefined, this.period_);
-    delta.points_ = deltaPoints;
-    return delta;
+  change() {
+    const name = `New ${this.label_}`;
+
+    // We often only want to know the change between the last two values, so if
+    // we can avoid generating all the points we should try.
+    if (this.raw_) {
+      const lastPoint = lastChangeOf(this.raw_, this.period_);
+      if (!lastPoint) {
+        return new EmptySeries(name, this.period_);
+      }
+      
+      const generator = () => {
+        const points = this.points();
+        const deltaPoints = [];
+        for (let i = 1; i < points.length; ++i) {
+          deltaPoints.push([
+            points[i][0],
+            Math.max(0, points[i][1] - points[i - 1][1]),
+          ]);
+        }
+        return deltaPoints;
+      };
+
+      return new LazyDataSeries(name, undefined, generator, lastPoint, this.period_);
+    } else {
+      const points = this.points();
+      const deltaPoints = [];
+      for (let i = 1; i < points.length; ++i) {
+        deltaPoints.push([
+          points[i][0],
+          Math.max(0, points[i][1] - points[i - 1][1]),
+        ]);
+      }
+
+      const delta = new DataSeries(name, undefined, this.period_);
+      delta.points_ = deltaPoints;
+      return delta;
+    }
   }
 
   lastValue() {
-    const points = this.points();
-    if (points.length === 0) {
-      return undefined;
+    if (this.lastPoint()) {
+      return this.lastPoint()[1];
     } else {
-      return points[points.length - 1][1];
+      return undefined;
     }
   }
 
   sum() {
     let sum = 0;
-    for (const value of Object.values(this.raw_)) {
+    for (const [, value] of this.points()) {
       sum += value;
     }
     return sum;
@@ -125,13 +159,52 @@ export class DataSeries {
   }
 
   today() {
-    const points = this.points();
-    if (points.length === 0) {
+    const last = this.lastPoint();
+    if (!last) {
       return undefined;
     }
 
-    const last = points[points.length - 1];
     return moment().isSame(last[0], 'day') ? last[1] : undefined;
   }
 }
 
+function lastPointOf(raw, period) {
+  const all = Object.entries(raw);
+  const lastTime = all[all.length - 1][0];
+  const lastValue = all[all.length - 1][1];
+  return period.converter(Object.fromEntries([[lastTime, lastValue]]))[0];
+}
+
+function lastChangeOf(raw, period) {
+  const all = Object.entries(raw);
+  if (all.length < 2) {
+    return undefined;
+  }
+
+  const lastTime = all[all.length - 1][0];
+  const lastValue = all[all.length - 1][1] - all[all.length - 2][1];
+  return period.converter(Object.fromEntries([[lastTime, lastValue]]))[0];
+}
+
+class EmptySeries extends DataSeries {
+
+  constructor(label, period) {
+    super(label, {}, period);
+  }
+}
+
+class LazyDataSeries extends DataSeries {
+
+  constructor(label, raw, generator, lastPoint, period) {
+    super(label, raw, period);
+    this.generator_ = generator;
+    this.lastPoint_ = lastPoint;
+  }
+
+  points() {
+    if (!this.points_) {
+      this.points_ = this.generator_();
+    }
+    return this.points_;
+  }
+}
