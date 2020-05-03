@@ -7,8 +7,9 @@ import { scaleSymlog } from 'd3-scale';
 import { datesToDays, fitExponentialTrendingLine } from './TrendFitting';
 import { mergeDataSeries, makeDataSeriesFromTotal, exportColumnFromDataSeries } from "./DataSeries";
 import { myShortNumber, filterDataToRecent, getOldestMomentInData } from '../Util';
-import { AntSwitch } from "./AntSwitch"
+import { AntSwitch } from "./AntSwitch.js"
 import { DateRangeSlider } from "../DateRangeSlider"
+import axisScales from './GraphAxisScales'
 
 const Cookies = require("js-cookie");
 const moment = require("moment");
@@ -27,7 +28,7 @@ const useStyles = makeStyles(theme => ({
     maxWidth: 300,
   },
   gridPadding: {
-      minWidth: '3vw'
+      minWidth: '1vw'
   }
 }));
 
@@ -95,7 +96,7 @@ const CookieGetPreference = () => {
   let pref = Cookies.getJSON("BasicGraphPreference");
   if (!pref) {
     return {
-      showlog: false,
+      verticalScale: axisScales.linear,
       showPastDays: 30,
     }
   }
@@ -112,8 +113,11 @@ const BasicGraph = (props) => {
     CookieSetPreference(state);
     setState(state);
   }
-  const handleLogScaleToggle = event => {
-    setStateSticky({ ...state, showlog: !state.showlog });
+  const handleLogScaleToggle = (event, newScale) => {
+      setStateSticky({
+          ...state,
+          verticalScale: state.verticalScale === axisScales.log ? axisScales.linear : axisScales.log
+      });
   };
 
   const handleSliderValueChange = (value) => {
@@ -203,24 +207,21 @@ const BasicGraph = (props) => {
 
   return <>
     <Grid container alignItems="center" spacing={1}>
-        <Typography>
-          Linear
-        </Typography>
-      <Grid item>
-        <AntSwitch checked={state.showlog} onClick={handleLogScaleToggle} />
-      </Grid>
-      <Grid item onClick={handleLogScaleToggle}>
-        <Typography>
-          Log
-        </Typography>
-      </Grid>
+        <Grid item>
+            <AntSwitch checked={state.verticalScale === axisScales.log} onClick={handleLogScaleToggle} />
+        </Grid>
+        <Grid item onClick={handleLogScaleToggle}>
+            <Typography>
+                Log
+            </Typography>
+        </Grid>
       <Grid item className={classes.gridPadding}> </Grid>
       <Grid item>
           <Typography>
-            Show Data From:
+            Date:
           </Typography>
       </Grid>
-      <Grid item xs>
+      <Grid item xs sm={3}>
         <DateRangeSlider
             currentDate={moment()}
             startDate={oldestMoment}
@@ -228,7 +229,7 @@ const BasicGraph = (props) => {
             defaultValue={state.showPastDays}
         />
       </Grid>
-      <Grid item className={classes.gridPadding}> </Grid>
+      <Grid item sm> </Grid>
     </Grid>
     <ResponsiveContainer height={300} >
       <LineChart
@@ -238,7 +239,7 @@ const BasicGraph = (props) => {
         <Tooltip content={<CustomTooltip />} />
         <XAxis dataKey="name" />
         {
-          state.showlog ?
+          (state.verticalScale === axisScales.log) ?
             <YAxis yAxisId={0} scale={scale} /> :
             <YAxis yAxisId={0} tickFormatter={(t) => myShortNumber(t)} width={30} tick={{ fill: props.colorTotal }} />
         }

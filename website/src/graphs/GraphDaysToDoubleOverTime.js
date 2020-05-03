@@ -3,19 +3,11 @@ import { ResponsiveContainer, Tooltip, LineChart, Line, YAxis, XAxis, CartesianG
 import { Typography } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
 import { myShortNumber, filterDataToRecent, getOldestMomentInData } from '../Util';
-import { makeStyles } from '@material-ui/core/styles';
 import { DateRangeSlider } from "../DateRangeSlider"
-
-const useStyles = makeStyles(theme => ({
-    gridPadding: {
-        minWidth: '3vw'
-    },
-}));
 
 const moment = require("moment");
 
 const GraphDaysToDoubleOverTime = (props) => {
-    const classes = useStyles();
 
     const [state, setState] = React.useState({
         showPastDays: 30,
@@ -56,12 +48,13 @@ const GraphDaysToDoubleOverTime = (props) => {
 
     return <>
         <Grid container alignItems="center" spacing={1}>
+            <Grid xs sm="auto"></Grid>
             <Grid item xs="auto">
                 <Typography>
-                  Show Data From:
+                  Date:
                 </Typography>
             </Grid>
-            <Grid item xs sm>
+            <Grid item xs={5} sm={3}>
               <DateRangeSlider
                   currentDate={moment()}
                   startDate={oldestMoment}
@@ -69,7 +62,7 @@ const GraphDaysToDoubleOverTime = (props) => {
                   defaultValue={state.showPastDays}
               />
             </Grid>
-            <Grid className={classes.gridPadding}></Grid>
+            <Grid xs></Grid>
             <Grid item xs={12} sm="auto">
                 <Typography align="center">
                     High Days-to-2x means slower spread.

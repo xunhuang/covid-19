@@ -7,6 +7,7 @@ import { myShortNumber, filterDataToRecent, getOldestMomentInData } from '../Uti
 import { AntSwitch } from "./AntSwitch.js"
 import { State } from '../UnitedStates';
 import { DateRangeSlider } from "../DateRangeSlider"
+import axisScales from './GraphAxisScales'
 
 const moment = require("moment");
 
@@ -14,7 +15,7 @@ const scale = scaleSymlog().domain([0, 'dataMax']);
 
 const BasicGraphRecoveryAndDeath = (props) => {
     const [state, setState] = React.useState({
-        showlog: false,
+        verticalScale: axisScales.linear,
         showPastDays: 30,
     });
 
@@ -30,7 +31,10 @@ const BasicGraphRecoveryAndDeath = (props) => {
     let data = USData;
 
     const handleLogScaleToggle = event => {
-        setState({ ...state, showlog: !state.showlog });
+        setState({
+            ...state,
+            verticalScale: state.verticalScale === axisScales.log ? axisScales.linear : axisScales.log
+        });
     };
 
     data = data.map(d => {
@@ -56,7 +60,7 @@ const BasicGraphRecoveryAndDeath = (props) => {
     return <>
         <Grid container alignItems="center" spacing={1}>
             <Grid item>
-                <AntSwitch checked={state.showlog} onClick={handleLogScaleToggle} />
+                <AntSwitch checked={state.verticalScale === axisScales.log} onClick={handleLogScaleToggle} />
             </Grid>
             <Grid item onClick={handleLogScaleToggle}>
                 <Typography>
@@ -87,7 +91,7 @@ const BasicGraphRecoveryAndDeath = (props) => {
                 <XAxis dataKey="name" />
 
                 {
-                    state.showlog ?
+                    state.verticalScale === axisScales.log ?
                         <YAxis yAxisId={0} scale={scale} /> :
                         <YAxis yAxisId={0} tickFormatter={formatYAxis} />
                 }
