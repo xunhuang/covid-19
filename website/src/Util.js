@@ -2,6 +2,8 @@ var shortNumber = require('short-number');
 const Cookies = require("js-cookie");
 const states = require('us-state-codes');
 
+const moment = require("moment");
+
 function myShortNumber(n) {
     if (!n) {
         return "0";
@@ -13,6 +15,24 @@ function myShortNumber(n) {
         return "∞";
     }
     return shortNumber(n);
+}
+
+function filterDataToRecent(data, numDays) {
+    const cutoff = moment().subtract(numDays, 'days')
+    return data.filter(d => {
+        return moment(d.fulldate, "MM/DD/YYYY").isAfter(cutoff)
+    });
+}
+
+function getOldestMomentInData(data, evaluationFunc = (data) => true) {
+    let currentOldest = moment();
+    data.forEach(element => {
+        if (evaluationFunc(element)) {
+            const elementMoment = moment(element.fulldate, "MM/DD/YYYY")
+            currentOldest = currentOldest.isAfter(elementMoment) ? elementMoment : currentOldest
+        }
+    })
+    return currentOldest
 }
 
 function makeCountyFromDescription(myCountry, stateCountyDescription) {
@@ -128,4 +148,6 @@ export {
     getStateNameByStateCode,
     normalize_date,
     makeCountyFromDescription,
+    filterDataToRecent,
+    getOldestMomentInData
 }
