@@ -1,10 +1,13 @@
 import React from 'react';
 import { GraphDailyGeneric } from "./GraphDailyGeneric"
 import { mergeDataSeries, makeDataSeriesFromTotal, exportColumnFromDataSeries } from "./DataSeries";
+import { fitVirusCV19 } from "../math/FitVirusCV19";
 
 const GraphDaily = (props) => {
     const [sourceData, setSourceData] = React.useState(null);
     const [caseData, setCaseData] = React.useState(null);
+
+    // fitVirusCV19();
 
     React.useEffect(() => {
         if (props.source.testingAsync) {
