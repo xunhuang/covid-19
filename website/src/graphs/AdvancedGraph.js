@@ -243,7 +243,7 @@ const Chart = (props) => {
   return (
       <ResponsiveContainer height={300}>
           <ChosenChart data={props.data} margin={{left: 24, right: 24}}>
-              <Tooltip />
+              <Tooltip labelFormatter={props.timestampFormatter} />
               <XAxis
                   dataKey="timestamp"
                   tickFormatter={props.timestampFormatter}
