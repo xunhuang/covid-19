@@ -1,9 +1,10 @@
 import React, { useContext } from 'react';
 import { CountryContext } from "./CountryContext";
 import Disqus from "disqus-react"
+import { MyTabs } from "./MyTabs.js";
 import Typography from '@material-ui/core/Typography'
 import { makeStyles } from '@material-ui/core/styles';
-import { FacebookProvider, CommentsCount } from 'react-facebook';
+import { FacebookProvider, CommentsCount, Comments } from 'react-facebook';
 import { useHistory } from "react-router-dom";
 import { Link as MaterialLink } from '@material-ui/core';
 import { Grid } from '@material-ui/core';
@@ -108,7 +109,7 @@ const useStyles = makeStyles(theme => ({
     newsTitle: {
         margin: 4,
     },
-    disqusPaper: {
+    commentPaper: {
         overflow: 'auto',
         width: '97%',
         padding: 10,
@@ -296,6 +297,7 @@ const withHeader = (comp, props) => {
         identifier: "article-id",
         title: "main page"
     };
+
     const donationPageUrl = "https://www.gofundme.com/f/covid19direct-operating-cost";
 
     return (props) => {
@@ -328,10 +330,21 @@ const withHeader = (comp, props) => {
                     </Grid>
                 </Grid>
             </SectionHeader>
-            <Paper elevation={3} className={classes.disqusPaper}>
-                <Disqus.DiscussionEmbed
-                    shortname={disqusShortname}
-                    config={disqusConfig}
+            <Paper elevation={3} className={classes.commentPaper}>
+                <MyTabs
+                    labels={['Comments', 'Disqus']}
+                    urlQueryKey="discussions"
+                    urlQueryValues={['facebook', 'disqus']}
+                    tabs={[(
+                        <FacebookProvider appId="201788627783795">
+                            <Comments href="https://covid-19.direct/" />
+                        </FacebookProvider>
+                    ), (
+                      <Disqus.DiscussionEmbed
+                        shortname={disqusShortname}
+                        config={disqusConfig}
+                      />
+                    )]}
                 />
             </Paper>
         </div>;

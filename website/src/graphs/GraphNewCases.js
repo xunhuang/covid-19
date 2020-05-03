@@ -6,8 +6,10 @@ import Grid from '@material-ui/core/Grid';
 import { scaleSymlog } from 'd3-scale';
 import { datesToDays, fitExponentialTrendingLine } from './TrendFitting';
 import { mergeDataSeries, makeDataSeriesFromTotal, exportColumnFromDataSeries } from "./DataSeries";
-import { myShortNumber } from '../Util';
-import { AntSwitch } from "./AntSwitch"
+import { myShortNumber, filterDataToRecent, getOldestMomentInData } from '../Util';
+import { AntSwitch } from "./AntSwitch.js"
+import { DateRangeSlider } from "../DateRangeSlider"
+import axisScales from './GraphAxisScales'
 
 const Cookies = require("js-cookie");
 const moment = require("moment");
@@ -25,6 +27,9 @@ const useStyles = makeStyles(theme => ({
     minWidth: 130,
     maxWidth: 300,
   },
+  gridPadding: {
+      minWidth: '1vw'
+  }
 }));
 
 const CustomTooltip = (props) => {
@@ -82,22 +87,25 @@ const CustomTooltip = (props) => {
 }
 
 const CookieSetPreference = (state) => {
-  Cookies.set("BasicGraphPreference", state, {
-    expires: 100
-  });
+    Cookies.set("BasicGraphPreference", state, {
+        expires: 100
+    });
 }
+
 const CookieGetPreference = () => {
   let pref = Cookies.getJSON("BasicGraphPreference");
   if (!pref) {
     return {
-      showlog: false,
-      show2weeks: false,
+      verticalScale: axisScales.linear,
+      showPastDays: 30,
     }
   }
   return pref;
 }
 
+
 const BasicGraph = (props) => {
+  const classes = useStyles()
   let data = props.USData;
   const column = props.column;
   const [state, setState] = React.useState(CookieGetPreference());
@@ -105,13 +113,17 @@ const BasicGraph = (props) => {
     CookieSetPreference(state);
     setState(state);
   }
-  const handleLogScaleToggle = event => {
-    setStateSticky({ ...state, showlog: !state.showlog });
+  const handleLogScaleToggle = (event, newScale) => {
+      setStateSticky({
+          ...state,
+          verticalScale: state.verticalScale === axisScales.log ? axisScales.linear : axisScales.log
+      });
   };
-  const handle2WeeksToggle = event => {
-    let newstate = { ...state, show2weeks: !state.show2weeks };
-    setStateSticky(newstate);
-  };
+
+  const handleSliderValueChange = (value) => {
+      let newstate = { ...state, showPastDays: value }
+      setStateSticky(newstate)
+  }
 
   data = data.map(d => {
     d.name = moment(d.fulldate, "MM/DD/YYYY").format("M/D");
@@ -139,6 +151,8 @@ const BasicGraph = (props) => {
     data = newdata;
   }
 
+
+
   /**
    * Add Trending Line
    */
@@ -160,18 +174,9 @@ const BasicGraph = (props) => {
     daysToDouble = results.daysToDouble;
   }
 
-  if (state.show2weeks) {
-    const cutoff = moment().subtract(14, 'days')
-    data = data.filter(d => {
-      return moment(d.fulldate, "MM/DD/YYYY").isAfter(cutoff)
-    });
-  } else {
+  const oldestMoment = getOldestMomentInData(data);
 
-    const cutoff = moment().subtract(30, 'days')
-    data = data.filter(d => {
-      return moment(d.fulldate, "MM/DD/YYYY").isAfter(cutoff)
-    });
-  }
+  data = filterDataToRecent(data, state.showPastDays)
 
   data = data.sort((a, b) => moment(a.fulldate, "MM/DD/YYYY").toDate() - (moment(b.fulldate, "MM/DD/YYYY")).toDate());
 
@@ -202,26 +207,29 @@ const BasicGraph = (props) => {
 
   return <>
     <Grid container alignItems="center" spacing={1}>
+        <Grid item>
+            <AntSwitch checked={state.verticalScale === axisScales.log} onClick={handleLogScaleToggle} />
+        </Grid>
+        <Grid item onClick={handleLogScaleToggle}>
+            <Typography>
+                Log
+            </Typography>
+        </Grid>
+      <Grid item className={classes.gridPadding}> </Grid>
       <Grid item>
-        <AntSwitch checked={state.showlog} onClick={handleLogScaleToggle} />
+          <Typography>
+            Date:
+          </Typography>
       </Grid>
-      <Grid item onClick={handleLogScaleToggle}>
-        <Typography>
-          Log
-                </Typography>
+      <Grid item xs sm={3}>
+        <DateRangeSlider
+            currentDate={moment()}
+            startDate={oldestMoment}
+            valueChanged={handleSliderValueChange}
+            defaultValue={state.showPastDays}
+        />
       </Grid>
-      <Grid item></Grid>
-
-      <Grid item>
-        <AntSwitch checked={state.show2weeks} onClick={handle2WeeksToggle} />
-      </Grid>
-      <Grid item onClick={handle2WeeksToggle}>
-        <Typography>
-          2 weeks
-                </Typography>
-      </Grid>
-      <Grid item xs></Grid>
-
+      <Grid item sm> </Grid>
     </Grid>
     <ResponsiveContainer height={300} >
       <LineChart
@@ -231,7 +239,7 @@ const BasicGraph = (props) => {
         <Tooltip content={<CustomTooltip />} />
         <XAxis dataKey="name" />
         {
-          state.showlog ?
+          (state.verticalScale === axisScales.log) ?
             <YAxis yAxisId={0} scale={scale} /> :
             <YAxis yAxisId={0} tickFormatter={(t) => myShortNumber(t)} width={30} tick={{ fill: props.colorTotal }} />
         }

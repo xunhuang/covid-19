@@ -2,15 +2,15 @@ import React from 'react';
 import { ResponsiveContainer, Tooltip, LineChart, Line, YAxis, XAxis, CartesianGrid, Legend } from 'recharts';
 import { Typography } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
-import { myShortNumber } from '../Util';
-import { AntSwitch } from "./AntSwitch.js"
+import { myShortNumber, filterDataToRecent, getOldestMomentInData } from '../Util';
+import { DateRangeSlider } from "../DateRangeSlider"
 
 const moment = require("moment");
 
 const GraphDaysToDoubleOverTime = (props) => {
 
     const [state, setState] = React.useState({
-        show2weeks: false,
+        showPastDays: 30,
     });
 
     const [mydata, setMydata] = React.useState(null);
@@ -25,10 +25,6 @@ const GraphDaysToDoubleOverTime = (props) => {
 
     let data = mydata;
 
-    const handle2WeeksToggle = event => {
-        setState({ ...state, show2weeks: !state.show2weeks });
-    };
-
     data = data.map(d => {
         d.name = moment(d.fulldate, "MM/DD/YYYY").format("M/D");
         d.confirmed = d.confirmed ? parseFloat(d.confirmed.toFixed(1)) : null;
@@ -36,17 +32,14 @@ const GraphDaysToDoubleOverTime = (props) => {
         return d;
     });
 
-    if (state.show2weeks) {
-        const cutoff = moment().subtract(14, 'days')
-        data = data.filter(d => {
-            return moment(d.fulldate, "MM/DD/YYYY").isAfter(cutoff)
-        });
-    } else {
-        const cutoff = moment().subtract(30, 'days')
-        data = data.filter(d => {
-            return moment(d.fulldate, "MM/DD/YYYY").isAfter(cutoff)
-        });
+    const handleSliderValueChange = (value) => {
+        let newstate = { ...state, showPastDays: value }
+        setState(newstate)
     }
+
+    const oldestMoment = getOldestMomentInData(data);
+    data = filterDataToRecent(data, state.showPastDays)
+
     const formatYAxis = (tickItem) => {
         return myShortNumber(tickItem);
     }
@@ -55,16 +48,23 @@ const GraphDaysToDoubleOverTime = (props) => {
 
     return <>
         <Grid container alignItems="center" spacing={1}>
-            <Grid item>
-                <AntSwitch checked={state.show30days} onClick={handle2WeeksToggle} />
-            </Grid>
-            <Grid item onClick={handle2WeeksToggle}>
+            <Grid xs sm="auto"></Grid>
+            <Grid item xs="auto">
                 <Typography>
-                    2 weeks
+                  Date:
                 </Typography>
             </Grid>
-            <Grid item >
-                <Typography>
+            <Grid item xs={5} sm={3}>
+              <DateRangeSlider
+                  currentDate={moment()}
+                  startDate={oldestMoment}
+                  valueChanged={handleSliderValueChange}
+                  defaultValue={state.showPastDays}
+              />
+            </Grid>
+            <Grid xs></Grid>
+            <Grid item xs={12} sm="auto">
+                <Typography align="center">
                     High Days-to-2x means slower spread.
                 </Typography>
             </Grid>
