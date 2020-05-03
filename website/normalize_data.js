@@ -887,6 +887,9 @@ function processBNO(dataset, date) {
 function addStateRecovery() {
   for (let d = moment("04/02/2020", "MM/DD/YYYY"); d.isBefore(moment()); d = d.add(1, "days")) {
     let file = `../data/archive/BNO-${d.format("MM-DD-YYYY")}.json`;
+    if (!fs.existsSync(file)) {
+      continue;
+    }
     let contents = fs.readFileSync(file);
     let data = JSON.parse(contents);
     console.log("Processing BNO " + d.format("MM/DD/YYYY"));
@@ -961,6 +964,9 @@ function processNYCBOROS_NEW() {
 
   for (let d = moment("04/03/2020", "MM/DD/YYYY"); d.isBefore(moment()); d = d.add(1, "days")) {
     let file = `../data/archive/NYC-BOROUGHS-${d.format("MM-DD-YYYY")}.json`;
+    if (!fs.existsSync(file)) {
+      continue;
+    }
     console.log("processing NYC " + file);
     let contents = fs.readFileSync(file);
     let data = JSON.parse(contents);
