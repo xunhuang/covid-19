@@ -28,7 +28,7 @@ const useStyles = makeStyles(theme => ({
     maxWidth: 300,
   },
   gridPadding: {
-      minWidth: '1vw'
+    minWidth: '1vw'
   }
 }));
 
@@ -87,14 +87,14 @@ const CustomTooltip = (props) => {
 }
 
 const CookieSetPreference = (state) => {
-    Cookies.set("BasicGraphPreference", state, {
-        expires: 100
-    });
+  Cookies.set("BasicGraphPreference", state, {
+    expires: 100
+  });
 }
 
 const CookieGetPreference = () => {
   let pref = Cookies.getJSON("BasicGraphPreference");
-  if (pref === null || pref.verticalScale === null || pref.showPastDays === null) {
+  if (!pref || pref.verticalScale === null || pref.showPastDays === null) {
     return {
       verticalScale: axisScales.linear,
       showPastDays: 30,
@@ -114,15 +114,15 @@ const BasicGraph = (props) => {
     setState(state);
   }
   const handleLogScaleToggle = (event, newScale) => {
-      setStateSticky({
-          ...state,
-          verticalScale: state.verticalScale === axisScales.log ? axisScales.linear : axisScales.log
-      });
+    setStateSticky({
+      ...state,
+      verticalScale: state.verticalScale === axisScales.log ? axisScales.linear : axisScales.log
+    });
   };
 
   const handleSliderValueChange = (value) => {
-      let newstate = { ...state, showPastDays: value }
-      setStateSticky(newstate)
+    let newstate = { ...state, showPastDays: value }
+    setStateSticky(newstate)
   }
 
   data = data.map(d => {
@@ -207,26 +207,26 @@ const BasicGraph = (props) => {
 
   return <>
     <Grid container alignItems="center" spacing={1}>
-        <Grid item>
-            <AntSwitch checked={state.verticalScale === axisScales.log} onClick={handleLogScaleToggle} />
-        </Grid>
-        <Grid item onClick={handleLogScaleToggle}>
-            <Typography>
-                Log
+      <Grid item>
+        <AntSwitch checked={state.verticalScale === axisScales.log} onClick={handleLogScaleToggle} />
+      </Grid>
+      <Grid item onClick={handleLogScaleToggle}>
+        <Typography>
+          Log
             </Typography>
-        </Grid>
+      </Grid>
       <Grid item className={classes.gridPadding}> </Grid>
       <Grid item>
-          <Typography>
-            Date:
+        <Typography>
+          Date:
           </Typography>
       </Grid>
       <Grid item xs sm={3}>
         <DateRangeSlider
-            currentDate={moment()}
-            startDate={oldestMoment}
-            valueChanged={handleSliderValueChange}
-            defaultValue={state.showPastDays}
+          currentDate={moment()}
+          startDate={oldestMoment}
+          valueChanged={handleSliderValueChange}
+          defaultValue={state.showPastDays}
         />
       </Grid>
       <Grid item sm> </Grid>
