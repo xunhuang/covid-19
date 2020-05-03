@@ -1,4 +1,5 @@
 const moment = require('moment');
+const {linearRegression} = require('simple-statistics');
 
 const periods = {
   daily: {
@@ -42,12 +43,16 @@ export class DataSeries {
     }
     const formatter = formatters.values().next().value;
 
-    return [...points.entries()]
-        .sort(([a,], [b,]) => a - b)
-        .map(([timestamp, data]) => ({
-          key: formatter(moment.unix(timestamp)),
-          ...data,
-        }));
+    return {
+      data:
+          [...points.entries()]
+              .sort(([a,], [b,]) => a - b)
+              .map(([timestamp, data]) => ({
+                timestamp,
+                ...data,
+              })),
+      timestampFormatter: (timestamp) => formatter(moment.unix(timestamp)),
+    };
   }
 
   constructor(label, raw, period) {
@@ -95,13 +100,38 @@ export class DataSeries {
       return points[points.length - 1][1];
     }
   }
-  
+
   sum() {
     let sum = 0;
     for (const value of Object.values(this.raw_)) {
       sum += value;
     }
     return sum;
+  }
+
+  trend() {
+    const points = this.points();
+    if (points.length < 8) {
+      return undefined;
+    }
+
+    const {m, b} =
+        linearRegression(points.slice(-8, -1).map(([moment, v]) => [moment.unix(), v]));
+    const trend = new DataSeries(`${this.label_} (Trend)`, undefined, this.period_);
+    trend.points_ =
+        points.map(([moment, ]) =>
+            [moment, Math.max(0, Math.round(m * moment.unix() + b))]);
+    return trend;
+  }
+
+  today() {
+    const points = this.points();
+    if (points.length === 0) {
+      return undefined;
+    }
+
+    const last = points[points.length - 1];
+    return moment().isSame(last[0], 'day') ? last[1] : undefined;
   }
 }
 

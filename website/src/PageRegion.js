@@ -64,26 +64,27 @@ export const PageRegion = withRouter((props) => {
         <AdvancedGraph
           serieses={[{
               series: basic.confirmed().change(),
-              color: 'gray',
+              color: 'teal',
+              trend: 'orange',
             }, {
               series: basic.confirmed(),
-              color: 'blue',
-              state: 'off',
+              color: 'gray',
+              initial: 'off',
             }, {
               series: basic.active(),
               color: 'pink',
-              state: 'off',
+              initial: 'off',
             }, {
               series: basic.recovered(),
               color: 'green',
-              state: 'off',
+              initial: 'off',
             }, {
               series: basic.died().change(),
               color: 'purple',
             }, {
               series: basic.died(),
               color: 'red',
-              state: 'off',
+              initial: 'off',
             },
           ]}
         />
@@ -128,6 +129,7 @@ const Division = (props) => {
             <TableRow>
               <TableCell>Name</TableCell>
               <TableCell>Confirmed</TableCell>
+              <TableCell>New</TableCell>
               <TableCell>Active</TableCell>
               <TableCell>Recovered</TableCell>
               <TableCell>Died</TableCell>
@@ -142,6 +144,7 @@ const Division = (props) => {
                   </MaterialLink>
                 </TableCell>
                 <TableCell>{data.confirmed().lastValue()}</TableCell>
+                <TableCell>{data.confirmed().change().today()}</TableCell>
                 <TableCell>{data.active().lastValue()}</TableCell>
                 <TableCell>{data.recovered().lastValue()}</TableCell>
                 <TableCell>{data.died().lastValue()}</TableCell>

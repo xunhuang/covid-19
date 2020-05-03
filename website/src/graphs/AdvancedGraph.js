@@ -3,8 +3,11 @@ import PropTypes from 'prop-types';
 import ToggleButton from '@material-ui/lab/ToggleButton';
 import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
 import {Area, AreaChart, CartesianGrid, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis} from 'recharts';
-import {DataSeries} from '../models/DataSeries';
 import {fade, makeStyles} from '@material-ui/core/styles';
+
+import {DataSeries} from '../models/DataSeries';
+
+const moment = require('moment');
 
 const baseToggleButtonStyles = {
   height: 'initial',
@@ -20,7 +23,7 @@ const useStyles = makeStyles(theme => ({
       margin: '8px',
     },
   },
-  displayOptions: {
+  expand: {
     flexGrow: 1,
   },
 }));
@@ -28,7 +31,37 @@ const useStyles = makeStyles(theme => ({
 export const AdvancedGraph = (props) => {
   const classes = useStyles();
 
-  const displays = new Map([
+  const windows = new Map([
+    ['2weeks', {
+      label: '2 Weeks',
+      filter: (data) => {
+        const start =
+            moment.unix(data[data.length - 1].timestamp)
+                .subtract(14, 'day')
+                .unix();
+        return data.filter((p) => start <= p.timestamp);
+      },
+    }],
+    ['all', {
+      label: 'All',
+      filter: (data) => data,
+    }],
+  ]);
+  const [window, setWindow] = React.useState(windows.keys().next().value);
+
+  const scales = new Map([
+    ['linear', {
+      label: 'Linear',
+      scale: 'linear',
+    }],
+    ['log', {
+      label: 'Log',
+      scale: 'log',
+    }],
+  ]);
+  const [scale, setScale] = React.useState(scales.keys().next().value);
+
+  const styles = new Map([
     ['line', {
       label: 'Line',
       chart: LineChart,
@@ -40,40 +73,49 @@ export const AdvancedGraph = (props) => {
       series: Area,
     }],
   ]);
-  const [display, setDisplay] = React.useState(displays.keys().next().value);
+  const [style, setStyle] = React.useState(styles.keys().next().value);
 
-  const serieses = new Map(props.serieses.map(({series, color}) => [
-    series.label(), {
-      color,
-      series,
-    },
-  ]));
-  const data = DataSeries.flatten(props.serieses.map(({series}) => series));
+  const serieses = expandSeriesesToMap(props.serieses);
+  const {data, timestampFormatter} =
+      DataSeries.flatten([...serieses.values()].map(({series}) => series));
 
   const [selected, setSelected] =
       React.useState(() =>
-          props.serieses
-              .filter(({state}) => state !== 'off')
-              .map(({series}) => series.label()));
+          [...serieses.entries()]
+              .filter(([, {initial}]) => initial !== 'off')
+              .map(([label, ]) => label));
 
   return (
     <>
       <div className={classes.options}>
         <Display
-            displays={displays}
-            selected={display}
-            onChange={setDisplay}
-            className={classes.displayOptions} />
+            displays={windows}
+            selected={window}
+            onChange={setWindow}
+        />
+        <Display
+            displays={scales}
+            selected={scale}
+            onChange={setScale}
+        />
+        <Display
+            displays={styles}
+            selected={style}
+            onChange={setStyle}
+        />
+        <div className={classes.expand} />
         <Legend
             serieses={serieses}
             selected={selected}
             onChange={setSelected} />
       </div>
       <Chart
-          display={displays.get(display)}
-          data={data}
+          data={windows.get(window).filter(data)}
+          scale={scales.get(scale).scale}
+          style={styles.get(style)}
+          timestampFormatter={timestampFormatter}
           serieses={selected.map(key => ({
-            color: serieses.get(key).color,
+            ...serieses.get(key),
             label: key,
           }))}
       />
@@ -81,17 +123,51 @@ export const AdvancedGraph = (props) => {
 };
 
 AdvancedGraph.propTypes = {
-	serieses: PropTypes.arrayOf(
-      PropTypes.shape({
-        series: PropTypes.instanceOf(DataSeries).isRequired,
-        color: PropTypes.string.isRequired,
-      })).isRequired,
+	serieses:
+      PropTypes.arrayOf(
+          PropTypes.exact({
+            series: PropTypes.instanceOf(DataSeries).isRequired,
+            color: PropTypes.string.isRequired,
+            initial: PropTypes.oneOf([undefined, 'off', 'on']),
+            trend: PropTypes.string,
+          })).isRequired,
 };
 
+function expandSeriesesToMap(serieses) {
+  const expanded = serieses.flatMap(series => {
+    if (series.trend) {
+      const trend = series.series.trend();
+      const color = series.trend;
+
+      if (trend) {
+        return [
+          {
+            ...series,
+            series: trend,
+            color,
+            stipple: true,
+          },
+          series,
+        ];
+      } else {
+        return [series];
+      }
+    } else {
+      return [series];
+    }
+  });
+
+  return new Map(expanded.map((seriesInfo) =>
+      [seriesInfo.series.label(), seriesInfo]));
+}
+
 const useDisplayStyles = makeStyles(theme => ({
-    option: {
-        ...baseToggleButtonStyles,
-    },
+  options: {
+    display: 'initial',
+  },
+  option: {
+      ...baseToggleButtonStyles,
+  },
 }));
 
 const Display = (props) => {
@@ -101,8 +177,8 @@ const Display = (props) => {
         <ToggleButtonGroup
                 exclusive
                 value={props.selected}
-                onChange={(event, desired) => props.onChange(desired)}
-                className={props.className}>
+                onChange={(event, desired) => desired && props.onChange(desired)}
+                className={classes.options}>
             {[...props.displays.entries()].map(([key, data]) => 
                 <ToggleButton key={key} value={key} className={classes.option}>
                     {data.label}
@@ -117,6 +193,7 @@ const useLegendStyles = makeStyles(theme => ({
         border: `1px solid ${fade(theme.palette.action.active, 0.12)}`,
         display: 'flex',
         flexWrap: 'wrap',
+        maxWidth: '500px',
     },
     series: {
         border: 'none',
@@ -126,6 +203,9 @@ const useLegendStyles = makeStyles(theme => ({
             color: fade(theme.palette.action.active, 0.8),
         },
         ...baseToggleButtonStyles,
+    },
+    icon: {
+      paddingRight: '4px',
     },
 }));
 
@@ -137,16 +217,17 @@ const Legend = (props) => {
                 value={props.selected}
                 onChange={(event, desired) => props.onChange(desired)}
                 className={classes.serieses}>
-            {[...props.serieses.entries()].map(([label, {color}]) =>
+            {[...props.serieses.entries()].map(([label, {color, stipple}]) =>
                 <ToggleButton
                     key={label}
                     value={label}
                     classes={{root: classes.series, selected: 'selected'}}>
                     <span
+                        className={classes.icon}
                         style={
                             props.selected.includes(label) ? {color} : {}
                         }>
-                      —
+                      {stipple ? '···' : '—'}
                     </span>
                     {label}
                 </ToggleButton>
@@ -156,15 +237,19 @@ const Legend = (props) => {
 };
 
 const Chart = (props) => {
-  const ChosenChart = props.display.chart;
-  const ChosenSeries = props.display.series;
+  const ChosenChart = props.style.chart;
+  const ChosenSeries = props.style.series;
 
   return (
       <ResponsiveContainer height={300}>
           <ChosenChart data={props.data} margin={{left: 24, right: 24}}>
               <Tooltip />
-              <XAxis dataKey="key" />
-              <YAxis />
+              <XAxis
+                  dataKey="timestamp"
+                  tickFormatter={props.timestampFormatter}
+              />
+              {/* using scale='log' requires setting the domain */}
+              <YAxis scale={props.scale} domain={['auto', 'auto']} />
               <CartesianGrid stroke="#d5d5d5" strokeDasharray="5 5" />
 
               {props.serieses && props.serieses.map(series =>
@@ -175,8 +260,10 @@ const Chart = (props) => {
                       isAnimationActive={false}
                       fill={series.color}
                       stroke={series.color}
+                      strokeDasharray={series.stipple ? '2 2' : undefined}
                       dot={false}
-                      strokeWidth={2} />
+                      strokeWidth={2}
+                  />
               )}
           </ChosenChart>
       </ResponsiveContainer>
