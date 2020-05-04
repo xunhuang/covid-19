@@ -337,7 +337,7 @@ const withHeader = (comp, props) => {
           urlQueryValues={['facebook', 'disqus']}
           tabs={[(
             <FacebookProvider appId="201788627783795">
-              <Comments href="https://covid-19.direct/" />
+              <Comments href="https://covid-19.direct/" width="100%" />
             </FacebookProvider>
           ), (
             <Disqus.DiscussionEmbed
@@ -350,7 +350,7 @@ const withHeader = (comp, props) => {
     </div>;
     let fbcomment =
       <FacebookProvider appId="201788627783795">
-        <CommentsCount href="http://www.facebook.com" width="100%" />
+        <CommentsCount href="http://www.facebook.com" />
       </FacebookProvider>;
 
 
