@@ -65,33 +65,14 @@ export const PageRegion = withRouter((props) => {
         <Paper className={classes.content}>
           <Title className={classes.section} path={path} />
 
-          <AdvancedGraph
+          <DailyGraph
+            basic={basic}
             className={`${classes.section} ${classes.graph}`}
-            serieses={[{
-                series: basic.confirmed().change(),
-                color: 'teal',
-                trend: 'orange',
-              }, {
-                series: basic.confirmed(),
-                color: 'gray',
-                initial: 'off',
-              }, {
-                series: basic.active(),
-                color: 'pink',
-                initial: 'off',
-              }, {
-                series: basic.recovered(),
-                color: 'green',
-                initial: 'off',
-              }, {
-                series: basic.died().change(),
-                color: 'purple',
-              }, {
-                series: basic.died(),
-                color: 'red',
-                initial: 'off',
-              },
-            ]}
+          />
+
+          <DoublingGraph
+            basic={basic}
+            className={`${classes.section} ${classes.graph}`}
           />
 
           {divisions &&
@@ -224,6 +205,60 @@ const Title = (props) => {
 Title.propTypes = {
   className: PropTypes.string,
   path: PropTypes.instanceOf(Path).isRequired,
+};
+
+const DailyGraph = (props) => {
+  const basic = props.basic;
+
+  return (
+    <AdvancedGraph
+      className={props.className}
+      serieses={[{
+          series: basic.confirmed().change(),
+          color: 'teal',
+          trend: 'orange',
+        }, {
+          series: basic.confirmed(),
+          color: 'gray',
+          initial: 'off',
+        }, {
+          series: basic.active(),
+          color: 'pink',
+          initial: 'off',
+        }, {
+          series: basic.recovered(),
+          color: 'green',
+          initial: 'off',
+        }, {
+          series: basic.died().change(),
+          color: 'purple',
+        }, {
+          series: basic.died(),
+          color: 'red',
+          initial: 'off',
+        },
+      ]}
+    />
+  );
+};
+
+const DoublingGraph = (props) => {
+  const basic = props.basic;
+
+  return (
+    <AdvancedGraph
+      className={props.className}
+      serieses={[{
+          series: basic.confirmed().doublingInterval(),
+          color: 'teal',
+          trend: 'orange',
+        }, {
+          series: basic.died().doublingInterval(),
+          color: 'red',
+        },
+      ]}
+    />
+  );
 };
 
 const Division = (props) => {

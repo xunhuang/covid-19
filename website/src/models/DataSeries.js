@@ -3,16 +3,20 @@ const {linearRegression} = require('simple-statistics');
 
 const periods = {
   daily: {
-    pointConverter: (date, value) => [moment(date, 'MM/DD/YYYY'), value],
+    label: 'Daily',
+    doublingLabel: 'Days to Double',
+    formatter: (moment) => moment.format('MM/DD'),
+    intervalS: 24 * 60 * 60,
     converter: (data) =>
         Object.entries(data)
             .filter(([, value]) => value !== null)
             .map(([date, value]) => [moment(date, 'MM/DD/YYYY'), value])
             .sort(([a,], [b,]) => a.diff(b)),
-    formatter: (moment) => moment.format('MM/DD'),
-    label: 'Daily',
+    pointConverter: (date, value) => [moment(date, 'MM/DD/YYYY'), value],
   },
 };
+
+const REGRESSION_WINDOW_SIZE = 7;
 
 export class DataSeries {
 
@@ -89,6 +93,14 @@ export class DataSeries {
     return this.lastPoint_;
   }
 
+  lastValue() {
+    if (this.lastPoint()) {
+      return this.lastPoint()[1];
+    } else {
+      return undefined;
+    }
+  }
+
   change() {
     const name = `New ${this.label_}`;
 
@@ -130,12 +142,28 @@ export class DataSeries {
     }
   }
 
-  lastValue() {
-    if (this.lastPoint()) {
-      return this.lastPoint()[1];
-    } else {
-      return undefined;
+  doublingInterval() {
+    // TODO: if we want to show this in the table view we'll need to accelerate
+    // this. It's easily doable, just ugly.
+    const points = this.points();
+    const log = points.map(([m, v]) => [m.unix(), Math.log2(v)]);
+    const doublings = [];
+    for (let i = REGRESSION_WINDOW_SIZE - 1; i < points.length; ++i) {
+      const window = log.slice(i - REGRESSION_WINDOW_SIZE, i + 1);
+      const {m} = linearRegression(window);
+      doublings.push([
+        points[i][0],
+        Math.round(1 / (m * this.period_.intervalS)),
+      ]);
     }
+
+    const doubling =
+        new DataSeries(
+            `${this.label_} ${this.period_.doublingLabel}`,
+            undefined,
+            this.period_);
+    doubling.points_ = doublings;
+    return doubling;
   }
 
   sum() {
@@ -153,8 +181,11 @@ export class DataSeries {
     }
 
     const {m, b} =
-        linearRegression(points.slice(-8, -1).map(([moment, v]) => [moment.unix(), v]));
-    const trend = new DataSeries(`${this.label_} (Trend)`, undefined, this.period_);
+        linearRegression(
+            points.slice(-1 - REGRESSION_WINDOW_SIZE, -1)
+                .map(([moment, v]) => [moment.unix(), v]));
+    const trend =
+        new DataSeries(`${this.label_} (Trend)`, undefined, this.period_);
     trend.points_ =
         points.map(([moment, ]) =>
             [moment, Math.max(0, Math.round(m * moment.unix() + b))]);
