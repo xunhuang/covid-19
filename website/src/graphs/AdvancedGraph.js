@@ -20,7 +20,7 @@ const useStyles = makeStyles(theme => ({
     flexWrap: 'wrap',
     marginBottom: '16px',
     '& > *': {
-      margin: '8px',
+      margin: '0 8px 8px 0',
     },
   },
   expand: {
@@ -86,7 +86,7 @@ export const AdvancedGraph = (props) => {
               .map(([label, ]) => label));
 
   return (
-    <>
+    <div className={props.className}>
       <div className={classes.options}>
         <Display
             displays={windows}
@@ -119,10 +119,11 @@ export const AdvancedGraph = (props) => {
             label: key,
           }))}
       />
-    </>);
+    </div>);
 };
 
 AdvancedGraph.propTypes = {
+  className: PropTypes.string,
 	serieses:
       PropTypes.arrayOf(
           PropTypes.exact({
@@ -141,13 +142,14 @@ function expandSeriesesToMap(serieses) {
 
       if (trend) {
         return [
+          series,
           {
             ...series,
             series: trend,
             color,
+            derived: true,
             stipple: true,
           },
-          series,
         ];
       } else {
         return [series];
@@ -240,6 +242,16 @@ const Chart = (props) => {
   const ChosenChart = props.style.chart;
   const ChosenSeries = props.style.series;
 
+  const ordered = props.serieses && props.serieses.sort((a, b) => {
+    if (a.derived && !b.derived) {
+      return -1;
+    } else if (!a.derived && b.derived) {
+      return 1;
+    } else {
+      return a.label < b.label ? -1 : 1;
+    }
+  });
+
   return (
       <ResponsiveContainer height={300}>
           <ChosenChart data={props.data} margin={{left: 24, right: 24}}>
@@ -252,7 +264,7 @@ const Chart = (props) => {
               <YAxis scale={props.scale} domain={['auto', 'auto']} />
               <CartesianGrid stroke="#d5d5d5" strokeDasharray="5 5" />
 
-              {props.serieses && props.serieses.map(series =>
+              {ordered && ordered.map(series =>
                   <ChosenSeries
                       type="monotone"
                       key={series.label}
