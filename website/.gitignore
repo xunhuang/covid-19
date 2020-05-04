@@ -5,6 +5,16 @@
 /.pnp
 .pnp.js
 # package-lock.json
+#
+#
+/public/data/AllData.slim.json
+/src/data/AllData.json
+/src/data/AllData.slim.json
+
+/public/AllData/
+/wrangler.toml
+
+/.firebase/
 
 # testing
 /coverage

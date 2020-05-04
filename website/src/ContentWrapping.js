@@ -350,7 +350,7 @@ const withHeader = (comp, props) => {
     </div>;
     let fbcomment =
       <FacebookProvider appId="201788627783795">
-        <CommentsCount href="http://www.facebook.com" />
+        <CommentsCount href="http://www.facebook.com" width="100%" />
       </FacebookProvider>;
 
 
@@ -363,7 +363,6 @@ const withHeader = (comp, props) => {
       {component}
       <NewsSection />
       {healthDiscussion}
-      {/* {fbcomment} */}
       <Footer />
     </header >
 
