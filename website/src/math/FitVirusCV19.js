@@ -1,6 +1,8 @@
 import ode45 from 'ode45-cash-karp';
 import { epsilon } from 'simple-statistics';
 
+const C_Italy = [17, 79, 132, 229, 322, 400, 650, 888, 1128, 1689, 2036, 2502, 3089, 3858, 4636, 5883, 7375, 9172, 10149, 12462, 15113, 17660, 21157, 23980, 27980, 31506, 35713, 41035, 47021, 53578, 59138, 63927, 69176, 74386, 80539, 86498, 92472, 97689, 101739, 105792, 110574, 115242, 119827, 124632, 128948, 132547, 135586, 139422, 143626, 147577, 152271, 156363, 159516, 162488, 165155, 168941, 172434, 175925, 178972, 181228, 183957, 187327, 189973, 192994, 195351, 197675, 199414, 201505];
+
 // function dCdt = odeFun(~,C,par)
 // %ODEFUN SIR model
 
@@ -32,6 +34,7 @@ function getODE(beta, gamma, N, I0) {
 
 export function fitVirusCV19() {
   var z = flambertw(0.252715078491049);
+  var b0 = iniGuess(C_Italy);
 
   // Initialize:
   var y0 = [1.419775332702944],
@@ -51,6 +54,82 @@ export function fitVirusCV19() {
 
 
 // --------- HELPER FUNCTIONS ---------------------------------------------------------
+
+// INIGUESS Initial guess for logistic regression
+// calculate initial K, r, A using data from three equidistant points 
+//
+// Input:
+//   C -- data
+//
+// Output:
+//   b0 -- initial guess = [K r A]' or [] if calculation fails
+function iniGuess(C) {
+  var b0 = [];
+  const n = C.length;
+
+  if (n <= 5) {
+    return b0;
+  }
+
+  const nmax = n - 5;
+
+  for (var i = 1; i <= nmax; i++) {
+    var k1, k2, k3;
+    // calculate time interval for equidistant points: k-2*m, k-m, k
+    if (((n - i + 1) % 2) == 0) {
+      k1 = i;
+      k3 = n - 1;
+    } else {
+      k1 = i;
+      k3 = n;
+    }
+    k2 = (k1 + k3) / 2;
+    const m = k2 - k1 - 1;
+
+    if (k1 < 1 || k2 < 1 || k3 < 1 || m < 1) {
+      break;
+    }
+
+    if (isNaN(C[k1 - 1]) || isNaN(C[k2 - 1]) || isNaN(C[k3 - 1])) {
+      continue;
+    }
+
+    // % calculate K, r, A ...
+
+    // %.. calculate K
+    const q = C[k2 - 1] ** 2 - C[k3 - 1] * C[k1 - 1];
+    if (q <= 0) {
+      // fprintf('***Warning: iniGuess q = %g  k1 = %d k2= %d k3 = %d \n',...
+      //          q, k1, k2, k3)
+      continue;
+    }
+    const p = C[k1 - 1] * C[k2 - 1] - 2 * C[k1 - 1] * C[k3 - 1] + C[k2 - 1] * C[k3 - 1];
+    if (p <= 0) {
+      // fprintf('***Warning: iniGuess p = %g\n',p)
+      continue;
+    }
+    const K = C[k2 - 1] * p / q;
+
+    // % ... calculate r
+    const r = Math.log(C[k3 - 1] * (C[k2 - 1] - C[k1 - 1]) / C[k1 - 1] / (C[k3 - 1] - C[k2 - 1])) / m;
+    if (r < 0) {
+      // fprintf('***Warning: iniGuess r = %g\n',r)
+      continue;
+    }
+
+    // %... calculate A
+    const A = (C[k3 - 1] - C[k2 - 1]) * (C[k2 - 1] - C[k1 - 1]) / q * (C[k3 - 1] * (C[k2 - 1] - C[k1 - 1]) / C[k1 - 1] / (C[k3 - 1] - C[k2 - 1])) ** ((k3 - m) / m);
+    if (A <= 0) {
+      //     %   fprintf('***Warning: iniGuess A = %g\n',r)
+      continue;
+    }
+
+  // % this is initial guess
+    b0 = [K, r,  A];
+    break;
+  }
+  return b0;
+}
 
 function flambertw(n, x) {
   // The lambert-w-function doesn't work for numbers less than e so manually replicating the fitVirusCV19 code
