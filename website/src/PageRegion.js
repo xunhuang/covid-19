@@ -1,6 +1,6 @@
 import React, {useContext} from 'react';
 import PropTypes from 'prop-types';
-import {Link as MaterialLink, Paper, Table, TableBody, TableCell, TableHead, TableRow, Typography} from '@material-ui/core';
+import {AppBar, Link as MaterialLink, Paper, Table, TableBody, TableCell, TableHead, TableRow, Toolbar, Typography} from '@material-ui/core';
 import {Link as RouterLink} from 'react-router-dom';
 import {fade, makeStyles} from '@material-ui/core/styles';
 import {withRouter} from 'react-router-dom';
@@ -54,11 +54,13 @@ export const PageRegion = withRouter((props) => {
   const classes = useStyles();
   return (
     <>
-      <div className={classes.appBar}>
-        <Typography variant="h6" className={classes.appTitle}>
-          COVID-19.direct
-        </Typography>
-      </div>
+      <AppBar position="static" className={classes.appTitle}>
+        <Toolbar>
+          <Typography variant="h6">
+            COVID-19.direct
+          </Typography>
+        </Toolbar>
+      </AppBar>
       <div className={classes.body}>
         <Paper className={classes.content}>
           <Title className={classes.section} path={path} />
@@ -116,10 +118,14 @@ const useTitleStyles = makeStyles(theme => ({
     marginBottom: '16px',
     marginRight: '24px',
   },
+  text: {
+    padding: '0 8px',
+    marginLeft: '-8px',
+    marginRight: '8px',
+  },
   parentLink: {
     borderRadius: '8px',
     color: fade(theme.palette.text.primary, 0.5),
-    padding: '0 4px',
     textDecoration: 'none',
     '&:hover': {
       background: '#efefef',
@@ -153,7 +159,7 @@ const Title = (props) => {
 
   const names = [{
     path: props.path,
-    text: name.english(),
+    text: <span className={classes.text}>{name.english()}</span>,
   }];
 
   let parentCursor = props.path.parent();
@@ -164,7 +170,7 @@ const Title = (props) => {
         path: parentCursor,
         text:
             <RouterLink
-                className={classes.parentLink}
+                className={`${classes.text} ${classes.parentLink}`}
                 to={'/country' + parentCursor.string()}>
               {parentName.english()}
             </RouterLink>,
@@ -204,7 +210,7 @@ const Title = (props) => {
                   className={classes.number}
                   style={{borderColor: color}}>
                 {shortNumber(value)}
-                {i === 0 && ` ${plural} `}
+                {` ${i === 0 ? plural : ''} `}
                 (+{shortNumber(change)})
               </div>
             )}

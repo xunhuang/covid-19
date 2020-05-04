@@ -2,6 +2,9 @@ import { createMuiTheme } from '@material-ui/core/styles';
 
 export const compactTheme = createMuiTheme({
     palette: {
+        primary: {
+            main: '#00aeef',
+        },
         secondary: {
             main: '#00aeef',
         },

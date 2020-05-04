@@ -203,6 +203,7 @@ const useLegendStyles = makeStyles(theme => ({
         '&.selected': {
             backgroundColor: 'initial',
             color: fade(theme.palette.action.active, 0.8),
+            fontWeight: 'initial',
         },
         ...baseToggleButtonStyles,
     },
