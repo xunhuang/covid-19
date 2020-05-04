@@ -87,13 +87,13 @@ const CustomTooltip = (props) => {
 }
 
 const CookieSetPreference = (state) => {
-  Cookies.set("BasicGraphPreference", state, {
+  Cookies.set("BasicGraphPreference1", state, {
     expires: 100
   });
 }
 
 const CookieGetPreference = () => {
-  let pref = Cookies.getJSON("BasicGraphPreference");
+  let pref = Cookies.getJSON("BasicGraphPreference1");
   if (!pref || pref.verticalScale === null || pref.showPastDays === null) {
     return {
       verticalScale: axisScales.linear,
