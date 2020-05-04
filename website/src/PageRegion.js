@@ -1,8 +1,9 @@
-import React, {useContext} from 'react';
 import PropTypes from 'prop-types';
+import React, {useContext} from 'react';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 import {AppBar, Link as MaterialLink, Paper, Table, TableBody, TableCell, TableHead, TableRow, Toolbar, Typography} from '@material-ui/core';
 import {Link as RouterLink} from 'react-router-dom';
-import {fade, makeStyles} from '@material-ui/core/styles';
+import {fade, makeStyles, uery,useTheme} from '@material-ui/core/styles';
 import {withRouter} from 'react-router-dom';
 
 import {AdvancedGraph} from './graphs/AdvancedGraph';
@@ -96,8 +97,15 @@ const useTitleStyles = makeStyles(theme => ({
     flexWrap: 'wrap',
   },
   node: {
+    display: 'flex',
     marginBottom: '16px',
     marginRight: '24px',
+
+    [theme.breakpoints.down('sm')]: {
+      '&:not(.squish)': {
+        flex: '0 0 100%',
+      },
+    },
   },
   text: {
     padding: '0 8px',
@@ -110,7 +118,7 @@ const useTitleStyles = makeStyles(theme => ({
     textDecoration: 'none',
     '&:hover': {
       background: '#efefef',
-    }
+    },
   },
   numbers: {
     color: theme.palette.text.secondary,
@@ -131,6 +139,8 @@ const useTitleStyles = makeStyles(theme => ({
 
 const Title = (props) => {
   const classes = useTitleStyles();
+  const theme = useTheme();
+  const squish = useMediaQuery(theme.breakpoints.down('sm'));
 
   const world = useContext(WorldContext);
   const name = world.get(props.path, NameComponent);
@@ -155,6 +165,7 @@ const Title = (props) => {
                 to={'/country' + parentCursor.string()}>
               {parentName.english()}
             </RouterLink>,
+        squish,
       });
     }
 
@@ -181,20 +192,26 @@ const Title = (props) => {
 
   return (
     <div className={`${classes.container} ${props.className}`}>
-      {names.map(({path, text, numbers}, i) =>
-        <div key={path.string()} className={classes.node}>
-          <Typography variant="h4">{text}</Typography>
-          <div className={classes.numbers}>
-            {numbers.map(({plural, color, value, change}) =>
-              <div
-                  key={plural}
-                  className={classes.number}
-                  style={{borderColor: color}}>
-                {shortNumber(value)}
-                {` ${i === 0 ? plural : ''} `}
-                (+{shortNumber(change)})
-              </div>
-            )}
+      {names.map(({path, text, numbers, squish}, i) =>
+        <div
+            key={path.string()}
+            className={`${classes.node} ${squish ? 'squish': ''}`}>
+          <div>
+            <Typography variant={squish ? 'subtitle1' : 'h4'}>
+              {text}
+            </Typography>
+            <div className={classes.numbers}>
+              {numbers.map(({plural, color, value, change}) =>
+                <div
+                    key={plural}
+                    className={classes.number}
+                    style={{borderColor: color}}>
+                  {shortNumber(value)}
+                  {` ${i === 0 ? plural : ''} `}
+                  (+{shortNumber(change)})
+                </div>
+              )}
+            </div>
           </div>
         </div>
       )}
