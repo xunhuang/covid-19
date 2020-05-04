@@ -163,9 +163,10 @@ async function process_one_JHU_file(json, date) {
     }
 
     //skip US for now
-    if (Combined_Key.endsWith("US")) {
-      continue;
-    }
+    // if (Combined_Key.endsWith("US")) {
+    //   console.log(Combined_Key);
+    //   continue;
+    // }
     if (COMBINED_KEY_SKIP_LIST.includes(Combined_Key)) {
       continue;
     }
@@ -174,7 +175,9 @@ async function process_one_JHU_file(json, date) {
       Combined_Key = COMBINED_KEY_REWRITE[Combined_Key];
     }
 
-    let node = find_key_path(Combined_Key);
+    // create the key only if it's the US because US states are not 
+    // in the original name space file
+    let node = find_key_path(Combined_Key, Combined_Key.endsWith("US"));
     if (!node) {
       console.log("bad key = " + Combined_Key);
       throw ("bad key");
