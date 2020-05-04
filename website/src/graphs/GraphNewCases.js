@@ -94,7 +94,7 @@ const CookieSetPreference = (state) => {
 
 const CookieGetPreference = () => {
   let pref = Cookies.getJSON("BasicGraphPreference1");
-  if (!pref || pref.verticalScale === null || pref.showPastDays === null) {
+  if (!pref || !pref.verticalScale || !pref.showPastDays) {
     return {
       verticalScale: axisScales.linear,
       showPastDays: 30,
