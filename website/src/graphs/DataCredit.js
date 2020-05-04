@@ -1,6 +1,5 @@
 import React from 'react';
 import Typography from '@material-ui/core/Typography'
-import { withHeader } from "../ContentWrapping.js"
 
 const DataCreditWidget = (props) => {
   return (

@@ -36,7 +36,6 @@ const Footer = (props) => {
 
     const footerLinkProps = {
         variant: 'button',
-        item: true,
         className: classes.footerLink,
         color: 'textSecondary'
     };
@@ -58,7 +57,7 @@ const Footer = (props) => {
             <Grid item xs={12} sm={1} />
             <Grid item container xs={12} sm={4} className={classes.linkContainer} justify="center" direction="column">
                 {footerLinks.map(linkPair => {
-                    return (<MaterialLink {...footerLinkProps} onClick={linkPair[1]}>{linkPair[0]}</MaterialLink>)
+                    return (<MaterialLink {...footerLinkProps} key={linkPair[0]} onClick={linkPair[1]}>{linkPair[0]}</MaterialLink>)
                 })}
             </Grid>
             <Grid item xs={12} sm={2}>

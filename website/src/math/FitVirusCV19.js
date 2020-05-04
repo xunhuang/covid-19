@@ -1,5 +1,7 @@
 import ode45 from 'ode45-cash-karp';
 import { epsilon } from 'simple-statistics';
+import integral from 'integrate-adaptive-simpson';
+import fmin from 'fmin';
 
 const C_Italy = [17, 79, 132, 229, 322, 400, 650, 888, 1128, 1689, 2036, 2502, 3089, 3858, 4636, 5883, 7375, 9172, 10149, 12462, 15113, 17660, 21157, 23980, 27980, 31506, 35713, 41035, 47021, 53578, 59138, 63927, 69176, 74386, 80539, 86498, 92472, 97689, 101739, 105792, 110574, 115242, 119827, 124632, 128948, 132547, 135586, 139422, 143626, 147577, 152271, 156363, 159516, 162488, 165155, 168941, 172434, 175925, 178972, 181228, 183957, 187327, 189973, 192994, 195351, 197675, 199414, 201505];
 
@@ -7,9 +9,9 @@ const C_Italy = [17, 79, 132, 229, 322, 400, 650, 888, 1128, 1689, 2036, 2502, 3
 // %ODEFUN SIR model
 
 //     % unpack parameters
-//     beta  = par(1);
-//     gamma = par(2);
-//     N     = par(3);
+//     beta  = par[1];
+//     gamma = par[2];
+//     N     = par[3];
 //     I0    = par(4);
     
 //     % set temp. vars
@@ -33,8 +35,116 @@ function getODE(beta, gamma, N, I0) {
 
 
 export function fitVirusCV19() {
+  var C = C_Italy;
+  var date0 = 737843; // SNORRI Fix - this should be the number of the first day (since epoch) - Now hardcoded to match Italy
+
+  // default values
+  const Nmax = 12e6;   // max. population size
+
+  // find start
+  const nmin = 5
+  var n0 = 0;
+  for (var n = 1; n < C.length; n + 1) {
+    if (C[n - 1] > C[n]) {
+      throw 'Invalid data C(n-1)>C(n)';
+    }
+    if (C[n] == C[n-1]) {
+      n0 = n;
+      date0 = date0 + 1;
+      continue;
+    }
+    break;
+  }
+  if (n0 == C.length - 1) {
+    throw 'Constant data set';    
+  }
+  C = C.slice(n0);
+  if (C.length < nmin) {
+    throw 'Data set to small';
+  }
+
+  // initial guess
+  while (true) {
+    var b0 = iniGuess(C);
+    if (b0.length == 0) {
+      if (C.length >= nmin) {
+        date0 = date0 + 1;
+        C = C.slice(1);
+        continue;
+      } else {
+        break;
+      }
+    }
+    break;
+  }
+
+  if (b0.length == 0) {
+    return;
+  }
+
+  // ... logistic curve parameters
+  const K0 = b0[0];
+  const r  = b0[1];
+  const A  = b0[2];
+  const C0 = K0/(A + 1);
+
+  // ... initial guess
+  const I0 = C0;
+  const N = 2*K0;
+  const gamma = 2*r;
+  const beta  = 1.5*gamma;
+
+  // main calculation =======================================================%
+
+  // set infection rate and time intervals 
+  const dC = diff(C).map((d) => d < 0 ? 0 : d);
+  const nday = C.length;
+  const tt = [...Array(nday-1).keys()]; // 0:nday-1
+
+  // initial estimate
+  b0 = [beta, gamma, N, I0];
+
+  // calculate parameters
+
+  // automatic selection of weigths
+  var bmax = Nmax;
+  var b = [];
+  var w1, w2;
+  for (var i = 1; i <= 3; i++) {
+      switch (i) {
+          case 1:
+              w1 = 1;
+              w2 = 0;
+          case 2:
+              w1 = 0;
+              w2 = 1;
+          case 3:
+              w1 = 1;
+              w2 = 1;
+      }
+      const [bt,fmin,flag] = parest(b0);
+      if (bt.every((x) => x > 0) && bt[2] < bmax) {
+          b = bt;
+          bmax = b[2];
+      }
+  }
+
+
+
+
+
+  // Unit tests
+
   var z = flambertw(0.252715078491049);
-  var b0 = iniGuess(C_Italy);
+  
+
+  var b = [0.200606055230150, 0.094701268862003, 2.753548526838968e+05, 2.140638571887494e+03];
+  const cm = 1.024003914085440e+05;
+  var tm = calcTm(b, cm);
+
+  const Clim = 2.281053139237023e+05;
+  var tend  = calcTend(b,Clim);
+  var tend5 = calcTend(b,Clim,5);
 
   // Initialize:
   var y0 = [1.419775332702944],
@@ -42,9 +152,10 @@ export function fitVirusCV19() {
     dt0 = 0.01,
     integrator = ode45(y0, getODE(2.808385553303577, 2.638117844413195, 1.507846494290519e+04, 1.419775332702944), t0, dt0)
 
+  var dt = 0.1;
   // Integrate up to tmax:
   var tmax = 71, t = [], y = []
-  while (integrator.step(tmax)) {
+  while (integrator.step(tmax, dt)) {
     // Store the solution at this timestep:
     t.push(integrator.t)
     y.push(integrator.y[0])
@@ -54,6 +165,138 @@ export function fitVirusCV19() {
 
 
 // --------- HELPER FUNCTIONS ---------------------------------------------------------
+
+function parest(b0) {
+  return [b0,0,0];
+}
+
+// PAREST Parameter estimation
+// function [b,fmin,flag] = parest(b0)
+//     global maxnum
+    
+//     warning('on')
+//     if ~isempty(maxnum)
+//         options = optimset('Display','off','MaxIter',maxnum,...
+//             'MaxFunEvals',maxnum);
+//     else
+//         options = optimset('Display','off');
+//     end
+//     [b, fmin,flag] = fminsearch(@fun, b0, options);
+//     warning('off')
+// end
+    
+// // FUN Optimization function
+// function optimizationFun(par) {
+//     global C %dC
+//     global w1 w2
+    
+//     % upack parameter
+// 	I0 = par(4);
+    
+//     % set time span
+//     tspan = 0:length(C)-1;  
+    
+//     % solve ODE
+//     try
+//         warning('off')
+//         [tsol,Csol] = ode45(@(t,y) odeFun(t,y,par), tspan, I0);
+//         warning('on')
+//     catch
+//         f = NaN;
+//         warning('on')
+//         return
+//     end
+    
+//     % check if calculation time equals sample time
+//     if length(tsol) ~= length(tspan)
+//         f = NaN;
+//         return
+//     end
+    
+//     % clean data MB 20/04/23
+//     Cc = C;
+//     Cc(isnan(C)) = [];
+//     Csol(isnan(C)) = [];
+//     Cc = Cc';
+    
+//     % calculate optimization function
+//     c1 = w1/(w1 + w2);
+//     c2 = w2/(w1 + w2);
+//     f1 = 0;
+//     f2 = 0;
+//     if c2 > 0
+//         f2 = norm((diff(Cc) - diff(Csol)));
+//     end
+//     if c1 > 0
+//         f1 = norm((Cc - Csol));
+//     end
+//     f =  c1*f1  +  c2*f2;   
+// }
+
+function diff(C) {
+  var dC = [];
+  for (var i = 1; i < C.length; i++) {
+    dC.push(C[i] - C[i-1]);
+  }
+  return dC;
+}
+
+function calcClim(par) {
+  // %CALCCLIM Calculate number of recoverd individuals after t=inf
+  const beta = par[0];
+  const gamma = par[1];
+  const N = par[2];
+  const I0 = par[3];
+  return calcEndPoint(beta, gamma, I0 / N) * N;
+}
+
+function calcCm(par) {
+  // %CALCCM Calculate number of cases at inflection point
+  const beta = par[0];
+  const gamma = par[1];
+  const N = par[2];
+  const I0 = par[3];
+  return calcInflectionPoint(beta, gamma, I0 / N) * N;
+}
+
+// %CALCTM Calculate peak time
+function calcTm(par, Cm) {
+  const fun = function (c) {
+    const tt = (1 - c) * (beta * c + gamma * Math.log((1 - c) / (1 - c0)));
+    return 1. / tt;
+  }
+  const beta = par[0];
+  const gamma = par[1];
+  const N = par[2];
+  const c0 = par[3] / N;
+  return integral(fun, c0, Cm / N);
+}
+
+// function res = calcTend(par,Clim,nn)
+// %CALCTM Calculate end time
+function calcTend(par, Clim, nn) {
+  nn = nn || 1;  // number of infected left
+
+  const fun = function (c) {
+    const tt = (1 - c) * (beta * c + gamma * Math.log((1 - c) / (1 - c0)));
+    return 1. / tt;
+  }
+  const beta = par[0];
+  const gamma = par[1];
+  const N = par[2];
+  const c0 = par[3] / N;
+  return integral(fun, c0, (Clim - nn) / N);
+}
+
+function calcEndPoint(beta,gamma,c0) {
+  // %CALCENDPOINT Calculate end density 
+  return 1 + gamma/beta*flambertw(-beta*(1 - c0)*Math.exp(-beta/gamma)/gamma);
+}
+
+function calcInflectionPoint(beta,gamma,c0) {
+  // %CALCINFLECTIONPOINT Calculate inflection point for density curve
+  return 1 + (gamma/2/beta)*flambertw(-1, -2*beta*(1 - c0)*Math.exp(-(1 + beta/gamma))/gamma);
+}
 
 // INIGUESS Initial guess for logistic regression
 // calculate initial K, r, A using data from three equidistant points 
