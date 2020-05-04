@@ -1,5 +1,6 @@
 import ode45 from 'ode45-cash-karp';
 import { epsilon } from 'simple-statistics';
+import integral from 'integrate-adaptive-simpson';
 
 const C_Italy = [17, 79, 132, 229, 322, 400, 650, 888, 1128, 1689, 2036, 2502, 3089, 3858, 4636, 5883, 7375, 9172, 10149, 12462, 15113, 17660, 21157, 23980, 27980, 31506, 35713, 41035, 47021, 53578, 59138, 63927, 69176, 74386, 80539, 86498, 92472, 97689, 101739, 105792, 110574, 115242, 119827, 124632, 128948, 132547, 135586, 139422, 143626, 147577, 152271, 156363, 159516, 162488, 165155, 168941, 172434, 175925, 178972, 181228, 183957, 187327, 189973, 192994, 195351, 197675, 199414, 201505];
 
@@ -7,9 +8,9 @@ const C_Italy = [17, 79, 132, 229, 322, 400, 650, 888, 1128, 1689, 2036, 2502, 3
 // %ODEFUN SIR model
 
 //     % unpack parameters
-//     beta  = par(1);
-//     gamma = par(2);
-//     N     = par(3);
+//     beta  = par[1];
+//     gamma = par[2];
+//     N     = par[3];
 //     I0    = par(4);
     
 //     % set temp. vars
@@ -36,6 +37,14 @@ export function fitVirusCV19() {
   var z = flambertw(0.252715078491049);
   var b0 = iniGuess(C_Italy);
 
+  var b = [0.200606055230150, 0.094701268862003, 2.753548526838968e+05, 2.140638571887494e+03];
+  const cm = 1.024003914085440e+05;
+  var tm = calcTm(b, cm);
+
+  const Clim = 2.281053139237023e+05;
+  var tend  = calcTend(b,Clim);
+  var tend5 = calcTend(b,Clim,5);
+
   // Initialize:
   var y0 = [1.419775332702944],
     t0 = 0,
@@ -54,6 +63,63 @@ export function fitVirusCV19() {
 
 
 // --------- HELPER FUNCTIONS ---------------------------------------------------------
+
+function calcClim(par) {
+  // %CALCCLIM Calculate number of recoverd individuals after t=inf
+  const beta = par[0];
+  const gamma = par[1];
+  const N = par[2];
+  const I0 = par[3];
+  return calcEndPoint(beta, gamma, I0 / N) * N;
+}
+
+function calcCm(par) {
+  // %CALCCM Calculate number of cases at inflection point
+  const beta = par[0];
+  const gamma = par[1];
+  const N = par[2];
+  const I0 = par[3];
+  return calcInflectionPoint(beta, gamma, I0 / N) * N;
+}
+
+// %CALCTM Calculate peak time
+function calcTm(par, Cm) {
+  const fun = function (c) {
+    const tt = (1 - c) * (beta * c + gamma * Math.log((1 - c) / (1 - c0)));
+    return 1. / tt;
+  }
+  const beta = par[0];
+  const gamma = par[1];
+  const N = par[2];
+  const c0 = par[3] / N;
+  return integral(fun, c0, Cm / N);
+}
+
+// function res = calcTend(par,Clim,nn)
+// %CALCTM Calculate end time
+function calcTend(par, Clim, nn) {
+  nn = nn || 1;  // number of infected left
+
+  const fun = function (c) {
+    const tt = (1 - c) * (beta * c + gamma * Math.log((1 - c) / (1 - c0)));
+    return 1. / tt;
+  }
+  const beta = par[0];
+  const gamma = par[1];
+  const N = par[2];
+  const c0 = par[3] / N;
+  return integral(fun, c0, (Clim - nn) / N);
+}
+
+function calcEndPoint(beta,gamma,c0) {
+  // %CALCENDPOINT Calculate end density 
+  return 1 + gamma/beta*flambertw(-beta*(1 - c0)*Math.exp(-beta/gamma)/gamma);
+}
+
+function calcInflectionPoint(beta,gamma,c0) {
+  // %CALCINFLECTIONPOINT Calculate inflection point for density curve
+  return 1 + (gamma/2/beta)*flambertw(-1, -2*beta*(1 - c0)*Math.exp(-(1 + beta/gamma))/gamma);
+}
 
 // INIGUESS Initial guess for logistic regression
 // calculate initial K, r, A using data from three equidistant points 
