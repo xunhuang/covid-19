@@ -3,7 +3,7 @@ import { ResponsiveContainer, Tooltip, LineChart, Line, YAxis, XAxis, CartesianG
 import { Typography } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
 import { scaleSymlog } from 'd3-scale';
-import { myShortNumber, filterDataToRecent, getOldestMomentInData } from '../Util';
+import { myShortNumber, filterDataToRecent, getOldestMomentInData, useStickyState } from '../Util';
 import { AntSwitch } from "./AntSwitch.js"
 import { State } from '../UnitedStates';
 import { DateRangeSlider } from "../DateRangeSlider"
@@ -14,9 +14,12 @@ const moment = require("moment");
 const scale = scaleSymlog().domain([0, 'dataMax']);
 
 const BasicGraphRecoveryAndDeath = (props) => {
-    const [state, setState] = React.useState({
-        verticalScale: axisScales.linear,
-        showPastDays: 30,
+    const [state, setState] = useStickyState({
+        defaultValue: {
+            verticalScale: axisScales.linear,
+            showPastDays: 30,
+        },
+        cookieId: "RecoveryAndDeathGraphPreferences"
     });
 
     const [USData, setUSdata] = React.useState(null);

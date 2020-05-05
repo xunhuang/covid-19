@@ -1,7 +1,8 @@
+import { useState } from 'react'
+
 var shortNumber = require('short-number');
 const Cookies = require("js-cookie");
 const states = require('us-state-codes');
-
 const moment = require("moment");
 
 function myShortNumber(n) {
@@ -135,6 +136,24 @@ function normalize_date(k) {
     return `${m}/${d}/${y}`;
 }
 
+function useStickyState({defaultValue, cookieId, isCookieStale = (c) => false, expiration = null}){
+    let readCookie = Cookies.getJSON(cookieId);
+    if (!readCookie || (isCookieStale(readCookie))) {
+        readCookie = defaultValue;
+    }
+
+    const [state, setState] = useState(readCookie);
+
+    const setStateSticky = (newState) => {
+        Cookies.set(cookieId, newState, {
+          expires: expiration
+        });
+        setState(newState);
+    }
+
+    return [state, setStateSticky];
+}
+
 
 export {
     myShortNumber,
@@ -149,5 +168,6 @@ export {
     normalize_date,
     makeCountyFromDescription,
     filterDataToRecent,
-    getOldestMomentInData
+    getOldestMomentInData,
+    useStickyState,
 }

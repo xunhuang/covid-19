@@ -2,15 +2,18 @@ import React from 'react';
 import { ResponsiveContainer, Tooltip, LineChart, Line, YAxis, XAxis, CartesianGrid, Legend } from 'recharts';
 import { Typography } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
-import { myShortNumber, filterDataToRecent, getOldestMomentInData } from '../Util';
+import { myShortNumber, filterDataToRecent, getOldestMomentInData, useStickyState } from '../Util';
 import { DateRangeSlider } from "../DateRangeSlider"
 
 const moment = require("moment");
 
 const GraphDaysToDoubleOverTime = (props) => {
 
-    const [state, setState] = React.useState({
-        showPastDays: 30,
+    const [state, setState] = useStickyState({
+        defaultValue: {
+            showPastDays: 30,
+        },
+        cookieId: "DaysToDoubleOverTimeGraphPreferences"
     });
 
     const [mydata, setMydata] = React.useState(null);
