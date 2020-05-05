@@ -11,7 +11,7 @@ import { asDialogue } from "./FooterDialogue"
 
 const useStyles = makeStyles(theme => ({
     topContainer: {
-        paddingBottom: '2vh'
+        margin: '2vh 0'
     },
     footerLink: {
         textAlign: 'center',
@@ -19,10 +19,12 @@ const useStyles = makeStyles(theme => ({
     linkContainer: {
         padding: '1vh'
     },
+    iconRoot: {
+        textAlign: 'center',
+    },
     githubIcon: {
         color: '#00aeef',
         margin: '0 auto',
-        display: 'grid'
     },
     creditParagraph: {
         textAlign: 'center',
@@ -46,6 +48,7 @@ const Footer = (props) => {
 
     const [openedPopoverId, setOpenedPopoverId] = React.useState(null);
     const handleClick = (event, popoverId) => {
+        event.preventDefault();
         setOpenedPopoverId(popoverId);
     };
     const handleClose = () => {
@@ -57,27 +60,27 @@ const Footer = (props) => {
             <Grid item xs={12} sm={1} />
             <Grid item container xs={12} sm={4} className={classes.linkContainer} justify="center" direction="column">
                 {footerLinks.map(linkPair => {
-                    return (<MaterialLink {...footerLinkProps} key={linkPair[0]} onClick={linkPair[1]}>{linkPair[0]}</MaterialLink>)
+                    return (<MaterialLink {...footerLinkProps} key={linkPair[0]} href="#" onClick={linkPair[1]}>{linkPair[0]}</MaterialLink>)
                 })}
             </Grid>
             <Grid item xs={12} sm={2}>
-                <Grid container className={classes.root}>
-                    <Grid item xs={6} sm={6}>
+                <Grid container justify="center" className={classes.iconRoot}>
+                    <Grid item xs={3} sm={6}>
                         <MaterialLink href="https://github.com/xunhuang/covid-19" className={classes.githubIcon}>
-                            <GitHubIcon fontSize="large" className={classes.githubIcon}/>
+                            <GitHubIcon fontSize="large" />
                         </MaterialLink>
                     </Grid>
-                    <Grid item xs={6} sm={6}>
-                    <MaterialLink href="https://www.facebook.com/groups/890203761415663" className={classes.githubIcon}>
-                        <FacebookIcon fontSize="large" className={classes.githubIcon}/>
-                    </MaterialLink>
+                    <Grid item xs={3} sm={6}>
+                        <MaterialLink href="https://www.facebook.com/groups/890203761415663" className={classes.githubIcon}>
+                            <FacebookIcon fontSize="large" />
+                        </MaterialLink>
                     </Grid>
                 </Grid>
             </Grid>
             <Grid item xs={12} sm={4}>
                 <Typography variant='caption' color='textSecondary' className={classes.creditParagraph}>
                     This website is is 100% volunteer developed, open source and funded by user donations.
-                    Click <MaterialLink onClick={(e) => handleClick(e, 'cred-popover')}>here for volunteers</MaterialLink> that
+                    Click <MaterialLink href="#" onClick={(e) => handleClick(e, 'cred-popover')}>here for volunteers</MaterialLink> that
                     made significant contributions.
                 </Typography>
                 {asDialogue(CreditPopover, "Special Thanks To", openedPopoverId === 'cred-popover', handleClose)}

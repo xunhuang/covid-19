@@ -11,6 +11,7 @@ import {BasicDataComponent} from '../models/BasicDataComponent';
 import {DivisionTable} from '../components/tables/DivisionTable';
 import {DivisionTypesComponent} from '../models/DivisionTypesComponent';
 import {DonateLink} from '../components/chrome/DonateLink';
+import {Footer} from '../Footer';
 import {NameComponent} from '../models/NameComponent';
 import {Path} from '../models/Path';
 import {SocialMediaButtons} from '../components/chrome/SocialMediaButtons';
@@ -23,10 +24,10 @@ const HORIZONTAL_MARGIN = '16px';
 const useStyles = makeStyles(theme => ({
   body: {
     background: '#fafafa',
-    padding: HORIZONTAL_MARGIN,
   },
   content: {
     padding: HORIZONTAL_MARGIN,
+    margin: HORIZONTAL_MARGIN,
   },
   section: {
     margin: '16px 0 24px 0',
@@ -48,9 +49,8 @@ export const PageRegion = withRouter((props) => {
 
   const classes = useStyles();
   return (
-    <>
+    <div className={classes.body}>
       <AppBar />
-      <div className={classes.body}>
         <Paper className={classes.content}>
           <Title className={classes.section} path={path} />
 
@@ -75,8 +75,9 @@ export const PageRegion = withRouter((props) => {
               />
             )}
         </Paper>
-      </div>
-    </>);
+        <Footer />
+    </div>
+  );
 });
 
 const RELIEF_COLOR = '#fff';
