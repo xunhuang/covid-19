@@ -3,9 +3,12 @@ const fs = require('fs');
 const csv = require('csvtojson')
 const Util = require('covidmodule').Util;
 
+const confirmedfile = "../COVID-19/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv";
+const deathfile = "../COVID-19/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv";
+const county_codes = require("../data/worlddata/country_regions.json").filter(region => !region.code.includes("US-"));
+
 const KeyFields = ["Confirmed", "Active", "Recovered", "Deaths"];
 let WorldData = {};
-
 
 function find_key_path(key, create = false) {
   let keyparts = key.split(",");
@@ -36,8 +39,8 @@ const CountryKeyMap = {
   "Macau": "China",
   "Macau SAR": "China",
   "Macao SAR": "China",
-  "South Korea": "Korea South",
-  "Republic of Korea": "Korea South",
+  "South Korea": "South Korea",
+  "Republic of Korea": "North Korea",
   "Ivory Coast": "Cote d'Ivoire",
   "UK": "United Kingdom",
   "Czech Republic": "Czechia",
@@ -78,23 +81,27 @@ const DirectKeyMap = {
 }
 
 const ProvinceSkipList = [
+  "Recovered",
   "Bavaria",
   "Toronto, ON",
   "London, ON",
   " Montreal, QC",
   "Diamond Princess",
+  "Grand Princess",
   "From Diamond Princess",
   "Calgary, Alberta",
   "Edmonton, Alberta",
+  "Channel Islands",
   "Cape Verde"
 ];
 
 const CountrySkipList = [
-  "US",
   "Guernsey",
   "Cruise Ship",
+  "MS Zaandam",
   "Others",
   "Diamond Princess",
+  "Grand Princess",
   "North Ireland",
   "Republic of Ireland",
   "Palestine", // no data 
@@ -111,13 +118,23 @@ const COMBINED_KEY_SKIP_LIST = [
   "External territories, Australia",
   "Jervis Bay Territory, Australia",
   "Diamond Princess, Cruise Ship",
+  "Grand Princess, Canada",
+  "Diamond Princess, Canada",
+  "Diamond Princess",
+  "Channel Islands, United Kingdom",
+  "Recovered, Canada",
+  ",,MS Zaandam",
+  "MS Zaandam",
 ];
+
 const COMBINED_KEY_REWRITE = {
   "Falkland Islands (Islas Malvinas), United Kingdom": "Falkland Islands (Malvinas), United Kingdom",
   "Fench Guiana, France": "French Guiana, France",
   "UK, United Kingdom": "United Kingdom",
-  "Korea, South": "Korea South",
+  "Korea, South": "South Korea",
   "Taiwan*": "Taiwan",
+  "Congo (Brazzaville)": "Brazzaville, Congo",
+  "Congo (Kinshasa)": "Kinshasa, Congo",
 }
 
 function CountryProvinceToCombinedKey(country, province) {
@@ -162,7 +179,7 @@ async function process_one_JHU_file(json, date) {
       continue;
     }
 
-    // skip US for now
+    //skip US for now
     // if (Combined_Key.endsWith("US")) {
     //   console.log(Combined_Key);
     //   continue;
@@ -181,7 +198,6 @@ async function process_one_JHU_file(json, date) {
     if (!node) {
       console.log("bad key = " + Combined_Key);
       throw ("bad key");
-      continue;
     }
     let datekey = date.format("MM/DD/YYYY");
     for (let f of KeyFields) {
@@ -193,23 +209,35 @@ async function process_one_JHU_file(json, date) {
 }
 
 async function establish_name_spaces() {
-  let file = "../COVID-19/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv";
-  const json = await csv().fromFile(file);
-  for (let entity of json) {
-    const state = entity["Province/State"];
-    let country = entity["Country/Region"];
+  const files = [confirmedfile, deathfile];
+  for (let file of files) {
+    const json = await csv().fromFile(file);
+    for (let entity of json) {
+      const state = entity["Province/State"];
+      let country = entity["Country/Region"];
 
-    country = country.replace(",", "");
-    if (country === "Taiwan*") {
-      country = "Taiwan";
-    }
+      if (CountrySkipList.includes(country)) {
+        continue;
+      }
 
-    if (state.length === 0) {
-      node = find_key_path(country, true);
-    } else {
-      node = find_key_path([state, country].join(","), true);
+      if (COMBINED_KEY_REWRITE[country]) {
+        country = COMBINED_KEY_REWRITE[country];
+      }
+
+      if (ProvinceSkipList.includes(state)) {
+        continue;
+      }
+
+      if (state.length === 0) {
+        node = find_key_path(country, true);
+      } else {
+        node = find_key_path([state, country].join(","), true);
+      }
     }
   }
+
+  // missing file
+  find_key_path("North Korea", true);
 }
 
 async function process_all_JHU_files() {
@@ -225,7 +253,7 @@ async function process_all_JHU_files() {
 }
 
 function summarize_recursively(data) {
-  let Summary = {};
+  let Summary = data.Summary ? data.Summary : {};
   let aggregate = {};
   let leafnode = true;
 
@@ -235,13 +263,14 @@ function summarize_recursively(data) {
 
   for (let key in data) {
     let value = data[key];
-    if (!KeyFields.includes(key)) {
+    if (key === "Summary") {
+      continue;
+    } else if (!KeyFields.includes(key)) {
       leafnode = false;
       summarize_recursively(value);
       for (const key1 of KeyFields) {
         Util.mergeTwoMapValues(aggregate[key1], value[key1]);
       }
-
     } else {
       const CC = Util.getValueFromLastDate(value);
       Summary["Last" + key] = CC.num;
@@ -260,15 +289,98 @@ function summarize_recursively(data) {
   data.Summary = Summary;
 }
 
+const ErrantNameToCountryCode = {
+  "Bahamas": "BS",
+  "Cabo Verde": "CV",
+  "China": "CN",
+  "Congo": "CD",
+  "Cote d'Ivoire": "CI",
+  "Cyprus": "CY",
+  "Czechia": "CZ",
+  "Gambia": "GM",
+  "Holy See": "VA",
+  "US": "US",
+  "Timor-Leste": "TL",
+  "West Bank and Gaza": "PS",
+  "Burma": "MM",
+  "Western Sahara": 'EH',
+  "Sao Tome and Principe": "ST",
+
+  Guangxi: "CN-GX", // "Guangxi Zhuang Autonomous Region",
+  Ningxia: "CN-NX",
+  Tibet: "CN-XZ",
+  "Curacao": "CW",
+  "Sint Maarten": "SX",
+  Reunion: "FR-RE",
+  "St Martin": "FR-MQ",
+  "Saint Barthelemy": "FR-BL",
+  "Saint Pierre and Miquelon": "FR-PM",
+  "Sint Eustatius and Saba": "NL-BQ1",
+  "Falkland Islands (Malvinas)": "FK",
+}
+
+const RegionByCode = county_codes
+  .reduce((m, a) => {
+    m[a.code] = a;
+    return m;
+  }, {});
+
+function lookupISORegionByName(name) {
+  let entry = county_codes.find(e => e.areaLabel === name);
+  if (entry) {
+    return entry;
+  }
+  let code = ErrantNameToCountryCode[name];
+  return RegionByCode[code];
+}
+
+function changeToCodeName(data, entry) {
+  if (!data) {
+    return;
+  }
+
+  for (const k in data) {
+    if (KeyFields.includes(k)) {
+      continue;
+    }
+    if (k === "US") {
+      continue;
+    }
+    let country = data[k];
+    let subentry = lookupISORegionByName(k);
+    if (!subentry) {
+      console.log(k);
+    }
+    let nCountry = changeToCodeName(country, subentry);
+
+    data[subentry.code] = nCountry;
+    delete data[k];
+  }
+
+  if (entry) {
+    data.Summary = {
+      name: entry.areaLabel,
+      code: entry.code,
+      longitude: parseFloat(entry.lon),
+      latitude: parseFloat(entry.lat),
+      population: parseInt(entry.population),
+    }
+  }
+  return data;
+}
+
 async function main() {
   await establish_name_spaces();
   await process_all_JHU_files();
+  changeToCodeName(WorldData, null);
   summarize_recursively(WorldData);
 }
 
 main().then(() => {
-  WorldData["United States"] = WorldData.US;
+  // console.log(WorldData);
+  // WorldData["United States"] = WorldData.US;
   delete WorldData.US;
+  console.log(JSON.stringify(WorldData, null, 2));
   const content = JSON.stringify(WorldData, null, 2);
   fs.writeFileSync("./src/data/WorldData.json", content);
 })
