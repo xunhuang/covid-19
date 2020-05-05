@@ -3,8 +3,8 @@ import React, {useContext} from 'react';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import {AppBar as MaterialAppBar, Paper, Toolbar, Typography} from '@material-ui/core';
 import {Link as RouterLink} from 'react-router-dom';
+import {Redirect, withRouter} from 'react-router-dom';
 import {fade, makeStyles, useTheme} from '@material-ui/core/styles';
-import {withRouter} from 'react-router-dom';
 
 import {AdvancedGraph} from '../components/graphs/AdvancedGraph';
 import {BasicDataComponent} from '../models/BasicDataComponent';
@@ -31,6 +31,7 @@ const useStyles = makeStyles(theme => ({
   },
   section: {
     margin: '16px 0 24px 0',
+    overflow: 'scroll',
   },
   graph: {
     border: '1px solid',
@@ -41,13 +42,17 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export const PageRegion = withRouter((props) => {
+  const classes = useStyles();
   const world = useContext(WorldContext);
   const path = Path.parse('/' + props.match.params[0]);
+
+  if (path.matches('/United States')) {
+    return <Redirect to="/US" />;
+  }
 
   const basic = world.get(path, BasicDataComponent);
   const divisions = world.get(path, DivisionTypesComponent);
 
-  const classes = useStyles();
   return (
     <div className={classes.body}>
       <AppBar />

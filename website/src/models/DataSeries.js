@@ -157,9 +157,10 @@ export class DataSeries {
     for (let i = REGRESSION_WINDOW_SIZE - 1; i < points.length; ++i) {
       const window = log.slice(i - REGRESSION_WINDOW_SIZE, i + 1);
       const {m} = linearRegression(window);
+      const value = Math.max(0, 1 / (m * this.period_.intervalS));
       doublings.push([
         points[i][0],
-        1 / (m * this.period_.intervalS),
+        value <= 100 ? value : NaN,
       ]);
     }
 
@@ -190,6 +191,10 @@ export class DataSeries {
         linearRegression(
             points.slice(-1 - REGRESSION_WINDOW_SIZE, -1)
                 .map(([moment, v]) => [moment.unix(), v]));
+    if (isNaN(m) || isNaN(b)) {
+      return undefined;
+    }
+
     const trend =
         new DataSeries(`${this.label_} (Trend)`, undefined, this.period_);
     trend.points_ =

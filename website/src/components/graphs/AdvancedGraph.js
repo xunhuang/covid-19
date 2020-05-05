@@ -263,7 +263,7 @@ const Chart = (props) => {
       <ResponsiveContainer height={300}>
           <ChosenChart data={props.data} margin={{left: 24, right: 24}}>
               <Tooltip
-                  formatter={(value) => value.toFixed(1).replace(/\.?0+$/, '')}
+                  formatter={valueFormatter}
                   labelFormatter={props.timestampFormatter}
               />
               <XAxis
@@ -292,3 +292,11 @@ const Chart = (props) => {
       </ResponsiveContainer>
   );
 };
+
+function valueFormatter(value) {
+  if (isNaN(value)) {
+    return 'unknown';
+  } else {
+    return value.toFixed(1).replace(/\.?0+$/, '');
+  }
+}
