@@ -3,9 +3,10 @@ const fs = require('fs');
 const csv = require('csvtojson')
 const Util = require('covidmodule').Util;
 
+const confirmedfile = "../COVID-19/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv";
+const deathfile = "../COVID-19/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv";
 const KeyFields = ["Confirmed", "Active", "Recovered", "Deaths"];
 let WorldData = {};
-
 
 function find_key_path(key, create = false) {
   let keyparts = key.split(",");
@@ -36,8 +37,8 @@ const CountryKeyMap = {
   "Macau": "China",
   "Macau SAR": "China",
   "Macao SAR": "China",
-  "South Korea": "Korea South",
-  "Republic of Korea": "Korea South",
+  "South Korea": "South Korea",
+  "Republic of Korea": "North Korea",
   "Ivory Coast": "Cote d'Ivoire",
   "UK": "United Kingdom",
   "Czech Republic": "Czechia",
@@ -83,6 +84,7 @@ const ProvinceSkipList = [
   "London, ON",
   " Montreal, QC",
   "Diamond Princess",
+  "Grand Princess",
   "From Diamond Princess",
   "Calgary, Alberta",
   "Edmonton, Alberta",
@@ -90,11 +92,11 @@ const ProvinceSkipList = [
 ];
 
 const CountrySkipList = [
-  "US",
   "Guernsey",
   "Cruise Ship",
   "Others",
   "Diamond Princess",
+  "Grand Princess",
   "North Ireland",
   "Republic of Ireland",
   "Palestine", // no data 
@@ -111,13 +113,19 @@ const COMBINED_KEY_SKIP_LIST = [
   "External territories, Australia",
   "Jervis Bay Territory, Australia",
   "Diamond Princess, Cruise Ship",
+  "Grand Princess, Canada",
+  "Diamond Princess, Canada",
+  "Diamond Princess",
 ];
+
 const COMBINED_KEY_REWRITE = {
   "Falkland Islands (Islas Malvinas), United Kingdom": "Falkland Islands (Malvinas), United Kingdom",
   "Fench Guiana, France": "French Guiana, France",
   "UK, United Kingdom": "United Kingdom",
-  "Korea, South": "Korea South",
+  "Korea, South": "South Korea",
   "Taiwan*": "Taiwan",
+  "Congo (Brazzaville)": "Brazzaville, Congo",
+  "Congo (Kinshasa)": "Kinshasa, Congo",
 }
 
 function CountryProvinceToCombinedKey(country, province) {
@@ -162,7 +170,7 @@ async function process_one_JHU_file(json, date) {
       continue;
     }
 
-    // skip US for now
+    //skip US for now
     // if (Combined_Key.endsWith("US")) {
     //   console.log(Combined_Key);
     //   continue;
@@ -181,7 +189,6 @@ async function process_one_JHU_file(json, date) {
     if (!node) {
       console.log("bad key = " + Combined_Key);
       throw ("bad key");
-      continue;
     }
     let datekey = date.format("MM/DD/YYYY");
     for (let f of KeyFields) {
@@ -193,23 +200,35 @@ async function process_one_JHU_file(json, date) {
 }
 
 async function establish_name_spaces() {
-  let file = "../COVID-19/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv";
-  const json = await csv().fromFile(file);
-  for (let entity of json) {
-    const state = entity["Province/State"];
-    let country = entity["Country/Region"];
+  const files = [confirmedfile, deathfile];
+  for (let file of files) {
+    const json = await csv().fromFile(file);
+    for (let entity of json) {
+      const state = entity["Province/State"];
+      let country = entity["Country/Region"];
 
-    country = country.replace(",", "");
-    if (country === "Taiwan*") {
-      country = "Taiwan";
-    }
+      if (CountrySkipList.includes(country)) {
+        continue;
+      }
 
-    if (state.length === 0) {
-      node = find_key_path(country, true);
-    } else {
-      node = find_key_path([state, country].join(","), true);
+      if (COMBINED_KEY_REWRITE[country]) {
+        country = COMBINED_KEY_REWRITE[country];
+      }
+
+      if (ProvinceSkipList.includes(state)) {
+        continue;
+      }
+
+      if (state.length === 0) {
+        node = find_key_path(country, true);
+      } else {
+        node = find_key_path([state, country].join(","), true);
+      }
     }
   }
+
+  // missing file
+  find_key_path("North Korea", true);
 }
 
 async function process_all_JHU_files() {
@@ -267,6 +286,7 @@ async function main() {
 }
 
 main().then(() => {
+  // console.log(WorldData);
   WorldData["United States"] = WorldData.US;
   delete WorldData.US;
   const content = JSON.stringify(WorldData, null, 2);
