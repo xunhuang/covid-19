@@ -17,19 +17,8 @@ import CloseIcon from '@material-ui/icons/Close';
 import { MentalHealthResourceSection } from './MentalHealthTab';
 import { SearchBox } from './SearchBox';
 import { Footer } from './Footer'
-
-import {
-  EmailShareButton,
-  FacebookShareButton,
-  PinterestShareButton,
-  TwitterShareButton,
-  RedditShareButton,
-  EmailIcon,
-  RedditIcon,
-  FacebookIcon,
-  PinterestIcon,
-  TwitterIcon,
-} from "react-share";
+import { DonateLink } from './components/chrome/DonateLink';
+import { SocialMediaButtons } from './components/chrome/SocialMediaButtons';
 
 const Cookies = require("js-cookie");
 const moment = require("moment");
@@ -38,14 +27,13 @@ const NewsData = require("./data/news.json");
 const WhatsNewData = require("./data/whatsnew.json");
 
 const useStyles = makeStyles(theme => ({
-  SocialMediaRow: {
-    display: 'flex',
-    alignItems: 'baseline',
-    padding: 5,
-  },
   topContainer: {
     display: 'flex',
     alignItems: 'baseline',
+  },
+  row: {
+    alignItems: 'baseline',
+    padding: 5,
   },
   title: {
     display: 'block',
@@ -182,34 +170,9 @@ const DonateButton = (props) => {
   const donationPageUrl = "https://ko-fi.com/covid19direct";
   return (
     <Typography noWrap variant="body2" className={classes.buyUsACoffee}>
-      <MaterialLink target="_blank" href={donationPageUrl} className={classes.buyUsACoffee}>
-        Buy Us A Coffee
-            </MaterialLink>
+      <DonateLink className={classes.buyUsACoffee} />
     </Typography>);
 }
-
-
-const SocialMediaButtons = (props) => {
-  const classes = useStyles();
-
-  return (
-    <div className={classes.SocialMediaRow}>
-      {[
-        [FacebookShareButton, FacebookIcon],
-        [TwitterShareButton, TwitterIcon],
-        [RedditShareButton, RedditIcon],
-        [PinterestShareButton, PinterestIcon],
-        [EmailShareButton, EmailIcon],
-      ].map(([Button, Icon], i) => (
-        <Button url={props.url} quote={props.quote} key={i}>
-          <Icon size={32} round={true} />
-        </Button>
-      ))}
-    </div>
-  );
-}
-
-const quote = "Best real-time county-level COVID-19 dashboard. Get the latest trends about cases, recovery, testing and hospitalization as well as resources for mental health and well-being.";
 
 const Banner = withRouter((props) => {
   const history = useHistory();
@@ -234,8 +197,9 @@ const Banner = withRouter((props) => {
             COVID-19.direct
             </Typography>
           <SocialMediaButtons
+            className={classes.socialMediaRow}
             url={url_shared}
-            quote={quote}
+            size={32}
           />
           <Typography variant="body2" noWrap>
             Updated: {moment(us_summary.generatedTime).format('lll')}

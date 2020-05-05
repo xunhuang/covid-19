@@ -1,17 +1,19 @@
 import PropTypes from 'prop-types';
 import React, {useContext} from 'react';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
-import {AppBar, Paper, Toolbar, Typography} from '@material-ui/core';
+import {AppBar as MaterialAppBar, Paper, Toolbar, Typography} from '@material-ui/core';
 import {Link as RouterLink} from 'react-router-dom';
 import {fade, makeStyles, useTheme} from '@material-ui/core/styles';
 import {withRouter} from 'react-router-dom';
 
 import {AdvancedGraph} from '../components/graphs/AdvancedGraph';
-import {DivisionTable} from '../components/tables/DivisionTable';
 import {BasicDataComponent} from '../models/BasicDataComponent';
+import {DivisionTable} from '../components/tables/DivisionTable';
 import {DivisionTypesComponent} from '../models/DivisionTypesComponent';
+import {DonateLink} from '../components/chrome/DonateLink';
 import {NameComponent} from '../models/NameComponent';
 import {Path} from '../models/Path';
+import {SocialMediaButtons} from '../components/chrome/SocialMediaButtons';
 import {WorldContext} from '../WorldContext';
 
 const shortNumber = require('short-number');
@@ -22,14 +24,6 @@ const useStyles = makeStyles(theme => ({
   body: {
     background: '#fafafa',
     padding: HORIZONTAL_MARGIN,
-  },
-  appBar: {
-    backgroundColor: theme.palette.secondary.main,
-    padding: `${HORIZONTAL_MARGIN} calc(${HORIZONTAL_MARGIN} * 2)`,
-  },
-  appTitle: {
-    color: '#fff',
-    fontWeight: 'bold',
   },
   content: {
     padding: HORIZONTAL_MARGIN,
@@ -55,13 +49,7 @@ export const PageRegion = withRouter((props) => {
   const classes = useStyles();
   return (
     <>
-      <AppBar position="static" className={classes.appTitle}>
-        <Toolbar>
-          <Typography variant="h6">
-            COVID-19.direct
-          </Typography>
-        </Toolbar>
-      </AppBar>
+      <AppBar />
       <div className={classes.body}>
         <Paper className={classes.content}>
           <Title className={classes.section} path={path} />
@@ -91,15 +79,86 @@ export const PageRegion = withRouter((props) => {
     </>);
 });
 
-const useTitleStyles = makeStyles(theme => ({
-  container: {
+const RELIEF_COLOR = '#fff';
+
+const useAppBarStyles = makeStyles(theme => ({
+  appBar: {
+    color: RELIEF_COLOR,
+    display: 'flex',
+  },
+  appName: {
+    overflow: 'visible',
+  },
+  donations: {
+    background: RELIEF_COLOR,
+    borderRadius: '8px',
+    marginLeft: '16px',
+    padding: '6px 8px',
+
+    '&:hover': {
+      filter: `drop-shadow(0 0 2px ${fade(RELIEF_COLOR, 0.95)})`,
+      textDecoration: 'none',
+    },
+  },
+  expander: {
+    flexGrow: 1,
+  },
+  socialButtons: {
+    fontSize: '1.5625em',
+    lineHeight: '1em',
+    '& > *': {
+      marginLeft: '4px',
+      verticalAlign: 'middle',
+    }
+  },
+  wrap: {
+    alignItems: 'center',
     display: 'flex',
     flexWrap: 'wrap',
+    justifyContent: 'flex-end',
+
+    '& > *': {
+      margin: '4px',
+    }
+  },
+}));
+
+const AppBar = (props) => {
+  const classes = useAppBarStyles();
+  const theme = useTheme();
+
+  return (
+    <MaterialAppBar position="static">
+      <Toolbar className={classes.appBar}>
+        <Typography noWrap className={classes.appName} variant="h6">
+          COVID-19.direct
+        </Typography>
+        <div className={classes.expander} />
+
+        <div className={classes.wrap}>
+          <SocialMediaButtons
+              backgroundColor="#fff"
+              className={classes.socialButtons}
+              iconColor={theme.palette.secondary.main}
+          />
+
+          <DonateLink className={classes.donations} message="Buy us a coffee!" />
+        </div>
+      </Toolbar>
+    </MaterialAppBar>
+  );
+};
+
+const useTitleStyles = makeStyles(theme => ({
+  container: {
+    alignItems: 'flex-end',
+    display: 'flex',
+    flexWrap: 'wrap',
+    margin: '0 -12px',
   },
   node: {
     display: 'flex',
-    marginBottom: '16px',
-    marginRight: '24px',
+    margin: '0 12px 16px 12px',
 
     [theme.breakpoints.down('sm')]: {
       '&:not(.squish)': {
@@ -140,7 +199,6 @@ const useTitleStyles = makeStyles(theme => ({
 const Title = (props) => {
   const classes = useTitleStyles();
   const theme = useTheme();
-  const squish = useMediaQuery(theme.breakpoints.down('sm'));
 
   const world = useContext(WorldContext);
   const name = world.get(props.path, NameComponent);
@@ -165,7 +223,7 @@ const Title = (props) => {
                 to={'/country' + parentCursor.string()}>
               {parentName.english()}
             </RouterLink>,
-        squish,
+        squish: true,
       });
     }
 
@@ -191,30 +249,32 @@ const Title = (props) => {
   }
 
   return (
-    <div className={`${classes.container} ${props.className}`}>
-      {names.map(({path, text, numbers, squish}, i) =>
-        <div
-            key={path.string()}
-            className={`${classes.node} ${squish ? 'squish': ''}`}>
-          <div>
-            <Typography variant={squish ? 'subtitle1' : 'h4'}>
-              {text}
-            </Typography>
-            <div className={classes.numbers}>
-              {numbers.map(({plural, color, value, change}) =>
-                <div
-                    key={plural}
-                    className={classes.number}
-                    style={{borderColor: color}}>
-                  {shortNumber(value)}
-                  {` ${i === 0 ? plural : ''} `}
-                  (+{shortNumber(change)})
-                </div>
-              )}
+    <div className={props.className}>
+      <div className={classes.container}>
+        {names.map(({path, text, numbers, squish}, i) =>
+          <div
+              key={path.string()}
+              className={`${classes.node} ${squish ? 'squish': ''}`}>
+            <div>
+              <Typography variant={squish ? 'subtitle1' : 'h4'}>
+                {text}
+              </Typography>
+              <div className={classes.numbers}>
+                {numbers.map(({plural, color, value, change}) =>
+                  <div
+                      key={plural}
+                      className={classes.number}
+                      style={{borderColor: color}}>
+                    {shortNumber(value)}
+                    {` ${i === 0 ? plural : ''} `}
+                    (+{shortNumber(change)})
+                  </div>
+                )}
+              </div>
             </div>
           </div>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 };

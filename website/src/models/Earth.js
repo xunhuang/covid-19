@@ -47,27 +47,27 @@ function populate(name, path, baseData, world) {
       singular: 'Country',
       plural: 'Countries',
     };
-  } else if (path.matches('/US')) {
+  } else if (path.matches('/United States')) {
     division = {
-      id: 's',
+      id: 'state',
       singular: 'State',
       plural: 'States',
     };
   } else if (path.matches('/:country')) {
     division = {
-      id: 'p',
+      id: 'province',
       singular: 'Province',
       plural: 'Provinces',
     };
-  } else if (path.matches('/US/s/:state')) {
+  } else if (path.matches('/United States/state/:state')) {
     division = {
-      id: 'c',
+      id: 'county',
       singular: 'County',
       plural: 'Counties',
     };
-  } else if (path.matches('/:country/p/:province')) {
+  } else if (path.matches('/:country/province/:province')) {
     division = {
-      id: 'c',
+      id: 'city',
       singular: 'City',
       plural: 'Cities',
     };
