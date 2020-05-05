@@ -9,7 +9,7 @@ import { PageUS } from "./PageUS"
 import { PageState } from "./PageState"
 import { PageCounty } from "./PageCounty"
 import { PageMetro } from "./PageMetro"
-import { PageRegion } from "./PageRegion";
+import { PageRegion } from "./pages/PageRegion";
 import { Page404 } from "./Page404"
 import { Country } from "./UnitedStates";
 import { CountryContext } from "./CountryContext";

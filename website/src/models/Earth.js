@@ -15,24 +15,10 @@ export function createBasicEarth() {
 }
 
 function clean(baseData) {
-  delete baseData['South'];
-  delete baseData['The'];
-
-  const states = Object.keys(baseData['US']);
-  for (const state of states) {
-    if (state.replace(/\./g, '').length === 2) {
-      delete baseData['US'][state];
-    }
-  }
-
   return baseData;
 }
 
 function populate(name, path, baseData, world) {
-  if (path.matches('/US')) {
-    name = 'United States';
-  }
-
   world.set(path, new NameComponent(name));
 
   world.set(

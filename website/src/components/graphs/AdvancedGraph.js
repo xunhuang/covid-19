@@ -5,7 +5,7 @@ import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
 import {Area, AreaChart, CartesianGrid, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis} from 'recharts';
 import {fade, makeStyles} from '@material-ui/core/styles';
 
-import {DataSeries} from '../models/DataSeries';
+import {DataSeries} from '../../models/DataSeries';
 
 const moment = require('moment');
 
@@ -256,7 +256,10 @@ const Chart = (props) => {
   return (
       <ResponsiveContainer height={300}>
           <ChosenChart data={props.data} margin={{left: 24, right: 24}}>
-              <Tooltip labelFormatter={props.timestampFormatter} />
+              <Tooltip
+                  formatter={(value) => value.toFixed(1).replace(/\.?0+$/, '')}
+                  labelFormatter={props.timestampFormatter}
+              />
               <XAxis
                   dataKey="timestamp"
                   tickFormatter={props.timestampFormatter}

@@ -153,7 +153,7 @@ export class DataSeries {
       const {m} = linearRegression(window);
       doublings.push([
         points[i][0],
-        Math.round(1 / (m * this.period_.intervalS)),
+        1 / (m * this.period_.intervalS),
       ]);
     }
 
@@ -188,7 +188,7 @@ export class DataSeries {
         new DataSeries(`${this.label_} (Trend)`, undefined, this.period_);
     trend.points_ =
         points.map(([moment, ]) =>
-            [moment, Math.max(0, Math.round(m * moment.unix() + b))]);
+            [moment, Math.max(0, m * moment.unix() + b)]);
     return trend;
   }
 
@@ -217,7 +217,7 @@ function lastChangeOf(raw, period) {
 
   const lastTime = all[all.length - 1][0];
   const lastValue = all[all.length - 1][1] - all[all.length - 2][1];
-  return period.pointConverter(lastTime, lastValue);
+  return period.pointConverter(lastTime, Math.max(0, lastValue));
 }
 
 class EmptySeries extends DataSeries {
