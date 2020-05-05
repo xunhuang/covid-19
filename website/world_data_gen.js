@@ -5,7 +5,7 @@ const Util = require('covidmodule').Util;
 
 const confirmedfile = "../COVID-19/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv";
 const deathfile = "../COVID-19/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv";
-const county_codes = require("../data/worlddata/country_regions.json");
+const county_codes = require("../data/worlddata/country_regions.json").filter(region => !region.code.includes("US-"));
 
 const KeyFields = ["Confirmed", "Active", "Recovered", "Deaths"];
 let WorldData = {};
@@ -121,6 +121,10 @@ const COMBINED_KEY_SKIP_LIST = [
   "Grand Princess, Canada",
   "Diamond Princess, Canada",
   "Diamond Princess",
+  "Channel Islands, United Kingdom",
+  "Recovered, Canada",
+  ",,MS Zaandam",
+  "MS Zaandam",
 ];
 
 const COMBINED_KEY_REWRITE = {
@@ -249,7 +253,7 @@ async function process_all_JHU_files() {
 }
 
 function summarize_recursively(data) {
-  let Summary = {};
+  let Summary = data.Summary ? data.Summary : {};
   let aggregate = {};
   let leafnode = true;
 
@@ -259,13 +263,14 @@ function summarize_recursively(data) {
 
   for (let key in data) {
     let value = data[key];
-    if (!KeyFields.includes(key)) {
+    if (key === "Summary") {
+      continue;
+    } else if (!KeyFields.includes(key)) {
       leafnode = false;
       summarize_recursively(value);
       for (const key1 of KeyFields) {
         Util.mergeTwoMapValues(aggregate[key1], value[key1]);
       }
-
     } else {
       const CC = Util.getValueFromLastDate(value);
       Summary["Last" + key] = CC.num;
@@ -314,10 +319,11 @@ const ErrantNameToCountryCode = {
   "Falkland Islands (Malvinas)": "FK",
 }
 
-const RegionByCode = county_codes.reduce((m, a) => {
-  m[a.code] = a;
-  return m;
-}, {});
+const RegionByCode = county_codes
+  .reduce((m, a) => {
+    m[a.code] = a;
+    return m;
+  }, {});
 
 function lookupISORegionByName(name) {
   let entry = county_codes.find(e => e.areaLabel === name);
@@ -334,8 +340,17 @@ function changeToCodeName(data, entry) {
   }
 
   for (const k in data) {
+    if (KeyFields.includes(k)) {
+      continue;
+    }
+    if (k === "US") {
+      continue;
+    }
     let country = data[k];
     let subentry = lookupISORegionByName(k);
+    if (!subentry) {
+      console.log(k);
+    }
     let nCountry = changeToCodeName(country, subentry);
 
     data[subentry.code] = nCountry;
@@ -356,15 +371,15 @@ function changeToCodeName(data, entry) {
 
 async function main() {
   await establish_name_spaces();
+  await process_all_JHU_files();
   changeToCodeName(WorldData, null);
-  // await process_all_JHU_files();
-  // summarize_recursively(WorldData);
+  summarize_recursively(WorldData);
 }
 
 main().then(() => {
   // console.log(WorldData);
   // WorldData["United States"] = WorldData.US;
-  // delete WorldData.US;
+  delete WorldData.US;
   console.log(JSON.stringify(WorldData, null, 2));
   const content = JSON.stringify(WorldData, null, 2);
   fs.writeFileSync("./src/data/WorldData.json", content);
