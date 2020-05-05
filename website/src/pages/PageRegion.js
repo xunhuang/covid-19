@@ -98,8 +98,10 @@ const useAppBarStyles = makeStyles(theme => ({
   donations: {
     background: RELIEF_COLOR,
     borderRadius: '8px',
+    display: 'block',
     marginLeft: '16px',
     padding: '6px 8px',
+    textAlign: 'center',
 
     '&:hover': {
       filter: `drop-shadow(0 0 2px ${fade(RELIEF_COLOR, 0.95)})`,
@@ -123,9 +125,12 @@ const useAppBarStyles = makeStyles(theme => ({
     flexWrap: 'wrap',
     justifyContent: 'flex-end',
 
-    '& > *': {
-      margin: '4px',
-    }
+    [theme.breakpoints.down('xs')]: {
+      display: 'initial',
+      '& > *': {
+        margin: '4px',
+      },
+    },
   },
 }));
 

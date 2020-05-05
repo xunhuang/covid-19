@@ -199,7 +199,7 @@ export class DataSeries {
         new DataSeries(`${this.label_} (Trend)`, undefined, this.period_);
     trend.points_ =
         points.map(([moment, ]) =>
-            [moment, Math.max(0, m * moment.unix() + b)]);
+            [moment, positiveOrNothing(m * moment.unix() + b)]);
     return trend;
   }
 
@@ -259,4 +259,8 @@ class LazyDataSeries extends DataSeries {
     }
     return this.points_;
   }
+}
+
+function positiveOrNothing(value) {
+  return value >= 0 ? value : NaN;
 }
