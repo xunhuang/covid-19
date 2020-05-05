@@ -6,7 +6,7 @@ import Grid from '@material-ui/core/Grid';
 import { scaleSymlog } from 'd3-scale';
 import { datesToDays, fitExponentialTrendingLine } from './TrendFitting';
 import { mergeDataSeries, makeDataSeriesFromTotal, exportColumnFromDataSeries } from "./DataSeries";
-import { myShortNumber, filterDataToRecent, getOldestMomentInData } from '../Util';
+import { myShortNumber, filterDataToRecent, getOldestMomentInData, useStickyState } from '../Util';
 import { AntSwitch } from "./AntSwitch.js"
 import { DateRangeSlider } from "../DateRangeSlider"
 import axisScales from './GraphAxisScales'
@@ -86,33 +86,20 @@ const CustomTooltip = (props) => {
   return null;
 }
 
-const CookieSetPreference = (state) => {
-  Cookies.set("BasicGraphPreference1", state, {
-    expires: 100
-  });
-}
-
-const CookieGetPreference = () => {
-  let pref = Cookies.getJSON("BasicGraphPreference1");
-  if (!pref || !pref.verticalScale || !pref.showPastDays) {
-    return {
-      verticalScale: axisScales.linear,
-      showPastDays: 30,
-    }
-  }
-  return pref;
-}
-
+const cookieStaleWhen = (cookie) => !cookie.verticalScale || !cookie.showPastDays
 
 const BasicGraph = (props) => {
   const classes = useStyles()
   let data = props.USData;
   const column = props.column;
-  const [state, setState] = React.useState(CookieGetPreference());
-  const setStateSticky = (state) => {
-    CookieSetPreference(state);
-    setState(state);
-  }
+  const [state, setStateSticky] = useStickyState({
+      defaultValue: {
+          verticalScale: axisScales.linear,
+          showPastDays: 30,
+      },
+      cookieId: "BasicGraphPreference1",
+      isCookieStale: cookieStaleWhen
+  });
   const handleLogScaleToggle = (event, newScale) => {
     setStateSticky({
       ...state,
