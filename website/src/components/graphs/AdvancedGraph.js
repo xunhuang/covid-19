@@ -4,6 +4,7 @@ import ToggleButton from '@material-ui/lab/ToggleButton';
 import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
 import {Area, AreaChart, CartesianGrid, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis} from 'recharts';
 import {fade, makeStyles} from '@material-ui/core/styles';
+import {scaleSymlog} from 'd3-scale';
 
 import {DataSeries} from '../../models/DataSeries';
 
@@ -13,6 +14,10 @@ const baseToggleButtonStyles = {
   height: 'initial',
   textTransform: 'initial',
 };
+
+// This scale for logs works consistenly, whereas setting ReCharts to use the
+// scale 'log' only works sometimes under certain mystery situations.
+const logScale = scaleSymlog().domain([0, 'dataMax']);
 
 const useStyles = makeStyles(theme => ({
   options: {
@@ -28,6 +33,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
+/** A graph that allows the user to click series on and off. */
 export const AdvancedGraph = (props) => {
   const classes = useStyles();
 
@@ -264,8 +270,9 @@ const Chart = (props) => {
                   dataKey="timestamp"
                   tickFormatter={props.timestampFormatter}
               />
-              {/* using scale='log' requires setting the domain */}
-              <YAxis scale={props.scale} domain={['auto', 'auto']} />
+              <YAxis
+                  scale={props.scale === 'log' ? logScale : props.scale}
+              />
               <CartesianGrid stroke="#d5d5d5" strokeDasharray="5 5" />
 
               {ordered && ordered.map(series =>

@@ -1,3 +1,4 @@
+/** Paths are the ID type for entities, and encode hierarchical information. */
 export class Path {
 
   static parse(path) {

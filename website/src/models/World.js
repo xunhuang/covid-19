@@ -1,3 +1,4 @@
+/** A world contains all the entities and their components. */
 export class World {
 
   constructor() {

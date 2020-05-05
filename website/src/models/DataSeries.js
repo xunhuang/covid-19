@@ -18,6 +18,12 @@ const periods = {
 
 const REGRESSION_WINDOW_SIZE = 7;
 
+/**
+ * A data series is a label with a collection of values at specific moments.
+ *
+ * There are a few varieties depending on whether the data should be
+ * initialized lazily.
+ */
 export class DataSeries {
 
   static fromFormattedDates(label, raw) {

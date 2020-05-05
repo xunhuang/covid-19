@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import {Table, TableBody, TableCell, TableHead, TableRow, TableSortLabel} from '@material-ui/core';
 
+/** A table that is sortable by its columns. */
 export const SortableTable = (props) => {
   const {columns, rows, defaultSortColumn} = props;
 

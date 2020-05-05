@@ -10,6 +10,7 @@ import {Path} from '../../models/Path';
 import {SortableTable} from './SortableTable';
 import {WorldContext} from '../../WorldContext';
 
+/** A table for showing basic data about children of a division entity. */
 export const DivisionTable = (props) => {
   const world = useContext(WorldContext);
   const children =
@@ -26,7 +27,7 @@ export const DivisionTable = (props) => {
     {key: 'recovered', label: 'Recovered', defaultDirection: 'desc'},
     {key: 'died', label: 'Died', defaultDirection: 'desc'},
   ];
-  const defaultSortColumn = columns[0];
+  const defaultSortColumn = columns[1];
 
   const rows = [];
   for (const child of children) {
