@@ -162,7 +162,7 @@ async function process_one_JHU_file(json, date) {
       continue;
     }
 
-    //skip US for now
+    // skip US for now
     // if (Combined_Key.endsWith("US")) {
     //   console.log(Combined_Key);
     //   continue;
