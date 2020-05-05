@@ -24,6 +24,7 @@ const HORIZONTAL_MARGIN = '16px';
 const useStyles = makeStyles(theme => ({
   body: {
     background: '#fafafa',
+    overflow: 'auto',
   },
   content: {
     padding: HORIZONTAL_MARGIN,
