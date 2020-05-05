@@ -5,6 +5,8 @@ const Util = require('covidmodule').Util;
 
 const confirmedfile = "../COVID-19/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv";
 const deathfile = "../COVID-19/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv";
+const county_codes = require("../data/worlddata/country_regions.json");
+
 const KeyFields = ["Confirmed", "Active", "Recovered", "Deaths"];
 let WorldData = {};
 
@@ -79,6 +81,7 @@ const DirectKeyMap = {
 }
 
 const ProvinceSkipList = [
+  "Recovered",
   "Bavaria",
   "Toronto, ON",
   "London, ON",
@@ -88,12 +91,14 @@ const ProvinceSkipList = [
   "From Diamond Princess",
   "Calgary, Alberta",
   "Edmonton, Alberta",
+  "Channel Islands",
   "Cape Verde"
 ];
 
 const CountrySkipList = [
   "Guernsey",
   "Cruise Ship",
+  "MS Zaandam",
   "Others",
   "Diamond Princess",
   "Grand Princess",
@@ -279,16 +284,88 @@ function summarize_recursively(data) {
   data.Summary = Summary;
 }
 
+const ErrantNameToCountryCode = {
+  "Bahamas": "BS",
+  "Cabo Verde": "CV",
+  "China": "CN",
+  "Congo": "CD",
+  "Cote d'Ivoire": "CI",
+  "Cyprus": "CY",
+  "Czechia": "CZ",
+  "Gambia": "GM",
+  "Holy See": "VA",
+  "US": "US",
+  "Timor-Leste": "TL",
+  "West Bank and Gaza": "PS",
+  "Burma": "MM",
+  "Western Sahara": 'EH',
+  "Sao Tome and Principe": "ST",
+
+  Guangxi: "CN-GX", // "Guangxi Zhuang Autonomous Region",
+  Ningxia: "CN-NX",
+  Tibet: "CN-XZ",
+  "Curacao": "CW",
+  "Sint Maarten": "SX",
+  Reunion: "FR-RE",
+  "St Martin": "FR-MQ",
+  "Saint Barthelemy": "FR-BL",
+  "Saint Pierre and Miquelon": "FR-PM",
+  "Sint Eustatius and Saba": "NL-BQ1",
+  "Falkland Islands (Malvinas)": "FK",
+}
+
+const RegionByCode = county_codes.reduce((m, a) => {
+  m[a.code] = a;
+  return m;
+}, {});
+
+function lookupISORegionByName(name) {
+  let entry = county_codes.find(e => e.areaLabel === name);
+  if (entry) {
+    return entry;
+  }
+  let code = ErrantNameToCountryCode[name];
+  return RegionByCode[code];
+}
+
+function changeToCodeName(data, entry) {
+  if (!data) {
+    return;
+  }
+
+  for (const k in data) {
+    let country = data[k];
+    let subentry = lookupISORegionByName(k);
+    let nCountry = changeToCodeName(country, subentry);
+
+    data[subentry.code] = nCountry;
+    delete data[k];
+  }
+
+  if (entry) {
+    data.Summary = {
+      name: entry.areaLabel,
+      code: entry.code,
+      longitude: parseFloat(entry.lon),
+      latitude: parseFloat(entry.lat),
+      population: parseInt(entry.population),
+    }
+  }
+  return data;
+}
+
 async function main() {
   await establish_name_spaces();
-  await process_all_JHU_files();
-  summarize_recursively(WorldData);
+  changeToCodeName(WorldData, null);
+  // await process_all_JHU_files();
+  // summarize_recursively(WorldData);
 }
 
 main().then(() => {
   // console.log(WorldData);
-  WorldData["United States"] = WorldData.US;
-  delete WorldData.US;
+  // WorldData["United States"] = WorldData.US;
+  // delete WorldData.US;
+  console.log(JSON.stringify(WorldData, null, 2));
   const content = JSON.stringify(WorldData, null, 2);
   fs.writeFileSync("./src/data/WorldData.json", content);
 })
