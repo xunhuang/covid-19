@@ -104,8 +104,10 @@ const useAppBarStyles = makeStyles(theme => ({
     textAlign: 'center',
 
     '&:hover': {
+      color: theme.palette.primary.light,
       filter: `drop-shadow(0 0 2px ${fade(RELIEF_COLOR, 0.95)})`,
       textDecoration: 'none',
+      transform: 'translateY(-1px)',
     },
   },
   expander: {
@@ -119,7 +121,13 @@ const useAppBarStyles = makeStyles(theme => ({
       verticalAlign: 'middle',
     }
   },
-  wrap: {
+  socialButton: {
+    '&:hover': {
+      filter: `drop-shadow(0 0 2px ${fade(RELIEF_COLOR, 0.95)})`,
+      transform: 'translateY(-1px)',
+    },
+  },
+  actions: {
     alignItems: 'center',
     display: 'flex',
     flexWrap: 'wrap',
@@ -146,11 +154,12 @@ const AppBar = (props) => {
         </Typography>
         <div className={classes.expander} />
 
-        <div className={classes.wrap}>
+        <div className={classes.actions}>
           <SocialMediaButtons
               backgroundColor="#fff"
+              buttonClassName={classes.socialButton}
               className={classes.socialButtons}
-              iconColor={theme.palette.secondary.main}
+              iconColor={theme.palette.primary.main}
           />
 
           <DonateLink className={classes.donations} message="Buy us a coffee!" />
