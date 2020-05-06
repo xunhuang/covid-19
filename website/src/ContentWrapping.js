@@ -167,7 +167,6 @@ const NewsSection = (props) => {
 
 const DonateButton = (props) => {
   const classes = useStyles();
-  const donationPageUrl = "https://ko-fi.com/covid19direct";
   return (
     <Typography noWrap variant="body2" className={classes.buyUsACoffee}>
       <DonateLink className={classes.buyUsACoffee} />

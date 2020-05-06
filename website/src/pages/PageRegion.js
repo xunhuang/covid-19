@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types';
 import React, {useContext} from 'react';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
 import {AppBar as MaterialAppBar, Paper, Toolbar, Typography} from '@material-ui/core';
 import {Link as RouterLink} from 'react-router-dom';
 import {Redirect, withRouter} from 'react-router-dom';
@@ -213,7 +212,6 @@ const useTitleStyles = makeStyles(theme => ({
 
 const Title = (props) => {
   const classes = useTitleStyles();
-  const theme = useTheme();
 
   const world = useContext(WorldContext);
   const name = world.get(props.path, NameComponent);

@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import {makeStyles} from '@material-ui/core/styles';
 import {useLocation} from 'react-router-dom'
 import {
   EmailShareButton,
@@ -17,16 +16,7 @@ import {
 
 const QUOTE = "Best real-time county-level COVID-19 dashboard. Get the latest trends about cases, recovery, testing and hospitalization as well as resources for mental health and well-being.";
 
-const useStyles = makeStyles(theme => ({
-  row: {
-    display: 'flex',
-    alignItems: 'baseline',
-    padding: 5,
-  },
-}));
-
 export const SocialMediaButtons = (props) => {
-  const classes = useStyles();
   const location = useLocation();
 
   let url;
