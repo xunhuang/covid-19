@@ -46,7 +46,7 @@ export const PageRegion = withRouter((props) => {
   const world = useContext(WorldContext);
   const path = Path.parse('/' + props.match.params[0]);
 
-  if (path.matches('/United States')) {
+  if (path.matches('/US')) {
     return <Redirect to="/US" />;
   }
 
