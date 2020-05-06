@@ -332,27 +332,24 @@ const withHeader = (comp, props) => {
       </SectionHeader>
       <Paper elevation={3} className={classes.commentPaper}>
         <MyTabs
-          labels={['Comments', 'Disqus']}
+          labels={['Disqus', 'FB Comments']}
           urlQueryKey="discussions"
-          urlQueryValues={['facebook', 'disqus']}
-          tabs={[(
-            <FacebookProvider appId="201788627783795">
-              <Comments href="https://covid-19.direct/" />
-            </FacebookProvider>
-          ), (
-            <Disqus.DiscussionEmbed
-              shortname={disqusShortname}
-              config={disqusConfig}
-            />
-          )]}
+          urlQueryValues={['disqus', 'facebook']}
+          tabs={[
+            (
+              <Disqus.DiscussionEmbed
+                shortname={disqusShortname}
+                config={disqusConfig}
+              />
+            ), (
+              <FacebookProvider appId="201788627783795">
+                <Comments href="https://covid-19.direct/" />
+              </FacebookProvider>
+            )
+          ]}
         />
       </Paper>
     </div>;
-    let fbcomment =
-      <FacebookProvider appId="201788627783795">
-        <CommentsCount href="http://www.facebook.com" width="100%" />
-      </FacebookProvider>;
-
 
     let header = <header className="App-header">
       <Banner />
