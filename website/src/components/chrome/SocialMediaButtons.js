@@ -40,7 +40,7 @@ export const SocialMediaButtons = (props) => {
         [WhatsappShareButton, WhatsappIcon],
         [EmailShareButton, EmailIcon],
       ].map(([Button, Icon], i) => (
-        <Button url={url} quote={QUOTE} key={i}>
+        <Button className={props.buttonClassName} url={url} quote={QUOTE} key={i}>
           <Icon
               size={props.size || '1em'}
               round={true}
@@ -55,6 +55,7 @@ export const SocialMediaButtons = (props) => {
 
 SocialMediaButtons.propTypes = {
   backgroundColor: PropTypes.string,
+  buttonClassName: PropTypes.string,
   className: PropTypes.string,
   iconColor: PropTypes.string,
   quote: PropTypes.string,

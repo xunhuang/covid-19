@@ -73,7 +73,7 @@ function opposite(direction) {
 
 function valueFor(row, key) {
   // First check if there even is a value
-  if (row[key] === undefined) {
+  if (row[key] === undefined || row[key] === null) {
     return undefined;
   }
 
