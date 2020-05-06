@@ -9,6 +9,7 @@ import { withRouter } from 'react-router-dom'
 import { NO_DATA_COLOR, MapCountyGeneric } from "./MapCountyGeneric"
 import { MapStateGeneric } from "./MapStateGeneric";
 import { Country } from "./UnitedStates";
+import { CountryContext } from "./CountryContext"
 
 const logColors = () => {
   return d3.scaleLog().clamp(true);
@@ -115,8 +116,8 @@ const MapUS = withRouter((props) => {
       pushChangeTo(props.history, "detailed", newvalue);
     }}
   >
-    {[...subtabs].map(([id, {label}]) =>
-        <ToggleButton key={id} value={id}>{label}</ToggleButton>
+    {[...subtabs].map(([id, { label }]) =>
+      <ToggleButton key={id} value={id}>{label}</ToggleButton>
     )}
   </ToggleButtonGroup>;
 
@@ -167,11 +168,20 @@ const MapDaysToDouble = React.memo((props) => {
 });
 
 const MapUSConfirmed = React.memo((props) => {
+  const [date, setDate] = React.useState(null);
+  const country = React.useContext(CountryContext);
+  React.useEffect(() => {
+    // country.fetchAllUSCountyData().then(() => {
+    //   // active slider here 
+    //   setDate("04/01/2020");
+    // });
+  }, [country]);
+
   return (
     <MapCountyGeneric
       {...props}
       getCountyDataPoint={(county) => {
-        return county.summary().confirmed;
+        return county.getConfirmedByDate(date);
       }}
       colorFunction={(data) => {
         return ColorScale.confirmed(data);
@@ -180,8 +190,9 @@ const MapUSConfirmed = React.memo((props) => {
         return ColorScale.confirmedPerMillion(data);
       }}
       toolip={county => {
-        return `${county.name}, Confirmed: ${county.summary().confirmed}, \n` +
-          `Confirm/Mil: ${(county.summary().confirmed / county.population() * 1000000).toFixed(0)}`
+        let confirmed = county.getConfirmedByDate(date);
+        return `${county.name}, Confirmed: ${confirmed}, \n` +
+          `Confirm/Mil: ${(confirmed / county.population() * 1000000).toFixed(0)}`
       }}
     />
   );
