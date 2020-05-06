@@ -61,13 +61,13 @@ export const PageRegion = withRouter((props) => {
           <Title className={classes.section} path={path} />
 
           <DailyGraph
-            basic={basic}
-            className={`${classes.section} ${classes.graph}`}
+              basic={basic}
+              className={`${classes.section} ${classes.graph}`}
           />
 
           <DoublingGraph
-            basic={basic}
-            className={`${classes.section} ${classes.graph}`}
+              basic={basic}
+              className={`${classes.section} ${classes.graph}`}
           />
 
           {divisions &&
@@ -162,6 +162,9 @@ const AppBar = (props) => {
 };
 
 const useTitleStyles = makeStyles(theme => ({
+  noOverflow: {
+    overflow: 'hidden',
+  },
   container: {
     alignItems: 'flex-end',
     display: 'flex',
@@ -261,7 +264,8 @@ const Title = (props) => {
   }
 
   return (
-    <div className={props.className}>
+    // noOverflow because we're using negative margins
+    <div className={`${props.className} ${props.noOverflow}`}>
       <div className={classes.container}>
         {names.map(({path, text, numbers, squish}, i) =>
           <div
