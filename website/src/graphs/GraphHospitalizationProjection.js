@@ -11,7 +11,7 @@ import { Typography } from '@material-ui/core';
 import { myShortNumber } from '../Util';
 import { makeStyles } from '@material-ui/core/styles';
 import { Country, State } from '../UnitedStates';
-
+const Util = require('covidmodule').Util;
 
 const moment = require("moment");
 
@@ -26,6 +26,9 @@ const AllBedsTooltip = (props) => {
   const { active } = props;
   if (active) {
     const { payload, label } = props;
+    if (!payload) {
+      return null;
+    }
 
     let allbed_mean;
     let hospitalized;
@@ -82,7 +85,7 @@ const keybeds = {
   key_upper: "allbed_upper",
   key_delta: "delta",
   key_mean: "allbed_mean",
-  key_upper_cumulative: "dallbedotal_upper",
+  key_upper_cumulative: "allbedotal_upper",
   key_lower_cumulative: "allbedTotal_lower",
   key_delta_cumulative: "allbedTotal_delta",
   key_mean_cumulative: "allbedTotal_mean",
@@ -147,7 +150,6 @@ const GraphAllBedProjectionUS = (props) => {
   let data = USData.filter(d => d.location_name === "United States of America");
   const [formateddata, max_date] = formatData(data, keybeds);
 
-
   for (let item of formateddata) {
     let entry = testingActual.find(t => {
       let d = t.date.toString();
@@ -176,7 +178,7 @@ const GraphAllBedProjectionUS = (props) => {
 
 const formatData = (data, keys) => {
   data = data.map(d => {
-    d.fulldate = moment(d.date, "YYYY-MM-DD").format("MM/DD/YYYY");
+    d.fulldate = Util.normalize_date(d.date);
     d.name = moment(d.fulldate, "MM/DD/YYYY").format("M/D");
     return d;
   });

@@ -12,6 +12,7 @@ import { myShortNumber } from '../Util';
 import { AntSwitch } from "./AntSwitch.js"
 import { makeStyles } from '@material-ui/core/styles';
 import { mergeDataSeries, makeDataSeriesFromTotal } from "./DataSeries";
+const Util = require('covidmodule').Util;
 
 const moment = require("moment");
 
@@ -143,7 +144,7 @@ const GraphDeathProjection = (props) => {
 
 const formatData = (data, keys) => {
   data = data.map(d => {
-    d.fulldate = moment(d.date, "YYYY-MM-DD").format("MM/DD/YYYY");
+    d.fulldate = Util.normalize_date(d.date);
     d.name = moment(d.fulldate, "MM/DD/YYYY").format("M/D");
     return d;
   });
