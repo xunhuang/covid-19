@@ -10,7 +10,7 @@ const baseData = require('../data/WorldData.json');
 
 export function createBasicEarth() {
   const world = new World();
-  populate('Earth', Path.root(), clean(baseData), world);
+  populate(Path.root(), clean(baseData), world, 'Earth');
   return world;
 }
 
@@ -18,8 +18,8 @@ function clean(baseData) {
   return baseData;
 }
 
-function populate(name, path, baseData, world) {
-  world.set(path, new NameComponent(name));
+function populate(path, baseData, world, opt_forceName) {
+  world.set(path, new NameComponent(opt_forceName || baseData.Summary.name));
 
   world.set(
       path,
@@ -47,7 +47,7 @@ function populate(name, path, baseData, world) {
       singular: 'Country',
       plural: 'Countries',
     };
-  } else if (path.matches('/United States')) {
+  } else if (path.matches('/US')) {
     division = {
       id: 'state',
       singular: 'State',
@@ -59,7 +59,7 @@ function populate(name, path, baseData, world) {
       singular: 'Province',
       plural: 'Provinces',
     };
-  } else if (path.matches('/United States/state/:state')) {
+  } else if (path.matches('/US/state/:state')) {
     division = {
       id: 'county',
       singular: 'County',
@@ -88,7 +88,7 @@ function populate(name, path, baseData, world) {
   for (const [child, data] of children) {
     const childPath = divisionRoot.child(child);
     childrenPaths.push(childPath);
-    populate(child, childPath, data, world);
+    populate(childPath, data, world);
   }
 
   world.set(divisionRoot, new ChildrenComponent(childrenPaths));
