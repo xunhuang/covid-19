@@ -114,6 +114,7 @@ export class Country extends CovidSummarizable {
 
   constructor() {
     super(CovidData);
+    this.fetchedAllData = false;
 
     // Metros span state lines, but we have a notion of a hierarchy in
     // header:
@@ -170,6 +171,9 @@ export class Country extends CovidSummarizable {
   }
 
   async fetchAllUSCountyData() {
+    if (this.fetchedAllData) {
+      return;
+    }
     let countydata = await fetchAllUSData();
     for (const [id, stateraw] of Object.entries(countydata)) {
       // Check if this looks like a state FIPS id
@@ -185,6 +189,7 @@ export class Country extends CovidSummarizable {
         county.covidRaw_ = countyraw;
       }
     }
+    this.fetchedAllData = true;
   }
 
   parent() {
@@ -700,6 +705,18 @@ export class County extends CovidSummarizable {
     }
     return datesToDataPoints(this.covidRaw_);
   }
+
+  getConfirmedByDate(date) {
+    if (!date) {
+      return this.summary().confirmed;
+    }
+    const confirmed = this.covidRaw_.Confirmed;
+    if (confirmed) {
+      return confirmed[date];
+    }
+    return undefined;
+  }
+
   async deathsAsync() {
     if (!this.covidRaw_.Death) {
       await this._fetchServerData();
