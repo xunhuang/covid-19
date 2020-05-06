@@ -14,7 +14,7 @@ function find_key_path(key, create = false) {
   let keyparts = key.split(",");
   let curobject = WorldData;
   while (keyparts.length > 0) {
-    let key = keyparts.pop().trim();
+    let key = keyparts.pop().trim().replace(/\|/g, ',');
     if (key.length === 0) {
       continue;
     }
@@ -52,16 +52,12 @@ const CountryKeyMap = {
 const DirectKeyMap = {
   "Taiwan*": "Taiwan",
   "Greenland": "Greenland, Denmark",
-  "Cayman Islands": "Cayman Islands, United Kingdom",
   "Channel Islands": "Channel Islands, United Kingdom",
   "Netherlands, Netherlands": "Netherlands",
   "Curacao": "Curacao, Netherlands",
   "Aruba": "Aruba, Netherlands",
   "Taipei and environs": "Taiwan",
   "Viet Nam": "Vietnam",
-  "Saint Barthelemy": "Saint Barthelemy, France",
-  "Faroe Islands": "Faroe Islands,Denmark",
-  "Gibraltar": "Gibraltar,United Kingdom",
   "French Guiana": "French Guiana,France",
   "Guadeloupe": "Guadeloupe, France",
   "Reunion": "Reunion, France",
@@ -78,6 +74,7 @@ const DirectKeyMap = {
   "The Gambia": "Gambia",
   "Republic of Moldova": "Moldova",
   "Republic of the Congo": "Congo (Brazzaville)",
+  "Saint Barthelemy": "Saint Barthélemy",
 }
 
 const ProvinceSkipList = [
@@ -128,13 +125,27 @@ const COMBINED_KEY_SKIP_LIST = [
 ];
 
 const COMBINED_KEY_REWRITE = {
+  "Anguilla, United Kingdom": "Anguilla",
+  "Aruba, Netherlands": "Aruba",
+  "Bermuda, United Kingdom": "Bermuda",
+  "British Virgin Islands, United Kingdom": "British Virgin Islands",
+  "Cayman Islands, United Kingdom": "Cayman Islands",
+  "Bonaire, Sint Eustatius and Saba, Netherlands": "Caribbean Netherlands",
+  "Bonaire| Sint Eustatius and Saba, Netherlands": "Caribbean Netherlands",
+  "Congo (Brazzaville)": "Brazzaville, Republic of the Congo",
+  "Congo (Kinshasa)": "Kinshasa, Democratic Republic of the Congo",
   "Falkland Islands (Islas Malvinas), United Kingdom": "Falkland Islands (Malvinas), United Kingdom",
+  "Faroe Islands, Denmark": "Faroe Islands",
   "Fench Guiana, France": "French Guiana, France",
-  "UK, United Kingdom": "United Kingdom",
+  "Gibraltar, United Kingdom": "Gibraltar",
+  "Greenland, Denmark": "Greenland",
+  "Isle of Man, United Kingdom": "Isle of Man",
   "Korea, South": "South Korea",
+  "Montserrat, United Kingdom": "Montserrat",
+  "Saint Barthelemy, France": "Saint Barthélemy",
   "Taiwan*": "Taiwan",
-  "Congo (Brazzaville)": "Brazzaville, Congo",
-  "Congo (Kinshasa)": "Kinshasa, Congo",
+  "Turks and Caicos Islands, United Kingdom": "Turks and Caicos Islands",
+  "UK, United Kingdom": "United Kingdom",
 }
 
 function CountryProvinceToCombinedKey(country, province) {
@@ -153,7 +164,8 @@ function CountryProvinceToCombinedKey(country, province) {
       if (province && province === country) {
         Combined_Key = country;
       } else if (province && province.length > 0 && province !== "None") {
-        Combined_Key = province + ", " + country;
+        Combined_Key =
+            province.replace(/,/g, '|') + ", " + country.replace(/,/g, '|');
       } else {
         Combined_Key = country;
       }
@@ -213,26 +225,27 @@ async function establish_name_spaces() {
   for (let file of files) {
     const json = await csv().fromFile(file);
     for (let entity of json) {
-      const state = entity["Province/State"];
-      let country = entity["Country/Region"];
+      const country = entity["Country/Region"];
+      const province = entity["Province/State"];
+      let Combined_Key = CountryProvinceToCombinedKey(country, province);
+
+      if (!Combined_Key) {
+        continue;
+      }
 
       if (CountrySkipList.includes(country)) {
         continue;
       }
 
-      if (COMBINED_KEY_REWRITE[country]) {
-        country = COMBINED_KEY_REWRITE[country];
+      if (COMBINED_KEY_REWRITE[Combined_Key]) {
+        Combined_Key = COMBINED_KEY_REWRITE[Combined_Key];
       }
 
-      if (ProvinceSkipList.includes(state)) {
+      if (ProvinceSkipList.includes(province)) {
         continue;
       }
 
-      if (state.length === 0) {
-        node = find_key_path(country, true);
-      } else {
-        node = find_key_path([state, country].join(","), true);
-      }
+      node = find_key_path(Combined_Key, true);
     }
   }
 
@@ -297,7 +310,8 @@ const ErrantNameToCountryCode = {
   "Bahamas": "BS",
   "Cabo Verde": "CV",
   "China": "CN",
-  "Congo": "CD",
+  "Democratic Republic of the Congo": "CD",
+  "Republic of the Congo": "CG",
   "Cote d'Ivoire": "CI",
   "Cyprus": "CY",
   "Czechia": "CZ",
@@ -317,9 +331,7 @@ const ErrantNameToCountryCode = {
   "Sint Maarten": "SX",
   Reunion: "FR-RE",
   "St Martin": "FR-MQ",
-  "Saint Barthelemy": "FR-BL",
   "Saint Pierre and Miquelon": "FR-PM",
-  "Sint Eustatius and Saba": "NL-BQ1",
   "Falkland Islands (Malvinas)": "FK",
 }
 
@@ -329,8 +341,9 @@ const RegionByCode = county_codes
     return m;
   }, {});
 
-function lookupISORegionByName(name) {
-  let entry = county_codes.find(e => e.areaLabel === name);
+function lookupISORegionByName(name, prefix) {
+  let entry = county_codes.find(
+      e => e.areaLabel === name && e.code.startsWith(prefix));
   if (entry) {
     return entry;
   }
@@ -351,13 +364,14 @@ function changeToCodeName(data, entry) {
       continue;
     }
     let country = data[k];
-    let subentry = lookupISORegionByName(k);
+    const codePrefix = entry ? entry.code + '-' : '';
+    let subentry = lookupISORegionByName(k, codePrefix);
     if (!subentry) {
       console.log(k);
     }
     let nCountry = changeToCodeName(country, subentry);
 
-    data[subentry.code] = nCountry;
+    data[subentry.code.replace(RegExp('^' + codePrefix), '')] = nCountry;
     delete data[k];
   }
 
