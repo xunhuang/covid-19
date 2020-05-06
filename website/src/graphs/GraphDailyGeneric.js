@@ -3,7 +3,7 @@ import {
     ResponsiveContainer, YAxis, XAxis, Tooltip,
     CartesianGrid, Legend, LineChart, Line
 } from 'recharts';
-import { myShortNumber } from '../Util.js';
+import { myShortNumber, useStickyState } from '../Util.js';
 import { computeMovingAverage, sortByFullDate, mergeDataSeries } from "./DataSeries";
 import { makeStyles } from '@material-ui/core/styles';
 import { Typography } from '@material-ui/core';
@@ -124,28 +124,17 @@ const GraphDailyGenericInner = (props) => {
 }
 
 const GraphDailyGeneric = (props) => {
-    const CookieSetPreference = (state) => {
-        Cookies.set("GraphDailyPreference", state, {
-            expires: 100
-        });
-    }
-    const CookieGetPreference = () => {
-        let pref = Cookies.getJSON("GraphDailyPreference");
-        if (!pref) {
-            return {
-                showlog: false,
-                showAllData: false,
-            }
-        }
-        return pref;
-    }
-    const [state, setState] = React.useState(CookieGetPreference());
+
+    const [state, setStateSticky] = useStickyState({
+        defaultValue: {
+            showlog: false,
+            showAllData: false,
+        },
+        cookieId: "GraphDailyPreference"
+    });
+
     const classes = useStyles();
 
-    const setStateSticky = (state) => {
-        CookieSetPreference(state);
-        setState(state);
-    }
     const handleShowAllData = event => {
         let newstate = { ...state, showAllData: !state.showAllData };
         setStateSticky(newstate);
