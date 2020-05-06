@@ -280,7 +280,11 @@ function summarize_recursively(data) {
 
   if (!leafnode) {
     for (const key of KeyFields) {
-      data[key] = aggregate[key];
+      data[key] =
+          Object.fromEntries(
+              Object.entries(aggregate[key])
+                  .sort(([aDate,], [bDate,]) =>
+                      moment(aDate, "MM/DD/YYYY").diff(moment(bDate, "MM/DD/YYYY"))));
       const CC = Util.getValueFromLastDate(aggregate[key]);
       Summary["Last" + key] = CC.num;
       Summary[`Last${key}New`] = CC.newnum;
@@ -379,8 +383,8 @@ async function main() {
 main().then(() => {
   // console.log(WorldData);
   // WorldData["United States"] = WorldData.US;
-  delete WorldData.US;
-  console.log(JSON.stringify(WorldData, null, 2));
+  // delete WorldData.US;
+  // console.log(JSON.stringify(WorldData, null, 2));
   const content = JSON.stringify(WorldData, null, 2);
   fs.writeFileSync("./src/data/WorldData.json", content);
 })

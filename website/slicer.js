@@ -4,6 +4,8 @@ const AllData = require("./src/data/AllData.json");
 const topdir = "./public/AllData";
 mkdir_p(topdir);
 
+fs.writeFileSync(`${topdir}/AllData.json`, JSON.stringify(AllData, null, 2));
+
 function mkdir_p(dir) {
     if (!fs.existsSync(dir)) {
         fs.mkdirSync(dir);
