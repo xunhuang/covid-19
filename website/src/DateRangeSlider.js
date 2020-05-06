@@ -27,9 +27,12 @@ const DateRangeSlider = (props) => {
     const startDate = moment(props.startDate);
     const currentDate = moment(props.currentDate);
     const daysBetween = currentDate.diff(startDate, 'days');
-    let defaultValue = props.defaultValue ? (daysBetween - props.defaultValue) : daysBetween - 30
+
+    let defaultValue = props.defaultValue !== undefined ? (daysBetween - props.defaultValue) : daysBetween - 30
     defaultValue = (defaultValue > -1) ? defaultValue : 0;
-    const maxValue = (daysBetween > 13) ? daysBetween - 14 : daysBetween;
+
+    const defaultMaxValue = (daysBetween > 13) ? daysBetween - 14 : daysBetween;
+    const maxValue = props.minOffset !== undefined ? daysBetween - props.minOffset : defaultMaxValue
 
     const [valueState, setValueState] = React.useState(defaultValue)
 
