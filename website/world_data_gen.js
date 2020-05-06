@@ -379,8 +379,8 @@ async function main() {
 main().then(() => {
   // console.log(WorldData);
   // WorldData["United States"] = WorldData.US;
-  delete WorldData.US;
-  console.log(JSON.stringify(WorldData, null, 2));
+  // delete WorldData.US;
+  // console.log(JSON.stringify(WorldData, null, 2));
   const content = JSON.stringify(WorldData, null, 2);
   fs.writeFileSync("./src/data/WorldData.json", content);
 })
