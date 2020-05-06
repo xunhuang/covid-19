@@ -371,11 +371,13 @@ function changeToCodeName(data, entry, depth) {
       console.log(k);
     }
 
-    let dataKey;
     if (subentry) {
-      dataKey = subentry.code.replace(RegExp('^' + codePrefix), '');
+      subentry.code = subentry.code.replace(RegExp('^' + codePrefix), '');
     } else if (nextDepth >= 2) {
-      dataKey = k;
+      subentry = {
+        areaLabel: k,
+        code: k,
+      };
     } else {
       throw new Error(`Depth is ${depth} but can't find code`);
     }
@@ -383,7 +385,7 @@ function changeToCodeName(data, entry, depth) {
     let nCountry = changeToCodeName(country, subentry, nextDepth);
 
     delete data[k];
-    data[dataKey] = nCountry;
+    data[subentry.code] = nCountry;
   }
 
   if (entry) {
