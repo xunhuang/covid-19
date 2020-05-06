@@ -39,11 +39,11 @@ const MainApp = withRouter((props) => {
     setCountry(myCountry);
 
     fetchCounty().then(countyDescr => {
-        const county = makeCountyFromDescription(myCountry, countyDescr);
-        setMyCounty(county);
-        logger.logEvent("AppStart", {
-            myCounty: county,
-        });
+      const county = makeCountyFromDescription(myCountry, countyDescr);
+      setMyCounty(county);
+      logger.logEvent("AppStart", {
+        myCounty: county,
+      });
     });
   }, []);
 
@@ -82,7 +82,7 @@ class UnhookedSafeRoutes extends React.Component {
   }
 
   static successStateFor(props) {
-    return {errored: false, location: props.location};
+    return { errored: false, location: props.location };
   }
 
   constructor(props) {
@@ -91,7 +91,7 @@ class UnhookedSafeRoutes extends React.Component {
   }
 
   componentDidCatch(error, info) {
-    this.setState({errored: true});
+    this.setState({ errored: true });
   }
 
   render() {
