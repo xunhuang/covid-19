@@ -4,7 +4,7 @@ import { trimLastDaysData, getDay2DoubleTimeSeries, getGrowthRateTimeSeries } fr
 import { CountyInfo } from 'covidmodule';
 import { fetchNPRProjectionData } from "./NPRProjection"
 import { fetchTestingDataStates, fetchTestingDataUS } from "./TestingData"
-import { fetchPublicCountyData } from "./PublicAllData"
+import { fetchPublicCountyData, fetchAllUSData } from "./PublicAllData"
 
 const CovidData = require('./data/AllData.slim.json');
 const CountyGeoData = require('./data/county_gps.json');
@@ -167,6 +167,24 @@ export class Country extends CovidSummarizable {
     }
 
     this.statesById_.forEach(state => state.reindex());
+  }
+
+  async fetchAllUSCountyData() {
+    let countydata = await fetchAllUSData();
+    for (const [id, stateraw] of Object.entries(countydata)) {
+      // Check if this looks like a state FIPS id
+      if (isNaN(id)) {
+        continue;
+      }
+
+      for (const [fips, countyraw] of Object.entries(stateraw)) {
+        if (isNaN(fips)) {
+          continue;
+        }
+        const county = this.countiesById_.get(fips);
+        county.covidRaw_ = countyraw;
+      }
+    }
   }
 
   parent() {
