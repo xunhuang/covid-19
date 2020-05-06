@@ -5,7 +5,7 @@ const Util = require('covidmodule').Util;
 
 const confirmedfile = "../COVID-19/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv";
 const deathfile = "../COVID-19/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv";
-const county_codes = require("../data/worlddata/country_regions.json").filter(region => !region.code.includes("US-"));
+const county_codes = require("../data/worlddata/country_regions.json");//.filter(region => !region.code.includes("US-"));
 
 const KeyFields = ["Confirmed", "Active", "Recovered", "Deaths"];
 let WorldData = {};
@@ -351,28 +351,39 @@ function lookupISORegionByName(name, prefix) {
   return RegionByCode[code];
 }
 
-function changeToCodeName(data, entry) {
+function changeToCodeName(data, entry, depth) {
   if (!data) {
     return;
   }
 
+  const nextDepth = depth + 1;
   for (const k in data) {
     if (KeyFields.includes(k)) {
       continue;
     }
-    if (k === "US") {
-      continue;
-    }
+    //if (k === "US") {
+    //  continue;
+    //}
     let country = data[k];
     const codePrefix = entry ? entry.code + '-' : '';
     let subentry = lookupISORegionByName(k, codePrefix);
     if (!subentry) {
       console.log(k);
     }
-    let nCountry = changeToCodeName(country, subentry);
 
-    data[subentry.code.replace(RegExp('^' + codePrefix), '')] = nCountry;
+    let dataKey;
+    if (subentry) {
+      dataKey = subentry.code.replace(RegExp('^' + codePrefix), '');
+    } else if (nextDepth >= 2) {
+      dataKey = k;
+    } else {
+      throw new Error(`Depth is ${depth} but can't find code`);
+    }
+
+    let nCountry = changeToCodeName(country, subentry, nextDepth);
+
     delete data[k];
+    data[dataKey] = nCountry;
   }
 
   if (entry) {
@@ -390,7 +401,7 @@ function changeToCodeName(data, entry) {
 async function main() {
   await establish_name_spaces();
   await process_all_JHU_files();
-  changeToCodeName(WorldData, null);
+  changeToCodeName(WorldData, null, 0);
   summarize_recursively(WorldData);
 }
 
