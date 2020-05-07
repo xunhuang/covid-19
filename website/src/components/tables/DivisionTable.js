@@ -6,6 +6,7 @@ import {Link as RouterLink} from 'react-router-dom';
 import {BasicDataComponent} from '../../models/BasicDataComponent';
 import {ChildrenComponent} from '../../models/ChildrenComponent';
 import {NameComponent} from '../../models/NameComponent';
+import {PopulationComponent} from '../../models/PopulationComponent';
 import {Path} from '../../models/Path';
 import {SortableTable} from './SortableTable';
 import {WorldContext} from '../../WorldContext';
@@ -21,21 +22,31 @@ export const DivisionTable = (props) => {
 
   const columns = [
     {key: 'name', label: 'Name', defaultDirection: 'asc'},
-    {key: 'confirmed', label: 'Confirmed', defaultDirection: 'desc'},
-    {key: 'new', label: 'New', defaultDirection: 'desc'},
-    {key: 'active', label: 'Active', defaultDirection: 'desc'},
-    {key: 'recovered', label: 'Recovered', defaultDirection: 'desc'},
+    {key: 'confirmed', label: 'Confirmed', defaultDirection: 'desc', contextKey: 'confirmedChange'},
+    {key: 'confirmedPerMillion', label: 'Confirmed/million', defaultDirection: 'desc'},
     {key: 'died', label: 'Died', defaultDirection: 'desc'},
+    {key: 'doublingInterval', label: 'Days to double', shortLabel: 'Days 2x', defaultDirection: 'asc'},
   ];
   const defaultSortColumn = columns[1];
 
   const rows = [];
   for (const child of children) {
-    const [name, basic] =
-        world.getMultiple(child, [NameComponent, BasicDataComponent]);
+    const [name, basic, population] =
+        world.getMultiple(child, [NameComponent, BasicDataComponent, PopulationComponent]);
     if (!name || !basic) {
       continue;
     }
+
+    const confirmed = basic.confirmed().lastValue();
+    const newConfirmed = basic.confirmed().change().today();
+    const confirmedChange =
+        !newConfirmed || newConfirmed === confirmed
+            ? ''
+            : Math.round(newConfirmed / confirmed * 1000) / 10 + '%';
+    const confirmedPerMillion =
+        population
+            ? Math.round(confirmed / population.population() * 1000000)
+            : '';
 
     rows.push({
       id: child.string(),
@@ -43,11 +54,12 @@ export const DivisionTable = (props) => {
           <MaterialLink key={name.english()} component={RouterLink} to={'/country' + child.string()}>
             {name.english()}
           </MaterialLink>,
-      confirmed: basic.confirmed().lastValue(),
-      new: basic.confirmed().change().today(),
-      active: basic.active().lastValue(),
-      recovered: basic.recovered().lastValue(),
+      confirmed,
+      confirmedChange,
+      confirmedPerMillion,
+      active: basic.active().today(),
       died: basic.died().lastValue(),
+      doublingInterval: basic.doublingInterval().today(),
     });
   }
 

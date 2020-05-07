@@ -5,6 +5,7 @@ export class BasicDataComponent {
     this.active_ = active;
     this.recovered_ = recovered;
     this.died_ = died;
+    this.doublingInterval_ = confirmed.doublingInterval();
   }
 
   confirmed() {
@@ -21,5 +22,9 @@ export class BasicDataComponent {
 
   died() {
     return this.died_;
+  }
+
+  doublingInterval() {
+    return this.doublingInterval_;
   }
 }
