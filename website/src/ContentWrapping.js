@@ -4,7 +4,7 @@ import Disqus from "disqus-react"
 import { MyTabs } from "./MyTabs.js";
 import Typography from '@material-ui/core/Typography'
 import { makeStyles } from '@material-ui/core/styles';
-import { FacebookProvider, CommentsCount, Comments } from 'react-facebook';
+import { FacebookProvider, Comments } from 'react-facebook';
 import { useHistory } from "react-router-dom";
 import { Link as MaterialLink } from '@material-ui/core';
 import { Grid } from '@material-ui/core';
