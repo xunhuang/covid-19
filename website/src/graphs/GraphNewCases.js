@@ -11,7 +11,6 @@ import { AntSwitch } from "./AntSwitch.js"
 import { DateRangeSlider } from "../DateRangeSlider"
 import axisScales from './GraphAxisScales'
 
-const Cookies = require("js-cookie");
 const moment = require("moment");
 const scale = scaleSymlog().domain([0, 'dataMax']);
 
@@ -93,12 +92,12 @@ const BasicGraph = (props) => {
   let data = props.USData;
   const column = props.column;
   const [state, setStateSticky] = useStickyState({
-      defaultValue: {
-          verticalScale: axisScales.linear,
-          showPastDays: 30,
-      },
-      cookieId: "BasicGraphPreference1",
-      isCookieStale: cookieStaleWhen
+    defaultValue: {
+      verticalScale: axisScales.linear,
+      showPastDays: 30,
+    },
+    cookieId: "BasicGraphPreference1",
+    isCookieStale: cookieStaleWhen
   });
   const handleLogScaleToggle = (event, newScale) => {
     setStateSticky({
@@ -233,11 +232,11 @@ const BasicGraph = (props) => {
         <YAxis yAxisId={1} tickFormatter={(t) => myShortNumber(t)} width={10} tick={{ fill: props.colorNew }} orientation="right" />
 
         <CartesianGrid stroke="#d5d5d5" strokeDasharray="5 5" />
-        <Line type="monotone" dataKey="trending_line" strokeDasharray="2 2" stroke={props.colorTotal} yAxisId={0} dot={false} strokeWidth={2} />
+        <Line type="monotone" dataKey="trending_line" strokeDasharray="1 3" stroke={props.colorTotal} yAxisId={0} dot={false} strokeWidth={2} />
         <Line type="monotone" dataKey="total" stroke={props.colorTotal} yAxisId={0} dot={{ r: 1 }} strokeWidth={2} />
         <Line type="monotone" dataKey="pending_confirmed" stroke={props.colorTotal} dot={{ r: 1 }} strokeDasharray="2 2" strokeWidth={2} />
         <Line type="monotone" dataKey="newcase_avg" stroke={props.colorNew} yAxisId={1} dot={{ r: 1 }} strokeWidth={2} />
-        <Line type="monotone" dataKey="newcase" stroke={props.colorNew} strokeDasharray="1 3" yAxisId={1} dot={{ r: 1 }} strokeWidth={2} />
+        <Line type="monotone" dataKey="newcase" stroke={props.colorNew} strokeDasharray="1 4" yAxisId={1} dot={{ r: 1 }} strokeWidth={1} />
         <Line type="monotone" dataKey="pending_newcase" stroke={props.colorNew} yAxisId={1} dot={{ r: 1 }} strokeDasharray="2 2" strokeWidth={2} />
 
         <Line visibility="hidden" dataKey="pending_death" />
