@@ -1,15 +1,32 @@
 import React from "react";
 import ToggleButton from '@material-ui/lab/ToggleButton';
 import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
+import { Typography } from '@material-ui/core';
 import * as d3 from "d3-scale";
 
 import { AntSwitch } from "./graphs/AntSwitch"
-import { Grid } from '@material-ui/core';
+import { Grid, makeStyles } from '@material-ui/core';
 import { withRouter } from 'react-router-dom'
 import { NO_DATA_COLOR, MapCountyGeneric } from "./MapCountyGeneric"
 import { MapStateGeneric } from "./MapStateGeneric";
 import { Country } from "./UnitedStates";
 import { CountryContext } from "./CountryContext"
+import { DateRangeSlider } from "./DateRangeSlider"
+import { getOldestMomentInData } from "./Util"
+
+const moment = require("moment");
+
+const useStyles = makeStyles(theme => ({
+  gridPadding: {
+    minWidth: '1vw'
+  },
+  container: {
+    minHeight: 45
+  },
+  dateLabel: {
+    width: 45
+  }
+}));
 
 const logColors = () => {
   return d3.scaleLog().clamp(true);
@@ -71,6 +88,8 @@ const CountyNavButtons = withRouter((props) => {
 });
 
 const MapUS = withRouter((props) => {
+  const classes = useStyles()
+
   const source = props.source;
   const [perCapita, setPerCapita] = React.useState(true);
   const [selectedCounty, setSelectedCounty] = React.useState(null);
@@ -121,22 +140,68 @@ const MapUS = withRouter((props) => {
     )}
   </ToggleButtonGroup>;
 
+  const [dataFetched, setDataFetched] = React.useState(null);
+  const [showPastDays, setShowPastDays] = React.useState(0);
+  const [oldestMoment, setOldestMoment] = React.useState(null);
+
+  const getDate = (isDataFetched, showPastNumDays) => {
+    return isDataFetched ? moment().subtract(showPastNumDays, 'days').format('MM/DD/YYYY') : null
+  }
+
+  React.useEffect(() => {
+    if (source) {
+      source.dataPointsAsync().then((data) => {
+        setOldestMoment(getOldestMomentInData(data));
+      });
+    }
+  }, [source]);
+
+
+  const country = React.useContext(CountryContext);
+
+  React.useEffect(() => {
+    if (country) {
+      country.fetchAllUSCountyData().then(() => {
+        setDataFetched(true);
+      });
+    }
+  }, [country]);
+
   return <div>
     {buttonGroup}
-    <Grid container alignItems="center">
+    <Grid container alignItems="center" spacing={1} className={classes.container}>
       <Grid item>
         <AntSwitch checked={perCapita} onClick={() => { setPerCapita(!perCapita) }} />
       </Grid>
       <Grid item>
-        Per Capita
-            </Grid>
+        <Typography>Per Capita</Typography>
+      </Grid>
+      {dataFetched && oldestMoment && desired === "confirmed" ?
+        <Grid item>
+          <Typography align="right" className={classes.dateLabel}>{moment().subtract(showPastDays, 'days').format('M/D')}:</Typography>
+        </Grid>
+      : <></>}
+      {dataFetched && oldestMoment && desired === "confirmed" ?
+        <Grid item xs sm={3}>
+          <DateRangeSlider
+            startDate={moment(oldestMoment)}
+            currentDate={moment()}
+            minOffset={0}
+            defaultValue={showPastDays}
+            valueChanged={(val) => {
+              setShowPastDays(val);
+            }}
+          />
+        </Grid>
+      : <></>}
+      <Grid item sm></Grid>
+      <Grid className={classes.gridPadding}></Grid>
     </Grid>
-    <ChosenMap {...props} source={source} perCapita={perCapita} selectionCallback={setSelectedCounty} />
+    <ChosenMap {...props} date={getDate(dataFetched, showPastDays)} source={source} perCapita={perCapita} selectionCallback={setSelectedCounty} />
     {
       selectedCounty &&
       <CountyNavButtons county={selectedCounty} />
     }
-
   </div >
 });
 
@@ -168,20 +233,12 @@ const MapDaysToDouble = React.memo((props) => {
 });
 
 const MapUSConfirmed = React.memo((props) => {
-  const [date, setDate] = React.useState(null);
-  const country = React.useContext(CountryContext);
-  React.useEffect(() => {
-    // country.fetchAllUSCountyData().then(() => {
-    //   // active slider here 
-    //   setDate("04/01/2020");
-    // });
-  }, [country]);
 
   return (
     <MapCountyGeneric
       {...props}
       getCountyDataPoint={(county) => {
-        return county.getConfirmedByDate(date);
+        return county.getConfirmedByDate(props.date);
       }}
       colorFunction={(data) => {
         return ColorScale.confirmed(data);
@@ -190,7 +247,7 @@ const MapUSConfirmed = React.memo((props) => {
         return ColorScale.confirmedPerMillion(data);
       }}
       toolip={county => {
-        let confirmed = county.getConfirmedByDate(date);
+        let confirmed = county.getConfirmedByDate(props.date);
         return `${county.name}, Confirmed: ${confirmed}, \n` +
           `Confirm/Mil: ${(confirmed / county.population() * 1000000).toFixed(0)}`
       }}
