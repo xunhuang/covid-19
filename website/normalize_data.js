@@ -1,5 +1,4 @@
-
-
+const csv = require('csvtojson')
 const moment = require("moment");
 const states = require('us-state-codes');
 const fs = require('fs');
@@ -455,7 +454,7 @@ function summarize_states() {
       Death = fillarrayholes(Death, true);
     }
 
-    let Summary = {};
+    let Summary = state.Summary ? state.Summary : {};
     Summary.StateFIPS = s;
     Summary.Confirmed = Confirmed;
     Summary.Death = Death;
@@ -1088,11 +1087,42 @@ function processTestData() {
   }
 }
 
-// --------------------------------------------------------------
-// ---- Processing area
-// --------------------------------------------------------------
-process_USAFACTS(); // this sites tracks county level data before JHU
-processAllJHUGithub().then(() => {
+function exportIntColumnFromDataSeries(data, column) {
+  let ret = data.reduce((m, b) => {
+    m[b.fulldate] = parseInt(b[column]);
+    return m;
+  }, {})
+  return ret
+}
+
+async function addMITProjection() {
+  const file = "../data/projections/MIT-05-07-2020.csv";
+  const json = await csv().fromFile(file);
+  for (s in AllData) {
+    state = AllData[s];
+    let Summary = state.Summary ? state.Summary : {};
+    let statename = CountyInfo.getStateNameFromFips(s);
+    let data = json.filter(s => s.Province === statename && s.Country === "US");
+    if (data.length >= 0) {
+      data = data.map(a => {
+        a.fulldate = moment(a.Day, "YYYY-MM-DD").format("MM/DD/YYYY");
+        return a;
+      });
+      Summary.ProjectionMIT = {
+        Confirmed: exportIntColumnFromDataSeries(data, 'Total Detected'),
+        // Active: exportIntColumnFromDataSeries(data, 'Active'),
+        // HospitaliedCurrently: exportIntColumnFromDataSeries(data, 'Active Hospitalized'),
+        // HospitalizationCumulative: exportIntColumnFromDataSeries(data, 'Cumulative Hospitalized'),
+        // Deaths: exportIntColumnFromDataSeries(data, 'Total Detected Deaths'),
+        // ICUCurrently: exportIntColumnFromDataSeries(data, 'Active Ventilated'),
+      };
+    }
+  }
+}
+
+async function main() {
+  process_USAFACTS(); // this sites tracks county level data before JHU
+  await processAllJHUGithub();
   processAllJHU();
   fillholes();
   summarize_counties();
@@ -1107,7 +1137,11 @@ processAllJHUGithub().then(() => {
   addUSRecovery();
   addStateRecovery();
   processTestData();
+  await addMITProjection();
+}
+
+main().then(() => {
   const contentPretty = JSON.stringify(AllData, null, 2);
+  console.log(contentPretty);
   fs.writeFileSync("./src/data/AllData.json", contentPretty);
-  // console.log(contentPretty);
-});
+})
