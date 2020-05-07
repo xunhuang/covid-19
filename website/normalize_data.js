@@ -39,6 +39,8 @@ for (let statefips of AllStateFips) {
   };
 }
 
+AllData.Summary = {};
+
 // --------------------------------------------------------------
 // ---- function area
 // --------------------------------------------------------------
@@ -494,7 +496,7 @@ function summarize_USA() {
     mergeTwoMapValues(USDeath, state.Summary.Death)
   }
 
-  let Summary = {};
+  let Summary = AllData.Summary;
   Summary.Confirmed = USConfirmed;
   Summary.Death = USDeath;
 
@@ -1096,18 +1098,25 @@ function exportIntColumnFromDataSeries(data, column) {
 }
 
 async function addMITProjection() {
+
+  function getDataFor(src, state) {
+    let data = src.filter(s => s.Province === state && s.Country === "US");
+    data = data.map(a => {
+      a.fulldate = moment(a.Day, "YYYY-MM-DD").format("MM/DD/YYYY");
+      return a;
+    });
+    return data;
+  }
+
   const file = "../data/projections/MIT-05-07-2020.csv";
   const json = await csv().fromFile(file);
   for (s in AllData) {
     state = AllData[s];
     let Summary = state.Summary ? state.Summary : {};
     let statename = CountyInfo.getStateNameFromFips(s);
-    let data = json.filter(s => s.Province === statename && s.Country === "US");
+
+    let data = getDataFor(json, statename);
     if (data.length >= 0) {
-      data = data.map(a => {
-        a.fulldate = moment(a.Day, "YYYY-MM-DD").format("MM/DD/YYYY");
-        return a;
-      });
       Summary.ProjectionMIT = {
         Confirmed: exportIntColumnFromDataSeries(data, 'Total Detected'),
         // Active: exportIntColumnFromDataSeries(data, 'Active'),
@@ -1117,6 +1126,10 @@ async function addMITProjection() {
         // ICUCurrently: exportIntColumnFromDataSeries(data, 'Active Ventilated'),
       };
     }
+  }
+  const data = getDataFor(json, "None");
+  AllData.Summary.ProjectionMIT = {
+    Confirmed: exportIntColumnFromDataSeries(data, 'Total Detected'),
   }
 }
 
@@ -1142,6 +1155,6 @@ async function main() {
 
 main().then(() => {
   const contentPretty = JSON.stringify(AllData, null, 2);
-  console.log(contentPretty);
+  // console.log(contentPretty);
   fs.writeFileSync("./src/data/AllData.json", contentPretty);
 })
