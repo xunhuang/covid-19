@@ -142,20 +142,11 @@ const MapUS = withRouter((props) => {
 
   const [dataFetched, setDataFetched] = React.useState(null);
   const [showPastDays, setShowPastDays] = React.useState(0);
-  const [oldestMoment, setOldestMoment] = React.useState(null);
+  const oldestMoment = moment("03/10/2020", "MM/DD/YYYY");
 
   const getDate = (isDataFetched, showPastNumDays) => {
     return isDataFetched ? moment().subtract(showPastNumDays, 'days').format('MM/DD/YYYY') : null
   }
-
-  React.useEffect(() => {
-    if (source) {
-      source.dataPointsAsync().then((data) => {
-        setOldestMoment(getOldestMomentInData(data));
-      });
-    }
-  }, [source]);
-
 
   const country = React.useContext(CountryContext);
 
@@ -180,7 +171,7 @@ const MapUS = withRouter((props) => {
         <Grid item>
           <Typography align="right" className={classes.dateLabel}>{moment().subtract(showPastDays, 'days').format('M/D')}:</Typography>
         </Grid>
-      : <></>}
+        : <></>}
       {dataFetched && oldestMoment && desired === "confirmed" ?
         <Grid item xs sm={3}>
           <DateRangeSlider
@@ -193,7 +184,7 @@ const MapUS = withRouter((props) => {
             }}
           />
         </Grid>
-      : <></>}
+        : <></>}
       <Grid item sm></Grid>
       <Grid className={classes.gridPadding}></Grid>
     </Grid>
