@@ -1,6 +1,7 @@
 import React from "react";
 import ToggleButton from '@material-ui/lab/ToggleButton';
 import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
+import { Typography } from '@material-ui/core';
 import * as d3 from "d3-scale";
 
 import { AntSwitch } from "./graphs/AntSwitch"
@@ -11,7 +12,7 @@ import { MapStateGeneric } from "./MapStateGeneric";
 import { Country } from "./UnitedStates";
 import { CountryContext } from "./CountryContext"
 import { DateRangeSlider } from "./DateRangeSlider"
-import { useStickyState } from "./Util"
+import { getOldestMomentInData } from "./Util"
 
 const moment = require("moment");
 
@@ -21,6 +22,9 @@ const useStyles = makeStyles(theme => ({
   },
   container: {
     minHeight: 45
+  },
+  dateLabel: {
+    width: 45
   }
 }));
 
@@ -137,11 +141,21 @@ const MapUS = withRouter((props) => {
   </ToggleButtonGroup>;
 
   const [dataFetched, setDataFetched] = React.useState(null);
-  const [showPastDays, setShowPastDays] = React.useState(0)
+  const [showPastDays, setShowPastDays] = React.useState(0);
+  const [oldestMoment, setOldestMoment] = React.useState(null);
 
   const getDate = (isDataFetched, showPastNumDays) => {
     return isDataFetched ? moment().subtract(showPastNumDays, 'days').format('MM/DD/YYYY') : null
   }
+
+  React.useEffect(() => {
+    if (source) {
+      source.dataPointsAsync().then((data) => {
+        setOldestMoment(getOldestMomentInData(data));
+      });
+    }
+  }, [source]);
+
 
   const country = React.useContext(CountryContext);
 
@@ -160,19 +174,18 @@ const MapUS = withRouter((props) => {
         <AntSwitch checked={perCapita} onClick={() => { setPerCapita(!perCapita) }} />
       </Grid>
       <Grid item>
-        Per Capita
+        <Typography>Per Capita</Typography>
       </Grid>
-      <Grid className={classes.gridPadding}></Grid>
-      {dataFetched && desired === "confirmed" ?
+      {dataFetched && oldestMoment && desired === "confirmed" ?
         <Grid item>
-          {getDate(dataFetched, showPastDays)}:
+          <Typography align="right" className={classes.dateLabel}>{moment().subtract(showPastDays, 'days').format('M/D')}:</Typography>
         </Grid>
       : <></>}
-      {dataFetched && desired === "confirmed" ?
+      {dataFetched && oldestMoment && desired === "confirmed" ?
         <Grid item xs sm={3}>
           <DateRangeSlider
+            startDate={moment(oldestMoment)}
             currentDate={moment()}
-            startDate={moment({ year: 2020, month: 3, day: 1 })}
             minOffset={0}
             defaultValue={showPastDays}
             valueChanged={(val) => {
