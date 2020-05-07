@@ -84,12 +84,6 @@ class UnhookedGraphSection extends React.Component {
       });
     }
 
-    tabs.set('growthRate', {
-      label: "Growth",
-      content: GraphGrowthRateOverTime,
-      showRibbon: true,
-    });
-
     const maybeMap = maybeMapTabFor(source);
     if (maybeMap) {
       tabs.set(maybeMap.id, {
@@ -98,6 +92,11 @@ class UnhookedGraphSection extends React.Component {
         showRibbon: true,  // TO SHOW THE RIBBON ADD A LINE LIKE THIS
       });
     }
+
+    tabs.set('growthRate', {
+      label: "Growth",
+      content: GraphGrowthRateOverTime,
+    });
 
     tabs.set('days2x', {
       label: "Doubling",
