@@ -11,6 +11,7 @@ import {DivisionTable} from '../components/tables/DivisionTable';
 import {DivisionTypesComponent} from '../models/DivisionTypesComponent';
 import {DonateLink} from '../components/chrome/DonateLink';
 import {Footer} from '../Footer';
+import {GeographyComponent} from '../models/GeographyComponent';
 import {NameComponent} from '../models/NameComponent';
 import {Path} from '../models/Path';
 import {SocialMediaButtons} from '../components/chrome/SocialMediaButtons';
@@ -19,6 +20,7 @@ import {WorldContext} from '../WorldContext';
 const shortNumber = require('short-number');
 
 const HORIZONTAL_MARGIN = '16px';
+const NEARBY_TO_SHOW = 10;
 
 const useStyles = makeStyles(theme => ({
   body: {
@@ -50,11 +52,24 @@ export const PageRegion = withRouter((props) => {
     return <Redirect to="/US" />;
   }
 
-  const basic = world.get(path, BasicDataComponent);
+  const [basic, divisions, geography] =
+      world.getMultiple(
+          path,
+          [BasicDataComponent, DivisionTypesComponent, GeographyComponent]);
   if (!basic) {
     throw new Error(`${path.string()} has no basic component`);
   }
-  const divisions = world.get(path, DivisionTypesComponent);
+
+  const parentDivision = path.parent();
+  const showNearby = geography && parentDivision;
+  const couldBeNearby = (candidate) =>
+      !path.equals(candidate) && world.has(candidate, GeographyComponent);
+  const distanceTo = (candidate) => {
+    const theirGeography = world.get(candidate, GeographyComponent);
+    // This is kind of garbage, we're comparing a point to a point. Really
+    // should be comparing bounds, but we don't have those.
+    return geography.distance(theirGeography);
+  };
 
   return (
     <div className={classes.body}>
@@ -76,12 +91,23 @@ export const PageRegion = withRouter((props) => {
             divisions.types().map(({id, plural}) =>
               <DivisionTable
                   key={id}
-                  id={id}
                   plural={plural}
-                  parent={path}
+                  parent={id ? path.child(id) : path}
                   className={classes.section}
               />
             )}
+
+          {showNearby &&
+              <DivisionTable
+                  parent={parentDivision}
+                  plural="Nearby"
+                  className={classes.section}
+                  filter={couldBeNearby}
+                  pickLowest={{
+                    count: NEARBY_TO_SHOW,
+                    quantifier: distanceTo,
+                  }}
+              />}
         </Paper>
         <Footer />
     </div>

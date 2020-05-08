@@ -15,10 +15,7 @@ import {WorldContext} from '../../WorldContext';
 export const DivisionTable = (props) => {
   const world = useContext(WorldContext);
   const children =
-      world.get(
-              props.id ? props.parent.child(props.id) : props.parent,
-              ChildrenComponent)
-          .children();
+      world.get(props.parent, ChildrenComponent).children();
 
   const columns = [
     {key: 'name', label: 'Name', defaultDirection: 'asc'},
@@ -29,8 +26,22 @@ export const DivisionTable = (props) => {
   ];
   const defaultSortColumn = columns[1];
 
+  let picked;
+  if (props.pickLowest) {
+    const {count, quantifier} = props.pickLowest;
+    picked =
+        children.sort((a, b) => quantifier(a) - quantifier(b))
+            .slice(0, count);
+  } else {
+    picked = children;
+  }
+
   const rows = [];
-  for (const child of children) {
+  for (const child of picked) {
+    if (props.filter && !props.filter(child)) {
+      continue;
+    }
+
     const [name, basic, population] =
         world.getMultiple(child, [NameComponent, BasicDataComponent, PopulationComponent]);
     if (!name || !basic) {
@@ -76,8 +87,12 @@ export const DivisionTable = (props) => {
 };
 
 DivisionTable.propTypes = {
-  id: PropTypes.string.isRequired,
-  plural: PropTypes.string.isRequired,
   parent: PropTypes.instanceOf(Path).isRequired,
+  plural: PropTypes.string.isRequired,
   className: PropTypes.string,
+  filter: PropTypes.func,
+  pickLowest: PropTypes.exact({
+    count: PropTypes.number.isRequired,
+    quantifier: PropTypes.func.isRequired,
+  }),
 };
