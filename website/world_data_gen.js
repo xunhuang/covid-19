@@ -20,6 +20,22 @@ const RegionByCode = county_codes
     return m;
   }, {});
 
+function regionAsExtended(key, region) {
+  let name;
+  if (EXPORT_NAME_OVERRIDE[key]) {
+    name = EXPORT_NAME_OVERRIDE[key];
+  } else {
+    name = region.areaLabel;
+  }
+
+  return {
+    name,
+    population: parseInt(region.population),
+    latitude: parseFloat(region.lat),
+    longitude: parseFloat(region.lon),
+  };
+}
+
 // If a component is prefixed by any of these, it will be dropped (but the
 // numbers will still be attributed at a higher level.)
 const COMPONENT_PREFIX_SKIP_SET = [
@@ -139,7 +155,7 @@ const CHILD_REGEX_RULES = {
   ],
 };
 
-// A map from code to names to foce on export
+// A map from code to names to force on export
 const EXPORT_NAME_OVERRIDE = {
   "CN": "China",
   "CZ": "Czechia",
@@ -155,25 +171,25 @@ class DefaultAbsorberMap {
     this.extendedData = new Map();
   }
 
-  set(key, name, population, timestamp, values) {
+  set(key, name, extended, timestamp, values) {
     if (key === '') {
-      name = 'Earth';
-      population = 7782760616;
+      extended.name = 'Earth';
+      extended.population = 7782760616;
     }
+
+    const currentName = (this.extendedData.get(key) || {}).name;
+    extended.name = extended.name || name;
 
     if (!this.timestampsByKey.has(key)) {
       this.timestampsByKey.set(key, new Map());
-      this.extendedData.set(key, {
-        name,
-        population,
-      });
-    } else if (this.extendedData.get(key).name.length <= 2) {
-      // The previous name is likely an ID, so just replace it
-      this.extendedData.get(key).name = name;
-    } else if (this.extendedData.get(key).name != name && name.length > 2) {
+      this.extendedData.set(key, extended);
+    } else if (!currentName || currentName.length <= 2) {
+      // The previous name is likely an ID, so just replace all our data
+      this.extendedData.set(key, extended);
+    } else if (currentName != extended.name && extended.name.length > 2) {
       // Check if it's longer than two since it's likely just a garbage ID
       console.error(this.extendedData.get(key));
-      console.error(name);
+      console.error(extended.name);
       throw new Error('Name mismatch for ' + key);
     }
 
@@ -219,10 +235,7 @@ class DefaultAbsorberMap {
           const predictedCode = split.slice(0, i).join('-');
           const region = RegionByCode[predictedCode];
           if (region) {
-            this.extendedData.set(ancestor, {
-              name: region.areaLabel,
-              population: region.population,
-            });
+            this.extendedData.set(ancestor, regionAsExtended(ancestor, region));
           } else {
             throw new Error(`Missing ${ancestor} from ${key}`);
           }
@@ -277,17 +290,12 @@ class DefaultAbsorberMap {
       }
 
       cursor['data'] = Object.fromEntries(KeyFields.map(k => [k, []]));
-      const extended = this.extendedData.get(key);
-      if (extended.name) {
-        if (EXPORT_NAME_OVERRIDE[key]) {
-          cursor['data']['name'] = EXPORT_NAME_OVERRIDE[key];
-        } else {
-          cursor['data']['name'] = extended.name;
+      Object.entries(this.extendedData.get(key)).forEach(([k, v]) => {
+        if (v) {
+          cursor['data'][k] = v;
         }
-      }
-      if (extended.population) {
-        cursor['data']['population'] = extended.population;
-      }
+      });
+
       const sortedData =
           [...this.timestampsByKey.get(key)]
               .sort(([a, ], [b, ]) => a - b);
@@ -380,7 +388,7 @@ function get_key(line) {
 function resolve_key(key) {
   let prefix = '';
   const resolved = [];
-  let population;
+  let extended = {};
   for (let i = 0; i < key.length; ++i) {
     const name = key[i];
 
@@ -392,18 +400,21 @@ function resolve_key(key) {
       if (either) {
         resolved.push(either.code.replace(RegExp(`^${prefix}`), ''));
         prefix += either.code + '-';
-        population = parseInt(either.population);
+        extended =
+            regionAsExtended(key.slice(0, i + 1).join('/'), either);
       } else if (i === 1 && key[0] === key[1]) {
         // We get stuff like France/France, so just leave it at France
       } else {
         throw new Error(`Unknown key ${key.join('/')}`);
       }
     } else {
+      // Clear extended data since we don't know anything about this thing
+      extended = {};
       resolved.push(name);
     }
   }
 
-  return {resolved, population};
+  return {resolved, extended};
 }
 
 function process_one_JHU_file(json, timestamp, map) {
@@ -411,14 +422,14 @@ function process_one_JHU_file(json, timestamp, map) {
     const key = get_key(line);
     // Note: key may be [] coming out of this, to indicate that the numbers
     // should be attributed to the entire world.
-    const {resolved, population} = resolve_key(key);
+    const {resolved, extended} = resolve_key(key);
     const Combined_Key = resolved.join('/');
 
     const values =
         Object.fromEntries(
             KeyFields.map(k => [k, parseInt(line[k])])
                 .filter(([k, v]) => !isNaN(v)))
-    map.set(Combined_Key, key[key.length - 1], population, timestamp, values);
+    map.set(Combined_Key, key[key.length - 1], extended, timestamp, values);
   }
 }
 
