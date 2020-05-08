@@ -1,5 +1,4 @@
-
-
+const csv = require('csvtojson')
 const moment = require("moment");
 const states = require('us-state-codes');
 const fs = require('fs');
@@ -39,6 +38,8 @@ for (let statefips of AllStateFips) {
     },
   };
 }
+
+AllData.Summary = {};
 
 // --------------------------------------------------------------
 // ---- function area
@@ -455,7 +456,7 @@ function summarize_states() {
       Death = fillarrayholes(Death, true);
     }
 
-    let Summary = {};
+    let Summary = state.Summary ? state.Summary : {};
     Summary.StateFIPS = s;
     Summary.Confirmed = Confirmed;
     Summary.Death = Death;
@@ -495,7 +496,7 @@ function summarize_USA() {
     mergeTwoMapValues(USDeath, state.Summary.Death)
   }
 
-  let Summary = {};
+  let Summary = AllData.Summary;
   Summary.Confirmed = USConfirmed;
   Summary.Death = USDeath;
 
@@ -1088,11 +1089,53 @@ function processTestData() {
   }
 }
 
-// --------------------------------------------------------------
-// ---- Processing area
-// --------------------------------------------------------------
-process_USAFACTS(); // this sites tracks county level data before JHU
-processAllJHUGithub().then(() => {
+function exportIntColumnFromDataSeries(data, column) {
+  let ret = data.reduce((m, b) => {
+    m[b.fulldate] = parseInt(b[column]);
+    return m;
+  }, {})
+  return ret
+}
+
+async function addMITProjection() {
+
+  function getDataFor(src, state) {
+    let data = src.filter(s => s.Province === state && s.Country === "US");
+    data = data.map(a => {
+      a.fulldate = moment(a.Day, "YYYY-MM-DD").format("MM/DD/YYYY");
+      return a;
+    });
+    return data;
+  }
+
+  const file = "../data/projections/MIT-05-07-2020.csv";
+  const json = await csv().fromFile(file);
+  for (s in AllData) {
+    state = AllData[s];
+    let Summary = state.Summary ? state.Summary : {};
+    let statename = CountyInfo.getStateNameFromFips(s);
+
+    let data = getDataFor(json, statename);
+    if (data.length >= 0) {
+      Summary.ProjectionMIT = {
+        Confirmed: exportIntColumnFromDataSeries(data, 'Total Detected'),
+        // Active: exportIntColumnFromDataSeries(data, 'Active'),
+        // HospitaliedCurrently: exportIntColumnFromDataSeries(data, 'Active Hospitalized'),
+        // HospitalizationCumulative: exportIntColumnFromDataSeries(data, 'Cumulative Hospitalized'),
+        // Deaths: exportIntColumnFromDataSeries(data, 'Total Detected Deaths'),
+        // ICUCurrently: exportIntColumnFromDataSeries(data, 'Active Ventilated'),
+      };
+    }
+  }
+  const data = getDataFor(json, "None");
+  AllData.Summary.ProjectionMIT = {
+    Confirmed: exportIntColumnFromDataSeries(data, 'Total Detected'),
+  }
+}
+
+async function main() {
+  process_USAFACTS(); // this sites tracks county level data before JHU
+  await processAllJHUGithub();
   processAllJHU();
   fillholes();
   summarize_counties();
@@ -1107,7 +1150,11 @@ processAllJHUGithub().then(() => {
   addUSRecovery();
   addStateRecovery();
   processTestData();
+  await addMITProjection();
+}
+
+main().then(() => {
   const contentPretty = JSON.stringify(AllData, null, 2);
-  fs.writeFileSync("./src/data/AllData.json", contentPretty);
   // console.log(contentPretty);
-});
+  fs.writeFileSync("./src/data/AllData.json", contentPretty);
+})
