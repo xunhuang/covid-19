@@ -23,7 +23,7 @@ export class World {
 
     const asStr = path.string();
     if (!this.componentsByPath.has(asStr)) {
-      return undefined;
+      return [];
     } else {
       const components = this.componentsByPath.get(asStr);
       return componentTypes.map(c => components.get(c));
