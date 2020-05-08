@@ -60,7 +60,7 @@
     "build": "react-scripts build",
     "deploy": "react-scripts build; firebase deploy --only hosting",
     "test": "react-scripts test",
-    "data": "node normalize_data.js; node slicer.js",
+    "data": "node normalize_data.js; node slicer.js ; node world_data_gen.js",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {

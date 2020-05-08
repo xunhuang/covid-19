@@ -7,333 +7,12 @@ const confirmedfile = "../COVID-19/csse_covid_19_data/csse_covid_19_time_series/
 const deathfile = "../COVID-19/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv";
 const county_codes = require("../data/worlddata/country_regions.json");//.filter(region => !region.code.includes("US-"));
 
-const KeyFields = ["Confirmed", "Active", "Recovered", "Deaths"];
-let WorldData = {};
-
-function find_key_path(key, create = false) {
-  let keyparts = key.split(",");
-  let curobject = WorldData;
-  while (keyparts.length > 0) {
-    let key = keyparts.pop().trim().replace(/\|/g, ',');
-    if (key.length === 0) {
-      continue;
-    }
-    if (!curobject[key]) {
-      if (create) {
-        curobject[key] = {};
-      } else {
-        console.log(`key ${key} not exist`);
-        return null;
-      }
-    }
-    curobject = curobject[key];
-  }
-  return curobject;
-}
-
-const CountryKeyMap = {
-  "Mainland China": "China",
-  "Hong Kong": "China",
-  "Taiwan*": "Taiwan",
-  "Hong Kong SAR": "China",
-  "Macau": "China",
-  "Macau SAR": "China",
-  "Macao SAR": "China",
-  "South Korea": "South Korea",
-  "Republic of Korea": "North Korea",
-  "Ivory Coast": "Cote d'Ivoire",
-  "UK": "United Kingdom",
-  "Czech Republic": "Czechia",
-  "Iran (Islamic Republic of)": "Iran",
-  "Russian Federation": "Russia",
-  "East Timor": "Timor-Leste",
-}
-
-const DirectKeyMap = {
-  "Taiwan*": "Taiwan",
-  "Greenland": "Greenland, Denmark",
-  "Channel Islands": "Channel Islands, United Kingdom",
-  "Netherlands, Netherlands": "Netherlands",
-  "Curacao": "Curacao, Netherlands",
-  "Aruba": "Aruba, Netherlands",
-  "Taipei and environs": "Taiwan",
-  "Viet Nam": "Vietnam",
-  "French Guiana": "French Guiana,France",
-  "Guadeloupe": "Guadeloupe, France",
-  "Reunion": "Reunion, France",
-  "Martinique": "Martinique, France",
-  "French Polynesia": "French Polynesia, France",
-  "Mayotte": "Mayotte, France",
-  "St Martin": "St Martin, France",
-  "St. Martin": "St Martin, France",
-  "Saint Martin": "St Martin, France",
-  "New Caledonia": "New Caledonia, France",
-  "The Bahamas": "Bahamas",
-  "Bahamas, The": "Bahamas",
-  "Gambia, The": "Gambia",
-  "The Gambia": "Gambia",
-  "Republic of Moldova": "Moldova",
-  "Republic of the Congo": "Congo (Brazzaville)",
-  "Saint Barthelemy": "Saint Barthélemy",
-}
-
-const ProvinceSkipList = [
-  "Recovered",
-  "Bavaria",
-  "Toronto, ON",
-  "London, ON",
-  " Montreal, QC",
-  "Diamond Princess",
-  "Grand Princess",
-  "From Diamond Princess",
-  "Calgary, Alberta",
-  "Edmonton, Alberta",
-  "Channel Islands",
-  "Cape Verde"
+const KeyFields = [
+  'Confirmed',
+  'Deaths',
+  'Recovered',
+  'Active',
 ];
-
-const CountrySkipList = [
-  "Guernsey",
-  "Cruise Ship",
-  "MS Zaandam",
-  "Others",
-  "Diamond Princess",
-  "Grand Princess",
-  "North Ireland",
-  "Republic of Ireland",
-  "Palestine", // no data 
-  "Palestinian territory",// no data 
-  "occupied Palestinian territory",// no data 
-  "Vatican City",
-  "Cape Verde",
-  "Guam",
-  "Jersey",
-  "Puerto Rico",
-]
-
-const COMBINED_KEY_SKIP_LIST = [
-  "External territories, Australia",
-  "Jervis Bay Territory, Australia",
-  "Diamond Princess, Cruise Ship",
-  "Grand Princess, Canada",
-  "Diamond Princess, Canada",
-  "Diamond Princess",
-  "Channel Islands, United Kingdom",
-  "Recovered, Canada",
-  ",,MS Zaandam",
-  "MS Zaandam",
-];
-
-const COMBINED_KEY_REWRITE = {
-  "Anguilla, United Kingdom": "Anguilla",
-  "Aruba, Netherlands": "Aruba",
-  "Bermuda, United Kingdom": "Bermuda",
-  "British Virgin Islands, United Kingdom": "British Virgin Islands",
-  "Cayman Islands, United Kingdom": "Cayman Islands",
-  "Bonaire, Sint Eustatius and Saba, Netherlands": "Caribbean Netherlands",
-  "Bonaire| Sint Eustatius and Saba, Netherlands": "Caribbean Netherlands",
-  "Congo (Brazzaville)": "Republic of the Congo",
-  "Congo (Kinshasa)": "Democratic Republic of the Congo",
-  "Falkland Islands (Islas Malvinas), United Kingdom": "Falkland Islands (Malvinas), United Kingdom",
-  "Faroe Islands, Denmark": "Faroe Islands",
-  "Fench Guiana, France": "French Guiana, France",
-  "Gibraltar, United Kingdom": "Gibraltar",
-  "Greenland, Denmark": "Greenland",
-  "Isle of Man, United Kingdom": "Isle of Man",
-  "Korea, South": "South Korea",
-  "Montserrat, United Kingdom": "Montserrat",
-  "Saint Barthelemy, France": "Saint Barthélemy",
-  "Taiwan*": "Taiwan",
-  "Turks and Caicos Islands, United Kingdom": "Turks and Caicos Islands",
-  "UK, United Kingdom": "United Kingdom",
-}
-
-function CountryProvinceToCombinedKey(country, province) {
-  let Combined_Key = null;
-  if (CountrySkipList.includes(country)) {
-    return null;
-  }
-  if (DirectKeyMap[country]) {
-    Combined_Key = DirectKeyMap[country];
-  } else {
-    country = CountryKeyMap[country] ? CountryKeyMap[country] : country;
-    if (country.length > 0) {
-      if (ProvinceSkipList.includes(province)) {
-        return null;
-      }
-      if (province && province === country) {
-        Combined_Key = country;
-      } else if (province && province.length > 0 && province !== "None") {
-        Combined_Key =
-            province.replace(/,/g, '|') + ", " + country.replace(/,/g, '|');
-      } else {
-        Combined_Key = country;
-      }
-    } else {
-      console.log("no key!!!  ");
-      console.log(line);
-    }
-  }
-  return Combined_Key;
-}
-
-// date is moment() date
-async function process_one_JHU_file(json, date) {
-  for (let line of json) {
-    let Combined_Key = line.Combined_Key;
-    if (!Combined_Key || Combined_Key.length === 0) {
-      let country = line["Country/Region"];
-      let province = line["Province/State"];
-      Combined_Key = CountryProvinceToCombinedKey(country, province);
-    }
-
-    if (!Combined_Key) {
-      continue;
-    }
-
-    //skip US for now
-    // if (Combined_Key.endsWith("US")) {
-    //   console.log(Combined_Key);
-    //   continue;
-    // }
-    if (COMBINED_KEY_SKIP_LIST.includes(Combined_Key)) {
-      continue;
-    }
-
-    if (COMBINED_KEY_REWRITE[Combined_Key]) {
-      Combined_Key = COMBINED_KEY_REWRITE[Combined_Key];
-    }
-
-    // create the key only if it's the US because US states are not 
-    // in the original name space file
-    let node = find_key_path(Combined_Key, Combined_Key.endsWith("US"));
-    if (!node) {
-      console.log("bad key = " + Combined_Key);
-      throw ("bad key");
-    }
-    let datekey = date.format("MM/DD/YYYY");
-    for (let f of KeyFields) {
-      let holder = node[f] ? node[f] : {};
-      holder[datekey] = parseInt(line[f]);
-      node[f] = holder;
-    }
-  }
-}
-
-async function establish_name_spaces() {
-  const files = [confirmedfile, deathfile];
-  for (let file of files) {
-    const json = await csv().fromFile(file);
-    for (let entity of json) {
-      const country = entity["Country/Region"];
-      const province = entity["Province/State"];
-      let Combined_Key = CountryProvinceToCombinedKey(country, province);
-
-      if (!Combined_Key) {
-        continue;
-      }
-
-      if (CountrySkipList.includes(country)) {
-        continue;
-      }
-
-      if (COMBINED_KEY_REWRITE[Combined_Key]) {
-        Combined_Key = COMBINED_KEY_REWRITE[Combined_Key];
-      }
-
-      if (ProvinceSkipList.includes(province)) {
-        continue;
-      }
-
-      node = find_key_path(Combined_Key, true);
-    }
-  }
-
-  // missing file
-  find_key_path("North Korea", true);
-}
-
-async function process_all_JHU_files() {
-  for (let d = moment("01/22/2020", "MM/DD/YYYY"); d.isBefore(moment()); d = d.add(1, "days")) {
-    let file = `../COVID-19/csse_covid_19_data/csse_covid_19_daily_reports/${d.format("MM-DD-YYYY")}.csv`;
-    if (fs.existsSync(file)) {
-      const json = await csv().fromFile(file);
-      await process_one_JHU_file(json, d)
-    } else {
-      console.log(`Data file ${file} is missing`)
-    }
-  }
-}
-
-function summarize_recursively(data) {
-  let Summary = data.Summary ? data.Summary : {};
-  let aggregate = {};
-  let leafnode = true;
-
-  for (const key of KeyFields) {
-    aggregate[key] = {};
-  }
-
-  for (let key in data) {
-    let value = data[key];
-    if (key === "Summary") {
-      continue;
-    } else if (!KeyFields.includes(key)) {
-      leafnode = false;
-      summarize_recursively(value);
-      for (const key1 of KeyFields) {
-        Util.mergeTwoMapValues(aggregate[key1], value[key1]);
-      }
-    } else {
-      const CC = Util.getValueFromLastDate(value);
-      Summary["Last" + key] = CC.num;
-      Summary[`Last${key}New`] = CC.newnum;
-    }
-  }
-
-  if (!leafnode) {
-    for (const key of KeyFields) {
-      data[key] =
-          Object.fromEntries(
-              Object.entries(aggregate[key])
-                  .sort(([aDate,], [bDate,]) =>
-                      moment(aDate, "MM/DD/YYYY").diff(moment(bDate, "MM/DD/YYYY"))));
-      const CC = Util.getValueFromLastDate(aggregate[key]);
-      Summary["Last" + key] = CC.num;
-      Summary[`Last${key}New`] = CC.newnum;
-    }
-  }
-  data.Summary = Summary;
-}
-
-const ErrantNameToCountryCode = {
-  "Bahamas": "BS",
-  "Cabo Verde": "CV",
-  "China": "CN",
-  "Democratic Republic of the Congo": "CD",
-  "Republic of the Congo": "CG",
-  "Cote d'Ivoire": "CI",
-  "Cyprus": "CY",
-  "Czechia": "CZ",
-  "Gambia": "GM",
-  "Holy See": "VA",
-  "US": "US",
-  "Timor-Leste": "TL",
-  "West Bank and Gaza": "PS",
-  "Burma": "MM",
-  "Western Sahara": 'EH',
-  "Sao Tome and Principe": "ST",
-
-  Guangxi: "CN-GX", // "Guangxi Zhuang Autonomous Region",
-  Ningxia: "CN-NX",
-  Tibet: "CN-XZ",
-  "Curacao": "CW",
-  "Sint Maarten": "SX",
-  Reunion: "FR-RE",
-  "St Martin": "FR-MQ",
-  "Saint Pierre and Miquelon": "FR-PM",
-  "Falkland Islands (Malvinas)": "FK",
-}
 
 const RegionByCode = county_codes
   .reduce((m, a) => {
@@ -341,77 +20,433 @@ const RegionByCode = county_codes
     return m;
   }, {});
 
-function lookupISORegionByName(name, prefix) {
-  let entry = county_codes.find(
-      e => e.areaLabel === name && e.code.startsWith(prefix));
-  if (entry) {
-    return entry;
+function regionAsExtended(key, region) {
+  let name;
+  if (EXPORT_NAME_OVERRIDE[key]) {
+    name = EXPORT_NAME_OVERRIDE[key];
+  } else {
+    name = region.areaLabel;
   }
-  let code = ErrantNameToCountryCode[name];
-  return RegionByCode[code];
+
+  return {
+    name,
+    population: parseInt(region.population),
+    latitude: parseFloat(region.lat),
+    longitude: parseFloat(region.lon),
+  };
 }
 
-function changeToCodeName(data, entry, depth) {
-  if (!data) {
-    return;
+// If a component is prefixed by any of these, it will be dropped (but the
+// numbers will still be attributed at a higher level.)
+const COMPONENT_PREFIX_SKIP_SET = [
+  "Channel Islands", // can't find the ISO 3166 for this in Wikidata...
+  "Out of ",
+  "MS Zaandam",
+  "Recovered",
+  "External territories",
+  "Cruise Ship",
+  "Diamond Princess",
+  "From Diamond Princess",
+  "Unassigned",
+  "unassigned",
+  "Grand Princess",
+  "Grand Princess Cruise Ship",
+  "None",
+  "Wuhan Evacuee",
+  "Others",
+  "Unassigned Location (From Diamond Princess)",
+];
+
+// If a key is in this map, it will rewritten according to this. But the
+// remaining components of the key will still be processed.
+const KeyRewriteMap = {
+  "America/Washington, D.C.": ["United States of America", "District of Columbia"],
+  "Australia/Jervis Bay Territory": ["Australia"],
+  "Bahamas": ["The Bahamas"],
+  "Bahamas, The": ["The Bahamas"],
+  "Burma": ["Myanmar"],
+  "Cabo Verde": ["Cape Verde"],
+  "China": ["People's Republic of China"],
+  "Congo (Brazzaville)": ["Republic of the Congo"],
+  "Congo (Kinshasa)": ["Democratic Republic of the Congo"],
+  "Cote d'Ivoire": ["Ivory Coast"],
+  "Curacao": ["Curaçao"],
+  "Cyprus": ["Republic of Cyprus"],
+  "Czechia": ["Czech Republic"],
+  "Denmark/Faroe Islands": ["Faroe Islands"],
+  "Denmark/Greenland": ["Greenland"],
+  "France/Fench Guiana": ["French Guiana"],
+  "France/French Guinea": ["French Guiana"],
+  "France/Guadeloupe": ["Guadeloupe"],
+  "France/Reunion": ["Réunion"],
+  "France/Saint Barthelemy": ["Saint Barthélemy"],
+  "France/St Martin": ["Saint Martin (French part)"],
+  "French Guiana": ["France", "French Guiana"],
+  "French Polynesia": ["France", "French Polynesia"],
+  "Gambia": ["The Gambia"],
+  "Gambia, The": ["The Gambia"],
+  "Germany/Bavaria": ["Germany"],
+  "Holy See": ["Vatican City"],
+  "Hong Kong SAR": ["People's Republic of China", "Hong Kong"],
+  "Hong Kong": ["People's Republic of China", "Hong Kong"],
+  "Iran (Islamic Republic of)": ["Iran"],
+  "Korea, South": ["South Korea"],
+  "Macao SAR": ["People's Republic of China", "Macau"],
+  "Macau SAR": ["People's Republic of China", "Macau"],
+  "Macau": ["People's Republic of China", "Macau"],
+  "Mainland China": ["People's Republic of China"],
+  "Netherlands/Aruba": ["Aruba"],
+  "Netherlands/Bonaire, Sint Eustatius and Saba": ["Bonaire"],
+  "Netherlands/Curacao": ["Curaçao"],
+  "Netherlands/Sint Maarten": ["Sint Maarten (Dutch part)"],
+  "North Ireland": ["Northern Ireland"],
+  "Palestine": ["State of Palestine"],
+  "Palestinian territory": ["State of Palestine"],
+  "People's Republic of China/Guangxi": ["People's Republic of China", "Guangxi Zhuang Autonomous Region"],
+  "People's Republic of China/Ningxia": ["People's Republic of China", "Ningxia Hui Autonomous Region"],
+  "People's Republic of China/Tibet": ["People's Republic of China", "Tibet Autonomous Region"],
+  "Republic of Ireland": ["Ireland"],
+  "Republic of Korea": ["North Korea"],
+  "Republic of Moldova": ["Moldova"],
+  "Reunion": ["France", "Réunion"],
+  "Russian Federation": ["Russia"],
+  "Saint Barthelemy": ["Saint Barthélemy"],
+  "Saint Martin": ["Saint Martin (French part)"],
+  "Sao Tome and Principe": ["São Tomé and Príncipe"],
+  "St. Martin": ["Saint Martin (French part)"],
+  "Taipei and environs": ["Taiwan"],
+  "Taiwan*": ["Taiwan"],
+  "Timor-Leste": ["East Timor"],
+  "UK": ["United Kingdom"],
+  "US": ["United States of America"],
+  "United Kingdom/Anguilla": ["Anguilla"],
+  "United Kingdom/Bermuda": ["Bermuda"],
+  "United Kingdom/British Virgin Islands": ["British Virgin Islands"],
+  "United Kingdom/Cayman Islands": ["Cayman Islands"],
+  "United Kingdom/Falkland Islands (Islas Malvinas)": ["Falkland Islands"],
+  "United Kingdom/Falkland Islands (Malvinas)": ["Falkland Islands"],
+  "United Kingdom/Gibraltar": ["Gibraltar"],
+  "United Kingdom/Isle of Man": ["Isle of Man"],
+  "United Kingdom/Montserrat": ["Montserrat"],
+  "United Kingdom/Turks and Caicos Islands": ["Turks and Caicos Islands"],
+  "United Kingdom/UK": ["United Kingdom"],
+  "United States of America/Chicago": ["United States of America", "Illinois", "Cook"],
+  "United States of America/US": ["United States of America"],
+  "United States of America/Virgin Islands": ["United States of America", "United States Virgin Islands"],
+  "United States of America/Virgin Islands, U.S.": ["United States of America", "United States Virgin Islands"],
+  "United States of America/Washington, D.C.": ["United States of America", "District of Columbia"],
+  "Viet Nam": ["Vietnam"],
+  "West Bank and Gaza": ["State of Palestine"],
+  "Western Sahara": ["Sahrawi Arab Democratic Republic"],
+  "occupied Palestinian territory": ["State of Palestine"],
+};
+
+// A map from parent key to rules for pulling components out of a child key.
+const CHILD_REGEX_RULES = {
+  "Canada": [
+    // Drop the city from these since the data disappears
+    [/^(?<City>[^,]+), (?<Province>..)$/, ['Province']],
+    [/^(?<City>[^,]+), (?<Province>[^,(]+)$/, ['Province']],
+  ],
+  "United States of America": [
+    // Grab the ship just for fun, but ignore it (for now?)
+    // Check for County first, since we use a greedy match
+    [/^(?<County>[^,]+?)(?: [Cc]ounty)?, (?<State>..)(?: \((?:From )?(?<Ship>[\w ]+\))(?: cruise)?(?: ship)?)?$/, ['State', 'County']],
+  ],
+};
+
+// A map from code to names to force on export
+const EXPORT_NAME_OVERRIDE = {
+  "CN": "China",
+  "CZ": "Czechia",
+  "CY": "Cyprus",
+  "EH": "Western Sahara",
+  "PS": "Palestine",
+};
+
+class DefaultAbsorberMap {
+
+  constructor() {
+    this.timestampsByKey = new Map();
+    this.extendedData = new Map();
   }
 
-  const nextDepth = depth + 1;
-  for (const k in data) {
-    if (KeyFields.includes(k)) {
-      continue;
-    }
-    //if (k === "US") {
-    //  continue;
-    //}
-    let country = data[k];
-    const codePrefix = entry ? entry.code + '-' : '';
-    let subentry = lookupISORegionByName(k, codePrefix);
-    if (!subentry) {
-      console.log(k);
+  set(key, name, extended, timestamp, values) {
+    if (key === '') {
+      extended.name = 'Earth';
+      extended.population = 7782760616;
     }
 
-    if (subentry) {
-      subentry.code = subentry.code.replace(RegExp('^' + codePrefix), '');
-    } else if (nextDepth >= 2) {
-      subentry = {
-        areaLabel: k,
-        code: k,
-      };
+    const currentName = (this.extendedData.get(key) || {}).name;
+    extended.name = extended.name || name;
+
+    if (!this.timestampsByKey.has(key)) {
+      this.timestampsByKey.set(key, new Map());
+      this.extendedData.set(key, extended);
+    } else if (!currentName || currentName.length <= 2) {
+      // The previous name is likely an ID, so just replace all our data
+      this.extendedData.set(key, extended);
+    } else if (currentName != extended.name && extended.name.length > 2) {
+      // Check if it's longer than two since it's likely just a garbage ID
+      console.error(this.extendedData.get(key));
+      console.error(extended.name);
+      throw new Error('Name mismatch for ' + key);
+    }
+
+    const existing = this.timestampsByKey.get(key);
+    if (existing.has(timestamp)) {
+      this.mergeInto_(existing.get(timestamp), values);
     } else {
-      throw new Error(`Depth is ${depth} but can't find code`);
-    }
-
-    let nCountry = changeToCodeName(country, subentry, nextDepth);
-
-    delete data[k];
-    data[subentry.code] = nCountry;
-  }
-
-  if (entry) {
-    data.Summary = {
-      name: entry.areaLabel,
-      code: entry.code,
-      longitude: parseFloat(entry.lon),
-      latitude: parseFloat(entry.lat),
-      population: parseInt(entry.population),
+      existing.set(timestamp, values);
     }
   }
-  return data;
+
+  mergeInto_(a, b) {
+    for (const [key, value] of Object.entries(b)) {
+      if (isNaN(value)) {
+        throw new Error(`Bad value ${value}`);
+      }
+
+      if (a[key]) {
+        a[key] += value;
+      } else {
+        a[key] = value;
+      }
+    }
+  }
+
+  /**
+   * Returns a hierarchical object where the data has been rolled up starting
+   * from the leaves. Modifies this object.
+   */
+  rollupInPlace() {
+    console.log([...this.timestampsByKey.keys()].sort());
+
+    // Create entries for any middle nodes that don't exist
+    for (const key of this.timestampsByKey.keys()) {
+      const split = key.split('/');
+      // We go to >= 0, because that allows us to check for '' (Earth.)
+      for (let i = split.length - 1; i >= 0; --i) {
+        const ancestor = split.slice(0, i).join('/');
+        if (!this.timestampsByKey.has(ancestor)) {
+          this.timestampsByKey.set(ancestor, new Map());
+        }
+        if (!this.extendedData.has(ancestor)) {
+          const predictedCode = split.slice(0, i).join('-');
+          const region = RegionByCode[predictedCode];
+          if (region) {
+            this.extendedData.set(ancestor, regionAsExtended(ancestor, region));
+          } else {
+            throw new Error(`Missing ${ancestor} from ${key}`);
+          }
+        }
+      }
+    }
+
+    // Sort so that deeper nodes are processed first. We sort entries in the
+    // same level backwards so that '' is processed after everything else.
+    const sorted = [...this.timestampsByKey.keys()].sort((a, b) => {
+      const aD = a.replace(/[^/]/g, '').length;
+      const bD = b.replace(/[^/]/g, '').length;
+      if (aD !== bD) {
+        return bD - aD;
+      } else if (a < b) {
+        return 1;
+      } else if (a > b) {
+        return -1;
+      } else {
+        return 0;
+      }
+    });
+
+    for (const key of sorted) {
+      const split = key.split('/');
+      if (split.length === 0) {
+        // We're done!
+      } else {
+        const parentKey = split.slice(0, split.length - 1).join('/');
+        const parentTimestamps = this.timestampsByKey.get(parentKey);
+
+        for (const [timestamp, values] of this.timestampsByKey.get(key)) {
+          if (!parentTimestamps.has(timestamp)) {
+            parentTimestamps.set(timestamp, {});
+          }
+          this.mergeInto_(parentTimestamps.get(timestamp), values);
+        }
+      }
+    }
+
+    const result = {};
+    sorted.reverse();
+    for (const key of sorted) {
+      let cursor = result;
+      if (key !== '') {
+        const split = key.split('/');
+        for (const component of split.slice(0, -1)) {
+          cursor = cursor[component];
+        }
+        cursor[split[split.length - 1]] = {};
+        cursor = cursor[split[split.length - 1]];
+      }
+
+      cursor['data'] = Object.fromEntries(KeyFields.map(k => [k, []]));
+      Object.entries(this.extendedData.get(key)).forEach(([k, v]) => {
+        if (v) {
+          cursor['data'][k] = v;
+        }
+      });
+
+      const sortedData =
+          [...this.timestampsByKey.get(key)]
+              .sort(([a, ], [b, ]) => a - b);
+      for (const [timestamp, values] of sortedData) {
+        for (const [field, value] of Object.entries(values)) {
+          if (isNaN(value)) {
+            throw new Error(`Why is there a null in ${key}`);
+          }
+          cursor['data'][field].push([timestamp, value]);
+        }
+      }
+    }
+
+    return result;
+  }
 }
 
-async function main() {
-  await establish_name_spaces();
-  await process_all_JHU_files();
-  changeToCodeName(WorldData, null, 0);
-  summarize_recursively(WorldData);
+function get_key(line) {
+  const sources = [
+      ['Country_Region', 'Country/Region'],
+      ['Province_State', 'Province/State'],
+      ['Admin2'],
+  ];
+
+  let components = [];
+  for (let i = 0; i < sources.length; ++i) {
+    let overridden = false;
+    for (const candidate of sources[i]) {
+      let part = line[candidate] && line[candidate].trim();
+
+      if (!part) {
+        continue;
+      }
+
+      if (COMPONENT_PREFIX_SKIP_SET.find(k => part.startsWith(k))) {
+        return components;
+      }
+
+      if (components.length < i) {
+        // Why do we have a province but not a country??
+        console.error(line);
+        throw new Error('Bad key');
+      }
+
+      if (i === 1 && components.length > 1 && components[1] === part) {
+        // If we have something like Hong Kong/Hong Kong and on processing the
+        // first term we push ['China', 'Hong Kong'], then protect against the
+        // second bonus term. We could catch it later, but there might be
+        // legitimate cases and it's sketchier here.
+        continue;
+      } else if (i === 2) {
+        part = part.replace(/ [Cc]ounty$/, '');
+      }
+
+      const prefix = components.join('/');
+      const prefixed = components.concat([part]).join('/');
+
+      if (KeyRewriteMap[prefixed]) {
+        components = [...KeyRewriteMap[prefixed]];
+        continue;
+      }
+
+      if (CHILD_REGEX_RULES[prefix]) {
+        for (const [rule, groups] of CHILD_REGEX_RULES[prefix]) {
+          const match = part.match(rule);
+          if (match) {
+            overridden = true;
+            for (const g of groups) {
+              if (match.groups[g]) {
+                components.push(match.groups[g]);
+              }
+            }
+            break;
+          }
+        }
+      }
+      if (!overridden) {
+        components.push(part);
+      }
+      break;
+    }
+    
+    if (overridden) {
+      break;
+    }
+  }
+  return components;
 }
 
-main().then(() => {
-  // console.log(WorldData);
-  // WorldData["United States"] = WorldData.US;
-  // delete WorldData.US;
-  // console.log(JSON.stringify(WorldData, null, 2));
-  const content = JSON.stringify(WorldData, null, 2);
+function resolve_key(key) {
+  let prefix = '';
+  const resolved = [];
+  let extended = {};
+  for (let i = 0; i < key.length; ++i) {
+    const name = key[i];
+
+    if (i === 0 || i === 1) {
+      let byName = county_codes.find(
+          e => e.areaLabel === name && e.code.startsWith(prefix));
+      let byCode = RegionByCode[prefix + name];
+      let either = byName || byCode;
+      if (either) {
+        resolved.push(either.code.replace(RegExp(`^${prefix}`), ''));
+        prefix += either.code + '-';
+        extended =
+            regionAsExtended(key.slice(0, i + 1).join('/'), either);
+      } else if (i === 1 && key[0] === key[1]) {
+        // We get stuff like France/France, so just leave it at France
+      } else {
+        throw new Error(`Unknown key ${key.join('/')}`);
+      }
+    } else {
+      // Clear extended data since we don't know anything about this thing
+      extended = {};
+      resolved.push(name);
+    }
+  }
+
+  return {resolved, extended};
+}
+
+function process_one_JHU_file(json, timestamp, map) {
+  for (const line of json) {
+    const key = get_key(line);
+    // Note: key may be [] coming out of this, to indicate that the numbers
+    // should be attributed to the entire world.
+    const {resolved, extended} = resolve_key(key);
+    const Combined_Key = resolved.join('/');
+
+    const values =
+        Object.fromEntries(
+            KeyFields.map(k => [k, parseInt(line[k])])
+                .filter(([k, v]) => !isNaN(v)))
+    map.set(Combined_Key, key[key.length - 1], extended, timestamp, values);
+  }
+}
+
+async function process_all_JHU_files(map) {
+  for (let d = moment("01/22/2020", "MM/DD/YYYY"); d.isBefore(moment()); d = d.add(1, "days")) {
+    let file = `../COVID-19/csse_covid_19_data/csse_covid_19_daily_reports/${d.format("MM-DD-YYYY")}.csv`;
+    if (fs.existsSync(file)) {
+      const json = await csv().fromFile(file);
+      await process_one_JHU_file(json, d.unix(), map)
+    } else {
+      console.log(`Data file ${file} is missing`)
+    }
+  }
+}
+
+const map = new DefaultAbsorberMap();
+process_all_JHU_files(map).then(() => {
+  const content = JSON.stringify(map.rollupInPlace(), null, 2);
   fs.writeFileSync("./src/data/WorldData.json", content);
-})
+});

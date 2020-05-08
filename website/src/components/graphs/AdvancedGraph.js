@@ -41,6 +41,9 @@ export const AdvancedGraph = (props) => {
     ['2weeks', {
       label: '2 Weeks',
       filter: (data) => {
+        if (data.length === 0) {
+          return [];
+        }
         const start =
             moment.unix(data[data.length - 1].timestamp)
                 .subtract(14, 'day')
@@ -260,36 +263,36 @@ const Chart = (props) => {
   });
 
   return (
-      <ResponsiveContainer height={300}>
-          <ChosenChart data={props.data} margin={{left: 24, right: 24}}>
-              <Tooltip
-                  formatter={valueFormatter}
-                  labelFormatter={props.timestampFormatter}
-              />
-              <XAxis
-                  dataKey="timestamp"
-                  tickFormatter={props.timestampFormatter}
-              />
-              <YAxis
-                  scale={props.scale === 'log' ? logScale : props.scale}
-              />
-              <CartesianGrid stroke="#d5d5d5" strokeDasharray="5 5" />
+    <ResponsiveContainer height={300}>
+      <ChosenChart data={props.data} margin={{left: -4, right: 8}}>
+        <Tooltip
+            formatter={valueFormatter}
+            labelFormatter={props.timestampFormatter}
+        />
+        <XAxis
+            dataKey="timestamp"
+            tickFormatter={props.timestampFormatter}
+        />
+        <YAxis
+            scale={props.scale === 'log' ? logScale : props.scale}
+        />
+        <CartesianGrid stroke="#d5d5d5" strokeDasharray="5 5" />
 
-              {ordered && ordered.map(series =>
-                  <ChosenSeries
-                      type="monotone"
-                      key={series.label}
-                      dataKey={series.label}
-                      isAnimationActive={false}
-                      fill={series.color}
-                      stroke={series.color}
-                      strokeDasharray={series.stipple ? '2 2' : undefined}
-                      dot={false}
-                      strokeWidth={2}
-                  />
-              )}
-          </ChosenChart>
-      </ResponsiveContainer>
+        {ordered && ordered.map(series =>
+            <ChosenSeries
+                type="monotone"
+                key={series.label}
+                dataKey={series.label}
+                isAnimationActive={false}
+                fill={series.color}
+                stroke={series.color}
+                strokeDasharray={series.stipple ? '2 2' : undefined}
+                dot={false}
+                strokeWidth={2}
+            />
+        )}
+      </ChosenChart>
+    </ResponsiveContainer>
   );
 };
 

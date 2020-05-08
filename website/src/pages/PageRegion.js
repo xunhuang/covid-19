@@ -51,6 +51,9 @@ export const PageRegion = withRouter((props) => {
   }
 
   const basic = world.get(path, BasicDataComponent);
+  if (!basic) {
+    throw new Error(`${path.string()} has no basic component`);
+  }
   const divisions = world.get(path, DivisionTypesComponent);
 
   return (
@@ -288,9 +291,9 @@ const Title = (props) => {
                       key={plural}
                       className={classes.number}
                       style={{borderColor: color}}>
-                    {shortNumber(value)}
+                    {value && shortNumber(value)}
                     {` ${i === 0 ? plural : ''} `}
-                    (+{shortNumber(change)})
+                    {change && `(+${shortNumber(change)})`}
                   </div>
                 )}
               </div>
@@ -314,9 +317,13 @@ const DailyGraph = (props) => {
     <AdvancedGraph
       className={props.className}
       serieses={[{
-          series: basic.confirmed().change(),
+          series: basic.confirmed().change().smooth(),
           color: 'teal',
           trend: 'orange',
+        }, {
+          series: basic.confirmed().change(),
+          color: '#7ed0d0',
+          initial: 'off',
         }, {
           series: basic.confirmed(),
           color: 'gray',
