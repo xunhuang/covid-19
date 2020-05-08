@@ -5,6 +5,7 @@ import { CountyInfo } from 'covidmodule';
 import { fetchNPRProjectionData } from "./NPRProjection"
 import { fetchTestingDataStates, fetchTestingDataUS } from "./TestingData"
 import { fetchPublicCountyData, fetchAllUSData } from "./PublicAllData"
+import { mergeDataSeries, makeDataSeriesFromTotal } from "./graphs/DataSeries";
 
 const CovidData = require('./data/AllData.slim.json');
 const CountyGeoData = require('./data/county_gps.json');
@@ -20,7 +21,12 @@ const UNKNOWN_COUNTY_NAME = "Unknown";
 
 function datesToDataPoints(raw) {
   const days = Object.keys(raw.Confirmed).sort(sortByDate);
-  return days.map(day => {
+  let projection = null;
+  if (raw.ProjectionMIT) {
+    projection = makeDataSeriesFromTotal(raw.ProjectionMIT.Confirmed, "confirmed_projected", "confirmed_new_projected");
+  }
+
+  let data = days.map(day => {
     const entry = {};
     entry.confirmed = raw.Confirmed[day];
     entry.death = raw.Death[day];
@@ -30,6 +36,9 @@ function datesToDataPoints(raw) {
     entry.fulldate = day;
     return entry;
   });
+
+  data = mergeDataSeries(data, projection);
+  return data;
 }
 
 function sortByDate(a, b) {

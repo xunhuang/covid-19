@@ -195,7 +195,6 @@ const GraphDeathProjectionRender = (props) => {
   });
   data = data.sort((a, b) => moment(a.fulldate, "MM/DD/YYYY").toDate() - (moment(b.fulldate, "MM/DD/YYYY")).toDate());
 
-  console.log(data);
   const [state, setState] = React.useState({
     showall: false,
   });

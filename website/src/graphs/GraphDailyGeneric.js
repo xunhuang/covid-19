@@ -15,7 +15,6 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select'
 import Checkbox from '@material-ui/core/Checkbox';
 import Input from '@material-ui/core/Input';
-const Cookies = require("js-cookie");
 const moment = require("moment");
 
 const formatYAxis = (tickItem) => {

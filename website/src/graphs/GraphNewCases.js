@@ -1,5 +1,5 @@
 import React from 'react';
-import { ResponsiveContainer, LineChart, Line, ReferenceLine, YAxis, XAxis, Tooltip, CartesianGrid, Legend } from 'recharts';
+import { ReferenceArea, ResponsiveContainer, LineChart, Line, ReferenceLine, YAxis, XAxis, Tooltip, CartesianGrid, Legend } from 'recharts';
 import { makeStyles } from '@material-ui/core/styles';
 import { Typography } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
@@ -39,6 +39,8 @@ const CustomTooltip = (props) => {
     let confirmed;
     let newcase;
     let newcase_avg;
+    let confirmed_projected;
+    let confirmed_new_projected;
 
     payload.map(p => {
       p = p.payload;
@@ -57,6 +59,13 @@ const CustomTooltip = (props) => {
       if ("newcase_avg" in p) {
         newcase_avg = p.newcase_avg;
       }
+
+      if ("confirmed_projected" in p) {
+        confirmed_projected = p.confirmed_projected;
+      }
+      if ("confirmed_new_projected" in p) {
+        confirmed_new_projected = p.confirmed_new_projected;
+      }
       return null;
     });
 
@@ -71,13 +80,19 @@ const CustomTooltip = (props) => {
           {label}
         </Typography>
         <Typography variant="body2" noWrap>
-          {`Total: ${confirmed}`}
+          {confirmed && `Total: ${confirmed}`}
         </Typography>
         <Typography variant="body2" noWrap>
-          {`New: ${newcase}`}
+          {newcase && `confirmed && New: ${newcase}`}
         </Typography>
         <Typography variant="body2" noWrap>
-          {`New (3d-Avg): ${newcase_avg ? newcase_avg.toFixed(0) : ""}`}
+          {newcase_avg && `New (3d-Avg): ${newcase_avg.toFixed(0)}`}
+        </Typography>
+        <Typography variant="body2" noWrap>
+          {confirmed_projected && `MIT projected total: ${confirmed_projected}`}
+        </Typography>
+        <Typography variant="body2" noWrap>
+          {confirmed_new_projected && `MIT projected new: ${confirmed_new_projected}`}
         </Typography>
       </div>
     );
@@ -120,32 +135,13 @@ const BasicGraph = (props) => {
   let confirmedArray = makeDataSeriesFromTotal(confirmedTotalArray, "total", "newcase", "newcase_avg");
   data = mergeDataSeries(data, confirmedArray);
 
-  if (data.length > 2) {
-    let newdata = data.slice(0, data.length - 2);
-    let second_last = data[data.length - 2];
-    let last = data[data.length - 1];
-    second_last.pending_confirmed = second_last.total;
-    second_last.pending_newcase = second_last.newcase;
-    let newlast = {
-      name: last.name,
-      fulldate: moment().format("MM/DD/YYYY"),
-      pending_confirmed: last.total,
-      pending_newcase: last.newcase,
-    };
-    newdata.push(second_last);
-    newdata.push(newlast);
-    data = newdata;
-  }
-
-
-
   /**
    * Add Trending Line
    */
   const startDate = data[0].name;
-  const dates = data.map(d => d.name);
+  const dates = data.filter(d => !moment(d.fulldate, "MM/DD/YYYY").isAfter(moment())).map(d => d.name);
   const daysFromStart = datesToDays(startDate, dates);
-  const confirmed = data.map(d => d.total);
+  const confirmed = data.filter(d => !moment(d.fulldate, "MM/DD/YYYY").isAfter(moment())).map(d => d.total);
   const results = fitExponentialTrendingLine(daysFromStart, confirmed, 10);
   const hasTrendingLine = results != null;
 
@@ -191,6 +187,12 @@ const BasicGraph = (props) => {
     });
   }
 
+  const future = moment().add(30, 'days')
+  data = data.filter(d => {
+    let day = moment(d.fulldate, "MM/DD/YYYY");
+    return day.isBefore(future);
+  });
+
   return <>
     <Grid container alignItems="center" spacing={1}>
       <Grid item>
@@ -222,6 +224,7 @@ const BasicGraph = (props) => {
         data={data}
         margin={{ top: 5, right: 30, left: 5, bottom: 5 }}
       >
+        <ReferenceArea x1={"5/7"} x2={future.format("M/D")} fillOpacity={0.2} />
         <Tooltip content={<CustomTooltip />} />
         <XAxis dataKey="name" />
         {
@@ -234,9 +237,11 @@ const BasicGraph = (props) => {
         <CartesianGrid stroke="#d5d5d5" strokeDasharray="5 5" />
         <Line type="monotone" dataKey="trending_line" strokeDasharray="1 3" stroke={props.colorTotal} yAxisId={0} dot={false} strokeWidth={2} />
         <Line type="monotone" dataKey="total" stroke={props.colorTotal} yAxisId={0} dot={{ r: 1 }} strokeWidth={2} />
-        <Line type="monotone" dataKey="pending_confirmed" stroke={props.colorTotal} dot={{ r: 1 }} strokeDasharray="2 2" strokeWidth={2} />
+        <Line type="monotone" dataKey="confirmed_projected" stroke={props.colorTotal} yAxisId={0} strokeDasharray="1 1" dot={{ r: 1 }} strokeWidth={2} />
+        <Line type="monotone" dataKey="pending_confirmed" stroke={props.colorTotal} dot={{ r: 0 }} strokeDasharray="2 2" strokeWidth={2} />
         <Line type="monotone" dataKey="newcase_avg" stroke={props.colorNew} yAxisId={1} dot={{ r: 1 }} strokeWidth={2} />
-        <Line type="monotone" dataKey="newcase" stroke={props.colorNew} strokeDasharray="1 4" yAxisId={1} dot={{ r: 1 }} strokeWidth={1} />
+        <Line type="monotone" dataKey="confirmed_new_projected" stroke={props.colorNew} yAxisId={1} dot={{ r: 1 }} strokeDasharray="1 1" strokeWidth={2} />
+        {/* <Line type="monotone" dataKey="newcase" stroke={props.colorNew} strokeDasharray="1 4" yAxisId={1} dot={{ r: 1 }} strokeWidth={1} /> */}
         <Line type="monotone" dataKey="pending_newcase" stroke={props.colorNew} yAxisId={1} dot={{ r: 1 }} strokeDasharray="2 2" strokeWidth={2} />
 
         <Line visibility="hidden" dataKey="pending_death" />
@@ -246,7 +251,6 @@ const BasicGraph = (props) => {
         <Legend
           verticalAlign="top"
           payload={legendPayload} />
-
       </LineChart></ResponsiveContainer>
   </>
 }

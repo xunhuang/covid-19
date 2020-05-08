@@ -11,6 +11,9 @@ const moment = require("moment")
 */
 
 export function mergeDataSeries(entry1, entry2) {
+  if (!entry2) {
+    return entry1;
+  }
   let map1 = entry1.reduce((m, a) => {
     m[a.fulldate] = a;
     return m;

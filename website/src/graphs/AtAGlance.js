@@ -19,6 +19,7 @@ const AtAGlance = (props) => {
   const dailyConfirmed = <BasicGraph {...props}
     USData={USData}
     column="confirmed"
+    project="confirmed_projected"
     labelTotal="Total Confirmed"
     labelNew="New (3d-avg)"
     colorTotal="#ff7300"
