@@ -222,7 +222,7 @@ export class DataSeries {
 
   trend() {
     const points = this.points();
-    if (points.length < 8) {
+    if (!points || points.length < 8) {
       return undefined;
     }
 

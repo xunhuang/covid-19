@@ -291,9 +291,9 @@ const Title = (props) => {
                       key={plural}
                       className={classes.number}
                       style={{borderColor: color}}>
-                    {shortNumber(value)}
+                    {value && shortNumber(value)}
                     {` ${i === 0 ? plural : ''} `}
-                    (+{shortNumber(change)})
+                    {change && `(+${shortNumber(change)})`}
                   </div>
                 )}
               </div>

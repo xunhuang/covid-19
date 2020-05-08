@@ -69,6 +69,7 @@ const KeyRewriteMap = {
   "French Polynesia": ["France", "French Polynesia"],
   "Gambia": ["The Gambia"],
   "Gambia, The": ["The Gambia"],
+  "Germany/Bavaria": ["Germany"],
   "Holy See": ["Vatican City"],
   "Hong Kong SAR": ["People's Republic of China", "Hong Kong"],
   "Hong Kong": ["People's Republic of China", "Hong Kong"],
