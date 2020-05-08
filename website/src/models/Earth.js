@@ -2,6 +2,7 @@ import {BasicDataComponent} from './BasicDataComponent';
 import {ChildrenComponent} from './ChildrenComponent';
 import {DataSeries} from './DataSeries';
 import {DivisionTypesComponent} from './DivisionTypesComponent';
+import {GeographyComponent} from './GeographyComponent';
 import {NameComponent} from './NameComponent';
 import {PopulationComponent} from './PopulationComponent';
 import {World} from './World';
@@ -104,15 +105,21 @@ class BasicEarthSource {
   }
 
   basicComponentsFor_(data) {
-    return [
+    const components = [
       new NameComponent(data['name']),
       new BasicDataComponent(
           DataSeries.fromFormattedDates("Confirmed", data['Confirmed']),
           DataSeries.fromFormattedDates("Active", data['Active']),
           DataSeries.fromFormattedDates("Recovered", data['Recovered']),
           DataSeries.fromFormattedDates("Deaths", data['Deaths'])),
-      new PopulationComponent(data['population']),
     ];
+    if (data['latitude'] && data['longitude']) {
+      components.push(new GeographyComponent(data['latitude'], data['longitude']));
+    }
+    if (data['population']) {
+      components.push(new PopulationComponent(data['population']));
+    }
+    return components;
   }
 }
 

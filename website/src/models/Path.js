@@ -21,12 +21,20 @@ export class Path {
     return new Path(this.components.concat(name));
   }
 
+  equals(other) {
+    return this.string() === other.string();
+  }
+
   parent() {
     if (this.level() > 0) {
       return new Path(this.components.slice(0, this.components.length - 1));
     } else {
       return undefined;
     }
+  }
+
+  lastComponent() {
+    return this.components[this.components.length - 1];
   }
 
   level() {

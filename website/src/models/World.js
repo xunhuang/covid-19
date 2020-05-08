@@ -30,6 +30,17 @@ export class World {
     }
   }
 
+  has(path, componentType) {
+    this.ensure_(path);
+
+    const asStr = path.string();
+    if (!this.componentsByPath.has(asStr)) {
+      return false;
+    } else {
+      return !!this.componentsByPath.get(asStr).get(componentType);
+    }
+  }
+
   set(path, component) {
     const asStr = path.string();
     if (!this.componentsByPath.has(asStr)) {
