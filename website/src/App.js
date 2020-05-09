@@ -32,9 +32,12 @@ const App = (props) => {
 };
 
 const MainApp = withRouter((props) => {
+  const [earth, setEarth] = React.useState(null);
   const [country, setCountry] = React.useState(null);
   const [myCounty, setMyCounty] = React.useState(null);
   React.useEffect(() => {
+    setEarth(createBasicEarth);
+
     const myCountry = new Country();
     setCountry(myCountry);
 
@@ -47,7 +50,7 @@ const MainApp = withRouter((props) => {
     });
   }, []);
 
-  if (country === null) {
+  if (earth === null || country === null) {
     return <Splash />
   }
 
@@ -63,7 +66,7 @@ const MainApp = withRouter((props) => {
   }
 
   return (
-    <WorldContext.Provider value={createBasicEarth()}>
+    <WorldContext.Provider value={earth}>
       <CountryContext.Provider value={country}>
         <SafeRoutes />
       </CountryContext.Provider>

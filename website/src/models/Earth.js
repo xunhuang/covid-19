@@ -4,10 +4,14 @@ import {DataSeries} from './DataSeries';
 import {DivisionTypesComponent} from './DivisionTypesComponent';
 import {GeographyComponent} from './GeographyComponent';
 import {NameComponent} from './NameComponent';
+import {Path} from './Path';
 import {PopulationComponent} from './PopulationComponent';
+import {SearchIndexComponent} from './SearchIndexComponent';
 import {World} from './World';
 
 const earthBaseData = require('../data/WorldData.json');
+
+export const SEARCH_INDEX_PATH = Path.parse('/_search_index');
 
 export function createBasicEarth() {
   return new World(new BasicEarthSource(earthBaseData));
@@ -19,64 +23,29 @@ class BasicEarthSource {
     this.baseData = baseData;
   }
 
-  fetch(path) {
-    let data;
-    let division;
-    if (path.matches('/')) {
-      data = this.baseData;
-      division = {
-        id: '',
-        singular: 'Country',
-        plural: 'Countries',
-      };
-    } else if (path.matches('/US')) {
-      data = this.baseData[path.components[0]];
-      division = {
-        id: 'state',
-        singular: 'State',
-        plural: 'States',
-      };
-    } else if (path.matches('/:country')) {
-      data = this.baseData[path.components[0]];
-      division = {
-        id: 'province',
-        singular: 'Province',
-        plural: 'Provinces',
-      };
-    } else if (path.matches('/US/state/:state')) {
-      data = this.baseData[path.components[0]][path.components[2]];
-      division = {
-        id: 'county',
-        singular: 'County',
-        plural: 'Counties',
-      };
-    } else if (path.matches('/US/state/:state/county/:county')) {
-      data = this.baseData[path.components[0]][path.components[2]][path.components[4]];
-      division = {
-        id: 'source',
-        singular: 'Source',
-        plural: 'Sources',
-      };
-    } else if (path.matches('/:country/:division/:province')) {
-      data = this.baseData[path.components[0]][path.components[2]];
-      division = {
-        id: 'city',
-        singular: 'City',
-        plural: 'Cities',
-      };
-    } else if (
-        path.matches('/:country/:division')
-            || path.matches('/:country/:division/:province/:division')
-            || path.matches('/:country/:division/:province/:division/:city')) {
+  fetch(path, have) {
+    if (SEARCH_INDEX_PATH.equals(path)) {
+      return [[path, [this.buildSearchIndex_()]]];
+    } else if (path.matches('/:country/:division')
+        || path.matches('/:country/:division/:province/:division')) {
       // We don't know anything about ourselves, so just return
       return [];
     }
 
-    const ourComponents = this.basicComponentsFor_(data['data']);
+    const ourComponents = [];
+
+    const data = resolve(path, this.baseData);
+    if (!have.has(BasicDataComponent)) {
+      ourComponents.push(...this.basicComponentsFor_(data['data']));
+    }
+
+    if (have.has(DivisionTypesComponent)) {
+      return [[path, ourComponents]];
+    }
 
     const children =
         Object.entries(data).filter(([child,]) => child !== 'data');
-
+    const division = divisionUnder(path);
     if (!division) {
       if (children.length > 0) {
         throw new Error(`Unknown division for ${path.string()}`);
@@ -121,5 +90,103 @@ class BasicEarthSource {
     }
     return components;
   }
+
+  buildSearchIndex_() {
+    const termsToNames = new Map();
+    const namesToPath = new Map();
+
+    const frontier = [[Path.root(), [], this.baseData]];
+    while (frontier.length > 0) {
+      const [path, ancestorTerms, data] = frontier.pop();
+
+      const name = data.data.name;
+      if (!termsToNames.has(name)) {
+        termsToNames.set(name, []);
+      }
+
+      const terms = [name].concat(ancestorTerms);
+      const fullName = terms.join(', ');
+      namesToPath.set(fullName, path);
+
+      for (const term of terms) {
+        termsToNames.get(term).push(fullName);
+      }
+
+      const division = divisionUnder(path);
+      const divisionPath =
+          division && division.id ? path.child(division.id) : path;
+      let passTerms;
+      if (path.matches('/')) {
+        passTerms = [];
+      } else {
+        passTerms = terms;
+      }
+
+      for (const key in data) {
+        if (key === 'data') {
+          continue;
+        }
+
+        frontier.push([divisionPath.child(key), passTerms, data[key]]);
+      }
+    }
+
+    return new SearchIndexComponent(termsToNames, namesToPath);
+  }
 }
 
+function resolve(path, baseData) {
+  if (path.matches('/')) {
+    return baseData;
+  } else if (path.matches('/:country')) {
+    return baseData[path.components[0]];
+  } else if (path.matches('/:country/:division/:province')) {
+    return baseData[path.components[0]][path.components[2]];
+  } else if (path.matches('/:country/:division/:province/:division/:county')) {
+    return baseData[path.components[0]][path.components[2]][path.components[4]];
+  } else {
+    return undefined;
+  }
+}
+
+function divisionUnder(path) {
+  if (path.matches('/')) {
+    return {
+      id: '',
+      singular: 'Country',
+      plural: 'Countries',
+    };
+  } else if (path.matches('/US')) {
+    return {
+      id: 'state',
+      singular: 'State',
+      plural: 'States',
+    };
+  } else if (path.matches('/:country')) {
+    return {
+      id: 'province',
+      singular: 'Province',
+      plural: 'Provinces',
+    };
+  } else if (path.matches('/US/state/:state')) {
+    return {
+      id: 'county',
+      singular: 'County',
+      plural: 'Counties',
+    };
+  } else if (path.matches('/US/state/:state/county/:county')) {
+    return {
+      id: 'source',
+      singular: 'Source',
+      plural: 'Sources',
+    };
+  } else if (path.matches('/:country/:division/:province')) {
+    return {
+      id: 'city',
+      singular: 'City',
+      plural: 'Cities',
+    };
+  } else {
+    return undefined;
+  }
+}
