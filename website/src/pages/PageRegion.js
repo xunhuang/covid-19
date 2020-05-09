@@ -14,6 +14,7 @@ import {Footer} from '../Footer';
 import {GeographyComponent} from '../models/GeographyComponent';
 import {NameComponent} from '../models/NameComponent';
 import {Path} from '../models/Path';
+import {SearchInput} from '../components/chrome/SearchInput';
 import {SocialMediaButtons} from '../components/chrome/SocialMediaButtons';
 import {WorldContext} from '../WorldContext';
 
@@ -25,7 +26,6 @@ const NEARBY_TO_SHOW = 10;
 const useStyles = makeStyles(theme => ({
   body: {
     background: '#fafafa',
-    overflow: 'auto',
   },
   content: {
     padding: HORIZONTAL_MARGIN,
@@ -74,39 +74,40 @@ export const PageRegion = withRouter((props) => {
   return (
     <div className={classes.body}>
       <AppBar />
-        <Paper className={classes.content}>
-          <Title className={classes.section} path={path} />
+      <Paper className={classes.content}>
+        <Title className={classes.section} path={path} />
 
-          {[DailyChangeGraph, DoublingGraph, DailyTotalGraph].map(Graph => (
-            <Graph
-                basic={basic}
-                className={`${classes.section} ${classes.graph}`}
+        {[DailyChangeGraph, DoublingGraph, DailyTotalGraph].map((Graph, i) => (
+          <Graph
+              key={i}
+              basic={basic}
+              className={`${classes.section} ${classes.graph}`}
+          />
+        ))}
+
+        {divisions &&
+          divisions.types().map(({id, plural}) =>
+            <DivisionTable
+                key={id}
+                plural={plural}
+                parent={id ? path.child(id) : path}
+                className={classes.section}
             />
-          ))}
+          )}
 
-          {divisions &&
-            divisions.types().map(({id, plural}) =>
-              <DivisionTable
-                  key={id}
-                  plural={plural}
-                  parent={id ? path.child(id) : path}
-                  className={classes.section}
-              />
-            )}
-
-          {showNearby &&
-              <DivisionTable
-                  parent={parentDivision}
-                  plural="Nearby"
-                  className={classes.section}
-                  filter={couldBeNearby}
-                  pickLowest={{
-                    count: NEARBY_TO_SHOW,
-                    quantifier: distanceTo,
-                  }}
-              />}
-        </Paper>
-        <Footer />
+        {showNearby &&
+            <DivisionTable
+                parent={parentDivision}
+                plural="Nearby"
+                className={classes.section}
+                filter={couldBeNearby}
+                pickLowest={{
+                  count: NEARBY_TO_SHOW,
+                  quantifier: distanceTo,
+                }}
+            />}
+      </Paper>
+      <Footer />
     </div>
   );
 });
@@ -117,6 +118,12 @@ const useAppBarStyles = makeStyles(theme => ({
   appBar: {
     color: RELIEF_COLOR,
     display: 'flex',
+  },
+  nameAndSearch: {
+    display: 'flex',
+    [theme.breakpoints.down('xs')]: {
+      display: 'initial',
+    },
   },
   appName: {
     overflow: 'visible',
@@ -142,6 +149,7 @@ const useAppBarStyles = makeStyles(theme => ({
   socialButtons: {
     fontSize: '1.5625em',
     lineHeight: '1em',
+    whiteSpace: 'nowrap',
     '& > *': {
       marginLeft: '4px',
       verticalAlign: 'middle',
@@ -158,11 +166,12 @@ const useAppBarStyles = makeStyles(theme => ({
     display: 'flex',
     flexWrap: 'wrap',
     justifyContent: 'flex-end',
+    textAlign: 'end',
 
     [theme.breakpoints.down('xs')]: {
       display: 'initial',
       '& > *': {
-        margin: '4px',
+        margin: '4px 0',
       },
     },
   },
@@ -173,11 +182,15 @@ const AppBar = (props) => {
   const theme = useTheme();
 
   return (
-    <MaterialAppBar position="static">
+    <MaterialAppBar position="relative">
       <Toolbar className={classes.appBar}>
-        <Typography noWrap className={classes.appName} variant="h6">
-          COVID-19.direct
-        </Typography>
+        <div className={classes.nameAndSearch}>
+          <Typography noWrap className={classes.appName} variant="h6">
+            COVID-19.direct
+          </Typography>
+          <SearchInput />
+        </div>
+
         <div className={classes.expander} />
 
         <div className={classes.actions}>
@@ -204,16 +217,10 @@ const useTitleStyles = makeStyles(theme => ({
     display: 'flex',
     flexWrap: 'wrap',
     margin: '0 -12px',
+    width: 'calc(100% - 24px)',
   },
   node: {
-    display: 'flex',
     margin: '0 12px 16px 12px',
-
-    [theme.breakpoints.down('sm')]: {
-      '&:not(.squish)': {
-        flex: '0 0 100%',
-      },
-    },
   },
   text: {
     padding: '0 8px',
@@ -231,13 +238,17 @@ const useTitleStyles = makeStyles(theme => ({
   numbers: {
     color: theme.palette.text.secondary,
     display: 'flex',
+    flexWrap: 'wrap',
+
+    [theme.breakpoints.down('xs')]: {
+      display: 'initial',
+    },
   },
   number: {
     borderLeft: '2px solid',
     borderTop: '2px solid',
     flexGrow: 1,
-    paddingTop: '4px',
-    paddingLeft: '4px',
+    padding: '4px 0 4px 4px',
     '&:not(:last-child)': {
       paddingRight: '4px',
     },
@@ -317,24 +328,22 @@ const Title = (props) => {
           <div
               key={path.string()}
               className={`${classes.node} ${squish ? 'squish': ''}`}>
-            <div>
-              <Typography variant={squish ? 'subtitle1' : 'h4'}>
-                {text}
-              </Typography>
-              <div className={classes.numbers}>
-                {numbers.map(({plural, color, value, change}) =>
-                  value > 0 && (
-                    <div
-                        key={plural}
-                        className={classes.number}
-                        style={{borderColor: color}}>
-                      {shortNumber(value)}
-                      {` ${i === 0 ? plural : ''} `}
-                      {change > 0 && `(+${shortNumber(change)})`}
-                    </div>
-                  )
-                )}
-              </div>
+            <Typography variant={squish ? 'subtitle1' : 'h4'}>
+              {text}
+            </Typography>
+            <div className={classes.numbers}>
+              {numbers.map(({plural, color, value, change}) =>
+                value > 0 && (
+                  <div
+                      key={plural}
+                      className={classes.number}
+                      style={{borderColor: color}}>
+                    {shortNumber(value)}
+                    {` ${i === 0 ? plural : ''} `}
+                    {change > 0 && `(+${shortNumber(change)})`}
+                  </div>
+                )
+              )}
             </div>
           </div>
         )}
@@ -387,13 +396,13 @@ const DailyTotalGraph = (props) => {
           trend: 'orange',
           initial: 'off',
         }, {
-          series: basic.recovered(),
-          color: 'green',
-          trend: '#668000',
-        }, {
           series: basic.died(),
           color: 'red',
           trend: '#ce889f',
+        }, {
+          series: basic.recovered(),
+          color: 'green',
+          trend: '#668000',
         }, {
           series: basic.active(),
           color: 'purple',

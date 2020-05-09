@@ -11,7 +11,8 @@ import { asDialogue } from "./FooterDialogue"
 
 const useStyles = makeStyles(theme => ({
     topContainer: {
-        margin: '2vh 0'
+        marginTop: '2vh',
+        paddingBottom: '2vh',
     },
     footerLink: {
         textAlign: 'center',

@@ -1,12 +1,19 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import {Table, TableBody, TableCell, TableHead, TableRow, TableSortLabel, useMediaQuery} from '@material-ui/core';
-import {useTheme} from '@material-ui/core/styles';
+import {makeStyles, useTheme} from '@material-ui/core/styles';
+
+const useStyles = makeStyles(theme => ({
+  squishText: {
+    hyphens: 'auto',
+  },
+}));
 
 /** A table that is sortable by its columns. */
 export const SortableTable = (props) => {
+  const classes = useStyles();
   const theme = useTheme();
-  const squish = useMediaQuery(theme.breakpoints.down('sm'));
+  const squish = useMediaQuery(theme.breakpoints.down('xs'));
   const {columns, rows, defaultSortColumn} = props;
 
   const [orderingBy, setOrderingBy] = React.useState(defaultSortColumn);
@@ -26,7 +33,7 @@ export const SortableTable = (props) => {
   };
 
   return (
-    <Table size="small">
+    <Table size="small" className={squish ? classes.squishText : ''}>
       <TableHead>
         <TableRow>
           {columns.map((column) =>
@@ -35,6 +42,7 @@ export const SortableTable = (props) => {
                   active={orderingBy.key === column.key}
                   direction={
                     orderingBy === column ? direction : column.defaultDirection}
+                  hideSortIcon={squish}
                   onClick={createUpdateSort(column)}
               >
                 {squish ? column.shortLabel || column.label : column.label}

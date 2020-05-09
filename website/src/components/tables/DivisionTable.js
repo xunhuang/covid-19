@@ -20,7 +20,7 @@ export const DivisionTable = (props) => {
   const columns = [
     {key: 'name', label: 'Name', defaultDirection: 'asc'},
     {key: 'confirmed', label: 'Confirmed', defaultDirection: 'desc', contextKey: 'confirmedChange'},
-    {key: 'confirmedPerMillion', label: 'Confirmed/million', shortLabel: 'Conf./mil', defaultDirection: 'desc'},
+    {key: 'confirmedPerMillion', label: 'Confirmed/million', shortLabel: 'Conf. / mil', defaultDirection: 'desc'},
     {key: 'died', label: 'Died', defaultDirection: 'desc'},
     {key: 'doublingInterval', label: 'Days to double', shortLabel: 'Days 2x', defaultDirection: 'asc'},
   ];
