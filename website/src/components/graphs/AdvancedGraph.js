@@ -38,15 +38,15 @@ export const AdvancedGraph = (props) => {
   const classes = useStyles();
 
   const windows = new Map([
-    ['2weeks', {
-      label: '2 Weeks',
+    ['4weeks', {
+      label: '4 Weeks',
       filter: (data) => {
         if (data.length === 0) {
           return [];
         }
         const start =
             moment.unix(data[data.length - 1].timestamp)
-                .subtract(14, 'day')
+                .subtract(28, 'day')
                 .unix();
         return data.filter((p) => start <= p.timestamp);
       },

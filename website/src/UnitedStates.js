@@ -726,6 +726,21 @@ export class County extends CovidSummarizable {
     return undefined;
   }
 
+  getConfirmedNewByDate(date) {
+    if (!date) {
+      return this.summary().newcases;
+    }
+    const d1 = this.getConfirmedByDate(date);
+    const d2 = this.getConfirmedByDate(moment(date, "MM/DD/YYYY").subtract(1, "days").format("MM/DD/YYYY"));
+    if (!d1) {
+      return 0;
+    }
+    if (!d2) {
+      return d1
+    }
+    return d1 - d2;
+  }
+
   async deathsAsync() {
     if (!this.covidRaw_.Death) {
       await this._fetchServerData();

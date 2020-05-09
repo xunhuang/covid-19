@@ -11,6 +11,7 @@ import {DivisionTable} from '../components/tables/DivisionTable';
 import {DivisionTypesComponent} from '../models/DivisionTypesComponent';
 import {DonateLink} from '../components/chrome/DonateLink';
 import {Footer} from '../Footer';
+import {GeographyComponent} from '../models/GeographyComponent';
 import {NameComponent} from '../models/NameComponent';
 import {Path} from '../models/Path';
 import {SocialMediaButtons} from '../components/chrome/SocialMediaButtons';
@@ -19,6 +20,7 @@ import {WorldContext} from '../WorldContext';
 const shortNumber = require('short-number');
 
 const HORIZONTAL_MARGIN = '16px';
+const NEARBY_TO_SHOW = 10;
 
 const useStyles = makeStyles(theme => ({
   body: {
@@ -50,11 +52,24 @@ export const PageRegion = withRouter((props) => {
     return <Redirect to="/US" />;
   }
 
-  const basic = world.get(path, BasicDataComponent);
+  const [basic, divisions, geography] =
+      world.getMultiple(
+          path,
+          [BasicDataComponent, DivisionTypesComponent, GeographyComponent]);
   if (!basic) {
     throw new Error(`${path.string()} has no basic component`);
   }
-  const divisions = world.get(path, DivisionTypesComponent);
+
+  const parentDivision = path.parent();
+  const showNearby = geography && parentDivision;
+  const couldBeNearby = (candidate) =>
+      !path.equals(candidate) && world.has(candidate, GeographyComponent);
+  const distanceTo = (candidate) => {
+    const theirGeography = world.get(candidate, GeographyComponent);
+    // This is kind of garbage, we're comparing a point to a point. Really
+    // should be comparing bounds, but we don't have those.
+    return geography.distance(theirGeography);
+  };
 
   return (
     <div className={classes.body}>
@@ -62,26 +77,34 @@ export const PageRegion = withRouter((props) => {
         <Paper className={classes.content}>
           <Title className={classes.section} path={path} />
 
-          <DailyGraph
-              basic={basic}
-              className={`${classes.section} ${classes.graph}`}
-          />
-
-          <DoublingGraph
-              basic={basic}
-              className={`${classes.section} ${classes.graph}`}
-          />
+          {[DailyChangeGraph, DoublingGraph, DailyTotalGraph].map(Graph => (
+            <Graph
+                basic={basic}
+                className={`${classes.section} ${classes.graph}`}
+            />
+          ))}
 
           {divisions &&
             divisions.types().map(({id, plural}) =>
               <DivisionTable
                   key={id}
-                  id={id}
                   plural={plural}
-                  parent={path}
+                  parent={id ? path.child(id) : path}
                   className={classes.section}
               />
             )}
+
+          {showNearby &&
+              <DivisionTable
+                  parent={parentDivision}
+                  plural="Nearby"
+                  className={classes.section}
+                  filter={couldBeNearby}
+                  pickLowest={{
+                    count: NEARBY_TO_SHOW,
+                    quantifier: distanceTo,
+                  }}
+              />}
         </Paper>
         <Footer />
     </div>
@@ -210,12 +233,11 @@ const useTitleStyles = makeStyles(theme => ({
     display: 'flex',
   },
   number: {
+    borderLeft: '2px solid',
     borderTop: '2px solid',
     flexGrow: 1,
     paddingTop: '4px',
-    '&:not(:first-child)': {
-      paddingLeft: '4px',
-    },
+    paddingLeft: '4px',
     '&:not(:last-child)': {
       paddingRight: '4px',
     },
@@ -271,6 +293,20 @@ const Title = (props) => {
         change: basic.died().change().lastValue(),
       },
     ];
+
+    if (!name.squish) {
+      name.numbers.push({
+        plural: 'active',
+        color: 'purple',
+        value: basic.active().lastValue(),
+        change: basic.active().change().lastValue(),
+      }, {
+        plural: 'recovered',
+        color: 'green',
+        value: basic.recovered().lastValue(),
+        change: basic.recovered().change().lastValue(),
+      });
+    }
   }
 
   return (
@@ -287,14 +323,16 @@ const Title = (props) => {
               </Typography>
               <div className={classes.numbers}>
                 {numbers.map(({plural, color, value, change}) =>
-                  <div
-                      key={plural}
-                      className={classes.number}
-                      style={{borderColor: color}}>
-                    {value && shortNumber(value)}
-                    {` ${i === 0 ? plural : ''} `}
-                    {change && `(+${shortNumber(change)})`}
-                  </div>
+                  value > 0 && (
+                    <div
+                        key={plural}
+                        className={classes.number}
+                        style={{borderColor: color}}>
+                      {shortNumber(value)}
+                      {` ${i === 0 ? plural : ''} `}
+                      {change > 0 && `(+${shortNumber(change)})`}
+                    </div>
+                  )
                 )}
               </div>
             </div>
@@ -310,7 +348,7 @@ Title.propTypes = {
   path: PropTypes.instanceOf(Path).isRequired,
 };
 
-const DailyGraph = (props) => {
+const DailyChangeGraph = (props) => {
   const basic = props.basic;
 
   return (
@@ -325,23 +363,40 @@ const DailyGraph = (props) => {
           color: '#7ed0d0',
           initial: 'off',
         }, {
-          series: basic.confirmed(),
-          color: 'gray',
-          initial: 'off',
-        }, {
-          series: basic.active(),
-          color: 'pink',
-          initial: 'off',
-        }, {
-          series: basic.recovered(),
+          series: basic.recovered().change(),
           color: 'green',
           initial: 'off',
         }, {
           series: basic.died().change(),
-          color: 'purple',
+          color: 'red',
+        },
+      ]}
+    />
+  );
+};
+
+const DailyTotalGraph = (props) => {
+  const basic = props.basic;
+
+  return (
+    <AdvancedGraph
+      className={props.className}
+      serieses={[{
+          series: basic.confirmed(),
+          color: 'teal',
+          trend: 'orange',
+          initial: 'off',
+        }, {
+          series: basic.recovered(),
+          color: 'green',
+          trend: '#668000',
         }, {
           series: basic.died(),
           color: 'red',
+          trend: '#ce889f',
+        }, {
+          series: basic.active(),
+          color: 'purple',
           initial: 'off',
         },
       ]}
@@ -358,10 +413,11 @@ const DoublingGraph = (props) => {
       serieses={[{
           series: basic.confirmed().doublingInterval(),
           color: 'teal',
-          trend: 'orange',
+          trend: '#7ed0d0',
         }, {
           series: basic.died().doublingInterval(),
           color: 'red',
+          trend: '#ce889f',
         },
       ]}
     />
