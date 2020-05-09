@@ -167,12 +167,12 @@ const MapUS = withRouter((props) => {
       <Grid item>
         <Typography>Per Capita</Typography>
       </Grid>
-      {dataFetched && oldestMoment && desired === "confirmed" ?
+      {dataFetched && oldestMoment && (desired === "confirmed" || desired === "confirmedNew") &&
         <Grid item>
           <Typography align="right" className={classes.dateLabel}>{moment().subtract(showPastDays, 'days').format('M/D')}:</Typography>
         </Grid>
-        : <></>}
-      {dataFetched && oldestMoment && desired === "confirmed" ?
+      }
+      {dataFetched && oldestMoment && (desired === "confirmed" || desired === "confirmedNew") &&
         <Grid item xs sm={3}>
           <DateRangeSlider
             startDate={moment(oldestMoment)}
@@ -184,7 +184,7 @@ const MapUS = withRouter((props) => {
             }}
           />
         </Grid>
-        : <></>}
+      }
       <Grid item sm></Grid>
       <Grid className={classes.gridPadding}></Grid>
     </Grid>
@@ -251,7 +251,7 @@ const MapUSConfirmedNew = React.memo((props) => {
     <MapCountyGeneric
       {...props}
       getCountyDataPoint={(county) => {
-        return county.summary().newcases;
+        return county.getConfirmedNewByDate(props.date);
       }}
       colorFunction={(data) => {
         return ColorScale.confirmedNew(data);
@@ -260,8 +260,9 @@ const MapUSConfirmedNew = React.memo((props) => {
         return ColorScale.confirmedNewPerMillion(data);
       }}
       toolip={county => {
-        return `${county.name}, New: ${county.summary().newcases}, \n` +
-          `New/Mil: ${(county.summary().newcases / county.population() * 1000000).toFixed(0)}`
+        let newcases = county.getConfirmedNewByDate(props.date);
+        return `${county.name}, New: ${newcases}, \n` +
+          `New/Mil: ${(newcases / county.population() * 1000000).toFixed(0)}`
       }}
     />
   );
