@@ -244,7 +244,7 @@ const BasicGraph = (props) => {
         {
           (state.verticalScale === axisScales.log) ?
             <YAxis yAxisId={0} scale={scale} /> :
-            <YAxis yAxisId={0} tickFormatter={(t) => myShortNumber(t)} width={30} tick={{ fill: props.colorTotal }} />
+            <YAxis yAxisId={0} tickFormatter={(t) => myShortNumber(t)} width={40} tick={{ fill: props.colorTotal }} />
         }
         <YAxis yAxisId={1} tickFormatter={(t) => myShortNumber(t)} width={10} tick={{ fill: props.colorNew }} orientation="right" />
 
