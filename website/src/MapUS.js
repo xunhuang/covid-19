@@ -167,12 +167,12 @@ const MapUS = withRouter((props) => {
       <Grid item>
         <Typography>Per Capita</Typography>
       </Grid>
-      {dataFetched && oldestMoment && (desired === "confirmed" || desired === "confirmedNew") &&
+      {dataFetched && oldestMoment && (desired === "confirmed" || desired === "confirmedNew" || desired === "death") &&
         <Grid item>
           <Typography align="right" className={classes.dateLabel}>{moment().subtract(showPastDays, 'days').format('M/D')}:</Typography>
         </Grid>
       }
-      {dataFetched && oldestMoment && (desired === "confirmed" || desired === "confirmedNew") &&
+      {dataFetched && oldestMoment && (desired === "confirmed" || desired === "confirmedNew" || desired === "death") &&
         <Grid item xs sm={3}>
           <DateRangeSlider
             startDate={moment(oldestMoment)}
@@ -273,7 +273,7 @@ const MapStateDeath = React.memo((props) => {
     <MapCountyGeneric
       {...props}
       getCountyDataPoint={(county) => {
-        return county.summary().deaths;
+        return county.getDeathsByDate(props.date);
       }}
       colorFunction={(data) => {
         return ColorScale.death(data);
@@ -282,8 +282,9 @@ const MapStateDeath = React.memo((props) => {
         return ColorScale.deathPerMillion(data);
       }}
       toolip={county => {
-        return `${county.name}, Deaths: ${county.summary().deaths}, \n` +
-          `Deaths/Mil: ${(county.summary().deaths / county.population() * 1000000).toFixed(0)}`
+        const deaths = county.getDeathsByDate(props.date);
+        return `${county.name}, Deaths: ${deaths}, \n` +
+          `Deaths/Mil: ${(deaths / county.population() * 1000000).toFixed(0)}`
       }}
     />
   );
