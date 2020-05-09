@@ -53,13 +53,9 @@ const CustomTooltip = (props) => {
       if ("newcase" in p) {
         newcase = p.newcase;
       }
-      if ("pending_newcase" in p) {
-        newcase = p.pending_newcase;
-      }
       if ("newcase_avg" in p) {
         newcase_avg = p.newcase_avg;
       }
-
       if ("confirmed_projected" in p) {
         confirmed_projected = p.confirmed_projected;
       }
@@ -83,7 +79,7 @@ const CustomTooltip = (props) => {
           {confirmed && `Total: ${confirmed}`}
         </Typography>
         <Typography variant="body2" noWrap>
-          {newcase && `confirmed && New: ${newcase}`}
+          {newcase !== undefined && `New: ${newcase}`}
         </Typography>
         <Typography variant="body2" noWrap>
           {newcase_avg && `New (3d-Avg): ${newcase_avg.toFixed(0)}`}
@@ -193,6 +189,24 @@ const BasicGraph = (props) => {
     return day.isBefore(future);
   });
 
+  // deal with that last point with dashes
+  // 
+  const today = moment();
+  const yesterday = moment().subtract(1, "days");
+
+  const todayData = data.find(s => s.name === today.format("M/D"));
+  const yesterdayData = data.find(s => s.name === yesterday.format("M/D"));
+
+  yesterdayData["total_lastpoint"] = yesterdayData["total"];
+  todayData["total_lastpoint"] = todayData["total"];
+
+  todayData["newcase_avg_lastpoint"] = todayData["newcase_avg"];
+  yesterdayData["newcase_avg_lastpoint"] = yesterdayData["newcase_avg"];
+
+  delete todayData["total"];
+  delete todayData["newcase_avg"];
+  // console.log(data);
+
   return <>
     <Grid container alignItems="center" spacing={1}>
       <Grid item>
@@ -237,12 +251,13 @@ const BasicGraph = (props) => {
         <CartesianGrid stroke="#d5d5d5" strokeDasharray="5 5" />
         <Line type="monotone" dataKey="trending_line" strokeDasharray="1 3" stroke={props.colorTotal} yAxisId={0} dot={false} strokeWidth={2} />
         <Line type="monotone" dataKey="total" stroke={props.colorTotal} yAxisId={0} dot={{ r: 1 }} strokeWidth={2} />
+        <Line type="monotone" dataKey="total_lastpoint" stroke={props.colorTotal} yAxisId={0} dot={{ r: 1 }} strokeDasharray="2 2" strokeWidth={2} />
         <Line type="monotone" dataKey="confirmed_projected" stroke={props.colorTotal} yAxisId={0} strokeDasharray="1 1" dot={{ r: 1 }} strokeWidth={2} />
         <Line type="monotone" dataKey="pending_confirmed" stroke={props.colorTotal} dot={{ r: 0 }} strokeDasharray="2 2" strokeWidth={2} />
         <Line type="monotone" dataKey="newcase_avg" stroke={props.colorNew} yAxisId={1} dot={{ r: 1 }} strokeWidth={2} />
+        <Line type="monotone" dataKey="newcase_avg_lastpoint" stroke={props.colorNew} yAxisId={1} dot={{ r: 1 }} strokeDasharray="2 2" strokeWidth={2} />
         <Line type="monotone" dataKey="confirmed_new_projected" stroke={props.colorNew} yAxisId={1} dot={{ r: 1 }} strokeDasharray="1 1" strokeWidth={2} />
-        {/* <Line type="monotone" dataKey="newcase" stroke={props.colorNew} strokeDasharray="1 4" yAxisId={1} dot={{ r: 1 }} strokeWidth={1} /> */}
-        <Line type="monotone" dataKey="pending_newcase" stroke={props.colorNew} yAxisId={1} dot={{ r: 1 }} strokeDasharray="2 2" strokeWidth={2} />
+        <Line type="monotone" dataKey="newcase" stroke={props.colorNew} strokeDasharray="1 4" yAxisId={1} dot={{ r: 1 }} strokeWidth={1} />
 
         <Line visibility="hidden" dataKey="pending_death" />
         {vRefLines}

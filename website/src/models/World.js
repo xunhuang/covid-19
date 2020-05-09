@@ -65,7 +65,17 @@ export class World {
       }
     }
 
-    for (const [path, components] of this.source.fetch(target)) {
+    let fetched;
+    if (haveTarget) {
+      fetched =
+          this.source.fetch(
+              target,
+              new Set(this.componentsByPath.get(asStr).keys()));
+    } else {
+      fetched = this.source.fetch(target, new Set());
+    }
+
+    for (const [path, components] of fetched) {
       this.frontier.add(path.string());
       components.forEach(c => {
         this.set(path, c);
