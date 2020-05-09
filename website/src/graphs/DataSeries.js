@@ -59,6 +59,10 @@ export function makeDataSeriesFromTotal(data, key_total, key_daily, key_moving) 
       m[i][key_moving] = mean;
     }
     m[0][key_moving] = (m[0][key_daily] + m[1][key_daily]) / 2;
+
+    if (len > 3) {
+      m[len - 2][key_moving] = (m[len - 3][key_daily] + m[len - 2][key_daily]) / 2;
+    }
     m[len - 1][key_moving] = (m[len - 1][key_daily] + m[len - 2][key_daily]) / 2;
   }
 
