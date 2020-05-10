@@ -7,6 +7,7 @@ import {fade, makeStyles, useTheme} from '@material-ui/core/styles';
 
 import {AdvancedGraph} from '../components/graphs/AdvancedGraph';
 import {BasicDataComponent} from '../models/BasicDataComponent';
+import {Discussion} from '../components/chrome/Discussion';
 import {DivisionTable} from '../components/tables/DivisionTable';
 import {DivisionTypesComponent} from '../models/DivisionTypesComponent';
 import {DonateLink} from '../components/chrome/DonateLink';
@@ -74,6 +75,7 @@ export const PageRegion = withRouter((props) => {
   return (
     <div className={classes.body}>
       <AppBar />
+
       <Paper className={classes.content}>
         <Title className={classes.section} path={path} />
 
@@ -107,6 +109,9 @@ export const PageRegion = withRouter((props) => {
                 }}
             />}
       </Paper>
+
+      <Discussion className={classes.content} />
+
       <Footer />
     </div>
   );
