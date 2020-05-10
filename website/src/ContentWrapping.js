@@ -207,13 +207,13 @@ const Banner = withRouter((props) => {
         <span className={classes.grow}></span>
         {/* <span className={classes.keepclam}> Keep Clam, #StayHome</span> */}
         <span className={classes.tagline}>
-          <Typography variant="body1" >
+          {/* <Typography variant="body1" >
             this too shall pass
-          </Typography>
+          </Typography> */}
           <DonateButton />
-          {/* <MaterialLink variant="body1" to="/country/" component={RouterLink} >
+          <MaterialLink variant="body1" to="/country/" component={RouterLink} >
             Beta: Rest of World
-            </MaterialLink> */}
+          </MaterialLink>
 
         </span>
       </div >
