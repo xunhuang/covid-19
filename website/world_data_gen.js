@@ -257,10 +257,10 @@ class DefaultAbsorberMap {
     });
 
     for (const key of sorted) {
-      const split = key.split('/');
-      if (split.length === 0) {
+      if (key === '') {
         // We're done!
       } else {
+        const split = key.split('/');
         const parentKey = split.slice(0, split.length - 1).join('/');
         const parentTimestamps = this.timestampsByKey.get(parentKey);
 
