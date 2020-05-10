@@ -1,6 +1,6 @@
 import React, {useContext} from 'react';
 import {AutoSizer, List} from 'react-virtualized';
-import {ClickAwayListener, InputBase, Link as MaterialLink, Paper, Typography} from '@material-ui/core';
+import {ClickAwayListener, InputBase, Link as MaterialLink, Paper } from '@material-ui/core';
 import {Link as RouterLink} from 'react-router-dom';
 import SearchIcon from '@material-ui/icons/Search';
 import LocationSearchingIcon from '@material-ui/icons/LocationSearching';

@@ -7,7 +7,7 @@ import Typography from '@material-ui/core/Typography'
 import { Link as MaterialLink } from '@material-ui/core';
 import GpsFixedIcon from '@material-ui/icons/GpsFixed';
 import { makeStyles } from '@material-ui/core/styles';
-import { fetchCounty } from "./GeoLocation"
+import { fetchLocationFromUserAndSave } from "./GeoLocation"
 import { BrowserView, MobileView, isMobile } from 'react-device-detect'
 import { makeCountyFromDescription } from "./Util"
 
@@ -152,7 +152,7 @@ const SearchBox = (props) => {
 }
 
 const findLocationAndRedirect = async (country, history) => {
-    const countyDescr = await fetchCounty(true);
+    const countyDescr = await fetchLocationFromUserAndSave();
     const newCountyObj = makeCountyFromDescription(country, countyDescr);
     const params = new URLSearchParams(history.location.search);
     const to = newCountyObj.routeTo() + "?" + params.toString();
