@@ -20,13 +20,13 @@ const RESULTS_MAX_HEIGHT = 150;
 
 const useStyles = makeStyles(theme => ({
   root: {
-    height: '2em',
-    position: 'relative',
-    display: 'flex',
     alignItems: 'center',
-    borderRadius: theme.shape.borderRadius,
     backgroundColor: fade(theme.palette.common.white, 0.15),
+    borderRadius: theme.shape.borderRadius,
+    display: 'flex',
+    height: '2em',
     marginLeft: theme.spacing(4),
+    position: 'relative',
     '&:hover': {
       backgroundColor: fade(theme.palette.common.white, 0.25),
     },
@@ -42,31 +42,32 @@ const useStyles = makeStyles(theme => ({
     position: 'absolute',
   },
   input: {
-    flexGrow: 1,
-    position: 'relative',
     color: 'inherit',
+    flexGrow: 1,
     paddingLeft: `calc(1em + ${theme.spacing(2.5)}px)`,
+    position: 'relative',
     [theme.breakpoints.down('xs')]: {
       maxWidth: '20ch',
     },
   },
   divider: {
-    height: '70%',
-    width: '1px',
-    position: 'relative',
-    marginLeft: theme.spacing(1),
     backgroundColor: `rgba(255, 255, 255, 0.7)`,
+    height: '70%',
+    marginLeft: theme.spacing(1),
+    position: 'relative',
+    width: '1px',
   },
   iconButton: {
-    height: '100%',
-    position: 'relative',
-    padding: theme.spacing(0, 1),
     color: theme.palette.common.white,
+    height: '100%',
+    padding: theme.spacing(0, 1),
+    position: 'relative',
     "&:hover": {
-      backgroundColor: "transparent"
-    }
+      backgroundColor: "transparent",
+    },
   },
   resultsContainer: {
+    alignSelf: 'flex-start',
     borderRadius: '4px',
     color: theme.palette.text.primary,
     marginTop: '4px',
@@ -75,9 +76,8 @@ const useStyles = makeStyles(theme => ({
     padding: '4px',
     position: 'absolute',
     top: '100%',
-    alignSelf: 'flex-start',
-    width: '350px',
     userSelect: 'none',
+    width: '350px',
     '&.hide': {
       display: 'none',
     },
@@ -89,8 +89,8 @@ const useStyles = makeStyles(theme => ({
   },
   result: {
     background: '#fff',
-    overflow: 'hidden',
     lineHeight: RESULT_HEIGHT + 'px',
+    overflow: 'hidden',
     textOverflow: 'ellipsis',
     whiteSpace: 'nowrap',
   },
@@ -103,7 +103,7 @@ export const SearchInput = (props) => {
 
   const [results, setResults] = React.useState([]);
 
-  const locationLookup = async (history) => {
+  const locationLookup = async () => {
     const search = world.get(SEARCH_INDEX_PATH, SearchIndexComponent);
     const location = await fetchPrecisePoliticalLocation();
     if (!search) {
@@ -170,7 +170,7 @@ export const SearchInput = (props) => {
         <IconButton
             size="small"
             className={classes.iconButton}
-            onClick={() => locationLookup(history)}>
+            onClick={() => locationLookup()}>
           <LocationSearchingIcon/>
         </IconButton>
         <Paper
