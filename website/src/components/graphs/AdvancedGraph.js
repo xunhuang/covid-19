@@ -44,8 +44,18 @@ export const AdvancedGraph = (props) => {
         if (data.length === 0) {
           return [];
         }
-        const start = moment().subtract(28, 'day').unix();
-        const end = moment().add(14, 'day').unix();
+
+        const preferredStart = moment().subtract(28, 'day');
+        const lastMoment = moment.unix(data[data.length - 1].timestamp);
+        let startMoment;
+        if (lastMoment.isBefore(preferredStart)) {
+          startMoment = lastMoment.subtract(28, 'day');
+        } else {
+          startMoment = preferredStart;
+        }
+
+        const start = startMoment.unix();
+        const end = startMoment.add(28 + 14 /* for projections */, 'day').unix();
         return data.filter((p) => start <= p.timestamp && p.timestamp <= end);
       },
     }],
