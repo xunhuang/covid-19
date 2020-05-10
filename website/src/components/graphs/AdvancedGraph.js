@@ -38,19 +38,30 @@ export const AdvancedGraph = (props) => {
   const classes = useStyles();
 
   const windows = new Map([
-    ['all', {
-      label: 'All',
-      filter: (data) => data,
-    }],
     ['4weeks', {
       label: '4 Weeks',
       filter: (data) => {
         if (data.length === 0) {
           return [];
         }
-        const start = moment().subtract(28, 'day').unix();
-        return data.filter((p) => start <= p.timestamp);
+
+        const preferredStart = moment().subtract(28, 'day');
+        const lastMoment = moment.unix(data[data.length - 1].timestamp);
+        let startMoment;
+        if (lastMoment.isBefore(preferredStart)) {
+          startMoment = lastMoment.subtract(28, 'day');
+        } else {
+          startMoment = preferredStart;
+        }
+
+        const start = startMoment.unix();
+        const end = startMoment.add(28 + 14 /* for projections */, 'day').unix();
+        return data.filter((p) => start <= p.timestamp && p.timestamp <= end);
       },
+    }],
+    ['all', {
+      label: 'All',
+      filter: (data) => data,
     }],
   ]);
   const [window, setWindow] = React.useState(windows.keys().next().value);
@@ -85,11 +96,31 @@ export const AdvancedGraph = (props) => {
   const {data, timestampFormatter} =
       DataSeries.flatten([...serieses.values()].map(({series}) => series));
 
+  const [known, setKnown] = React.useState([]);
   const [selected, setSelected] =
       React.useState(() =>
           [...serieses.entries()]
               .filter(([, {initial}]) => initial !== 'off')
               .map(([label, ]) => label));
+
+  // As the user switches pages, graphs that were previously unknown may become
+  // available. So turn them off if they default to on when they appear.
+  const nowKnown = [...serieses.keys()];
+  if (known.join() !== nowKnown.join()) {
+    const add = [];
+    for (const [key, {initial}] of serieses.entries()) {
+      if (!known.includes(key) && initial !== 'off') {
+        add.push(key);
+      }
+    }
+
+    if (add.length > 0) {
+      // We might as well just do this in here, even though technically we
+      // should probably do it in the else branch too.
+      setKnown(nowKnown);
+      setSelected(selected.concat(add));
+    }
+  }
 
   return (
     <div className={props.className}>
