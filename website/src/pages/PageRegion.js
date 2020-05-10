@@ -52,6 +52,10 @@ export const PageRegion = withRouter((props) => {
 
   if (path.matches('/US')) {
     return <Redirect to="/US" />;
+  } else if (path.matches('/US/state/:state')) {
+    return <Redirect to={"/state/" + path.components[2]} />;
+  } else if (path.matches('/US/state/:state/county/:county')) {
+    return <Redirect to={"/county/" + path.components[2] + '/' + path.components[4]} />;
   }
 
   const [basic, divisions, geography, projections] =
