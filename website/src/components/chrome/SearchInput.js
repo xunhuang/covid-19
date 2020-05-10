@@ -3,6 +3,9 @@ import {AutoSizer, List} from 'react-virtualized';
 import {ClickAwayListener, InputBase, Link as MaterialLink, Paper, Typography} from '@material-ui/core';
 import {Link as RouterLink} from 'react-router-dom';
 import SearchIcon from '@material-ui/icons/Search';
+import LocationSearchingIcon from '@material-ui/icons/LocationSearching';
+import Divider from '@material-ui/core/Divider';
+import IconButton from '@material-ui/core/IconButton';
 import {fade, makeStyles} from '@material-ui/core/styles';
 
 import {SEARCH_INDEX_PATH} from '../../models/Earth';
@@ -16,28 +19,42 @@ const RESULTS_MAX_HEIGHT = 150;
 const useStyles = makeStyles(theme => ({
   root: {
     position: 'relative',
+    display: 'flex',
+    alignItems: 'center',
     borderRadius: theme.shape.borderRadius,
     backgroundColor: fade(theme.palette.common.white, 0.15),
     marginLeft: theme.spacing(4),
     '&:hover': {
       backgroundColor: fade(theme.palette.common.white, 0.25),
     },
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       marginLeft: 0,
     },
+    width: '250px',
+    height: '33px',
   },
   searchIcon: {
-    height: '100%',
-    padding: theme.spacing(0, 1),
+    paddingLeft: theme.spacing(1),
     pointerEvents: 'none',
-    position: 'absolute',
   },
   input: {
+    position: 'inline',
+    flexGrow: 1,
     color: 'inherit',
-    paddingLeft: `calc(1em + ${theme.spacing(2.5)}px)`,
-    [theme.breakpoints.down('xs')]: {
-      width: '20ch',
-    },
+    paddingLeft: theme.spacing(1),
+  },
+  divider: {
+    height: '70%',
+    width: '1px',
+    backgroundColor: theme.palette.primary.dark
+  },
+  iconButton: {
+    paddingRight: theme.spacing(1),
+    paddingLeft: theme.spacing(1),
+    color: theme.palette.common.white,
+    "&:hover": {
+      backgroundColor: "transparent"
+    }
   },
   resultsContainer: {
     borderRadius: '4px',
@@ -47,6 +64,8 @@ const useStyles = makeStyles(theme => ({
     maxWidth: '100vh',
     padding: '4px',
     position: 'absolute',
+    top: '100%',
+    alignSelf: 'flex-start',
     width: '350px',
     userSelect: 'none',
     '&.hide': {
@@ -119,6 +138,12 @@ export const SearchInput = (props) => {
             className={classes.input}
             onChange={onChange}
             placerholder="Search..." />
+        <Divider className={classes.divider} />
+        <IconButton
+          size="small"
+          className={classes.iconButton}>
+          <LocationSearchingIcon/>
+        </IconButton>
         <Paper
             className={
               `${classes.resultsContainer} `

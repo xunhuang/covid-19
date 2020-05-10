@@ -136,7 +136,7 @@ const useAppBarStyles = makeStyles(theme => ({
   },
   nameAndSearch: {
     display: 'flex',
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       display: 'initial',
     },
   },
@@ -183,7 +183,7 @@ const useAppBarStyles = makeStyles(theme => ({
     justifyContent: 'flex-end',
     textAlign: 'end',
 
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       display: 'initial',
       '& > *': {
         margin: '4px 0',
@@ -457,4 +457,3 @@ const DoublingGraph = (props) => {
     />
   );
 };
-
