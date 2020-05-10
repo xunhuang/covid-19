@@ -96,11 +96,31 @@ export const AdvancedGraph = (props) => {
   const {data, timestampFormatter} =
       DataSeries.flatten([...serieses.values()].map(({series}) => series));
 
+  const [known, setKnown] = React.useState([]);
   const [selected, setSelected] =
       React.useState(() =>
           [...serieses.entries()]
               .filter(([, {initial}]) => initial !== 'off')
               .map(([label, ]) => label));
+
+  // As the user switches pages, graphs that were previously unknown may become
+  // available. So turn them off if they default to on when they appear.
+  const nowKnown = [...serieses.keys()];
+  if (known.join() !== nowKnown.join()) {
+    const add = [];
+    for (const [key, {initial}] of serieses.entries()) {
+      if (!known.includes(key) && initial !== 'off') {
+        add.push(key);
+      }
+    }
+
+    if (add.length > 0) {
+      // We might as well just do this in here, even though technically we
+      // should probably do it in the else branch too.
+      setKnown(nowKnown);
+      setSelected(selected.concat(add));
+    }
+  }
 
   return (
     <div className={props.className}>
