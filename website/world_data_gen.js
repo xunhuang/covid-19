@@ -483,6 +483,12 @@ async function get_projection_data() {
       components.push(line.Province)
     }
 
+    if (components.length === 0) {
+      if (line.Continent !== 'None') {
+        continue;
+      }
+    }
+
     const {resolved} = resolve_key(components);
     const path = resolved.join('/');
 
