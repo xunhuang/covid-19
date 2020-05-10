@@ -15,6 +15,7 @@ import {Footer} from '../Footer';
 import {GeographyComponent} from '../models/GeographyComponent';
 import {NameComponent} from '../models/NameComponent';
 import {Path} from '../models/Path';
+import {ProjectionsComponent} from '../models/ProjectionsComponent';
 import {SearchInput} from '../components/chrome/SearchInput';
 import {SocialMediaButtons} from '../components/chrome/SocialMediaButtons';
 import {WorldContext} from '../WorldContext';
@@ -53,10 +54,14 @@ export const PageRegion = withRouter((props) => {
     return <Redirect to="/US" />;
   }
 
-  const [basic, divisions, geography] =
+  const [basic, divisions, geography, projections] =
       world.getMultiple(
-          path,
-          [BasicDataComponent, DivisionTypesComponent, GeographyComponent]);
+          path, [
+            BasicDataComponent,
+            DivisionTypesComponent,
+            GeographyComponent,
+            ProjectionsComponent,
+          ]);
   if (!basic) {
     throw new Error(`${path.string()} has no basic component`);
   }
@@ -83,6 +88,7 @@ export const PageRegion = withRouter((props) => {
           <Graph
               key={i}
               basic={basic}
+              projections={projections}
               className={`${classes.section} ${classes.graph}`}
           />
         ))}
@@ -364,27 +370,37 @@ Title.propTypes = {
 
 const DailyChangeGraph = (props) => {
   const basic = props.basic;
+  const serieses = [{
+      series: basic.confirmed().change().smooth(),
+      color: 'teal',
+      trend: 'orange',
+    }, {
+      series: basic.confirmed().change(),
+      color: '#7ed0d0',
+      initial: 'off',
+    }, {
+      series: basic.recovered().change(),
+      color: 'green',
+      initial: 'off',
+    }, {
+      series: basic.died().change(),
+      color: 'red',
+    },
+  ];
+
+  const projections = props.projections;
+  if (projections) {
+    serieses.push({
+      series: projections.confirmed().change().dropFirst(),
+      color: 'gray',
+      stipple: true,
+    });
+  }
 
   return (
     <AdvancedGraph
       className={props.className}
-      serieses={[{
-          series: basic.confirmed().change().smooth(),
-          color: 'teal',
-          trend: 'orange',
-        }, {
-          series: basic.confirmed().change(),
-          color: '#7ed0d0',
-          initial: 'off',
-        }, {
-          series: basic.recovered().change(),
-          color: 'green',
-          initial: 'off',
-        }, {
-          series: basic.died().change(),
-          color: 'red',
-        },
-      ]}
+      serieses={serieses}
     />
   );
 };
