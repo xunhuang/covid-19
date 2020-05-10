@@ -55,8 +55,8 @@ export const Discussion = (props) => {
       </Tabs>
 
       <div className={classes.scrollPane}>
-        {sources.map(({content}, i) =>
-          <div className={source !== i ? classes.hide : ''}>
+        {sources.map(({label, content}, i) =>
+          <div key={label} className={source !== i ? classes.hide : ''}>
             {content}
           </div>
         )}

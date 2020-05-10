@@ -23,7 +23,7 @@ const SMOOTH_WINDOW_SIZE = 3;
  */
 export class DataSeries {
 
-  static fromFormattedDates(label, raw) {
+  static fromTimestamps(label, raw) {
     if (raw.length > 0) {
       return new DataSeries(label, raw, periods.daily);
     } else {
@@ -120,8 +120,10 @@ export class DataSeries {
 
     // We often only want to know the change between the last two values, so
     // pregenerate those.
-    // Every series has an implicit first value of 0, because places only show
+    // Every* series has an implicit first value of 0, because places only show
     // up in the data when they have a case. So account for it.
+    //
+    // *except for projections
     const secondToLastValue =
         entries.length >= 2 ? entries[entries.length - 2][1] : 0;
     if (typeof entries[0][0] === 'number') {
@@ -187,6 +189,21 @@ export class DataSeries {
     };
 
     return new LazyDataSeries(name, generator, lastDouble, this.period_);
+  }
+
+  /**
+   * Removes the first point from the series. This is useful for when taking the
+   * change of a series that does not start from 0.
+   */
+  dropFirst() {
+    const points = this.points();
+    if (!points || points.length < 1) {
+      return undefined;
+    }
+
+    const dropped = new DataSeries(this.label_, undefined, this.period_);
+    dropped.points_ = points.slice(1);
+    return dropped;
   }
 
   smooth() {
