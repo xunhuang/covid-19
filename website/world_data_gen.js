@@ -442,51 +442,91 @@ async function process_all_JHU_files(map) {
   }
 }
 
-// modifies map
-async function injectProjectionData(map) {
+class DefaultMap {
+  constructor(defaultFn) {
+    this.defaultFn_ = defaultFn;
+    this.inner_ = new Map();
+  }
+
+  entries() {
+    return this.inner_.entries();
+  }
+
+  get(key) {
+    if (!this.inner_.has(key)) {
+      this.inner_.set(key, this.defaultFn_());
+    }
+    return this.inner_.get(key);
+  }
+}
+
+async function get_projection_data() {
   const file = "../data/projections/MIT-05-07-2020.csv";
   const json = await csv().fromFile(file);
 
-  for (let line of json) {
-    const path = [];
-    let country = line.Country;
+  const timestampsByProjectionsByPath =
+      new DefaultMap(() => new DefaultMap(() => []));
+
+  for (const line of json) {
+    const components = [];
+
+    const country = line.Country;
     if (country !== "None") {
       if (KeyRewriteMap[country]) {
-        country = KeyRewriteMap[country][0];
+        components.push(KeyRewriteMap[country][0]);
+      } else {
+        components.push(country);
       }
-      path.push(country)
-    }
-    if (line.Province !== "None") {
-      path.push(line.Province)
-    }
-    const { resolved, extended } = resolve_key(path);
-    if (resolved.length > 0) {
-      console.log(resolved)
     }
 
-    let node = map;
-    for (let path of resolved) {
-      if (!node[path]) {
-        node[path] = {}
-      }
-      node = node[path];
+    if (line.Province !== "None") {
+      components.push(line.Province)
     }
-    let datanode = node.extendedData || {};
-    let date = moment(line.Day, "YYYY/MM/DD").unix();
-    datanode.ProjectedConfirmed = datanode.ProjectedConfirmed || [];
-    datanode.ProjectedConfirmed.push(date, parseInt(line['Total Detected']));
-    node.extendedData = datanode;
+
+    const {resolved} = resolve_key(components);
+    const path = resolved.join('/');
+
+    const projections = timestampsByProjectionsByPath.get(path);
+    const timestamp = moment(line.Day, "YYYY/MM/DD").unix();
+
+    const confirmed = projections.get('Confirmed');
+    confirmed.push([timestamp, parseInt(line['Total Detected'])]);
+  }
+
+  return timestampsByProjectionsByPath;
+}
+
+function populate_projections(hierarchical, timestampsByProjectionsByPath) {
+  for (const [path, projections] of timestampsByProjectionsByPath.entries()) {
+    const split = path ? path.split('/') : [];
+    let cursor = hierarchical;
+    for (const component of split) {
+      if (!cursor) {
+        break;
+      }
+      cursor = cursor[component];
+    }
+
+    if (!cursor) {
+      throw new Error(`Unable to store projections for ${path}`);
+    }
+
+    const projections_output = cursor.data.projections = {};
+    for (const [type, data] of projections.entries()) {
+      projections_output[type] = data.sort(([a, ], [b, ]) => a - b);
+    }
   }
 }
 
 async function main() {
   const map = new DefaultAbsorberMap();
   await process_all_JHU_files(map);
-  // await injectProjectionData(map);
-  return map;
+  const hierarchical = map.rollupInPlace();
+  populate_projections(hierarchical, await get_projection_data());
+  return hierarchical;
 }
 
-main().then((map) => {
-  const content = JSON.stringify(map.rollupInPlace(), null, 2);
+main().then((hierarchical) => {
+  const content = JSON.stringify(hierarchical, null, 2);
   fs.writeFileSync("./src/data/WorldData.json", content);
 });

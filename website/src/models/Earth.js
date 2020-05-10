@@ -6,10 +6,12 @@ import {GeographyComponent} from './GeographyComponent';
 import {NameComponent} from './NameComponent';
 import {Path} from './Path';
 import {PopulationComponent} from './PopulationComponent';
+import {ProjectionsComponent} from './ProjectionsComponent';
 import {SearchIndexComponent} from './SearchIndexComponent';
 import {World} from './World';
 
 const earthBaseData = require('../data/WorldData.json');
+const dataKeys = ['data'];
 
 export const SEARCH_INDEX_PATH = Path.parse('/_search_index');
 
@@ -38,13 +40,17 @@ class BasicEarthSource {
     if (!have.has(BasicDataComponent)) {
       ourComponents.push(...this.basicComponentsFor_(data['data']));
     }
+    if (!have.has(ProjectionsComponent)) {
+      ourComponents.push(
+          ...this.projectionsComponentsFor_(data['data']['projections']));
+    }
 
     if (have.has(DivisionTypesComponent)) {
       return [[path, ourComponents]];
     }
 
     const children =
-        Object.entries(data).filter(([child,]) => child !== 'data');
+        Object.entries(data).filter(([child,]) => !dataKeys.includes(child));
     const division = divisionUnder(path);
     if (!division) {
       if (children.length > 0) {
@@ -77,10 +83,10 @@ class BasicEarthSource {
     const components = [
       new NameComponent(data['name']),
       new BasicDataComponent(
-          DataSeries.fromFormattedDates("Confirmed", data['Confirmed']),
-          DataSeries.fromFormattedDates("Active", data['Active']),
-          DataSeries.fromFormattedDates("Recovered", data['Recovered']),
-          DataSeries.fromFormattedDates("Deaths", data['Deaths'])),
+          DataSeries.fromTimestamps("Confirmed", data['Confirmed']),
+          DataSeries.fromTimestamps("Active", data['Active']),
+          DataSeries.fromTimestamps("Recovered", data['Recovered']),
+          DataSeries.fromTimestamps("Deaths", data['Deaths'])),
     ];
     if (data['latitude'] && data['longitude']) {
       components.push(new GeographyComponent(data['latitude'], data['longitude']));
@@ -89,6 +95,18 @@ class BasicEarthSource {
       components.push(new PopulationComponent(data['population']));
     }
     return components;
+  }
+
+  projectionsComponentsFor_(projections) {
+    if (!projections) {
+      return [];
+    }
+
+    return [
+      new ProjectionsComponent(
+          DataSeries.fromTimestamps(
+              "Confirmed (Projected)", projections['Confirmed'])),
+    ];
   }
 
   buildSearchIndex_() {
@@ -123,7 +141,7 @@ class BasicEarthSource {
       }
 
       for (const key in data) {
-        if (key === 'data') {
+        if (dataKeys.includes(key)) {
           continue;
         }
 

@@ -195,16 +195,18 @@ const BasicGraph = (props) => {
   const yesterday = moment().subtract(1, "days");
 
   const todayData = data.find(s => s.name === today.format("M/D"));
-  const yesterdayData = data.find(s => s.name === yesterday.format("M/D"));
+  if (todayData) {
+    const yesterdayData = data.find(s => s.name === yesterday.format("M/D"));
 
-  yesterdayData["total_lastpoint"] = yesterdayData["total"];
-  todayData["total_lastpoint"] = todayData["total"];
+    yesterdayData["total_lastpoint"] = yesterdayData["total"];
+    todayData["total_lastpoint"] = todayData["total"];
 
-  todayData["newcase_avg_lastpoint"] = todayData["newcase_avg"];
-  yesterdayData["newcase_avg_lastpoint"] = yesterdayData["newcase_avg"];
+    todayData["newcase_avg_lastpoint"] = todayData["newcase_avg"];
+    yesterdayData["newcase_avg_lastpoint"] = yesterdayData["newcase_avg"];
 
-  delete todayData["total"];
-  delete todayData["newcase_avg"];
+    delete todayData["total"];
+    delete todayData["newcase_avg"];
+  }
   // console.log(data);
 
   return <>

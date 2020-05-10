@@ -38,22 +38,19 @@ export const AdvancedGraph = (props) => {
   const classes = useStyles();
 
   const windows = new Map([
+    ['all', {
+      label: 'All',
+      filter: (data) => data,
+    }],
     ['4weeks', {
       label: '4 Weeks',
       filter: (data) => {
         if (data.length === 0) {
           return [];
         }
-        const start =
-            moment.unix(data[data.length - 1].timestamp)
-                .subtract(28, 'day')
-                .unix();
+        const start = moment().subtract(28, 'day').unix();
         return data.filter((p) => start <= p.timestamp);
       },
-    }],
-    ['all', {
-      label: 'All',
-      filter: (data) => data,
     }],
   ]);
   const [window, setWindow] = React.useState(windows.keys().next().value);
@@ -140,6 +137,7 @@ AdvancedGraph.propTypes = {
             color: PropTypes.string.isRequired,
             initial: PropTypes.oneOf([undefined, 'off', 'on']),
             trend: PropTypes.string,
+            stipple: PropTypes.bool,
           })).isRequired,
 };
 
