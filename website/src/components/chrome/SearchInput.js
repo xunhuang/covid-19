@@ -10,6 +10,9 @@ import {Path} from '../../models/Path';
 import {SearchIndexComponent} from '../../models/SearchIndexComponent';
 import {WorldContext} from '../../WorldContext';
 
+const RESULT_HEIGHT = 28;
+const RESULTS_MAX_HEIGHT = 150;
+
 const useStyles = makeStyles(theme => ({
   root: {
     position: 'relative',
@@ -39,7 +42,6 @@ const useStyles = makeStyles(theme => ({
   resultsContainer: {
     borderRadius: '4px',
     color: theme.palette.text.primary,
-    height: '80vh',
     marginTop: '4px',
     maxHeight: '150px',
     maxWidth: '100vh',
@@ -59,6 +61,7 @@ const useStyles = makeStyles(theme => ({
   result: {
     background: '#fff',
     overflow: 'hidden',
+    lineHeight: RESULT_HEIGHT + 'px',
     textOverflow: 'ellipsis',
     whiteSpace: 'nowrap',
   },
@@ -122,15 +125,15 @@ export const SearchInput = (props) => {
                   + (results.length === 0 ? 'hide' : '')
             }
             elevation={3}>
-          <AutoSizer>
-            {({width, height}) => (
+          <AutoSizer disableHeight>
+            {({width}) => (
               <List
                   className={classes.resultsList}
                   rowCount={results.length}
-                  rowHeight={28}
+                  rowHeight={RESULT_HEIGHT}
                   rowRenderer={resultRenderer}
                   width={width}
-                  height={height}
+                  height={Math.min(RESULTS_MAX_HEIGHT, RESULT_HEIGHT * results.length)}
               />
             )}
           </AutoSizer>
