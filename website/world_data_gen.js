@@ -1,10 +1,7 @@
 const moment = require("moment");
 const fs = require('fs');
 const csv = require('csvtojson')
-const Util = require('covidmodule').Util;
 
-const confirmedfile = "../COVID-19/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv";
-const deathfile = "../COVID-19/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv";
 const county_codes = require("../data/worlddata/country_regions.json");//.filter(region => !region.code.includes("US-"));
 
 const KeyFields = [
@@ -220,7 +217,7 @@ class DefaultAbsorberMap {
    * from the leaves. Modifies this object.
    */
   rollupInPlace() {
-    console.log([...this.timestampsByKey.keys()].sort());
+    // console.log([...this.timestampsByKey.keys()].sort());
 
     // Create entries for any middle nodes that don't exist
     for (const key of this.timestampsByKey.keys()) {
@@ -297,8 +294,8 @@ class DefaultAbsorberMap {
       });
 
       const sortedData =
-          [...this.timestampsByKey.get(key)]
-              .sort(([a, ], [b, ]) => a - b);
+        [...this.timestampsByKey.get(key)]
+          .sort(([a,], [b,]) => a - b);
       for (const [timestamp, values] of sortedData) {
         for (const [field, value] of Object.entries(values)) {
           if (isNaN(value)) {
@@ -315,9 +312,9 @@ class DefaultAbsorberMap {
 
 function get_key(line) {
   const sources = [
-      ['Country_Region', 'Country/Region'],
-      ['Province_State', 'Province/State'],
-      ['Admin2'],
+    ['Country_Region', 'Country/Region'],
+    ['Province_State', 'Province/State'],
+    ['Admin2'],
   ];
 
   let components = [];
@@ -377,7 +374,7 @@ function get_key(line) {
       }
       break;
     }
-    
+
     if (overridden) {
       break;
     }
@@ -394,14 +391,14 @@ function resolve_key(key) {
 
     if (i === 0 || i === 1) {
       let byName = county_codes.find(
-          e => e.areaLabel === name && e.code.startsWith(prefix));
+        e => e.areaLabel === name && e.code.startsWith(prefix));
       let byCode = RegionByCode[prefix + name];
       let either = byName || byCode;
       if (either) {
         resolved.push(either.code.replace(RegExp(`^${prefix}`), ''));
         prefix += either.code + '-';
         extended =
-            regionAsExtended(key.slice(0, i + 1).join('/'), either);
+          regionAsExtended(key.slice(0, i + 1).join('/'), either);
       } else if (i === 1 && key[0] === key[1]) {
         // We get stuff like France/France, so just leave it at France
       } else {
@@ -414,7 +411,7 @@ function resolve_key(key) {
     }
   }
 
-  return {resolved, extended};
+  return { resolved, extended };
 }
 
 function process_one_JHU_file(json, timestamp, map) {
@@ -422,13 +419,13 @@ function process_one_JHU_file(json, timestamp, map) {
     const key = get_key(line);
     // Note: key may be [] coming out of this, to indicate that the numbers
     // should be attributed to the entire world.
-    const {resolved, extended} = resolve_key(key);
+    const { resolved, extended } = resolve_key(key);
     const Combined_Key = resolved.join('/');
 
     const values =
-        Object.fromEntries(
-            KeyFields.map(k => [k, parseInt(line[k])])
-                .filter(([k, v]) => !isNaN(v)))
+      Object.fromEntries(
+        KeyFields.map(k => [k, parseInt(line[k])])
+          .filter(([k, v]) => !isNaN(v)))
     map.set(Combined_Key, key[key.length - 1], extended, timestamp, values);
   }
 }
@@ -445,8 +442,51 @@ async function process_all_JHU_files(map) {
   }
 }
 
-const map = new DefaultAbsorberMap();
-process_all_JHU_files(map).then(() => {
+// modifies map
+async function injectProjectionData(map) {
+  const file = "../data/projections/MIT-05-07-2020.csv";
+  const json = await csv().fromFile(file);
+
+  for (let line of json) {
+    const path = [];
+    let country = line.Country;
+    if (country !== "None") {
+      if (KeyRewriteMap[country]) {
+        country = KeyRewriteMap[country][0];
+      }
+      path.push(country)
+    }
+    if (line.Province !== "None") {
+      path.push(line.Province)
+    }
+    const { resolved, extended } = resolve_key(path);
+    if (resolved.length > 0) {
+      console.log(resolved)
+    }
+
+    let node = map;
+    for (let path of resolved) {
+      if (!node[path]) {
+        node[path] = {}
+      }
+      node = node[path];
+    }
+    let datanode = node.extendedData || {};
+    let date = moment(line.Day, "YYYY/MM/DD").unix();
+    datanode.ProjectedConfirmed = datanode.ProjectedConfirmed || [];
+    datanode.ProjectedConfirmed.push(date, parseInt(line['Total Detected']));
+    node.extendedData = datanode;
+  }
+}
+
+async function main() {
+  const map = new DefaultAbsorberMap();
+  await process_all_JHU_files(map);
+  // await injectProjectionData(map);
+  return map;
+}
+
+main().then((map) => {
   const content = JSON.stringify(map.rollupInPlace(), null, 2);
   fs.writeFileSync("./src/data/WorldData.json", content);
 });
