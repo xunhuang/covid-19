@@ -135,11 +135,6 @@ export const AdvancedGraph = (props) => {
             selected={scale}
             onChange={setScale}
         />
-        <Display
-            displays={styles}
-            selected={style}
-            onChange={setStyle}
-        />
         <div className={classes.expand} />
         <Legend
             serieses={serieses}
