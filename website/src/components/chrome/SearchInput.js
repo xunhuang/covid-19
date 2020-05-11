@@ -1,4 +1,5 @@
 import React, {useContext} from 'react';
+import {useHistory} from 'react-router-dom'
 import {AutoSizer, List} from 'react-virtualized';
 import {ClickAwayListener, InputBase, Link as MaterialLink, Paper } from '@material-ui/core';
 import {Link as RouterLink} from 'react-router-dom';
@@ -12,6 +13,7 @@ import {SEARCH_INDEX_PATH} from '../../models/Earth';
 import {Path} from '../../models/Path';
 import {SearchIndexComponent} from '../../models/SearchIndexComponent';
 import {WorldContext} from '../../WorldContext';
+import {fetchLocationFromUserAndSave} from '../../GeoLocation'
 
 const RESULT_HEIGHT = 28;
 const RESULTS_MAX_HEIGHT = 150;
@@ -89,9 +91,27 @@ const useStyles = makeStyles(theme => ({
 export const SearchInput = (props) => {
   const classes = useStyles();
   const world = useContext(WorldContext);
+  const history = useHistory();
 
   const [results, setResults] = React.useState([]);
 
+  const locationLookup = async (history) => {
+    const search = world.get(SEARCH_INDEX_PATH, SearchIndexComponent);
+    const location = await fetchLocationFromUserAndSave();
+    if (!search) {
+      return;
+    }
+    let terms = [];
+    if (location.county && location.stateName) {
+      terms.push(location.county, location.stateName);
+    }
+    terms.push(location.country)
+    const allMatches = search.search(terms.join(", "));
+    if (allMatches && allMatches.length > 0) {
+      history.push("/country" + allMatches[0].path.string())
+    }
+  }
+  
   // Force the search index to lazy load
   React.useEffect(() => {
     world.get(Path.root(), SearchIndexComponent);
@@ -140,8 +160,9 @@ export const SearchInput = (props) => {
             placerholder="Search..." />
         <Divider className={classes.divider} />
         <IconButton
-          size="small"
-          className={classes.iconButton}>
+            size="small"
+            className={classes.iconButton}
+            onClick={() => locationLookup(history)}>
           <LocationSearchingIcon/>
         </IconButton>
         <Paper

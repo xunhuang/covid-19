@@ -8,7 +8,7 @@ const firebaseConfig = require('./firebaseConfig.json');
 const defaultValue = {
   locationCookieId: "covidLocation",
   location: {
-    countryCode: "US",
+    country: "United States of America",
     state: "CA",
     county: "Santa Clara",
   },
@@ -63,7 +63,7 @@ async function fetchCoordinatesUsingMethods(methods) {
 
 function getLocationFromCookie() {
   const cookie = Cookies.getJSON(defaultValue.locationCookieId);
-  if (cookie && cookie.county && cookie.state && cookie.countryCode) {
+  if (cookie && cookie.county && cookie.state && cookie.country && cookie.stateName) {
     logger.logEvent("LocationFoundInCookie", cookie);
     return cookie;
   } else {
@@ -97,16 +97,19 @@ async function getCensusLocationFromCoordinates(coordinates) {
     }).then(res => {
       const c = res.body.results[0].county_name;
       const s = res.body.results[0].state_code;
+      const stateName = res.body.results[0].state_name;
       logger.logEvent("CensusCountyLookupSuccess", {
         location: coordinates,
-        countryCode: 'US',
+        country: 'United States of America',
         county: c,
         state: s,
+        stateName: stateName,
       });
       return {
-        countryCode: 'US',
+        country: 'United States of America',
         county: c,
         state: s,
+        stateName: stateName,
       };
     })
     .catch(err => {
@@ -131,12 +134,12 @@ async function getGlobalLocationFromCoordinates(coordinates, apiKey) {
       if (!address_components || address_components.length < 1) {
         return null;
       }
-      const countryCode = address_components[0].short_name;
-      console.log(countryCode);
+      const countryName = address_components[0].long_name;
+      console.log(countryName);
       // Integrate with ROW... how to handle this info?
 
       // return {
-      //   countryCode: countryCode
+      //   country: countryCode
       // }
       return defaultValue.location
     })
