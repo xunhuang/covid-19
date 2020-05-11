@@ -109,7 +109,7 @@ export const AdvancedGraph = (props) => {
   if (known.join() !== nowKnown.join()) {
     const add = [];
     for (const [key, {initial}] of serieses.entries()) {
-      if (!known.includes(key) && initial !== 'off') {
+      if (!known.includes(key) && !selected.includes(key) && initial !== 'off') {
         add.push(key);
       }
     }
