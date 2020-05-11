@@ -12,7 +12,8 @@ import { MapStateGeneric } from "./MapStateGeneric";
 import { Country } from "./UnitedStates";
 import { CountryContext } from "./CountryContext"
 import { DateRangeSlider } from "./DateRangeSlider"
-import { getOldestMomentInData } from "./Util"
+import { MapWorldGeneric } from "./MapWorldGeneric";
+import { BasicDataComponent } from './models/BasicDataComponent';
 
 const moment = require("moment");
 
@@ -37,7 +38,7 @@ const ColorScale = {
     .domain([1, 200, 10000])
     .range([NO_DATA_COLOR, "#f44336", "#2f0707"]),
   confirmedPerMillion: logColors()
-    .domain([100, 1000, 10000])
+    .domain([10, 1000, 10000])
     .range([NO_DATA_COLOR, "#f44336", "#2f0707"]),
   confirmedNew: logColors()
     .domain([1, 200, 2000])
@@ -94,7 +95,8 @@ const MapUS = withRouter((props) => {
   const [perCapita, setPerCapita] = React.useState(true);
   const [selectedCounty, setSelectedCounty] = React.useState(null);
 
-  const subtabs = new Map([
+
+  let subtabs = new Map([
     ['confirmed', {
       label: "Confirmed",
       map: MapUSConfirmed,
@@ -117,6 +119,17 @@ const MapUS = withRouter((props) => {
       label: "Tests",
       map: MapUSTestCoverage,
     });
+  }
+
+  if (source instanceof BasicDataComponent) {
+
+  subtabs = new Map([
+    ['confirmed', {
+      label: "Confirmed",
+      map: MapWorldConfirmed,
+    }],
+  ]);
+
   }
 
   let desired = getURLParam(props.history.location.search, "detailed");
@@ -223,6 +236,37 @@ const MapDaysToDouble = React.memo((props) => {
   );
 });
 
+const MapWorldConfirmed = React.memo((props) => {
+  return (
+    <MapWorldGeneric
+      {...props}
+      getCountyDataPoint={(country) => {
+        if (country) {
+          const [name, basic, population] = country;
+          basic.confirmed().lastValue();
+
+          let value = props.date ? basic.confirmed().valueByUnixTimestamp(moment(props.date, "MM/DD/YYYY").unix()) :
+          basic.confirmed().lastValue();
+          return value;
+        }
+      }}
+      colorFunction={(data) => {
+        return ColorScale.confirmed(data);
+      }}
+      colorFunctionPerMillion={(data) => {
+        return ColorScale.confirmedPerMillion(data);
+      }}
+      toolip={country => {
+        const [name, basic, population] = country;
+        // let confirmed = county.getConfirmedByDate(props.date);
+        let confirmed = basic.confirmed().lastValue();
+        return `${name.english()}, Confirmed: ${confirmed}, \n` +
+          `Confirm/Mil: ${(confirmed / population.population() * 1000000).toFixed(0)}`
+      }}
+    />
+  );
+});
+
 const MapUSConfirmed = React.memo((props) => {
 
   return (
@@ -310,7 +354,6 @@ const MapUSTestCoverage = React.memo((props) => {
     />
   );
 });
-
 
 function getURLParam(url, key) {
   const params = new URLSearchParams(url);

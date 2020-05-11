@@ -94,6 +94,19 @@ export class DataSeries {
     return this.points_;
   }
 
+  valueByUnixTimestamp(date) {
+    if (!this.valueByUnixTimestamp_ && this.raw_.length > 0) {
+      this.valueByUnixTimestamp_ = this.raw_.reduce(
+        (m, a) => {
+          const [ts, v] = a;
+          m[ts] = v;
+          return m;
+        }, {});
+    }
+    const value =  this.valueByUnixTimestamp_[date];
+    return value;
+  }
+
   lastPoint() {
     if (!this.lastPoint_ && this.raw_.length > 0) {
       this.lastPoint_ =

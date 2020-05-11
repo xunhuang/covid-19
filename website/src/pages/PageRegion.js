@@ -19,6 +19,7 @@ import {ProjectionsComponent} from '../models/ProjectionsComponent';
 import {SearchInput} from '../components/chrome/SearchInput';
 import {SocialMediaButtons} from '../components/chrome/SocialMediaButtons';
 import {WorldContext} from '../WorldContext';
+import { MapUS} from "../MapUS"
 
 const shortNumber = require('short-number');
 
@@ -80,6 +81,9 @@ export const PageRegion = withRouter((props) => {
     // should be comparing bounds, but we don't have those.
     return geography.distance(theirGeography);
   };
+  const showMap = !parentDivision;
+
+  console.log(basic);
 
   return (
     <div className={classes.body}>
@@ -87,6 +91,11 @@ export const PageRegion = withRouter((props) => {
 
       <Paper className={classes.content}>
         <Title className={classes.section} path={path} />
+
+        {
+          showMap &&
+          <MapUS source={basic}/>
+        }
 
         {[DailyChangeGraph, DoublingGraph, DailyTotalGraph].map((Graph, i) => (
           <Graph
