@@ -136,7 +136,8 @@ const useAppBarStyles = makeStyles(theme => ({
   },
   nameAndSearch: {
     display: 'flex',
-    [theme.breakpoints.down('sm')]: {
+    alignItems: 'center',
+    [theme.breakpoints.down('xs')]: {
       display: 'initial',
     },
   },
@@ -150,7 +151,6 @@ const useAppBarStyles = makeStyles(theme => ({
     marginLeft: '16px',
     padding: '6px 8px',
     textAlign: 'center',
-
     '&:hover': {
       color: theme.palette.primary.light,
       filter: `drop-shadow(0 0 2px ${fade(RELIEF_COLOR, 0.95)})`,
@@ -180,15 +180,9 @@ const useAppBarStyles = makeStyles(theme => ({
     alignItems: 'center',
     display: 'flex',
     flexWrap: 'wrap',
+    flexShrink: 2,
     justifyContent: 'flex-end',
     textAlign: 'end',
-
-    [theme.breakpoints.down('sm')]: {
-      display: 'initial',
-      '& > *': {
-        margin: '4px 0',
-      },
-    },
   },
 }));
 
@@ -200,10 +194,10 @@ const AppBar = (props) => {
     <MaterialAppBar position="relative">
       <Toolbar className={classes.appBar}>
         <div className={classes.nameAndSearch}>
-          <Typography noWrap className={classes.appName} variant="h6">
-            COVID-19.direct
-          </Typography>
-          <SearchInput />
+        <Typography noWrap className={classes.appName} variant="h6">
+          COVID-19.direct
+        </Typography>
+        <SearchInput className={classes.expander} />
         </div>
 
         <div className={classes.expander} />

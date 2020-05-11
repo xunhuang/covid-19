@@ -13,13 +13,14 @@ import {SEARCH_INDEX_PATH} from '../../models/Earth';
 import {Path} from '../../models/Path';
 import {SearchIndexComponent} from '../../models/SearchIndexComponent';
 import {WorldContext} from '../../WorldContext';
-import {fetchLocationFromUserAndSave} from '../../GeoLocation'
+import {fetchPrecisePoliticalLocation} from '../../GeoLocation'
 
 const RESULT_HEIGHT = 28;
 const RESULTS_MAX_HEIGHT = 150;
 
 const useStyles = makeStyles(theme => ({
   root: {
+    height: '2em',
     position: 'relative',
     display: 'flex',
     alignItems: 'center',
@@ -29,30 +30,37 @@ const useStyles = makeStyles(theme => ({
     '&:hover': {
       backgroundColor: fade(theme.palette.common.white, 0.25),
     },
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('xs')]: {
       marginLeft: 0,
+      marginBottom: theme.spacing(1),
     },
-    width: '250px',
-    height: '33px',
   },
   searchIcon: {
-    paddingLeft: theme.spacing(1),
+    height: '100%',
+    padding: theme.spacing(0, 1),
     pointerEvents: 'none',
+    position: 'absolute',
   },
   input: {
-    position: 'inline',
     flexGrow: 1,
+    position: 'relative',
     color: 'inherit',
-    paddingLeft: theme.spacing(1),
+    paddingLeft: `calc(1em + ${theme.spacing(2.5)}px)`,
+    [theme.breakpoints.down('xs')]: {
+      maxWidth: '20ch',
+    },
   },
   divider: {
     height: '70%',
     width: '1px',
-    backgroundColor: theme.palette.primary.dark
+    position: 'relative',
+    marginLeft: theme.spacing(1),
+    backgroundColor: `rgba(255, 255, 255, 0.7)`,
   },
   iconButton: {
-    paddingRight: theme.spacing(1),
-    paddingLeft: theme.spacing(1),
+    height: '100%',
+    position: 'relative',
+    padding: theme.spacing(0, 1),
     color: theme.palette.common.white,
     "&:hover": {
       backgroundColor: "transparent"
@@ -97,7 +105,7 @@ export const SearchInput = (props) => {
 
   const locationLookup = async (history) => {
     const search = world.get(SEARCH_INDEX_PATH, SearchIndexComponent);
-    const location = await fetchLocationFromUserAndSave();
+    const location = await fetchPrecisePoliticalLocation();
     if (!search) {
       return;
     }
@@ -111,7 +119,7 @@ export const SearchInput = (props) => {
       history.push("/country" + allMatches[0].path.string())
     }
   }
-  
+
   // Force the search index to lazy load
   React.useEffect(() => {
     world.get(Path.root(), SearchIndexComponent);

@@ -5,8 +5,9 @@ const superagent = require("superagent");
 
 const firebaseConfig = require('./firebaseConfig.json');
 
+const cookieId = "covidLocation"
+
 const defaultValue = {
-  locationCookieId: "covidLocation",
   location: {
     country: "United States of America",
     state: "CA",
@@ -18,33 +19,30 @@ const defaultValue = {
   },
 }
 
-export async function fetchLocationFromUserAndSave() {
-  const coords = await fetchCoordinatesUsingMethods([
+// Gets user's country, and if in US and availble, their county/state
+export async function fetchPrecisePoliticalLocation() {
+  const location = await fetchLocationUsingMethods([
     () => askForExactLocation(),
     () => fetchApproxIPLocationGoogle(firebaseConfig.apiKey),
   ]);
-  const location = await getPoliticalLocationFromCoordinates(coords);
-  Cookies.set(defaultValue.locationCookieId, location, {
-    expires: 1000
+  Cookies.set(cookieId, location, {
+    expires: 1000,
   });
   return location;
 }
 
-export async function fetchLocationFromCookieThenIP() {
-  const cookieLocation = getLocationFromCookie();
-  if (cookieLocation) {
-    return cookieLocation;
-  }
-  const coords = await fetchCoordinatesUsingMethods([
+// Uses IP address to get country, and if availble, approximate country/state
+export async function fetchApproximatePoliticalLocation() {
+  return await fetchLocationUsingMethods([
+    () => getLocationFromCookie(),
     () => fetchApproxIPLocationIPDataCo(firebaseConfig.ipdataco_key),
     () => fetchApproxIPLocationIPDataCo(firebaseConfig.ipdataco_key2),
     () => fetchApproxIPLocationIPDataCo(firebaseConfig.ipdataco_key3),
     () => fetchApproxIPLocationIPGEOLOCATION(),
   ]);
-  return await getPoliticalLocationFromCoordinates(coords);
 }
 
-async function fetchCoordinatesUsingMethods(methods) {
+async function fetchLocationUsingMethods(methods) {
   const safeMethods = methods.concat([
     () => coordinateFindingError(),
   ]);
@@ -52,23 +50,14 @@ async function fetchCoordinatesUsingMethods(methods) {
   let coords;
   for (const method of safeMethods) {
     try {
+      console.log(method)
       coords = await method();
       break;
     } catch (err) {
       continue;
     }
   }
-  return coords;
-}
-
-function getLocationFromCookie() {
-  const cookie = Cookies.getJSON(defaultValue.locationCookieId);
-  if (cookie && cookie.county && cookie.state && cookie.country && cookie.stateName) {
-    logger.logEvent("LocationFoundInCookie", cookie);
-    return cookie;
-  } else {
-    return null;
-  }
+  return await getPoliticalLocationFromCoordinates(coords);
 }
 
 async function getPoliticalLocationFromCoordinates(coordinates) {
@@ -135,12 +124,6 @@ async function getGlobalLocationFromCoordinates(coordinates, apiKey) {
         return null;
       }
       const countryName = address_components[0].long_name;
-      console.log(countryName);
-      // Integrate with ROW... how to handle this info?
-
-      // return {
-      //   country: countryCode
-      // }
       return defaultValue.location
     })
     .catch(err => {
@@ -166,6 +149,16 @@ function askForExactLocation() {
   });
 }
 
+function getLocationFromCookie() {
+  const cookie = Cookies.getJSON(cookieId);
+  if (cookie && cookie.country) {
+    logger.logEvent("LocationFoundInCookie", cookie);
+    return cookie;
+  } else {
+    throw "No cookie or invalid one";
+  }
+}
+
 async function fetchApproxIPLocationGoogle(key) {
   return await superagent
     .post(`https://www.googleapis.com/geolocation/v1/geolocate?key=${firebaseConfig.apiKey}`)
@@ -186,6 +179,8 @@ async function fetchApproxIPLocationIPGEOLOCATION() {
       if (!res.body.longitude) {
         throw new Error('Bad result');
       }
+      console.log("ipgeolocation")
+      console.log(res.body);
       return {
         longitude: res.body.longitude,
         latitude: res.body.latitude,
@@ -201,6 +196,8 @@ async function fetchApproxIPLocationIPDataCo(apikey) {
       if (!res.body || !res.body.longitude) {
         throw new Error('Bad result');
       }
+      console.log("ipgdata")
+      console.log(res.body);
       return {
         longitude: res.body.longitude,
         latitude: res.body.latitude,
