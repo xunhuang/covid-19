@@ -38,7 +38,7 @@ const ColorScale = {
     .domain([1, 200, 10000])
     .range([NO_DATA_COLOR, "#f44336", "#2f0707"]),
   confirmedWorld: logColors()
-    .domain([1, 1000, 1000000])
+    .domain([1000, 10000, 1000000])
     .range([NO_DATA_COLOR, "#f44336", "#2f0707"]),
   confirmedPerMillion: logColors()
     .domain([10, 1000, 10000])
@@ -52,8 +52,14 @@ const ColorScale = {
   death: logColors()
     .domain([1, 100, 1000])
     .range([NO_DATA_COLOR, "#5d99c6", "#002171"]),
+  deathWorld: logColors()
+    .domain([1, 7000, 70000])
+    .range([NO_DATA_COLOR, "#5d99c6", "#002171"]),
   deathPerMillion: logColors()
     .domain([10, 100, 1000])
+    .range([NO_DATA_COLOR, "#5d99c6", "#002171"]),
+  deathPerMillionWorld: logColors()
+    .domain([1, 80, 800])
     .range([NO_DATA_COLOR, "#5d99c6", "#002171"]),
   timeToDouble: logColors()
     .domain([1, 15, 300])
@@ -130,6 +136,10 @@ const MapUS = withRouter((props) => {
     ['confirmed', {
       label: "Confirmed",
       map: MapWorldConfirmed,
+    }],
+    ['death', {
+      label: "Death",
+      map: MapWorldDeath,
     }],
   ]);
 
@@ -261,6 +271,33 @@ const MapWorldConfirmed = React.memo((props) => {
         let confirmed = basic.confirmed().dateOrLastValue(ts);
         return `${name.english()}, Confirmed: ${confirmed}, \n` +
           `Confirm/Mil: ${(confirmed / population.population() * 1000000).toFixed(0)}`
+      }}
+    />
+  );
+});
+
+const MapWorldDeath = React.memo((props) => {
+  const ts = moment(props.date, "MM/DD/YYYY").unix();
+  return (
+    <MapWorldGeneric
+      {...props}
+      getCountyDataPoint={(country) => {
+        if (country) {
+          const [name, basic, population] = country;
+          return basic.died().dateOrLastValue(ts);
+        }
+      }}
+      colorFunction={(data) => {
+        return ColorScale.deathWorld(data);
+      }}
+      colorFunctionPerMillion={(data) => {
+        return ColorScale.deathPerMillionWorld(data);
+      }}
+      toolip={country => {
+        const [name, basic, population] = country;
+        let confirmed = basic.died().dateOrLastValue(ts);
+        return `${name.english()}, Deaths: ${confirmed}, \n` +
+          `Deaths/Mil: ${(confirmed / population.population() * 1000000).toFixed(0)}`
       }}
     />
   );
