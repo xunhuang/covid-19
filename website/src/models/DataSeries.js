@@ -290,6 +290,17 @@ export class DataSeries {
       return this.valueByUnixTimestamp(ts);
     }
   }
+
+  // if ts is in the future, return the last valid datapoint
+  dateOrLastValueNew(ts) {
+    const [mdate, v] = this.lastPoint();
+    let t0 = (mdate.unix() < ts) ? mdate.unix() : ts;
+    // let tminus1 = moment(t0).subtract(1, "days").unix();
+    let tminus1 = t0 - 24 * 60 * 60;
+    let v0 = this.valueByUnixTimestamp(t0);
+    let v1 = this.valueByUnixTimestamp(tminus1);
+    return v0 - v1;
+  }
 }
 
 class EmptySeries extends DataSeries {

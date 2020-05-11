@@ -46,8 +46,14 @@ const ColorScale = {
   confirmedNew: logColors()
     .domain([1, 200, 2000])
     .range([NO_DATA_COLOR, "#f44336", "#2f0707"]),
+  confirmedNewWorld: logColors()
+    .domain([50, 3000, 30000])
+    .range([NO_DATA_COLOR, "#f44336", "#2f0707"]),
   confirmedNewPerMillion: logColors()
     .domain([1, 200, 2000])
+    .range([NO_DATA_COLOR, "#f44336", "#2f0707"]),
+  confirmedNewPerMillionWorld: logColors()
+    .domain([1, 30, 130])
     .range([NO_DATA_COLOR, "#f44336", "#2f0707"]),
   death: logColors()
     .domain([1, 100, 1000])
@@ -104,7 +110,6 @@ const MapUS = withRouter((props) => {
   const [perCapita, setPerCapita] = React.useState(true);
   const [selectedCounty, setSelectedCounty] = React.useState(null);
 
-
   let subtabs = new Map([
     ['confirmed', {
       label: "Confirmed",
@@ -136,6 +141,10 @@ const MapUS = withRouter((props) => {
     ['confirmed', {
       label: "Confirmed",
       map: MapWorldConfirmed,
+    }],
+    ['confirmedNew', {
+      label: "New",
+      map: MapWorldConfirmedNew,
     }],
     ['death', {
       label: "Death",
@@ -303,8 +312,34 @@ const MapWorldDeath = React.memo((props) => {
   );
 });
 
-const MapUSConfirmed = React.memo((props) => {
+const MapWorldConfirmedNew = React.memo((props) => {
+  const ts = moment(props.date, "MM/DD/YYYY").unix();
+  return (
+    <MapWorldGeneric
+      {...props}
+      getCountyDataPoint={(country) => {
+        if (country) {
+          const [name, basic] = country;
+          return basic.confirmed().dateOrLastValueNew(ts);
+        }
+      }}
+      colorFunction={(data) => {
+        return ColorScale.confirmedNew(data);
+      }}
+      colorFunctionPerMillion={(data) => {
+        return ColorScale.confirmedNewPerMillionWorld(data);
+      }}
+      toolip={country => {
+        const [name, basic, population] = country;
+        let confirmed = basic.confirmed().dateOrLastValueNew(ts);
+        return `${name.english()}, New: ${confirmed}, \n` +
+          `New/Mil: ${(confirmed / population.population() * 1000000).toFixed(0)}`
+      }}
+    />
+  );
+});
 
+const MapUSConfirmed = React.memo((props) => {
   return (
     <MapCountyGeneric
       {...props}
@@ -334,7 +369,7 @@ const MapUSConfirmedNew = React.memo((props) => {
         return county.getConfirmedNewByDate(props.date);
       }}
       colorFunction={(data) => {
-        return ColorScale.confirmedNew(data);
+        return ColorScale.confirmedNewWorld(data);
       }}
       colorFunctionPerMillion={(data) => {
         return ColorScale.confirmedNewPerMillion(data);
