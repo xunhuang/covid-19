@@ -37,6 +37,9 @@ const ColorScale = {
   confirmed: logColors()
     .domain([1, 200, 10000])
     .range([NO_DATA_COLOR, "#f44336", "#2f0707"]),
+  confirmedWorld: logColors()
+    .domain([1, 1000, 1000000])
+    .range([NO_DATA_COLOR, "#f44336", "#2f0707"]),
   confirmedPerMillion: logColors()
     .domain([10, 1000, 10000])
     .range([NO_DATA_COLOR, "#f44336", "#2f0707"]),
@@ -237,29 +240,25 @@ const MapDaysToDouble = React.memo((props) => {
 });
 
 const MapWorldConfirmed = React.memo((props) => {
+  const ts = moment(props.date, "MM/DD/YYYY").unix();
   return (
     <MapWorldGeneric
       {...props}
       getCountyDataPoint={(country) => {
         if (country) {
           const [name, basic, population] = country;
-          basic.confirmed().lastValue();
-
-          let value = props.date ? basic.confirmed().valueByUnixTimestamp(moment(props.date, "MM/DD/YYYY").unix()) :
-          basic.confirmed().lastValue();
-          return value;
+          return basic.confirmed().dateOrLastValue(ts);
         }
       }}
       colorFunction={(data) => {
-        return ColorScale.confirmed(data);
+        return ColorScale.confirmedWorld(data);
       }}
       colorFunctionPerMillion={(data) => {
         return ColorScale.confirmedPerMillion(data);
       }}
       toolip={country => {
         const [name, basic, population] = country;
-        // let confirmed = county.getConfirmedByDate(props.date);
-        let confirmed = basic.confirmed().lastValue();
+        let confirmed = basic.confirmed().dateOrLastValue(ts);
         return `${name.english()}, Confirmed: ${confirmed}, \n` +
           `Confirm/Mil: ${(confirmed / population.population() * 1000000).toFixed(0)}`
       }}

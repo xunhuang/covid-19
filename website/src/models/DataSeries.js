@@ -280,6 +280,16 @@ export class DataSeries {
 
     return moment().isSame(last[0], 'day') ? last[1] : undefined;
   }
+
+  // if ts is in the future, return the last valid datapoint
+  dateOrLastValue(ts) {
+    const [mdate, v] = this.lastPoint();
+    if (mdate.unix() < ts) {
+      return v;
+    } else {
+      return this.valueByUnixTimestamp(ts);
+    }
+  }
 }
 
 class EmptySeries extends DataSeries {
