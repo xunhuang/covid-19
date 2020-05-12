@@ -84,6 +84,11 @@ export class DataSeries {
     return this.label_;
   }
 
+  suffixLabel(suffix) {
+    this.label_ = `${this.label_} ${suffix}`;
+    return this;
+  }
+
   formatter() {
     return this.period_.formatter;
   }

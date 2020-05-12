@@ -1,8 +1,7 @@
+import PropTypes from 'prop-types';
 import React, {useContext} from 'react';
-import {useHistory} from 'react-router-dom'
 import {AutoSizer, List} from 'react-virtualized';
 import {ClickAwayListener, InputBase, Link as MaterialLink, Paper } from '@material-ui/core';
-import {Link as RouterLink} from 'react-router-dom';
 import SearchIcon from '@material-ui/icons/Search';
 import LocationSearchingIcon from '@material-ui/icons/LocationSearching';
 import Divider from '@material-ui/core/Divider';
@@ -13,7 +12,6 @@ import {SEARCH_INDEX_PATH} from '../../models/Earth';
 import {Path} from '../../models/Path';
 import {SearchIndexComponent} from '../../models/SearchIndexComponent';
 import {WorldContext} from '../../WorldContext';
-import {fetchPrecisePoliticalLocation} from '../../GeoLocation'
 
 const RESULT_HEIGHT = 28;
 const RESULTS_MAX_HEIGHT = 150;
@@ -25,7 +23,6 @@ const useStyles = makeStyles(theme => ({
     borderRadius: theme.shape.borderRadius,
     display: 'flex',
     height: '2em',
-    marginLeft: theme.spacing(4),
     position: 'relative',
     '&:hover': {
       backgroundColor: fade(theme.palette.common.white, 0.25),
@@ -78,6 +75,7 @@ const useStyles = makeStyles(theme => ({
     top: '100%',
     userSelect: 'none',
     width: '350px',
+    zIndex: 9999,
     '&.hide': {
       display: 'none',
     },
@@ -99,26 +97,8 @@ const useStyles = makeStyles(theme => ({
 export const SearchInput = (props) => {
   const classes = useStyles();
   const world = useContext(WorldContext);
-  const history = useHistory();
 
   const [results, setResults] = React.useState([]);
-
-  const locationLookup = async () => {
-    const search = world.get(SEARCH_INDEX_PATH, SearchIndexComponent);
-    const location = await fetchPrecisePoliticalLocation();
-    if (!search) {
-      return;
-    }
-    let terms = [];
-    if (location.county && location.stateName) {
-      terms.push(location.county, location.stateName);
-    }
-    terms.push(location.country)
-    const allMatches = search.search(terms.join(", "));
-    if (allMatches && allMatches.length > 0) {
-      history.push("/country" + allMatches[0].path.string())
-    }
-  }
 
   // Force the search index to lazy load
   React.useEffect(() => {
@@ -138,8 +118,10 @@ export const SearchInput = (props) => {
     setResults(search.search(e.target.value));
   };
 
-  const onRequestNavigate = (path) => {
+  const onChoice = (e, path) => {
+    e.preventDefault();
     setResults([]);
+    props.onChoice(path);
   };
 
   const resultRenderer = ({index, key, style}) => {
@@ -147,11 +129,7 @@ export const SearchInput = (props) => {
 
     return (
       <div key={key} style={style} className={classes.result}>
-        <MaterialLink
-            component={RouterLink}
-            onClick={onRequestNavigate}
-            to={'/country' + path.string()}
-        >
+        <MaterialLink href="#" onClick={(e) => onChoice(e, path)}>
           {name}
         </MaterialLink>
       </div>
@@ -160,19 +138,23 @@ export const SearchInput = (props) => {
 
   return (
     <ClickAwayListener onClickAway={onClose}>
-      <div className={classes.root}>
+      <div className={`${classes.root} ${props.className || ''}`}>
         <SearchIcon className={classes.searchIcon} />
         <InputBase
             className={classes.input}
             onChange={onChange}
             placerholder="Search..." />
-        <Divider className={classes.divider} />
-        <IconButton
-            size="small"
-            className={classes.iconButton}
-            onClick={() => locationLookup()}>
-          <LocationSearchingIcon/>
-        </IconButton>
+        {props.onGeolocate &&
+            <Divider className={classes.divider} />
+        }
+        {props.onGeolocate &&
+            <IconButton
+                size="small"
+                className={classes.iconButton}
+                onClick={props.onGeolocate}>
+              <LocationSearchingIcon />
+            </IconButton>
+        }
         <Paper
             className={
               `${classes.resultsContainer} `
@@ -195,4 +177,9 @@ export const SearchInput = (props) => {
       </div>
     </ClickAwayListener>
   );
+};
+SearchInput.propTypes = {
+  className: PropTypes.string,
+  onChoice: PropTypes.func.isRequired,
+  onGeolocate: PropTypes.func,
 };
