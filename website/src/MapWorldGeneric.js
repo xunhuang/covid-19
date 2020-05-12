@@ -4,7 +4,8 @@ import {
   Geographies,
   Geography,
     Sphere,
-  Graticule
+  Graticule,
+  ZoomableGroup,
 } from "react-simple-maps";
 import ReactTooltip from "react-tooltip";
 import { makeStyles } from '@material-ui/core/styles';
@@ -24,7 +25,7 @@ const useStyles = makeStyles(theme => ({
   },
   map: {
     fontFamily: theme.typography.fontFamily,
-    maxHeight: '100vh',
+    maxHeight: '50vh',
     stroke: "#DDD",
     strokeWidth: 0.1,
     width: '95vw',
@@ -49,6 +50,8 @@ const MapWorld = (props) => {
           scale: 147
         }}
       >
+      <ZoomableGroup zoom={1}>
+
       <Sphere stroke="#E4E5E6" strokeWidth={0.5} />
       <Graticule stroke="#E4E5E6" strokeWidth={0.5} />
 
@@ -83,6 +86,8 @@ const MapWorld = (props) => {
           </>
         )}
       </Geographies>
+        </ZoomableGroup>
+
     </ComposableMap>
   );
 };
