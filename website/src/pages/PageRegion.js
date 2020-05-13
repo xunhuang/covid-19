@@ -8,7 +8,7 @@ import {fade, makeStyles, useTheme} from '@material-ui/core/styles';
 import {AdvancedGraph} from '../components/graphs/AdvancedGraph';
 import {BasicDataComponent} from '../models/BasicDataComponent';
 import {Discussion} from '../components/chrome/Discussion';
-import {DivisionTable} from '../components/tables/DivisionTable';
+import {DivisionTableMain,DivisionTab} from '../components/tables/DivisionTable';
 import {DivisionTypesComponent} from '../models/DivisionTypesComponent';
 import {DonateLink} from '../components/chrome/DonateLink';
 import {Footer} from '../Footer';
@@ -108,7 +108,7 @@ export const PageRegion = withRouter((props) => {
 
         {divisions &&
           divisions.types().map(({id, plural}) =>
-            <DivisionTable
+            <DivisionTab
                 key={id}
                 plural={plural}
                 parent={id ? path.child(id) : path}
@@ -117,7 +117,7 @@ export const PageRegion = withRouter((props) => {
           )}
 
         {showNearby &&
-            <DivisionTable
+            <DivisionTab
                 parent={parentDivision}
                 plural="Nearby"
                 className={classes.section}
