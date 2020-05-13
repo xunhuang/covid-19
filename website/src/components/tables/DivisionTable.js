@@ -70,7 +70,7 @@ export const DivisionTable = (props) => {
       confirmedPerMillion,
       active: basic.active().today(),
       died: basic.died().lastValue(),
-      doublingInterval: basic.doublingInterval().today(),
+      doublingInterval: basic.confirmed().doublingInterval().lastValue(),
     });
   }
 
