@@ -6,9 +6,9 @@ import {Paper, Tab, Tabs, Toolbar, Typography} from '@material-ui/core';
 import {makeStyles} from '@material-ui/core/styles';
 
 const disqusConfig = {
-  url: "https://covid-19.direct",
-  identifier: "article-id",
-  title: "main page"
+  url: "https://covid-19.direct/country/",
+  identifier: "world-frontpage",
+  title: "world page"
 };
 
 // Facebook comments are lazily loaded, so we have to render it ahead of time
@@ -30,7 +30,7 @@ export const Discussion = (props) => {
     'label': 'Disqus comments',
     'content':
         <Disqus.DiscussionEmbed
-            shortname={"covid19direct"}
+            shortname={"covid19direct-world"}
             config={disqusConfig}
         />
   }, {
