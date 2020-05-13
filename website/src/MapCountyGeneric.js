@@ -1,5 +1,5 @@
 import React from "react";
-import { ComposableMap, Geographies, Geography } from "react-simple-maps";
+import { ZoomableGroup, ComposableMap, Geographies, Geography } from "react-simple-maps";
 import ReactTooltip from "react-tooltip";
 import { Metro } from "./UnitedStates";
 import { makeStyles } from '@material-ui/core/styles';
@@ -12,7 +12,7 @@ const useStyles = makeStyles(theme => ({
     justifyContent: 'center',
   },
   map: {
-    maxHeight: '100vh',
+    maxHeight: '50vh',
     stroke: '#DDD',
     strokeWidth: 1,
     width: '100vh',
@@ -42,6 +42,7 @@ const MapNew = (props) => {
       projection={config.projection.projection}
       projectionConfig={config.projection.config}
     >
+      <ZoomableGroup zoom={1}>
       <Geographies geography={config.geoUrl}>
         {({ geographies }) =>
           geographies.map(geo => {
@@ -71,6 +72,7 @@ const MapNew = (props) => {
           })
         }
       </Geographies>
+        </ZoomableGroup>
     </ComposableMap >
   );
 };

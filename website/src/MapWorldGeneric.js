@@ -31,9 +31,6 @@ const useStyles = makeStyles(theme => ({
     width: '95vw',
     minHeight: 300,
   },
-  marker: {
-    fill: '#303030',
-  },
 }));
 
 const MapWorld = (props) => {
@@ -75,11 +72,15 @@ const MapWorld = (props) => {
                 geography={geo}
                 fill={color}
                 onMouseEnter={() => {
-                  console.log(geo.properties.ISO_A2)
                   setTooltipContent(country);
                 }}
                 onMouseLeave={() => {
                   setTooltipContent(null);
+                }}
+                onClick={() => {
+                  if (props.selectionCallback) {
+                    props.selectionCallback(path);
+                  }
                 }}
               />
             })}

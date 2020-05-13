@@ -8,7 +8,7 @@ import {fade, makeStyles, useTheme} from '@material-ui/core/styles';
 import {AdvancedGraph} from '../components/graphs/AdvancedGraph';
 import {BasicDataComponent} from '../models/BasicDataComponent';
 import {Discussion} from '../components/chrome/Discussion';
-import {DivisionTable} from '../components/tables/DivisionTable';
+import {DivisionTab} from '../components/tables/DivisionTable';
 import {DivisionTypesComponent} from '../models/DivisionTypesComponent';
 import {DonateLink} from '../components/chrome/DonateLink';
 import {Footer} from '../Footer';
@@ -45,6 +45,10 @@ const useStyles = makeStyles(theme => ({
     padding: '8px',
   },
 }));
+
+const MapWorld = withRouter((props) => {
+  return <MapUS source={props.source} />;
+});
 
 export const PageRegion = withRouter((props) => {
   const classes = useStyles();
@@ -83,8 +87,6 @@ export const PageRegion = withRouter((props) => {
   };
   const showMap = !parentDivision;
 
-  console.log(basic);
-
   return (
     <div className={classes.body}>
       <AppBar />
@@ -94,7 +96,7 @@ export const PageRegion = withRouter((props) => {
 
         {
           showMap &&
-          <MapUS source={basic}/>
+          <MapWorld source={basic}/>
         }
 
         {[ DailyChangeGraph, DailyTotalGraph, DoublingGraph ].map((Graph, i) => (
@@ -108,7 +110,7 @@ export const PageRegion = withRouter((props) => {
 
         {divisions &&
           divisions.types().map(({id, plural}) =>
-            <DivisionTable
+            <DivisionTab
                 key={id}
                 plural={plural}
                 parent={id ? path.child(id) : path}
@@ -117,7 +119,7 @@ export const PageRegion = withRouter((props) => {
           )}
 
         {showNearby &&
-            <DivisionTable
+            <DivisionTab
                 parent={parentDivision}
                 plural="Nearby"
                 className={classes.section}

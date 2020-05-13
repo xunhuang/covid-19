@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import {Table, TableBody, TableCell, TableHead, TableRow, TableSortLabel, useMediaQuery} from '@material-ui/core';
 import {makeStyles, useTheme} from '@material-ui/core/styles';
+import { myShortNumber } from "../../Util.js";
 
 const useStyles = makeStyles(theme => ({
   squishText: {
@@ -54,9 +55,9 @@ export const SortableTable = (props) => {
       <TableBody>
         {sorted.map((row) =>
           <TableRow key={row.id}>
-            {columns.map(({key, contextKey}) =>
+            {columns.map(({key, contextKey, renderShortNumber}) =>
               <TableCell key={key}>
-                {render(row[key])}
+                {render(row[key], renderShortNumber)}
                 {row[contextKey] && ` (${row[contextKey]})`}
               </TableCell>
             )}
@@ -94,8 +95,11 @@ function opposite(direction) {
   return direction === 'desc' ? 'asc' : 'desc';
 }
 
-function render(value) {
+function render(value, short) {
   if (typeof value === 'number') {
+    if (short) {
+      return isNaN(value) ? '' : myShortNumber(value);
+    }
     return isNaN(value) ? '' : value.toFixed(1).replace(/\.?0*$/, '');
   } else {
     return value || '';
