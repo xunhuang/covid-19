@@ -32,7 +32,7 @@ const useStyles = makeStyles(theme => ({
   },
   content: {
     padding: HORIZONTAL_MARGIN,
-    margin: HORIZONTAL_MARGIN,
+    //margin: HORIZONTAL_MARGIN,
   },
   section: {
     margin: '16px 0 24px 0',
