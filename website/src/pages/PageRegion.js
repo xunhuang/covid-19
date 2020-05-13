@@ -46,6 +46,10 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
+const MapWorld = withRouter((props) => {
+  return <MapUS source={props.source} />;
+});
+
 export const PageRegion = withRouter((props) => {
   const classes = useStyles();
   const world = useContext(WorldContext);
@@ -83,8 +87,6 @@ export const PageRegion = withRouter((props) => {
   };
   const showMap = !parentDivision;
 
-  console.log(basic);
-
   return (
     <div className={classes.body}>
       <AppBar />
@@ -94,7 +96,7 @@ export const PageRegion = withRouter((props) => {
 
         {
           showMap &&
-          <MapUS source={basic}/>
+          <MapWorld source={basic}/>
         }
 
         {[ DailyChangeGraph, DailyTotalGraph, DoublingGraph ].map((Graph, i) => (

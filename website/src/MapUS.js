@@ -4,6 +4,8 @@ import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
 import { Typography } from '@material-ui/core';
 import * as d3 from "d3-scale";
 
+import Button from '@material-ui/core/Button';
+
 import { AntSwitch } from "./graphs/AntSwitch"
 import { Grid, makeStyles } from '@material-ui/core';
 import { withRouter } from 'react-router-dom'
@@ -14,6 +16,9 @@ import { CountryContext } from "./CountryContext"
 import { DateRangeSlider } from "./DateRangeSlider"
 import { MapWorldGeneric } from "./MapWorldGeneric";
 import { BasicDataComponent } from './models/BasicDataComponent';
+import { NameComponent } from './models/NameComponent';
+import { County } from './UnitedStates'
+import { WorldContext } from './WorldContext';
 
 const moment = require("moment");
 
@@ -101,6 +106,22 @@ const CountyNavButtons = withRouter((props) => {
     <ToggleButton value={state.routeTo()} >
       {state.name}</ToggleButton>
   </ToggleButtonGroup>;
+});
+
+const CountryButton = withRouter((props) => {
+
+  const history = props.history;
+  const world = React.useContext(WorldContext);
+  const [name] = world.getMultiple(props.country, [NameComponent, BasicDataComponent]);
+
+  return (
+    <Button variant="contained" color="primary"
+    onClick={(e, route) => {
+      history.push("/country" + props.country.string());
+    }}
+    >
+  {name.english()}
+ </Button>)
 });
 
 const MapUS = withRouter((props) => {
@@ -225,8 +246,12 @@ const MapUS = withRouter((props) => {
     </Grid>
     <ChosenMap {...props} date={getDate(dataFetched, showPastDays)} source={source} perCapita={perCapita} selectionCallback={setSelectedCounty} />
     {
-      selectedCounty &&
+      selectedCounty && selectedCounty instanceof County &&
       <CountyNavButtons county={selectedCounty} />
+    }
+    {
+      selectedCounty && !(selectedCounty instanceof County) &&
+      <CountryButton country={selectedCounty} />
     }
   </div >
 });

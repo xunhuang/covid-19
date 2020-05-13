@@ -192,8 +192,8 @@ export const DivisionTableDaysToDouble = (props) => {
   const columns = [
     {key: 'name', label: 'Name', defaultDirection: 'asc'},
     {key: 'confirmedDoublingInterval', label: 'Confirmed', shortLabel: 'Conf.', defaultDirection: 'asc'},
-    {key: 'deathsDoublingInterval', label: 'Deaths', shortLabel: 'Conf.', defaultDirection: 'asc'},
-    {key: 'recoveredDoublingInterval', label: 'Recovered', shortLabel: 'Conf.', defaultDirection: 'asc'},
+    {key: 'deathsDoublingInterval', label: 'Deaths',  defaultDirection: 'asc'},
+    {key: 'recoveredDoublingInterval', label: 'Recovered',  defaultDirection: 'asc'},
   ];
   const defaultSortColumn = columns[1];
 
