@@ -39,6 +39,10 @@ export const AdvancedGraph = (props) => {
   const classes = useStyles();
 
   const windows = new Map([
+    ['all', {
+      label: 'All',
+      filter: (data) => data,
+    }],
     ['4weeks', {
       label: '4 Weeks',
       filter: (data) => {
@@ -59,10 +63,6 @@ export const AdvancedGraph = (props) => {
         const end = startMoment.add(28 + 14 /* for projections */, 'day').unix();
         return data.filter((p) => start <= p.timestamp && p.timestamp <= end);
       },
-    }],
-    ['all', {
-      label: 'All',
-      filter: (data) => data,
     }],
   ]);
   const [window, setWindow] = React.useState(windows.keys().next().value);

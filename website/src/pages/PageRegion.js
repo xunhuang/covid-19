@@ -97,11 +97,11 @@ export const PageRegion = withRouter((props) => {
           <MapUS source={basic}/>
         }
 
-        {[DailyChangeGraph, DoublingGraph, DailyTotalGraph].map((Graph, i) => (
+        {[ DailyChangeGraph, DailyTotalGraph, DoublingGraph ].map((Graph, i) => (
           <Graph
               key={i}
               basic={basic}
-              projections={projections}
+              // projections={projections}
               className={`${classes.section} ${classes.graph}`}
           />
         ))}
@@ -381,21 +381,19 @@ Title.propTypes = {
   path: PropTypes.instanceOf(Path).isRequired,
 };
 
+
 const DailyChangeGraph = (props) => {
   const basic = props.basic;
-  const serieses = [{
-      series: basic.confirmed().change().smooth(),
-      color: 'teal',
-      trend: 'orange',
-    }, {
+  const serieses = [
+    {
       series: basic.confirmed().change(),
       color: '#7ed0d0',
-      initial: 'off',
-    }, {
+    },
+    {
       series: basic.recovered().change(),
       color: 'green',
-      initial: 'off',
-    }, {
+    },
+    {
       series: basic.died().change(),
       color: 'red',
     },
