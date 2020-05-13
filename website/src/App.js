@@ -3,7 +3,7 @@ import { Switch, Redirect, Route, withRouter } from 'react-router-dom'
 import { BrowserRouter } from 'react-router-dom';
 import { ThemeProvider } from '@material-ui/core/styles';
 import { Splash } from './Splash.js';
-import { fetchCounty } from "./GeoLocation"
+import { fetchApproximatePoliticalLocation } from "./GeoLocation"
 import { logger } from "./AppModule"
 import { PageUS } from "./PageUS"
 import { PageState } from "./PageState"
@@ -41,7 +41,7 @@ const MainApp = withRouter((props) => {
     const myCountry = new Country();
     setCountry(myCountry);
 
-    fetchCounty().then(countyDescr => {
+    fetchApproximatePoliticalLocation().then(countyDescr => {
       const county = makeCountyFromDescription(myCountry, countyDescr);
       setMyCounty(county);
       logger.logEvent("AppStart", {
