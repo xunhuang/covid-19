@@ -104,9 +104,10 @@ export const DivisionTableCapita = (props) => {
   const columns = [
     {key: 'name', label: 'Name', defaultDirection: 'asc'},
     {key: 'confirmedPerMillion', label: 'Confirmed/mil', shortLabel: 'Conf. / mil', defaultDirection: 'desc'},
-    {key: 'deathsPerMillion', label: 'Deaths/mil', shortLabel: 'D/mil', defaultDirection: 'desc'},
-    {key: 'activePerMillion', label: 'Active/mil', shortLabel: 'A/mil', defaultDirection: 'desc'},
-    {key: 'recoveredPerMillion', label: 'Recovered/mil', shortLabel: 'R/mil', defaultDirection: 'desc'},
+    {key: 'deathsPerMillion', label: 'Deaths/mil', shortLabel: 'D/m', defaultDirection: 'desc'},
+    {key: 'activePerMillion', label: 'Active/mil', shortLabel: 'A/m', defaultDirection: 'desc'},
+    {key: 'recoveredPerMillion', label: 'Recovered/mil', shortLabel: 'R/m', defaultDirection: 'desc'},
+    { key: 'population', label: 'Population', shortLabel: 'Pop.', defaultDirection: 'desc', renderShortNumber:true},
   ];
   const defaultSortColumn = columns[1];
 
@@ -132,26 +133,27 @@ export const DivisionTableCapita = (props) => {
       continue;
     }
 
+    const pop = population.population();
     const confirmed = basic.confirmed().lastValue();
     const confirmedPerMillion =
         population
-            ? Math.round(confirmed / population.population() * 1000000)
+            ? Math.round(confirmed /pop  * 1000000)
             : '';
 
     const deaths = basic.died().lastValue();
     const deathsPerMillion =
         population
-            ? Math.round(deaths / population.population() * 1000000)
+            ? Math.round(deaths / pop * 1000000)
             : '';
     const active = basic.active().lastValue();
     const activePerMillion =
         population
-            ? Math.round(active / population.population() * 1000000)
+            ? Math.round(active / pop * 1000000)
             : '';
     const recovered = basic.recovered().lastValue();
     const recoveredPerMillion =
         population
-            ? Math.round(recovered / population.population() * 1000000)
+            ? Math.round(recovered / pop * 1000000)
             : '';
 
     rows.push({
@@ -164,6 +166,7 @@ export const DivisionTableCapita = (props) => {
       deathsPerMillion,
       activePerMillion,
       recoveredPerMillion,
+      population: pop,
     });
   }
 
