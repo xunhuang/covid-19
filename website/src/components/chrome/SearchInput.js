@@ -1,29 +1,38 @@
 import React, {useContext} from 'react';
+import {useHistory} from 'react-router-dom'
 import {AutoSizer, List} from 'react-virtualized';
-import {ClickAwayListener, InputBase, Link as MaterialLink, Paper, Typography} from '@material-ui/core';
+import {ClickAwayListener, InputBase, Link as MaterialLink, Paper } from '@material-ui/core';
 import {Link as RouterLink} from 'react-router-dom';
 import SearchIcon from '@material-ui/icons/Search';
+import LocationSearchingIcon from '@material-ui/icons/LocationSearching';
+import Divider from '@material-ui/core/Divider';
+import IconButton from '@material-ui/core/IconButton';
 import {fade, makeStyles} from '@material-ui/core/styles';
 
 import {SEARCH_INDEX_PATH} from '../../models/Earth';
 import {Path} from '../../models/Path';
 import {SearchIndexComponent} from '../../models/SearchIndexComponent';
 import {WorldContext} from '../../WorldContext';
+import {fetchPrecisePoliticalLocation} from '../../GeoLocation'
 
 const RESULT_HEIGHT = 28;
 const RESULTS_MAX_HEIGHT = 150;
 
 const useStyles = makeStyles(theme => ({
   root: {
-    position: 'relative',
-    borderRadius: theme.shape.borderRadius,
+    alignItems: 'center',
     backgroundColor: fade(theme.palette.common.white, 0.15),
+    borderRadius: theme.shape.borderRadius,
+    display: 'flex',
+    height: '2em',
     marginLeft: theme.spacing(4),
+    position: 'relative',
     '&:hover': {
       backgroundColor: fade(theme.palette.common.white, 0.25),
     },
     [theme.breakpoints.down('xs')]: {
       marginLeft: 0,
+      marginBottom: theme.spacing(1),
     },
   },
   searchIcon: {
@@ -34,12 +43,31 @@ const useStyles = makeStyles(theme => ({
   },
   input: {
     color: 'inherit',
+    flexGrow: 1,
     paddingLeft: `calc(1em + ${theme.spacing(2.5)}px)`,
+    position: 'relative',
     [theme.breakpoints.down('xs')]: {
-      width: '20ch',
+      maxWidth: '20ch',
+    },
+  },
+  divider: {
+    backgroundColor: `rgba(255, 255, 255, 0.7)`,
+    height: '70%',
+    marginLeft: theme.spacing(1),
+    position: 'relative',
+    width: '1px',
+  },
+  iconButton: {
+    color: theme.palette.common.white,
+    height: '100%',
+    padding: theme.spacing(0, 1),
+    position: 'relative',
+    "&:hover": {
+      backgroundColor: "transparent",
     },
   },
   resultsContainer: {
+    alignSelf: 'flex-start',
     borderRadius: '4px',
     color: theme.palette.text.primary,
     marginTop: '4px',
@@ -47,8 +75,9 @@ const useStyles = makeStyles(theme => ({
     maxWidth: '100vh',
     padding: '4px',
     position: 'absolute',
-    width: '350px',
+    top: '100%',
     userSelect: 'none',
+    width: '350px',
     '&.hide': {
       display: 'none',
     },
@@ -60,8 +89,8 @@ const useStyles = makeStyles(theme => ({
   },
   result: {
     background: '#fff',
-    overflow: 'hidden',
     lineHeight: RESULT_HEIGHT + 'px',
+    overflow: 'hidden',
     textOverflow: 'ellipsis',
     whiteSpace: 'nowrap',
   },
@@ -70,8 +99,26 @@ const useStyles = makeStyles(theme => ({
 export const SearchInput = (props) => {
   const classes = useStyles();
   const world = useContext(WorldContext);
+  const history = useHistory();
 
   const [results, setResults] = React.useState([]);
+
+  const locationLookup = async () => {
+    const search = world.get(SEARCH_INDEX_PATH, SearchIndexComponent);
+    const location = await fetchPrecisePoliticalLocation();
+    if (!search) {
+      return;
+    }
+    let terms = [];
+    if (location.county && location.stateName) {
+      terms.push(location.county, location.stateName);
+    }
+    terms.push(location.country)
+    const allMatches = search.search(terms.join(", "));
+    if (allMatches && allMatches.length > 0) {
+      history.push("/country" + allMatches[0].path.string())
+    }
+  }
 
   // Force the search index to lazy load
   React.useEffect(() => {
@@ -119,6 +166,13 @@ export const SearchInput = (props) => {
             className={classes.input}
             onChange={onChange}
             placerholder="Search..." />
+        <Divider className={classes.divider} />
+        <IconButton
+            size="small"
+            className={classes.iconButton}
+            onClick={() => locationLookup()}>
+          <LocationSearchingIcon/>
+        </IconButton>
         <Paper
             className={
               `${classes.resultsContainer} `

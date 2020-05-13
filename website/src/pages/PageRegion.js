@@ -32,7 +32,7 @@ const useStyles = makeStyles(theme => ({
   },
   content: {
     padding: HORIZONTAL_MARGIN,
-    margin: HORIZONTAL_MARGIN,
+    //margin: HORIZONTAL_MARGIN,
   },
   section: {
     margin: '16px 0 24px 0',
@@ -97,11 +97,11 @@ export const PageRegion = withRouter((props) => {
           <MapUS source={basic}/>
         }
 
-        {[DailyChangeGraph, DoublingGraph, DailyTotalGraph].map((Graph, i) => (
+        {[ DailyChangeGraph, DailyTotalGraph, DoublingGraph ].map((Graph, i) => (
           <Graph
               key={i}
               basic={basic}
-              projections={projections}
+              // projections={projections}
               className={`${classes.section} ${classes.graph}`}
           />
         ))}
@@ -145,6 +145,7 @@ const useAppBarStyles = makeStyles(theme => ({
   },
   nameAndSearch: {
     display: 'flex',
+    alignItems: 'center',
     [theme.breakpoints.down('xs')]: {
       display: 'initial',
     },
@@ -159,7 +160,6 @@ const useAppBarStyles = makeStyles(theme => ({
     marginLeft: '16px',
     padding: '6px 8px',
     textAlign: 'center',
-
     '&:hover': {
       color: theme.palette.primary.light,
       filter: `drop-shadow(0 0 2px ${fade(RELIEF_COLOR, 0.95)})`,
@@ -189,15 +189,9 @@ const useAppBarStyles = makeStyles(theme => ({
     alignItems: 'center',
     display: 'flex',
     flexWrap: 'wrap',
+    flexShrink: 2,
     justifyContent: 'flex-end',
     textAlign: 'end',
-
-    [theme.breakpoints.down('xs')]: {
-      display: 'initial',
-      '& > *': {
-        margin: '4px 0',
-      },
-    },
   },
 }));
 
@@ -209,10 +203,10 @@ const AppBar = (props) => {
     <MaterialAppBar position="relative">
       <Toolbar className={classes.appBar}>
         <div className={classes.nameAndSearch}>
-          <Typography noWrap className={classes.appName} variant="h6">
-            COVID-19.direct
-          </Typography>
-          <SearchInput />
+        <Typography noWrap className={classes.appName} variant="h6">
+          COVID-19.direct
+        </Typography>
+        <SearchInput className={classes.expander} />
         </div>
 
         <div className={classes.expander} />
@@ -381,21 +375,19 @@ Title.propTypes = {
   path: PropTypes.instanceOf(Path).isRequired,
 };
 
+
 const DailyChangeGraph = (props) => {
   const basic = props.basic;
-  const serieses = [{
-      series: basic.confirmed().change().smooth(),
-      color: 'teal',
-      trend: 'orange',
-    }, {
+  const serieses = [
+    {
       series: basic.confirmed().change(),
       color: '#7ed0d0',
-      initial: 'off',
-    }, {
+    },
+    {
       series: basic.recovered().change(),
       color: 'green',
-      initial: 'off',
-    }, {
+    },
+    {
       series: basic.died().change(),
       color: 'red',
     },
@@ -466,4 +458,3 @@ const DoublingGraph = (props) => {
     />
   );
 };
-

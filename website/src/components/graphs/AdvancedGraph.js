@@ -2,9 +2,10 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import ToggleButton from '@material-ui/lab/ToggleButton';
 import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
-import {Area, AreaChart, CartesianGrid, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis} from 'recharts';
+import { Area, AreaChart, CartesianGrid, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
 import {fade, makeStyles} from '@material-ui/core/styles';
 import {scaleSymlog} from 'd3-scale';
+import { myShortNumber} from '../../Util';
 
 import {DataSeries} from '../../models/DataSeries';
 
@@ -38,6 +39,10 @@ export const AdvancedGraph = (props) => {
   const classes = useStyles();
 
   const windows = new Map([
+    ['all', {
+      label: 'All',
+      filter: (data) => data,
+    }],
     ['4weeks', {
       label: '4 Weeks',
       filter: (data) => {
@@ -58,10 +63,6 @@ export const AdvancedGraph = (props) => {
         const end = startMoment.add(28 + 14 /* for projections */, 'day').unix();
         return data.filter((p) => start <= p.timestamp && p.timestamp <= end);
       },
-    }],
-    ['all', {
-      label: 'All',
-      filter: (data) => data,
     }],
   ]);
   const [window, setWindow] = React.useState(windows.keys().next().value);
@@ -299,6 +300,7 @@ const Chart = (props) => {
         />
         <YAxis
             scale={props.scale === 'log' ? logScale : props.scale}
+            tickFormatter={(t) => myShortNumber(t)}
         />
         <CartesianGrid stroke="#d5d5d5" strokeDasharray="5 5" />
 
