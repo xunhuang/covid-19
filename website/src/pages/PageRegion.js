@@ -8,7 +8,7 @@ import {fade, makeStyles, useTheme} from '@material-ui/core/styles';
 import {AdvancedGraph} from '../components/graphs/AdvancedGraph';
 import {BasicDataComponent} from '../models/BasicDataComponent';
 import {Discussion} from '../components/chrome/Discussion';
-import {DivisionTableMain,DivisionTab} from '../components/tables/DivisionTable';
+import {DivisionTab} from '../components/tables/DivisionTable';
 import {DivisionTypesComponent} from '../models/DivisionTypesComponent';
 import {DonateLink} from '../components/chrome/DonateLink';
 import {Footer} from '../Footer';
