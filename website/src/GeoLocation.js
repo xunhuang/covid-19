@@ -1,4 +1,5 @@
 import { logger } from "./AppModule"
+import Countries from "./models/Countries"
 
 const Cookies = require("js-cookie");
 const superagent = require("superagent");
@@ -9,7 +10,7 @@ const cookieId = "covidLocation"
 
 const defaultValue = {
   location: {
-    country: "United States of America",
+    country: Countries.US,
     state: "CA",
     county: "Santa Clara",
   },
@@ -50,7 +51,6 @@ async function fetchLocationUsingMethods(methods) {
   let coords;
   for (const method of safeMethods) {
     try {
-      console.log(method)
       coords = await method();
       break;
     } catch (err) {
@@ -61,19 +61,17 @@ async function fetchLocationUsingMethods(methods) {
 }
 
 async function getPoliticalLocationFromCoordinates(coordinates) {
-  const coordinateTranslationMethods = [
+  for (const method of [
     () => getCensusLocationFromCoordinates(coordinates),
     () => getGlobalLocationFromCoordinates(coordinates, firebaseConfig.apiKey),
     () => locationFindingError(),
-  ];
-  let location;
-  for (const method of coordinateTranslationMethods) {
-    location = await method();
-    if (location) {
-      break;
+  ]) {
+    const result = await method();
+    if (result) {
+      return result;
     }
   }
-  return location;
+  return undefined;
 }
 
 async function getCensusLocationFromCoordinates(coordinates) {
@@ -89,13 +87,13 @@ async function getCensusLocationFromCoordinates(coordinates) {
       const stateName = res.body.results[0].state_name;
       logger.logEvent("CensusCountyLookupSuccess", {
         location: coordinates,
-        country: 'United States of America',
+        country: Countries.US,
         county: c,
         state: s,
         stateName: stateName,
       });
       return {
-        country: 'United States of America',
+        country: Countries.US,
         county: c,
         state: s,
         stateName: stateName,
