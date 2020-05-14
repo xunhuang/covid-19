@@ -1,25 +1,25 @@
 import PropTypes from 'prop-types';
-import React, {useContext} from 'react';
-import {AppBar as MaterialAppBar, Paper, Toolbar, Typography} from '@material-ui/core';
-import {Link as RouterLink} from 'react-router-dom';
-import {Redirect, withRouter} from 'react-router-dom';
-import {fade, makeStyles, useTheme} from '@material-ui/core/styles';
+import React, { useContext } from 'react';
+import { AppBar as MaterialAppBar, Paper, Toolbar, Typography } from '@material-ui/core';
+import { Link as RouterLink } from 'react-router-dom';
+import { Redirect, withRouter } from 'react-router-dom';
+import { fade, makeStyles, useTheme } from '@material-ui/core/styles';
 
-import {AdvancedGraph} from '../components/graphs/AdvancedGraph';
-import {BasicDataComponent} from '../models/BasicDataComponent';
-import {Discussion} from '../components/chrome/Discussion';
-import {DivisionTab} from '../components/tables/DivisionTable';
-import {DivisionTypesComponent} from '../models/DivisionTypesComponent';
-import {DonateLink} from '../components/chrome/DonateLink';
-import {Footer} from '../Footer';
-import {GeographyComponent} from '../models/GeographyComponent';
-import {NameComponent} from '../models/NameComponent';
-import {Path} from '../models/Path';
-import {ProjectionsComponent} from '../models/ProjectionsComponent';
-import {SearchInput} from '../components/chrome/SearchInput';
-import {SocialMediaButtons} from '../components/chrome/SocialMediaButtons';
-import {WorldContext} from '../WorldContext';
-import { MapUS} from "../MapUS"
+import { AdvancedGraph } from '../components/graphs/AdvancedGraph';
+import { BasicDataComponent } from '../models/BasicDataComponent';
+import { Discussion } from '../components/chrome/Discussion';
+import { DivisionTab } from '../components/tables/DivisionTable';
+import { DivisionTypesComponent } from '../models/DivisionTypesComponent';
+import { DonateLink } from '../components/chrome/DonateLink';
+import { Footer } from '../Footer';
+import { GeographyComponent } from '../models/GeographyComponent';
+import { NameComponent } from '../models/NameComponent';
+import { Path } from '../models/Path';
+import { ProjectionsComponent } from '../models/ProjectionsComponent';
+import { SearchInput } from '../components/chrome/SearchInput';
+import { SocialMediaButtons } from '../components/chrome/SocialMediaButtons';
+import { WorldContext } from '../WorldContext';
+import { MapUS } from "../MapUS"
 
 const shortNumber = require('short-number');
 
@@ -47,7 +47,8 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const MapWorld = withRouter((props) => {
-  return <MapUS source={props.source} />;
+  console.log(props.geography)
+  return <MapUS  {...props} />;
 });
 
 export const PageRegion = withRouter((props) => {
@@ -64,13 +65,13 @@ export const PageRegion = withRouter((props) => {
   }
 
   const [basic, divisions, geography, projections] =
-      world.getMultiple(
-          path, [
-            BasicDataComponent,
-            DivisionTypesComponent,
-            GeographyComponent,
-            ProjectionsComponent,
-          ]);
+    world.getMultiple(
+      path, [
+      BasicDataComponent,
+      DivisionTypesComponent,
+      GeographyComponent,
+      ProjectionsComponent,
+    ]);
   if (!basic) {
     throw new Error(`${path.string()} has no basic component`);
   }
@@ -78,14 +79,14 @@ export const PageRegion = withRouter((props) => {
   const parentDivision = path.parent();
   const showNearby = geography && parentDivision;
   const couldBeNearby = (candidate) =>
-      !path.equals(candidate) && world.has(candidate, GeographyComponent);
+    !path.equals(candidate) && world.has(candidate, GeographyComponent);
   const distanceTo = (candidate) => {
     const theirGeography = world.get(candidate, GeographyComponent);
     // This is kind of garbage, we're comparing a point to a point. Really
     // should be comparing bounds, but we don't have those.
     return geography.distance(theirGeography);
   };
-  const showMap = !parentDivision;
+  const showMap = geography || !parentDivision;
 
   return (
     <div className={classes.body}>
@@ -96,39 +97,39 @@ export const PageRegion = withRouter((props) => {
 
         {
           showMap &&
-          <MapWorld source={basic}/>
+          <MapWorld source={basic} geography={geography} />
         }
 
-        {[ DailyChangeGraph, DailyTotalGraph, DoublingGraph ].map((Graph, i) => (
+        {[DailyChangeGraph, DailyTotalGraph, DoublingGraph].map((Graph, i) => (
           <Graph
-              key={i}
-              basic={basic}
-              // projections={projections}
-              className={`${classes.section} ${classes.graph}`}
+            key={i}
+            basic={basic}
+            // projections={projections}
+            className={`${classes.section} ${classes.graph}`}
           />
         ))}
 
         {divisions &&
-          divisions.types().map(({id, plural}) =>
+          divisions.types().map(({ id, plural }) =>
             <DivisionTab
-                key={id}
-                plural={plural}
-                parent={id ? path.child(id) : path}
-                className={classes.section}
+              key={id}
+              plural={plural}
+              parent={id ? path.child(id) : path}
+              className={classes.section}
             />
           )}
 
         {showNearby &&
-            <DivisionTab
-                parent={parentDivision}
-                plural="Nearby"
-                className={classes.section}
-                filter={couldBeNearby}
-                pickLowest={{
-                  count: NEARBY_TO_SHOW,
-                  quantifier: distanceTo,
-                }}
-            />}
+          <DivisionTab
+            parent={parentDivision}
+            plural="Nearby"
+            className={classes.section}
+            filter={couldBeNearby}
+            pickLowest={{
+              count: NEARBY_TO_SHOW,
+              quantifier: distanceTo,
+            }}
+          />}
       </Paper>
 
       <Discussion className={classes.content} />
@@ -205,20 +206,20 @@ const AppBar = (props) => {
     <MaterialAppBar position="relative">
       <Toolbar className={classes.appBar}>
         <div className={classes.nameAndSearch}>
-        <Typography noWrap className={classes.appName} variant="h6">
-          COVID-19.direct
+          <Typography noWrap className={classes.appName} variant="h6">
+            COVID-19.direct
         </Typography>
-        <SearchInput className={classes.expander} />
+          <SearchInput className={classes.expander} />
         </div>
 
         <div className={classes.expander} />
 
         <div className={classes.actions}>
           <SocialMediaButtons
-              backgroundColor="#fff"
-              buttonClassName={classes.socialButton}
-              className={classes.socialButtons}
-              iconColor={theme.palette.primary.main}
+            backgroundColor="#fff"
+            buttonClassName={classes.socialButton}
+            className={classes.socialButtons}
+            iconColor={theme.palette.primary.main}
           />
 
           <DonateLink className={classes.donations} message="Buy us a coffee!" />
@@ -296,11 +297,11 @@ const Title = (props) => {
       names.push({
         path: parentCursor,
         text:
-            <RouterLink
-                className={`${classes.text} ${classes.parentLink}`}
-                to={'/country' + parentCursor.string()}>
-              {parentName.english()}
-            </RouterLink>,
+          <RouterLink
+            className={`${classes.text} ${classes.parentLink}`}
+            to={'/country' + parentCursor.string()}>
+            {parentName.english()}
+          </RouterLink>,
         squish: true,
       });
     }
@@ -344,20 +345,20 @@ const Title = (props) => {
     // noOverflow because we're using negative margins
     <div className={`${props.className} ${props.noOverflow}`}>
       <div className={classes.container}>
-        {names.map(({path, text, numbers, squish}, i) =>
+        {names.map(({ path, text, numbers, squish }, i) =>
           <div
-              key={path.string()}
-              className={`${classes.node} ${squish ? 'squish': ''}`}>
+            key={path.string()}
+            className={`${classes.node} ${squish ? 'squish' : ''}`}>
             <Typography variant={squish ? 'subtitle1' : 'h4'}>
               {text}
             </Typography>
             <div className={classes.numbers}>
-              {numbers.map(({plural, color, value, change}) =>
+              {numbers.map(({ plural, color, value, change }) =>
                 value > 0 && (
                   <div
-                      key={plural}
-                      className={classes.number}
-                      style={{borderColor: color}}>
+                    key={plural}
+                    className={classes.number}
+                    style={{ borderColor: color }}>
                     {shortNumber(value)}
                     {` ${i === 0 ? plural : ''} `}
                     {change > 0 && `(+${shortNumber(change)})`}
@@ -419,23 +420,23 @@ const DailyTotalGraph = (props) => {
     <AdvancedGraph
       className={props.className}
       serieses={[{
-          series: basic.confirmed(),
-          color: 'teal',
-          trend: 'orange',
-          initial: 'off',
-        }, {
-          series: basic.died(),
-          color: 'red',
-          trend: '#ce889f',
-        }, {
-          series: basic.recovered(),
-          color: 'green',
-          trend: '#668000',
-        }, {
-          series: basic.active(),
-          color: 'purple',
-          initial: 'off',
-        },
+        series: basic.confirmed(),
+        color: 'teal',
+        trend: 'orange',
+        initial: 'off',
+      }, {
+        series: basic.died(),
+        color: 'red',
+        trend: '#ce889f',
+      }, {
+        series: basic.recovered(),
+        color: 'green',
+        trend: '#668000',
+      }, {
+        series: basic.active(),
+        color: 'purple',
+        initial: 'off',
+      },
       ]}
     />
   );
@@ -448,14 +449,14 @@ const DoublingGraph = (props) => {
     <AdvancedGraph
       className={props.className}
       serieses={[{
-          series: basic.confirmed().doublingInterval(),
-          color: 'teal',
-          trend: '#7ed0d0',
-        }, {
-          series: basic.died().doublingInterval(),
-          color: 'red',
-          trend: '#ce889f',
-        },
+        series: basic.confirmed().doublingInterval(),
+        color: 'teal',
+        trend: '#7ed0d0',
+      }, {
+        series: basic.died().doublingInterval(),
+        color: 'red',
+        trend: '#ce889f',
+      },
       ]}
     />
   );
