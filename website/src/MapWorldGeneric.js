@@ -6,7 +6,10 @@ import {
   Sphere,
   Graticule,
   ZoomableGroup,
+  Marker,
 } from "react-simple-maps";
+import { geoCentroid } from "d3-geo";
+
 import ReactTooltip from "react-tooltip";
 import { makeStyles } from '@material-ui/core/styles';
 import { WorldContext } from './WorldContext';
@@ -87,6 +90,26 @@ const MapWorld = (props) => {
                     }
                   }}
                 />
+              })}
+              {geographies.map(geo => {
+                const centroid = geoCentroid(geo);
+                const path = Path.parse('/' + geo.properties.ISO_A2);
+                let country;
+                try {
+                  country = world.getMultiple(path, [NameComponent, BasicDataComponent, PopulationComponent]);
+                } catch (e) {
+
+                }
+                return (
+                  <g key={geo.rsmKey + "-name"}>
+                    {country &&
+                      <Marker coordinates={centroid}>
+                        <text fontSize={3} textAnchor="middle">
+                          {country[0].english()}
+                        </text>
+                      </Marker>
+                    }
+                  </g>);
               })}
             </>
           )}
