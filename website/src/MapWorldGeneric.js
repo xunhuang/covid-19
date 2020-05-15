@@ -3,17 +3,20 @@ import {
   ComposableMap,
   Geographies,
   Geography,
-    Sphere,
+  Sphere,
   Graticule,
   ZoomableGroup,
+  Marker,
 } from "react-simple-maps";
+import { geoCentroid } from "d3-geo";
+
 import ReactTooltip from "react-tooltip";
 import { makeStyles } from '@material-ui/core/styles';
 import { WorldContext } from './WorldContext';
 import { BasicDataComponent } from './models/BasicDataComponent';
 import { NameComponent } from './models/NameComponent';
 import { PopulationComponent } from './models/PopulationComponent';
-import {Path} from './models/Path';
+import { Path } from './models/Path';
 
 const geoUrl =
   "https://raw.githubusercontent.com/zcreativelabs/react-simple-maps/master/topojson-maps/world-110m.json";
@@ -38,56 +41,80 @@ const MapWorld = (props) => {
   const setTooltipContent = props.setTooltipContent;
   const world = React.useContext(WorldContext);
 
+  let center = [0, 0];
+  let zoom = 1;
+  if (props.geography) {
+    const pos = props.geography.position();
+    center = [pos.longitude, pos.latitude];
+    zoom = 4;
+  }
+
   return (
     <ComposableMap
       className={classes.map}
-      data-tip="" 
-        projectionConfig={{
-          rotate: [-10, 0, 0],
-          scale: 147
-        }}
-      >
-      <ZoomableGroup zoom={1}>
-
-      <Sphere stroke="#E4E5E6" strokeWidth={0.5} />
-      <Graticule stroke="#E4E5E6" strokeWidth={0.5} />
+      data-tip=""
+    >
+      <ZoomableGroup zoom={zoom} center={center} >
+        <Sphere stroke="#E4E5E6" strokeWidth={0.5} />
+        <Graticule stroke="#E4E5E6" strokeWidth={0.5} />
 
 
-      <Geographies geography={geoUrl}>
-        {({ geographies }) => (
-          <>
-            {geographies.map(geo => {
-              const path = Path.parse('/' + geo.properties.ISO_A2);
-              let country;
-              try {
-                country = world.getMultiple(path, [NameComponent, BasicDataComponent, PopulationComponent]);
-              } catch (e) {
+        <Geographies geography={geoUrl}
+        >
+          {({ geographies }) => (
+            <>
+              {geographies.map(geo => {
+                const path = Path.parse('/' + geo.properties.ISO_A2);
+                let country;
+                try {
+                  country = world.getMultiple(path, [NameComponent, BasicDataComponent, PopulationComponent]);
+                } catch (e) {
 
-              }
-              const color = props.colorFunction(country);
+                }
+                const color = props.colorFunction(country);
 
-              return <Geography
-                key={geo.rsmKey}
-                stroke="#000"
-                geography={geo}
-                fill={color}
-                onMouseEnter={() => {
-                  setTooltipContent(country);
-                }}
-                onMouseLeave={() => {
-                  setTooltipContent(null);
-                }}
-                onClick={() => {
-                  if (props.selectionCallback) {
-                    props.selectionCallback(path);
-                  }
-                }}
-              />
-            })}
-          </>
-        )}
-      </Geographies>
-        </ZoomableGroup>
+                return <Geography
+                  key={geo.rsmKey}
+                  stroke="#000"
+                  geography={geo}
+                  fill={color}
+                  onMouseEnter={() => {
+                    setTooltipContent(country);
+                  }}
+                  onMouseLeave={() => {
+                    setTooltipContent(null);
+                  }}
+                  onClick={() => {
+                    if (props.selectionCallback) {
+                      props.selectionCallback(path);
+                    }
+                  }}
+                />
+              })}
+              {geographies.map(geo => {
+                const centroid = geoCentroid(geo);
+                const path = Path.parse('/' + geo.properties.ISO_A2);
+                let country;
+                try {
+                  country = world.getMultiple(path, [NameComponent, BasicDataComponent, PopulationComponent]);
+                } catch (e) {
+
+                }
+                return (
+                  <g key={geo.rsmKey + "-name"}>
+                    {country &&
+                      <Marker coordinates={centroid}>
+                        <text fontSize={3} textAnchor="middle">
+                          {country[0].english()}
+                        </text>
+                      </Marker>
+                    }
+                  </g>);
+              })}
+            </>
+          )}
+        </Geographies>
+      </ZoomableGroup>
 
     </ComposableMap>
   );
@@ -101,6 +128,7 @@ const MapWorldGeneric = React.memo((props) => {
     <div className={classes.container}>
       <MapWorld setTooltipContent={setSelectedState}
         source={source}
+        geography={props.geography}
         selectionCallback={props.selectionCallback}
         stroke={props.stroke ?? "#000000"}
         colorFunction={(country) => {
