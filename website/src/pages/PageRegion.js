@@ -139,6 +139,7 @@ export const PageRegion = withRouter((props) => {
 
       <Paper className={classes.content}>
         <Title className={classes.section} path={path} />
+        <LocationSummaryTitle className={classes.section} path={path} />
 
         {
           showMap &&
@@ -390,7 +391,7 @@ const AprilTitle = (props) => {
                 className={`${classes.text} ${classes.parentLink}`}
                 to={link}>
               {text}
-          </RouterLink>,
+          </RouterLink>
             </Typography>
             <div className={classes.numbers}>
               {numbers.map(({ plural, color, value, change }) =>
@@ -433,39 +434,29 @@ const WilsonTitle = (props) => {
     </div>
   );
 }
-const Title = (props) => {
-  const classes = useTitleStyles();
 
-  const world = useContext(WorldContext);
-  const name = world.get(props.path, NameComponent);
+function getNames (world,  path) {
+  const name = world.get(path, NameComponent);
   if (!name) {
-    return <></>;
+    return "";
   }
 
   const names = [{
-    path: props.path,
-    text: <span className={classes.text}>{name.english()}</span>,
+    path: path,
+    text: name.english(),
   }];
 
-  let parentCursor = props.path.parent();
+  let parentCursor = path.parent();
   while (parentCursor) {
     const parentName = world.get(parentCursor, NameComponent);
     if (parentName) {
       names.push({
         path: parentCursor,
-        text:
-          // <RouterLink
-          //   className={`${classes.text} ${classes.parentLink}`}
-          //   to={'/country' + parentCursor.string()}>
-          //   {parentName.english()}
-          // </RouterLink>,
-          parentName.english(),
-
+        text: parentName.english(),
         link: '/country' + parentCursor.string(),
         squish: true,
       });
     }
-
     parentCursor = parentCursor.parent();
   }
 
@@ -500,16 +491,91 @@ const Title = (props) => {
       });
     }
   }
+  return names;
+};
+
+const Title = (props) => {
+  const world = useContext(WorldContext);
+  const names = getNames(world, props.path);
 
   // return <AprilTitle names={names} />;
   return <WilsonTitle names={names} />;
+};
+
+const useSummaryStyle = makeStyles(theme => ({
+  container: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    alignItems: 'center',
+    justifyContent: "space-around",
+  },
+  aspect: {
+    flexDirection: "column",
+    display: 'flex',
+    flexWrap: 'wrap',
+    padding: '4px',
+    margin: '5px 5px',
+    flexGrow: 1,
+    overflow: 'hidden',
+  },
+  innerDiv: {
+    flexDirection: "column",
+    alignContent: 'center',
+    alignItems: 'center',
+    display: 'flex',
+    flexWrap: 'wrap',
+    // padding: '4px',
+    // margin: '5px 5px',
+    flexGrow: 1,
+  },
+  label: {
+    fontSize: '.7em',
+  },
+  total: {
+    flexGrow: 1,
+    fontSize: '1.1em',
+  },
+  change: {
+    flexGrow: 1,
+    fontSize: '0.5em',
+    minHeight: "0.5em"
+  },
+}));
+
+const LocationSummaryTitle = (props) => {
+  const world = useContext(WorldContext);
+  const names = getNames(world, props.path);
+
+  const numbers = names[0].numbers;
+  const classes = useSummaryStyle();
+
+  return (
+    <div className={classes.container}>
+      {numbers.map(({ plural, color, value, change }) =>
+        value > 0 && (
+          <Paper className={classes.aspect} >
+            <div className={classes.innerDiv} style={{ color: color }}>
+              <div className={classes.change}>
+            {change > 0 && `+${shortNumber(change)}`}
+              </div>
+              <div className={classes.total}>
+            {shortNumber(value)}
+              </div>
+              <div className={classes.label}>
+            {plural}
+              </div>
+            </div>
+          </Paper>
+        )
+      )}
+    </div>
+  );
 };
 
 Title.propTypes = {
   className: PropTypes.string,
   path: PropTypes.instanceOf(Path).isRequired,
 };
-
 
 const DailyChangeGraph = (props) => {
   const basic = props.basic;
