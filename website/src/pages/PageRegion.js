@@ -20,6 +20,7 @@ import { SearchInput } from '../components/chrome/SearchInput';
 import { SocialMediaButtons } from '../components/chrome/SocialMediaButtons';
 import { WorldContext } from '../WorldContext';
 import { MapUS } from "../MapUS"
+import { myShortNumber } from "../Util.js";
 
 const shortNumber = require('short-number');
 
@@ -43,6 +44,51 @@ const useStyles = makeStyles(theme => ({
     borderColor: theme.palette.divider,
     borderRadius: '4px',
     padding: '8px',
+  },
+  tag: {
+    display: "flex",
+    justifyContent: "space-between",
+    flexDirection: "column",
+    textAlign: "center",
+    backgroundColor: "#f3f3f3",
+    borderRadius: 10,
+    flexGrow: "1",
+    margin: 3,
+    color: "black",
+    textDecoration: "none",
+  },
+  tagSelected: {
+    color: "#FFFFFF",
+    backgroundColor: "#00aeef",
+  },
+  tagTitle: {
+    marginTop: 5,
+  },
+  tagSection: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    alignContent: "flex-end",
+  },
+  topTag: {
+    fontSize: "0.5rem",
+  },
+  smallTag: {
+    fontSize: "0.5rem",
+  },
+  mainTag: {
+    fontSize: "1.0rem",
+  },
+  grow: {
+    flexGrow: 1,
+  },
+  row: {
+    padding: theme.spacing(1, 1),
+    justifyContent: "space-between",
+    display: "flex",
+  },
+  rowNoBeds: {
+    justifyContent: "center",
   },
 }));
 
@@ -236,7 +282,7 @@ const useTitleStyles = makeStyles(theme => ({
     alignItems: 'flex-end',
     display: 'flex',
     flexWrap: 'wrap',
-    margin: '0 -12px',
+    margin: '0 -12px', // ??
     width: 'calc(100% - 24px)',
   },
   node: {
@@ -274,6 +320,47 @@ const useTitleStyles = makeStyles(theme => ({
     },
   },
 }));
+
+const Tag = withRouter((props) => {
+  let title = props.title;
+
+  const routeTo = " xxx";// source.routeTo();
+  const selected = props.selected; // match.url === routeTo;
+  const confirmNumbers = props.numbers.find(s => s.plural === "cases");
+  const confirmed = confirmNumbers.value;
+  const confirmedNew = confirmNumbers.change;
+
+  const deathsNumbers = props.numbers.find(s => s.plural === "deaths");
+  const deaths = deathsNumbers.value;
+  const deathsNew = deathsNumbers.change;
+
+  // const params = new URLSearchParams(history.location.search);
+  // const to = routeTo + "?" + params.toString();
+  const classes = useStyles();
+  return <RouterLink className={`${classes.tag} ${selected ? classes.tagSelected : ''}`} to={routeTo}>
+    <div className={classes.tagTitle}> {title} </div>
+    <div className={`${classes.row} ${classes.rowNoBeds}`} >
+      <section className={classes.tagSection}>
+        <div className={classes.topTag}>
+          +{myShortNumber(confirmedNew)}
+        </div>
+        <div className={classes.mainTag}>
+          {myShortNumber(confirmed)} </div>
+        <div className={classes.smallTag}>
+          Confirmed </div>
+      </section>
+      <section className={classes.tagSection}>
+        <div className={classes.topTag}>
+          +{myShortNumber(deathsNew)}
+        </div>
+        <div className={classes.main1GTag}>
+          {myShortNumber(deaths)} </div>
+        <div className={classes.smallTag}>
+          Deaths </div>
+      </section>
+    </div>
+  </RouterLink>;
+});
 
 const Title = (props) => {
   const classes = useTitleStyles();
@@ -345,6 +432,17 @@ const Title = (props) => {
     <div className={`${props.className} ${props.noOverflow}`}>
       <div className={classes.container}>
         {names.map(({ path, text, numbers, squish }, i) =>
+          /*
+            <Tag
+              key={path.string()}
+              title={text}
+              selected={!squish}
+              numbers={numbers}
+            >
+  
+            </Tag>
+                      */
+
           <div
             key={path.string()}
             className={`${classes.node} ${squish ? 'squish' : ''}`}>
@@ -370,6 +468,39 @@ const Title = (props) => {
       </div>
     </div>
   );
+
+  /*
+  return (
+    // noOverflow because we're using negative margins
+    <div className={`${props.className} ${props.noOverflow}`}>
+      <div className={classes.container}>
+        {names.map(({ path, text, numbers, squish }, i) =>
+          <div
+            key={path.string()}
+            className={`${classes.node} ${squish ? 'squish' : ''}`}>
+            <Typography variant={squish ? 'subtitle1' : 'h4'}>
+              {text}
+            </Typography>
+            <div className={classes.numbers}>
+              {numbers.map(({ plural, color, value, change }) =>
+                value > 0 && (
+                  <div
+                    key={plural}
+                    className={classes.number}
+                    style={{ borderColor: color }}>
+                    {shortNumber(value)}
+                    {` ${i === 0 ? plural : ''} `}
+                    {change > 0 && `(+${shortNumber(change)})`}
+                  </div>
+                )
+              )}
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+  */
 };
 
 Title.propTypes = {
