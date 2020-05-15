@@ -282,7 +282,21 @@ const useTitleStyles = makeStyles(theme => ({
     alignItems: 'flex-end',
     display: 'flex',
     flexWrap: 'wrap',
-    margin: '0 -12px', // ??
+    margin: '0 -12px', 
+    width: 'calc(100% - 24px)',
+  },
+  tagSticky: {
+    backgroundColor: "#FFFFFF",
+    position: "sticky",
+    top: 0,
+    left: 0,
+    zIndex: "1",
+  },
+  tagContainer: {
+    alignItems: 'flex-end',
+    display: 'flex',
+    flexWrap: 'nowrap',
+    // margin: '0 -12px', // ??
     width: 'calc(100% - 24px)',
   },
   node: {
@@ -324,7 +338,7 @@ const useTitleStyles = makeStyles(theme => ({
 const Tag = withRouter((props) => {
   let title = props.title;
 
-  const routeTo = " xxx";// source.routeTo();
+  const routeTo = props.link;
   const selected = props.selected; // match.url === routeTo;
   const confirmNumbers = props.numbers.find(s => s.plural === "cases");
   const confirmed = confirmNumbers.value;
@@ -334,12 +348,10 @@ const Tag = withRouter((props) => {
   const deaths = deathsNumbers.value;
   const deathsNew = deathsNumbers.change;
 
-  // const params = new URLSearchParams(history.location.search);
-  // const to = routeTo + "?" + params.toString();
   const classes = useStyles();
   return <RouterLink className={`${classes.tag} ${selected ? classes.tagSelected : ''}`} to={routeTo}>
     <div className={classes.tagTitle}> {title} </div>
-    <div className={`${classes.row} ${classes.rowNoBeds}`} >
+    <div className={`${classes.row} `} >
       <section className={classes.tagSection}>
         <div className={classes.topTag}>
           +{myShortNumber(confirmedNew)}
@@ -362,6 +374,65 @@ const Tag = withRouter((props) => {
   </RouterLink>;
 });
 
+const AprilTitle = (props) => {
+  const names = props.names;
+  const classes = useTitleStyles();
+  return (
+    // noOverflow because we're using negative margins
+    <div className={`${props.className} ${props.noOverflow}`}>
+      <div className={classes.container}>
+        {names.map(({ path, text, numbers, squish, link }, i) =>
+          <div
+            key={path.string()}
+            className={`${classes.node} ${squish ? 'squish' : ''}`}>
+            <Typography variant={squish ? 'subtitle1' : 'h4'}>
+          <RouterLink
+                className={`${classes.text} ${classes.parentLink}`}
+                to={link}>
+              {text}
+          </RouterLink>,
+            </Typography>
+            <div className={classes.numbers}>
+              {numbers.map(({ plural, color, value, change }) =>
+                value > 0 && (
+                  <div
+                    key={plural}
+                    className={classes.number}
+                    style={{ borderColor: color }}>
+                    {shortNumber(value)}
+                    {` ${i === 0 ? plural : ''} `}
+                    {change > 0 && `(+${shortNumber(change)})`}
+                  </div>
+                )
+              )}
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
+const WilsonTitle = (props) => {
+  const names = props.names;
+  const classes = useTitleStyles();
+  return (
+    <div className={classes.tagSticky} >
+      <div className={classes.tagContainer}>
+        {names.map(({ path, text, numbers, squish, link }, i) =>
+            <Tag
+              key={path.string()}
+              title={text}
+              selected={!squish}
+              numbers={numbers}
+              link={link}
+            >
+            </Tag>
+        )}
+      </div>
+    </div>
+  );
+}
 const Title = (props) => {
   const classes = useTitleStyles();
 
@@ -383,11 +454,14 @@ const Title = (props) => {
       names.push({
         path: parentCursor,
         text:
-          <RouterLink
-            className={`${classes.text} ${classes.parentLink}`}
-            to={'/country' + parentCursor.string()}>
-            {parentName.english()}
-          </RouterLink>,
+          // <RouterLink
+          //   className={`${classes.text} ${classes.parentLink}`}
+          //   to={'/country' + parentCursor.string()}>
+          //   {parentName.english()}
+          // </RouterLink>,
+          parentName.english(),
+
+        link: '/country' + parentCursor.string(),
         squish: true,
       });
     }
@@ -427,80 +501,8 @@ const Title = (props) => {
     }
   }
 
-  return (
-    // noOverflow because we're using negative margins
-    <div className={`${props.className} ${props.noOverflow}`}>
-      <div className={classes.container}>
-        {names.map(({ path, text, numbers, squish }, i) =>
-          /*
-            <Tag
-              key={path.string()}
-              title={text}
-              selected={!squish}
-              numbers={numbers}
-            >
-  
-            </Tag>
-                      */
-
-          <div
-            key={path.string()}
-            className={`${classes.node} ${squish ? 'squish' : ''}`}>
-            <Typography variant={squish ? 'subtitle1' : 'h4'}>
-              {text}
-            </Typography>
-            <div className={classes.numbers}>
-              {numbers.map(({ plural, color, value, change }) =>
-                value > 0 && (
-                  <div
-                    key={plural}
-                    className={classes.number}
-                    style={{ borderColor: color }}>
-                    {shortNumber(value)}
-                    {` ${i === 0 ? plural : ''} `}
-                    {change > 0 && `(+${shortNumber(change)})`}
-                  </div>
-                )
-              )}
-            </div>
-          </div>
-        )}
-      </div>
-    </div>
-  );
-
-  /*
-  return (
-    // noOverflow because we're using negative margins
-    <div className={`${props.className} ${props.noOverflow}`}>
-      <div className={classes.container}>
-        {names.map(({ path, text, numbers, squish }, i) =>
-          <div
-            key={path.string()}
-            className={`${classes.node} ${squish ? 'squish' : ''}`}>
-            <Typography variant={squish ? 'subtitle1' : 'h4'}>
-              {text}
-            </Typography>
-            <div className={classes.numbers}>
-              {numbers.map(({ plural, color, value, change }) =>
-                value > 0 && (
-                  <div
-                    key={plural}
-                    className={classes.number}
-                    style={{ borderColor: color }}>
-                    {shortNumber(value)}
-                    {` ${i === 0 ? plural : ''} `}
-                    {change > 0 && `(+${shortNumber(change)})`}
-                  </div>
-                )
-              )}
-            </div>
-          </div>
-        )}
-      </div>
-    </div>
-  );
-  */
+  // return <AprilTitle names={names} />;
+  return <WilsonTitle names={names} />;
 };
 
 Title.propTypes = {
