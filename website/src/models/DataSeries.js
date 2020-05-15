@@ -293,7 +293,7 @@ export class DataSeries {
 
   // if ts is in the future, return the last valid datapoint
   dateOrLastValueNew(ts) {
-    const [mdate, v] = this.lastPoint();
+    const [mdate] = this.lastPoint();
     let t0 = (mdate.unix() < ts) ? mdate.unix() : ts;
     // let tminus1 = moment(t0).subtract(1, "days").unix();
     let tminus1 = t0 - 24 * 60 * 60;

@@ -44,18 +44,6 @@ const useStyles = makeStyles(theme => ({
         color: "black",
         textDecoration: "none",
     },
-    summary_section: {
-        display: "flex",
-        justifyContent: "space-between",
-        flexDirection: "column",
-        textAlign: "center",
-        backgroundColor: "#f3f3f3",
-        // borderRadius: 10,
-        flexGrow: "1",
-        margin: 0,
-        color: "black",
-        textDecoration: "none",
-    },
     tagSelected: {
         color: "#FFFFFF",
         backgroundColor: "#00aeef",
@@ -113,7 +101,7 @@ const USInfoTopWidget = (props) => {
 
     return <div className={classes.tagSticky} >
         <div className={`${classes.tagContainer} ${showBeds ? '' : classes.tagContainerNoBeds}`}>
-            {tags.map(source => 
+            {tags.map(source =>
                 <Tag
                     key={source.routeTo()}
                     source={source}
@@ -126,13 +114,13 @@ const USInfoTopWidget = (props) => {
 };
 
 const Tag = withRouter((props) => {
-    const {source, history, match} = props;
+    const { source, history, match } = props;
 
     let title;
     if (!props.squish || !source.shortName) {
-      title = source.name;
+        title = source.name;
     } else {
-      title = source.shortName;
+        title = source.shortName;
     }
 
     const routeTo = source.routeTo();
@@ -172,5 +160,5 @@ const Tag = withRouter((props) => {
 
 export {
     USInfoTopWidget,
-    Tag,
+    // Tag,
 }

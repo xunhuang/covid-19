@@ -177,11 +177,7 @@ const Banner = withRouter((props) => {
   const history = useHistory();
   const classes = useStyles();
   const country = useContext(CountryContext);
-  const [showNews, setShowNews] = React.useState(false);
-  const toggleNews = (e) => {
-    setShowNews(!showNews);
-    e.preventDefault();
-  };
+  const [showNews] = React.useState(false);
 
   const us_summary = country.summary();
   const url_shared =

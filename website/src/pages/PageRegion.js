@@ -20,6 +20,7 @@ import { SearchInput } from '../components/chrome/SearchInput';
 import { SocialMediaButtons } from '../components/chrome/SocialMediaButtons';
 import { WorldContext } from '../WorldContext';
 import { MapUS } from "../MapUS"
+import { myShortNumber } from "../Util.js";
 
 const shortNumber = require('short-number');
 
@@ -44,6 +45,51 @@ const useStyles = makeStyles(theme => ({
     borderRadius: '4px',
     padding: '8px',
   },
+  tag: {
+    display: "flex",
+    justifyContent: "space-between",
+    flexDirection: "column",
+    textAlign: "center",
+    backgroundColor: "#f3f3f3",
+    borderRadius: 10,
+    flexGrow: "1",
+    margin: 3,
+    color: "black",
+    textDecoration: "none",
+  },
+  tagSelected: {
+    color: "#FFFFFF",
+    backgroundColor: "#00aeef",
+  },
+  tagTitle: {
+    marginTop: 5,
+  },
+  tagSection: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    alignContent: "flex-end",
+  },
+  topTag: {
+    fontSize: "0.5rem",
+  },
+  smallTag: {
+    fontSize: "0.5rem",
+  },
+  mainTag: {
+    fontSize: "1.0rem",
+  },
+  grow: {
+    flexGrow: 1,
+  },
+  row: {
+    padding: theme.spacing(1, 1),
+    justifyContent: "space-between",
+    display: "flex",
+  },
+  rowNoBeds: {
+    justifyContent: "center",
+  },
 }));
 
 const MapWorld = withRouter((props) => {
@@ -63,7 +109,7 @@ export const PageRegion = withRouter((props) => {
     return <Redirect to={"/county/" + path.components[2] + '/' + path.components[4]} />;
   }
 
-  const [basic, divisions, geography, projections] =
+  const [basic, divisions, geography] =
     world.getMultiple(
       path, [
       BasicDataComponent,
@@ -93,6 +139,7 @@ export const PageRegion = withRouter((props) => {
 
       <Paper className={classes.content}>
         <Title className={classes.section} path={path} />
+        <LocationSummaryTitle className={classes.section} path={path} />
 
         {
           showMap &&
@@ -236,7 +283,21 @@ const useTitleStyles = makeStyles(theme => ({
     alignItems: 'flex-end',
     display: 'flex',
     flexWrap: 'wrap',
-    margin: '0 -12px',
+    margin: '0 -12px', 
+    width: 'calc(100% - 24px)',
+  },
+  tagSticky: {
+    backgroundColor: "#FFFFFF",
+    position: "sticky",
+    top: 0,
+    left: 0,
+    zIndex: "1",
+  },
+  tagContainer: {
+    alignItems: 'flex-end',
+    display: 'flex',
+    flexWrap: 'nowrap',
+    // margin: '0 -12px', // ??
     width: 'calc(100% - 24px)',
   },
   node: {
@@ -275,36 +336,127 @@ const useTitleStyles = makeStyles(theme => ({
   },
 }));
 
-const Title = (props) => {
-  const classes = useTitleStyles();
+const Tag = withRouter((props) => {
+  let title = props.title;
 
-  const world = useContext(WorldContext);
-  const name = world.get(props.path, NameComponent);
+  const routeTo = props.link;
+  const selected = props.selected; // match.url === routeTo;
+  const confirmNumbers = props.numbers.find(s => s.plural === "cases");
+  const confirmed = confirmNumbers.value;
+  const confirmedNew = confirmNumbers.change;
+
+  const deathsNumbers = props.numbers.find(s => s.plural === "deaths");
+  const deaths = deathsNumbers.value;
+  const deathsNew = deathsNumbers.change;
+
+  const classes = useStyles();
+  return <RouterLink className={`${classes.tag} ${selected ? classes.tagSelected : ''}`} to={routeTo}>
+    <div className={classes.tagTitle}> {title} </div>
+    <div className={`${classes.row} `} >
+      <section className={classes.tagSection}>
+        <div className={classes.topTag}>
+          +{myShortNumber(confirmedNew)}
+        </div>
+        <div className={classes.mainTag}>
+          {myShortNumber(confirmed)} </div>
+        <div className={classes.smallTag}>
+          Confirmed </div>
+      </section>
+      <section className={classes.tagSection}>
+        <div className={classes.topTag}>
+          +{myShortNumber(deathsNew)}
+        </div>
+        <div className={classes.main1GTag}>
+          {myShortNumber(deaths)} </div>
+        <div className={classes.smallTag}>
+          Deaths </div>
+      </section>
+    </div>
+  </RouterLink>;
+});
+
+const AprilTitle = (props) => {
+  const names = props.names;
+  const classes = useTitleStyles();
+  return (
+    // noOverflow because we're using negative margins
+    <div className={`${props.className} ${props.noOverflow}`}>
+      <div className={classes.container}>
+        {names.map(({ path, text, numbers, squish, link }, i) =>
+          <div
+            key={path.string()}
+            className={`${classes.node} ${squish ? 'squish' : ''}`}>
+            <Typography variant={squish ? 'subtitle1' : 'h4'}>
+          <RouterLink
+                className={`${classes.text} ${classes.parentLink}`}
+                to={link}>
+              {text}
+          </RouterLink>
+            </Typography>
+            <div className={classes.numbers}>
+              {numbers.map(({ plural, color, value, change }) =>
+                value > 0 && (
+                  <div
+                    key={plural}
+                    className={classes.number}
+                    style={{ borderColor: color }}>
+                    {shortNumber(value)}
+                    {` ${i === 0 ? plural : ''} `}
+                    {change > 0 && `(+${shortNumber(change)})`}
+                  </div>
+                )
+              )}
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
+const WilsonTitle = (props) => {
+  const names = props.names;
+  const classes = useTitleStyles();
+  return (
+    <div className={classes.tagSticky} >
+      <div className={classes.tagContainer}>
+        {names.map(({ path, text, numbers, squish, link }, i) =>
+            <Tag
+              key={path.string()}
+              title={text}
+              selected={!squish}
+              numbers={numbers}
+              link={link}
+            >
+            </Tag>
+        )}
+      </div>
+    </div>
+  );
+}
+
+function getNames (world,  path) {
+  const name = world.get(path, NameComponent);
   if (!name) {
-    return <></>;
+    return "";
   }
 
   const names = [{
-    path: props.path,
-    text: <span className={classes.text}>{name.english()}</span>,
+    path: path,
+    text: name.english(),
   }];
 
-  let parentCursor = props.path.parent();
+  let parentCursor = path.parent();
   while (parentCursor) {
     const parentName = world.get(parentCursor, NameComponent);
     if (parentName) {
       names.push({
         path: parentCursor,
-        text:
-          <RouterLink
-            className={`${classes.text} ${classes.parentLink}`}
-            to={'/country' + parentCursor.string()}>
-            {parentName.english()}
-          </RouterLink>,
+        text: parentName.english(),
+        link: '/country' + parentCursor.string(),
         squish: true,
       });
     }
-
     parentCursor = parentCursor.parent();
   }
 
@@ -339,35 +491,83 @@ const Title = (props) => {
       });
     }
   }
+  return names;
+};
+
+const Title = (props) => {
+  const world = useContext(WorldContext);
+  const names = getNames(world, props.path);
+
+  // return <AprilTitle names={names} />;
+  return <WilsonTitle names={names} />;
+};
+
+const useSummaryStyle = makeStyles(theme => ({
+  container: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    alignItems: 'center',
+    justifyContent: "space-around",
+  },
+  aspect: {
+    flexDirection: "column",
+    display: 'flex',
+    flexWrap: 'wrap',
+    padding: '4px',
+    margin: '5px 5px',
+    flexGrow: 1,
+    overflow: 'hidden',
+  },
+  innerDiv: {
+    flexDirection: "column",
+    alignContent: 'center',
+    alignItems: 'center',
+    display: 'flex',
+    flexWrap: 'wrap',
+    // padding: '4px',
+    // margin: '5px 5px',
+    flexGrow: 1,
+  },
+  label: {
+    fontSize: '.7em',
+  },
+  total: {
+    flexGrow: 1,
+    fontSize: '1.1em',
+  },
+  change: {
+    flexGrow: 1,
+    fontSize: '0.5em',
+    minHeight: "0.5em"
+  },
+}));
+
+const LocationSummaryTitle = (props) => {
+  const world = useContext(WorldContext);
+  const names = getNames(world, props.path);
+
+  const numbers = names[0].numbers;
+  const classes = useSummaryStyle();
 
   return (
-    // noOverflow because we're using negative margins
-    <div className={`${props.className} ${props.noOverflow}`}>
-      <div className={classes.container}>
-        {names.map(({ path, text, numbers, squish }, i) =>
-          <div
-            key={path.string()}
-            className={`${classes.node} ${squish ? 'squish' : ''}`}>
-            <Typography variant={squish ? 'subtitle1' : 'h4'}>
-              {text}
-            </Typography>
-            <div className={classes.numbers}>
-              {numbers.map(({ plural, color, value, change }) =>
-                value > 0 && (
-                  <div
-                    key={plural}
-                    className={classes.number}
-                    style={{ borderColor: color }}>
-                    {shortNumber(value)}
-                    {` ${i === 0 ? plural : ''} `}
-                    {change > 0 && `(+${shortNumber(change)})`}
-                  </div>
-                )
-              )}
+    <div className={classes.container}>
+      {numbers.map(({ plural, color, value, change }) =>
+        value > 0 && (
+          <Paper className={classes.aspect} >
+            <div className={classes.innerDiv} style={{ color: color }}>
+              <div className={classes.change}>
+            {change > 0 && `+${shortNumber(change)}`}
+              </div>
+              <div className={classes.total}>
+            {shortNumber(value)}
+              </div>
+              <div className={classes.label}>
+            {plural}
+              </div>
             </div>
-          </div>
-        )}
-      </div>
+          </Paper>
+        )
+      )}
     </div>
   );
 };
@@ -376,7 +576,6 @@ Title.propTypes = {
   className: PropTypes.string,
   path: PropTypes.instanceOf(Path).isRequired,
 };
-
 
 const DailyChangeGraph = (props) => {
   const basic = props.basic;

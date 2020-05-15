@@ -173,7 +173,7 @@ function getLocationFromCookie() {
     logger.logEvent("LocationFoundInCookie", cookie);
     return cookie;
   } else {
-    throw "No cookie or invalid one";
+    throw new Error("No cookie or invalid one");
   }
 }
 

@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React, {useContext} from 'react';
-import {Link as MaterialLink, Typography} from '@material-ui/core';
+import {Link as MaterialLink} from '@material-ui/core';
 import {Link as RouterLink} from 'react-router-dom';
 
 import {BasicDataComponent} from '../../models/BasicDataComponent';
@@ -44,8 +44,8 @@ export const DivisionTableMain = (props) => {
       continue;
     }
 
-    const [name, basic, population] =
-        world.getMultiple(child, [NameComponent, BasicDataComponent, PopulationComponent]);
+    const [name, basic] =
+        world.getMultiple(child, [NameComponent, BasicDataComponent]);
     if (!name || !basic) {
       continue;
     }
@@ -213,8 +213,8 @@ export const DivisionTableDaysToDouble = (props) => {
       continue;
     }
 
-    const [name, basic, population] =
-        world.getMultiple(child, [NameComponent, BasicDataComponent, PopulationComponent]);
+    const [name, basic] =
+        world.getMultiple(child, [NameComponent, BasicDataComponent]);
     if (!name || !basic) {
       continue;
     }

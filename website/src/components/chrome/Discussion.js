@@ -2,7 +2,7 @@ import Disqus from "disqus-react"
 import PropTypes from 'prop-types';
 import React from 'react';
 import {FacebookProvider, Comments as FacebookComments} from 'react-facebook';
-import {Paper, Tab, Tabs, Toolbar, Typography} from '@material-ui/core';
+import {Paper, Tab, Tabs} from '@material-ui/core';
 import {makeStyles} from '@material-ui/core/styles';
 
 const disqusConfig = {

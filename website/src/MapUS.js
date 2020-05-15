@@ -290,7 +290,7 @@ const MapWorldConfirmed = React.memo((props) => {
       {...props}
       getCountyDataPoint={(country) => {
         if (country) {
-          const [name, basic, population] = country;
+          const [, basic] = country;
           return basic.confirmed().dateOrLastValue(ts);
         }
       }}
@@ -317,7 +317,7 @@ const MapWorldDeath = React.memo((props) => {
       {...props}
       getCountyDataPoint={(country) => {
         if (country) {
-          const [name, basic, population] = country;
+          const [, basic] = country;
           return basic.died().dateOrLastValue(ts);
         }
       }}
@@ -344,7 +344,7 @@ const MapWorldConfirmedNew = React.memo((props) => {
       {...props}
       getCountyDataPoint={(country) => {
         if (country) {
-          const [name, basic] = country;
+          const [, basic] = country;
           return basic.confirmed().dateOrLastValueNew(ts);
         }
       }}
