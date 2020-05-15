@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React, { useContext } from 'react';
 import { AppBar as MaterialAppBar, Paper, Toolbar, Typography } from '@material-ui/core';
 import { Link as RouterLink } from 'react-router-dom';
+import { Link as MaterialLink } from '@material-ui/core';
 import { Redirect, withRouter } from 'react-router-dom';
 import { fade, makeStyles, useTheme } from '@material-ui/core/styles';
 
@@ -10,6 +11,7 @@ import { BasicDataComponent } from '../models/BasicDataComponent';
 import { Discussion } from '../components/chrome/Discussion';
 import { DivisionTab } from '../components/tables/DivisionTable';
 import { DivisionTypesComponent } from '../models/DivisionTypesComponent';
+import { ChildrenComponent } from '../models/ChildrenComponent';
 import { DonateLink } from '../components/chrome/DonateLink';
 import { Footer } from '../Footer';
 import { GeographyComponent } from '../models/GeographyComponent';
@@ -155,6 +157,7 @@ export const PageRegion = withRouter((props) => {
           />
         ))}
 
+        <a name="division" />
         {divisions &&
           divisions.types().map(({ id, plural }) =>
             <DivisionTab
@@ -283,7 +286,7 @@ const useTitleStyles = makeStyles(theme => ({
     alignItems: 'flex-end',
     display: 'flex',
     flexWrap: 'wrap',
-    margin: '0 -12px', 
+    margin: '0 -12px',
     width: 'calc(100% - 24px)',
   },
   tagSticky: {
@@ -387,11 +390,11 @@ const AprilTitle = (props) => {
             key={path.string()}
             className={`${classes.node} ${squish ? 'squish' : ''}`}>
             <Typography variant={squish ? 'subtitle1' : 'h4'}>
-          <RouterLink
+              <RouterLink
                 className={`${classes.text} ${classes.parentLink}`}
                 to={link}>
-              {text}
-          </RouterLink>
+                {text}
+              </RouterLink>
             </Typography>
             <div className={classes.numbers}>
               {numbers.map(({ plural, color, value, change }) =>
@@ -415,27 +418,53 @@ const AprilTitle = (props) => {
 }
 
 const WilsonTitle = (props) => {
-  const names = props.names;
   const classes = useTitleStyles();
+  const tagclasses = useStyles();
+  const world = useContext(WorldContext);
+  const names = props.names;
+  const [divisions, children] =
+    world.getMultiple(
+      props.path, [
+      DivisionTypesComponent,
+      ChildrenComponent,
+    ]);
   return (
     <div className={classes.tagSticky} >
       <div className={classes.tagContainer}>
+        {
+          divisions &&
+          <MaterialLink className={tagclasses.tag} href="#division">
+            <div className={tagclasses.tagTitle}> Dive in </div>
+            <div className={`${tagclasses.row} ${tagclasses.rowNoBeds}`} >
+              <section className={tagclasses.tagSection}>
+                <div className={tagclasses.topTag}>
+                </div>
+                <div className={tagclasses.mainTag}>
+                  {children.children().length}
+                </div>
+                <div className={tagclasses.smallTag}>
+                  {divisions.types()[0].plural}
+                </div>
+              </section>
+            </div>
+          </MaterialLink>
+        }
         {names.map(({ path, text, numbers, squish, link }, i) =>
-            <Tag
-              key={path.string()}
-              title={text}
-              selected={!squish}
-              numbers={numbers}
-              link={link}
-            >
-            </Tag>
+          <Tag
+            key={path.string()}
+            title={text}
+            selected={!squish}
+            numbers={numbers}
+            link={link}
+          >
+          </Tag>
         )}
       </div>
     </div>
   );
 }
 
-function getNames (world,  path) {
+function getNames(world, path) {
   const name = world.get(path, NameComponent);
   if (!name) {
     return "";
@@ -499,7 +528,7 @@ const Title = (props) => {
   const names = getNames(world, props.path);
 
   // return <AprilTitle names={names} />;
-  return <WilsonTitle names={names} />;
+  return <WilsonTitle names={names} path={props.path} />;
 };
 
 const useSummaryStyle = makeStyles(theme => ({
@@ -556,13 +585,13 @@ const LocationSummaryTitle = (props) => {
           <Paper className={classes.aspect} >
             <div className={classes.innerDiv} style={{ color: color }}>
               <div className={classes.change}>
-            {change > 0 && `+${shortNumber(change)}`}
+                {change > 0 && `+${shortNumber(change)}`}
               </div>
               <div className={classes.total}>
-            {shortNumber(value)}
+                {shortNumber(value)}
               </div>
               <div className={classes.label}>
-            {plural}
+                {plural}
               </div>
             </div>
           </Paper>
