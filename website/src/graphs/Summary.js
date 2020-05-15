@@ -1,10 +1,11 @@
 import React from 'react';
-import { makeStyles, withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
+// import { withStyles } from '@material-ui/core/styles';
 import { Paper } from '@material-ui/core';
 import { County } from '../UnitedStates';
 import { myShortNumber } from '../Util';
 import { useHistory } from 'react-router-dom'
-import Badge from '@material-ui/core/Badge';
+// import Badge from '@material-ui/core/Badge';
 
 const useStyles = makeStyles(theme => ({
     container: {
@@ -46,6 +47,7 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
+/*
 const ClickRibbonBadge = withStyles({
     badge: {
         display: 'flex',
@@ -70,6 +72,7 @@ const ClickRibbonBadge = withStyles({
         },
     }
 })(Badge);
+*/
 
 export const Summary = (props) => {
     const classes = useStyles();

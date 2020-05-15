@@ -63,7 +63,7 @@ export const PageRegion = withRouter((props) => {
     return <Redirect to={"/county/" + path.components[2] + '/' + path.components[4]} />;
   }
 
-  const [basic, divisions, geography, projections] =
+  const [basic, divisions, geography] =
     world.getMultiple(
       path, [
       BasicDataComponent,

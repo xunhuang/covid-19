@@ -136,7 +136,7 @@ const MapWorldGeneric = React.memo((props) => {
             return "#FFF";
           }
           let data = props.getCountyDataPoint(country);
-          const [name, basic, pop] = country;
+          const [, , pop] = country;
           let population = pop.population();
           return (props.perCapita && !props.skipCapita)
             ? props.colorFunctionPerMillion(data / population * 1000000)

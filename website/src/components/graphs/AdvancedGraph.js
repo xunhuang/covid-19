@@ -91,7 +91,7 @@ export const AdvancedGraph = (props) => {
       series: Area,
     }],
   ]);
-  const [style, setStyle] = React.useState(styles.keys().next().value);
+  const [style] = React.useState(styles.keys().next().value);
 
   const serieses = expandSeriesesToMap(props.serieses);
   const {data, timestampFormatter} =
