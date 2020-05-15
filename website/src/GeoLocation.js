@@ -34,14 +34,23 @@ export async function fetchPrecisePoliticalLocation() {
 
 // Uses IP address to get country, and if availble, approximate country/state
 export async function fetchApproximatePoliticalLocation() {
-  return await fetchLocationUsingMethods([
-    () => getLocationFromCookie(),
+  const saved = getLocationFromCookie();
+  if (saved) {
+    return saved;
+  }
+  
+  const location =  await fetchLocationUsingMethods([
     () => fetchApproxIPLocationIPDataCo(firebaseConfig.ipdataco_key),
     () => fetchApproxIPLocationIPDataCo(firebaseConfig.ipdataco_key2),
     () => fetchApproxIPLocationIPDataCo(firebaseConfig.ipdataco_key3),
     () => fetchApproxIPLocationIPGEOLOCATION(),
     () => fetchApproxIPLocationGoogle(),
   ]);
+
+  Cookies.set(cookieId, location, {
+    expires: 1000,
+  });
+  return location;
 }
 
 async function fetchLocationUsingMethods(methods) {
@@ -160,7 +169,7 @@ function askForExactLocation() {
 
 function getLocationFromCookie() {
   const cookie = Cookies.getJSON(cookieId);
-  if (cookie && cookie.country) {
+  if (cookie && (cookie.country || cookie.county) ) {
     logger.logEvent("LocationFoundInCookie", cookie);
     return cookie;
   } else {

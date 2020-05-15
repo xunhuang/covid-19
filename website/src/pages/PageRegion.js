@@ -47,7 +47,6 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const MapWorld = withRouter((props) => {
-  console.log(props.geography)
   return <MapUS  {...props} />;
 });
 
