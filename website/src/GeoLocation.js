@@ -40,6 +40,7 @@ export async function fetchApproximatePoliticalLocation() {
     () => fetchApproxIPLocationIPDataCo(firebaseConfig.ipdataco_key2),
     () => fetchApproxIPLocationIPDataCo(firebaseConfig.ipdataco_key3),
     () => fetchApproxIPLocationIPGEOLOCATION(),
+    () => fetchApproxIPLocationGoogle(),
   ]);
 }
 
@@ -106,10 +107,17 @@ async function getCensusLocationFromCoordinates(coordinates) {
 }
 
 async function getGlobalLocationFromCoordinates(coordinates, apiKey) {
+  // some providers have countries already set.
+  if (coordinates.country_name) {
+    return {
+      country: coordinates.country_name,
+    }
+  }
+
   const googleMapsEndpoint = `https://maps.googleapis.com/maps/api/geocode/json`
-      + `?latlng=${coordinates.latitude},${coordinates.longitude}`
-      + `&result_type=country`
-      + `&key=${apiKey}`;
+    + `?latlng=${coordinates.latitude},${coordinates.longitude}`
+    + `&result_type=country`
+    + `&key=${apiKey}`;
   return await superagent
     .get(googleMapsEndpoint)
     .then(res => {
@@ -122,7 +130,10 @@ async function getGlobalLocationFromCoordinates(coordinates, apiKey) {
         return null;
       }
       const countryName = address_components[0].long_name;
-      return defaultValue.location
+      console.log(results)
+      return {
+        country: countryName
+      }
     })
     .catch(err => {
       logger.logEvent("GoogleMapsPoliticalLocationLookupFailed", coordinates);
@@ -160,10 +171,13 @@ function getLocationFromCookie() {
 async function fetchApproxIPLocationGoogle(key) {
   return await superagent
     .post(`https://www.googleapis.com/geolocation/v1/geolocate?key=${firebaseConfig.apiKey}`)
-    .then(res => ({
-      longitude: res.body.location.lng,
-      latitude: res.body.location.lat,
-    }));
+    .then(res => {
+      console.log(res);
+      return {
+        longitude: res.body.location.lng,
+        latitude: res.body.location.lat,
+      }
+    });
 }
 
 // this one is not very good - while at Alameda, it says it's in santa clara, I guess
@@ -182,6 +196,10 @@ async function fetchApproxIPLocationIPGEOLOCATION() {
       return {
         longitude: res.body.longitude,
         latitude: res.body.latitude,
+        country_code: res.body.country_code2,
+        country_name: res.body.country_name,
+        region: res.body.state_prov,
+        region_code: res.body.region_code
       };
     });
 }
@@ -199,6 +217,10 @@ async function fetchApproxIPLocationIPDataCo(apikey) {
       return {
         longitude: res.body.longitude,
         latitude: res.body.latitude,
+        country_code: res.body.country_code,
+        country_name: res.body.country_name,
+        region: res.body.region,
+        region_code: res.body.region_code,
       };
     });
 }

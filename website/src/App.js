@@ -21,6 +21,8 @@ import { makeCountyFromDescription } from "./Util"
 
 import { WorldContext } from './WorldContext';
 import { createBasicEarth } from './models/Earth';
+import { SearchIndexComponent } from './models/SearchIndexComponent';
+import { SEARCH_INDEX_PATH } from './models/Earth';
 
 const App = (props) => {
   return <BrowserRouter>
@@ -35,6 +37,7 @@ const MainApp = withRouter((props) => {
   const [earth, setEarth] = React.useState(null);
   const [country, setCountry] = React.useState(null);
   const [myCounty, setMyCounty] = React.useState(null);
+  const [nonUSCountry, setNonUSCountry] = React.useState(null);
   React.useEffect(() => {
     setEarth(createBasicEarth);
 
@@ -42,11 +45,16 @@ const MainApp = withRouter((props) => {
     setCountry(myCountry);
 
     fetchApproximatePoliticalLocation().then(countyDescr => {
-      const county = makeCountyFromDescription(myCountry, countyDescr);
-      setMyCounty(county);
-      logger.logEvent("AppStart", {
-        myCounty: county,
-      });
+      console.log(countyDescr);
+      if (countyDescr.country === "United States of America" || countyDescr.county) {
+        const county = makeCountyFromDescription(myCountry, countyDescr);
+        setMyCounty(county);
+        logger.logEvent("AppStart", {
+          myCounty: county,
+        });
+      } else {
+        setNonUSCountry(countyDescr.country);
+      }
     });
   }, []);
 
@@ -55,14 +63,25 @@ const MainApp = withRouter((props) => {
   }
 
   if (props.location.pathname === "/") {
-    if (myCounty === null) {
-      return <Splash />
-    } else {
+
+    if (myCounty) {
       return <Redirect to={reverse(routes.county, {
         state: myCounty.state().twoLetterName,
         county: myCounty.name,
       })} />;
     }
+
+    if (nonUSCountry) {
+      const search = earth.get(SEARCH_INDEX_PATH, SearchIndexComponent);
+      console.log("----------------------------:" + nonUSCountry);
+      console.log(nonUSCountry);
+      const allMatches = search.search(nonUSCountry);
+
+      if (allMatches && allMatches.length > 0) {
+        return <Redirect to={"/country" + allMatches[0].path.string()} />;
+      }
+    }
+    return <Splash />
   }
 
   return (
