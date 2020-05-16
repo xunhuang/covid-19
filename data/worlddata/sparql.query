@@ -7,14 +7,8 @@ WHERE {
  ?coordinate_node wikibase:geoLongitude ?lon.
  ?coordinate_node wikibase:geoLatitude ?lat.
 
-      {?area wdt:P300 ?code. ?area wdt:P31/wdt:P279* wd:Q161243. BIND("region" as ?type)}
-  UNION
-    {?area wdt:P297|wdt:P300 ?code. ?area wdt:P31/wdt:P279* wd:Q719487. BIND("region" as ?type)}
-   UNION {?area wdt:P300 ?code. ?area wdt:P31/wdt:P279* wd:Q10864048. BIND("region" as ?type)}
-    UNION {  ?area wdt:P297 ?code. ?area wdt:P31/wdt:P279* wd:Q46395 . BIND("region" as ?type)}
- UNION  {  ?area wdt:P297 ?code. ?area wdt:P31/wdt:P279* wd:Q185086 . BIND("region" as ?type)}
- UNION  {  ?area wdt:P297 ?code. ?area wdt:P31/wdt:P279* wd:Q1048835 . BIND("region" as ?type)}
- UNION  {?area wdt:P297 ?code. ?area wdt:P31/wdt:P279* wd:Q6256. BIND("country" as ?type)}.
+  {  ?area wdt:P300 ?code . BIND("country" as ?type)}
+   UNION  {  ?area wdt:P297 ?code . BIND("region" as ?type)}
   SERVICE wikibase:label { bd:serviceParam wikibase:language "[AUTO_LANGUAGE],en". }
 }
 

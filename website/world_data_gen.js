@@ -52,6 +52,7 @@ const COMPONENT_PREFIX_SKIP_SET = [
   "Wuhan Evacuee",
   "Others",
   "Unassigned Location (From Diamond Princess)",
+  "Germany/Unknown",
 ];
 
 // If a key is in this map, it will rewritten according to this. But the
@@ -68,7 +69,6 @@ const KeyRewriteMap = {
   "Congo (Kinshasa)": ["Democratic Republic of the Congo"],
   "Cote d'Ivoire": ["Ivory Coast"],
   "Curacao": ["Curaçao"],
-  "Cyprus": ["Republic of Cyprus"],
   "Czechia": ["Czech Republic"],
   "Denmark/Faroe Islands": ["Faroe Islands"],
   "Denmark/Greenland": ["Greenland"],
@@ -82,7 +82,37 @@ const KeyRewriteMap = {
   "French Polynesia": ["France", "French Polynesia"],
   "Gambia": ["The Gambia"],
   "Gambia, The": ["The Gambia"],
-  "Germany/Bavaria": ["Germany"],
+  "Germany/Bavaria": ["Germany", "Bavaria"],
+  "Germany/Bayern": ["Germany", "Bavaria"],
+  "Germany/Baden-Wurttemberg": ["Germany", "Baden-Württemberg"],
+  "Germany/Bremen": ["Germany", "Free Hanseatic City of Bremen"],
+  "Germany/Hessen": ["Germany", "Hesse"],
+  "Germany/Unknown": ["Germany"],
+  "Spain/Madrid": ["Spain", "Community of Madrid"],
+  "Germany/Niedersachsen": ["Germany", "Lower Saxony"],
+  "Germany/Nordrhein-Westfalen": ["Germany", "North Rhine-Westphalia"],
+  "Germany/Rheinland-Pfalz": ["Germany", "Rhineland-Palatinate"],
+  "Germany/Sachsen": ["Germany", "Saxony"],
+  "Germany/Sachsen-Anhalt": ["Germany", "Saxony-Anhalt"],
+  "Germany/Thuringen": ["Germany", "Thuringia"],
+  "Spain/Baleares": ["Spain", "Balearic Islands"],
+  "Spain/C. Valenciana": ["Spain", "Valencian Community"],
+  "Spain/Canarias": ["Spain", "Canary Islands"],
+  "Spain/Castilla - La Mancha": ["Spain", "Castile-La Mancha"],
+  "Spain/Castilla y Leon": ["Spain", "Castile and León"],
+  "Spain/Pais Vasco": ["Spain", "Basque Country"],
+  "Spain/Murcia": ["Spain", "Region of Murcia"],
+  "Spain/Navarra": ["Spain", "Navarre"],
+  "Italy/Friuli Venezia Giulia": ["Italy", "Friuli–Venezia Giulia"],
+  "Italy/Lombardia": ["Italy", "Lombardy"],
+  "Italy/P.A. Bolzano": ["Italy", "South Tyrol"],
+  "Italy/P.A. Trento": ["Italy", "Trentino"],
+  "Italy/Piemonte": ["Italy", "Piedmont"],
+  "Italy/Puglia": ["Italy", "Apulia"],
+  "Italy/Sardegna": ["Italy", "Sardinia"],
+  "Italy/Sicilia": ["Italy", "Sicily"],
+  "Italy/Toscana": ["Italy", "Tuscany"],
+  "Italy/Valle d'Aosta": ["Italy", "Aosta Valley"],
   "Guam": ["United States of America", "Guam"],
   "Holy See": ["Vatican City"],
   "Hong Kong SAR": ["People's Republic of China", "Hong Kong"],
@@ -467,7 +497,7 @@ async function get_projection_data() {
   const json = await csv().fromFile(file);
 
   const timestampsByProjectionsByPath =
-      new DefaultMap(() => new DefaultMap(() => []));
+    new DefaultMap(() => new DefaultMap(() => []));
 
   for (const line of json) {
     const components = [];
@@ -491,7 +521,7 @@ async function get_projection_data() {
       }
     }
 
-    const {resolved} = resolve_key(components);
+    const { resolved } = resolve_key(components);
     const path = resolved.join('/');
 
     const projections = timestampsByProjectionsByPath.get(path);
@@ -521,7 +551,7 @@ function populate_projections(hierarchical, timestampsByProjectionsByPath) {
 
     const projections_output = cursor.data.projections = {};
     for (const [type, data] of projections.entries()) {
-      projections_output[type] = data.sort(([a, ], [b, ]) => a - b);
+      projections_output[type] = data.sort(([a,], [b,]) => a - b);
     }
   }
 }

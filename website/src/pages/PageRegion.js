@@ -428,6 +428,9 @@ const WilsonTitle = (props) => {
       DivisionTypesComponent,
       ChildrenComponent,
     ]);
+  console.log(props.path);
+  console.log(divisions);
+  console.log(children);
   return (
     <div className={classes.tagSticky} >
       <div className={classes.tagContainer}>
