@@ -422,20 +422,18 @@ const WilsonTitle = (props) => {
   const tagclasses = useStyles();
   const world = useContext(WorldContext);
   const names = props.names;
-  const [divisions, children] =
-    world.getMultiple(
-      props.path, [
-      DivisionTypesComponent,
-      ChildrenComponent,
-    ]);
-  console.log(props.path);
-  console.log(divisions);
-  console.log(children);
+  const divisions = world.get(props.path, DivisionTypesComponent);
+  const first = divisions && divisions[0];
+  const children =
+      first && world.get(
+          first.id ? props.path.child(first.id) : props.path,
+          ChildrenComponent);
+
   return (
     <div className={classes.tagSticky} >
       <div className={classes.tagContainer}>
         {
-          divisions &&
+          first && children &&
           <MaterialLink className={tagclasses.tag} href="#division">
             <div className={tagclasses.tagTitle}> Dive in </div>
             <div className={`${tagclasses.row} ${tagclasses.rowNoBeds}`} >
@@ -446,7 +444,7 @@ const WilsonTitle = (props) => {
                   {children.children().length}
                 </div>
                 <div className={tagclasses.smallTag}>
-                  {divisions.types()[0].plural}
+                  {first.plural}
                 </div>
               </section>
             </div>
