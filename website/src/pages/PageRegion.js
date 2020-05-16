@@ -423,7 +423,7 @@ const WilsonTitle = (props) => {
   const world = useContext(WorldContext);
   const names = props.names;
   const divisions = world.get(props.path, DivisionTypesComponent);
-  const first = divisions && divisions[0];
+  const first = divisions && divisions.types()[0];
   const children =
       first && world.get(
           first.id ? props.path.child(first.id) : props.path,
