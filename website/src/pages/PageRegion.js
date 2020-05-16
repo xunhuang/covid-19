@@ -150,10 +150,10 @@ export const PageRegion = withRouter((props) => {
 
         {[DailyChangeGraph, DailyTotalGraph, DoublingGraph].map((Graph, i) => (
           <Graph
-            key={i}
-            basic={basic}
-            // projections={projections}
-            className={`${classes.section} ${classes.graph}`}
+              key={i}
+              basic={basic}
+              //projections={projections}
+              className={`${classes.section} ${classes.graph}`}
           />
         ))}
 

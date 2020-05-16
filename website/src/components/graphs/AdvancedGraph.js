@@ -2,12 +2,13 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import ToggleButton from '@material-ui/lab/ToggleButton';
 import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
-import { Area, AreaChart, CartesianGrid, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
+import { Area, AreaChart, CartesianGrid, ComposedChart, Line, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
 import {fade, makeStyles} from '@material-ui/core/styles';
 import {scaleSymlog} from 'd3-scale';
 import { myShortNumber} from '../../Util';
 
 import {DataSeries} from '../../models/DataSeries';
+import {Envelope} from '../../models/Envelope';
 
 const moment = require('moment');
 
@@ -79,37 +80,47 @@ export const AdvancedGraph = (props) => {
   ]);
   const [scale, setScale] = React.useState(scales.keys().next().value);
 
-  const styles = new Map([
-    ['line', {
-      label: 'Line',
-      chart: LineChart,
-      series: Line,
-    }],
-    ['area', {
-      label: 'Area',
-      chart: AreaChart,
-      series: Area,
-    }],
-  ]);
-  const [style] = React.useState(styles.keys().next().value);
+  // Expands series that are supposed to have trend lines into an entry for the
+  // original series and one for the trend line.
+  const expandedSerieses = expandSeriesesToMap(props.serieses);
 
-  const serieses = expandSeriesesToMap(props.serieses);
+  // Okay, here's where it gets terrible. We have raw serieses and envelopes.
+  // We want the user to be able to toggle serieses and evelopes on and off one
+  // by one, but not to toggle the serieses inside of a envelope. So for the
+  // purposes of Recharts we're going to decompose the envelopes to be raw
+  // serieses. But for our code, we're going to merge them and be confused a
+  // lot.
+
+  const allSerieses =
+        [...expandedSerieses.values()]
+            .concat(
+                (props.envelopes || [])
+                    .flatMap(e =>
+                        e.envelope.serieses().map(s => ({
+                          series: s,
+                          color: e.stroke,
+                          ...e,
+                        }))));
   const {data, timestampFormatter} =
-      DataSeries.flatten([...serieses.values()].map(({series}) => series));
+      DataSeries.flatten([...allSerieses.values()].map(({series}) => series));
 
-  const [known, setKnown] = React.useState([]);
+  const seriesesAndEnvelopes =
+      [...expandedSerieses.entries()]
+          .concat(
+              (props.envelopes || [])
+                  // Legend just wants one color, so use the stroke as the color
+                  .map(e => ({color: e.stroke, ...e}))
+                  .map(e => [e.envelope.label(), e]))
+  const allLabels = seriesesAndEnvelopes.map(([label, ]) => label);
+  const [known, setKnown] = React.useState(allLabels);
   const [selected, setSelected] =
-      React.useState(() =>
-          [...serieses.entries()]
-              .filter(([, {initial}]) => initial !== 'off')
-              .map(([label, ]) => label));
+      React.useState(() => allLabels.filter(({initial}) => initial !== 'off'));
 
   // As the user switches pages, graphs that were previously unknown may become
   // available. So turn them off if they default to on when they appear.
-  const nowKnown = [...serieses.keys()];
-  if (known.join() !== nowKnown.join()) {
+  if (known.join() !== allLabels.join()) {
     const add = [];
-    for (const [key, {initial}] of serieses.entries()) {
+    for (const [key, {initial}] of seriesesAndEnvelopes) {
       if (!known.includes(key) && !selected.includes(key) && initial !== 'off') {
         add.push(key);
       }
@@ -118,7 +129,7 @@ export const AdvancedGraph = (props) => {
     if (add.length > 0) {
       // We might as well just do this in here, even though technically we
       // should probably do it in the else branch too.
-      setKnown(nowKnown);
+      setKnown(allLabels);
       setSelected(selected.concat(add));
     }
   }
@@ -138,19 +149,19 @@ export const AdvancedGraph = (props) => {
         />
         <div className={classes.expand} />
         <Legend
-            serieses={serieses}
+            spec={seriesesAndEnvelopes}
             selected={selected}
             onChange={setSelected} />
       </div>
       <Chart
           data={windows.get(window).filter(data)}
           scale={scales.get(scale).scale}
-          style={styles.get(style)}
           timestampFormatter={timestampFormatter}
-          serieses={selected.map(key => ({
-            ...serieses.get(key),
-            label: key,
-          }))}
+          specs={
+            seriesesAndEnvelopes
+                .filter(([label,]) => selected.includes(label))
+                .map(([label, s]) => ({label, ...s}))
+          }
       />
     </div>);
 };
@@ -166,6 +177,14 @@ AdvancedGraph.propTypes = {
             trend: PropTypes.string,
             stipple: PropTypes.bool,
           })).isRequired,
+  envelopes:
+      PropTypes.arrayOf(
+          PropTypes.exact({
+            envelope: PropTypes.instanceOf(Envelope).isRequired,
+            fill: PropTypes.string.isRequired,
+            stroke: PropTypes.string.isRequired,
+            initial: PropTypes.oneOf([undefined, 'off', 'on']),
+          })),
 };
 
 function expandSeriesesToMap(serieses) {
@@ -247,38 +266,39 @@ const useLegendStyles = makeStyles(theme => ({
 }));
 
 const Legend = (props) => {
-    const classes = useLegendStyles();
+  const classes = useLegendStyles();
 
-    return (
-        <ToggleButtonGroup
-                value={props.selected}
-                onChange={(event, desired) => props.onChange(desired)}
-                className={classes.serieses}>
-            {[...props.serieses.entries()].map(([label, {color, stipple}]) =>
-                <ToggleButton
-                    key={label}
-                    value={label}
-                    classes={{root: classes.series, selected: 'selected'}}>
-                    <span
-                        className={classes.icon}
-                        style={
-                            props.selected.includes(label) ? {color} : {}
-                        }>
-                      {stipple ? '···' : '—'}
-                    </span>
-                    {label}
-                </ToggleButton>
-            )}
-        </ToggleButtonGroup>
-    );
+  return (
+    <ToggleButtonGroup
+        value={props.selected}
+        onChange={(event, desired) => props.onChange(desired)}
+        className={classes.serieses}>
+      {props.spec.map(([label, {color, stipple}]) =>
+        <ToggleButton
+            key={label}
+            value={label}
+            classes={{root: classes.series, selected: 'selected'}}>
+          <span
+              className={classes.icon}
+              style={
+                props.selected.includes(label) ? {color} : {}
+              }>
+            {stipple ? '···' : '—'}
+          </span>
+          {label}
+        </ToggleButton>
+      )}
+    </ToggleButtonGroup>
+  );
 };
 
 const Chart = (props) => {
-  const ChosenChart = props.style.chart;
-  const ChosenSeries = props.style.series;
-
-  const ordered = props.serieses && props.serieses.sort((a, b) => {
-    if (a.derived && !b.derived) {
+  const ordered = (props.specs || []).sort((a, b) => {
+    if (a.envelope && !b.envelope) {
+      return -1;
+    } else if (!a.envelope && b.envelope) {
+      return 1;
+    } else if (a.derived && !b.derived) {
       return -1;
     } else if (!a.derived && b.derived) {
       return 1;
@@ -289,7 +309,7 @@ const Chart = (props) => {
 
   return (
     <ResponsiveContainer height={300}>
-      <ChosenChart data={props.data} margin={{left: -4, right: 8}}>
+      <ComposedChart data={props.data} margin={{left: -4, right: 8}}>
         <Tooltip
             formatter={valueFormatter}
             labelFormatter={props.timestampFormatter}
@@ -304,21 +324,55 @@ const Chart = (props) => {
         />
         <CartesianGrid stroke="#d5d5d5" strokeDasharray="5 5" />
 
-        {ordered && ordered.map(series =>
-            <ChosenSeries
-                type="monotone"
-                key={series.label}
-                dataKey={series.label}
-                isAnimationActive={false}
-                fill={series.color}
-                stroke={series.color}
-                strokeDasharray={series.stipple ? '2 2' : undefined}
-                dot={false}
-                strokeWidth={2}
-            />
-        )}
-      </ChosenChart>
+        {ordered.flatMap(spec => specToElements(spec))}
+      </ComposedChart>
     </ResponsiveContainer>
+  );
+};
+
+function specToElements(spec) {
+  if (spec.envelope) {
+    const envelope = spec.envelope;
+    return [
+      <Area
+          key={envelope.high().label()}
+          type="monotone"
+          dataKey={envelope.high().label()}
+          stroke={spec.stroke}
+          fill={spec.fill}
+      />,
+      <Area
+          key={envelope.low().label()}
+          type="monotone"
+          dataKey={spec.envelope.low().label()}
+          stroke={spec.stroke}
+          fill="#fff"
+          fillOpacity={1}
+      />,
+    ].concat(
+        envelope.extras().map(s => lineForSpec({
+          label: s.label(),
+          color: envelope.stroke,
+        })));
+  } else {
+    return [lineForSpec(spec)];
+  }
+};
+
+function lineForSpec(spec) {
+  return (
+    <Line
+        key={spec.label}
+        baseLine={10000}
+        type="monotone"
+        dataKey={spec.label}
+        isAnimationActive={false}
+        fill={spec.color}
+        stroke={spec.color}
+        strokeDasharray={spec.stipple ? '2 2' : undefined}
+        dot={false}
+        strokeWidth={2}
+    />
   );
 };
 
