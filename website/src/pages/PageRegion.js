@@ -615,7 +615,7 @@ const DailyChangeGraph = (props) => {
       color: '#7ed0d0',
     },
     {
-      series: basic.confirmed().fitVirusCV19Prediction().change(),
+      series: basic.confirmed().fitVirusCV19Prediction().change().dropFirst(),
       color: 'pink',
     },
     {
