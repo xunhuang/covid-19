@@ -615,6 +615,10 @@ const DailyChangeGraph = (props) => {
       color: '#7ed0d0',
     },
     {
+      series: basic.confirmed().fitVirusCV19Prediction().change(),
+      color: 'pink',
+    },
+    {
       series: basic.recovered().change(),
       color: 'green',
     },
@@ -663,6 +667,10 @@ const DailyTotalGraph = (props) => {
       }, {
         series: basic.active(),
         color: 'purple',
+        initial: 'off',
+      }, {
+        series: basic.confirmed().fitVirusCV19Prediction(),
+        color: 'pink',
         initial: 'off',
       },
       ]}
