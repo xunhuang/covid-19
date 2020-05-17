@@ -3,6 +3,7 @@ import { ZoomableGroup, ComposableMap, Geographies, Geography } from "react-simp
 import ReactTooltip from "react-tooltip";
 import { Metro } from "./UnitedStates";
 import { makeStyles } from '@material-ui/core/styles';
+const superagent = require('superagent');
 
 const NO_DATA_COLOR = '#fcfcfc';
 
@@ -26,55 +27,92 @@ const useStyles = makeStyles(theme => ({
 const MapNew = (props) => {
   const classes = useStyles();
 
+  const [geographyArray, setGeographyArray] = React.useState(null)
+
   const source = props.source instanceof Metro ? props.source.state() : props.source;
+  console.log("source");
+  console.log(source);
   const config = source.countyMapConfig();
+  console.log("config")
+  console.log(config)
+  let geoURL;
   if (!config) {
-    return null;
+    geoURL = null
+  } else {
+    geoURL = config.geoUrl;
   }
+
+
+  React.useEffect(() => {
+    if (geoURL) {
+      superagent
+          .get(geoURL)
+          .then(res => {
+            console.log(res.body);
+            setGeographyArray(res.body);
+          })
+          .catch(err => {
+            setGeographyArray(null)
+          });
+    }
+  }, [geoURL])
+
   // Gross!
   const isZoomed = !!config.projection.config;
 
   const setTooltipContent = props.setTooltipContent;
-  return (
-    <ComposableMap
-      className={`${classes.map} ${isZoomed ? classes.small : ''}`}
-      data-tip=""
-      projection={config.projection.projection}
-      projectionConfig={config.projection.config}
-    >
-      <ZoomableGroup zoom={1}>
-      <Geographies geography={config.geoUrl}>
-        {({ geographies }) =>
-          geographies.map(geo => {
-            const county_id = geo.id ?? geo.properties.STATEFP + geo.properties.COUNTYFP;
-            const county = source.countyForId(county_id);
-            const color = props.colorFunction(county);
-            return (
-              <Geography
-                key={geo.rsmKey}
-                geography={geo}
-                fill={color}
-                onMouseEnter={() => {
-                  setTooltipContent(county);
-                }}
-                onMouseLeave={() => {
-                  setTooltipContent(null);
-                }}
-                onClick={() => {
-                  if (props.selectionCallback) {
-                    props.selectionCallback(county);
-                  }
-                }
+  console.log(`geography array:`)
+  console.log(geographyArray)
 
-                }
-              />
-            );
-          })
-        }
-      </Geographies>
-        </ZoomableGroup>
-    </ComposableMap >
-  );
+  if (geographyArray) {
+    return (
+      <ComposableMap
+        className={`${classes.map} ${isZoomed ? classes.small : ''}`}
+        data-tip=""
+        projection={config.projection.projection}
+        projectionConfig={config.projection.config}
+      >
+        <ZoomableGroup zoom={1}>
+        <Geographies geography={geographyArray}>
+          {({ geographies }) => {
+            console.log("geographies map:")
+            console.log(geographies);
+            geographies.map(geo => {
+              const county_id = geo.id ?? geo.properties.STATEFP + geo.properties.COUNTYFP;
+              const county = source.countyForId(county_id);
+              const color = props.colorFunction(county);
+              return (
+                <Geography
+                  key={geo.rsmKey}
+                  geography={geo}
+                  fill={color}
+                  onMouseEnter={() => {
+                    setTooltipContent(county);
+                  }}
+                  onMouseLeave={() => {
+                    setTooltipContent(null);
+                  }}
+                  onClick={() => {
+                    if (props.selectionCallback) {
+                      props.selectionCallback(county);
+                    }
+                  }
+
+                  }
+                />
+              );
+            })
+          }
+          }
+        </Geographies>
+          </ZoomableGroup>
+      </ComposableMap >
+    )
+  } else {
+    return (
+      <div>No map!</div>
+    )
+  }
 };
 
 const MapCountyGeneric = React.memo((props) => {
