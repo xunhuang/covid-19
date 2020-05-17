@@ -202,7 +202,7 @@ class DefaultAbsorberMap {
 
   set(key, name, extended, timestamp, values) {
     if (key === '') {
-      extended.name = 'Earth';
+      extended.name = 'World';
       extended.population = 7782760616;
     }
 
