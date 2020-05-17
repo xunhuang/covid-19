@@ -284,8 +284,8 @@ export class DataSeries {
         }
         const startdate = points[0][0].unix();
         const C = points.map((p) => p[1]);
-        const Ca = fitVirusCV19(C, startdate);
-        return Ca.map((v, i) => [moment.unix(startdate).add(i,'days'), v]);
+        const [Ca, newstartdate] = fitVirusCV19(C, startdate);
+        return Ca.map((v, i) => [moment.unix(newstartdate.unix()).add(i,'days'), v]);
       } catch {
         return new EmptySeries(name, this.period_);
       }

@@ -196,7 +196,7 @@ export function fitVirusCV19(C, startdate) {
   var [t, Ca] = myOde45(getODE(b), tspan, [I0]);;
 
 
-  return Ca;
+  return [Ca, moment.unix(startdate).add(date0, 'days')];
 }
 // --------- HELPER FUNCTIONS ---------------------------------------------------------
 
