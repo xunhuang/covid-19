@@ -1,25 +1,24 @@
 import PropTypes from 'prop-types';
 import React, { useContext } from 'react';
-import { AppBar as MaterialAppBar, Paper, Toolbar, Typography } from '@material-ui/core';
+import { Chip, Paper, Toolbar, Typography } from '@material-ui/core';
 import { Link as RouterLink } from 'react-router-dom';
 import { Link as MaterialLink } from '@material-ui/core';
 import { Redirect, withRouter } from 'react-router-dom';
 import { fade, makeStyles, useTheme } from '@material-ui/core/styles';
 
 import { AdvancedGraph } from '../components/graphs/AdvancedGraph';
+import { AppBar } from '../components/chrome/AppBar';
 import { BasicDataComponent } from '../models/BasicDataComponent';
 import { Discussion } from '../components/chrome/Discussion';
 import { DivisionTab } from '../components/tables/DivisionTable';
 import { DivisionTypesComponent } from '../models/DivisionTypesComponent';
 import { ChildrenComponent } from '../models/ChildrenComponent';
-import { DonateLink } from '../components/chrome/DonateLink';
 import { Footer } from '../Footer';
 import { GeographyComponent } from '../models/GeographyComponent';
 import { NameComponent } from '../models/NameComponent';
 import { Path } from '../models/Path';
 import { ProjectionsComponent } from '../models/ProjectionsComponent';
 import { SearchInput } from '../components/chrome/SearchInput';
-import { SocialMediaButtons } from '../components/chrome/SocialMediaButtons';
 import { WorldContext } from '../WorldContext';
 import { MapUS } from "../MapUS"
 import { myShortNumber } from "../Util.js";
@@ -40,12 +39,6 @@ const useStyles = makeStyles(theme => ({
   section: {
     margin: '16px 0 24px 0',
     overflow: 'scroll',
-  },
-  graph: {
-    border: '1px solid',
-    borderColor: theme.palette.divider,
-    borderRadius: '4px',
-    padding: '8px',
   },
   tag: {
     display: "flex",
@@ -148,14 +141,7 @@ export const PageRegion = withRouter((props) => {
           <MapWorld source={basic} geography={geography} />
         }
 
-        {[DailyChangeGraph, DailyTotalGraph, DoublingGraph].map((Graph, i) => (
-          <Graph
-            key={i}
-            basic={basic}
-            // projections={projections}
-            className={`${classes.section} ${classes.graph}`}
-          />
-        ))}
+        <Graphs className={classes.section} path={path} />
 
         <a name="division" />
         {divisions &&
@@ -187,96 +173,6 @@ export const PageRegion = withRouter((props) => {
     </div>
   );
 });
-
-const RELIEF_COLOR = '#fff';
-
-const useAppBarStyles = makeStyles(theme => ({
-  appBar: {
-    color: RELIEF_COLOR,
-    display: 'flex',
-  },
-  nameAndSearch: {
-    display: 'flex',
-    alignItems: 'center',
-    [theme.breakpoints.down('xs')]: {
-      display: 'initial',
-    },
-  },
-  appName: {
-    overflow: 'visible',
-  },
-  donations: {
-    background: RELIEF_COLOR,
-    borderRadius: '8px',
-    display: 'block',
-    marginLeft: '16px',
-    padding: '6px 8px',
-    textAlign: 'center',
-    '&:hover': {
-      color: theme.palette.primary.light,
-      filter: `drop-shadow(0 0 2px ${fade(RELIEF_COLOR, 0.95)})`,
-      textDecoration: 'none',
-      transform: 'translateY(-1px)',
-    },
-  },
-  expander: {
-    flexGrow: 1,
-  },
-  socialButtons: {
-    fontSize: '1.5625em',
-    lineHeight: '1em',
-    whiteSpace: 'nowrap',
-    '& > *': {
-      marginLeft: '4px',
-      verticalAlign: 'middle',
-    }
-  },
-  socialButton: {
-    '&:hover': {
-      filter: `drop-shadow(0 0 2px ${fade(RELIEF_COLOR, 0.95)})`,
-      transform: 'translateY(-1px)',
-    },
-  },
-  actions: {
-    alignItems: 'center',
-    display: 'flex',
-    flexWrap: 'wrap',
-    flexShrink: 2,
-    justifyContent: 'flex-end',
-    textAlign: 'end',
-  },
-}));
-
-const AppBar = (props) => {
-  const classes = useAppBarStyles();
-  const theme = useTheme();
-
-  return (
-    <MaterialAppBar position="relative">
-      <Toolbar className={classes.appBar}>
-        <div className={classes.nameAndSearch}>
-          <Typography noWrap className={classes.appName} variant="h6">
-            COVID-19.direct
-        </Typography>
-          <SearchInput className={classes.expander} />
-        </div>
-
-        <div className={classes.expander} />
-
-        <div className={classes.actions}>
-          <SocialMediaButtons
-            backgroundColor="#fff"
-            buttonClassName={classes.socialButton}
-            className={classes.socialButtons}
-            iconColor={theme.palette.primary.main}
-          />
-
-          <DonateLink className={classes.donations} message="Buy us a coffee!" />
-        </div>
-      </Toolbar>
-    </MaterialAppBar>
-  );
-};
 
 const useTitleStyles = makeStyles(theme => ({
   noOverflow: {
@@ -607,12 +503,94 @@ Title.propTypes = {
   path: PropTypes.instanceOf(Path).isRequired,
 };
 
+const useGraphStyles = makeStyles(theme => ({
+  graph: {
+    border: '1px solid',
+    borderColor: theme.palette.divider,
+    borderRadius: '4px',
+    padding: '8px',
+  },
+  comparisons: {
+    alignItems: 'center',
+    display: 'flex',
+    margin: theme.spacing(1, 0),
+  },
+  comparisonSearch: {
+    backgroundColor: theme.palette.action.hover,
+    margin: theme.spacing(0, 2),
+    '&:hover': {
+      backgroundColor: theme.palette.action.hover,
+    },
+  },
+  chip: {
+    margin: theme.spacing(0, 1),
+  },
+}));
+
+const Graphs = (props) => {
+  const classes = useGraphStyles();
+  const world = useContext(WorldContext);
+  const basic = world.get(props.path, BasicDataComponent);
+
+  const [comparingWith, setComparingWith] = React.useState(() => []);
+  const addComparison = (path) => {
+    const name = world.get(path, NameComponent);
+    const basic = world.get(path, BasicDataComponent);
+    setComparingWith(comparingWith.concat([{
+      path,
+      name,
+      basic,
+    }]));
+  };
+  const removeComparison = (i) => {
+    const copied = [...comparingWith];
+    copied.splice(i, 1);
+    setComparingWith(copied);
+  };
+
+  return (
+    <div className={props.className}>
+      <div className={classes.comparisons}>
+        <Typography>Compare with: </Typography>
+        <SearchInput
+            className={classes.comparisonSearch}
+            onChoice={addComparison}
+        />
+        {comparingWith.map(({path, name}, i) => {
+          return (
+            <Chip
+                key={path.string()}
+                className={classes.chip}
+                onDelete={() => removeComparison(i)}
+                label={name.english()}
+            />
+          );
+        })}
+      </div>
+
+      {[DailyChangeGraph, DailyTotalGraph, DoublingGraph].map((Graph, i) => (
+        <Graph
+            key={i}
+            basic={basic}
+            comparingWith={comparingWith}
+            //projections={projections}
+            className={classes.graph}
+        />
+      ))}
+    </div>
+  );
+};
+
 const DailyChangeGraph = (props) => {
   const basic = props.basic;
   const serieses = [
     {
       series: basic.confirmed().change(),
       color: '#7ed0d0',
+    },
+    {
+      series: basic.confirmed().fitVirusCV19Prediction().change().dropFirst(),
+      color: 'pink',
     },
     {
       series: basic.recovered().change(),
@@ -629,6 +607,18 @@ const DailyChangeGraph = (props) => {
     serieses.push({
       series: projections.confirmed().change().dropFirst(),
       color: 'gray',
+      stipple: true,
+    });
+  }
+
+  for (const {name, basic} of props.comparingWith) {
+    serieses.push({
+      series: basic.confirmed().change().suffixLabel(`(${name.english()})`),
+      color: '#7ed0d0',
+      stipple: true,
+    }, {
+      series: basic.died().change().suffixLabel(`(${name.english()})`),
+      color: 'red',
       stipple: true,
     });
   }
@@ -663,6 +653,10 @@ const DailyTotalGraph = (props) => {
       }, {
         series: basic.active(),
         color: 'purple',
+        initial: 'off',
+      }, {
+        series: basic.confirmed().fitVirusCV19Prediction(),
+        color: 'pink',
         initial: 'off',
       },
       ]}

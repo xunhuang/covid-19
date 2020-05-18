@@ -716,7 +716,7 @@ export class County extends CovidSummarizable {
   }
 
   getConfirmedByDate(date) {
-    if (!date) {
+    if (!date || !this.covidRaw_) {
       return this.summary().confirmed;
     }
     const confirmed = this.covidRaw_.Confirmed;
@@ -727,7 +727,7 @@ export class County extends CovidSummarizable {
   }
 
   getDeathsByDate(date) {
-    if (!date) {
+    if (!date || !this.covidRaw_) {
       return this.summary().deaths;
     }
     const death = this.covidRaw_.Death;
@@ -738,7 +738,7 @@ export class County extends CovidSummarizable {
   }
 
   getConfirmedNewByDate(date) {
-    if (!date) {
+    if (!date || !this.covidRaw_) {
       return this.summary().newcases;
     }
     const d1 = this.getConfirmedByDate(date);

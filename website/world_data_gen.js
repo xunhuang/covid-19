@@ -159,6 +159,7 @@ const KeyRewriteMap = {
   "United Kingdom/Montserrat": ["Montserrat"],
   "United Kingdom/Turks and Caicos Islands": ["Turks and Caicos Islands"],
   "United Kingdom/UK": ["United Kingdom"],
+  "United Kingdom/United Kingdom": ["United Kingdom"],
   "United States of America/Chicago": ["United States of America", "Illinois", "Cook"],
   "United States of America/US": ["United States of America"],
   "United States of America/Virgin Islands": ["United States of America", "United States Virgin Islands"],

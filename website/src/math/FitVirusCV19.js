@@ -1,8 +1,12 @@
 import ode45 from 'ode45-cash-karp';
 import integral from 'integrate-adaptive-simpson';
 import fmin from 'fmin';
+import moment from 'moment';
+import {DataSeries} from '../models/DataSeries';
+
 
 const C_Italy = [17, 79, 132, 229, 322, 400, 650, 888, 1128, 1689, 2036, 2502, 3089, 3858, 4636, 5883, 7375, 9172, 10149, 12462, 15113, 17660, 21157, 23980, 27980, 31506, 35713, 41035, 47021, 53578, 59138, 63927, 69176, 74386, 80539, 86498, 92472, 97689, 101739, 105792, 110574, 115242, 119827, 124632, 128948, 132547, 135586, 139422, 143626, 147577, 152271, 156363, 159516, 162488, 165155, 168941, 172434, 175925, 178972, 181228, 183957, 187327, 189973, 192994, 195351, 197675, 199414, 201505];
+const C_Cal = [2,2,2,2,2,3,3,3,6,6,6,6,6,6,6,6,7,7,8,8,8,8,8,8,8,8,10,10,10,10,10,10,11,11,12,12,21,25,35,51,59,102,116,122,165,215,259,307,396,403,582,725,850,1029,1265,1427,1667,2129,2559,3190,4061,4906,5657,6340,7412,8580,9929,11134,12529,13923,15180,16370,17647,18944,20191,21430,22454,23334,24408,25779,27132,28191,29458,30845,31563,33898,35877,37733,39584,41377,42648,43739,45237,46201,48865,50447,52233,53690,54938,56170,58720,60653,62397,63816,66594,67910,69381,71080,73176,74903,76934,76974];
 
 // %ODEFUN SIR model
 function getODE(par) {
@@ -17,9 +21,10 @@ function getODE(par) {
   }
 }
 
-export function fitVirusCV19() {
-  var C = C_Italy;
-  var date0 = 737843; // SNORRI Fix - this should be the number of the first day (since epoch) - Now hardcoded to match Italy
+export function fitVirusCV19(C, startdate) {
+  // var C = C_Italy;
+  var date0 = 0;
+  var startdate_till_now = moment().diff( moment.unix(startdate), 'days');
 
   // default values
   const Nmax = 12e6;   // max. population size
@@ -30,7 +35,7 @@ export function fitVirusCV19() {
   // find start
   const nmin = 5
   var n0 = 0;
-  for (var n = 1; n < C.length; n + 1) {
+  for (var n = 1; n < C.length; n++) {
     if (C[n - 1] > C[n]) {
       throw new Error('Invalid data C(n-1)>C(n)');
     }
@@ -185,18 +190,14 @@ export function fitVirusCV19() {
   //  % tp4 = 2*tm + date0; % enter final phase
 
   //   %... dense forcast curve
-  var dt = 0.1;
-  var ttm = Math.max(tm + 2*tau,datenum(Date.now())-date0+1); // 20/04/02, 20/04/23
+  var dt = 1; // 0.1;  We want it one per day
+  var ttm = Math.max(tm + 2*tau,startdate_till_now+1); // 20/04/02, 20/04/23
   var tspan = makeTspan(0, dt, ttm);
   var [t, Ca] = myOde45(getODE(b), tspan, [I0]);;
 
 
+  return [Ca, moment.unix(startdate).add(date0, 'days')];
 }
-
-function datenum(d) {
-  return 737926; /// TODO FIX
-}
-
 // --------- HELPER FUNCTIONS ---------------------------------------------------------
 
 function myOde45(odefun, tspan, y0) {

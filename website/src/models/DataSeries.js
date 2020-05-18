@@ -1,3 +1,4 @@
+import { fitVirusCV19 } from "../math/FitVirusCV19";
 const moment = require('moment');
 const {linearRegression} = require('simple-statistics');
 
@@ -83,6 +84,11 @@ export class DataSeries {
     return this.label_;
   }
 
+  suffixLabel(suffix) {
+    this.label_ = `${this.label_} ${suffix}`;
+    return this;
+  }
+
   formatter() {
     return this.period_.formatter;
   }
@@ -125,7 +131,7 @@ export class DataSeries {
 
   change() {
     const name = `New ${this.label_}`;
-
+    this.points(); // To ensure lazy dataseries are loaded
     const entries = this.points_ || this.raw_;
     if (entries.length < 1) {
       return new EmptySeries(name, this.period_);
@@ -270,6 +276,27 @@ export class DataSeries {
     } else {
       return log.series;
     }
+  }
+
+  fitVirusCV19Prediction() {
+    const name = `Prediction for ${this.label_}`;
+
+    const generator = () => {
+      try {
+        const points = this.points();
+        if (points.length < 1) {
+          return new EmptySeries(name, this.period_);
+        }
+        const startdate = points[0][0].unix();
+        const C = points.map((p) => p[1]);
+        const [Ca, newstartdate] = fitVirusCV19(C, startdate);
+        return Ca.map((v, i) => [moment.unix(newstartdate.unix()).add(i,'days'), v]);
+      } catch {
+        return new EmptySeries(name, this.period_);
+      }
+    };
+
+    return new LazyDataSeries(name, generator, this.lastPoint(), this.period_);
   }
 
   today() {
