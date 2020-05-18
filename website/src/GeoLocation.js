@@ -38,7 +38,7 @@ export async function fetchApproximatePoliticalLocation() {
   if (saved) {
     return saved;
   }
-  
+
   const location =  await fetchLocationUsingMethods([
     () => fetchApproxIPLocationIPDataCo(firebaseConfig.ipdataco_key),
     () => fetchApproxIPLocationIPDataCo(firebaseConfig.ipdataco_key2),
@@ -173,7 +173,7 @@ function getLocationFromCookie() {
     logger.logEvent("LocationFoundInCookie", cookie);
     return cookie;
   } else {
-    throw new Error("No cookie or invalid one");
+    return null;
   }
 }
 
