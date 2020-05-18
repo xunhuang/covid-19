@@ -1,10 +1,10 @@
 import PropTypes from 'prop-types';
 import React, { useContext } from 'react';
-import { Chip, Paper, Toolbar, Typography } from '@material-ui/core';
+import { Chip, Paper, Typography } from '@material-ui/core';
 import { Link as RouterLink } from 'react-router-dom';
 import { Link as MaterialLink } from '@material-ui/core';
 import { Redirect, withRouter } from 'react-router-dom';
-import { fade, makeStyles, useTheme } from '@material-ui/core/styles';
+import { fade, makeStyles } from '@material-ui/core/styles';
 
 import { AdvancedGraph } from '../components/graphs/AdvancedGraph';
 import { AppBar } from '../components/chrome/AppBar';
@@ -143,34 +143,37 @@ export const PageRegion = withRouter((props) => {
 
         <Graphs className={classes.section} path={path} />
 
-        <a name="division" />
-        {divisions &&
-          divisions.types().map(({ id, plural }) =>
-            <DivisionTab
-              key={id}
-              plural={plural}
-              parent={id ? path.child(id) : path}
-              className={classes.section}
-            />
-          )}
+        <a href="#division" name="division" >
+          {divisions &&
+            divisions.types().map(({ id, plural }) =>
+              <DivisionTab
+                key={id}
+                plural={plural}
+                parent={id ? path.child(id) : path}
+                className={classes.section}
+              />
+            )}
 
-        {showNearby &&
-          <DivisionTab
-            parent={parentDivision}
-            plural="Nearby"
-            className={classes.section}
-            filter={couldBeNearby}
-            pickLowest={{
-              count: NEARBY_TO_SHOW,
-              quantifier: distanceTo,
-            }}
-          />}
+          {showNearby &&
+            <DivisionTab
+              parent={parentDivision}
+              plural="Nearby"
+              className={classes.section}
+              filter={couldBeNearby}
+              pickLowest={{
+                count: NEARBY_TO_SHOW,
+                quantifier: distanceTo,
+              }}
+            />
+          }
+        </a>
+        />
       </Paper>
 
       <Discussion className={classes.content} />
 
       <Footer />
-    </div>
+    </div >
   );
 });
 
@@ -274,45 +277,6 @@ const Tag = withRouter((props) => {
   </RouterLink>;
 });
 
-const AprilTitle = (props) => {
-  const names = props.names;
-  const classes = useTitleStyles();
-  return (
-    // noOverflow because we're using negative margins
-    <div className={`${props.className} ${props.noOverflow}`}>
-      <div className={classes.container}>
-        {names.map(({ path, text, numbers, squish, link }, i) =>
-          <div
-            key={path.string()}
-            className={`${classes.node} ${squish ? 'squish' : ''}`}>
-            <Typography variant={squish ? 'subtitle1' : 'h4'}>
-              <RouterLink
-                className={`${classes.text} ${classes.parentLink}`}
-                to={link}>
-                {text}
-              </RouterLink>
-            </Typography>
-            <div className={classes.numbers}>
-              {numbers.map(({ plural, color, value, change }) =>
-                value > 0 && (
-                  <div
-                    key={plural}
-                    className={classes.number}
-                    style={{ borderColor: color }}>
-                    {shortNumber(value)}
-                    {` ${i === 0 ? plural : ''} `}
-                    {change > 0 && `(+${shortNumber(change)})`}
-                  </div>
-                )
-              )}
-            </div>
-          </div>
-        )}
-      </div>
-    </div>
-  );
-}
-
 const WilsonTitle = (props) => {
   const classes = useTitleStyles();
   const tagclasses = useStyles();
@@ -321,9 +285,9 @@ const WilsonTitle = (props) => {
   const divisions = world.get(props.path, DivisionTypesComponent);
   const first = divisions && divisions.types()[0];
   const children =
-      first && world.get(
-          first.id ? props.path.child(first.id) : props.path,
-          ChildrenComponent);
+    first && world.get(
+      first.id ? props.path.child(first.id) : props.path,
+      ChildrenComponent);
 
   return (
     <div className={classes.tagSticky} >
@@ -423,8 +387,6 @@ function getNames(world, path) {
 const Title = (props) => {
   const world = useContext(WorldContext);
   const names = getNames(world, props.path);
-
-  // return <AprilTitle names={names} />;
   return <WilsonTitle names={names} path={props.path} />;
 };
 
@@ -553,16 +515,16 @@ const Graphs = (props) => {
       <div className={classes.comparisons}>
         <Typography>Compare with: </Typography>
         <SearchInput
-            className={classes.comparisonSearch}
-            onChoice={addComparison}
+          className={classes.comparisonSearch}
+          onChoice={addComparison}
         />
-        {comparingWith.map(({path, name}, i) => {
+        {comparingWith.map(({ path, name }, i) => {
           return (
             <Chip
-                key={path.string()}
-                className={classes.chip}
-                onDelete={() => removeComparison(i)}
-                label={name.english()}
+              key={path.string()}
+              className={classes.chip}
+              onDelete={() => removeComparison(i)}
+              label={name.english()}
             />
           );
         })}
@@ -570,11 +532,11 @@ const Graphs = (props) => {
 
       {[DailyChangeGraph, DailyTotalGraph, DoublingGraph].map((Graph, i) => (
         <Graph
-            key={i}
-            basic={basic}
-            comparingWith={comparingWith}
-            //projections={projections}
-            className={classes.graph}
+          key={i}
+          basic={basic}
+          comparingWith={comparingWith}
+          //projections={projections}
+          className={classes.graph}
         />
       ))}
     </div>
@@ -611,7 +573,7 @@ const DailyChangeGraph = (props) => {
     });
   }
 
-  for (const {name, basic} of props.comparingWith) {
+  for (const { name, basic } of props.comparingWith) {
     serieses.push({
       series: basic.confirmed().change().suffixLabel(`(${name.english()})`),
       color: '#7ed0d0',
