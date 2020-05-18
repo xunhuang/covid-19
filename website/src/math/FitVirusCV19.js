@@ -2,6 +2,11 @@ import ode45 from 'ode45-cash-karp';
 import integral from 'integrate-adaptive-simpson';
 import fmin from 'fmin';
 import moment from 'moment';
+import {DataSeries} from '../models/DataSeries';
+
+
+const C_Italy = [17, 79, 132, 229, 322, 400, 650, 888, 1128, 1689, 2036, 2502, 3089, 3858, 4636, 5883, 7375, 9172, 10149, 12462, 15113, 17660, 21157, 23980, 27980, 31506, 35713, 41035, 47021, 53578, 59138, 63927, 69176, 74386, 80539, 86498, 92472, 97689, 101739, 105792, 110574, 115242, 119827, 124632, 128948, 132547, 135586, 139422, 143626, 147577, 152271, 156363, 159516, 162488, 165155, 168941, 172434, 175925, 178972, 181228, 183957, 187327, 189973, 192994, 195351, 197675, 199414, 201505];
+const C_Cal = [2,2,2,2,2,3,3,3,6,6,6,6,6,6,6,6,7,7,8,8,8,8,8,8,8,8,10,10,10,10,10,10,11,11,12,12,21,25,35,51,59,102,116,122,165,215,259,307,396,403,582,725,850,1029,1265,1427,1667,2129,2559,3190,4061,4906,5657,6340,7412,8580,9929,11134,12529,13923,15180,16370,17647,18944,20191,21430,22454,23334,24408,25779,27132,28191,29458,30845,31563,33898,35877,37733,39584,41377,42648,43739,45237,46201,48865,50447,52233,53690,54938,56170,58720,60653,62397,63816,66594,67910,69381,71080,73176,74903,76934,76974];
 
 // %ODEFUN SIR model
 function getODE(par) {
@@ -17,14 +22,15 @@ function getODE(par) {
 }
 
 export function fitVirusCV19(C, startdate) {
+  // var C = C_Italy;
   var date0 = 0;
-  var startdate_till_now = moment().diff(moment.unix(startdate), 'days');
+  var startdate_till_now = moment().diff( moment.unix(startdate), 'days');
 
   // default values
   const Nmax = 12e6;   // max. population size
 
   // save original data
-  // const date00 = date0;
+  const date00 = date0;
 
   // find start
   const nmin = 5
@@ -82,9 +88,9 @@ export function fitVirusCV19(C, startdate) {
   // main calculation =======================================================%
 
   // set infection rate and time intervals 
-  // const dC = diff(C).map((d) => d < 0 ? 0 : d);
-  // const nday = C.length;
-  // const tt = [...Array(nday - 1).keys()]; // 0:nday-1
+  const dC = diff(C).map((d) => d < 0 ? 0 : d);
+  const nday = C.length;
+  const tt = [...Array(nday - 1).keys()]; // 0:nday-1
 
   // initial estimate
   b0 = [beta, gamma, N, I0];
@@ -95,8 +101,7 @@ export function fitVirusCV19(C, startdate) {
   var bmax = Nmax;
   var b = [];
   var w1, w2;
-  var bt;
-  // var fmin;
+  var bt, fmin, flag;
   for (var i = 1; i <= 3; i++) {
     switch (i) {
       case 1:
@@ -111,11 +116,8 @@ export function fitVirusCV19(C, startdate) {
         w1 = 1;
         w2 = 1;
         break;
-      default:
-        break;
     }
-    // [bt, fmin, flag] = parestWrapper(C, w1, w2)(b0);
-    [bt, fmin] = parestWrapper(C, w1, w2)(b0);
+    [bt, fmin, flag] = parestWrapper(C, w1, w2)(b0);
     if (bt.every((x) => x > 0) && bt[2] < bmax) {
       b = bt;
       bmax = b[2];
@@ -141,15 +143,15 @@ export function fitVirusCV19(C, startdate) {
   var Cm = calcCm(b);
 
   //   % contact numer
-  // var R0 = beta / gamma; //*(1 - I0/N);
+  var R0 = beta / gamma; //*(1 - I0/N);
 
   //   % critical number of S
-  // var Sc = gamma * N / beta;
+  var Sc = gamma * N / beta;
 
   //   %... parameters of logistic model approximation
   r = beta - gamma;
-  // var K = 2 * (beta - gamma) / (2 * beta - gamma) * N;
-  // var t2 = Math.log(2) / r;
+  var K = 2 * (beta - gamma) / (2 * beta - gamma) * N;
+  var t2 = Math.log(2) / r;
 
   //   %... tangent slope in inflection point
   var k = (N - Cm) * (beta * Cm / N + gamma * Math.log((N - Cm) / (N - I0)));
@@ -165,12 +167,12 @@ export function fitVirusCV19(C, startdate) {
   var tau = tau1 + tau2;
 
   //   %... inflection time
-  var tm = calcTm(b, Cm);
+  var tm = calcTm(b,Cm);
   //   tm = real(tm);
 
   //   %... end time
-  // var tend = calcTend(b, Clim);
-  // var tend5 = calcTend(b, Clim, 5);
+  var tend  = calcTend(b,Clim);
+  var tend5 = calcTend(b,Clim,5);
 
   //   %... datums
   //   if fdata   % new 20/04/30 MB
@@ -178,21 +180,20 @@ export function fitVirusCV19(C, startdate) {
   //   else
   //       tp0 = max(tm - tau1 - tau + date0,date00);
   //   end
-  // var tp0 = Math.max(tm - tau1 - tau + date0, date00);
-  // var tp1 = (tm - tau1) + date0;  // begin acceleration
-  // var tp2 = (tm) + date0;         // turning point
-  // var tp3 = (tm + tau2) + date0;  // end deceleration
-  // var tp4 = (tm + tau2) + tau / 2 + date0; // enter final phase
-  // var tpend = tend + date0; // end time
-  // var tpend5 = tend5 + date0; // end time    
+  var tp0 = Math.max(tm - tau1 - tau + date0,date00);
+   var tp1 = (tm - tau1) + date0;  // begin acceleration
+   var tp2 = (tm) + date0;         // turning point
+   var tp3 = (tm + tau2) + date0;  // end deceleration
+   var tp4 = (tm + tau2) + tau/2 + date0; // enter final phase
+   var tpend = tend + date0; // end time
+   var tpend5 = tend5 + date0; // end time    
   //  % tp4 = 2*tm + date0; % enter final phase
 
   //   %... dense forcast curve
   var dt = 1; // 0.1;  We want it one per day
-  var ttm = Math.max(tm + 2 * tau, startdate_till_now + 1); // 20/04/02, 20/04/23
+  var ttm = Math.max(tm + 2*tau,startdate_till_now+1); // 20/04/02, 20/04/23
   var tspan = makeTspan(0, dt, ttm);
-  // var [t, Ca] = myOde45(getODE(b), tspan, [I0]);;
-  var [, Ca] = myOde45(getODE(b), tspan, [I0]);;
+  var [t, Ca] = myOde45(getODE(b), tspan, [I0]);;
 
 
   return [Ca, moment.unix(startdate).add(date0, 'days')];
@@ -206,10 +207,10 @@ function myOde45(odefun, tspan, y0) {
   const t = [];
   const C = [];
   tspan.forEach(tmax => {
-    while (integrator.step(tmax)) { }
-    t.push(integrator.t)
-    C.push(integrator.y[0])
-  }
+      while (integrator.step(tmax)) {}
+      t.push(integrator.t)
+      C.push(integrator.y[0])
+    }
   );
   return [t, C];
 }
@@ -401,7 +402,6 @@ function calcTm(par, Cm) {
 
 // function res = calcTend(par,Clim,nn)
 // %CALCTM Calculate end time
-/*
 function calcTend(par, Clim, nn) {
   nn = nn || 1;  // number of infected left
 
@@ -415,7 +415,6 @@ function calcTend(par, Clim, nn) {
   const c0 = par[3] / N;
   return integral(fun, c0, (Clim - nn) / N);
 }
-*/
 
 function calcEndPoint(beta, gamma, c0) {
   // %CALCENDPOINT Calculate end density 
