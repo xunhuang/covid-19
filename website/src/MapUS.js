@@ -116,12 +116,12 @@ const CountryButton = withRouter((props) => {
 
   return (
     <Button variant="contained" color="primary"
-    onClick={(e, route) => {
-      history.push("/country" + props.country.string());
-    }}
+      onClick={(e, route) => {
+        history.push("/country" + props.country.string());
+      }}
     >
-  {name.english()}
- </Button>)
+      {name.english()}
+    </Button>)
 });
 
 const MapUS = withRouter((props) => {
@@ -158,20 +158,20 @@ const MapUS = withRouter((props) => {
 
   if (source instanceof BasicDataComponent) {
 
-  subtabs = new Map([
-    ['confirmed', {
-      label: "Confirmed",
-      map: MapWorldConfirmed,
-    }],
-    ['confirmedNew', {
-      label: "New",
-      map: MapWorldConfirmedNew,
-    }],
-    ['death', {
-      label: "Death",
-      map: MapWorldDeath,
-    }],
-  ]);
+    subtabs = new Map([
+      ['confirmed', {
+        label: "Confirmed",
+        map: MapWorldConfirmed,
+      }],
+      ['confirmedNew', {
+        label: "New",
+        map: MapWorldConfirmedNew,
+      }],
+      ['death', {
+        label: "Death",
+        map: MapWorldDeath,
+      }],
+    ]);
 
   }
 
@@ -213,6 +213,11 @@ const MapUS = withRouter((props) => {
       });
     }
   }, [country]);
+
+
+  if (!dataFetched) {
+    return <div>Loading</div>;
+  }
 
   return <div>
     {buttonGroup}
