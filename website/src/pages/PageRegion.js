@@ -1,11 +1,10 @@
 import PropTypes from 'prop-types';
 import React, { useContext } from 'react';
-import { Chip, Paper, Toolbar, Typography } from '@material-ui/core';
+import { Chip, Paper, Typography } from '@material-ui/core';
 import { Link as RouterLink } from 'react-router-dom';
 import { Link as MaterialLink } from '@material-ui/core';
 import { Redirect, withRouter } from 'react-router-dom';
-import { fade, makeStyles, useTheme } from '@material-ui/core/styles';
-
+import { fade, makeStyles } from '@material-ui/core/styles';
 import { AdvancedGraph } from '../components/graphs/AdvancedGraph';
 import { AppBar } from '../components/chrome/AppBar';
 import { BasicDataComponent } from '../models/BasicDataComponent';
@@ -22,6 +21,8 @@ import { SearchInput } from '../components/chrome/SearchInput';
 import { WorldContext } from '../WorldContext';
 import { MapUS } from "../MapUS"
 import { myShortNumber } from "../Util.js";
+import ToggleButton from '@material-ui/lab/ToggleButton';
+import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
 
 const shortNumber = require('short-number');
 
@@ -143,28 +144,29 @@ export const PageRegion = withRouter((props) => {
 
         <Graphs className={classes.section} path={path} />
 
-        <a name="division" />
-        {divisions &&
-          divisions.types().map(({ id, plural }) =>
-            <DivisionTab
-              key={id}
-              plural={plural}
-              parent={id ? path.child(id) : path}
-              className={classes.section}
-            />
-          )}
+        <a href="#division" name="division" >
+          {divisions &&
+            divisions.types().map(({ id, plural }) =>
+              <DivisionTab
+                key={id}
+                plural={plural}
+                parent={id ? path.child(id) : path}
+                className={classes.section}
+              />
+            )}
 
-        {showNearby &&
-          <DivisionTab
-            parent={parentDivision}
-            plural="Nearby"
-            className={classes.section}
-            filter={couldBeNearby}
-            pickLowest={{
-              count: NEARBY_TO_SHOW,
-              quantifier: distanceTo,
-            }}
-          />}
+          {showNearby &&
+            <DivisionTab
+              parent={parentDivision}
+              plural="Nearby"
+              className={classes.section}
+              filter={couldBeNearby}
+              pickLowest={{
+                count: NEARBY_TO_SHOW,
+                quantifier: distanceTo,
+              }}
+            />}
+        </a>
       </Paper>
 
       <Discussion className={classes.content} />
@@ -274,44 +276,6 @@ const Tag = withRouter((props) => {
   </RouterLink>;
 });
 
-const AprilTitle = (props) => {
-  const names = props.names;
-  const classes = useTitleStyles();
-  return (
-    // noOverflow because we're using negative margins
-    <div className={`${props.className} ${props.noOverflow}`}>
-      <div className={classes.container}>
-        {names.map(({ path, text, numbers, squish, link }, i) =>
-          <div
-            key={path.string()}
-            className={`${classes.node} ${squish ? 'squish' : ''}`}>
-            <Typography variant={squish ? 'subtitle1' : 'h4'}>
-              <RouterLink
-                className={`${classes.text} ${classes.parentLink}`}
-                to={link}>
-                {text}
-              </RouterLink>
-            </Typography>
-            <div className={classes.numbers}>
-              {numbers.map(({ plural, color, value, change }) =>
-                value > 0 && (
-                  <div
-                    key={plural}
-                    className={classes.number}
-                    style={{ borderColor: color }}>
-                    {shortNumber(value)}
-                    {` ${i === 0 ? plural : ''} `}
-                    {change > 0 && `(+${shortNumber(change)})`}
-                  </div>
-                )
-              )}
-            </div>
-          </div>
-        )}
-      </div>
-    </div>
-  );
-}
 
 const WilsonTitle = (props) => {
   const classes = useTitleStyles();
@@ -321,9 +285,9 @@ const WilsonTitle = (props) => {
   const divisions = world.get(props.path, DivisionTypesComponent);
   const first = divisions && divisions.types()[0];
   const children =
-      first && world.get(
-          first.id ? props.path.child(first.id) : props.path,
-          ChildrenComponent);
+    first && world.get(
+      first.id ? props.path.child(first.id) : props.path,
+      ChildrenComponent);
 
   return (
     <div className={classes.tagSticky} >
@@ -424,7 +388,6 @@ const Title = (props) => {
   const world = useContext(WorldContext);
   const names = getNames(world, props.path);
 
-  // return <AprilTitle names={names} />;
   return <WilsonTitle names={names} path={props.path} />;
 };
 
@@ -553,16 +516,16 @@ const Graphs = (props) => {
       <div className={classes.comparisons}>
         <Typography>Compare with: </Typography>
         <SearchInput
-            className={classes.comparisonSearch}
-            onChoice={addComparison}
+          className={classes.comparisonSearch}
+          onChoice={addComparison}
         />
-        {comparingWith.map(({path, name}, i) => {
+        {comparingWith.map(({ path, name }, i) => {
           return (
             <Chip
-                key={path.string()}
-                className={classes.chip}
-                onDelete={() => removeComparison(i)}
-                label={name.english()}
+              key={path.string()}
+              className={classes.chip}
+              onDelete={() => removeComparison(i)}
+              label={name.english()}
             />
           );
         })}
@@ -570,64 +533,141 @@ const Graphs = (props) => {
 
       {[DailyChangeGraph, DailyTotalGraph, DoublingGraph].map((Graph, i) => (
         <Graph
-            key={i}
-            basic={basic}
-            comparingWith={comparingWith}
-            //projections={projections}
-            className={classes.graph}
+          key={i}
+          basic={basic}
+          comparingWith={comparingWith}
+          className={classes.graph}
         />
       ))}
     </div>
   );
 };
 
+const baseToggleButtonStyles = {
+  height: 'initial',
+  textTransform: 'initial',
+};
+
+const useLegendStyles = makeStyles(theme => ({
+  serieses: {
+    border: `1px solid ${fade(theme.palette.action.active, 0.12)}`,
+    display: 'flex',
+    flexWrap: 'wrap',
+    maxWidth: '500px',
+  },
+  series: {
+    border: 'none',
+    color: fade(theme.palette.action.active, 0.12),
+    '&.selected': {
+      backgroundColor: 'initial',
+      color: fade(theme.palette.action.active, 0.8),
+      fontWeight: 'initial',
+    },
+    ...baseToggleButtonStyles,
+  },
+  icon: {
+    paddingRight: '4px',
+  },
+}));
+
+const Legend = (props) => {
+  const classes = useLegendStyles();
+  console.log(props.spec)
+  return (
+    <ToggleButtonGroup
+      exclusive={true}
+      value={props.selected}
+      onChange={(event, desired) => props.onChange(desired)}
+      className={classes.serieses}>
+      {props.spec.map(series => {
+        console.log(series.key);
+        return <ToggleButton
+          key={series.key}
+          value={series.key}
+          classes={{ root: classes.series, selected: 'selected' }}>
+          {series.series.label_}
+        </ToggleButton>
+      }
+      )}
+    </ToggleButtonGroup>
+  );
+};
+
+
 const DailyChangeGraph = (props) => {
   const basic = props.basic;
-  const serieses = [
+  const serieseDef = [
     {
-      series: basic.confirmed().change(),
+      seriesGen: (source) => source.confirmed().change(),
       color: '#7ed0d0',
+      key: "confirm",
     },
     {
-      series: basic.confirmed().fitVirusCV19Prediction().change().dropFirst(),
+      seriesGen: (source) => source.confirmed().fitVirusCV19Prediction().change().dropFirst(),
       color: 'pink',
+      key: "trend",
     },
     {
-      series: basic.recovered().change(),
+      seriesGen: (source) => source.recovered().change(),
       color: 'green',
+      key: "recovery",
     },
     {
-      series: basic.died().change(),
+      seriesGen: (source) => source.died().change(),
       color: 'red',
+      key: "death",
     },
   ];
 
-  const projections = props.projections;
-  if (projections) {
-    serieses.push({
-      series: projections.confirmed().change().dropFirst(),
-      color: 'gray',
-      stipple: true,
-    });
-  }
+  const serieses = serieseDef.map(s => {
+    return {
+      ...s,
+      series: s.seriesGen(basic),
+    }
+  })
 
-  for (const {name, basic} of props.comparingWith) {
-    serieses.push({
-      series: basic.confirmed().change().suffixLabel(`(${name.english()})`),
-      color: '#7ed0d0',
-      stipple: true,
-    }, {
-      series: basic.died().change().suffixLabel(`(${name.english()})`),
-      color: 'red',
-      stipple: true,
+  let graphSeries = serieses.map(s => s);
+
+  const [selected, setSelected] = React.useState(serieses[0].key);
+
+  let compareSeriesSelector = null;
+
+  if (props.comparingWith.length > 0) {
+    compareSeriesSelector =
+      <Legend
+        spec={serieses}
+        selected={selected}
+        onChange={setSelected}
+      />
+    const colors = [
+      '#7ed0d0',
+      'pink',
+      'green',
+      'red',
+      'purple',
+      'black',
+    ];
+    let colorIndex = 0;
+    graphSeries = serieses.filter(s => {
+      return s.key === selected;
     });
+    for (const { name, basic } of props.comparingWith) {
+      graphSeries.push({
+        series: serieseDef.find(s => s.key === selected).seriesGen(basic).suffixLabel(`(${name.english()})`),
+        color: colors[colorIndex++],
+        stipple: true,
+      });
+    }
   }
 
   return (
-    <AdvancedGraph
-      className={props.className}
-      serieses={serieses}
-    />
+    <div>
+      {compareSeriesSelector}
+      <AdvancedGraph
+        className={props.className}
+        serieses={graphSeries}
+      />
+    </div>
   );
 };
 

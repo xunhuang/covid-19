@@ -3,12 +3,12 @@ import React from 'react';
 import ToggleButton from '@material-ui/lab/ToggleButton';
 import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
 import { Area, CartesianGrid, ComposedChart, Line, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
-import {fade, makeStyles} from '@material-ui/core/styles';
-import {scaleSymlog} from 'd3-scale';
-import { myShortNumber} from '../../Util';
+import { fade, makeStyles } from '@material-ui/core/styles';
+import { scaleSymlog } from 'd3-scale';
+import { myShortNumber } from '../../Util';
 
-import {DataSeries} from '../../models/DataSeries';
-import {Envelope} from '../../models/Envelope';
+import { DataSeries } from '../../models/DataSeries';
+import { Envelope } from '../../models/Envelope';
 
 const moment = require('moment');
 
@@ -92,35 +92,35 @@ export const AdvancedGraph = (props) => {
   // lot.
 
   const allSerieses =
-        [...expandedSerieses.values()]
-            .concat(
-                (props.envelopes || [])
-                    .flatMap(e =>
-                        e.envelope.serieses().map(s => ({
-                          series: s,
-                          color: e.stroke,
-                          ...e,
-                        }))));
-  const {data, timestampFormatter} =
-      DataSeries.flatten([...allSerieses.values()].map(({series}) => series));
+    [...expandedSerieses.values()]
+      .concat(
+        (props.envelopes || [])
+          .flatMap(e =>
+            e.envelope.serieses().map(s => ({
+              series: s,
+              color: e.stroke,
+              ...e,
+            }))));
+  const { data, timestampFormatter } =
+    DataSeries.flatten([...allSerieses.values()].map(({ series }) => series));
 
   const seriesesAndEnvelopes =
-      [...expandedSerieses.entries()]
-          .concat(
-              (props.envelopes || [])
-                  // Legend just wants one color, so use the stroke as the color
-                  .map(e => ({color: e.stroke, ...e}))
-                  .map(e => [e.envelope.label(), e]))
-  const allLabels = seriesesAndEnvelopes.map(([label, ]) => label);
+    [...expandedSerieses.entries()]
+      .concat(
+        (props.envelopes || [])
+          // Legend just wants one color, so use the stroke as the color
+          .map(e => ({ color: e.stroke, ...e }))
+          .map(e => [e.envelope.label(), e]))
+  const allLabels = seriesesAndEnvelopes.map(([label,]) => label);
   const [known, setKnown] = React.useState(allLabels);
   const [selected, setSelected] =
-      React.useState(() => allLabels.filter(({initial}) => initial !== 'off'));
+    React.useState(() => allLabels.filter(({ initial }) => initial !== 'off'));
 
   // As the user switches pages, graphs that were previously unknown may become
   // available. So turn them off if they default to on when they appear.
   if (known.join() !== allLabels.join()) {
     const add = [];
-    for (const [key, {initial}] of seriesesAndEnvelopes) {
+    for (const [key, { initial }] of seriesesAndEnvelopes) {
       if (!known.includes(key) && !selected.includes(key) && initial !== 'off') {
         add.push(key);
       }
@@ -138,53 +138,53 @@ export const AdvancedGraph = (props) => {
     <div className={props.className}>
       <div className={classes.options}>
         <Display
-            displays={windows}
-            selected={window}
-            onChange={setWindow}
+          displays={windows}
+          selected={window}
+          onChange={setWindow}
         />
         <Display
-            displays={scales}
-            selected={scale}
-            onChange={setScale}
+          displays={scales}
+          selected={scale}
+          onChange={setScale}
         />
         <div className={classes.expand} />
         <Legend
-            spec={seriesesAndEnvelopes}
-            selected={selected}
-            onChange={setSelected} />
+          spec={seriesesAndEnvelopes}
+          selected={selected}
+          onChange={setSelected} />
       </div>
       <Chart
-          data={windows.get(window).filter(data)}
-          scale={scales.get(scale).scale}
-          timestampFormatter={timestampFormatter}
-          specs={
-            seriesesAndEnvelopes
-                .filter(([label,]) => selected.includes(label))
-                .map(([label, s]) => ({label, ...s}))
-          }
+        data={windows.get(window).filter(data)}
+        scale={scales.get(scale).scale}
+        timestampFormatter={timestampFormatter}
+        specs={
+          seriesesAndEnvelopes
+            .filter(([label,]) => selected.includes(label))
+            .map(([label, s]) => ({ label, ...s }))
+        }
       />
     </div>);
 };
 
 AdvancedGraph.propTypes = {
   className: PropTypes.string,
-	serieses:
-      PropTypes.arrayOf(
-          PropTypes.exact({
-            series: PropTypes.instanceOf(DataSeries).isRequired,
-            color: PropTypes.string.isRequired,
-            initial: PropTypes.oneOf([undefined, 'off', 'on']),
-            trend: PropTypes.string,
-            stipple: PropTypes.bool,
-          })).isRequired,
+  serieses:
+    PropTypes.arrayOf(
+      PropTypes.exact({
+        series: PropTypes.instanceOf(DataSeries).isRequired,
+        color: PropTypes.string.isRequired,
+        initial: PropTypes.oneOf([undefined, 'off', 'on']),
+        trend: PropTypes.string,
+        stipple: PropTypes.bool,
+      })).isRequired,
   envelopes:
-      PropTypes.arrayOf(
-          PropTypes.exact({
-            envelope: PropTypes.instanceOf(Envelope).isRequired,
-            fill: PropTypes.string.isRequired,
-            stroke: PropTypes.string.isRequired,
-            initial: PropTypes.oneOf([undefined, 'off', 'on']),
-          })),
+    PropTypes.arrayOf(
+      PropTypes.exact({
+        envelope: PropTypes.instanceOf(Envelope).isRequired,
+        fill: PropTypes.string.isRequired,
+        stroke: PropTypes.string.isRequired,
+        initial: PropTypes.oneOf([undefined, 'off', 'on']),
+      })),
 };
 
 function expandSeriesesToMap(serieses) {
@@ -213,7 +213,7 @@ function expandSeriesesToMap(serieses) {
   });
 
   return new Map(expanded.map((seriesInfo) =>
-      [seriesInfo.series.label(), seriesInfo]));
+    [seriesInfo.series.label(), seriesInfo]));
 }
 
 const useDisplayStyles = makeStyles(theme => ({
@@ -221,48 +221,48 @@ const useDisplayStyles = makeStyles(theme => ({
     display: 'initial',
   },
   option: {
-      ...baseToggleButtonStyles,
+    ...baseToggleButtonStyles,
   },
 }));
 
 const Display = (props) => {
-    const classes = useDisplayStyles();
+  const classes = useDisplayStyles();
 
-    return (
-        <ToggleButtonGroup
-                exclusive
-                value={props.selected}
-                onChange={(event, desired) => desired && props.onChange(desired)}
-                className={classes.options}>
-            {[...props.displays.entries()].map(([key, data]) => 
-                <ToggleButton key={key} value={key} className={classes.option}>
-                    {data.label}
-                </ToggleButton>
-            )}
-        </ToggleButtonGroup>
-    );
+  return (
+    <ToggleButtonGroup
+      exclusive
+      value={props.selected}
+      onChange={(event, desired) => desired && props.onChange(desired)}
+      className={classes.options}>
+      {[...props.displays.entries()].map(([key, data]) =>
+        <ToggleButton key={key} value={key} className={classes.option}>
+          {data.label}
+        </ToggleButton>
+      )}
+    </ToggleButtonGroup>
+  );
 };
 
 const useLegendStyles = makeStyles(theme => ({
-    serieses: {
-        border: `1px solid ${fade(theme.palette.action.active, 0.12)}`,
-        display: 'flex',
-        flexWrap: 'wrap',
-        maxWidth: '500px',
+  serieses: {
+    border: `1px solid ${fade(theme.palette.action.active, 0.12)}`,
+    display: 'flex',
+    flexWrap: 'wrap',
+    maxWidth: '500px',
+  },
+  series: {
+    border: 'none',
+    color: fade(theme.palette.action.active, 0.12),
+    '&.selected': {
+      backgroundColor: 'initial',
+      color: fade(theme.palette.action.active, 0.8),
+      fontWeight: 'initial',
     },
-    series: {
-        border: 'none',
-        color: fade(theme.palette.action.active, 0.12),
-        '&.selected': {
-            backgroundColor: 'initial',
-            color: fade(theme.palette.action.active, 0.8),
-            fontWeight: 'initial',
-        },
-        ...baseToggleButtonStyles,
-    },
-    icon: {
-      paddingRight: '4px',
-    },
+    ...baseToggleButtonStyles,
+  },
+  icon: {
+    paddingRight: '4px',
+  },
 }));
 
 const Legend = (props) => {
@@ -270,19 +270,19 @@ const Legend = (props) => {
 
   return (
     <ToggleButtonGroup
-        value={props.selected}
-        onChange={(event, desired) => props.onChange(desired)}
-        className={classes.serieses}>
-      {props.spec.map(([label, {color, stipple}]) =>
+      value={props.selected}
+      onChange={(event, desired) => props.onChange(desired)}
+      className={classes.serieses}>
+      {props.spec.map(([label, { color, stipple }]) =>
         <ToggleButton
-            key={label}
-            value={label}
-            classes={{root: classes.series, selected: 'selected'}}>
+          key={label}
+          value={label}
+          classes={{ root: classes.series, selected: 'selected' }}>
           <span
-              className={classes.icon}
-              style={
-                props.selected.includes(label) ? {color} : {}
-              }>
+            className={classes.icon}
+            style={
+              props.selected.includes(label) ? { color } : {}
+            }>
             {stipple ? '···' : '—'}
           </span>
           {label}
@@ -309,18 +309,18 @@ const Chart = (props) => {
 
   return (
     <ResponsiveContainer height={300}>
-      <ComposedChart data={props.data} margin={{left: -4, right: 8}}>
+      <ComposedChart data={props.data} margin={{ left: -4, right: 8 }}>
         <Tooltip
-            formatter={valueFormatter}
-            labelFormatter={props.timestampFormatter}
+          formatter={valueFormatter}
+          labelFormatter={props.timestampFormatter}
         />
         <XAxis
-            dataKey="timestamp"
-            tickFormatter={props.timestampFormatter}
+          dataKey="timestamp"
+          tickFormatter={props.timestampFormatter}
         />
         <YAxis
-            scale={props.scale === 'log' ? logScale : props.scale}
-            tickFormatter={(t) => myShortNumber(t)}
+          scale={props.scale === 'log' ? logScale : props.scale}
+          tickFormatter={(t) => myShortNumber(t)}
         />
         <CartesianGrid stroke="#d5d5d5" strokeDasharray="5 5" />
 
@@ -335,25 +335,25 @@ function specToElements(spec) {
     const envelope = spec.envelope;
     return [
       <Area
-          key={envelope.high().label()}
-          type="monotone"
-          dataKey={envelope.high().label()}
-          stroke={spec.stroke}
-          fill={spec.fill}
+        key={envelope.high().label()}
+        type="monotone"
+        dataKey={envelope.high().label()}
+        stroke={spec.stroke}
+        fill={spec.fill}
       />,
       <Area
-          key={envelope.low().label()}
-          type="monotone"
-          dataKey={spec.envelope.low().label()}
-          stroke={spec.stroke}
-          fill="#fff"
-          fillOpacity={1}
+        key={envelope.low().label()}
+        type="monotone"
+        dataKey={spec.envelope.low().label()}
+        stroke={spec.stroke}
+        fill="#fff"
+        fillOpacity={1}
       />,
     ].concat(
-        envelope.extras().map(s => lineForSpec({
-          label: s.label(),
-          color: envelope.stroke,
-        })));
+      envelope.extras().map(s => lineForSpec({
+        label: s.label(),
+        color: envelope.stroke,
+      })));
   } else {
     return [lineForSpec(spec)];
   }
@@ -362,16 +362,16 @@ function specToElements(spec) {
 function lineForSpec(spec) {
   return (
     <Line
-        key={spec.label}
-        baseLine={10000}
-        type="monotone"
-        dataKey={spec.label}
-        isAnimationActive={false}
-        fill={spec.color}
-        stroke={spec.color}
-        strokeDasharray={spec.stipple ? '2 2' : undefined}
-        dot={false}
-        strokeWidth={2}
+      key={spec.label}
+      baseLine={10000}
+      type="monotone"
+      dataKey={spec.label}
+      isAnimationActive={false}
+      fill={spec.color}
+      stroke={spec.color}
+      strokeDasharray={spec.stipple ? '2 2' : undefined}
+      dot={false}
+      strokeWidth={2}
     />
   );
 };
