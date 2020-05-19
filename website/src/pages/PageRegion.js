@@ -5,7 +5,6 @@ import { Link as RouterLink } from 'react-router-dom';
 import { Link as MaterialLink } from '@material-ui/core';
 import { Redirect, withRouter } from 'react-router-dom';
 import { fade, makeStyles } from '@material-ui/core/styles';
-
 import { AdvancedGraph } from '../components/graphs/AdvancedGraph';
 import { AppBar } from '../components/chrome/AppBar';
 import { BasicDataComponent } from '../models/BasicDataComponent';
@@ -22,6 +21,8 @@ import { SearchInput } from '../components/chrome/SearchInput';
 import { WorldContext } from '../WorldContext';
 import { MapUS } from "../MapUS"
 import { myShortNumber } from "../Util.js";
+import ToggleButton from '@material-ui/lab/ToggleButton';
+import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
 
 const shortNumber = require('short-number');
 
@@ -535,7 +536,6 @@ const Graphs = (props) => {
           key={i}
           basic={basic}
           comparingWith={comparingWith}
-          //projections={projections}
           className={classes.graph}
         />
       ))}
@@ -543,53 +543,131 @@ const Graphs = (props) => {
   );
 };
 
+const baseToggleButtonStyles = {
+  height: 'initial',
+  textTransform: 'initial',
+};
+
+const useLegendStyles = makeStyles(theme => ({
+  serieses: {
+    border: `1px solid ${fade(theme.palette.action.active, 0.12)}`,
+    display: 'flex',
+    flexWrap: 'wrap',
+    maxWidth: '500px',
+  },
+  series: {
+    border: 'none',
+    color: fade(theme.palette.action.active, 0.12),
+    '&.selected': {
+      backgroundColor: 'initial',
+      color: fade(theme.palette.action.active, 0.8),
+      fontWeight: 'initial',
+    },
+    ...baseToggleButtonStyles,
+  },
+  icon: {
+    paddingRight: '4px',
+  },
+}));
+
+const Legend = (props) => {
+  const classes = useLegendStyles();
+  console.log(props.spec)
+  return (
+    <ToggleButtonGroup
+      exclusive={true}
+      value={props.selected}
+      onChange={(event, desired) => props.onChange(desired)}
+      className={classes.serieses}>
+      {props.spec.map(series => {
+        console.log(series.key);
+        return <ToggleButton
+          key={series.key}
+          value={series.key}
+          classes={{ root: classes.series, selected: 'selected' }}>
+          {series.series.label_}
+        </ToggleButton>
+      }
+      )}
+    </ToggleButtonGroup>
+  );
+};
+
+
 const DailyChangeGraph = (props) => {
   const basic = props.basic;
-  const serieses = [
+  const serieseDef = [
     {
-      series: basic.confirmed().change(),
+      seriesGen: (source) => source.confirmed().change(),
       color: '#7ed0d0',
+      key: "confirm",
     },
     {
-      series: basic.confirmed().fitVirusCV19Prediction().change().dropFirst(),
+      seriesGen: (source) => source.confirmed().fitVirusCV19Prediction().change().dropFirst(),
       color: 'pink',
+      key: "trend",
     },
     {
-      series: basic.recovered().change(),
+      seriesGen: (source) => source.recovered().change(),
       color: 'green',
+      key: "recovery",
     },
     {
-      series: basic.died().change(),
+      seriesGen: (source) => source.died().change(),
       color: 'red',
+      key: "death",
     },
   ];
 
-  const projections = props.projections;
-  if (projections) {
-    serieses.push({
-      series: projections.confirmed().change().dropFirst(),
-      color: 'gray',
-      stipple: true,
-    });
-  }
+  const serieses = serieseDef.map(s => {
+    return {
+      ...s,
+      series: s.seriesGen(basic),
+    }
+  })
 
-  for (const { name, basic } of props.comparingWith) {
-    serieses.push({
-      series: basic.confirmed().change().suffixLabel(`(${name.english()})`),
-      color: '#7ed0d0',
-      stipple: true,
-    }, {
-      series: basic.died().change().suffixLabel(`(${name.english()})`),
-      color: 'red',
-      stipple: true,
+  let graphSeries = serieses.map(s => s);
+
+  const [selected, setSelected] = React.useState(serieses[0].key);
+
+  let compareSeriesSelector = null;
+
+  if (props.comparingWith.length > 0) {
+    compareSeriesSelector =
+      <Legend
+        spec={serieses}
+        selected={selected}
+        onChange={setSelected}
+      />
+    const colors = [
+      '#7ed0d0',
+      'pink',
+      'green',
+      'red',
+      'purple',
+      'black',
+    ];
+    let colorIndex = 0;
+    graphSeries = serieses.filter(s => {
+      return s.key === selected;
     });
+    for (const { name, basic } of props.comparingWith) {
+      graphSeries.push({
+        series: serieseDef.find(s => s.key === selected).seriesGen(basic).suffixLabel(`(${name.english()})`),
+        color: colors[colorIndex++],
+        stipple: true,
+      });
+    }
   }
 
   return (
-    <AdvancedGraph
-      className={props.className}
-      serieses={serieses}
-    />
+    <div>
+      {compareSeriesSelector}
+      <AdvancedGraph
+        className={props.className}
+        serieses={graphSeries}
+      />
+    </div>
   );
 };
 
