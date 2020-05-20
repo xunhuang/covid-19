@@ -137,37 +137,37 @@ export const PageRegion = withRouter((props) => {
         <Title className={classes.section} path={path} />
         <LocationSummaryTitle className={classes.section} path={path} />
 
+        <Graphs className={classes.section} path={path} />
         {
           showMap &&
           <MapWorld source={basic} geography={geography} />
         }
 
-        <Graphs className={classes.section} path={path} />
-
         <a href="#division" name="division" >
-          {divisions &&
-            divisions.types().map(({ id, plural }) =>
-              <DivisionTab
-                key={id}
-                plural={plural}
-                parent={id ? path.child(id) : path}
-                className={classes.section}
-              />
-            )}
-
-          {showNearby &&
-            <DivisionTab
-              parent={parentDivision}
-              plural="Nearby"
-              className={classes.section}
-              filter={couldBeNearby}
-              pickLowest={{
-                count: NEARBY_TO_SHOW,
-                quantifier: distanceTo,
-              }}
-            />}
         </a>
+        {divisions &&
+          divisions.types().map(({ id, plural }) =>
+            <DivisionTab
+              key={id}
+              plural={plural}
+              parent={id ? path.child(id) : path}
+              className={classes.section}
+            />
+          )}
+
+        {showNearby &&
+          <DivisionTab
+            parent={parentDivision}
+            plural="Nearby"
+            className={classes.section}
+            filter={couldBeNearby}
+            pickLowest={{
+              count: NEARBY_TO_SHOW,
+              quantifier: distanceTo,
+            }}
+          />}
       </Paper>
+
 
       <Discussion className={classes.content} />
 
@@ -251,7 +251,7 @@ const Tag = withRouter((props) => {
   const deathsNew = deathsNumbers.change;
 
   const classes = useStyles();
-  return <RouterLink className={`${classes.tag} ${selected ? classes.tagSelected : ''}`} to={routeTo}>
+  return <RouterLink className={`${classes.tag} ${selected ? classes.tagSelected : ''}`} href={routeTo} to={routeTo}>
     <div className={classes.tagTitle}> {title} </div>
     <div className={`${classes.row} `} >
       <section className={classes.tagSection}>

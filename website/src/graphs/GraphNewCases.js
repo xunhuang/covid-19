@@ -1,5 +1,5 @@
 import React from 'react';
-import { ReferenceArea, ResponsiveContainer, LineChart, Line, ReferenceLine, YAxis, XAxis, Tooltip, CartesianGrid, Legend } from 'recharts';
+import { Label, ReferenceArea, ResponsiveContainer, LineChart, Line, ReferenceLine, YAxis, XAxis, Tooltip, CartesianGrid, Legend } from 'recharts';
 import { makeStyles } from '@material-ui/core/styles';
 import { Typography } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
@@ -161,7 +161,14 @@ const BasicGraph = (props) => {
   let vRefLines = (typeof props.vRefLines == 'undefined') ?
     null :
     props.vRefLines.map((l, idx) =>
-      <ReferenceLine key={`vrefline${idx}`} x={l.date} label={{ value: l.label, fill: '#b3b3b3' }} stroke="#e3e3e3" strokeWidth={3} />
+      <ReferenceLine key={`vrefline${idx}`}
+        x={moment(l.date, "MM/DD/YYYY").format("M/D")}
+        stroke="#e3e3e3"
+        strokeWidth={3}
+      >
+        <Label value={l.label} position="insideTop" fill="#b3b3b3" />
+
+      </ReferenceLine>
     )
 
   let hRefLines = (typeof props.hRefLines == 'undefined') ?

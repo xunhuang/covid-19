@@ -1,4 +1,4 @@
-SELECT ?placeLabel ?fips ?isoStartDate  ?startSource
+SELECT ?placeLabel ?fips ?isoStartDate  ?startSource ?isoEndDate  ?endSource
 WHERE {
   ?order wdt:P31 wd:Q88509703;
   wdt:P1001 ?id.
@@ -24,5 +24,15 @@ WHERE {
       ?startRefNode pr:P854 ?startURL.
     }
     BIND(str(?startURL) as ?startSource).
+  }
+    OPTIONAL {
+    ?order wdt:P582 ?isoEndDate.
+    ?order p:P582 ?endStatement.
+    ?endStatement ps:P582 ?endValue.
+    OPTIONAL {
+      ?endStatement prov:wasDerivedFrom ?endRefNode.
+      ?endRefNode pr:P854 ?endURL.
+    }
+    BIND(str(?endURL) as ?endSource).
   }
 }
