@@ -6,10 +6,11 @@ import TableSortLabel from '@material-ui/core/TableSortLabel';
 
 
 function descendingComparator(a, b, orderBy) {
-  if (isNaN(a[orderBy])) {
+
+  if (isNaN(a[orderBy] && !isNaN(b[orderBy]))) {
     return 1;
   }
-  if (isNaN(b[orderBy])) {
+  if (isNaN(b[orderBy] && !isNaN(a[orderBy]))) {
     return -1;
   }
   if (b[orderBy] < a[orderBy]) {
