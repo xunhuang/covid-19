@@ -536,8 +536,10 @@ function processsShelterInPlace() {
       let state = AllData[fips];
       if (state) {
         state.Summary.StayHomeOrder = {
-          Url: p.Url,
+          StartUrl: p.Url,
           StartDate: p.StartDate,
+          EndDate: (!p.EndDate || p.EndDate.startsWith("t")) ? null : p.EndDate,
+          EndUrl: p.EndURL,
         }
       }
 
@@ -550,8 +552,10 @@ function processsShelterInPlace() {
           let c = state[fips];
           if (c) {
             c.StayHomeOrder = {
-              Url: p.Url,
+              StartUrl: p.Url,
               StartDate: p.StartDate,
+              EndDate: (!p.EndDate || p.EndDate.startsWith("t")) ? null : p.EndDate,
+              EndUrl: p.EndURL,
             }
           }
         }
