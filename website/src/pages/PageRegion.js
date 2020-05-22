@@ -601,14 +601,53 @@ const Legend = (props) => {
   );
 };
 
+const useDisplayStyles = makeStyles(theme => ({
+  options: {
+    display: 'initial',
+  },
+  option: {
+    ...baseToggleButtonStyles,
+  },
+}));
+
+const Display = (props) => {
+  const classes = useDisplayStyles();
+
+  return (
+    <ToggleButtonGroup
+      exclusive
+      value={props.selected}
+      onChange={(event, desired) => desired && props.onChange(desired)}
+      className={classes.options}>
+      {[...props.displays.entries()].map(([key, data]) =>
+        <ToggleButton key={key} value={key} className={classes.option}>
+          {data.label}
+        </ToggleButton>
+      )}
+    </ToggleButtonGroup>
+  );
+};
 
 const DailyChangeGraph = (props) => {
   const name = props.name;
   const basic = props.basic;
   const population = props.population.population();;
   const isCompareMode = props.comparingWith.length > 0;
-  const perCapita = true; // hard coding for now, provide GUI later
   const aligned = false;  // hard coding for now, provide GUI later
+
+  const scales = new Map([
+    ['capita', {
+      label: 'Capita',
+      capita: true,
+    }],
+    ['value', {
+      label: 'Value',
+      capita: false,
+    }],
+  ]);
+  const [scale, setScale] = React.useState(scales.keys().next().value)
+  const perCapita = scales.get(scale).capita;
+
   const serieseDef = [
     {
       seriesGen: (source) => source.confirmed().change(),
@@ -653,11 +692,19 @@ const DailyChangeGraph = (props) => {
 
   if (isCompareMode) {
     compareSeriesSelector =
-      <Legend
-        spec={serieses}
-        selected={selected}
-        onChange={setSelected}
-      />
+      <div>
+        <Legend
+          spec={serieses}
+          selected={selected}
+          onChange={setSelected}
+        />
+        <Display
+          displays={scales}
+          selected={scale}
+          onChange={setScale}
+        ></Display>
+
+      </div>
     const colors = [
       '#7ed0d0',
       'pink',
@@ -678,7 +725,7 @@ const DailyChangeGraph = (props) => {
       }
       return {
         ...s,
-        color: 'black',
+        color: "#ff7300",
         series: series,
       }
     })
