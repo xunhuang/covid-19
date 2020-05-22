@@ -23,6 +23,7 @@ import { MapUS } from "../MapUS"
 import { myShortNumber } from "../Util.js";
 import ToggleButton from '@material-ui/lab/ToggleButton';
 import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
+import moment from 'moment';
 
 const shortNumber = require('short-number');
 
@@ -531,7 +532,8 @@ const Graphs = (props) => {
         })}
       </div>
 
-      {[DailyChangeGraph, DailyTotalGraph, DoublingGraph].map((Graph, i) => (
+      {/* {[DailyChangeGraph, DailyTotalGraph, DoublingGraph].map((Graph, i) => ( */}
+      {[DailyChangeGraph].map((Graph, i) => (
         <Graph
           key={i}
           basic={basic}
@@ -601,11 +603,13 @@ const DailyChangeGraph = (props) => {
       seriesGen: (source) => source.confirmed().change(),
       color: '#7ed0d0',
       key: "confirm",
+      t0: moment("03/29/2020", "MM/DD/YYYY").unix(),
     },
     {
       seriesGen: (source) => source.confirmed().fitVirusCV19Prediction().change().dropFirst(),
       color: 'pink',
       key: "trend",
+      t0: moment("04/27/2020", "MM/DD/YYYY").unix(),
     },
     {
       seriesGen: (source) => source.recovered().change(),
@@ -622,7 +626,7 @@ const DailyChangeGraph = (props) => {
   const serieses = serieseDef.map(s => {
     return {
       ...s,
-      series: s.seriesGen(basic),
+      series: s.seriesGen(basic).setT0(s.t0),
     }
   })
 
@@ -666,6 +670,7 @@ const DailyChangeGraph = (props) => {
       <AdvancedGraph
         className={props.className}
         serieses={graphSeries}
+        alignT0={true}
       />
     </div>
   );

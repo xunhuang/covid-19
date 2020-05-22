@@ -1,6 +1,6 @@
 import { fitVirusCV19 } from "../math/FitVirusCV19";
 const moment = require('moment');
-const {linearRegression} = require('simple-statistics');
+const { linearRegression } = require('simple-statistics');
 
 const periods = {
   daily: {
@@ -9,9 +9,9 @@ const periods = {
     formatter: (moment) => moment.format('MM/DD'),
     intervalS: 24 * 60 * 60,
     converter: (data) =>
-        data
-            .map(([timestamp, value]) => [moment.unix(timestamp), value])
-            .sort(([a,], [b,]) => a.diff(b)),
+      data
+        .map(([timestamp, value]) => [moment.unix(timestamp), value])
+        .sort(([a,], [b,]) => a.diff(b)),
     pointConverter: ([timestamp, value]) => [moment.unix(timestamp), value],
   },
 };
@@ -62,18 +62,49 @@ export class DataSeries {
 
     return {
       data:
-          [...points.entries()]
-              .sort(([a,], [b,]) => a - b)
-              .map(([timestamp, data]) => ({
-                timestamp,
-                ...data,
-              })),
+        [...points.entries()]
+          .sort(([a,], [b,]) => a - b)
+          .map(([timestamp, data]) => ({
+            timestamp,
+            ...data,
+          })),
       timestampFormatter: (timestamp) => formatter(moment.unix(timestamp)),
     };
   }
 
+  static alignT0(serieses) {
+    const points = new Map();
+    for (const series of serieses) {
+      if (!series.points()) {
+        continue;
+      }
+
+      for (const [moment, value] of series.points()) {
+        let t0 = series.t0_;
+        const key = moment.unix() - t0;
+        if (key >= 0) {
+          if (!points.has(key)) {
+            points.set(key, {});
+          }
+          points.get(key)[series.label()] = value;
+        }
+      }
+    }
+
+    return {
+      data:
+        [...points.entries()]
+          .sort(([a,], [b,]) => a - b)
+          .map(([timestamp, data]) => ({
+            timestamp,
+            ...data,
+          })),
+      timestampFormatter: (timestamp) => timestamp / (24 * 60 * 60),
+    };
+  }
+
   constructor(label, raw, period) {
-		this.label_ = label;
+    this.label_ = label;
     this.raw_ = raw;
     this.period_ = period;
     this.points_ = undefined;
@@ -86,6 +117,11 @@ export class DataSeries {
 
   suffixLabel(suffix) {
     this.label_ = `${this.label_} ${suffix}`;
+    return this;
+  }
+
+  setT0(t0) {
+    this.t0_ = t0;
     return this;
   }
 
@@ -109,14 +145,14 @@ export class DataSeries {
           return m;
         }, {});
     }
-    const value =  this.valueByUnixTimestamp_[date];
+    const value = this.valueByUnixTimestamp_[date];
     return value;
   }
 
   lastPoint() {
     if (!this.lastPoint_ && this.raw_.length > 0) {
       this.lastPoint_ =
-          this.period_.pointConverter(this.raw_[this.raw_.length - 1]);
+        this.period_.pointConverter(this.raw_[this.raw_.length - 1]);
     }
     return this.lastPoint_;
   }
@@ -144,7 +180,7 @@ export class DataSeries {
     //
     // *except for projections
     const secondToLastValue =
-        entries.length >= 2 ? entries[entries.length - 2][1] : 0;
+      entries.length >= 2 ? entries[entries.length - 2][1] : 0;
     if (typeof entries[0][0] === 'number') {
       this.lastPoint_ = this.period_.pointConverter(entries[entries.length - 1]);
     } else {
@@ -166,10 +202,10 @@ export class DataSeries {
     };
 
     return new LazyDataSeries(
-        name,
-        generator,
-        [this.lastPoint_[0], lastChange],
-        this.period_);
+      name,
+      generator,
+      [this.lastPoint_[0], lastChange],
+      this.period_);
   }
 
   doublingInterval() {
@@ -182,9 +218,9 @@ export class DataSeries {
 
     const lastWindow = entries.slice(entries.length - REGRESSION_WINDOW_SIZE);
     const lastLogs =
-        lastWindow
-            .map(([timestamp, v]) => [timestamp, Math.log2(v)]);
-    const {m} = linearRegression(lastLogs);
+      lastWindow
+        .map(([timestamp, v]) => [timestamp, Math.log2(v)]);
+    const { m } = linearRegression(lastLogs);
     const value = 1 / (m * this.period_.intervalS);
     const lastDoubleValue = !isNaN(value) && 0 < value && value <= 100 ? value : NaN;
     const lastDouble = [this.lastPoint()[0], lastDoubleValue];
@@ -195,7 +231,7 @@ export class DataSeries {
       const doublings = [];
       for (let i = REGRESSION_WINDOW_SIZE; i < points.length - 1; ++i) {
         const window = log.slice(i - REGRESSION_WINDOW_SIZE, i + 1);
-        const {m} = linearRegression(window);
+        const { m } = linearRegression(window);
         const value = 1 / (m * this.period_.intervalS);
         doublings.push([
           points[i][0],
@@ -264,12 +300,12 @@ export class DataSeries {
 
     const linear = trendFit(this.label_, points, this.period_, (v) => v, (p) => p);
     const log =
-        trendFit(
-            this.label_,
-            points,
-            this.period_,
-            (v) => Math.log2(v),
-            (p) => Math.exp(p * Math.log(2)));
+      trendFit(
+        this.label_,
+        points,
+        this.period_,
+        (v) => Math.log2(v),
+        (p) => Math.exp(p * Math.log(2)));
 
     if (linear.error < log.error) {
       return linear.series;
@@ -290,7 +326,7 @@ export class DataSeries {
         const startdate = points[0][0].unix();
         const C = points.map((p) => p[1]);
         const [Ca, newstartdate] = fitVirusCV19(C, startdate);
-        return Ca.map((v, i) => [moment.unix(newstartdate.unix()).add(i,'days'), v]);
+        return Ca.map((v, i) => [moment.unix(newstartdate.unix()).add(i, 'days'), v]);
       } catch {
         return new EmptySeries(name, this.period_);
       }
@@ -358,19 +394,19 @@ function positiveOrNothing(value) {
 }
 
 function trendFit(label, points, period, valueMapper, predictionMapper) {
-  const {m, b} =
-      linearRegression(
-          points.slice(-1 - REGRESSION_WINDOW_SIZE, -1)
-              .map(([moment, v]) => [moment.unix(), valueMapper(v)]));
+  const { m, b } =
+    linearRegression(
+      points.slice(-1 - REGRESSION_WINDOW_SIZE, -1)
+        .map(([moment, v]) => [moment.unix(), valueMapper(v)]));
   if (isNaN(m) || isNaN(b)) {
-    return {series: undefined, error: 9999999999};
+    return { series: undefined, error: 9999999999 };
   }
 
   const trend =
-      new DataSeries(`${label} (Trend)`, undefined, period);
+    new DataSeries(`${label} (Trend)`, undefined, period);
   trend.points_ =
-      points.map(([moment, ]) =>
-          [moment, predictionMapper(positiveOrNothing(m * moment.unix() + b))]);
+    points.map(([moment,]) =>
+      [moment, predictionMapper(positiveOrNothing(m * moment.unix() + b))]);
 
   let error = 0;
   for (let i = 0; i < points.length; ++i) {
@@ -378,5 +414,5 @@ function trendFit(label, points, period, valueMapper, predictionMapper) {
     error += difference * difference;
   }
 
-  return {series: trend, error};
+  return { series: trend, error };
 }

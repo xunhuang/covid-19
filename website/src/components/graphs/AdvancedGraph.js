@@ -101,8 +101,10 @@ export const AdvancedGraph = (props) => {
               color: e.stroke,
               ...e,
             }))));
-  const { data, timestampFormatter } =
-    DataSeries.flatten([...allSerieses.values()].map(({ series }) => series));
+
+  let { data, timestampFormatter } = (props.alignT0)
+    ? DataSeries.alignT0([...allSerieses.values()].map(({ series }) => series))
+    : DataSeries.flatten([...allSerieses.values()].map(({ series }) => series));
 
   const seriesesAndEnvelopes =
     [...expandedSerieses.entries()]
