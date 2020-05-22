@@ -605,8 +605,8 @@ const DailyChangeGraph = (props) => {
   const basic = props.basic;
   const population = props.population.population();;
   const isCompareMode = props.comparingWith.length > 0;
-  const perCapita = true;
-  const aligned = false;
+  const perCapita = true; // hard coding for now, provide GUI later
+  const aligned = false;  // hard coding for now, provide GUI later
   const serieseDef = [
     {
       seriesGen: (source) => source.confirmed().change(),
@@ -699,7 +699,6 @@ const DailyChangeGraph = (props) => {
       });
     }
   }
-  console.log(graphSeries);
 
   return (
     <div>
