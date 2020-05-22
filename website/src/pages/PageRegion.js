@@ -24,6 +24,7 @@ import { myShortNumber } from "../Util.js";
 import ToggleButton from '@material-ui/lab/ToggleButton';
 import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
 import moment from 'moment';
+import { PopulationComponent } from '../models/PopulationComponent';
 
 const shortNumber = require('short-number');
 
@@ -495,15 +496,18 @@ const Graphs = (props) => {
   const classes = useGraphStyles();
   const world = useContext(WorldContext);
   const basic = world.get(props.path, BasicDataComponent);
+  const population = world.get(props.path, PopulationComponent);
 
   const [comparingWith, setComparingWith] = React.useState(() => []);
   const addComparison = (path) => {
     const name = world.get(path, NameComponent);
     const basic = world.get(path, BasicDataComponent);
+    const population = world.get(path, PopulationComponent);
     setComparingWith(comparingWith.concat([{
       path,
       name,
       basic,
+      population
     }]));
   };
   const removeComparison = (i) => {
@@ -537,6 +541,7 @@ const Graphs = (props) => {
         <Graph
           key={i}
           basic={basic}
+          population={population}
           comparingWith={comparingWith}
           className={classes.graph}
         />
@@ -598,7 +603,10 @@ const Legend = (props) => {
 
 const DailyChangeGraph = (props) => {
   const basic = props.basic;
+  const population = props.population.population();;
   const isCompareMode = props.comparingWith.length > 0;
+  const perCapita = true;
+  const aligned = false;
   const serieseDef = [
     {
       seriesGen: (source) => source.confirmed().change(),
@@ -626,7 +634,7 @@ const DailyChangeGraph = (props) => {
 
   const serieses = serieseDef.map(s => {
     let series = s.seriesGen(basic);
-    if (t0point) {
+    if (t0point && aligned) {
       series.setT0(t0point[0].unix())
     }
     return {
@@ -657,14 +665,31 @@ const DailyChangeGraph = (props) => {
       'black',
     ];
     let colorIndex = 0;
-    graphSeries = serieses.filter(s => {
+
+    let compareserieses = serieseDef.map(s => {
+      let series = s.seriesGen(basic);
+      if (perCapita) {
+        series = series.capita(population / 1000000).suffixLabel("(per mil)");
+      }
+      if (t0point && aligned) {
+        series.setT0(t0point[0].unix())
+      }
+      return {
+        ...s,
+        series: series,
+      }
+    })
+    graphSeries = compareserieses.filter(s => {
       return s.key === selected;
     });
-    for (const { name, basic } of props.comparingWith) {
+    for (const { name, basic, population } of props.comparingWith) {
       basic.confirmed().points();
       let t0point = basic.confirmed().pointLargerEqualThan(100);
-      let series = serieseDef.find(s => s.key === selected).seriesGen(basic).suffixLabel(`(${name.english()})`);
-      if (t0point) {
+      let series = serieseDef.find(s => s.key === selected).seriesGen(basic).suffixLabel(`${name.english()}`);
+      if (perCapita) {
+        series = series.capita(population.population() / 1000000).suffixLabel("per mil");
+      }
+      if (t0point && aligned) {
         series.setT0(t0point[0].unix())
       }
       graphSeries.push({
@@ -674,6 +699,7 @@ const DailyChangeGraph = (props) => {
       });
     }
   }
+  console.log(graphSeries);
 
   return (
     <div>
@@ -681,7 +707,7 @@ const DailyChangeGraph = (props) => {
       <AdvancedGraph
         className={props.className}
         serieses={graphSeries}
-        alignT0={true}
+        alignT0={aligned}
       />
     </div>
   );

@@ -293,6 +293,25 @@ export class DataSeries {
     return series;
   }
 
+  capita(population) {
+    const name = `${this.label_}`;
+
+    const points = this.points();
+    const capita = [];
+    console.log(population)
+    for (let i = 0; i < points.length; ++i) {
+      console.log(points[i][1] / population)
+      capita.push([
+        points[i][0],
+        points[i][1] / population,
+      ]);
+    }
+
+    const series = new DataSeries(name, undefined, this.period_);
+    series.points_ = capita;
+    return series;
+  }
+
   sum() {
     let sum = 0;
     for (const [, value] of this.points()) {
