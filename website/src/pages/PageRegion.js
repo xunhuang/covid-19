@@ -737,7 +737,7 @@ const DailyChangeGraph = (props) => {
       let t0point = basic.confirmed().pointLargerEqualThan(100);
       let series = serieseDef.find(s => s.key === selected).seriesGen(basic).suffixLabel(`${name.english()}`);
       if (perCapita) {
-        series = series.capita(population.population() / 1000000).suffixLabel("per mil");
+        series = series.capita(population.population() / 1000000).suffixLabel("(per mil)");
       }
       if (t0point && aligned) {
         series.setT0(t0point[0].unix())
