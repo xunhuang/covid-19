@@ -495,6 +495,7 @@ const useGraphStyles = makeStyles(theme => ({
 const Graphs = (props) => {
   const classes = useGraphStyles();
   const world = useContext(WorldContext);
+  const name = world.get(props.path, NameComponent);
   const basic = world.get(props.path, BasicDataComponent);
   const population = world.get(props.path, PopulationComponent);
 
@@ -536,10 +537,10 @@ const Graphs = (props) => {
         })}
       </div>
 
-      {/* {[DailyChangeGraph, DailyTotalGraph, DoublingGraph].map((Graph, i) => ( */}
-      {[DailyChangeGraph].map((Graph, i) => (
+      {[DailyChangeGraph, DailyTotalGraph, DoublingGraph].map((Graph, i) => (
         <Graph
           key={i}
+          name={name}
           basic={basic}
           population={population}
           comparingWith={comparingWith}
@@ -602,6 +603,7 @@ const Legend = (props) => {
 
 
 const DailyChangeGraph = (props) => {
+  const name = props.name;
   const basic = props.basic;
   const population = props.population.population();;
   const isCompareMode = props.comparingWith.length > 0;
@@ -669,13 +671,14 @@ const DailyChangeGraph = (props) => {
     let compareserieses = serieseDef.map(s => {
       let series = s.seriesGen(basic);
       if (perCapita) {
-        series = series.capita(population / 1000000).suffixLabel("(per mil)");
+        series = series.capita(population / 1000000).suffixLabel(`${name.english()} (per mil)`);
       }
       if (t0point && aligned) {
         series.setT0(t0point[0].unix())
       }
       return {
         ...s,
+        color: 'black',
         series: series,
       }
     })
