@@ -136,6 +136,15 @@ export class DataSeries {
     return this.points_;
   }
 
+  pointLargerEqualThan(x) {
+    for (const [m, v] of this.points_) {
+      if (v >= x) {
+        return [m, v];
+      }
+    }
+    return null;
+  }
+
   valueByUnixTimestamp(date) {
     if (!this.valueByUnixTimestamp_ && this.raw_.length > 0) {
       this.valueByUnixTimestamp_ = this.raw_.reduce(

@@ -598,18 +598,17 @@ const Legend = (props) => {
 
 const DailyChangeGraph = (props) => {
   const basic = props.basic;
+  const isCompareMode = props.comparingWith.length > 0;
   const serieseDef = [
     {
       seriesGen: (source) => source.confirmed().change(),
       color: '#7ed0d0',
       key: "confirm",
-      t0: moment("03/29/2020", "MM/DD/YYYY").unix(),
     },
     {
       seriesGen: (source) => source.confirmed().fitVirusCV19Prediction().change().dropFirst(),
       color: 'pink',
       key: "trend",
-      t0: moment("04/27/2020", "MM/DD/YYYY").unix(),
     },
     {
       seriesGen: (source) => source.recovered().change(),
@@ -623,10 +622,16 @@ const DailyChangeGraph = (props) => {
     },
   ];
 
+  let t0point = basic.confirmed().pointLargerEqualThan(100);
+
   const serieses = serieseDef.map(s => {
+    let series = s.seriesGen(basic);
+    if (t0point) {
+      series.setT0(t0point[0].unix())
+    }
     return {
       ...s,
-      series: s.seriesGen(basic).setT0(s.t0),
+      series: series,
     }
   })
 
@@ -636,7 +641,7 @@ const DailyChangeGraph = (props) => {
 
   let compareSeriesSelector = null;
 
-  if (props.comparingWith.length > 0) {
+  if (isCompareMode) {
     compareSeriesSelector =
       <Legend
         spec={serieses}
@@ -656,8 +661,14 @@ const DailyChangeGraph = (props) => {
       return s.key === selected;
     });
     for (const { name, basic } of props.comparingWith) {
+      basic.confirmed().points();
+      let t0point = basic.confirmed().pointLargerEqualThan(100);
+      let series = serieseDef.find(s => s.key === selected).seriesGen(basic).suffixLabel(`(${name.english()})`);
+      if (t0point) {
+        series.setT0(t0point[0].unix())
+      }
       graphSeries.push({
-        series: serieseDef.find(s => s.key === selected).seriesGen(basic).suffixLabel(`(${name.english()})`),
+        series: series,
         color: colors[colorIndex++],
         stipple: true,
       });
