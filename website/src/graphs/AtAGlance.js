@@ -17,7 +17,10 @@ const AtAGlance = (props) => {
     return <div> Loading</div>;
   }
 
-  const vRefLines = [];
+  const vRefLines = [{
+    date: "05/25/2020",
+    label: "Memorial",
+  }];
   let stayhome;
   if (props.source.stayHomeOrder) {
     stayhome = props.source.stayHomeOrder();
