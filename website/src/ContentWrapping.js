@@ -319,7 +319,7 @@ const withHeader = (comp, props) => {
         <SearchBox />
       </div>
       {component}
-      <NewsSection />
+      {false && <NewsSection />}
       {healthDiscussion}
       <Footer />
     </header >

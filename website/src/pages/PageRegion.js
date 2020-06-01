@@ -23,7 +23,6 @@ import { MapUS } from "../MapUS"
 import { myShortNumber } from "../Util.js";
 import ToggleButton from '@material-ui/lab/ToggleButton';
 import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
-import moment from 'moment';
 import { PopulationComponent } from '../models/PopulationComponent';
 
 const shortNumber = require('short-number');
