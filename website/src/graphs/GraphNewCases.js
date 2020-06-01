@@ -82,7 +82,7 @@ const CustomTooltip = (props) => {
           {newcase !== undefined && `New: ${newcase}`}
         </Typography>
         <Typography variant="body2" noWrap>
-          {newcase_avg && `New (3d-Avg): ${newcase_avg.toFixed(0)}`}
+          {newcase_avg && `New (7d-Avg): ${newcase_avg.toFixed(0)}`}
         </Typography>
         <Typography variant="body2" noWrap>
           {confirmed_projected && `MIT projected total: ${confirmed_projected}`}

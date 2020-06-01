@@ -46,7 +46,7 @@ const AtAGlance = (props) => {
     column="confirmed"
     project="confirmed_projected"
     labelTotal="Total Confirmed"
-    labelNew="New (3d-avg)"
+    labelNew="New (7d-avg)"
     colorTotal="#ff7300"
     colorNew="#387908"
     vRefLines={vRefLines}
@@ -56,7 +56,7 @@ const AtAGlance = (props) => {
     USData={USData}
     column="death"
     labelTotal="Total Deaths"
-    labelNew="New (3d-avg)"
+    labelNew="New (7d-avg)"
     colorTotal="black"
     colorNew="red"
     vRefLines={vRefLines}

@@ -1,3 +1,4 @@
+import { ma } from 'moving-averages'
 const moment = require("moment")
 
 /*
@@ -53,31 +54,34 @@ export function makeDataSeriesFromTotal(data, key_total, key_daily, key_moving) 
   }
 
   if (key_moving && m.length > 0) {
-    let len = m.length;
-    for (let i = 1; i < len - 1; i++) {
-      var mean = (m[i][key_daily] + m[i - 1][key_daily] + m[i + 1][key_daily]) / 3.0;
-      m[i][key_moving] = mean;
-    }
-    m[0][key_moving] = (m[0][key_daily] + m[1][key_daily]) / 2;
-
-    if (len > 3) {
-      m[len - 2][key_moving] = (m[len - 3][key_daily] + m[len - 2][key_daily]) / 2;
-    }
-    m[len - 1][key_moving] = (m[len - 1][key_daily] + m[len - 2][key_daily]) / 2;
+    let moving = computeMovingAverage(m, key_daily, key_moving);
+    m = mergeDataSeries(m, moving);
   }
 
   return m;
 }
 
+function exportColumnValues(data, column) {
+  let result = [];
+  for (let i = 0; i < data.length; i++) {
+    let v = data[i][column];
+    if (isNaN(v)) {
+      v = 0;
+    }
+    result.push(v);
+  }
+  return result;
+}
+
+const MOVING_WIN_SIZE = 7;
+
 export function computeMovingAverage(data, key_daily, key_moving) {
   let m = sortByFullDate(data);
-  let len = m.length;
-  for (let i = 1; i < len - 1; i++) {
-    var mean = (m[i][key_daily] + m[i - 1][key_daily] + m[i + 1][key_daily]) / 3.0;
-    m[i][key_moving] = mean;
+  let dailyvalues = exportColumnValues(m, key_daily);
+  let avg = ma(dailyvalues, MOVING_WIN_SIZE);
+  for (let i = 0; i < m.length; i++) {
+    m[i][key_moving] = avg[i];
   }
-  m[0][key_moving] = (m[0][key_daily] + m[1][key_daily]) / 2;
-  m[len - 1][key_moving] = (m[len - 1][key_daily] + m[len - 2][key_daily]) / 2;
   return m;
 }
 
