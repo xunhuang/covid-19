@@ -287,6 +287,11 @@ function processJHUDataPoint(c, date) {
   let datekey = date;
   county.Confirmed[datekey] = b.Confirmed;
   county.Death[datekey] = b.Deaths;
+
+  // errata
+  if (state_fips === "26" && county_fips === "0" && b.Confirmed > 6000) {
+    county.Confirmed[datekey] = 0;
+  }
 }
 
 function processJHU(dataset, date) {
