@@ -215,6 +215,7 @@ const KeyRewriteMap = {
   "Colombia/Cordoba": ["Colombia", "Córdoba Department"],
   "Colombia/Cundinamarca": ["Colombia", "Cundinamarca Department"],
   "Colombia/Guainia": ["Colombia", "Guainía Department"],
+  "Colombia/Guaviare": ["Colombia", "Guaviare Department"],
   "Colombia/Huila": ["Colombia", "Huila Department"],
   "Colombia/La Guajira": ["Colombia", "La Guajira Department"],
   "Colombia/Magdalena": ["Colombia", "Magdalena Department"],
