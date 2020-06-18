@@ -1117,7 +1117,7 @@ async function addMITProjection() {
     return data;
   }
 
-  const file = "../data/projections/MIT-05-07-2020.csv";
+  const file = "../data/projections/MIT-06-18-2020.csv";
   const json = await csv().fromFile(file);
   for (s in AllData) {
     state = AllData[s];

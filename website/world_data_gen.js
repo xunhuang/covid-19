@@ -738,7 +738,7 @@ class DefaultMap {
 }
 
 async function get_projection_data() {
-  const file = "../data/projections/MIT-05-07-2020.csv";
+  const file = "../data/projections/MIT-06-18-2020.csv";
   const json = await csv().fromFile(file);
 
   const timestampsByProjectionsByPath =
