@@ -406,7 +406,13 @@ const KeyRewriteMap = {
   "Sweden/Vasternorrland": ["Sweden", "Västernorrland County"],
   "Sweden/Vastra Gotaland": ["Sweden", "Västra Götaland County"],
   "Sweden/Vastmanland": ["Sweden", "Västmanland County"],
+  "Pakistan/Azad Jammu and Kashmir": ["Pakistan", "Azad Kashmir"],
+  "Pakistan/Islamabad": ["Pakistan"],
+  "India/Dadar Nagar Haveli": ["India", "Dadra and Nagar Haveli"],
+  "India/Dadra and Nagar Haveli and Daman and Diu": ["India", "Dadra and Nagar Haveli"],
+  "India/Unknown": ["India"],
 
+  "United Kingdom/Unknown": ["United Kingdom"],
 };
 
 // A map from parent key to rules for pulling components out of a child key.
