@@ -1159,7 +1159,7 @@ async function main() {
   addUSRecovery();
   addStateRecovery();
   processTestData();
-  await addMITProjection();
+  // await addMITProjection();
 }
 
 main().then(() => {
