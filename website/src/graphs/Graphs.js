@@ -84,6 +84,7 @@ class UnhookedGraphSection extends React.Component {
       });
     }
 
+      /*
     const maybeTesting = maybeTestingTabFor(source)
     if (maybeTesting) {
       tabs.set(maybeTesting.id, {
@@ -92,6 +93,7 @@ class UnhookedGraphSection extends React.Component {
         showRibbon: false,
       });
     }
+    */
 
     const maybeMap = maybeMapTabFor(source);
     if (maybeMap) {
