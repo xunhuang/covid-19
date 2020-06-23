@@ -84,6 +84,15 @@ class UnhookedGraphSection extends React.Component {
       });
     }
 
+    const maybeTesting = maybeTestingTabFor(source)
+    if (maybeTesting) {
+      tabs.set(maybeTesting.id, {
+        label: maybeTesting.label,
+        content: maybeTesting.graph,
+        showRibbon: false,
+      });
+    }
+
     const maybeMap = maybeMapTabFor(source);
     if (maybeMap) {
       tabs.set(maybeMap.id, {
