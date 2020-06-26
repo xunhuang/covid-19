@@ -292,6 +292,12 @@ function processJHUDataPoint(c, date) {
   if (state_fips === "26" && county_fips === "0" && b.Confirmed > 6000) {
     county.Confirmed[datekey] = 0;
   }
+
+  if (state_fips === "27" && datekey === "06/25/2020") {
+    // console.log("minnesota");
+    county.Confirmed[datekey] = 0;
+    county.Death[datekey] = 0;
+  }
 }
 
 function processJHU(dataset, date) {
