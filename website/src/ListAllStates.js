@@ -154,7 +154,7 @@ const AllStateListRender = (props) => {
   const classes = useStyles();
 
   const [order, setOrder] = React.useState('desc');
-  const [orderBy, setOrderBy] = React.useState('confirmed');
+  const [orderBy, setOrderBy] = React.useState('newcases');
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === 'asc';
     setOrder(isAsc ? 'desc' : 'asc');
