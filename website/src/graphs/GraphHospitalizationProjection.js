@@ -11,6 +11,8 @@ import { Typography } from '@material-ui/core';
 import { myShortNumber } from '../Util';
 import { makeStyles } from '@material-ui/core/styles';
 import { Country, State } from '../UnitedStates';
+import { DateRangeSlider } from "../DateRangeSlider"
+import Grid from '@material-ui/core/Grid';
 const Util = require('covidmodule').Util;
 
 const moment = require("moment");
@@ -222,8 +224,9 @@ const GraphDeathProjectionRender = (props) => {
   let data = props.data;
   const max_date = props.max_date;
   const data_keys = props.data_keys;
+  const [showdays, setShowdays] = React.useState(100);
 
-  const cutoff = moment().subtract(45, 'days')
+  const cutoff = moment().subtract(showdays, 'days');
   const future = moment().add(10, 'days')
   data = data.filter(d => {
     let day = moment(d.fulldate, "MM/DD/YYYY");
@@ -234,11 +237,29 @@ const GraphDeathProjectionRender = (props) => {
   }
 
   return <>
+    <Grid container alignItems="center" spacing={1}>
+      <Grid item>
+        <Typography>
+          Date:
+          </Typography>
+      </Grid>
+      <Grid item xs sm={3}>
+        <DateRangeSlider
+          currentDate={moment()}
+          startDate={moment("03/01/2020", "MM/DD/YYYY")}
+          valueChanged={(value) => {
+            setShowdays(value);
+          }}
+          defaultValue={showdays}
+        />
+      </Grid>
+      <Grid item sm> </Grid>
+    </Grid>
     <ResponsiveContainer height={300} >
       <ComposedChart data={data} margin={{ top: 5, right: 30, left: 5, bottom: 5 }} >
         <XAxis dataKey="name" />
         <YAxis yAxisId={0} tickFormatter={formatYAxis} />
-        <ReferenceLine x={moment(max_date, "MM/DD/YYYY").format("M/D")} label={{ value: props.max_label, fill: '#a3a3a3' }} stroke="#e3e3e3" strokeWidth={3} />
+        {/* <ReferenceLine x={moment(max_date, "MM/DD/YYYY").format("M/D")} label={{ value: props.max_label, fill: '#a3a3a3' }} stroke="#e3e3e3" strokeWidth={3} /> */}
         <CartesianGrid stroke="#d5d5d5" strokeDasharray="5 5" />
 
         <ReferenceLine key={`hreflineicu`} y={props.hospitals.bedsICU} stroke="#e3e3e3" strokeWidth={2} >
