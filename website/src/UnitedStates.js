@@ -80,6 +80,7 @@ export class CovidSummarizable {
       return {
         confirmed: 0,
         newcases: 0,
+        deathsNew: 0,
         death: 0,
         newpercent: 0,
         daysToDouble: null,

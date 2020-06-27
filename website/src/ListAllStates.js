@@ -73,6 +73,7 @@ function prepareDataForDisplay(list) {
     let newrow = {};
     newrow.newcases = row.newcases;
     newrow.confirmed = row.confirmed;
+    newrow.deathsNew = row.deathsNew;
     newrow.newpercent = row.newpercent;
     newrow.death = row.deaths;
     newrow.newEntry = (Number.isNaN(newrow.newpercent) || !isFinite(newrow.newpercent))
@@ -167,6 +168,7 @@ const AllStateListRender = (props) => {
     { id: 'newcases', numeric: true, disablePadding: false, label: 'New' },
     { id: 'recovered', numeric: true, disablePadding: false, label: 'Recovered' },
     { id: 'death', numeric: true, disablePadding: false, label: 'Deaths' },
+    { id: 'deathsNew', numeric: true, disablePadding: false, label: 'Deaths New' },
     { id: 'daysToDouble', numeric: true, disablePadding: false, label: 'Days 2x' },
     { id: 'daysToDoubleDeath', numeric: true, disablePadding: false, label: 'Deaths 2x' },
   ];
@@ -198,6 +200,7 @@ const AllStateListRender = (props) => {
                     {myShortNumber(row.newcases)} </div>
                 </section>;
               }
+
               return <TableRow key={row.state}>
                 <TableCell component="th" scope="row">
                   <MaterialLink component={RouterLink} to={reverse(routes.state, { state: row.state })}>
@@ -208,6 +211,8 @@ const AllStateListRender = (props) => {
                 <TableCell align="right"> {newcolumn} </TableCell>
                 <TableCell align="right">{row.recovered ? myGoodShortNumber(row.recovered) : "-"}</TableCell>
                 <TableCell align="right">{myGoodShortNumber(row.death)}</TableCell>
+                <TableCell align="right">{myGoodShortNumber(row.deathsNew)}</TableCell>
+
                 <TableCell align="right">{(!row.daysToDouble) ? "-" :
                   ((row.daysToDouble > 365 || row.daysToDouble < 0) ? "1 Year+" : row.daysToDouble.toFixed(1))}</TableCell>
                 <TableCell align="right">{(!row.daysToDoubleDeath) ? "-" :
