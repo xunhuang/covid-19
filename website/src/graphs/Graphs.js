@@ -76,6 +76,7 @@ class UnhookedGraphSection extends React.Component {
       content: AtAGlance,
     });
 
+    /*
     const maybeDaily = maybeDailyTabFor(source);
     if (maybeDaily) {
       tabs.set(maybeDaily.id, {
@@ -83,6 +84,19 @@ class UnhookedGraphSection extends React.Component {
         content: maybeDaily.graph,
       });
     }
+    */
+
+    // [maybeDeathProjectionTabFor, maybeHospitalizationProjectionTabFor]
+    [maybeHospitalizationProjectionTabFor]
+      .map(factory => factory(source))
+      .filter(tab => tab)
+      .forEach(tab =>
+        tabs.set(tab.id, {
+          label: tab.label,
+          content: tab.graph,
+          showRibbon: true,  // TO SHOW THE RIBBON ADD A LINE LIKE THIS
+        }));
+
 
     if (source instanceof State || source instanceof Country) {
       const maybeTesting = maybeTestingTabFor(source)
@@ -119,16 +133,6 @@ class UnhookedGraphSection extends React.Component {
         content: DetailedGraphs,
       });
     }
-
-    [maybeDeathProjectionTabFor, maybeHospitalizationProjectionTabFor]
-      .map(factory => factory(source))
-      .filter(tab => tab)
-      .forEach(tab =>
-        tabs.set(tab.id, {
-          label: tab.label,
-          content: tab.graph,
-          showRibbon: true,  // TO SHOW THE RIBBON ADD A LINE LIKE THIS
-        }));
 
     const headings = [...tabs.keys()];
     let tab;

@@ -223,8 +223,8 @@ const GraphDeathProjectionRender = (props) => {
   const max_date = props.max_date;
   const data_keys = props.data_keys;
 
-  const cutoff = moment().subtract(30, 'days')
-  const future = moment().add(30, 'days')
+  const cutoff = moment().subtract(45, 'days')
+  const future = moment().add(10, 'days')
   data = data.filter(d => {
     let day = moment(d.fulldate, "MM/DD/YYYY");
     return day.isAfter(cutoff) && day.isBefore(future);
@@ -242,7 +242,15 @@ const GraphDeathProjectionRender = (props) => {
         <CartesianGrid stroke="#d5d5d5" strokeDasharray="5 5" />
 
         <ReferenceLine key={`hreflineicu`} y={props.hospitals.bedsICU} stroke="#e3e3e3" strokeWidth={2} >
-          <Label value="ICU Beds" position="insideRight" />
+          <Label value="100% ICU Beds" position="insideRight" />
+        </ReferenceLine>/>
+
+        <ReferenceLine key={`hreflineicu`} y={props.hospitals.bedsICU / 2} stroke="#e3e3e3" strokeWidth={2} >
+          <Label value="50% ICU Beds" position="insideRight" />
+        </ReferenceLine>/>
+
+        <ReferenceLine key={`hreflineicu`} y={props.hospitals.bedsICU / 4} stroke="#e3e3e3" strokeWidth={2} >
+          <Label value="25% ICU Beds" position="insideRight" />
         </ReferenceLine>/>
 
                 <ReferenceLine key={`hreflineavail`} y={props.hospitals.bedsAvail} stroke="#e3e3e3" strokeWidth={2} >
@@ -253,15 +261,15 @@ const GraphDeathProjectionRender = (props) => {
           <Label value="Total Beds" position="insideRight" />
         </ReferenceLine>/>
 
-                <Line type="monotone" dataKey={data_keys.key_mean} stroke="#000000" dot={{ r: 1 }} yAxisId={0} strokeWidth={3} />
+                {/* <Line type="monotone" dataKey={data_keys.key_mean} stroke="#000000" dot={{ r: 1 }} yAxisId={0} strokeWidth={3} /> */}
         <Line type="monotone" dataKey={"hospitalized"} stroke="#00aeef" dot={{ r: 1 }} yAxisId={0} strokeWidth={3} />
         <Line type="monotone" dataKey={"inIcuCurrently"} stroke="#0000FF" dot={{ r: 1 }} yAxisId={0} strokeWidth={3} />
         <Line type="monotone" dataKey={"onVentilatorCurrently"} stroke="#FF0000" dot={{ r: 1 }} yAxisId={0} strokeWidth={3} />
-        <Area type='monotone' dataKey={data_keys.key_lower} stackId="1" stroke='#8884d8' fill='#FFFFFF' />
-        <Area type='monotone' dataKey={data_keys.key_delta} stackId="1" stroke='#82ca9d' fill='#82ca9d' />
+        {/* <Area type='monotone' dataKey={data_keys.key_lower} stackId="1" stroke='#8884d8' fill='#FFFFFF' /> */}
+        {/* <Area type='monotone' dataKey={data_keys.key_delta} stackId="1" stroke='#82ca9d' fill='#82ca9d' /> */}
         <Tooltip content={props.tooltip} />
         <Legend verticalAlign="top" payload={[
-          { value: 'Projection', type: 'line', color: '#000000' },
+          // { value: 'Projection', type: 'line', color: '#000000' },
           { value: 'Hospitalized Total', type: 'line', color: '#00aeef' },
           { value: 'In ICU', type: 'line', color: '#0000FF' },
           { value: 'On Ventilator', type: 'line', color: '#FF0000' },
@@ -279,13 +287,13 @@ function maybeHospitalizationProjectionTabFor(source) {
   if (source instanceof Country) {
     return {
       id: 'peakhospitalization',
-      label: 'Hosp.*',
+      label: 'Hospitalization',
       graph: (props) => <GraphAllBedProjectionUS />,
     };
   } else if (source instanceof State) {
     return {
       id: 'peakhospitalization',
-      label: 'Hosp.*',
+      label: 'Hospitalization',
       graph: (props) => <GraphAllBedProjectionState state={props.source} />,
     };
   } else {
