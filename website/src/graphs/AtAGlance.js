@@ -31,7 +31,6 @@ const AtAGlance = (props) => {
     stayhome = props.source.stayHomeOrder();
   }
   if (stayhome) {
-    console.log(stayhome)
     if (stayhome.StartDate) {
       vRefLines.push({
         date: moment(stayhome.StartDate).format("MM/DD/YYYY"),
@@ -71,7 +70,7 @@ const AtAGlance = (props) => {
     return <div>
       <Summary source={props.source} />
       {dailyConfirmed}
-      <GraphDeathProjection source={props.source} />
+      {dailyDeath}
       <MapUS source={props.source} />
       <GraphAllBedProjectionUS />
     </div >;
@@ -81,7 +80,7 @@ const AtAGlance = (props) => {
     return <div>
       <Summary source={props.source} />
       {dailyConfirmed}
-      <GraphDeathProjection source={props.source} />
+      {dailyDeath}
       <MapUS source={props.source} />
       <GraphAllBedProjectionState state={props.source} />
     </div >;
