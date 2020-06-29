@@ -282,19 +282,23 @@ export class DataSeries {
   }
 
 
-  // export function computeMovingAverage(data, key_daily, key_moving) {
-  //   let m = sortByFullDate(data);
-  //   let dailyvalues = exportColumnValues(m, key_daily);
-  //   let avg = ma(dailyvalues, MOVING_WIN_SIZE);
-  //   for (let i = 0; i < m.length; i++) {
-  //     m[i][key_moving] = avg[i];
-  //   }
-  //   return m;
-  // }
-
   nDayAverage(MOVING_WIN_SIZE) {
     const name = `${this.label_} (${MOVING_WIN_SIZE} ${this.period_.smoothLabel} avg)`;
     const points = this.points();
+    const values = points.map(p => p[1]);
+    let avg = ma(values, MOVING_WIN_SIZE);
+    const smoothed = [];
+
+    for (let i = 0; i < points.length; i++) {
+      smoothed.push([
+        points[i][0],
+        avg[i],
+      ]);
+    }
+
+    const series = new DataSeries(name, undefined, this.period_);
+    series.points_ = smoothed;
+    return series;
   }
 
   smooth() {

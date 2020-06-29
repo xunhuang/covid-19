@@ -124,15 +124,23 @@ const PostiveRate7Days = (props) => {
   return <AdvancedGraph
     serieses={
       [
-        {
-          series: totalTestResults_series,
-          color: 'orange',
-          // trend: 'orange',
-          // initial: 'off',
-        },
+        // {
+        //   series: totalTestResults_series,
+        //   color: 'orange',
+        //   // trend: 'orange',
+        //   // initial: 'off',
+        // },
         {
           series: totalTestResults_series.change(),
           color: 'teal',
+          // trend: 'teal',
+          // initial: 'off',
+          stipple: true,
+          axis: "right",
+        },
+        {
+          series: totalTestResults_series.change().nDayAverage(7),
+          color: 'blue',
           // trend: 'teal',
           // initial: 'off',
           axis: "right",
