@@ -140,6 +140,11 @@ export class DataSeries {
     return this.period_.formatter;
   }
 
+  setLabel(label) {
+    this.label_ = label;
+    return this;
+  }
+
   points() {
     if (!this.points_ && this.raw_.length > 0) {
       this.points_ = this.period_.converter(this.raw_);
@@ -281,6 +286,25 @@ export class DataSeries {
     return dropped;
   }
 
+
+  divide(inputseries) {
+    console.assert(this.points().length === inputseries.points().length);
+    const points = this.points();
+    const denominator = inputseries.points();
+
+    const result = [];
+    for (let i = 0; i < points.length; i++) {
+      result.push([
+        points[i][0],
+        points[i][1] / denominator[i][1],
+      ]);
+    }
+
+    const series = new DataSeries("division", undefined, this.period_);
+    series.points_ = result;
+    console.log(result);
+    return series;
+  }
 
   nDayAverage(MOVING_WIN_SIZE) {
     const name = `${this.label_} (${MOVING_WIN_SIZE} ${this.period_.smoothLabel} avg)`;

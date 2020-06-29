@@ -120,34 +120,28 @@ const PostiveRate7Days = (props) => {
   let totalTestResults_series = DataSeries.fromOldDataSourceDataPoints("Tests", sourceData, "totalTestResults");
   let totalPositve_series = DataSeries.fromOldDataSourceDataPoints("Positve", sourceData, "positive");
 
+  let positveDaily = totalPositve_series.change().nDayAverage(7);
+  let testsDialy = totalTestResults_series.change().nDayAverage(7);
+  let rate = positveDaily.divide(testsDialy).setLabel("Postive Rate 7-days");
+
   return <AdvancedGraph
     serieses={
       [
-        // {
-        //   series: totalTestResults_series,
-        //   color: 'orange',
-        //   // trend: 'orange',
-        //   // initial: 'off',
-        // },
-        // {
-        //   series: totalTestResults_series.change(),
-        //   color: 'teal',
-        //   // trend: 'teal',
-        //   // initial: 'off',
-        //   stipple: true,
-        // },
         {
           series: totalPositve_series.change().nDayAverage(7),
           color: 'red',
-          // trend: 'teal',
-          // initial: 'off',
+          initial: 'off',
+          rightAxis: true,
         },
         {
           series: totalTestResults_series.change().nDayAverage(7),
           color: 'blue',
-          // trend: 'teal',
-          // initial: 'off',
-          // rightAxis: true,
+          initial: 'off',
+          rightAxis: true,
+        },
+        {
+          series: rate,
+          color: 'orange',
         },
       ]
     }

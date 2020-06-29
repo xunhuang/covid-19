@@ -101,7 +101,13 @@ export const AdvancedGraph = (props) => {
   const allLabels = seriesesAndEnvelopes.map(([label,]) => label);
   const [known, setKnown] = React.useState(allLabels);
   const [selected, setSelected] =
-    React.useState(() => allLabels.filter(({ initial }) => initial !== 'off'));
+    // React.useState(() => allLabels.filter(({ initial }) => initial !== 'off'));
+    React.useState(
+      () => seriesesAndEnvelopes.filter((item) => item[1].initial !== 'off')
+        .map(([label,]) => label));
+
+  console.log(seriesesAndEnvelopes);
+  console.log(selected);
 
   // As the user switches pages, graphs that were previously unknown may become
   // available. So turn them off if they default to on when they appear.
