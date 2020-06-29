@@ -170,6 +170,7 @@ AdvancedGraph.propTypes = {
         initial: PropTypes.oneOf([undefined, 'off', 'on']),
         trend: PropTypes.string,
         stipple: PropTypes.bool,
+        rightAxis: PropTypes.bool,
       })).isRequired,
   envelopes:
     PropTypes.arrayOf(
@@ -304,7 +305,7 @@ const Chart = (props) => {
   let YAxis0Color = "black";
   let YAxis1Color = undefined;
   for (const s of ordered) {
-    if (s.axis === "right") {
+    if (s.rightAxis) {
       YAxis1Color = s.color;
     } else {
       YAxis0Color = s.color;
@@ -388,7 +389,7 @@ function lineForSpec(spec) {
       strokeDasharray={spec.stipple ? '2 2' : undefined}
       dot={false}
       strokeWidth={2}
-      yAxisId={spec.axis === "right" ? 1 : 0}
+      yAxisId={spec.rightAxis ? 1 : 0}
     />
   );
 };

@@ -116,10 +116,9 @@ const PostiveRate7Days = (props) => {
   }
 
   console.log(sourceData);
-
   // let confirmed_series;
-  let totalTestResults_series = DataSeries.fromOldDataSourceDataPoints("Total Tests", sourceData, "totalTestResults");
-  console.log(totalTestResults_series);
+  let totalTestResults_series = DataSeries.fromOldDataSourceDataPoints("Tests", sourceData, "totalTestResults");
+  let totalPositve_series = DataSeries.fromOldDataSourceDataPoints("Positve", sourceData, "positive");
 
   return <AdvancedGraph
     serieses={
@@ -130,20 +129,25 @@ const PostiveRate7Days = (props) => {
         //   // trend: 'orange',
         //   // initial: 'off',
         // },
+        // {
+        //   series: totalTestResults_series.change(),
+        //   color: 'teal',
+        //   // trend: 'teal',
+        //   // initial: 'off',
+        //   stipple: true,
+        // },
         {
-          series: totalTestResults_series.change(),
-          color: 'teal',
+          series: totalPositve_series.change().nDayAverage(7),
+          color: 'red',
           // trend: 'teal',
           // initial: 'off',
-          stipple: true,
-          axis: "right",
         },
         {
           series: totalTestResults_series.change().nDayAverage(7),
           color: 'blue',
           // trend: 'teal',
           // initial: 'off',
-          axis: "right",
+          // rightAxis: true,
         },
       ]
     }
