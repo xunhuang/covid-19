@@ -102,7 +102,7 @@ class UnhookedGraphSection extends React.Component {
         tabs.set(maybeTesting.id, {
           label: maybeTesting.label,
           content: maybeTesting.graph,
-          showRibbon: false,
+          showRibbon: true,
         });
       }
     }
@@ -111,7 +111,7 @@ class UnhookedGraphSection extends React.Component {
       tabs.set(maybeMap.id, {
         label: maybeMap.label,
         content: maybeMap.content,
-        showRibbon: true,  // TO SHOW THE RIBBON ADD A LINE LIKE THIS
+        // showRibbon: true,  // TO SHOW THE RIBBON ADD A LINE LIKE THIS
       });
     }
 
@@ -127,7 +127,6 @@ class UnhookedGraphSection extends React.Component {
 
     const maybeRecovery = maybeRecoveryAndDeathTabFor(source);
     if (maybeRecovery && (source instanceof State || source instanceof Country)) {
-      console.log(maybeRecovery);
       tabs.set(maybeRecovery.id, {
         label: "Recovery",
         content: maybeRecovery.graph,

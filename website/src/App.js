@@ -45,7 +45,6 @@ const MainApp = withRouter((props) => {
     setCountry(myCountry);
 
     fetchApproximatePoliticalLocation().then(countyDescr => {
-      console.log(countyDescr);
       if (countyDescr.country === "United States of America" || countyDescr.county) {
         const county = makeCountyFromDescription(myCountry, countyDescr);
         setMyCounty(county);
