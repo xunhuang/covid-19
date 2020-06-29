@@ -6,6 +6,7 @@ import { Area, CartesianGrid, ComposedChart, Line, ResponsiveContainer, Tooltip,
 import { fade, makeStyles } from '@material-ui/core/styles';
 import { scaleSymlog } from 'd3-scale';
 import { myShortNumber } from '../../Util';
+import { DateRangeSlider } from "../../DateRangeSlider"
 
 import { DataSeries } from '../../models/DataSeries';
 import { Envelope } from '../../models/Envelope';
@@ -30,6 +31,11 @@ const useStyles = makeStyles(theme => ({
       margin: '0 8px 8px 0',
     },
   },
+  slider: {
+    display: "flex",
+    width: 200,
+    alignItems: "center",
+  },
   expand: {
     flexGrow: 1,
   },
@@ -39,34 +45,13 @@ const useStyles = makeStyles(theme => ({
 export const AdvancedGraph = (props) => {
   const classes = useStyles();
 
-  const windows = new Map([
-    ['all', {
-      label: 'All',
-      filter: (data) => data,
-    }],
-    ['4weeks', {
-      label: '4 Weeks',
-      filter: (data) => {
-        if (data.length === 0) {
-          return [];
-        }
+  const [showdays, setShowdays] = React.useState(100);
 
-        const preferredStart = moment().subtract(28, 'day');
-        const lastMoment = moment.unix(data[data.length - 1].timestamp);
-        let startMoment;
-        if (lastMoment.isBefore(preferredStart)) {
-          startMoment = lastMoment.subtract(28, 'day');
-        } else {
-          startMoment = preferredStart;
-        }
-
-        const start = startMoment.unix();
-        const end = startMoment.add(28 + 14 /* for projections */, 'day').unix();
-        return data.filter((p) => start <= p.timestamp && p.timestamp <= end);
-      },
-    }],
-  ]);
-  const [window, setWindow] = React.useState(windows.keys().next().value);
+  function filterData(data) {
+    const cutoff = moment().subtract(showdays, 'days').unix();
+    const future = moment().add(14, 'days').unix();
+    return data.filter((p) => p.timestamp >= cutoff && p.timestamp <= future);
+  }
 
   const scales = new Map([
     ['linear', {
@@ -140,15 +125,22 @@ export const AdvancedGraph = (props) => {
     <div className={props.className}>
       <div className={classes.options}>
         <Display
-          displays={windows}
-          selected={window}
-          onChange={setWindow}
-        />
-        <Display
           displays={scales}
           selected={scale}
           onChange={setScale}
         />
+        <div className={classes.slider} >
+          <div>
+            Date:</div>
+          <DateRangeSlider
+            currentDate={moment()}
+            startDate={moment("02/01/2020", "MM/DD/YYYY")}
+            valueChanged={(value) => {
+              setShowdays(value);
+            }}
+            defaultValue={showdays}
+          />
+        </div>
         <div className={classes.expand} />
         <Legend
           spec={seriesesAndEnvelopes}
@@ -156,7 +148,7 @@ export const AdvancedGraph = (props) => {
           onChange={setSelected} />
       </div>
       <Chart
-        data={windows.get(window).filter(data)}
+        data={filterData(data)}
         scale={scales.get(scale).scale}
         timestampFormatter={timestampFormatter}
         specs={
@@ -309,6 +301,16 @@ const Chart = (props) => {
     }
   });
 
+  let YAxis0Color = "black";
+  let YAxis1Color = undefined;
+  for (const s of ordered) {
+    if (s.axis === "right") {
+      YAxis1Color = s.color;
+    } else {
+      YAxis0Color = s.color;
+    }
+  }
+
   return (
     <ResponsiveContainer height={300}>
       <ComposedChart data={props.data} margin={{ left: -4, right: 8 }}>
@@ -321,9 +323,21 @@ const Chart = (props) => {
           tickFormatter={props.timestampFormatter}
         />
         <YAxis
+          yAxisId={0}
+          tick={{ fill: YAxis0Color }}
           scale={props.scale === 'log' ? logScale : props.scale}
           tickFormatter={(t) => myShortNumber(t)}
         />
+        {YAxis1Color &&
+          <YAxis
+            yAxisId={1}
+            tickFormatter={(t) => myShortNumber(t)}
+            // width={10}
+            tick={{ fill: YAxis1Color }}
+            orientation="right"
+          />
+        }
+
         <CartesianGrid stroke="#d5d5d5" strokeDasharray="5 5" />
 
         {ordered.flatMap(spec => specToElements(spec))}
@@ -374,6 +388,7 @@ function lineForSpec(spec) {
       strokeDasharray={spec.stipple ? '2 2' : undefined}
       dot={false}
       strokeWidth={2}
+      yAxisId={spec.axis === "right" ? 1 : 0}
     />
   );
 };

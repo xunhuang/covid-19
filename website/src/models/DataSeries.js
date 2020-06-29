@@ -32,6 +32,16 @@ export class DataSeries {
     }
   }
 
+  static fromOldDataSourceDataPoints(label, data, column) {
+    let raw = [];
+    for (const point of data) {
+      let ts = moment(point.fulldate, "MM/DD/YYYY").unix();
+      let value = point[column];
+      raw.push([ts, value]);
+    }
+    return new DataSeries(label, raw, periods.daily);
+  }
+
   static flatten(serieses) {
     const points = new Map();
     const formatters = new Set();

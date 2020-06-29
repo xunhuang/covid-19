@@ -6,6 +6,8 @@ import { GraphDeathProjection } from "./GraphDeathProjection";
 import { MapUS } from "../MapUS"
 import { GraphAllBedProjectionState, GraphAllBedProjectionUS } from "./GraphHospitalizationProjection"
 import moment from 'moment';
+import { AdvancedGraph } from '../components/graphs/AdvancedGraph'
+import { DataSeries } from '../models/DataSeries';
 
 const AtAGlance = (props) => {
   const [USData, setUSdata] = React.useState(null);
@@ -66,9 +68,35 @@ const AtAGlance = (props) => {
     vRefLines={vRefLines}
   />
 
+  let confirmed_series = DataSeries.fromOldDataSourceDataPoints("Total Confirmed", USData, "confirmed");
+
+  console.log(USData);
+
+  let newconfirm =
+    <AdvancedGraph
+      serieses={
+        [
+          {
+            series: confirmed_series,
+            color: 'orange',
+            trend: 'orange',
+            // initial: 'off',
+          },
+          {
+            series: confirmed_series.change(),
+            color: 'teal',
+            // trend: 'teal',
+            // initial: 'off',
+            axis: "right",
+          },
+        ]
+      }
+    />;
+
   if (props.source instanceof Country) {
     return <div>
       <Summary source={props.source} />
+      {/* {newconfirm} */}
       {dailyConfirmed}
       {dailyDeath}
       <MapUS source={props.source} />
@@ -79,6 +107,7 @@ const AtAGlance = (props) => {
   if (props.source instanceof State) {
     return <div>
       <Summary source={props.source} />
+      {newconfirm}
       {dailyConfirmed}
       {dailyDeath}
       <MapUS source={props.source} />
@@ -88,6 +117,7 @@ const AtAGlance = (props) => {
 
   return <div>
     <Summary source={props.source} />
+    {/* {newconfirm} */}
     {dailyConfirmed}
     {dailyDeath}
   </div >;
