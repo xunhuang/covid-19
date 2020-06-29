@@ -1,4 +1,5 @@
 import { fitVirusCV19 } from "../math/FitVirusCV19";
+import { ma } from 'moving-averages'
 const moment = require('moment');
 const { linearRegression } = require('simple-statistics');
 
@@ -280,6 +281,22 @@ export class DataSeries {
     return dropped;
   }
 
+
+  // export function computeMovingAverage(data, key_daily, key_moving) {
+  //   let m = sortByFullDate(data);
+  //   let dailyvalues = exportColumnValues(m, key_daily);
+  //   let avg = ma(dailyvalues, MOVING_WIN_SIZE);
+  //   for (let i = 0; i < m.length; i++) {
+  //     m[i][key_moving] = avg[i];
+  //   }
+  //   return m;
+  // }
+
+  nDayAverage(MOVING_WIN_SIZE) {
+    const name = `${this.label_} (${MOVING_WIN_SIZE} ${this.period_.smoothLabel} avg)`;
+    const points = this.points();
+  }
+
   smooth() {
     const name = `${this.label_} (${SMOOTH_WINDOW_SIZE} ${this.period_.smoothLabel} avg)`;
 
@@ -308,7 +325,6 @@ export class DataSeries {
 
     const points = this.points();
     const capita = [];
-    console.log(population)
     for (let i = 0; i < points.length; ++i) {
       console.log(points[i][1] / population)
       capita.push([

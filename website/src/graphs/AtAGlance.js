@@ -70,8 +70,6 @@ const AtAGlance = (props) => {
 
   let confirmed_series = DataSeries.fromOldDataSourceDataPoints("Total Confirmed", USData, "confirmed");
 
-  console.log(USData);
-
   let newconfirm =
     <AdvancedGraph
       serieses={

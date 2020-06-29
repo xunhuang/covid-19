@@ -12,6 +12,8 @@ import { mergeDataSeries, makeDataSeriesFromTotal, exportColumnFromDataSeries } 
 import ToggleButton from '@material-ui/lab/ToggleButton';
 import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
 import { withRouter } from 'react-router-dom'
+import { AdvancedGraph } from '../components/graphs/AdvancedGraph'
+import { DataSeries } from '../models/DataSeries';
 
 const useStyles = makeStyles(theme => ({
   customtooltip: {
@@ -98,8 +100,54 @@ function maybeFindTesting(source) {
   }
   return ancestor;
 }
+
+
+const PostiveRate7Days = (props) => {
+
+  const [sourceData, setSourceData] = React.useState(null);
+
+  React.useEffect(() => {
+    props.source.testingAsync()
+      .then(data => setSourceData(data));
+  }, [props.source])
+
+  if (!sourceData || sourceData.length === 0) {
+    return <div> Loading</div>;
+  }
+
+  console.log(sourceData);
+
+  // let confirmed_series;
+  let totalTestResults_series = DataSeries.fromOldDataSourceDataPoints("Total Tests", sourceData, "totalTestResults");
+  console.log(totalTestResults_series);
+
+  return <AdvancedGraph
+    serieses={
+      [
+        {
+          series: totalTestResults_series,
+          color: 'orange',
+          // trend: 'orange',
+          // initial: 'off',
+        },
+        {
+          series: totalTestResults_series.change(),
+          color: 'teal',
+          // trend: 'teal',
+          // initial: 'off',
+          axis: "right",
+        },
+      ]
+    }
+  />;
+}
+
 const GraphTestingWidget = withRouter((props) => {
   let subtabs = new Map([
+    ['positverate', {
+      label: "Positve Rate 7-days",
+      widget: <PostiveRate7Days {...props} />
+    }],
     ['effort', {
       label: "Test Effort",
       widget: <GraphTestingWidget1 {...props} />
@@ -149,22 +197,7 @@ const GraphTestingWidget1 = (props) => {
     return <div> Loading</div>;
   }
 
-  let data = sourceData.map(t => {
-    let md = t.date % 1000;
-    let m = Math.floor(md / 100);
-    let d = md % 100;
-    t.name = `${m}/${d}`;
-
-    m = m.toString().padStart(2, "0");
-    d = d.toString().padStart(2, "0");
-    let y = Math.floor(t.date / 10000);
-
-    t.fulldate = `${m}/${d}/${y}`;
-
-    return t;
-  })
-
-  data = data.sort(function (a, b) {
+  let data = sourceData.sort(function (a, b) {
     return a.date - b.date;
   });
 
