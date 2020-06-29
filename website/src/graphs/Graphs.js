@@ -127,10 +127,12 @@ class UnhookedGraphSection extends React.Component {
       content: GraphDaysToDoubleOverTime,
     });
 
-    if (source instanceof State || source instanceof Country) {
-      tabs.set('detailed', {
-        label: "Detailed",
-        content: DetailedGraphs,
+    const maybeRecovery = maybeRecoveryAndDeathTabFor(source);
+    if (maybeRecovery && (source instanceof State || source instanceof Country)) {
+      console.log(maybeRecovery);
+      tabs.set(maybeRecovery.id, {
+        label: "Recovery",
+        content: maybeRecovery.graph,
       });
     }
 
@@ -170,86 +172,6 @@ class UnhookedGraphSection extends React.Component {
 }
 export const GraphSection =
   withRouter(withStyles(styles)(UnhookedGraphSection));
-
-class UnhookedDetailedGraphs extends React.Component {
-
-  static getDerivedStateFromProps(props, state) {
-    const desired = UnhookedDetailedGraphs.getDesiredState(props);
-    if (!state || state.viewing !== desired.viewing) {
-      return desired;
-    } else {
-      return null;
-    }
-  }
-
-  static getDesiredState(props) {
-    return { viewing: getUnvalidated(props.location, 'detailed') };
-  }
-
-  constructor(props) {
-    super(props);
-    this.state = UnhookedDetailedGraphs.getDesiredState(props);
-  }
-
-  render() {
-    const classes = this.props.classes;
-    const history = this.props.history;
-    const source = this.props.source;
-
-    const graphs = new Map([
-      maybeTestingTabFor,
-      maybeRecoveryAndDeathTabFor,
-    ].map(factory => {
-      return factory(source);
-    }).filter(desc => {
-      return desc !== undefined;
-    }).map(desc => [desc.label, desc]));
-
-    let viewing;
-    if ([...graphs.keys()].includes(this.state.viewing)) {
-      viewing = this.state.viewing;
-    } else {
-      viewing = graphs.keys().next().value;
-    }
-
-    const switchTo = (e, desire) => {
-      // Having a strange problem where if only one ToggleButton desire is
-      // null
-      if (!desire) {
-        return;
-      }
-      this.setState({ viewing: desire });
-      pushChangeTo(history, 'detailed', desire);
-    };
-
-    const Graph = graphs.get(viewing).graph;
-
-    return (
-      <div>
-        <ToggleButtonGroup
-          className={classes.detailedToggles}
-          exclusive
-          onChange={switchTo}
-          value={viewing}
-          aria-label="Detailed graph"
-          size="small">
-          {[...graphs.keys()].map(label =>
-            <ToggleButton
-              key={label}
-              value={label}
-              aria-label={label}
-              size="small">
-              {label}
-            </ToggleButton>
-          )}
-        </ToggleButtonGroup>
-        <Graph source={source} />
-      </div>
-    );
-  }
-}
-export const DetailedGraphs =
-  withRouter(withStyles(styles)(UnhookedDetailedGraphs));
 
 function getUnvalidated(location, key) {
   const params = new URLSearchParams(location.search);
