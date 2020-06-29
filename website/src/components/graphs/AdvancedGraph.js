@@ -381,7 +381,6 @@ function specToElements(spec) {
     return [lineForSpec(spec)];
   }
 };
-
 function lineForSpec(spec) {
   return (
     <Line
@@ -404,6 +403,9 @@ function valueFormatter(value) {
   if (isNaN(value)) {
     return 'unknown';
   } else {
+    if (value < 1) {
+      return (value * 100).toFixed(1) + "%";
+    }
     return value.toFixed(1).replace(/\.?0+$/, '');
   }
 }
