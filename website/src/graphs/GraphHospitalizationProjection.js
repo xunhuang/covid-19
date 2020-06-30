@@ -262,15 +262,15 @@ const GraphDeathProjectionRender = (props) => {
         {/* <ReferenceLine x={moment(max_date, "MM/DD/YYYY").format("M/D")} label={{ value: props.max_label, fill: '#a3a3a3' }} stroke="#e3e3e3" strokeWidth={3} /> */}
         <CartesianGrid stroke="#d5d5d5" strokeDasharray="5 5" />
 
-        <ReferenceLine key={`hreflineicu`} y={props.hospitals.bedsICU} stroke="#e3e3e3" strokeWidth={2} >
+        <ReferenceLine key={`hreflineicu1`} y={props.hospitals.bedsICU} stroke="#e3e3e3" strokeWidth={2} >
           <Label value="100% ICU Beds" position="insideRight" />
         </ReferenceLine>/>
 
-        <ReferenceLine key={`hreflineicu`} y={props.hospitals.bedsICU / 2} stroke="#e3e3e3" strokeWidth={2} >
+        <ReferenceLine key={`hreflineicu2`} y={props.hospitals.bedsICU / 2} stroke="#e3e3e3" strokeWidth={2} >
           <Label value="50% ICU Beds" position="insideRight" />
         </ReferenceLine>/>
 
-        <ReferenceLine key={`hreflineicu`} y={props.hospitals.bedsICU / 4} stroke="#e3e3e3" strokeWidth={2} >
+        <ReferenceLine key={`hreflineicu3`} y={props.hospitals.bedsICU / 4} stroke="#e3e3e3" strokeWidth={2} >
           <Label value="25% ICU Beds" position="insideRight" />
         </ReferenceLine>/>
 

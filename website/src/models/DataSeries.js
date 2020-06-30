@@ -6,7 +6,7 @@ const { linearRegression } = require('simple-statistics');
 const periods = {
   daily: {
     doublingLabel: 'Days to Double',
-    smoothLabel: 'day',
+    smoothLabel: 'd',
     formatter: (moment) => moment.format('M/D'),
     intervalS: 24 * 60 * 60,
     converter: (data) =>
@@ -286,6 +286,29 @@ export class DataSeries {
     return dropped;
   }
 
+  last2PointSeries() {
+    const points = this.points();
+    if (!points || points.length < 2) {
+      return undefined;
+    }
+    const dropped = new DataSeries(this.label_, undefined, this.period_);
+    dropped.points_ = [
+      points[points.length - 2],
+      points[points.length - 1],
+    ];
+    return dropped;
+  }
+
+  dropLastPoint() {
+    const points = this.points();
+    if (!points || points.length < 1) {
+      return undefined;
+    }
+    const dropped = new DataSeries(this.label_, undefined, this.period_);
+    dropped.points_ = points.slice(0, points.length - 1);
+
+    return dropped;
+  }
 
   divide(inputseries) {
     console.assert(this.points().length === inputseries.points().length);
@@ -307,7 +330,7 @@ export class DataSeries {
   }
 
   nDayAverage(MOVING_WIN_SIZE) {
-    const name = `${this.label_} (${MOVING_WIN_SIZE} ${this.period_.smoothLabel} avg)`;
+    const name = `${this.label_} (${MOVING_WIN_SIZE}-${this.period_.smoothLabel} avg)`;
     const points = this.points();
     const values = points.map(p => p[1]);
     let avg = ma(values, MOVING_WIN_SIZE);
