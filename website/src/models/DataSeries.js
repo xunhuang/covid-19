@@ -305,9 +305,7 @@ export class DataSeries {
       return undefined;
     }
     const dropped = new DataSeries(this.label_, undefined, this.period_);
-    console.log(points);
     dropped.points_ = points.slice(0, points.length - 1);
-    console.log(dropped.points_);
 
     return dropped;
   }
