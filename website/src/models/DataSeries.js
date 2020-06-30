@@ -286,6 +286,31 @@ export class DataSeries {
     return dropped;
   }
 
+  last2PointSeries() {
+    const points = this.points();
+    if (!points || points.length < 2) {
+      return undefined;
+    }
+    const dropped = new DataSeries(this.label_, undefined, this.period_);
+    dropped.points_ = [
+      points[points.length - 2],
+      points[points.length - 1],
+    ];
+    return dropped;
+  }
+
+  dropLastPoint() {
+    const points = this.points();
+    if (!points || points.length < 1) {
+      return undefined;
+    }
+    const dropped = new DataSeries(this.label_, undefined, this.period_);
+    console.log(points);
+    dropped.points_ = points.slice(0, points.length - 1);
+    console.log(dropped.points_);
+
+    return dropped;
+  }
 
   divide(inputseries) {
     console.assert(this.points().length === inputseries.points().length);

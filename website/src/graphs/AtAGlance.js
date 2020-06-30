@@ -7,6 +7,7 @@ import { MapUS } from "../MapUS"
 import { GraphAllBedProjectionState, GraphAllBedProjectionUS } from "./GraphHospitalizationProjection"
 import moment from 'moment';
 import { AdvancedGraph } from '../components/graphs/AdvancedGraph'
+import { CovidAdvancedGraph } from '../components/graphs/CovidAdvancedGraph'
 import { DataSeries } from '../models/DataSeries';
 
 const AtAGlance = (props) => {
@@ -68,10 +69,10 @@ const AtAGlance = (props) => {
     vRefLines={vRefLines}
   />
 
-  let confirmed_series = DataSeries.fromOldDataSourceDataPoints("Total Confirmed", USData, "confirmed");
+  let confirmed_series = DataSeries.fromOldDataSourceDataPoints("Confirmed", USData, "confirmed");
 
   let newconfirm =
-    <AdvancedGraph
+    <CovidAdvancedGraph
       serieses={
         [
           {
@@ -79,13 +80,21 @@ const AtAGlance = (props) => {
             color: 'orange',
             trend: 'orange',
             // initial: 'off',
+            lastDayIncomplete: true,
+          },
+          {
+            series: confirmed_series.change().nDayAverage(7),
+            color: 'teal',
+            // trend: 'teal',
+            // initial: 'off',
+            rightAxis: true,
+            lastDayIncomplete: true,
           },
           {
             series: confirmed_series.change(),
             color: 'teal',
-            // trend: 'teal',
-            // initial: 'off',
-            axis: "right",
+            rightAxis: true,
+            stipple: true,
           },
         ]
       }
@@ -94,7 +103,7 @@ const AtAGlance = (props) => {
   if (props.source instanceof Country) {
     return <div>
       <Summary source={props.source} />
-      {/* {newconfirm} */}
+      {newconfirm}
       {dailyConfirmed}
       {dailyDeath}
       <MapUS source={props.source} />
@@ -105,7 +114,7 @@ const AtAGlance = (props) => {
   if (props.source instanceof State) {
     return <div>
       <Summary source={props.source} />
-      {/* {newconfirm} */}
+      {newconfirm}
       {dailyConfirmed}
       {dailyDeath}
       <MapUS source={props.source} />
@@ -115,7 +124,7 @@ const AtAGlance = (props) => {
 
   return <div>
     <Summary source={props.source} />
-    {/* {newconfirm} */}
+    {newconfirm}
     {dailyConfirmed}
     {dailyDeath}
   </div >;

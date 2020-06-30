@@ -174,6 +174,7 @@ AdvancedGraph.propTypes = {
         trend: PropTypes.string,
         stipple: PropTypes.bool,
         rightAxis: PropTypes.bool,
+        lastDayIncomplete: PropTypes.bool,
       })).isRequired,
   envelopes:
     PropTypes.arrayOf(
