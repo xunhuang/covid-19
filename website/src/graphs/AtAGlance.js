@@ -72,7 +72,7 @@ const AtAGlance = (props) => {
   let confirmed_series = DataSeries.fromOldDataSourceDataPoints("Confirmed", USData, "confirmed");
 
   let newconfirm =
-    <CovidAdvancedGraph
+    <AdvancedGraph
       serieses={
         [
           {
@@ -80,25 +80,21 @@ const AtAGlance = (props) => {
             color: 'orange',
             trend: 'orange',
             // initial: 'off',
-            lastDayIncomplete: true,
+            covidspecial: true,
+
           },
           {
-            series: confirmed_series.change().nDayAverage(7),
-            color: 'teal',
-            // trend: 'teal',
-            // initial: 'off',
-            rightAxis: true,
-            lastDayIncomplete: true,
-          },
-          {
-            series: confirmed_series.change(),
+            series: confirmed_series.change().setLabel("New"),
             color: 'teal',
             rightAxis: true,
-            stipple: true,
+            covidspecial: true,
+            showMovingAverage: true,
           },
         ]
       }
     />;
+
+  newconfirm = null;
 
   if (props.source instanceof Country) {
     return <div>

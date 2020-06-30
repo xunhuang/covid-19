@@ -9,7 +9,6 @@ import { myShortNumber } from '../../Util';
 import { DateRangeSlider } from "../../DateRangeSlider"
 
 import { DataSeries } from '../../models/DataSeries';
-import { Envelope } from '../../models/Envelope';
 
 const moment = require('moment');
 
@@ -76,28 +75,13 @@ export const AdvancedGraph = (props) => {
   // serieses. But for our code, we're going to merge them and be confused a
   // lot.
 
-  const allSerieses =
-    [...expandedSerieses.values()]
-      .concat(
-        (props.envelopes || [])
-          .flatMap(e =>
-            e.envelope.serieses().map(s => ({
-              series: s,
-              color: e.stroke,
-              ...e,
-            }))));
+  const allSerieses = [...expandedSerieses.values()];
 
   let { data, timestampFormatter } = (props.alignT0)
     ? DataSeries.alignT0([...allSerieses.values()].map(({ series }) => series))
     : DataSeries.flatten([...allSerieses.values()].map(({ series }) => series));
 
-  const seriesesAndEnvelopes =
-    [...expandedSerieses.entries()]
-      .concat(
-        (props.envelopes || [])
-          // Legend just wants one color, so use the stroke as the color
-          .map(e => ({ color: e.stroke, ...e }))
-          .map(e => [e.envelope.label(), e]))
+  const seriesesAndEnvelopes = [...expandedSerieses.entries()];
   const allLabels = seriesesAndEnvelopes.map(([label,]) => label);
   const [known, setKnown] = React.useState(allLabels);
   const [selected, setSelected] =
@@ -176,40 +160,51 @@ AdvancedGraph.propTypes = {
         rightAxis: PropTypes.bool,
         lastDayIncomplete: PropTypes.bool,
       })).isRequired,
-  envelopes:
-    PropTypes.arrayOf(
-      PropTypes.exact({
-        envelope: PropTypes.instanceOf(Envelope).isRequired,
-        fill: PropTypes.string.isRequired,
-        stroke: PropTypes.string.isRequired,
-        initial: PropTypes.oneOf([undefined, 'off', 'on']),
-      })),
 };
 
 function expandSeriesesToMap(serieses) {
-  const expanded = serieses.flatMap(series => {
-    if (series.trend) {
-      const trend = series.series.trend();
-      const color = series.trend;
+  const expanded = serieses.flatMap(s => {
+    const result = [];
+    if (s.covidspecial) {
 
-      if (trend) {
-        return [
-          series,
-          {
-            ...series,
-            series: trend,
-            color,
-            derived: true,
-            stipple: true,
-          },
-        ];
+      let s_for_display;
+      if (s.showMovingAverage) {
+        s_for_display = s.series.nDayAverage(7);
       } else {
-        return [series];
+        s_for_display = s.series;
       }
+
+      let main = {
+        ...s,
+        series: s_for_display.dropLastPoint(),
+        stipple: false,
+      };
+      let last = {
+        ...s,
+        series: s_for_display.last2PointSeries().suffixLabel("incomplete"),
+        stipple: true,
+        derived: true,
+      }
+      result.push(main);
+      result.push(last);
+
+      if (s.showMovingAverage) {
+        let original = {
+          ...s,
+          series: s.series,
+          derived: true,
+          stipple: true,
+        }
+        result.push(original);
+      }
+
     } else {
-      return [series];
+      result.push(s);
     }
+    return result;
   });
+
+  console.log(expanded);
 
   return new Map(expanded.map((seriesInfo) =>
     [seriesInfo.series.label(), seriesInfo]));
@@ -272,32 +267,30 @@ const Legend = (props) => {
       value={props.selected}
       onChange={(event, desired) => props.onChange(desired)}
       className={classes.serieses}>
-      {props.spec.map(([label, { color, stipple }]) =>
-        <ToggleButton
-          key={label}
-          value={label}
-          classes={{ root: classes.series, selected: 'selected' }}>
-          <span
-            className={classes.icon}
-            style={
-              props.selected.includes(label) ? { color } : {}
-            }>
-            {stipple ? '···' : '—'}
-          </span>
-          {label}
-        </ToggleButton>
-      )}
+      {props.spec
+        .filter(([label, { derived }]) => !derived)
+        .map(([label, { color, stipple }]) =>
+          <ToggleButton
+            key={label}
+            value={label}
+            classes={{ root: classes.series, selected: 'selected' }}>
+            <span
+              className={classes.icon}
+              style={
+                props.selected.includes(label) ? { color } : {}
+              }>
+              {stipple ? '···' : '—'}
+            </span>
+            {label}
+          </ToggleButton>
+        )}
     </ToggleButtonGroup>
   );
 };
 
 const Chart = (props) => {
   const ordered = (props.specs || []).sort((a, b) => {
-    if (a.envelope && !b.envelope) {
-      return -1;
-    } else if (!a.envelope && b.envelope) {
-      return 1;
-    } else if (a.derived && !b.derived) {
+    if (a.derived && !b.derived) {
       return -1;
     } else if (!a.derived && b.derived) {
       return 1;
@@ -368,33 +361,9 @@ const Chart = (props) => {
 };
 
 function specToElements(spec) {
-  if (spec.envelope) {
-    const envelope = spec.envelope;
-    return [
-      <Area
-        key={envelope.high().label()}
-        type="monotone"
-        dataKey={envelope.high().label()}
-        stroke={spec.stroke}
-        fill={spec.fill}
-      />,
-      <Area
-        key={envelope.low().label()}
-        type="monotone"
-        dataKey={spec.envelope.low().label()}
-        stroke={spec.stroke}
-        fill="#fff"
-        fillOpacity={1}
-      />,
-    ].concat(
-      envelope.extras().map(s => lineForSpec({
-        label: s.label(),
-        color: envelope.stroke,
-      })));
-  } else {
-    return [lineForSpec(spec)];
-  }
+  return [lineForSpec(spec)];
 };
+
 function lineForSpec(spec) {
   return (
     <Line
@@ -405,7 +374,7 @@ function lineForSpec(spec) {
       isAnimationActive={false}
       fill={spec.color}
       stroke={spec.color}
-      strokeDasharray={spec.stipple ? '2 2' : undefined}
+      strokeDasharray={spec.stipple ? '1 3' : undefined}
       dot={false}
       strokeWidth={2}
       yAxisId={spec.rightAxis ? 1 : 0}
