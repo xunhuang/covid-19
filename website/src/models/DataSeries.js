@@ -7,7 +7,7 @@ const periods = {
   daily: {
     doublingLabel: 'Days to Double',
     smoothLabel: 'day',
-    formatter: (moment) => moment.format('MM/DD'),
+    formatter: (moment) => moment.format('M/D'),
     intervalS: 24 * 60 * 60,
     converter: (data) =>
       data

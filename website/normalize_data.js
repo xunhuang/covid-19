@@ -298,6 +298,18 @@ function processJHUDataPoint(c, date) {
   //   county.Confirmed[datekey] = 0;
   //   county.Death[datekey] = 0;
   // }
+
+  if (state_fips === "39" && datekey === "06/30/2020") {
+    // console.log("OHIO");
+    county.Confirmed[datekey] = 0;
+    county.Death[datekey] = 0;
+  }
+
+  if (state_fips === "47" && datekey === "06/30/2020") {
+    // console.log("TENNESES");
+    county.Confirmed[datekey] = 0;
+    county.Death[datekey] = 0;
+  }
 }
 
 function processJHU(dataset, date) {
