@@ -105,7 +105,7 @@ const AtAGlance = (props) => {
   if (props.source instanceof State) {
     return <div>
       <Summary source={props.source} />
-      {newconfirm}
+      {/* {newconfirm} */}
       {dailyConfirmed}
       {dailyDeath}
       <MapUS source={props.source} />
