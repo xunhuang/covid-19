@@ -14,6 +14,7 @@ import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
 import { withRouter } from 'react-router-dom'
 import { AdvancedGraph } from '../components/graphs/AdvancedGraph'
 import { DataSeries } from '../models/DataSeries';
+import moment from 'moment';
 
 const useStyles = makeStyles(theme => ({
   customtooltip: {
@@ -124,6 +125,17 @@ const PostiveRate7Days = (props) => {
   let testsDialy = totalTestResults_series.change().nDayAverage(7);
   let rate = positveDaily.divide(testsDialy).setLabel("Postive Rate 7-days");
 
+
+  const vRefLines = [
+    {
+      date: moment("05/25/2020", "MM/DD/YYYY").unix(),
+      label: "Memorial",
+    }, {
+      date: moment("07/04/2020", "MM/DD/YYYY").unix(),
+      label: "July 4th",
+    }
+  ]
+
   return <AdvancedGraph
     serieses={
       [
@@ -145,6 +157,7 @@ const PostiveRate7Days = (props) => {
         },
       ]
     }
+    vRefLines={vRefLines}
   />;
 }
 

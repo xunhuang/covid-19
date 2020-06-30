@@ -62,7 +62,6 @@ const MainApp = withRouter((props) => {
   }
 
   if (props.location.pathname === "/") {
-
     if (myCounty) {
       return <Redirect to={reverse(routes.county, {
         state: myCounty.state().twoLetterName,

@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import ToggleButton from '@material-ui/lab/ToggleButton';
 import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
-import { Area, CartesianGrid, ComposedChart, Line, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
+import { LineChart, ReferenceLine, Label, Area, CartesianGrid, ComposedChart, Line, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
 import { fade, makeStyles } from '@material-ui/core/styles';
 import { scaleSymlog } from 'd3-scale';
 import { myShortNumber } from '../../Util';
@@ -158,6 +158,7 @@ export const AdvancedGraph = (props) => {
             .filter(([label,]) => selected.includes(label))
             .map(([label, s]) => ({ label, ...s }))
         }
+        vRefLines={props.vRefLines}
       />
     </div>);
 };
@@ -314,9 +315,25 @@ const Chart = (props) => {
     }
   }
 
+  function getvRefLines(lines) {
+    let result = (lines || []).map((l, idx) => {
+      return <ReferenceLine key={`vrefline${idx}`}
+        x={l.date}
+        stroke="#e3e3e3"
+        strokeWidth={3}
+      >
+        <Label value={l.label} position={"insideTop"} fill="#b3b3b3" />
+      </ReferenceLine>
+    }
+    );
+    return result;
+  }
+
+  let vRefLines = getvRefLines(props.vRefLines);
+
   return (
     <ResponsiveContainer height={300}>
-      <ComposedChart data={props.data} margin={{ left: -4, right: 8 }}>
+      <LineChart data={props.data} margin={{ left: -4, right: 8 }}>
         <Tooltip
           formatter={valueFormatter}
           labelFormatter={props.timestampFormatter}
@@ -340,11 +357,11 @@ const Chart = (props) => {
             orientation="right"
           />
         }
-
         <CartesianGrid stroke="#d5d5d5" strokeDasharray="5 5" />
 
         {ordered.flatMap(spec => specToElements(spec))}
-      </ComposedChart>
+        {vRefLines}
+      </LineChart>
     </ResponsiveContainer>
   );
 };
