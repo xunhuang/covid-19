@@ -183,7 +183,7 @@ function expandSeriesesToMap(serieses) {
       };
       let last = {
         ...s,
-        series: s_for_display.last2PointSeries().suffixLabel("incomplete"),
+        series: s_for_display.last2PointSeries().suffixLabel("*"),
         stipple: true,
         derived: true,
       }
@@ -311,6 +311,7 @@ const Chart = (props) => {
 
   function getvRefLines(lines) {
     let result = (lines || []).map((l, idx) => {
+      console.log(l);
       return <ReferenceLine key={`vrefline${idx}`}
         x={l.date}
         stroke="#e3e3e3"
@@ -340,13 +341,14 @@ const Chart = (props) => {
           yAxisId={0}
           tick={{ fill: YAxis0Color }}
           scale={props.scale === 'log' ? logScale : props.scale}
+          width={50}
           tickFormatter={(t) => myShortNumber(t)}
         />
         {YAxis1Color &&
           <YAxis
             yAxisId={1}
             tickFormatter={(t) => myShortNumber(t)}
-            // width={10}
+            width={35}
             tick={{ fill: YAxis1Color }}
             orientation="right"
           />
