@@ -56,10 +56,10 @@ export const AdvancedGraph = (props) => {
     cookieId: "AdvanceGraphPreference1",
     isCookieStale: cookieStaleWhen
   });
-  const handleLogScaleToggle = (event, newScale) => {
+  const handleLogScaleToggle = (newScale) => {
     setStateSticky({
       ...state,
-      verticalScale: state.verticalScale === axisScales.log ? axisScales.linear : axisScales.log
+      verticalScale: newScale,
     });
   };
 
@@ -75,16 +75,16 @@ export const AdvancedGraph = (props) => {
   }
 
   const scales = new Map([
-    ['linear', {
+    ['Linear', {
       label: 'Linear',
-      scale: 'linear',
+      scale: 'Linear',
     }],
-    ['log', {
+    ['Log', {
       label: 'Log',
-      scale: 'log',
+      scale: 'Log',
     }],
   ]);
-  const [scale, setScale] = React.useState(scales.keys().next().value);
+  const scale = state.verticalScale;
 
   // Expands series that are supposed to have trend lines into an entry for the
   // original series and one for the trend line.
@@ -135,7 +135,7 @@ export const AdvancedGraph = (props) => {
         <Display
           displays={scales}
           selected={scale}
-          onChange={setScale}
+          onChange={handleLogScaleToggle}
         />
         <div className={classes.slider} >
           <div>
@@ -331,7 +331,6 @@ const Chart = (props) => {
 
   function getvRefLines(lines) {
     let result = (lines || []).map((l, idx) => {
-      console.log(l);
       return <ReferenceLine key={`vrefline${idx}`}
         x={l.date}
         stroke="#e3e3e3"
@@ -360,7 +359,7 @@ const Chart = (props) => {
         <YAxis
           yAxisId={0}
           tick={{ fill: YAxis0Color }}
-          scale={props.scale === 'log' ? logScale : props.scale}
+          scale={props.scale === 'Log' ? logScale : props.scale}
           width={50}
           tickFormatter={(t) => myShortNumber(t)}
         />
