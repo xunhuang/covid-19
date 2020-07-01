@@ -7,8 +7,10 @@ import { fade, makeStyles } from '@material-ui/core/styles';
 import { scaleSymlog } from 'd3-scale';
 import { myShortNumber } from '../../Util';
 import { DateRangeSlider } from "../../DateRangeSlider"
+import { useStickyState } from '../../Util';
 
 import { DataSeries } from '../../models/DataSeries';
+import axisScales from '../../graphs/GraphAxisScales'
 
 const moment = require('moment');
 
@@ -40,29 +42,49 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
+const cookieStaleWhen = (cookie) => !cookie.verticalScale || !cookie.showPastDays;
+
 /** A graph that allows the user to click series on and off. */
 export const AdvancedGraph = (props) => {
   const classes = useStyles();
 
-  const [showdays, setShowdays] = React.useState(100);
+  const [state, setStateSticky] = useStickyState({
+    defaultValue: {
+      verticalScale: axisScales.linear,
+      showPastDays: 30,
+    },
+    cookieId: "AdvanceGraphPreference1",
+    isCookieStale: cookieStaleWhen
+  });
+  const handleLogScaleToggle = (newScale) => {
+    setStateSticky({
+      ...state,
+      verticalScale: newScale,
+    });
+  };
+
+  const handleSliderValueChange = (value) => {
+    let newstate = { ...state, showPastDays: value }
+    setStateSticky(newstate)
+  }
 
   function filterData(data) {
-    const cutoff = moment().subtract(showdays, 'days').unix();
+    const cutoff = moment().subtract(state.showPastDays, 'days').unix();
     const future = moment().add(14, 'days').unix();
     return data.filter((p) => p.timestamp >= cutoff && p.timestamp <= future);
   }
 
   const scales = new Map([
-    ['linear', {
+    ['Linear', {
       label: 'Linear',
-      scale: 'linear',
+      scale: 'Linear',
     }],
-    ['log', {
+    ['Log', {
       label: 'Log',
-      scale: 'log',
+      scale: 'Log',
     }],
   ]);
-  const [scale, setScale] = React.useState(scales.keys().next().value);
+  const scale = state.verticalScale;
 
   // Expands series that are supposed to have trend lines into an entry for the
   // original series and one for the trend line.
@@ -113,7 +135,7 @@ export const AdvancedGraph = (props) => {
         <Display
           displays={scales}
           selected={scale}
-          onChange={setScale}
+          onChange={handleLogScaleToggle}
         />
         <div className={classes.slider} >
           <div>
@@ -121,10 +143,8 @@ export const AdvancedGraph = (props) => {
           <DateRangeSlider
             currentDate={moment()}
             startDate={moment("02/01/2020", "MM/DD/YYYY")}
-            valueChanged={(value) => {
-              setShowdays(value);
-            }}
-            defaultValue={showdays}
+            valueChanged={handleSliderValueChange}
+            defaultValue={state.showPastDays}
           />
         </div>
         <div className={classes.expand} />
@@ -159,6 +179,8 @@ AdvancedGraph.propTypes = {
         stipple: PropTypes.bool,
         rightAxis: PropTypes.bool,
         lastDayIncomplete: PropTypes.bool,
+        covidspecial: PropTypes.bool,
+        showMovingAverage: PropTypes.bool,
       })).isRequired,
 };
 
@@ -181,7 +203,7 @@ function expandSeriesesToMap(serieses) {
       };
       let last = {
         ...s,
-        series: s_for_display.last2PointSeries().suffixLabel("incomplete"),
+        series: s_for_display.last2PointSeries().suffixLabel("*"),
         stipple: true,
         derived: true,
       }
@@ -192,7 +214,7 @@ function expandSeriesesToMap(serieses) {
         let original = {
           ...s,
           series: s.series,
-          derived: true,
+          // derived: true,
           stipple: true,
         }
         result.push(original);
@@ -203,8 +225,6 @@ function expandSeriesesToMap(serieses) {
     }
     return result;
   });
-
-  console.log(expanded);
 
   return new Map(expanded.map((seriesInfo) =>
     [seriesInfo.series.label(), seriesInfo]));
@@ -339,14 +359,15 @@ const Chart = (props) => {
         <YAxis
           yAxisId={0}
           tick={{ fill: YAxis0Color }}
-          scale={props.scale === 'log' ? logScale : props.scale}
+          scale={props.scale === 'Log' ? logScale : props.scale}
+          width={50}
           tickFormatter={(t) => myShortNumber(t)}
         />
         {YAxis1Color &&
           <YAxis
             yAxisId={1}
             tickFormatter={(t) => myShortNumber(t)}
-            // width={10}
+            width={35}
             tick={{ fill: YAxis1Color }}
             orientation="right"
           />
@@ -374,7 +395,7 @@ function lineForSpec(spec) {
       isAnimationActive={false}
       fill={spec.color}
       stroke={spec.color}
-      strokeDasharray={spec.stipple ? '1 3' : undefined}
+      strokeDasharray={spec.stipple ? '1 2' : undefined}
       dot={false}
       strokeWidth={2}
       yAxisId={spec.rightAxis ? 1 : 0}

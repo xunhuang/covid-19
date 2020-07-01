@@ -10,6 +10,7 @@ import { AdvancedGraph } from '../components/graphs/AdvancedGraph'
 import { CovidAdvancedGraph } from '../components/graphs/CovidAdvancedGraph'
 import { DataSeries } from '../models/DataSeries';
 
+
 const AtAGlance = (props) => {
   const [USData, setUSdata] = React.useState(null);
   React.useEffect(() => {
@@ -70,6 +71,33 @@ const AtAGlance = (props) => {
   />
 
   let confirmed_series = DataSeries.fromOldDataSourceDataPoints("Confirmed", USData, "confirmed");
+  let doubling = Math.round(confirmed_series.daysTo2X());
+  let dailyGrowth = Math.round(confirmed_series.dailyGrowthRate() * 100);
+
+  const vKeyRefLines = [
+    {
+      date: moment("05/25/2020", "MM/DD/YYYY").unix(),
+      label: "Memorial",
+    }, {
+      date: moment("07/04/2020", "MM/DD/YYYY").unix(),
+      label: "July 4th",
+    }
+  ]
+
+  if (stayhome) {
+    if (stayhome.StartDate) {
+      vKeyRefLines.push({
+        date: moment(moment(stayhome.StartDate).format("MM/DD/YYYY"), "MM/DD/YYYY").unix(),
+        label: "Stay-Home-Order",
+      });
+    }
+    if (stayhome.EndDate) {
+      vKeyRefLines.push({
+        date: moment(moment(stayhome.EndDate).format("MM/DD/YYYY"), "MM/DD/YYYY").unix(),
+        label: "Re-Opens",
+      });
+    }
+  }
 
   let newconfirm =
     <AdvancedGraph
@@ -77,30 +105,33 @@ const AtAGlance = (props) => {
         [
           {
             series: confirmed_series,
-            color: 'orange',
-            trend: 'orange',
-            // initial: 'off',
+            color: "#ff7300",
             covidspecial: true,
-
           },
           {
             series: confirmed_series.change().setLabel("New"),
-            color: 'teal',
+            color: "#387908",
             rightAxis: true,
             covidspecial: true,
             showMovingAverage: true,
           },
+          {
+            series: confirmed_series.trend().setLabel(`${doubling} Days to 2X (+${dailyGrowth}% Daily)`),
+            color: "#ff7300",
+            stipple: true,
+            // initial: 'off',
+          },
         ]
       }
+      vRefLines={vKeyRefLines}
     />;
 
-  newconfirm = null;
 
   if (props.source instanceof Country) {
     return <div>
       <Summary source={props.source} />
       {newconfirm}
-      {dailyConfirmed}
+      {/* {dailyConfirmed} */}
       {dailyDeath}
       <MapUS source={props.source} />
       <GraphAllBedProjectionUS />
@@ -111,7 +142,7 @@ const AtAGlance = (props) => {
     return <div>
       <Summary source={props.source} />
       {newconfirm}
-      {dailyConfirmed}
+      {/* {dailyConfirmed} */}
       {dailyDeath}
       <MapUS source={props.source} />
       <GraphAllBedProjectionState state={props.source} />
@@ -121,7 +152,7 @@ const AtAGlance = (props) => {
   return <div>
     <Summary source={props.source} />
     {newconfirm}
-    {dailyConfirmed}
+    {/* {dailyConfirmed} */}
     {dailyDeath}
   </div >;
 }

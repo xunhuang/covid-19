@@ -74,7 +74,6 @@ class UnhookedGraphSection extends React.Component {
       content: AtAGlance,
     });
 
-    /*
     const maybeDaily = maybeDailyTabFor(source);
     if (maybeDaily) {
       tabs.set(maybeDaily.id, {
@@ -82,7 +81,6 @@ class UnhookedGraphSection extends React.Component {
         content: maybeDaily.graph,
       });
     }
-    */
 
     // [maybeDeathProjectionTabFor, maybeHospitalizationProjectionTabFor]
     [maybeHospitalizationProjectionTabFor]
