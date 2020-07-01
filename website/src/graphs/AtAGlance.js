@@ -126,13 +126,12 @@ const AtAGlance = (props) => {
       vRefLines={vKeyRefLines}
     />;
 
-  // newconfirm = null;
 
   if (props.source instanceof Country) {
     return <div>
       <Summary source={props.source} />
       {newconfirm}
-      {dailyConfirmed}
+      {/* {dailyConfirmed} */}
       {dailyDeath}
       <MapUS source={props.source} />
       <GraphAllBedProjectionUS />
@@ -143,7 +142,7 @@ const AtAGlance = (props) => {
     return <div>
       <Summary source={props.source} />
       {newconfirm}
-      {dailyConfirmed}
+      {/* {dailyConfirmed} */}
       {dailyDeath}
       <MapUS source={props.source} />
       <GraphAllBedProjectionState state={props.source} />
@@ -153,7 +152,7 @@ const AtAGlance = (props) => {
   return <div>
     <Summary source={props.source} />
     {newconfirm}
-    {dailyConfirmed}
+    {/* {dailyConfirmed} */}
     {dailyDeath}
   </div >;
 }
