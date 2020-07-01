@@ -17,7 +17,7 @@ const periods = {
   },
 };
 
-const REGRESSION_WINDOW_SIZE = 7;
+const REGRESSION_WINDOW_SIZE = 6;
 const SMOOTH_WINDOW_SIZE = 3;
 
 /**
@@ -231,6 +231,21 @@ export class DataSeries {
       generator,
       [this.lastPoint_[0], lastChange],
       this.period_);
+  }
+
+  daysTo2X() {
+    let points = this.doublingInterval().points();
+    for (let i = points.length - 1; i >= 0; i--) {
+      let v = points[i][1];
+      if (!isNaN(v)) {
+        return v;
+      }
+    }
+    return 9999;
+  }
+
+  dailyGrowthRate() {
+    return Math.exp(Math.log(2) * (1 / this.daysTo2X())) - 1;
   }
 
   doublingInterval() {

@@ -159,6 +159,8 @@ AdvancedGraph.propTypes = {
         stipple: PropTypes.bool,
         rightAxis: PropTypes.bool,
         lastDayIncomplete: PropTypes.bool,
+        covidspecial: PropTypes.bool,
+        showMovingAverage: PropTypes.bool,
       })).isRequired,
 };
 
@@ -192,7 +194,7 @@ function expandSeriesesToMap(serieses) {
         let original = {
           ...s,
           series: s.series,
-          derived: true,
+          // derived: true,
           stipple: true,
         }
         result.push(original);
@@ -203,8 +205,6 @@ function expandSeriesesToMap(serieses) {
     }
     return result;
   });
-
-  console.log(expanded);
 
   return new Map(expanded.map((seriesInfo) =>
     [seriesInfo.series.label(), seriesInfo]));
@@ -374,7 +374,7 @@ function lineForSpec(spec) {
       isAnimationActive={false}
       fill={spec.color}
       stroke={spec.color}
-      strokeDasharray={spec.stipple ? '1 3' : undefined}
+      strokeDasharray={spec.stipple ? '1 2' : undefined}
       dot={false}
       strokeWidth={2}
       yAxisId={spec.rightAxis ? 1 : 0}
