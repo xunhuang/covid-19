@@ -7,8 +7,10 @@ import { fade, makeStyles } from '@material-ui/core/styles';
 import { scaleSymlog } from 'd3-scale';
 import { myShortNumber } from '../../Util';
 import { DateRangeSlider } from "../../DateRangeSlider"
+import { useStickyState } from '../../Util';
 
 import { DataSeries } from '../../models/DataSeries';
+import axisScales from '../../graphs/GraphAxisScales'
 
 const moment = require('moment');
 
@@ -40,14 +42,34 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
+const cookieStaleWhen = (cookie) => !cookie.verticalScale || !cookie.showPastDays;
+
 /** A graph that allows the user to click series on and off. */
 export const AdvancedGraph = (props) => {
   const classes = useStyles();
 
-  const [showdays, setShowdays] = React.useState(100);
+  const [state, setStateSticky] = useStickyState({
+    defaultValue: {
+      verticalScale: axisScales.linear,
+      showPastDays: 30,
+    },
+    cookieId: "AdvanceGraphPreference1",
+    isCookieStale: cookieStaleWhen
+  });
+  const handleLogScaleToggle = (event, newScale) => {
+    setStateSticky({
+      ...state,
+      verticalScale: state.verticalScale === axisScales.log ? axisScales.linear : axisScales.log
+    });
+  };
+
+  const handleSliderValueChange = (value) => {
+    let newstate = { ...state, showPastDays: value }
+    setStateSticky(newstate)
+  }
 
   function filterData(data) {
-    const cutoff = moment().subtract(showdays, 'days').unix();
+    const cutoff = moment().subtract(state.showPastDays, 'days').unix();
     const future = moment().add(14, 'days').unix();
     return data.filter((p) => p.timestamp >= cutoff && p.timestamp <= future);
   }
@@ -121,10 +143,8 @@ export const AdvancedGraph = (props) => {
           <DateRangeSlider
             currentDate={moment()}
             startDate={moment("02/01/2020", "MM/DD/YYYY")}
-            valueChanged={(value) => {
-              setShowdays(value);
-            }}
-            defaultValue={showdays}
+            valueChanged={handleSliderValueChange}
+            defaultValue={state.showPastDays}
           />
         </div>
         <div className={classes.expand} />
