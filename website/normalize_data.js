@@ -1160,10 +1160,36 @@ async function addMITProjection() {
   }
 }
 
+async function addCountyHospitalization() {
+  const list = [
+    "./countydata/CA-06/hospitals_by_county.final.json",
+  ];
+
+  for (let f of list) {
+    let rawdata = fs.readFileSync(f);
+    let data = JSON.parse(rawdata);
+    for (let point of data) {
+      // console.log(point);
+      let county = getCountyNode(point.StateFIPS, point.CountyFIPS);
+      if (county) {
+        let hospitalization = county.hospitalization || [];
+        hospitalization.push({
+          date: point.date,
+          hospitalized_covid_patients: point.hospitalized_covid_patients,
+          icu_available_beds: point.icu_available_beds,
+          icu_covid_patients: point.icu_covid_patients,
+        });
+        county.hospitalization = hospitalization;
+      }
+    }
+  }
+}
+
 async function main() {
   process_USAFACTS(); // this sites tracks county level data before JHU
   await processAllJHUGithub();
   processAllJHU();
+  await addCountyHospitalization();
   fillholes();
   summarize_counties();
   summarize_states();

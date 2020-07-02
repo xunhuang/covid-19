@@ -119,7 +119,7 @@ const AtAGlance = (props) => {
             series: confirmed_series.trend().setLabel(`${doubling} Days to 2X (+${dailyGrowth}% Daily)`),
             color: "#ff7300",
             stipple: true,
-            // initial: 'off',
+            initial: 'off',
           },
         ]
       }

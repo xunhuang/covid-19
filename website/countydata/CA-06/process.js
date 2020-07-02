@@ -36,12 +36,14 @@ function processLine(line) {
     if (!out.hospitalized_covid_patients) {
         out.hospitalized_covid_patients = out.hospitalized_covid_confirmed_patients + out.hospitalized_suspected_covid_patients;
     }
+
     out.all_hospital_beds = parseNumber(line.all_hospital_beds);
+    out.icu_available_beds = parseNumber(line.icu_available_beds);
+
     out.icu_covid_confirmed_patients = parseNumber(line.icu_covid_confirmed_patients);
     out.icu_suspected_covid_patients = parseNumber(line.icu_suspected_covid_patients);
 
     out.icu_covid_patients = out.icu_covid_confirmed_patients + out.icu_suspected_covid_patients;
-    out.icu_available_beds = parseNumber(line.icu_available_beds);
 
     return out;
 }
