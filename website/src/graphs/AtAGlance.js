@@ -200,9 +200,9 @@ const AtAGlance = (props) => {
 
   if (props.source instanceof County) {
     return <div>
+      <Summary source={props.source} />
       {newconfirm}
       {dailyDeath}
-      <Summary source={props.source} />
       {props.source.hospitalization() &&
         <Hospitalization
           hospitalization={props.source.hospitalization()}
