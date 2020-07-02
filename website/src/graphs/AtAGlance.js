@@ -75,6 +75,38 @@ const DailyConfirmedNew = (props) => {
   />;
 };
 
+const DailyDeathNew = (props) => {
+  let confirmed_series = DataSeries.fromOldDataSourceDataPoints("Death", props.USData, "death");
+  let doubling = Math.round(confirmed_series.daysTo2X());
+  let dailyGrowth = Math.round(confirmed_series.dailyGrowthRate() * 100);
+  const vKeyRefLines = getRefLines(props.source);
+  return <AdvancedGraph
+    serieses={
+      [
+        {
+          series: confirmed_series,
+          color: "black",
+          covidspecial: true,
+        },
+        {
+          series: confirmed_series.change().setLabel("New"),
+          color: "red",
+          rightAxis: true,
+          covidspecial: true,
+          showMovingAverage: true,
+        },
+        {
+          series: confirmed_series.trend().setLabel(`${doubling} Days to 2X (+${dailyGrowth}% Daily)`),
+          color: "black",
+          stipple: true,
+          initial: 'off',
+        },
+      ]
+    }
+    vRefLines={vKeyRefLines}
+  />;
+};
+
 
 const Hospitalization = (props) => {
 
@@ -122,6 +154,7 @@ const AtAGlance = (props) => {
     return <div> Loading</div>;
   }
 
+  /*
   const vRefLines = [
     {
       date: "05/25/2020",
@@ -170,8 +203,13 @@ const AtAGlance = (props) => {
     colorNew="red"
     vRefLines={vRefLines}
   />
+  */
 
   const newconfirm = <DailyConfirmedNew
+    USData={USData}
+    source={props.source}
+  />;
+  const newdeath = <DailyDeathNew
     USData={USData}
     source={props.source}
   />;
@@ -181,7 +219,8 @@ const AtAGlance = (props) => {
       <Summary source={props.source} />
       {newconfirm}
       {/* {dailyConfirmed} */}
-      {dailyDeath}
+      {/* {dailyDeath} */}
+      {newdeath}
       <MapUS source={props.source} />
       <GraphAllBedProjectionUS />
     </div >;
@@ -192,7 +231,8 @@ const AtAGlance = (props) => {
       <Summary source={props.source} />
       {newconfirm}
       {/* {dailyConfirmed} */}
-      {dailyDeath}
+      {/* {dailyDeath} */}
+      {newdeath}
       <MapUS source={props.source} />
       <GraphAllBedProjectionState state={props.source} />
     </div >;
@@ -202,7 +242,8 @@ const AtAGlance = (props) => {
     return <div>
       <Summary source={props.source} />
       {newconfirm}
-      {dailyDeath}
+      {newdeath}
+      {/* // {dailyDeath} */}
       {props.source.hospitalization() &&
         <Hospitalization
           hospitalization={props.source.hospitalization()}
@@ -216,7 +257,8 @@ const AtAGlance = (props) => {
     <Summary source={props.source} />
     {newconfirm}
     {/* {dailyConfirmed} */}
-    {dailyDeath}
+    {/* {dailyDeath} */}
+    {newdeath}
   </div >;
 }
 
