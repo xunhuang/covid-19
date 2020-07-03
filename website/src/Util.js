@@ -155,6 +155,38 @@ function useStickyState({ defaultValue, cookieId, isCookieStale = (c) => false, 
 }
 
 
+export function getRefLines(source) {
+  const vKeyRefLines = [
+    {
+      date: moment("05/25/2020", "MM/DD/YYYY").unix(),
+      label: "Memorial",
+    }, {
+      date: moment("07/04/2020", "MM/DD/YYYY").unix(),
+      label: "July 4th",
+    }
+  ]
+
+  let stayhome;
+  if (source.stayHomeOrder) {
+    stayhome = source.stayHomeOrder();
+  }
+  if (stayhome) {
+    if (stayhome.StartDate) {
+      vKeyRefLines.push({
+        date: moment(moment(stayhome.StartDate).format("MM/DD/YYYY"), "MM/DD/YYYY").unix(),
+        label: "Stay-Home-Order",
+      });
+    }
+    if (stayhome.EndDate) {
+      vKeyRefLines.push({
+        date: moment(moment(stayhome.EndDate).format("MM/DD/YYYY"), "MM/DD/YYYY").unix(),
+        label: "Re-Opens",
+      });
+    }
+  }
+  return vKeyRefLines;
+}
+
 export {
   myShortNumber,
   myGoodShortNumber,

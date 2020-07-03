@@ -7,38 +7,8 @@ import { GraphAllBedProjectionState, GraphAllBedProjectionUS } from "./GraphHosp
 import moment from 'moment';
 import { AdvancedGraph } from '../components/graphs/AdvancedGraph'
 import { DataSeries } from '../models/DataSeries';
-
-function getRefLines(source) {
-  const vKeyRefLines = [
-    {
-      date: moment("05/25/2020", "MM/DD/YYYY").unix(),
-      label: "Memorial",
-    }, {
-      date: moment("07/04/2020", "MM/DD/YYYY").unix(),
-      label: "July 4th",
-    }
-  ]
-
-  let stayhome;
-  if (source.stayHomeOrder) {
-    stayhome = source.stayHomeOrder();
-  }
-  if (stayhome) {
-    if (stayhome.StartDate) {
-      vKeyRefLines.push({
-        date: moment(moment(stayhome.StartDate).format("MM/DD/YYYY"), "MM/DD/YYYY").unix(),
-        label: "Stay-Home-Order",
-      });
-    }
-    if (stayhome.EndDate) {
-      vKeyRefLines.push({
-        date: moment(moment(stayhome.EndDate).format("MM/DD/YYYY"), "MM/DD/YYYY").unix(),
-        label: "Re-Opens",
-      });
-    }
-  }
-  return vKeyRefLines;
-}
+import { getRefLines } from "../Util"
+import { GraphCountyHospitalization } from "./GraphCountyHospitalization"
 
 const DailyConfirmedNew = (props) => {
   let confirmed_series = DataSeries.fromOldDataSourceDataPoints("Confirmed", props.USData, "confirmed");
@@ -106,43 +76,6 @@ const DailyDeathNew = (props) => {
   />;
 };
 
-
-const Hospitalization = (props) => {
-
-  let data = props.hospitalization;
-  let hospitalized =
-    DataSeries.fromOldDataSourceDataPoints("Hospitalized", data, "hospitalized_covid_patients");
-  let icu =
-    DataSeries.fromOldDataSourceDataPoints("In ICU", data, "icu_covid_patients");
-  let icu_avail =
-    DataSeries.fromOldDataSourceDataPoints("Available ICU Beds", data, "icu_available_beds");
-  const vKeyRefLines = getRefLines(props.source);
-
-  return <AdvancedGraph
-    serieses={
-      [
-        {
-          series: hospitalized,
-          color: "blue",
-          // covidspecial: true,
-        },
-        {
-          series: icu,
-          color: "red",
-          // covidspecial: true,
-        },
-        {
-          series: icu_avail,
-          color: "#387908",
-          stipple: true,
-          // covidspecial: true,
-        },
-      ]
-    }
-    vRefLines={vKeyRefLines}
-  />;
-};
-
 const AtAGlance = (props) => {
   const [USData, setUSdata] = React.useState(null);
   React.useEffect(() => {
@@ -188,7 +121,7 @@ const AtAGlance = (props) => {
       {newconfirm}
       {newdeath}
       {props.source.hospitalization() &&
-        <Hospitalization
+        <GraphCountyHospitalization
           hospitalization={props.source.hospitalization()}
           source={props.source}
         />
