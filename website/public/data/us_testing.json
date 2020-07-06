@@ -1,30 +1,111 @@
 [
   {
+    "date": 20200705,
+    "states": 56,
+    "positive": 2881016,
+    "negative": 32631900,
+    "pending": 1885,
+    "hospitalizedCurrently": 38738,
+    "hospitalizedCumulative": 248745,
+    "inIcuCurrently": 5652,
+    "inIcuCumulative": 11010,
+    "onVentilatorCurrently": 2080,
+    "onVentilatorCumulative": 1064,
+    "recovered": 906763,
+    "dateChecked": "2020-07-05T00:00:00Z",
+    "death": 122673,
+    "hospitalized": 248745,
+    "lastModified": "2020-07-05T00:00:00Z",
+    "total": 35514801,
+    "totalTestResults": 35512916,
+    "posNeg": 35512916,
+    "deathIncrease": 209,
+    "hospitalizedIncrease": 590,
+    "negativeIncrease": 611938,
+    "positiveIncrease": 42551,
+    "totalTestResultsIncrease": 654489,
+    "hash": "f7e6b4e51d342422f4e82b45ff3a970b0b672801"
+  },
+  {
+    "date": 20200704,
+    "states": 56,
+    "positive": 2838465,
+    "negative": 32019962,
+    "pending": 2083,
+    "hospitalizedCurrently": 38136,
+    "hospitalizedCumulative": 248155,
+    "inIcuCurrently": 5628,
+    "inIcuCumulative": 10977,
+    "onVentilatorCurrently": 1982,
+    "onVentilatorCumulative": 1063,
+    "recovered": 894325,
+    "dateChecked": "2020-07-04T00:00:00Z",
+    "death": 122464,
+    "hospitalized": 248155,
+    "lastModified": "2020-07-04T00:00:00Z",
+    "total": 34860510,
+    "totalTestResults": 34858427,
+    "posNeg": 34858427,
+    "deathIncrease": 306,
+    "hospitalizedIncrease": 871,
+    "negativeIncrease": 592524,
+    "positiveIncrease": 52406,
+    "totalTestResultsIncrease": 644930,
+    "hash": "46fee24f8bdffa6811b613f4d31cc583f6436abe"
+  },
+  {
+    "date": 20200703,
+    "states": 56,
+    "positive": 2786059,
+    "negative": 31427438,
+    "pending": 2237,
+    "hospitalizedCurrently": 37750,
+    "hospitalizedCumulative": 247284,
+    "inIcuCurrently": 5589,
+    "inIcuCumulative": 10936,
+    "onVentilatorCurrently": 2049,
+    "onVentilatorCumulative": 1059,
+    "recovered": 883561,
+    "dateChecked": "2020-07-03T00:00:00Z",
+    "death": 122158,
+    "hospitalized": 247284,
+    "lastModified": "2020-07-03T00:00:00Z",
+    "total": 34215734,
+    "totalTestResults": 34213497,
+    "posNeg": 34213497,
+    "deathIncrease": 635,
+    "hospitalizedIncrease": 1562,
+    "negativeIncrease": 663492,
+    "positiveIncrease": 57562,
+    "totalTestResultsIncrease": 721054,
+    "hash": "1c411a99c1d22058187d2c2c5c2b26c93dda480a"
+  },
+  {
     "date": 20200702,
     "states": 56,
-    "positive": 2727628,
-    "negative": 30734553,
+    "positive": 2728497,
+    "negative": 30763946,
     "pending": 2208,
-    "hospitalizedCurrently": 37114,
+    "hospitalizedCurrently": 37473,
     "hospitalizedCumulative": 245722,
-    "inIcuCurrently": 5609,
+    "inIcuCurrently": 5624,
     "inIcuCumulative": 10816,
     "onVentilatorCurrently": 2105,
     "onVentilatorCumulative": 1041,
-    "recovered": 781970,
+    "recovered": 875127,
     "dateChecked": "2020-07-02T00:00:00Z",
-    "death": 121487,
+    "death": 121523,
     "hospitalized": 245722,
     "lastModified": "2020-07-02T00:00:00Z",
-    "total": 33464389,
-    "totalTestResults": 33462181,
-    "posNeg": 33462181,
-    "deathIncrease": 634,
+    "total": 33494651,
+    "totalTestResults": 33492443,
+    "posNeg": 33492443,
+    "deathIncrease": 670,
     "hospitalizedIncrease": 1876,
-    "negativeIncrease": 582007,
-    "positiveIncrease": 52815,
-    "totalTestResultsIncrease": 634822,
-    "hash": "b4ecc6c883b4b7f5eefc00cd90a06d68d98b1d2e"
+    "negativeIncrease": 611400,
+    "positiveIncrease": 53684,
+    "totalTestResultsIncrease": 665084,
+    "hash": "990f258b7628211060263287f2ae1594aa0b152d"
   },
   {
     "date": 20200701,
@@ -32,13 +113,13 @@
     "positive": 2674813,
     "negative": 30152546,
     "pending": 2604,
-    "hospitalizedCurrently": 35937,
+    "hospitalizedCurrently": 36360,
     "hospitalizedCumulative": 243846,
-    "inIcuCurrently": 5494,
+    "inIcuCurrently": 5509,
     "inIcuCumulative": 10752,
     "onVentilatorCurrently": 2098,
     "onVentilatorCumulative": 1027,
-    "recovered": 729994,
+    "recovered": 823151,
     "dateChecked": "2020-07-01T00:00:00Z",
     "death": 120853,
     "hospitalized": 243846,
@@ -48,37 +129,37 @@
     "posNeg": 32827359,
     "deathIncrease": 701,
     "hospitalizedIncrease": 1438,
-    "negativeIncrease": 568132,
+    "negativeIncrease": 580277,
     "positiveIncrease": 52982,
-    "totalTestResultsIncrease": 621114,
-    "hash": "f2966df0f86a9c1441db7ec10133690a51db09b6"
+    "totalTestResultsIncrease": 633259,
+    "hash": "72c65eddd91c44a91d30f3940ecbb03794f342e7"
   },
   {
     "date": 20200630,
     "states": 56,
     "positive": 2621831,
-    "negative": 29584414,
+    "negative": 29572269,
     "pending": 2432,
-    "hospitalizedCurrently": 34830,
+    "hospitalizedCurrently": 35231,
     "hospitalizedCumulative": 242408,
-    "inIcuCurrently": 5406,
+    "inIcuCurrently": 5421,
     "inIcuCumulative": 10669,
     "onVentilatorCurrently": 2044,
     "onVentilatorCumulative": 1008,
-    "recovered": 720631,
+    "recovered": 813788,
     "dateChecked": "2020-06-30T00:00:00Z",
     "death": 120152,
     "hospitalized": 242408,
     "lastModified": "2020-06-30T00:00:00Z",
-    "total": 32208677,
-    "totalTestResults": 32206245,
-    "posNeg": 32206245,
+    "total": 32196532,
+    "totalTestResults": 32194100,
+    "posNeg": 32194100,
     "deathIncrease": 596,
     "hospitalizedIncrease": 1582,
-    "negativeIncrease": 604480,
+    "negativeIncrease": 592335,
     "positiveIncrease": 44358,
-    "totalTestResultsIncrease": 648838,
-    "hash": "480e9c7356c3b9278e1276e93eba16989d51c51f"
+    "totalTestResultsIncrease": 636693,
+    "hash": "501168323f02aabeb0b9768a65d9dac0e9cb9040"
   },
   {
     "date": 20200629,
@@ -86,13 +167,13 @@
     "positive": 2577473,
     "negative": 28979934,
     "pending": 2194,
-    "hospitalizedCurrently": 33198,
+    "hospitalizedCurrently": 33567,
     "hospitalizedCumulative": 240826,
-    "inIcuCurrently": 5363,
+    "inIcuCurrently": 5378,
     "inIcuCumulative": 10542,
     "onVentilatorCurrently": 2011,
     "onVentilatorCumulative": 990,
-    "recovered": 705203,
+    "recovered": 798360,
     "dateChecked": "2020-06-29T00:00:00Z",
     "death": 119556,
     "hospitalized": 240826,
@@ -105,7 +186,7 @@
     "negativeIncrease": 532904,
     "positiveIncrease": 36490,
     "totalTestResultsIncrease": 569394,
-    "hash": "1e5c023acc5e3dc40dfb5c8dcb85625f801ccba3"
+    "hash": "9d4179bcdf048ddac05f6f5ccc8e7294b0c15b1c"
   },
   {
     "date": 20200628,
@@ -113,13 +194,13 @@
     "positive": 2540983,
     "negative": 28447030,
     "pending": 2198,
-    "hospitalizedCurrently": 32117,
+    "hospitalizedCurrently": 32475,
     "hospitalizedCumulative": 240156,
-    "inIcuCurrently": 5230,
+    "inIcuCurrently": 5245,
     "inIcuCumulative": 10473,
     "onVentilatorCurrently": 2077,
     "onVentilatorCumulative": 983,
-    "recovered": 685164,
+    "recovered": 778321,
     "dateChecked": "2020-06-28T00:00:00Z",
     "death": 119226,
     "hospitalized": 240156,
@@ -132,7 +213,7 @@
     "negativeIncrease": 544208,
     "positiveIncrease": 42161,
     "totalTestResultsIncrease": 586369,
-    "hash": "5a80c658c8584c128e199ee1f6a823f452739257"
+    "hash": "4bb38d32b29c0e37c2d915711a72579834cff523"
   },
   {
     "date": 20200627,
@@ -140,13 +221,13 @@
     "positive": 2498822,
     "negative": 27902822,
     "pending": 2186,
-    "hospitalizedCurrently": 32220,
+    "hospitalizedCurrently": 32476,
     "hospitalizedCumulative": 239576,
-    "inIcuCurrently": 5296,
+    "inIcuCurrently": 5311,
     "inIcuCumulative": 10415,
     "onVentilatorCurrently": 2159,
     "onVentilatorCumulative": 977,
-    "recovered": 679308,
+    "recovered": 772465,
     "dateChecked": "2020-06-27T00:00:00Z",
     "death": 118955,
     "hospitalized": 239576,
@@ -159,7 +240,7 @@
     "negativeIncrease": 547406,
     "positiveIncrease": 43471,
     "totalTestResultsIncrease": 590877,
-    "hash": "3558ecd03d1837271b410b73ea30e75e56c71abe"
+    "hash": "9f5e9d15d5285724f677e6c8cadb23b26337f574"
   },
   {
     "date": 20200626,
@@ -167,13 +248,13 @@
     "positive": 2455351,
     "negative": 27355416,
     "pending": 2201,
-    "hospitalizedCurrently": 31423,
+    "hospitalizedCurrently": 31724,
     "hospitalizedCumulative": 238519,
-    "inIcuCurrently": 5263,
+    "inIcuCurrently": 5279,
     "inIcuCumulative": 10334,
     "onVentilatorCurrently": 2075,
     "onVentilatorCumulative": 966,
-    "recovered": 670809,
+    "recovered": 763966,
     "dateChecked": "2020-06-26T00:00:00Z",
     "death": 118446,
     "hospitalized": 238519,
@@ -186,7 +267,7 @@
     "negativeIncrease": 558574,
     "positiveIncrease": 44373,
     "totalTestResultsIncrease": 602947,
-    "hash": "91c0cf312971935a3905787e570ad005b952b339"
+    "hash": "3ac65d0ba8cd930026cea4719de9606707d29267"
   },
   {
     "date": 20200625,
@@ -194,13 +275,13 @@
     "positive": 2410978,
     "negative": 26796842,
     "pending": 2133,
-    "hospitalizedCurrently": 31532,
+    "hospitalizedCurrently": 31839,
     "hospitalizedCumulative": 236993,
-    "inIcuCurrently": 5305,
+    "inIcuCurrently": 5315,
     "inIcuCumulative": 10257,
     "onVentilatorCurrently": 2214,
     "onVentilatorCumulative": 951,
-    "recovered": 663562,
+    "recovered": 756719,
     "dateChecked": "2020-06-25T00:00:00Z",
     "death": 117810,
     "hospitalized": 236993,
@@ -213,7 +294,7 @@
     "negativeIncrease": 598526,
     "positiveIncrease": 39061,
     "totalTestResultsIncrease": 637587,
-    "hash": "44b0688c96cce35f6bec5d7dffb4b1603c31567b"
+    "hash": "a0a7ccd4cf1b253b82ab48105ba6be792ae746b8"
   },
   {
     "date": 20200624,
@@ -221,13 +302,13 @@
     "positive": 2371917,
     "negative": 26198316,
     "pending": 2049,
-    "hospitalizedCurrently": 30826,
+    "hospitalizedCurrently": 31083,
     "hospitalizedCumulative": 235736,
-    "inIcuCurrently": 5279,
+    "inIcuCurrently": 5290,
     "inIcuCumulative": 10173,
     "onVentilatorCurrently": 2248,
     "onVentilatorCumulative": 934,
-    "recovered": 656161,
+    "recovered": 747565,
     "dateChecked": "2020-06-24T00:00:00Z",
     "death": 115309,
     "hospitalized": 235736,
@@ -240,7 +321,7 @@
     "negativeIncrease": 473722,
     "positiveIncrease": 38706,
     "totalTestResultsIncrease": 512428,
-    "hash": "12f85be17df5cf84068cbdd13a4771ee44b818c7"
+    "hash": "c7a458c82073aeeeba5f1a1a3403061d9e5de1ca"
   },
   {
     "date": 20200623,
@@ -248,13 +329,13 @@
     "positive": 2333211,
     "negative": 25724594,
     "pending": 1891,
-    "hospitalizedCurrently": 29920,
+    "hospitalizedCurrently": 30229,
     "hospitalizedCumulative": 234426,
-    "inIcuCurrently": 5416,
+    "inIcuCurrently": 5399,
     "inIcuCumulative": 10077,
     "onVentilatorCurrently": 2293,
     "onVentilatorCumulative": 918,
-    "recovered": 647548,
+    "recovered": 738952,
     "dateChecked": "2020-06-23T00:00:00Z",
     "death": 114585,
     "hospitalized": 234426,
@@ -267,7 +348,7 @@
     "negativeIncrease": 468396,
     "positiveIncrease": 33018,
     "totalTestResultsIncrease": 501414,
-    "hash": "9364b9dc40656b06337d93ca8254545f0fccfcf6"
+    "hash": "5a5859cd5e5b828dbdd8406bfa397f0a08abcca7"
   },
   {
     "date": 20200622,
@@ -275,13 +356,13 @@
     "positive": 2300193,
     "negative": 25256198,
     "pending": 2028,
-    "hospitalizedCurrently": 28490,
+    "hospitalizedCurrently": 28789,
     "hospitalizedCumulative": 233169,
-    "inIcuCurrently": 5311,
+    "inIcuCurrently": 5320,
     "inIcuCumulative": 10002,
     "onVentilatorCurrently": 2299,
     "onVentilatorCumulative": 909,
-    "recovered": 640198,
+    "recovered": 731602,
     "dateChecked": "2020-06-22T00:00:00Z",
     "death": 113877,
     "hospitalized": 233169,
@@ -294,7 +375,7 @@
     "negativeIncrease": 437722,
     "positiveIncrease": 27080,
     "totalTestResultsIncrease": 464802,
-    "hash": "525651a247e47a31e276346d2868dfaadaa35d2f"
+    "hash": "157075e8fbaddad30b6b1e8f280bac1b6d923931"
   },
   {
     "date": 20200621,
@@ -302,13 +383,13 @@
     "positive": 2273113,
     "negative": 24818476,
     "pending": 2084,
-    "hospitalizedCurrently": 27718,
+    "hospitalizedCurrently": 27948,
     "hospitalizedCumulative": 232369,
-    "inIcuCurrently": 5155,
+    "inIcuCurrently": 5163,
     "inIcuCumulative": 9944,
     "onVentilatorCurrently": 2321,
     "onVentilatorCumulative": 904,
-    "recovered": 622133,
+    "recovered": 713537,
     "dateChecked": "2020-06-21T00:00:00Z",
     "death": 113594,
     "hospitalized": 232369,
@@ -321,7 +402,7 @@
     "negativeIncrease": 484921,
     "positiveIncrease": 27257,
     "totalTestResultsIncrease": 512178,
-    "hash": "ecb248d167fc3f71e7ca8060af6bb864f9f7d60b"
+    "hash": "cbd5d63691fa2c6e9ee6b2469df75966128e491e"
   },
   {
     "date": 20200620,
@@ -329,13 +410,13 @@
     "positive": 2245856,
     "negative": 24333555,
     "pending": 2108,
-    "hospitalizedCurrently": 27757,
+    "hospitalizedCurrently": 27962,
     "hospitalizedCumulative": 231855,
-    "inIcuCurrently": 5220,
+    "inIcuCurrently": 5225,
     "inIcuCumulative": 9908,
     "onVentilatorCurrently": 2380,
     "onVentilatorCumulative": 888,
-    "recovered": 617460,
+    "recovered": 708864,
     "dateChecked": "2020-06-20T00:00:00Z",
     "death": 113302,
     "hospitalized": 231855,
@@ -348,7 +429,7 @@
     "negativeIncrease": 534518,
     "positiveIncrease": 31958,
     "totalTestResultsIncrease": 566476,
-    "hash": "563f7afaf63bd0d9114bd3cdabf2d8270dcbc854"
+    "hash": "9738483e33401edd7c946b4f355dfe837d1e608c"
   },
   {
     "date": 20200619,
@@ -356,13 +437,13 @@
     "positive": 2213898,
     "negative": 23799037,
     "pending": 2032,
-    "hospitalizedCurrently": 28392,
+    "hospitalizedCurrently": 28639,
     "hospitalizedCumulative": 231110,
-    "inIcuCurrently": 5332,
+    "inIcuCurrently": 5338,
     "inIcuCumulative": 9876,
     "onVentilatorCurrently": 2434,
     "onVentilatorCumulative": 884,
-    "recovered": 606715,
+    "recovered": 698119,
     "dateChecked": "2020-06-19T00:00:00Z",
     "death": 112674,
     "hospitalized": 231110,
@@ -375,7 +456,7 @@
     "negativeIncrease": 540191,
     "positiveIncrease": 31055,
     "totalTestResultsIncrease": 571246,
-    "hash": "5eafc4efb2cbbf03e2515732ed3c056ebeb5523e"
+    "hash": "5ccffc209cdc39ea53a7b23837ca92b3b5651cd3"
   },
   {
     "date": 20200618,
@@ -383,13 +464,13 @@
     "positive": 2182843,
     "negative": 23258846,
     "pending": 1903,
-    "hospitalizedCurrently": 28185,
+    "hospitalizedCurrently": 28409,
     "hospitalizedCumulative": 229497,
-    "inIcuCurrently": 5458,
+    "inIcuCurrently": 5464,
     "inIcuCumulative": 9736,
     "onVentilatorCurrently": 2520,
     "onVentilatorCumulative": 869,
-    "recovered": 599288,
+    "recovered": 690692,
     "dateChecked": "2020-06-18T00:00:00Z",
     "death": 112019,
     "hospitalized": 229497,
@@ -402,7 +483,7 @@
     "negativeIncrease": 490227,
     "positiveIncrease": 27512,
     "totalTestResultsIncrease": 517739,
-    "hash": "7975b64e2112b17cf7f2ca8df26386364df78872"
+    "hash": "aa5e55b22a3434f58f9f5e749f5f48317f4f2ae6"
   },
   {
     "date": 20200617,
@@ -410,13 +491,13 @@
     "positive": 2155331,
     "negative": 22768619,
     "pending": 1745,
-    "hospitalizedCurrently": 28311,
+    "hospitalizedCurrently": 28561,
     "hospitalizedCumulative": 228457,
-    "inIcuCurrently": 5605,
+    "inIcuCurrently": 5611,
     "inIcuCumulative": 9665,
     "onVentilatorCurrently": 2588,
     "onVentilatorCumulative": 857,
-    "recovered": 592191,
+    "recovered": 680916,
     "dateChecked": "2020-06-17T00:00:00Z",
     "death": 111315,
     "hospitalized": 228457,
@@ -429,7 +510,7 @@
     "negativeIncrease": 464880,
     "positiveIncrease": 23871,
     "totalTestResultsIncrease": 488751,
-    "hash": "173788c3ba06899c80b3a4b7accd84ee9e46fd86"
+    "hash": "daf7c0f0d4ec39ad4b82d57c981ddc99af64b0de"
   },
   {
     "date": 20200616,
@@ -437,13 +518,13 @@
     "positive": 2131460,
     "negative": 22303739,
     "pending": 1604,
-    "hospitalizedCurrently": 28028,
+    "hospitalizedCurrently": 28264,
     "hospitalizedCumulative": 227327,
-    "inIcuCurrently": 5564,
+    "inIcuCurrently": 5570,
     "inIcuCumulative": 9590,
     "onVentilatorCurrently": 2594,
     "onVentilatorCumulative": 845,
-    "recovered": 583503,
+    "recovered": 672228,
     "dateChecked": "2020-06-16T00:00:00Z",
     "death": 110548,
     "hospitalized": 227327,
@@ -456,7 +537,7 @@
     "negativeIncrease": 443388,
     "positiveIncrease": 23638,
     "totalTestResultsIncrease": 467026,
-    "hash": "47b61f4e4e65fc39543697d609407a215632f0bd"
+    "hash": "09c471fe4bbff94068cc694a7de399c3c369cbe2"
   },
   {
     "date": 20200615,
@@ -464,13 +545,13 @@
     "positive": 2107822,
     "negative": 21860351,
     "pending": 1619,
-    "hospitalizedCurrently": 27115,
+    "hospitalizedCurrently": 27778,
     "hospitalizedCumulative": 226002,
-    "inIcuCurrently": 5695,
+    "inIcuCurrently": 5700,
     "inIcuCumulative": 9516,
     "onVentilatorCurrently": 2636,
     "onVentilatorCumulative": 835,
-    "recovered": 576334,
+    "recovered": 665059,
     "dateChecked": "2020-06-15T00:00:00Z",
     "death": 109815,
     "hospitalized": 226002,
@@ -483,7 +564,7 @@
     "negativeIncrease": 429084,
     "positiveIncrease": 18655,
     "totalTestResultsIncrease": 447739,
-    "hash": "df2732c0bd4c121d541cae870c373922c8f5ada3"
+    "hash": "6642c7dc871cb7b42142288b953690554cc4b804"
   },
   {
     "date": 20200614,
@@ -491,13 +572,13 @@
     "positive": 2089167,
     "negative": 21431267,
     "pending": 1672,
-    "hospitalizedCurrently": 27247,
+    "hospitalizedCurrently": 27860,
     "hospitalizedCumulative": 225483,
-    "inIcuCurrently": 5743,
+    "inIcuCurrently": 5748,
     "inIcuCumulative": 9466,
     "onVentilatorCurrently": 2716,
     "onVentilatorCumulative": 834,
-    "recovered": 561816,
+    "recovered": 650541,
     "dateChecked": "2020-06-14T00:00:00Z",
     "death": 109436,
     "hospitalized": 225483,
@@ -510,7 +591,7 @@
     "negativeIncrease": 457329,
     "positiveIncrease": 21240,
     "totalTestResultsIncrease": 478569,
-    "hash": "304b2194c51c3cda6445e5bcca9c74448d58f62b"
+    "hash": "6bfac8bdfdb43bbd56b0b8a19610a6d65d1da0ff"
   },
   {
     "date": 20200613,
@@ -518,13 +599,13 @@
     "positive": 2067927,
     "negative": 20973938,
     "pending": 1698,
-    "hospitalizedCurrently": 27902,
+    "hospitalizedCurrently": 28510,
     "hospitalizedCumulative": 224843,
-    "inIcuCurrently": 5878,
+    "inIcuCurrently": 5883,
     "inIcuCumulative": 9430,
     "onVentilatorCurrently": 2726,
     "onVentilatorCumulative": 830,
-    "recovered": 556606,
+    "recovered": 645331,
     "dateChecked": "2020-06-13T00:00:00Z",
     "death": 109083,
     "hospitalized": 224843,
@@ -537,7 +618,7 @@
     "negativeIncrease": 474694,
     "positiveIncrease": 25134,
     "totalTestResultsIncrease": 499828,
-    "hash": "6dbcb7da48ee6cff56ee12c7214b690d6e45d8a1"
+    "hash": "5a6e9c4e52dd0c60034c4d37649e0538e63a3674"
   },
   {
     "date": 20200612,
@@ -545,13 +626,13 @@
     "positive": 2042793,
     "negative": 20499244,
     "pending": 1783,
-    "hospitalizedCurrently": 28524,
+    "hospitalizedCurrently": 29150,
     "hospitalizedCumulative": 223738,
-    "inIcuCurrently": 6012,
+    "inIcuCurrently": 6017,
     "inIcuCumulative": 9373,
     "onVentilatorCurrently": 2734,
     "onVentilatorCumulative": 814,
-    "recovered": 547386,
+    "recovered": 636111,
     "dateChecked": "2020-06-12T00:00:00Z",
     "death": 108393,
     "hospitalized": 223738,
@@ -564,7 +645,7 @@
     "negativeIncrease": 570835,
     "positiveIncrease": 23481,
     "totalTestResultsIncrease": 594316,
-    "hash": "78a6eed760037fffc07f4eedf575eae9d570299c"
+    "hash": "4d93b21b451b74fa28de57df68703e088719d6a8"
   },
   {
     "date": 20200611,
@@ -572,13 +653,13 @@
     "positive": 2019312,
     "negative": 19928409,
     "pending": 1816,
-    "hospitalizedCurrently": 29064,
+    "hospitalizedCurrently": 29696,
     "hospitalizedCumulative": 222493,
-    "inIcuCurrently": 6067,
+    "inIcuCurrently": 6073,
     "inIcuCumulative": 9295,
     "onVentilatorCurrently": 2886,
     "onVentilatorCumulative": 792,
-    "recovered": 540292,
+    "recovered": 629017,
     "dateChecked": "2020-06-11T00:00:00Z",
     "death": 107621,
     "hospitalized": 222493,
@@ -591,7 +672,7 @@
     "negativeIncrease": 437028,
     "positiveIncrease": 22051,
     "totalTestResultsIncrease": 459079,
-    "hash": "3d360ea943cc372b85b3d6c72a275f980b892d07"
+    "hash": "c4cd9be583077268d2ff135e838d4e8b4e7c3b92"
   },
   {
     "date": 20200610,
@@ -599,13 +680,13 @@
     "positive": 1997261,
     "negative": 19491381,
     "pending": 1737,
-    "hospitalizedCurrently": 30203,
+    "hospitalizedCurrently": 30847,
     "hospitalizedCumulative": 221126,
-    "inIcuCurrently": 6242,
+    "inIcuCurrently": 6248,
     "inIcuCumulative": 9225,
     "onVentilatorCurrently": 3020,
     "onVentilatorCumulative": 780,
-    "recovered": 533504,
+    "recovered": 618125,
     "dateChecked": "2020-06-10T00:00:00Z",
     "death": 106723,
     "hospitalized": 221126,
@@ -618,7 +699,7 @@
     "negativeIncrease": 408782,
     "positiveIncrease": 20764,
     "totalTestResultsIncrease": 429546,
-    "hash": "8e01c1aeea95fe5f64e89a1ca4e4dbea1f69a500"
+    "hash": "5d19471961b2aafd60f3cdbe889cee3526d4466e"
   },
   {
     "date": 20200609,
@@ -626,13 +707,13 @@
     "positive": 1976497,
     "negative": 19082599,
     "pending": 1661,
-    "hospitalizedCurrently": 30547,
+    "hospitalizedCurrently": 31157,
     "hospitalizedCumulative": 219642,
-    "inIcuCurrently": 6450,
+    "inIcuCurrently": 6456,
     "inIcuCumulative": 9141,
     "onVentilatorCurrently": 3090,
     "onVentilatorCumulative": 771,
-    "recovered": 524855,
+    "recovered": 609476,
     "dateChecked": "2020-06-09T00:00:00Z",
     "death": 105838,
     "hospitalized": 219642,
@@ -645,7 +726,7 @@
     "negativeIncrease": 403307,
     "positiveIncrease": 17156,
     "totalTestResultsIncrease": 420463,
-    "hash": "2afa47810cacc5e8d554e75363c47dcc1ebd58f2"
+    "hash": "1495ef5588e6710bbe8b2f7ab6794db17e0fba35"
   },
   {
     "date": 20200608,
@@ -653,13 +734,13 @@
     "positive": 1959341,
     "negative": 18679292,
     "pending": 1606,
-    "hospitalizedCurrently": 29969,
+    "hospitalizedCurrently": 30615,
     "hospitalizedCumulative": 218115,
-    "inIcuCurrently": 6394,
+    "inIcuCurrently": 6402,
     "inIcuCumulative": 9013,
     "onVentilatorCurrently": 3240,
     "onVentilatorCumulative": 762,
-    "recovered": 518522,
+    "recovered": 603143,
     "dateChecked": "2020-06-08T00:00:00Z",
     "death": 104940,
     "hospitalized": 218115,
@@ -672,7 +753,7 @@
     "negativeIncrease": 386524,
     "positiveIncrease": 17168,
     "totalTestResultsIncrease": 403692,
-    "hash": "5e19c99da6f916c5f19b435254847e63926b50d3"
+    "hash": "c9590bf445c4bd77803ef1a4a2bd07a88186bf05"
   },
   {
     "date": 20200607,
@@ -680,13 +761,13 @@
     "positive": 1942173,
     "negative": 18292768,
     "pending": 1733,
-    "hospitalizedCurrently": 30299,
+    "hospitalizedCurrently": 30893,
     "hospitalizedCumulative": 217401,
-    "inIcuCurrently": 6493,
+    "inIcuCurrently": 6501,
     "inIcuCumulative": 8957,
     "onVentilatorCurrently": 3298,
     "onVentilatorCumulative": 753,
-    "recovered": 506367,
+    "recovered": 590988,
     "dateChecked": "2020-06-07T00:00:00Z",
     "death": 104280,
     "hospitalized": 217401,
@@ -699,7 +780,7 @@
     "negativeIncrease": 427569,
     "positiveIncrease": 18774,
     "totalTestResultsIncrease": 446343,
-    "hash": "c3bcf452e657b73f24e9da6ac61c7e82b81ba845"
+    "hash": "56a85a1bb4dda0bc4041ff0b70e1bd5780802623"
   },
   {
     "date": 20200606,
@@ -707,13 +788,13 @@
     "positive": 1923399,
     "negative": 17865199,
     "pending": 1796,
-    "hospitalizedCurrently": 30909,
+    "hospitalizedCurrently": 31468,
     "hospitalizedCumulative": 216716,
-    "inIcuCurrently": 6754,
+    "inIcuCurrently": 6762,
     "inIcuCumulative": 8920,
     "onVentilatorCurrently": 3476,
     "onVentilatorCumulative": 750,
-    "recovered": 500849,
+    "recovered": 585470,
     "dateChecked": "2020-06-06T00:00:00Z",
     "death": 103834,
     "hospitalized": 216716,
@@ -726,7 +807,7 @@
     "negativeIncrease": 459876,
     "positiveIncrease": 23038,
     "totalTestResultsIncrease": 482914,
-    "hash": "740542e82e2fc34899415b3d6cbeba03857ca844"
+    "hash": "61fd175e81ba72d573785b7494df880bdf51c9ce"
   },
   {
     "date": 20200605,
@@ -734,13 +815,13 @@
     "positive": 1900361,
     "negative": 17405323,
     "pending": 1749,
-    "hospitalizedCurrently": 31335,
+    "hospitalizedCurrently": 31868,
     "hospitalizedCumulative": 215699,
-    "inIcuCurrently": 6912,
+    "inIcuCurrently": 6920,
     "inIcuCumulative": 8863,
     "onVentilatorCurrently": 3523,
     "onVentilatorCumulative": 740,
-    "recovered": 491706,
+    "recovered": 576327,
     "dateChecked": "2020-06-05T00:00:00Z",
     "death": 103107,
     "hospitalized": 215699,
@@ -753,7 +834,7 @@
     "negativeIncrease": 486103,
     "positiveIncrease": 23363,
     "totalTestResultsIncrease": 509466,
-    "hash": "810f5391cf9697e0a65343e2c5cca023bd30256c"
+    "hash": "a7403078a0377255ed12fc154b962f2be18f18b5"
   },
   {
     "date": 20200604,
@@ -761,13 +842,13 @@
     "positive": 1876998,
     "negative": 16919220,
     "pending": 3474,
-    "hospitalizedCurrently": 31659,
+    "hospitalizedCurrently": 32233,
     "hospitalizedCumulative": 214259,
-    "inIcuCurrently": 7054,
+    "inIcuCurrently": 7056,
     "inIcuCumulative": 8787,
     "onVentilatorCurrently": 3665,
     "onVentilatorCumulative": 723,
-    "recovered": 485002,
+    "recovered": 569623,
     "dateChecked": "2020-06-04T00:00:00Z",
     "death": 102284,
     "hospitalized": 214259,
@@ -780,7 +861,7 @@
     "negativeIncrease": 441422,
     "positiveIncrease": 20828,
     "totalTestResultsIncrease": 462250,
-    "hash": "fbbc9e2dbf12151a57179ffdd4a404d598bd5a04"
+    "hash": "58e7bd89d177639a94696a08c26e21c36ff68726"
   },
   {
     "date": 20200603,
@@ -788,13 +869,13 @@
     "positive": 1856170,
     "negative": 16477798,
     "pending": 3556,
-    "hospitalizedCurrently": 32081,
+    "hospitalizedCurrently": 32661,
     "hospitalizedCumulative": 217100,
-    "inIcuCurrently": 7224,
+    "inIcuCurrently": 7226,
     "inIcuCumulative": 8688,
     "onVentilatorCurrently": 3749,
     "onVentilatorCumulative": 717,
-    "recovered": 479258,
+    "recovered": 557366,
     "dateChecked": "2020-06-03T00:00:00Z",
     "death": 101396,
     "hospitalized": 217100,
@@ -807,7 +888,7 @@
     "negativeIncrease": 447651,
     "positiveIncrease": 20314,
     "totalTestResultsIncrease": 467965,
-    "hash": "fd8fbc94725cdd217953271ea10cb519df3c93a6"
+    "hash": "da9ba4ce5d50392f1cfced27535a1c73ec0062e9"
   },
   {
     "date": 20200602,
@@ -815,13 +896,13 @@
     "positive": 1835856,
     "negative": 16030147,
     "pending": 4054,
-    "hospitalizedCurrently": 32728,
+    "hospitalizedCurrently": 33328,
     "hospitalizedCumulative": 214845,
-    "inIcuCurrently": 7403,
+    "inIcuCurrently": 7405,
     "inIcuCumulative": 8566,
     "onVentilatorCurrently": 3852,
     "onVentilatorCumulative": 710,
-    "recovered": 463868,
+    "recovered": 541976,
     "dateChecked": "2020-06-02T00:00:00Z",
     "death": 100405,
     "hospitalized": 214845,
@@ -834,7 +915,7 @@
     "negativeIncrease": 399868,
     "positiveIncrease": 19996,
     "totalTestResultsIncrease": 419864,
-    "hash": "6e17dcd26270df0183e040b2fb223032fd65a4a5"
+    "hash": "22045e29b918a05a86ea1ce9b6f938cffa82391b"
   },
   {
     "date": 20200601,
@@ -842,13 +923,13 @@
     "positive": 1815860,
     "negative": 15630279,
     "pending": 3455,
-    "hospitalizedCurrently": 33160,
+    "hospitalizedCurrently": 33694,
     "hospitalizedCumulative": 213260,
-    "inIcuCurrently": 7588,
+    "inIcuCurrently": 7589,
     "inIcuCumulative": 8485,
     "onVentilatorCurrently": 3950,
     "onVentilatorCumulative": 704,
-    "recovered": 458231,
+    "recovered": 536339,
     "dateChecked": "2020-06-01T00:00:00Z",
     "death": 99446,
     "hospitalized": 213260,
@@ -861,7 +942,7 @@
     "negativeIncrease": 392869,
     "positiveIncrease": 20379,
     "totalTestResultsIncrease": 413248,
-    "hash": "de26294d9e630a05611d5ed088404396fe81ea1b"
+    "hash": "c34bf85de20bb388e5cf214c9c2131bab60667b9"
   },
   {
     "date": 20200531,
@@ -869,13 +950,13 @@
     "positive": 1795481,
     "negative": 15237410,
     "pending": 3270,
-    "hospitalizedCurrently": 33840,
+    "hospitalizedCurrently": 34337,
     "hospitalizedCumulative": 210464,
-    "inIcuCurrently": 7623,
+    "inIcuCurrently": 7624,
     "inIcuCumulative": 8445,
     "onVentilatorCurrently": 3669,
     "onVentilatorCumulative": 704,
-    "recovered": 444758,
+    "recovered": 522866,
     "dateChecked": "2020-05-31T00:00:00Z",
     "death": 98781,
     "hospitalized": 210464,
@@ -888,7 +969,7 @@
     "negativeIncrease": 377749,
     "positiveIncrease": 21672,
     "totalTestResultsIncrease": 399421,
-    "hash": "c07ce8fd6f418f98f44348c34ecff612c9a16cac"
+    "hash": "1245d3b837c71b19081bf463252ade953723963b"
   },
   {
     "date": 20200530,
@@ -896,13 +977,13 @@
     "positive": 1773809,
     "negative": 14859661,
     "pending": 1668,
-    "hospitalizedCurrently": 34650,
+    "hospitalizedCurrently": 35202,
     "hospitalizedCumulative": 209488,
     "inIcuCurrently": 7956,
     "inIcuCumulative": 8305,
     "onVentilatorCurrently": 4004,
     "onVentilatorCumulative": 698,
-    "recovered": 416461,
+    "recovered": 494569,
     "dateChecked": "2020-05-30T00:00:00Z",
     "death": 98132,
     "hospitalized": 209488,
@@ -915,7 +996,7 @@
     "negativeIncrease": 403942,
     "positiveIncrease": 23842,
     "totalTestResultsIncrease": 427784,
-    "hash": "1132e9f5ea4880bb26b297c15037daf19ca2192c"
+    "hash": "1c4cfd1dc6e1450c22f426d0f77744eba2e401cc"
   },
   {
     "date": 20200529,
@@ -923,13 +1004,13 @@
     "positive": 1749967,
     "negative": 14455719,
     "pending": 2978,
-    "hospitalizedCurrently": 35871,
+    "hospitalizedCurrently": 36412,
     "hospitalizedCumulative": 208064,
     "inIcuCurrently": 8175,
     "inIcuCumulative": 8235,
     "onVentilatorCurrently": 4032,
     "onVentilatorCumulative": 689,
-    "recovered": 406446,
+    "recovered": 484554,
     "dateChecked": "2020-05-29T00:00:00Z",
     "death": 97203,
     "hospitalized": 208064,
@@ -942,7 +1023,7 @@
     "negativeIncrease": 468019,
     "positiveIncrease": 23485,
     "totalTestResultsIncrease": 491504,
-    "hash": "c06eb12a529b5079cd176596060fb87560dc1566"
+    "hash": "3dac9efbeec872d1a5b590e82e230d36f3fda4f9"
   },
   {
     "date": 20200528,
@@ -950,13 +1031,13 @@
     "positive": 1726482,
     "negative": 13987700,
     "pending": 1906,
-    "hospitalizedCurrently": 36967,
+    "hospitalizedCurrently": 37547,
     "hospitalizedCumulative": 206349,
     "inIcuCurrently": 8389,
     "inIcuCumulative": 8109,
     "onVentilatorCurrently": 4080,
     "onVentilatorCumulative": 676,
-    "recovered": 399991,
+    "recovered": 478099,
     "dateChecked": "2020-05-28T00:00:00Z",
     "death": 96024,
     "hospitalized": 206349,
@@ -969,7 +1050,7 @@
     "negativeIncrease": 392705,
     "positiveIncrease": 22610,
     "totalTestResultsIncrease": 415315,
-    "hash": "714e77e88c8420d65871e86e26e631d720f02714"
+    "hash": "29cec783f3d5391dcf3ab743b8c42f2ac71cff20"
   },
   {
     "date": 20200527,
@@ -977,7 +1058,7 @@
     "positive": 1703872,
     "negative": 13594995,
     "pending": 3132,
-    "hospitalizedCurrently": 37241,
+    "hospitalizedCurrently": 37771,
     "hospitalizedCumulative": 204719,
     "inIcuCurrently": 8547,
     "inIcuCumulative": 8015,
@@ -996,7 +1077,7 @@
     "negativeIncrease": 290821,
     "positiveIncrease": 19395,
     "totalTestResultsIncrease": 310216,
-    "hash": "614801a058da60590cea81eeb2be2946178b11ce"
+    "hash": "fc6dbb33b647cb0d4005b245650d68344ada97ae"
   },
   {
     "date": 20200526,
@@ -1004,7 +1085,7 @@
     "positive": 1684477,
     "negative": 13304174,
     "pending": 1549,
-    "hospitalizedCurrently": 36609,
+    "hospitalizedCurrently": 37219,
     "hospitalizedCumulative": 203006,
     "inIcuCurrently": 8585,
     "inIcuCumulative": 7899,
@@ -1023,7 +1104,7 @@
     "negativeIncrease": 290094,
     "positiveIncrease": 16620,
     "totalTestResultsIncrease": 306714,
-    "hash": "2d2a556f47b88ba995f29e1b78628ecb19028687"
+    "hash": "92b21b5130d4bf0b9f1b4490a0d2544cff592044"
   },
   {
     "date": 20200525,
@@ -1031,7 +1112,7 @@
     "positive": 1667857,
     "negative": 13014080,
     "pending": 3368,
-    "hospitalizedCurrently": 36668,
+    "hospitalizedCurrently": 37202,
     "hospitalizedCumulative": 185686,
     "inIcuCurrently": 8472,
     "inIcuCumulative": 7847,
@@ -1050,7 +1131,7 @@
     "negativeIncrease": 403040,
     "positiveIncrease": 18728,
     "totalTestResultsIncrease": 421768,
-    "hash": "ae620501760f0b7fe1d99cf1b3b1a322c3a1813c"
+    "hash": "26629bec9aca0ea945a653c5ca2800ed1de493e0"
   },
   {
     "date": 20200524,
@@ -1058,7 +1139,7 @@
     "positive": 1649129,
     "negative": 12611040,
     "pending": 3860,
-    "hospitalizedCurrently": 36706,
+    "hospitalizedCurrently": 37259,
     "hospitalizedCumulative": 184684,
     "inIcuCurrently": 8487,
     "inIcuCumulative": 7801,
@@ -1077,7 +1158,7 @@
     "negativeIncrease": 363099,
     "positiveIncrease": 20134,
     "totalTestResultsIncrease": 383233,
-    "hash": "b7d77fcd884dcb7e073ec09b76abb507697d9643"
+    "hash": "e336f7ad5846adc9b0996f523e57e1299bb361b5"
   },
   {
     "date": 20200523,
@@ -1085,9 +1166,9 @@
     "positive": 1628995,
     "negative": 12247941,
     "pending": 4084,
-    "hospitalizedCurrently": 37873,
+    "hospitalizedCurrently": 38175,
     "hospitalizedCumulative": 183763,
-    "inIcuCurrently": 8812,
+    "inIcuCurrently": 8733,
     "inIcuCumulative": 7770,
     "onVentilatorCurrently": 4620,
     "onVentilatorCumulative": 638,
@@ -1104,7 +1185,7 @@
     "negativeIncrease": 369870,
     "positiveIncrease": 21698,
     "totalTestResultsIncrease": 391568,
-    "hash": "a7d0d0d257af037d4a68bac1d9664d1ca2367529"
+    "hash": "83cfb1d2974ea5eb666340b36e09a041ce49a4a2"
   },
   {
     "date": 20200522,
@@ -1112,7 +1193,7 @@
     "positive": 1607297,
     "negative": 11878071,
     "pending": 3709,
-    "hospitalizedCurrently": 38802,
+    "hospitalizedCurrently": 39395,
     "hospitalizedCumulative": 182385,
     "inIcuCurrently": 9048,
     "inIcuCumulative": 7689,
@@ -1131,7 +1212,7 @@
     "negativeIncrease": 386689,
     "positiveIncrease": 24519,
     "totalTestResultsIncrease": 411208,
-    "hash": "fb3429b900208bd40eb74409cb295322c90f2433"
+    "hash": "884b973babc68efff0889250eae182691f39923b"
   },
   {
     "date": 20200521,
@@ -1139,7 +1220,7 @@
     "positive": 1582778,
     "negative": 11491382,
     "pending": 3641,
-    "hospitalizedCurrently": 39915,
+    "hospitalizedCurrently": 40544,
     "hospitalizedCumulative": 178339,
     "inIcuCurrently": 9090,
     "inIcuCumulative": 7412,
@@ -1158,7 +1239,7 @@
     "negativeIncrease": 395503,
     "positiveIncrease": 26559,
     "totalTestResultsIncrease": 422062,
-    "hash": "076e4a45183a68479ebaabb56f412ae517b156a0"
+    "hash": "d651fc2308fff7f8c23178b14c1defb036ea6921"
   },
   {
     "date": 20200520,
@@ -1166,9 +1247,9 @@
     "positive": 1556219,
     "negative": 11095879,
     "pending": 2973,
-    "hospitalizedCurrently": 40884,
+    "hospitalizedCurrently": 41567,
     "hospitalizedCumulative": 173709,
-    "inIcuCurrently": 9829,
+    "inIcuCurrently": 9754,
     "inIcuCumulative": 7319,
     "onVentilatorCurrently": 4911,
     "onVentilatorCumulative": 613,
@@ -1185,7 +1266,7 @@
     "negativeIncrease": 387192,
     "positiveIncrease": 21537,
     "totalTestResultsIncrease": 408729,
-    "hash": "3cede2b1e448265cae726d1e6aff306c0d1d4cb7"
+    "hash": "cdc085272e28a9f9e51694fb3fcadc526ee2676b"
   },
   {
     "date": 20200519,
@@ -1193,7 +1274,7 @@
     "positive": 1534682,
     "negative": 10708687,
     "pending": 2944,
-    "hospitalizedCurrently": 41091,
+    "hospitalizedCurrently": 41734,
     "hospitalizedCumulative": 171713,
     "inIcuCurrently": 9829,
     "inIcuCumulative": 7217,
@@ -1212,7 +1293,7 @@
     "negativeIncrease": 380314,
     "positiveIncrease": 20794,
     "totalTestResultsIncrease": 401108,
-    "hash": "71887346b27378702ce92ea4a9a3b71b43b7f220"
+    "hash": "0c951abb747850fe47ff18cc6d7aea0d4798a802"
   },
   {
     "date": 20200518,
@@ -1220,7 +1301,7 @@
     "positive": 1513888,
     "negative": 10328373,
     "pending": 3596,
-    "hospitalizedCurrently": 40869,
+    "hospitalizedCurrently": 41540,
     "hospitalizedCumulative": 170116,
     "inIcuCurrently": 9987,
     "inIcuCumulative": 7064,
@@ -1239,7 +1320,7 @@
     "negativeIncrease": 335145,
     "positiveIncrease": 20976,
     "totalTestResultsIncrease": 356121,
-    "hash": "be008c13900ae302c7f049df9351f325dbd8b386"
+    "hash": "a60bca65a5890c315086cfc634a819d8d396dfef"
   },
   {
     "date": 20200517,
@@ -1247,7 +1328,7 @@
     "positive": 1492912,
     "negative": 9993228,
     "pending": 3449,
-    "hospitalizedCurrently": 41108,
+    "hospitalizedCurrently": 41653,
     "hospitalizedCumulative": 168959,
     "inIcuCurrently": 10164,
     "inIcuCumulative": 7003,
@@ -1266,7 +1347,7 @@
     "negativeIncrease": 353276,
     "positiveIncrease": 20286,
     "totalTestResultsIncrease": 373562,
-    "hash": "8465b873d07bb4b09c40d8a0316734e7e3c04263"
+    "hash": "8b35f84d502496c409bb90b06eacf2dde1a227f2"
   },
   {
     "date": 20200516,
@@ -1274,7 +1355,7 @@
     "positive": 1472626,
     "negative": 9639952,
     "pending": 3788,
-    "hospitalizedCurrently": 42896,
+    "hospitalizedCurrently": 43434,
     "hospitalizedCumulative": 167760,
     "inIcuCurrently": 10509,
     "inIcuCumulative": 6945,
@@ -1293,7 +1374,7 @@
     "negativeIncrease": 338942,
     "positiveIncrease": 24664,
     "totalTestResultsIncrease": 363606,
-    "hash": "3822795bf8510db2ac619a126d9c8b15caff7581"
+    "hash": "4c0d94fcfc831ee886cca09fca3a0762f0bba02b"
   },
   {
     "date": 20200515,
@@ -1301,7 +1382,7 @@
     "positive": 1447962,
     "negative": 9301010,
     "pending": 2457,
-    "hospitalizedCurrently": 42854,
+    "hospitalizedCurrently": 43418,
     "hospitalizedCumulative": 165904,
     "inIcuCurrently": 10704,
     "inIcuCumulative": 6890,
@@ -1320,7 +1401,7 @@
     "negativeIncrease": 335087,
     "positiveIncrease": 24681,
     "totalTestResultsIncrease": 359768,
-    "hash": "f09e124cfb52113c9e2eec0d1f037104bc67e49d"
+    "hash": "0a84985edbfe58f3a7f759a5a968bd98b4fdb06c"
   },
   {
     "date": 20200514,
@@ -1328,7 +1409,7 @@
     "positive": 1423281,
     "negative": 8965923,
     "pending": 2673,
-    "hospitalizedCurrently": 44075,
+    "hospitalizedCurrently": 44695,
     "hospitalizedCumulative": 164551,
     "inIcuCurrently": 10888,
     "inIcuCumulative": 6795,
@@ -1347,7 +1428,7 @@
     "negativeIncrease": 338940,
     "positiveIncrease": 26658,
     "totalTestResultsIncrease": 365598,
-    "hash": "824a9776eebf2a0ac53953e0f44623b78307c84a"
+    "hash": "83603a37ac315cc4ef5520633a0b724a1df6f4ca"
   },
   {
     "date": 20200513,
@@ -1355,7 +1436,7 @@
     "positive": 1396623,
     "negative": 8626983,
     "pending": 1983,
-    "hospitalizedCurrently": 44514,
+    "hospitalizedCurrently": 45170,
     "hospitalizedCumulative": 161345,
     "inIcuCurrently": 10978,
     "inIcuCumulative": 6713,
@@ -1374,7 +1455,7 @@
     "negativeIncrease": 298386,
     "positiveIncrease": 21218,
     "totalTestResultsIncrease": 319604,
-    "hash": "f06ac152d5c420b71e674273f90088d315e50fea"
+    "hash": "4f73d0f1591f2785b64a8cba62f25f05b451b5fc"
   },
   {
     "date": 20200512,
@@ -1382,7 +1463,7 @@
     "positive": 1375405,
     "negative": 8328597,
     "pending": 1803,
-    "hospitalizedCurrently": 45199,
+    "hospitalizedCurrently": 45815,
     "hospitalizedCumulative": 159536,
     "inIcuCurrently": 11241,
     "inIcuCumulative": 5595,
@@ -1401,7 +1482,7 @@
     "negativeIncrease": 286084,
     "positiveIncrease": 22608,
     "totalTestResultsIncrease": 308692,
-    "hash": "236750db3cf8a5b1bfc4415aef1b66d7b11341a7"
+    "hash": "ffa466edbb89814c7ba9fc5bc1d1bf07a89f1e79"
   },
   {
     "date": 20200511,
@@ -1409,7 +1490,7 @@
     "positive": 1352797,
     "negative": 8042513,
     "pending": 1989,
-    "hospitalizedCurrently": 44191,
+    "hospitalizedCurrently": 44803,
     "hospitalizedCumulative": 157957,
     "inIcuCurrently": 11147,
     "inIcuCumulative": 6488,
@@ -1428,7 +1509,7 @@
     "negativeIncrease": 364571,
     "positiveIncrease": 18237,
     "totalTestResultsIncrease": 382808,
-    "hash": "5e27259e6621332f136c25d00a7388d4bf8a5f9a"
+    "hash": "834e5596a3c9a14d570ce3930cad1f7e62125aa3"
   },
   {
     "date": 20200510,
@@ -1436,7 +1517,7 @@
     "positive": 1334560,
     "negative": 7677942,
     "pending": 3095,
-    "hospitalizedCurrently": 44943,
+    "hospitalizedCurrently": 45452,
     "hospitalizedCumulative": 156719,
     "inIcuCurrently": 11393,
     "inIcuCumulative": 6445,
@@ -1455,7 +1536,7 @@
     "negativeIncrease": 246437,
     "positiveIncrease": 21603,
     "totalTestResultsIncrease": 268040,
-    "hash": "a164bd5468d6c0242d2fd9ca48eae012c3c41dad"
+    "hash": "966b11ff53cf3a78a7ea7fb12fcfeb1a7633d776"
   },
   {
     "date": 20200509,
@@ -1463,7 +1544,7 @@
     "positive": 1312957,
     "negative": 7431505,
     "pending": 3054,
-    "hospitalizedCurrently": 46637,
+    "hospitalizedCurrently": 47165,
     "hospitalizedCumulative": 155664,
     "inIcuCurrently": 11496,
     "inIcuCumulative": 6367,
@@ -1482,7 +1563,7 @@
     "negativeIncrease": 266872,
     "positiveIncrease": 24734,
     "totalTestResultsIncrease": 291606,
-    "hash": "b1e52abb8b56aa2805e3b24c61ef1175815b707c"
+    "hash": "ad18ed19a277baa154eb86b4784441660c2347e1"
   },
   {
     "date": 20200508,
@@ -1490,7 +1571,7 @@
     "positive": 1288223,
     "negative": 7164633,
     "pending": 3307,
-    "hospitalizedCurrently": 47718,
+    "hospitalizedCurrently": 48284,
     "hospitalizedCumulative": 153956,
     "inIcuCurrently": 11780,
     "inIcuCumulative": 6294,
@@ -1509,7 +1590,7 @@
     "negativeIncrease": 271253,
     "positiveIncrease": 27623,
     "totalTestResultsIncrease": 298876,
-    "hash": "77f58078980d9336bea48e7c7499f4dc5c471dc0"
+    "hash": "dc309db420b54663769af9e8d0e7143611949bb4"
   },
   {
     "date": 20200507,
@@ -1517,7 +1598,7 @@
     "positive": 1260600,
     "negative": 6893380,
     "pending": 3171,
-    "hospitalizedCurrently": 49130,
+    "hospitalizedCurrently": 49710,
     "hospitalizedCumulative": 147064,
     "inIcuCurrently": 12137,
     "inIcuCumulative": 5174,
@@ -1536,7 +1617,7 @@
     "negativeIncrease": 274845,
     "positiveIncrease": 27544,
     "totalTestResultsIncrease": 302389,
-    "hash": "c173715fe3f38fd1c79af0240cab3c1891469a15"
+    "hash": "432946e15e2a90870b0a367bb8184f750e53d9bf"
   },
   {
     "date": 20200506,
@@ -1544,9 +1625,9 @@
     "positive": 1233056,
     "negative": 6618535,
     "pending": 2742,
-    "hospitalizedCurrently": 50227,
+    "hospitalizedCurrently": 50806,
     "hospitalizedCumulative": 143322,
-    "inIcuCurrently": 9380,
+    "inIcuCurrently": 12478,
     "inIcuCumulative": 4911,
     "onVentilatorCurrently": 4753,
     "onVentilatorCumulative": 449,
@@ -1563,7 +1644,7 @@
     "negativeIncrease": 220506,
     "positiveIncrease": 24986,
     "totalTestResultsIncrease": 245492,
-    "hash": "467587bc0468f2988de16fd2b74678b559e67369"
+    "hash": "7082120702cd2dfd1d97e026f87998ee443997a5"
   },
   {
     "date": 20200505,
@@ -1571,9 +1652,9 @@
     "positive": 1208070,
     "negative": 6398029,
     "pending": 2633,
-    "hospitalizedCurrently": 50906,
+    "hospitalizedCurrently": 51468,
     "hospitalizedCumulative": 141203,
-    "inIcuCurrently": 9348,
+    "inIcuCurrently": 12629,
     "inIcuCumulative": 4794,
     "onVentilatorCurrently": 4818,
     "onVentilatorCumulative": 439,
@@ -1590,7 +1671,7 @@
     "negativeIncrease": 249061,
     "positiveIncrease": 22427,
     "totalTestResultsIncrease": 271488,
-    "hash": "c55312b09de341ac1e88866693b500653999e074"
+    "hash": "16c24e0bb31716e9093c64951f3b3014f0017804"
   },
   {
     "date": 20200504,
@@ -1598,9 +1679,9 @@
     "positive": 1185643,
     "negative": 6148968,
     "pending": 2791,
-    "hospitalizedCurrently": 50062,
+    "hospitalizedCurrently": 50592,
     "hospitalizedCumulative": 139220,
-    "inIcuCurrently": 9366,
+    "inIcuCurrently": 12696,
     "inIcuCumulative": 4579,
     "onVentilatorCurrently": 4848,
     "onVentilatorCumulative": 430,
@@ -1617,7 +1698,7 @@
     "negativeIncrease": 209398,
     "positiveIncrease": 22407,
     "totalTestResultsIncrease": 231805,
-    "hash": "7e9f2fa7a09451d14ea5ea02688ca9b483a00c05"
+    "hash": "f157f93df2e0f8707feafd72c7dc3644243d7f6a"
   },
   {
     "date": 20200503,
@@ -1625,9 +1706,9 @@
     "positive": 1163236,
     "negative": 5939570,
     "pending": 2812,
-    "hospitalizedCurrently": 50312,
+    "hospitalizedCurrently": 50849,
     "hospitalizedCumulative": 137569,
-    "inIcuCurrently": 9292,
+    "inIcuCurrently": 12722,
     "inIcuCumulative": 4502,
     "onVentilatorCurrently": 4761,
     "onVentilatorCumulative": 425,
@@ -1644,7 +1725,7 @@
     "negativeIncrease": 210948,
     "positiveIncrease": 25774,
     "totalTestResultsIncrease": 236722,
-    "hash": "3d3f35ea580f5f676adcd7f1b9fb9418053aef99"
+    "hash": "61384882bbab7695cdbc43255f50a158ea80b6b5"
   },
   {
     "date": 20200502,
@@ -1652,9 +1733,9 @@
     "positive": 1137462,
     "negative": 5728622,
     "pending": 1578,
-    "hospitalizedCurrently": 51734,
+    "hospitalizedCurrently": 52232,
     "hospitalizedCumulative": 135606,
-    "inIcuCurrently": 9403,
+    "inIcuCurrently": 12904,
     "inIcuCumulative": 4386,
     "onVentilatorCurrently": 4845,
     "onVentilatorCumulative": 375,
@@ -1671,7 +1752,7 @@
     "negativeIncrease": 219557,
     "positiveIncrease": 29323,
     "totalTestResultsIncrease": 248880,
-    "hash": "8026a672c056cab4de81c4ee66dfcd20ee64b42f"
+    "hash": "4340afed8ff54e67ab6ed8a34fe9de61b3a5c842"
   },
   {
     "date": 20200501,
@@ -1679,9 +1760,9 @@
     "positive": 1108139,
     "negative": 5509065,
     "pending": 1639,
-    "hospitalizedCurrently": 52370,
+    "hospitalizedCurrently": 52931,
     "hospitalizedCumulative": 133575,
-    "inIcuCurrently": 9205,
+    "inIcuCurrently": 12845,
     "inIcuCumulative": 4300,
     "onVentilatorCurrently": 4707,
     "onVentilatorCumulative": 376,
@@ -1698,7 +1779,7 @@
     "negativeIncrease": 262539,
     "positiveIncrease": 33080,
     "totalTestResultsIncrease": 295619,
-    "hash": "37e14f5d38543cf5d86c20f9aa4cb143d1d16d72"
+    "hash": "154248865647d739ec0e9c0bc287c2cb58c5cfb7"
   },
   {
     "date": 20200430,
@@ -1706,9 +1787,9 @@
     "positive": 1075059,
     "negative": 5246526,
     "pending": 2775,
-    "hospitalizedCurrently": 53793,
+    "hospitalizedCurrently": 54436,
     "hospitalizedCumulative": 123786,
-    "inIcuCurrently": 9486,
+    "inIcuCurrently": 13255,
     "inIcuCumulative": 4192,
     "onVentilatorCurrently": 4712,
     "onVentilatorCumulative": 373,
@@ -1725,7 +1806,7 @@
     "negativeIncrease": 204242,
     "positiveIncrease": 29645,
     "totalTestResultsIncrease": 233887,
-    "hash": "412dce06c5822f0f1272bf77271b44e7f836ea5c"
+    "hash": "42d31403d2739496c46692e69fab6deef1ad0da4"
   },
   {
     "date": 20200429,
@@ -1733,9 +1814,9 @@
     "positive": 1045414,
     "negative": 5042284,
     "pending": 4832,
-    "hospitalizedCurrently": 54930,
+    "hospitalizedCurrently": 55585,
     "hospitalizedCumulative": 121496,
-    "inIcuCurrently": 9612,
+    "inIcuCurrently": 13535,
     "inIcuCumulative": 4093,
     "onVentilatorCurrently": 4796,
     "onVentilatorCumulative": 365,
@@ -1752,7 +1833,7 @@
     "negativeIncrease": 211873,
     "positiveIncrease": 27180,
     "totalTestResultsIncrease": 239053,
-    "hash": "6264fd323113826fb7482e0462d8300bca859f4f"
+    "hash": "90b85fbd176a94535f65ac412fcbcad7a0a10b57"
   },
   {
     "date": 20200428,
@@ -1760,9 +1841,9 @@
     "positive": 1018234,
     "negative": 4830411,
     "pending": 4206,
-    "hospitalizedCurrently": 54940,
+    "hospitalizedCurrently": 55596,
     "hospitalizedCumulative": 118081,
-    "inIcuCurrently": 9491,
+    "inIcuCurrently": 13562,
     "inIcuCumulative": 3798,
     "onVentilatorCurrently": 4760,
     "onVentilatorCumulative": 195,
@@ -1779,7 +1860,7 @@
     "negativeIncrease": 181211,
     "positiveIncrease": 25098,
     "totalTestResultsIncrease": 206309,
-    "hash": "1860c08bda6ed35b7ed4485b946fe96cdc1f60a4"
+    "hash": "8763828d895bb7e22caa6e62a869a8dbc25df555"
   },
   {
     "date": 20200427,
@@ -1787,9 +1868,9 @@
     "positive": 993136,
     "negative": 4649200,
     "pending": 4077,
-    "hospitalizedCurrently": 54971,
+    "hospitalizedCurrently": 55630,
     "hospitalizedCumulative": 116002,
-    "inIcuCurrently": 9655,
+    "inIcuCurrently": 13812,
     "inIcuCumulative": 3720,
     "onVentilatorCurrently": 4867,
     "onVentilatorCumulative": 195,
@@ -1806,7 +1887,7 @@
     "negativeIncrease": 173839,
     "positiveIncrease": 22045,
     "totalTestResultsIncrease": 195884,
-    "hash": "8f9b1f92031f90b8392dc77d30c04645e2149577"
+    "hash": "97724e25d5910ddc024d33f608d0b4b89614de42"
   },
   {
     "date": 20200426,
@@ -1814,9 +1895,9 @@
     "positive": 971091,
     "negative": 4475361,
     "pending": 4445,
-    "hospitalizedCurrently": 55050,
+    "hospitalizedCurrently": 55662,
     "hospitalizedCumulative": 112926,
-    "inIcuCurrently": 14831,
+    "inIcuCurrently": 14099,
     "inIcuCumulative": 2571,
     "onVentilatorCurrently": 5121,
     "onVentilatorCumulative": 227,
@@ -1833,7 +1914,7 @@
     "negativeIncrease": 179224,
     "positiveIncrease": 27414,
     "totalTestResultsIncrease": 206638,
-    "hash": "67bfaf7fc3ddb380158766a4a9dea79d3cc66e83"
+    "hash": "a731d3349f5cc9fe567f9462e5ea7e41dc082ee4"
   },
   {
     "date": 20200425,
@@ -1841,9 +1922,9 @@
     "positive": 943677,
     "negative": 4296137,
     "pending": 5315,
-    "hospitalizedCurrently": 56344,
+    "hospitalizedCurrently": 56895,
     "hospitalizedCumulative": 110734,
-    "inIcuCurrently": 15020,
+    "inIcuCurrently": 14414,
     "inIcuCumulative": 2516,
     "onVentilatorCurrently": 5266,
     "onVentilatorCumulative": 227,
@@ -1860,7 +1941,7 @@
     "negativeIncrease": 241664,
     "positiveIncrease": 36026,
     "totalTestResultsIncrease": 277690,
-    "hash": "bc39f9d090284288f0ac5a969900472ab186267d"
+    "hash": "2a5f54d651d1f583fd3bbb95a4edb1e87b9bef77"
   },
   {
     "date": 20200424,
@@ -1868,9 +1949,9 @@
     "positive": 907651,
     "negative": 4054473,
     "pending": 4396,
-    "hospitalizedCurrently": 56075,
+    "hospitalizedCurrently": 56702,
     "hospitalizedCumulative": 108278,
-    "inIcuCurrently": 15078,
+    "inIcuCurrently": 14602,
     "inIcuCumulative": 2468,
     "onVentilatorCurrently": 5187,
     "onVentilatorCumulative": 227,
@@ -1887,7 +1968,7 @@
     "negativeIncrease": 201430,
     "positiveIncrease": 34196,
     "totalTestResultsIncrease": 235626,
-    "hash": "d2bfac0d74b7b75126174f432dbf5c23b221a67f"
+    "hash": "e3a7b144d3dab1e5e6c8cf77136f2cac19e4dc94"
   },
   {
     "date": 20200423,
@@ -1895,9 +1976,9 @@
     "positive": 873455,
     "negative": 3853043,
     "pending": 4258,
-    "hospitalizedCurrently": 57889,
+    "hospitalizedCurrently": 58433,
     "hospitalizedCumulative": 105940,
-    "inIcuCurrently": 15163,
+    "inIcuCurrently": 14744,
     "inIcuCumulative": 2428,
     "onVentilatorCurrently": 5464,
     "onVentilatorCumulative": 227,
@@ -1914,7 +1995,7 @@
     "negativeIncrease": 161413,
     "positiveIncrease": 31786,
     "totalTestResultsIncrease": 193199,
-    "hash": "23da564df86efab74f7536c99fe990c47776850b"
+    "hash": "54da036fc955e1f673471000e85b5bbc7693e025"
   },
   {
     "date": 20200422,
@@ -1922,9 +2003,9 @@
     "positive": 841669,
     "negative": 3691630,
     "pending": 4191,
-    "hospitalizedCurrently": 58130,
+    "hospitalizedCurrently": 58627,
     "hospitalizedCumulative": 103138,
-    "inIcuCurrently": 15341,
+    "inIcuCurrently": 15015,
     "inIcuCumulative": 2370,
     "onVentilatorCurrently": 5474,
     "onVentilatorCumulative": 227,
@@ -1941,7 +2022,7 @@
     "negativeIncrease": 294693,
     "positiveIncrease": 28908,
     "totalTestResultsIncrease": 323601,
-    "hash": "3b2a6efd3cd40153a3c3d4b2677620ad36bce8d9"
+    "hash": "71b51bbac3997a256ba73bd67151c0e392e2d344"
   },
   {
     "date": 20200421,
@@ -1949,9 +2030,9 @@
     "positive": 812761,
     "negative": 3396937,
     "pending": 3956,
-    "hospitalizedCurrently": 58579,
+    "hospitalizedCurrently": 59264,
     "hospitalizedCumulative": 100051,
-    "inIcuCurrently": 15228,
+    "inIcuCurrently": 14941,
     "inIcuCumulative": 2315,
     "onVentilatorCurrently": 5514,
     "onVentilatorCumulative": 214,
@@ -1968,7 +2049,7 @@
     "negativeIncrease": 126621,
     "positiveIncrease": 26315,
     "totalTestResultsIncrease": 152936,
-    "hash": "fedca8a532d8fc456f7be755b814ab844c706603"
+    "hash": "82bf15a9372292a9757efc9c9e32d3f48d79631c"
   },
   {
     "date": 20200420,
@@ -1976,9 +2057,9 @@
     "positive": 786446,
     "negative": 3270316,
     "pending": 4037,
-    "hospitalizedCurrently": 55677,
+    "hospitalizedCurrently": 56236,
     "hospitalizedCumulative": 97369,
-    "inIcuCurrently": 14691,
+    "inIcuCurrently": 14489,
     "inIcuCumulative": 2193,
     "onVentilatorCurrently": 5567,
     "onVentilatorCumulative": 214,
@@ -1995,7 +2076,7 @@
     "negativeIncrease": 120219,
     "positiveIncrease": 25837,
     "totalTestResultsIncrease": 146056,
-    "hash": "81f05d02985336566ca6b2e26eb000f858e63119"
+    "hash": "66c28112ca64a3a146ba26e4416b1ec887658229"
   },
   {
     "date": 20200419,
@@ -2003,9 +2084,9 @@
     "positive": 760609,
     "negative": 3150097,
     "pending": 11324,
-    "hospitalizedCurrently": 55570,
+    "hospitalizedCurrently": 56007,
     "hospitalizedCumulative": 95158,
-    "inIcuCurrently": 14548,
+    "inIcuCurrently": 14410,
     "inIcuCumulative": 2145,
     "onVentilatorCurrently": 5603,
     "onVentilatorCumulative": 214,
@@ -2022,7 +2103,7 @@
     "negativeIncrease": 126358,
     "positiveIncrease": 27405,
     "totalTestResultsIncrease": 153763,
-    "hash": "0ef4adefb4f6371d628966b4e849d49333bfb5b4"
+    "hash": "d39b634569fa56f70c4f9903cd22d7262a017141"
   },
   {
     "date": 20200418,
@@ -2030,9 +2111,9 @@
     "positive": 733204,
     "negative": 3023739,
     "pending": 9906,
-    "hospitalizedCurrently": 56591,
+    "hospitalizedCurrently": 57238,
     "hospitalizedCumulative": 92919,
-    "inIcuCurrently": 14788,
+    "inIcuCurrently": 14768,
     "inIcuCumulative": 2096,
     "onVentilatorCurrently": 5729,
     "onVentilatorCumulative": 205,
@@ -2049,7 +2130,7 @@
     "negativeIncrease": 118252,
     "positiveIncrease": 27982,
     "totalTestResultsIncrease": 146234,
-    "hash": "0b70c9594e1b0f3d014bf6d15c6241b84d06b09b"
+    "hash": "2fb4e92ded75961b638fbb2f7032dbdfdf58533d"
   },
   {
     "date": 20200417,
@@ -2057,9 +2138,9 @@
     "positive": 705222,
     "negative": 2905487,
     "pending": 10889,
-    "hospitalizedCurrently": 57808,
+    "hospitalizedCurrently": 58532,
     "hospitalizedCumulative": 89356,
-    "inIcuCurrently": 14910,
+    "inIcuCurrently": 14890,
     "inIcuCumulative": 2052,
     "onVentilatorCurrently": 6096,
     "onVentilatorCumulative": 148,
@@ -2076,7 +2157,7 @@
     "negativeIncrease": 127578,
     "positiveIncrease": 32013,
     "totalTestResultsIncrease": 159591,
-    "hash": "f0dc9e8739aa1e915a4c12c78ea042099e5cc7c5"
+    "hash": "212890d79aeb099b8322831c4dffef9ee8a9ad6b"
   },
   {
     "date": 20200416,
@@ -2084,9 +2165,9 @@
     "positive": 673209,
     "negative": 2777909,
     "pending": 16927,
-    "hospitalizedCurrently": 58625,
+    "hospitalizedCurrently": 59140,
     "hospitalizedCumulative": 85951,
-    "inIcuCurrently": 15150,
+    "inIcuCurrently": 15130,
     "inIcuCumulative": 1834,
     "onVentilatorCurrently": 5940,
     "onVentilatorCumulative": 137,
@@ -2103,7 +2184,7 @@
     "negativeIncrease": 132643,
     "positiveIncrease": 30840,
     "totalTestResultsIncrease": 163483,
-    "hash": "785a739d517c2ae0b9eb7e0d180d6da96eabb6b6"
+    "hash": "a79677ae242a1f9d3255eb612f27d55290ebfff0"
   },
   {
     "date": 20200415,
@@ -2111,9 +2192,9 @@
     "positive": 642369,
     "negative": 2645266,
     "pending": 16901,
-    "hospitalizedCurrently": 59260,
+    "hospitalizedCurrently": 59539,
     "hospitalizedCumulative": 82880,
-    "inIcuCurrently": 14667,
+    "inIcuCurrently": 14647,
     "inIcuCumulative": 1783,
     "onVentilatorCurrently": 6032,
     "onVentilatorCumulative": 223,
@@ -2130,7 +2211,7 @@
     "negativeIncrease": 107826,
     "positiveIncrease": 30269,
     "totalTestResultsIncrease": 138095,
-    "hash": "a7763897372684d3627b8eb7c7e2e2851fe44bf6"
+    "hash": "65a7e50ebece0b82c19afa6d07a7eb08d3f0b089"
   },
   {
     "date": 20200414,
@@ -2138,7 +2219,7 @@
     "positive": 612100,
     "negative": 2537440,
     "pending": 16615,
-    "hospitalizedCurrently": 58719,
+    "hospitalizedCurrently": 59222,
     "hospitalizedCumulative": 78446,
     "inIcuCurrently": 14039,
     "inIcuCumulative": 1715,
@@ -2157,7 +2238,7 @@
     "negativeIncrease": 126546,
     "positiveIncrease": 25639,
     "totalTestResultsIncrease": 152185,
-    "hash": "3358e8a973afeb06ef93cdccb99a32985e7d1eb7"
+    "hash": "4d9c4be93b2d566454ef9ec2157cf26a1c33a33c"
   },
   {
     "date": 20200413,
@@ -2165,7 +2246,7 @@
     "positive": 586461,
     "negative": 2410894,
     "pending": 17159,
-    "hospitalizedCurrently": 55295,
+    "hospitalizedCurrently": 55815,
     "hospitalizedCumulative": 75164,
     "inIcuCurrently": 13632,
     "inIcuCumulative": 1628,
@@ -2184,7 +2265,7 @@
     "negativeIncrease": 108197,
     "positiveIncrease": 25257,
     "totalTestResultsIncrease": 133454,
-    "hash": "16d58ce6d445731068959b5f32a28b92fc39252f"
+    "hash": "e486b4c96fb4e4b1c44500b63291fa1b0dfec144"
   },
   {
     "date": 20200412,
@@ -2192,7 +2273,7 @@
     "positive": 561204,
     "negative": 2302697,
     "pending": 16419,
-    "hospitalizedCurrently": 54749,
+    "hospitalizedCurrently": 55136,
     "hospitalizedCumulative": 70879,
     "inIcuCurrently": 13623,
     "inIcuCumulative": 1455,
@@ -2211,7 +2292,7 @@
     "negativeIncrease": 111452,
     "positiveIncrease": 27871,
     "totalTestResultsIncrease": 139323,
-    "hash": "647d13999f0367ff4edcd8649ab76f374cb8e059"
+    "hash": "2bd44ae1fb009c0046cec8ce73a5372091fb4792"
   },
   {
     "date": 20200411,
@@ -2219,7 +2300,7 @@
     "positive": 533333,
     "negative": 2191245,
     "pending": 16593,
-    "hospitalizedCurrently": 54757,
+    "hospitalizedCurrently": 55229,
     "hospitalizedCumulative": 67591,
     "inIcuCurrently": 13280,
     "inIcuCumulative": 1405,
@@ -2238,7 +2319,7 @@
     "negativeIncrease": 108276,
     "positiveIncrease": 30615,
     "totalTestResultsIncrease": 138891,
-    "hash": "46789e4f596a90c3be9bde8192100efab5c1e74e"
+    "hash": "b342a243ded4c8d61c77ad4cd658815dcb2d8974"
   },
   {
     "date": 20200410,
@@ -2246,7 +2327,7 @@
     "positive": 502718,
     "negative": 2082969,
     "pending": 17435,
-    "hospitalizedCurrently": 51745,
+    "hospitalizedCurrently": 52373,
     "hospitalizedCumulative": 64766,
     "inIcuCurrently": 12698,
     "inIcuCumulative": 1185,
@@ -2265,7 +2346,7 @@
     "negativeIncrease": 123267,
     "positiveIncrease": 34235,
     "totalTestResultsIncrease": 157502,
-    "hash": "3d7ae44ad79bb9ce50dccdffc5a247fb6ef89c4b"
+    "hash": "d2cf1cd272b6cd8d1056416fa76eaffeff5a3e92"
   },
   {
     "date": 20200409,
@@ -2273,7 +2354,7 @@
     "positive": 468483,
     "negative": 1959702,
     "pending": 17622,
-    "hospitalizedCurrently": 49826,
+    "hospitalizedCurrently": 50535,
     "hospitalizedCumulative": 59832,
     "inIcuCurrently": 12254,
     "inIcuCumulative": 924,
@@ -2292,7 +2373,7 @@
     "negativeIncrease": 135277,
     "positiveIncrease": 34417,
     "totalTestResultsIncrease": 169694,
-    "hash": "9394ac315cea4ea6994d69478e79a602c463e11f"
+    "hash": "185e5b0089f9f2921980b5fe31923335f817955d"
   },
   {
     "date": 20200408,
@@ -2300,9 +2381,9 @@
     "positive": 434066,
     "negative": 1824425,
     "pending": 17219,
-    "hospitalizedCurrently": 44063,
+    "hospitalizedCurrently": 44833,
     "hospitalizedCumulative": 55909,
-    "inIcuCurrently": 9932,
+    "inIcuCurrently": 10180,
     "inIcuCumulative": 1013,
     "onVentilatorCurrently": 4131,
     "onVentilatorCumulative": 216,
@@ -2319,7 +2400,7 @@
     "negativeIncrease": 116987,
     "positiveIncrease": 30481,
     "totalTestResultsIncrease": 147468,
-    "hash": "73593ce7c4f4258442c9af1e1e73d8042b44c05c"
+    "hash": "04d71e668060d6f9dd62005ff24ef72bc9aeb6db"
   },
   {
     "date": 20200407,
@@ -2327,9 +2408,9 @@
     "positive": 403585,
     "negative": 1707438,
     "pending": 16548,
-    "hospitalizedCurrently": 42294,
+    "hospitalizedCurrently": 43163,
     "hospitalizedCumulative": 51598,
-    "inIcuCurrently": 9875,
+    "inIcuCurrently": 9821,
     "inIcuCumulative": 889,
     "onVentilatorCurrently": 4076,
     "onVentilatorCumulative": 151,
@@ -2346,7 +2427,7 @@
     "negativeIncrease": 123697,
     "positiveIncrease": 30624,
     "totalTestResultsIncrease": 154321,
-    "hash": "816bf7277243a0a390157e840e854aa1f9bb4467"
+    "hash": "2ef415d0d34d79b5a89f0d28f9114ed19904ab30"
   },
   {
     "date": 20200406,
@@ -2354,7 +2435,7 @@
     "positive": 372961,
     "negative": 1583741,
     "pending": 17283,
-    "hospitalizedCurrently": 34663,
+    "hospitalizedCurrently": 35559,
     "hospitalizedCumulative": 48617,
     "inIcuCurrently": 6943,
     "inIcuCumulative": 814,
@@ -2373,7 +2454,7 @@
     "negativeIncrease": 122634,
     "positiveIncrease": 28891,
     "totalTestResultsIncrease": 151525,
-    "hash": "de7056b9e5077615aa1c3e73e7182f4ae3493a26"
+    "hash": "ba9e85193335ffaed6bfe38c2ea8d076d977c5ef"
   },
   {
     "date": 20200405,
@@ -2381,7 +2462,7 @@
     "positive": 344070,
     "negative": 1461107,
     "pending": 17303,
-    "hospitalizedCurrently": 30905,
+    "hospitalizedCurrently": 31593,
     "hospitalizedCumulative": 45671,
     "inIcuCurrently": 5677,
     "inIcuCumulative": 760,
@@ -2400,7 +2481,7 @@
     "negativeIncrease": 93710,
     "positiveIncrease": 25484,
     "totalTestResultsIncrease": 119194,
-    "hash": "3ec53a2cb0443f3b4b0d5651ff235d8267ebe6aa"
+    "hash": "730e97c951f7243fd96420c39309768d3a7a1c63"
   },
   {
     "date": 20200404,
@@ -2408,7 +2489,7 @@
     "positive": 318586,
     "negative": 1367397,
     "pending": 15569,
-    "hospitalizedCurrently": 29095,
+    "hospitalizedCurrently": 29749,
     "hospitalizedCumulative": 41768,
     "inIcuCurrently": 5383,
     "inIcuCumulative": 554,
@@ -2427,7 +2508,7 @@
     "negativeIncrease": 196048,
     "positiveIncrease": 33212,
     "totalTestResultsIncrease": 229260,
-    "hash": "be7d29f86a796603bd42fb0da9cb1c56881d2b5b"
+    "hash": "d32b2188b3be4fd71b0d8eb914643362f6f83e76"
   },
   {
     "date": 20200403,
@@ -2435,7 +2516,7 @@
     "positive": 285374,
     "negative": 1171349,
     "pending": 61976,
-    "hospitalizedCurrently": 24564,
+    "hospitalizedCurrently": 25234,
     "hospitalizedCumulative": 36682,
     "inIcuCurrently": 4811,
     "inIcuCumulative": 486,
@@ -2454,7 +2535,7 @@
     "negativeIncrease": 100673,
     "positiveIncrease": 31896,
     "totalTestResultsIncrease": 132569,
-    "hash": "5c6e75992d07621257065882bce467f324c4d01e"
+    "hash": "f1a337c55f500cc9923edf61fb62c46ec6acc941"
   },
   {
     "date": 20200402,
@@ -2462,7 +2543,7 @@
     "positive": 253478,
     "negative": 1070676,
     "pending": 62097,
-    "hospitalizedCurrently": 21833,
+    "hospitalizedCurrently": 22538,
     "hospitalizedCumulative": 32128,
     "inIcuCurrently": 4410,
     "inIcuCumulative": 456,
@@ -2481,7 +2562,7 @@
     "negativeIncrease": 91004,
     "positiveIncrease": 28021,
     "totalTestResultsIncrease": 119025,
-    "hash": "f53247dc7bbfcb93222311bb835f5b87c03cf254"
+    "hash": "9b8ccd918ec7deb5a935c5b6738832e986850ffe"
   },
   {
     "date": 20200401,
@@ -2489,7 +2570,7 @@
     "positive": 225457,
     "negative": 979672,
     "pending": 59665,
-    "hospitalizedCurrently": 19982,
+    "hospitalizedCurrently": 20517,
     "hospitalizedCumulative": 27953,
     "inIcuCurrently": 3937,
     "inIcuCumulative": 407,
@@ -2508,7 +2589,7 @@
     "negativeIncrease": 82458,
     "positiveIncrease": 25750,
     "totalTestResultsIncrease": 108208,
-    "hash": "b01b71d127220863bc1a10afb4840038dc3b4cd1"
+    "hash": "83af59c3419a37b3f99eb765807bbf30c0790927"
   },
   {
     "date": 20200331,
@@ -2516,7 +2597,7 @@
     "positive": 199707,
     "negative": 897214,
     "pending": 59518,
-    "hospitalizedCurrently": 17856,
+    "hospitalizedCurrently": 17910,
     "hospitalizedCumulative": 23725,
     "inIcuCurrently": 3487,
     "inIcuCumulative": 236,
@@ -2535,7 +2616,7 @@
     "negativeIncrease": 87627,
     "positiveIncrease": 24708,
     "totalTestResultsIncrease": 112335,
-    "hash": "b17be1fb02197d874b3fc7de0244dde74d07f5f0"
+    "hash": "9ff919effac66e4b73cfd541b086c86f6a6aa79c"
   },
   {
     "date": 20200330,
@@ -2543,7 +2624,7 @@
     "positive": 174999,
     "negative": 809587,
     "pending": 65369,
-    "hospitalizedCurrently": 15574,
+    "hospitalizedCurrently": 15616,
     "hospitalizedCumulative": 19819,
     "inIcuCurrently": 3087,
     "inIcuCumulative": 187,
@@ -2562,7 +2643,7 @@
     "negativeIncrease": 96721,
     "positiveIncrease": 21927,
     "totalTestResultsIncrease": 118648,
-    "hash": "8b7655cff0b13b501b86e061d9049c940ca76c49"
+    "hash": "29ccb3a852b94d65969cc9b33965038aa25fd3fe"
   },
   {
     "date": 20200329,
@@ -2570,7 +2651,7 @@
     "positive": 153072,
     "negative": 712866,
     "pending": 65545,
-    "hospitalizedCurrently": 13833,
+    "hospitalizedCurrently": 13868,
     "hospitalizedCumulative": 17283,
     "inIcuCurrently": 2456,
     "inIcuCumulative": 156,
@@ -2589,7 +2670,7 @@
     "negativeIncrease": 67942,
     "positiveIncrease": 19605,
     "totalTestResultsIncrease": 87547,
-    "hash": "8e551053252e6f9d19f8420f7097a92418ad1a26"
+    "hash": "7b5db03dd8d0007cf60afbee635be7c8b81e4d20"
   },
   {
     "date": 20200328,
@@ -2597,7 +2678,7 @@
     "positive": 133467,
     "negative": 644924,
     "pending": 65709,
-    "hospitalizedCurrently": 12179,
+    "hospitalizedCurrently": 12217,
     "hospitalizedCumulative": 14508,
     "inIcuCurrently": 2174,
     "inIcuCumulative": 140,
@@ -2616,7 +2697,7 @@
     "negativeIncrease": 87141,
     "positiveIncrease": 19696,
     "totalTestResultsIncrease": 106837,
-    "hash": "809b2268d3694f5d16c45ef6b251debea264a360"
+    "hash": "d3a963fba41d9621269626f7373dd0f172cb46a7"
   },
   {
     "date": 20200327,
@@ -2624,7 +2705,7 @@
     "positive": 113771,
     "negative": 557783,
     "pending": 60091,
-    "hospitalizedCurrently": 10789,
+    "hospitalizedCurrently": 10820,
     "hospitalizedCumulative": 12083,
     "inIcuCurrently": 1792,
     "inIcuCumulative": 124,
@@ -2643,7 +2724,7 @@
     "negativeIncrease": 84454,
     "positiveIncrease": 19051,
     "totalTestResultsIncrease": 103505,
-    "hash": "cffd414ec41a95e79ffcd2302d6ce11b1e9a2a94"
+    "hash": "856aebefeed8fdb2d15e170fbdf583430ea6cc1e"
   },
   {
     "date": 20200326,
@@ -2651,7 +2732,7 @@
     "positive": 94720,
     "negative": 473329,
     "pending": 60251,
-    "hospitalizedCurrently": 7617,
+    "hospitalizedCurrently": 7651,
     "hospitalizedCumulative": 9520,
     "inIcuCurrently": 1299,
     "inIcuCumulative": 91,
@@ -2670,7 +2751,7 @@
     "negativeIncrease": 83983,
     "positiveIncrease": 17648,
     "totalTestResultsIncrease": 101631,
-    "hash": "11882014894f8d4950af14bab0ad1d24abac6ca5"
+    "hash": "ef0c14f98f910e2e52e90c4ec97b01a3791f46e8"
   },
   {
     "date": 20200325,
