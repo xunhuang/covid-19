@@ -41,8 +41,7 @@
       "sqlType": "sqlTypeOther",
       "length": 256,
       "domain": null,
-      "defaultValue": null,
-      "description": "{\"value\":\"Country Province or State Name (Level 2 Key)\",\"fieldValueType\":\"nameOrTitle\"}"
+      "defaultValue": null
     },
     {
       "name": "Country_Region",
@@ -51,8 +50,7 @@
       "sqlType": "sqlTypeOther",
       "length": 256,
       "domain": null,
-      "defaultValue": null,
-      "description": "{\"value\":\"Country or Region Name (Level 1 Key)\",\"fieldValueType\":\"nameOrTitle\"}"
+      "defaultValue": null
     },
     {
       "name": "Last_Update",
@@ -61,8 +59,7 @@
       "sqlType": "sqlTypeOther",
       "length": 8,
       "domain": null,
-      "defaultValue": null,
-      "description": "{\"value\":\"Last data update Date/Time in UTC\",\"fieldValueType\":\"dateAndTime\"}"
+      "defaultValue": null
     },
     {
       "name": "Lat",
@@ -70,8 +67,7 @@
       "alias": "Latitude",
       "sqlType": "sqlTypeOther",
       "domain": null,
-      "defaultValue": null,
-      "description": "{\"value\":\"Geographic Latitude in Decimal Degrees (WGS1984)\",\"fieldValueType\":\"coordinate\"}"
+      "defaultValue": null
     },
     {
       "name": "Long_",
@@ -79,8 +75,7 @@
       "alias": "Longitude",
       "sqlType": "sqlTypeOther",
       "domain": null,
-      "defaultValue": null,
-      "description": "{\"value\":\"Geographic Longitude in Decimal Degrees (WGS1984)\",\"fieldValueType\":\"coordinate\"}"
+      "defaultValue": null
     },
     {
       "name": "Confirmed",
@@ -88,8 +83,7 @@
       "alias": "Confirmed",
       "sqlType": "sqlTypeOther",
       "domain": null,
-      "defaultValue": null,
-      "description": "{\"value\":\"Best collected count of Confirmed Cases reported by geography\",\"fieldValueType\":\"countOrAmount\"}"
+      "defaultValue": null
     },
     {
       "name": "Recovered",
@@ -97,8 +91,7 @@
       "alias": "Recovered",
       "sqlType": "sqlTypeOther",
       "domain": null,
-      "defaultValue": null,
-      "description": "{\"value\":\"Best collected count of Case Recoveries reported by geography\",\"fieldValueType\":\"countOrAmount\"}"
+      "defaultValue": null
     },
     {
       "name": "Deaths",
@@ -106,8 +99,7 @@
       "alias": "Deaths",
       "sqlType": "sqlTypeOther",
       "domain": null,
-      "defaultValue": null,
-      "description": "{\"value\":\"Best collected count for Case Deaths reported by geography\",\"fieldValueType\":\"countOrAmount\"}"
+      "defaultValue": null
     },
     {
       "name": "Active",
@@ -115,8 +107,7 @@
       "alias": "Active",
       "sqlType": "sqlTypeOther",
       "domain": null,
-      "defaultValue": null,
-      "description": "{\"value\":\"Confirmed - Recovered - Deaths (computed)\",\"fieldValueType\":\"countOrAmount\"}"
+      "defaultValue": null
     },
     {
       "name": "Admin2",
@@ -125,8 +116,7 @@
       "sqlType": "sqlTypeOther",
       "length": 256,
       "domain": null,
-      "defaultValue": null,
-      "description": "{\"value\":\"US County Name (Level 3 Key)\",\"fieldValueType\":\"nameOrTitle\"}"
+      "defaultValue": null
     },
     {
       "name": "FIPS",
@@ -135,8 +125,7 @@
       "sqlType": "sqlTypeOther",
       "length": 5,
       "domain": null,
-      "defaultValue": null,
-      "description": "{\"value\":\"US State/County Code\",\"fieldValueType\":\"locationOrPlaceName\"}"
+      "defaultValue": null
     },
     {
       "name": "Combined_Key",
@@ -145,8 +134,7 @@
       "sqlType": "sqlTypeOther",
       "length": 256,
       "domain": null,
-      "defaultValue": null,
-      "description": "{\"value\":\"Comma separated concatenation of Key Field values (L3, L2, L1)\",\"fieldValueType\":\"locationOrPlaceName\"}"
+      "defaultValue": null
     },
     {
       "name": "Incident_Rate",
@@ -154,8 +142,7 @@
       "alias": "Incident Rate",
       "sqlType": "sqlTypeOther",
       "domain": null,
-      "defaultValue": null,
-      "description": "{\"value\":\"\",\"fieldValueType\":\"percentageOrRatio\"}"
+      "defaultValue": null
     },
     {
       "name": "People_Tested",
@@ -163,8 +150,7 @@
       "alias": "People Tested",
       "sqlType": "sqlTypeOther",
       "domain": null,
-      "defaultValue": null,
-      "description": "{\"value\":\"\",\"fieldValueType\":\"countOrAmount\"}"
+      "defaultValue": null
     },
     {
       "name": "People_Hospitalized",
