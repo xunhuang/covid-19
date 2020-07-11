@@ -269,7 +269,6 @@ export class Country extends CovidSummarizable {
   }
   async testingAllAsync() {
     let data = await fetchTestingDataStates();
-    console.log(data);
     return data;
   }
 
