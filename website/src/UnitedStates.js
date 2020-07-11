@@ -625,6 +625,8 @@ export class County extends CovidSummarizable {
     if (covidRaw) {
       this.name = covidRaw['CountyName'];
       this.population_ = covidRaw.Population;
+      this.hospitalization_ = covidRaw.hospitalization;
+
     } else {
       this.name = UNKNOWN_COUNTY_NAME;
     }
@@ -650,6 +652,10 @@ export class County extends CovidSummarizable {
 
   fips() {
     return this.id;
+  }
+
+  hospitalization() {
+    return this.hospitalization_;
   }
 
   nearby() {

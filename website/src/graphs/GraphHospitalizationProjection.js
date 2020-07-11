@@ -10,9 +10,11 @@ import {
 import { Typography } from '@material-ui/core';
 import { myShortNumber } from '../Util';
 import { makeStyles } from '@material-ui/core/styles';
-import { Country, State } from '../UnitedStates';
+import { Country, State, County } from '../UnitedStates';
 import { DateRangeSlider } from "../DateRangeSlider"
 import Grid from '@material-ui/core/Grid';
+import { GraphCountyHospitalization } from "./GraphCountyHospitalization"
+
 const Util = require('covidmodule').Util;
 
 const moment = require("moment");
@@ -317,6 +319,18 @@ function maybeHospitalizationProjectionTabFor(source) {
       label: 'Hospitalization',
       graph: (props) => <GraphAllBedProjectionState state={props.source} />,
     };
+  } else if (source instanceof County) {
+    if (source.hospitalization()) {
+      return {
+        id: 'peakhospitalization',
+        label: 'Hospitalization',
+        graph: (props) => <GraphCountyHospitalization
+          hospitalization={source.hospitalization()}
+          source={source}
+        />,
+      };
+    }
+    return undefined;
   } else {
     return undefined;
   }

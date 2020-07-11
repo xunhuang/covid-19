@@ -1174,7 +1174,7 @@ async function addCountyHospitalization() {
       if (county) {
         let hospitalization = county.hospitalization || [];
         hospitalization.push({
-          date: point.date,
+          fulldate: moment(point.date, "YYYY-MM-DD").format("MM/DD/YYYY"),
           hospitalized_covid_patients: point.hospitalized_covid_patients,
           icu_available_beds: point.icu_available_beds,
           icu_covid_patients: point.icu_covid_patients,
