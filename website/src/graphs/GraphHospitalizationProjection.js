@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { CountryContext } from "../CountryContext"
 import {
   ResponsiveContainer, Tooltip,
-  Line, Area, Legend,
+  Line, Legend,
   ReferenceLine, Label,
   YAxis, XAxis, CartesianGrid,
   ComposedChart,

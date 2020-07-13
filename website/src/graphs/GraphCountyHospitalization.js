@@ -1,10 +1,7 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { AdvancedGraph } from '../components/graphs/AdvancedGraph'
 import { DataSeries } from '../models/DataSeries';
 import { getRefLines } from "../Util"
-
-const Util = require('covidmodule').Util;
-const moment = require("moment");
 
 const GraphCountyHospitalization = (props) => {
   let data = props.hospitalization;

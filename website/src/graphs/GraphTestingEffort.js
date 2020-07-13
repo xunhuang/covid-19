@@ -6,7 +6,6 @@ import {
 import { makeStyles } from '@material-ui/core/styles';
 import { Typography } from '@material-ui/core';
 import { Grid } from '@material-ui/core';
-import { AntSwitch } from "./AntSwitch.js"
 import { myShortNumber } from '../Util.js';
 import { mergeDataSeries, makeDataSeriesFromTotal, exportColumnFromDataSeries } from "./DataSeries";
 import ToggleButton from '@material-ui/lab/ToggleButton';

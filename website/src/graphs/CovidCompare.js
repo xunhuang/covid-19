@@ -34,12 +34,12 @@ const DailyConfirmedNew = (props) => {
   const serieses = all.map(s => {
     let data = (s === props.source) ? USData : s.dataPoints();
     console.log(s);
-    let series = DataSeries.
-      fromOldDataSourceDataPoints("Confirmed", data, "confirmed").
-      change().
-      nDayAverage(7).
-      capita(s.population() / 100000).
-      setLabel(s.name);
+    let series = DataSeries
+      .fromOldDataSourceDataPoints("Confirmed", data, "confirmed")
+      .change()
+      .nDayAverage(7)
+      .capita(s.population() / 100000)
+      .setLabel(s.name);
     return {
       series: series,
       color: colors[color_index++],

@@ -1,10 +1,8 @@
 import React from 'react'
 import { Summary } from './Summary'
-import { BasicGraph } from "./GraphNewCases"
 import { County, Country, State } from "../UnitedStates";
 import { MapUS } from "../MapUS"
 import { GraphAllBedProjectionState, GraphAllBedProjectionUS } from "./GraphHospitalizationProjection"
-import moment from 'moment';
 import { AdvancedGraph } from '../components/graphs/AdvancedGraph'
 import { DataSeries } from '../models/DataSeries';
 import { getRefLines } from "../Util"

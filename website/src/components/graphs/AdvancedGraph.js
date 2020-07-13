@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import ToggleButton from '@material-ui/lab/ToggleButton';
 import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
-import { LineChart, ReferenceLine, Label, Area, CartesianGrid, ComposedChart, Line, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
+import { LineChart, ReferenceLine, Label, CartesianGrid, Line, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
 import { fade, makeStyles } from '@material-ui/core/styles';
 import { scaleSymlog } from 'd3-scale';
 import { myShortNumber } from '../../Util';
