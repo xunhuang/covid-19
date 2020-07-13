@@ -6,6 +6,7 @@ import Badge from '@material-ui/core/Badge';
 import { withStyles } from '@material-ui/core/styles';
 import { withRouter } from 'react-router-dom'
 import { AtAGlance } from './AtAGlance.js'
+import { CovidCompare } from './CovidCompare.js'
 import { GraphDaysToDoubleOverTime } from './GraphDaysToDoubleOverTime'
 import { GraphGrowthRateOverTime } from './GraphGrowthRateOverTime'
 import { maybeDeathProjectionTabFor } from './GraphDeathProjection.js'
@@ -14,7 +15,7 @@ import { maybeMapTabFor } from '../Map';
 import { maybeRecoveryAndDeathTabFor } from './GraphRecoveryAndDeath.js'
 import { maybeTestingTabFor } from './GraphTestingEffort'
 import { maybeDailyTabFor } from './GraphDaily'
-import { Country, State } from "../UnitedStates"
+import { Country, State, County } from "../UnitedStates"
 
 const styles = theme => ({
   content: {
@@ -82,6 +83,14 @@ class UnhookedGraphSection extends React.Component {
       });
     }
 
+    if (source instanceof County) {
+      tabs.set("compare", {
+        label: "Compare",
+        content: CovidCompare,
+        showRibbon: true,
+      });
+    }
+
     // [maybeDeathProjectionTabFor, maybeHospitalizationProjectionTabFor]
     [maybeHospitalizationProjectionTabFor]
       .map(factory => factory(source))
@@ -92,7 +101,6 @@ class UnhookedGraphSection extends React.Component {
           content: tab.graph,
           showRibbon: true,  // TO SHOW THE RIBBON ADD A LINE LIKE THIS
         }));
-
 
     if (source instanceof State || source instanceof Country) {
       const maybeTesting = maybeTestingTabFor(source)

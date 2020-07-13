@@ -255,6 +255,10 @@ export class Country extends CovidSummarizable {
     return datesToDataPoints(this.covidRaw_.Summary);
   }
 
+  dataPoints() {
+    return datesToDataPoints(this.covidRaw_.Summary);
+  }
+
   async deathsAsync() {
     return this.covidRaw_.Summary.Death;
   }
@@ -269,7 +273,6 @@ export class Country extends CovidSummarizable {
   }
   async testingAllAsync() {
     let data = await fetchTestingDataStates();
-    console.log(data);
     return data;
   }
 
@@ -290,6 +293,10 @@ export class Country extends CovidSummarizable {
       });
     }
     return result;
+  }
+
+  population() {
+    return 331002651;
   }
 
   async growthRateTimeSeries() {
@@ -409,6 +416,9 @@ export class State extends CovidSummarizable {
   }
 
   async dataPointsAsync() {
+    return datesToDataPoints(this.covidRaw_.Summary);
+  }
+  dataPoints() {
     return datesToDataPoints(this.covidRaw_.Summary);
   }
 
@@ -563,11 +573,23 @@ export class Metro extends CovidSummarizable {
     return this.state();
   }
 
+  population() {
+    let p = 0;
+    for (let c of this.counties_) {
+      p = p + c.population();
+    }
+    return p;
+
+  }
+
   routeTo() {
     return reverse(routes.metro, { metro: this.id });
   }
 
   async dataPointsAsync() {
+    return datesToDataPoints(this.covidRaw_.Summary);
+  }
+  dataPoints() {
     return datesToDataPoints(this.covidRaw_.Summary);
   }
   async deathsAsync() {
@@ -720,6 +742,9 @@ export class County extends CovidSummarizable {
       await this._fetchServerData();
     }
     return datesToDataPoints(this.covidRaw_);
+  }
+  dataPoints() {
+    return datesToDataPoints(this.covidRaw_.Summary);
   }
 
   getConfirmedByDate(date) {

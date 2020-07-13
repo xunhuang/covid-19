@@ -60,9 +60,6 @@ const AllBedsTooltip = (props) => {
         <Typography variant="body1" noWrap>
           {label}
         </Typography>
-        <Typography variant="body2" noWrap>
-          {`Projected Total : ${allbed_mean}`}
-        </Typography>
         {hospitalized &&
           <Typography variant="body2" noWrap>
             {`Hospitalized: ${hospitalized}`}

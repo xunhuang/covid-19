@@ -392,7 +392,6 @@ export class DataSeries {
     const points = this.points();
     const capita = [];
     for (let i = 0; i < points.length; ++i) {
-      console.log(points[i][1] / population)
       capita.push([
         points[i][0],
         points[i][1] / population,
