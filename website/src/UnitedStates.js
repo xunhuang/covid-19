@@ -6,6 +6,7 @@ import { fetchNPRProjectionData } from "./NPRProjection"
 import { fetchTestingDataStates, fetchTestingDataUS } from "./TestingData"
 import { fetchPublicCountyData, fetchAllUSData } from "./PublicAllData"
 import { mergeDataSeries, makeDataSeriesFromTotal } from "./graphs/DataSeries";
+import { DataSeries } from './models/DataSeries';
 
 const CovidData = require('./data/AllData.slim.json');
 const CountyGeoData = require('./data/county_gps.json');
@@ -259,6 +260,18 @@ export class Country extends CovidSummarizable {
     return datesToDataPoints(this.covidRaw_.Summary);
   }
 
+  async confirmDataSeriesAsync() {
+    const data = await this.dataPointsAsync();
+    return DataSeries
+      .fromOldDataSourceDataPoints("Confirmed", data, "confirmed");
+  }
+
+  async deathDataSeriesAsync() {
+    const data = await this.dataPointsAsync();
+    return DataSeries
+      .fromOldDataSourceDataPoints("Death", data, "death");
+  }
+
   async deathsAsync() {
     return this.covidRaw_.Summary.Death;
   }
@@ -420,6 +433,18 @@ export class State extends CovidSummarizable {
   }
   dataPoints() {
     return datesToDataPoints(this.covidRaw_.Summary);
+  }
+
+  async confirmDataSeriesAsync() {
+    const data = await this.dataPointsAsync();
+    return DataSeries
+      .fromOldDataSourceDataPoints("Confirmed", data, "confirmed");
+  }
+
+  async deathDataSeriesAsync() {
+    const data = await this.dataPointsAsync();
+    return DataSeries
+      .fromOldDataSourceDataPoints("Death", data, "death");
   }
 
   async deathsAsync() {
@@ -592,6 +617,17 @@ export class Metro extends CovidSummarizable {
   dataPoints() {
     return datesToDataPoints(this.covidRaw_.Summary);
   }
+  async confirmDataSeriesAsync() {
+    const data = await this.dataPointsAsync();
+    return DataSeries
+      .fromOldDataSourceDataPoints("Confirmed", data, "confirmed");
+  }
+
+  async deathDataSeriesAsync() {
+    const data = await this.dataPointsAsync();
+    return DataSeries
+      .fromOldDataSourceDataPoints("Death", data, "death");
+  }
   async deathsAsync() {
     return this.covidRaw_.Summary.Death;
   }
@@ -745,6 +781,17 @@ export class County extends CovidSummarizable {
   }
   dataPoints() {
     return datesToDataPoints(this.covidRaw_.Summary);
+  }
+  async confirmDataSeriesAsync() {
+    const data = await this.dataPointsAsync();
+    return DataSeries
+      .fromOldDataSourceDataPoints("Confirmed", data, "confirmed");
+  }
+
+  async deathDataSeriesAsync() {
+    const data = await this.dataPointsAsync();
+    return DataSeries
+      .fromOldDataSourceDataPoints("Death", data, "death");
   }
 
   getConfirmedByDate(date) {

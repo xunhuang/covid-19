@@ -9,9 +9,18 @@ import { getRefLines } from "../Util"
 import { GraphCountyHospitalization } from "./GraphCountyHospitalization"
 
 const DailyConfirmedNew = (props) => {
-  let confirmed_series = DataSeries.fromOldDataSourceDataPoints("Confirmed", props.USData, "confirmed");
-  let doubling = Math.round(confirmed_series.daysTo2X());
-  let dailyGrowth = Math.round(confirmed_series.dailyGrowthRate() * 100);
+  const [dataSeries, setDataSeries] = React.useState(null);
+  React.useEffect(() => {
+    props.source.confirmDataSeriesAsync().then(data => setDataSeries(data));
+  }, [props.source])
+
+  if (!dataSeries || dataSeries.length === 0) {
+    return <div> Loading</div>;
+  }
+
+  // end of init
+  let doubling = Math.round(dataSeries.daysTo2X());
+  let dailyGrowth = Math.round(dataSeries.dailyGrowthRate() * 100);
 
   const vKeyRefLines = getRefLines(props.source);
 
@@ -19,19 +28,19 @@ const DailyConfirmedNew = (props) => {
     serieses={
       [
         {
-          series: confirmed_series,
+          series: dataSeries,
           color: "#ff7300",
           covidspecial: true,
         },
         {
-          series: confirmed_series.change().setLabel("New"),
+          series: dataSeries.change().setLabel("New"),
           color: "#387908",
           rightAxis: true,
           covidspecial: true,
           showMovingAverage: true,
         },
         {
-          series: confirmed_series.trend().setLabel(`${doubling} Days to 2X (+${dailyGrowth}% Daily)`),
+          series: dataSeries.trend().setLabel(`${doubling} Days to 2X (+${dailyGrowth}% Daily)`),
           color: "#ff7300",
           stipple: true,
           initial: 'off',
@@ -43,27 +52,35 @@ const DailyConfirmedNew = (props) => {
 };
 
 const DailyDeathNew = (props) => {
-  let confirmed_series = DataSeries.fromOldDataSourceDataPoints("Death", props.USData, "death");
-  let doubling = Math.round(confirmed_series.daysTo2X());
-  let dailyGrowth = Math.round(confirmed_series.dailyGrowthRate() * 100);
+  const [dataSeries, setDataSeries] = React.useState(null);
+  React.useEffect(() => {
+    props.source.deathDataSeriesAsync().then(data => setDataSeries(data));
+  }, [props.source])
+
+  if (!dataSeries || dataSeries.length === 0) {
+    return <div> Loading</div>;
+  }
+
+  let doubling = Math.round(dataSeries.daysTo2X());
+  let dailyGrowth = Math.round(dataSeries.dailyGrowthRate() * 100);
   const vKeyRefLines = getRefLines(props.source);
   return <AdvancedGraph
     serieses={
       [
         {
-          series: confirmed_series,
+          series: dataSeries,
           color: "black",
           covidspecial: true,
         },
         {
-          series: confirmed_series.change().setLabel("New"),
+          series: dataSeries.change().setLabel("New"),
           color: "red",
           rightAxis: true,
           covidspecial: true,
           showMovingAverage: true,
         },
         {
-          series: confirmed_series.trend().setLabel(`${doubling} Days to 2X (+${dailyGrowth}% Daily)`),
+          series: dataSeries.trend().setLabel(`${doubling} Days to 2X (+${dailyGrowth}% Daily)`),
           color: "black",
           stipple: true,
           initial: 'off',
@@ -75,21 +92,11 @@ const DailyDeathNew = (props) => {
 };
 
 const AtAGlance = (props) => {
-  const [USData, setUSdata] = React.useState(null);
-  React.useEffect(() => {
-    props.source.dataPointsAsync().then(data => setUSdata(data));
-  }, [props.source])
-
-  if (!USData || USData.length === 0) {
-    return <div> Loading</div>;
-  }
 
   const newconfirm = <DailyConfirmedNew
-    USData={USData}
     source={props.source}
   />;
   const newdeath = <DailyDeathNew
-    USData={USData}
     source={props.source}
   />;
 
