@@ -335,7 +335,7 @@ const Chart = (props) => {
       return <ReferenceLine key={`vrefline${idx}`}
         x={l.date}
         stroke="#e3e3e3"
-        strokeWidth={3}
+        strokeWidth={1}
       >
         <Label value={l.label} position={"insideTop"} fill="#b3b3b3" />
       </ReferenceLine>
@@ -349,9 +349,9 @@ const Chart = (props) => {
       return <ReferenceLine key={`vrefline${idx}`}
         y={l.value}
         stroke="#e3e3e3"
-        strokeWidth={3}
+        strokeWidth={1}
       >
-        <Label value={l.label} position={"insideLeft"} fill="#b3b3b3" />
+        <Label value={l.label} position={"insideLeft"} ></Label>
       </ReferenceLine>
     }
     );
@@ -364,6 +364,8 @@ const Chart = (props) => {
   return (
     <ResponsiveContainer height={300}>
       <LineChart data={props.data} margin={{ left: -4, right: 8 }}>
+        {vRefLines}
+        {hRefLines}
         <Tooltip
           formatter={valueFormatter}
           labelFormatter={props.timestampFormatter}
@@ -391,8 +393,6 @@ const Chart = (props) => {
         <CartesianGrid stroke="#d5d5d5" strokeDasharray="5 5" />
 
         {ordered.flatMap(spec => specToElements(spec))}
-        {vRefLines}
-        {hRefLines}
       </LineChart>
     </ResponsiveContainer>
   );

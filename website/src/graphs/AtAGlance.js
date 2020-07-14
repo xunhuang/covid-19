@@ -92,7 +92,6 @@ const DailyDeathNew = (props) => {
 };
 
 const AtAGlance = (props) => {
-
   const newconfirm = <DailyConfirmedNew
     source={props.source}
   />;
@@ -106,7 +105,7 @@ const AtAGlance = (props) => {
       {newconfirm}
       {newdeath}
       <MapUS source={props.source} />
-      <GraphAllBedProjectionUS />
+      <GraphAllBedProjectionUS source={props.source} />
     </div >;
   }
 

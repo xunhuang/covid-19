@@ -33,9 +33,6 @@ const GraphCountyHospitalization = (props) => {
     },
   ] : null;
 
-  vKeyRefLines.push(
-  );
-
   return <AdvancedGraph
     serieses={
       [
