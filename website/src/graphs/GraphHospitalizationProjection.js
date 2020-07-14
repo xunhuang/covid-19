@@ -119,7 +119,8 @@ const GraphAllBedProjectionState = (props) => {
       return item.fulldate === date;
     })
     if (entry) {
-      item.hospitalized = entry.hospitalizedCurrently ?? entry.hospitalized;
+      // item.hospitalized = entry.hospitalizedCurrently ?? entry.hospitalized;
+      item.hospitalized = entry.hospitalizedCurrently;
       item.inIcuCurrently = entry.inIcuCurrently;
       item.onVentilatorCurrently = entry.onVentilatorCurrently;
     }
@@ -290,7 +291,7 @@ const GraphDeathProjectionRender = (props) => {
         <Tooltip content={props.tooltip} />
         <Legend verticalAlign="top" payload={[
           // { value: 'Projection', type: 'line', color: '#000000' },
-          { value: 'Hospitalized Total', type: 'line', color: '#00aeef' },
+          { value: 'Hospitalized Currently', type: 'line', color: '#00aeef' },
           { value: 'In ICU', type: 'line', color: '#0000FF' },
           { value: 'On Ventilator', type: 'line', color: '#FF0000' },
         ]} />
