@@ -364,6 +364,8 @@ const Chart = (props) => {
   return (
     <ResponsiveContainer height={300}>
       <LineChart data={props.data} margin={{ left: -4, right: 8 }}>
+        {vRefLines}
+        {hRefLines}
         <Tooltip
           formatter={valueFormatter}
           labelFormatter={props.timestampFormatter}
@@ -391,8 +393,6 @@ const Chart = (props) => {
         <CartesianGrid stroke="#d5d5d5" strokeDasharray="5 5" />
 
         {ordered.flatMap(spec => specToElements(spec))}
-        {vRefLines}
-        {hRefLines}
       </LineChart>
     </ResponsiveContainer>
   );

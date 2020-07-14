@@ -14,6 +14,9 @@ import { Country, State, County } from '../UnitedStates';
 import { DateRangeSlider } from "../DateRangeSlider"
 import Grid from '@material-ui/core/Grid';
 import { GraphCountyHospitalization } from "./GraphCountyHospitalization"
+import { AdvancedGraph } from '../components/graphs/AdvancedGraph'
+import { DataSeries } from '../models/DataSeries';
+import { getRefLines } from "../Util"
 
 const Util = require('covidmodule').Util;
 
@@ -138,45 +141,94 @@ const GraphAllBedProjectionState = (props) => {
 
 const GraphAllBedProjectionUS = (props) => {
   const country = useContext(CountryContext);
-  const [USData, setUSdata] = React.useState(null);
-  const [testingActual, setTestingActual] = React.useState(null);
+  const [data, setData] = React.useState(null);
   React.useEffect(() => {
-    country.projectionsAsync().then(data => setUSdata(data));
-    country.testingAsync().then(data => setTestingActual(data));
+    country.testingAsync().then(data => setData(data));
   }, [country]);
 
-  if (!USData || USData.length === 0 || !testingActual || testingActual.length === 0) {
+  if (!data || data.length === 0) {
     return <div> Loading</div>;
   }
 
-  let data = USData.filter(d => d.location_name === "United States of America");
-  const [formateddata, max_date] = formatData(data, keybeds);
+  let hospitalized = DataSeries.fromOldDataSourceDataPoints("Hospitalized", data, "hospitalizedCurrently");
+  let icu =
+    DataSeries.fromOldDataSourceDataPoints("In ICU", data, "inIcuCurrently");
+  let onVentilatorCurrently =
+    DataSeries.fromOldDataSourceDataPoints("On Ventilator", data, "onVentilatorCurrently")
 
-  for (let item of formateddata) {
-    let entry = testingActual.find(t => {
-      let d = t.date.toString();
-      let year = d.slice(0, 4);
-      let month = d.slice(4, 6);
-      let day = d.slice(6, 8);
-      let date = `${month}/${day}/${year}`;
-      return item.fulldate === date;
-    })
-    if (entry) {
-      item.hospitalized = entry.hospitalizedCurrently;
-      item.inIcuCurrently = entry.inIcuCurrently;
-      item.onVentilatorCurrently = entry.onVentilatorCurrently;
+  let icu_capacity = country.hospitals().bedsICU;
+
+  let hrefs = icu_capacity ? [
+    {
+      value: icu_capacity,
+      label: "100% ICU",
+    },
+    {
+      value: icu_capacity / 4,
+      label: "25% ICU",
+    },
+    {
+      value: icu_capacity / 2,
+      label: "50% ICU",
+    },
+    {
+      value: icu_capacity / 4 * 3,
+      label: "75% ICU",
+    },
+  ] : null;
+
+  return <AdvancedGraph
+    serieses={
+      [
+        {
+          series: hospitalized,
+          color: "blue",
+        },
+        {
+          series: icu,
+          color: "#387908",
+        },
+        {
+          series: onVentilatorCurrently,
+          color: "red",
+        },
+      ]
     }
-  }
-
-  return <GraphDeathProjectionRender
-    data={formateddata}
-    max_date={max_date}
-    max_label="Peak Hospitalization"
-    data_keys={keybeds}
-    tooltip={<AllBedsTooltip />}
-    hospitals={country.hospitals()}
+    vRefLines={getRefLines(country)}
+    hRefLines={hrefs}
   />;
 }
+
+/*
+let data = USData.filter(d => d.location_name === "United States of America");
+const [formateddata, max_date] = formatData(data, keybeds);
+
+for (let item of formateddata) {
+  let entry = testingActual.find(t => {
+    let d = t.date.toString();
+    let year = d.slice(0, 4);
+    let month = d.slice(4, 6);
+    let day = d.slice(6, 8);
+    let date = `${month}/${day}/${year}`;
+    return item.fulldate === date;
+  })
+  if (entry) {
+    item.hospitalized = entry.hospitalizedCurrently;
+    item.inIcuCurrently = entry.inIcuCurrently;
+    item.onVentilatorCurrently = entry.onVentilatorCurrently;
+  }
+}
+
+return <GraphDeathProjectionRender
+  data={formateddata}
+  max_date={max_date}
+  max_label="Peak Hospitalization"
+  data_keys={keybeds}
+  tooltip={<AllBedsTooltip />}
+  hospitals={country.hospitals()}
+/>;
+}
+*/
 
 const formatData = (data, keys) => {
   data = data.map(d => {
