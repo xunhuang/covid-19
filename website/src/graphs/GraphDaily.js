@@ -1,6 +1,4 @@
 import React from 'react';
-import { GraphDailyGeneric } from "./GraphDailyGeneric"
-import { mergeDataSeries, makeDataSeriesFromTotal, exportColumnFromDataSeries } from "./DataSeries";
 import { getRefLines } from "../Util"
 import { AdvancedGraph } from '../components/graphs/AdvancedGraph'
 
