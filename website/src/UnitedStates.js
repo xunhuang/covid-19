@@ -284,9 +284,20 @@ export class Country extends CovidSummarizable {
   async testingAsync() {
     return await fetchTestingDataUS();
   }
+
   async testingAllAsync() {
     let data = await fetchTestingDataStates();
     return data;
+  }
+
+  async hospitalizationCurrentlyAsync() {
+    const data = await fetchTestingDataUS();
+    return DataSeries
+      .fromOldDataSourceDataPoints(
+        "Hospitalized Currently",
+        data,
+        "hospitalizedCurrently"
+      );
   }
 
   async daysToDoubleTimeSeries() {
@@ -472,6 +483,16 @@ export class State extends CovidSummarizable {
     let data = await fetchTestingDataStates();
     return data.filter(d => d.state === this.twoLetterName)
       .sort((a, b) => a.date - b.date);
+  }
+
+  async hospitalizationCurrentlyAsync() {
+    const data = await this.testingAsync();
+    return DataSeries
+      .fromOldDataSourceDataPoints(
+        "Hospitalized Currently",
+        data,
+        "hospitalizedCurrently"
+      );
   }
 
   reindex() {
