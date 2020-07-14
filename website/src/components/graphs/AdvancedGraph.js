@@ -335,7 +335,7 @@ const Chart = (props) => {
       return <ReferenceLine key={`vrefline${idx}`}
         x={l.date}
         stroke="#e3e3e3"
-        strokeWidth={3}
+        strokeWidth={1}
       >
         <Label value={l.label} position={"insideTop"} fill="#b3b3b3" />
       </ReferenceLine>
@@ -349,9 +349,9 @@ const Chart = (props) => {
       return <ReferenceLine key={`vrefline${idx}`}
         y={l.value}
         stroke="#e3e3e3"
-        strokeWidth={3}
+        strokeWidth={1}
       >
-        <Label value={l.label} position={"insideLeft"} fill="#b3b3b3" />
+        <Label value={l.label} position={"insideLeft"} ></Label>
       </ReferenceLine>
     }
     );
