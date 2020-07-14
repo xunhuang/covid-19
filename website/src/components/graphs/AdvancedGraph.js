@@ -163,6 +163,7 @@ export const AdvancedGraph = (props) => {
             .map(([label, s]) => ({ label, ...s }))
         }
         vRefLines={props.vRefLines}
+        hRefLines={props.hRefLines}
       />
     </div>);
 };
@@ -343,7 +344,22 @@ const Chart = (props) => {
     return result;
   }
 
+  function gethRefLines(lines) {
+    let result = (lines || []).map((l, idx) => {
+      return <ReferenceLine key={`vrefline${idx}`}
+        y={l.value}
+        stroke="#e3e3e3"
+        strokeWidth={3}
+      >
+        <Label value={l.label} position={"insideLeft"} fill="#b3b3b3" />
+      </ReferenceLine>
+    }
+    );
+    return result;
+  }
+
   let vRefLines = getvRefLines(props.vRefLines);
+  let hRefLines = gethRefLines(props.hRefLines);
 
   return (
     <ResponsiveContainer height={300}>
@@ -376,6 +392,7 @@ const Chart = (props) => {
 
         {ordered.flatMap(spec => specToElements(spec))}
         {vRefLines}
+        {hRefLines}
       </LineChart>
     </ResponsiveContainer>
   );

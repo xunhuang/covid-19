@@ -264,25 +264,29 @@ const GraphDeathProjectionRender = (props) => {
 
         <ReferenceLine key={`hreflineicu1`} y={props.hospitals.bedsICU} stroke="#e3e3e3" strokeWidth={2} >
           <Label value="100% ICU Beds" position="insideRight" />
-        </ReferenceLine>/>
+        </ReferenceLine>
+
+        <ReferenceLine key={`hreflineicu4`} y={props.hospitals.bedsICU / 4 * 3} stroke="#e3e3e3" strokeWidth={2} >
+          <Label value="75% ICU Beds" position="insideRight" />
+        </ReferenceLine>
 
         <ReferenceLine key={`hreflineicu2`} y={props.hospitals.bedsICU / 2} stroke="#e3e3e3" strokeWidth={2} >
           <Label value="50% ICU Beds" position="insideRight" />
-        </ReferenceLine>/>
+        </ReferenceLine>
 
         <ReferenceLine key={`hreflineicu3`} y={props.hospitals.bedsICU / 4} stroke="#e3e3e3" strokeWidth={2} >
           <Label value="25% ICU Beds" position="insideRight" />
-        </ReferenceLine>/>
+        </ReferenceLine>
 
-                <ReferenceLine key={`hreflineavail`} y={props.hospitals.bedsAvail} stroke="#e3e3e3" strokeWidth={2} >
+        <ReferenceLine key={`hreflineavail`} y={props.hospitals.bedsAvail} stroke="#e3e3e3" strokeWidth={2} >
           <Label value="Avg Avail. Beds" position="insideRight" />
-        </ReferenceLine>/>
+        </ReferenceLine>
 
-                <ReferenceLine key={`hreflinetotal`} y={props.hospitals.beds} stroke="#e3e3e3" strokeWidth={2} >
+        <ReferenceLine key={`hreflinetotal`} y={props.hospitals.beds} stroke="#e3e3e3" strokeWidth={2} >
           <Label value="Total Beds" position="insideRight" />
-        </ReferenceLine>/>
+        </ReferenceLine>
 
-                {/* <Line type="monotone" dataKey={data_keys.key_mean} stroke="#000000" dot={{ r: 1 }} yAxisId={0} strokeWidth={3} /> */}
+        {/* <Line type="monotone" dataKey={data_keys.key_mean} stroke="#000000" dot={{ r: 1 }} yAxisId={0} strokeWidth={3} /> */}
         <Line type="monotone" dataKey={"hospitalized"} stroke="#00aeef" dot={{ r: 1 }} yAxisId={0} strokeWidth={3} />
         <Line type="monotone" dataKey={"inIcuCurrently"} stroke="#0000FF" dot={{ r: 1 }} yAxisId={0} strokeWidth={3} />
         <Line type="monotone" dataKey={"onVentilatorCurrently"} stroke="#FF0000" dot={{ r: 1 }} yAxisId={0} strokeWidth={3} />

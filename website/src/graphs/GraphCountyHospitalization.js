@@ -12,6 +12,29 @@ const GraphCountyHospitalization = (props) => {
   let icu_avail =
     DataSeries.fromOldDataSourceDataPoints("Available ICU Beds", data, "icu_available_beds");
   const vKeyRefLines = getRefLines(props.source);
+  let icu_capacity = props.source.hospitals().bedsICU;
+
+  let hrefs = icu_capacity ? [
+    {
+      value: icu_capacity,
+      label: "100% ICU",
+    },
+    {
+      value: icu_capacity / 4,
+      label: "25% ICU",
+    },
+    {
+      value: icu_capacity / 2,
+      label: "50% ICU",
+    },
+    {
+      value: icu_capacity / 4 * 3,
+      label: "75% ICU",
+    },
+  ] : null;
+
+  vKeyRefLines.push(
+  );
 
   return <AdvancedGraph
     serieses={
@@ -35,6 +58,7 @@ const GraphCountyHospitalization = (props) => {
       ]
     }
     vRefLines={vKeyRefLines}
+    hRefLines={hrefs}
   />;
 };
 
