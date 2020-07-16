@@ -73,6 +73,9 @@ jobs:
           name: Create Firebase Config
           command: echo $FIREBASE_CONFIG > src/firebaseConfig.json
       - run:
+          name: configure Git
+          command: git config --global user.email "xhuang@gmail.com"; git config --global user.name "Xun Wilson Huang (from CircleCI)"
+      - run:
           name: Refresh data
           command: sh refreshdata.sh
       - run:
