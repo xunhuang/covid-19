@@ -51,3 +51,40 @@ jobs:
       - run:
           name: Deploy to Firebase
           command: ./node_modules/.bin/firebase deploy --token $FIREBASE_TOKEN --only hosting
+  dataupdate:
+    docker:
+      # specify the version you desire here
+      - image: circleci/node:lts
+    working_directory: ~/repo/website
+    steps:
+      - checkout:
+          path: ~/repo
+      - run:
+          name: Pulling Sub-modules
+          command: pushd .. ; git submodule init ;  git submodule update ; popd
+      # Install exact dependencies
+      - run:
+          name: Upgrade NPM
+          command: npmv=$(echo $(npm -v) | head -c 1); if [ "$npmv" -lt "6" ]; then npm i -g npm; else echo "Node.js Docker Team finally decided to include npm v6+ in latest image; you can remove this script now"; fi
+      - run:
+          name: Install Dependencies
+          command: npm ci 
+      - run:
+          name: Refresh data
+          command: sh refreshdata.sh
+      - run:
+          name: Pull main data
+          command: node refresh.js
+
+workflows:
+  version: 2
+  commit-workflow:
+    jobs:
+      - build 
+  scheduled-workflow:
+    triggers:
+      - schedule:
+          cron: "0,10,20,30,40,50 * * * *"
+    jobs:
+      - dataupdate
+

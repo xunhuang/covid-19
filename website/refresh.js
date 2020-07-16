@@ -142,8 +142,6 @@ async function doit() {
             // await data_summary();
             // execSync(`node normalize_data.js`);
             // await deploy();
-            execSync(`git commit -am "data push"`);
-            execSync(`git push `);
         } else {
             await data_summary();
         }
@@ -151,6 +149,8 @@ async function doit() {
     } else {
         console.log("Fail to get new updates");
     }
+    execSync(`git commit -am "data push"`);
+    execSync(`git push `);
 }
 
 doit();
