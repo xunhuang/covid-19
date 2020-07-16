@@ -32,10 +32,6 @@ jobs:
           name: Install Dependencies
           command: npm ci 
 
-      # Set up Firebase
-      - run:
-          name: Create Firebase Config
-          command: echo $FIREBASE_CONFIG > src/firebaseConfig.json
 
       # Build data
       - run:
@@ -69,6 +65,10 @@ jobs:
       - run:
           name: Install Dependencies
           command: npm ci 
+      # Set up Firebase
+      - run:
+          name: Create Firebase Config
+          command: echo $FIREBASE_CONFIG > src/firebaseConfig.json
       - run:
           name: Refresh data
           command: sh refreshdata.sh
