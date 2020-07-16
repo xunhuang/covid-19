@@ -1,6 +1,6 @@
 import React from 'react'
 import { Summary } from './Summary'
-import { County, Country, State } from "../UnitedStates";
+import { County } from "../UnitedStates";
 import { AdvancedGraph } from '../components/graphs/AdvancedGraph'
 import { DataSeries } from '../models/DataSeries';
 import { getRefLines } from "../Util"

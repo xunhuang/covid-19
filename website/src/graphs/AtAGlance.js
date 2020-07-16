@@ -4,7 +4,6 @@ import { County, Country, State } from "../UnitedStates";
 import { MapUS } from "../MapUS"
 import { GraphAllBedProjectionState, GraphAllBedProjectionUS } from "./GraphHospitalizationProjection"
 import { AdvancedGraph } from '../components/graphs/AdvancedGraph'
-import { DataSeries } from '../models/DataSeries';
 import { getRefLines } from "../Util"
 import { GraphCountyHospitalization } from "./GraphCountyHospitalization"
 
@@ -92,6 +91,7 @@ const DailyDeathNew = (props) => {
 };
 
 const AtAGlance = (props) => {
+
   const newconfirm = <DailyConfirmedNew
     source={props.source}
   />;
@@ -105,7 +105,7 @@ const AtAGlance = (props) => {
       {newconfirm}
       {newdeath}
       <MapUS source={props.source} />
-      <GraphAllBedProjectionUS source={props.source} />
+      <GraphAllBedProjectionUS />
     </div >;
   }
 
