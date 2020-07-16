@@ -47,12 +47,6 @@ jobs:
           name: Build
           command: npm run build
 
-      # Test
-      - run:
-          name: Test
-          command: npm run test
-
-
       # Deploy
       - run:
           name: Deploy to Firebase
