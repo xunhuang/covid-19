@@ -1,0 +1,58 @@
+# Javascript Node CircleCI 2.0 configuration file
+#
+# Check https://circleci.com/docs/2.0/language-javascript/ for more details
+#
+version: 2
+jobs:
+  build:
+    docker:
+      # specify the version you desire here
+      - image: circleci/node:lts
+
+      # Specify service dependencies here if necessary
+      # CircleCI maintains a library of pre-built images
+      # documented at https://circleci.com/docs/2.0/circleci-images/
+      # - image: circleci/mongo:3.4.4
+
+    working_directory: ~/repo/website
+
+    steps:
+      - checkout:
+          path: ~/repo
+
+      - run:
+          name: Pulling Sub-modules
+          command: pushd .. ; git submodule init ;  git submodule update ; popd
+
+      # Install exact dependencies
+      - run:
+          name: Upgrade NPM
+          command: npmv=$(echo $(npm -v) | head -c 1); if [ "$npmv" -lt "6" ]; then npm i -g npm; else echo "Node.js Docker Team finally decided to include npm v6+ in latest image; you can remove this script now"; fi
+      - run:
+          name: Install Dependencies
+          command: npm ci && npm --prefix ./functions/ ci ./functions/
+
+      # Build data
+      - run:
+          name: Build
+          command: npm run data
+
+      # Build
+      - run:
+          name: Build
+          command: npm run build
+
+      # Test
+      - run:
+          name: Test
+          command: npm run test
+
+      # Set up Firebase
+      - run:
+          name: Create Firebase Config
+          command: echo $FIREBASE_CONFIG > src/firebaseConfig.json
+
+      # Deploy
+      - run:
+          name: Deploy to Firebase
+          command: ./node_modules/.bin/firebase deploy --token $FIREBASE_TOKEN
