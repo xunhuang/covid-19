@@ -85,6 +85,10 @@ workflows:
     triggers:
       - schedule:
           cron: "0,10,20,30,40,50 * * * *"
+          filters:
+            branches:
+              only:
+                - master
     jobs:
       - dataupdate
 
