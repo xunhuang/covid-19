@@ -137,11 +137,11 @@ async function doit() {
         if (lineschanged > 20) {
             // execSync(`git pull`);
             execSync(`cp -f ${latestJsonLocation} ${latestJsonLocationOriginal}`);
-            await data_normalization();
-            await data_summary();
-            execSync(`node normalize_data.js`);
-            console.log("Deploying");
-            await deploy();
+            console.log(" Not Deploying");
+            // await data_normalization();
+            // await data_summary();
+            // execSync(`node normalize_data.js`);
+            // await deploy();
             execSync(`git commit -am "data push"`);
             execSync(`git push `);
         } else {
