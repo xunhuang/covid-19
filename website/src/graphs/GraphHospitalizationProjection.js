@@ -7,7 +7,6 @@ import { DataSeries } from '../models/DataSeries';
 import { getRefLines } from "../Util"
 
 const GraphAllBedProjectionState = (props) => {
-  const country = useContext(CountryContext);
   return <GraphHospitalization {...props} source={props.state} />
 }
 

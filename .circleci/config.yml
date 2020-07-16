@@ -32,6 +32,11 @@ jobs:
           name: Install Dependencies
           command: npm ci 
 
+      # Set up Firebase
+      - run:
+          name: Create Firebase Config
+          command: echo $FIREBASE_CONFIG > src/firebaseConfig.json
+
       # Build data
       - run:
           name: Build
@@ -42,17 +47,7 @@ jobs:
           name: Build
           command: npm run build
 
-      # Test
-      - run:
-          name: Test
-          command: npm run test
-
-      # Set up Firebase
-      - run:
-          name: Create Firebase Config
-          command: echo $FIREBASE_CONFIG > src/firebaseConfig.json
-
       # Deploy
       - run:
           name: Deploy to Firebase
-          command: ./node_modules/.bin/firebase deploy --token $FIREBASE_TOKEN
+          command: ./node_modules/.bin/firebase deploy --token $FIREBASE_TOKEN --only hosting

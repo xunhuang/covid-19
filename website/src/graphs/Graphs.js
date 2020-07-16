@@ -9,7 +9,6 @@ import { AtAGlance } from './AtAGlance.js'
 import { CovidCompare } from './CovidCompare.js'
 import { GraphDaysToDoubleOverTime } from './GraphDaysToDoubleOverTime'
 import { GraphGrowthRateOverTime } from './GraphGrowthRateOverTime'
-import { maybeDeathProjectionTabFor } from './GraphDeathProjection.js'
 import { maybeHospitalizationProjectionTabFor } from './GraphHospitalizationProjection';
 import { maybeMapTabFor } from '../Map';
 import { maybeRecoveryAndDeathTabFor } from './GraphRecoveryAndDeath.js'
@@ -91,7 +90,6 @@ class UnhookedGraphSection extends React.Component {
       });
     }
 
-    // [maybeDeathProjectionTabFor, maybeHospitalizationProjectionTabFor]
     [maybeHospitalizationProjectionTabFor]
       .map(factory => factory(source))
       .filter(tab => tab)
