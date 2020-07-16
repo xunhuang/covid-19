@@ -30,7 +30,7 @@ jobs:
           command: npmv=$(echo $(npm -v) | head -c 1); if [ "$npmv" -lt "6" ]; then npm i -g npm; else echo "Node.js Docker Team finally decided to include npm v6+ in latest image; you can remove this script now"; fi
       - run:
           name: Install Dependencies
-          command: npm ci && npm --prefix ./functions/ ci ./functions/
+          command: npm ci 
 
       # Build data
       - run:

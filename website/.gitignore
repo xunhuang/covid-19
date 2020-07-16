@@ -4,7 +4,8 @@
 /node_modules
 /.pnp
 .pnp.js
-package-lock.json
+# need to command this out for circle CI configuration
+# package-lock.json
 #
 #
 /public/data/AllData.slim.json
