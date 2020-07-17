@@ -28,6 +28,12 @@ jobs:
       - run:
           name: Pulling Sub-modules
           command: pushd .. ; git submodule init ;  git submodule update ; popd
+      - run:
+          name: Pulling Sub-modules1 
+          command: pushd ../COVID-19/ ; git checkout master; git pull; popd
+      - run:
+          name: Pulling Sub-modules2
+          command: pushd  ../coronavirus-data/ ;  git checkout master; git pull; popd
 
       # Install exact dependencies
       - run:
