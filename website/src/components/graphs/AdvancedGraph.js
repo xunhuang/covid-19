@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import ToggleButton from '@material-ui/lab/ToggleButton';
 import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
-import { LineChart, ReferenceLine, Label, CartesianGrid, Line, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
+import { LineChart, ReferenceLine, ReferenceArea, Label, CartesianGrid, Line, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
 import { fade, makeStyles } from '@material-ui/core/styles';
 import { scaleSymlog } from 'd3-scale';
 import { myShortNumber } from '../../Util';
@@ -344,15 +344,37 @@ const Chart = (props) => {
     return result;
   }
 
+  function getvRefAreas(lines) {
+    let result = (lines || []).map((l, idx) => {
+      const startdate = l.date;
+      const today = moment().unix();
+      let enddate = startdate + 14 * 24 * 60 * 60;
+      while (enddate > today) {
+        enddate -= 24 * 60 * 60;
+      }
+      return <ReferenceArea key={`vrefarea${idx}`}
+        x1={startdate} x2={enddate}
+        // stroke="red"
+        // strokeOpacity={0.3}
+        fillOpacity={0.15}
+      />
+    }
+    );
+    return result;
+  }
+
+
   function gethRefLines(lines) {
     let result = (lines || []).map((l, idx) => {
-      return <ReferenceLine key={`vrefline${idx}`}
-        y={l.value}
-        stroke="#e3e3e3"
-        strokeWidth={1}
-      >
-        <Label value={l.label} position={"insideLeft"} ></Label>
-      </ReferenceLine>
+      return <>
+        <ReferenceLine key={`vrefline${idx}`}
+          y={l.value}
+          stroke="#e3e3e3"
+          strokeWidth={1}
+        >
+          <Label value={l.label} position={"insideLeft"} ></Label>
+        </ReferenceLine>
+      </>
     }
     );
     return result;
@@ -366,6 +388,7 @@ const Chart = (props) => {
       <LineChart data={props.data} margin={{ left: -4, right: 8 }}>
         {vRefLines}
         {hRefLines}
+        {getvRefAreas(props.vRefLines)}
         <Tooltip
           formatter={valueFormatter}
           labelFormatter={props.timestampFormatter}
