@@ -88,6 +88,9 @@ jobs:
           name: Refresh data
           command: sh refreshdata.sh
       - run:
+          name: CA hospitalization data
+          command: pushd countydata/CA-06; sh fetch.sh; popd
+      - run:
           name: Pull main data
           command: node refresh.js
 
@@ -99,7 +102,7 @@ workflows:
   scheduled-workflow:
     triggers:
       - schedule:
-          cron: "0,10,20,30,40,50 * * * *"
+          cron: "0,20,40 * * * *"
           filters:
             branches:
               only:
