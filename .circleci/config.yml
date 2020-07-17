@@ -3,9 +3,8 @@
 # Check https://circleci.com/docs/2.0/language-javascript/ for more details
 #
 version: 2
-jobs:
+jobs1:
   build:
-    resource_class: large
     docker:
       # specify the version you desire here
       - image: circleci/node:lts
@@ -32,10 +31,6 @@ jobs:
       - run:
           name: Install Dependencies
           command: npm ci 
-      # Set up Firebase
-      - run:
-          name: Create Firebase Config
-          command: echo $FIREBASE_CONFIG > src/firebaseConfig.json
 
       # Build data
       - run:
@@ -47,55 +42,17 @@ jobs:
           name: Build
           command: npm run build
 
-      # Deploy
+      # Test
       - run:
-          name: Deploy to Firebase
-          command: ./node_modules/.bin/firebase deploy --token $FIREBASE_TOKEN --only hosting
-  dataupdate:
-    docker:
-      # specify the version you desire here
-      - image: circleci/node:lts
-    working_directory: ~/repo/website
-    steps:
-      - checkout:
-          path: ~/repo
-      - run:
-          name: Pulling Sub-modules
-          command: pushd .. ; git submodule init ;  git submodule update ; popd
-      # Install exact dependencies
-      - run:
-          name: Upgrade NPM
-          command: npmv=$(echo $(npm -v) | head -c 1); if [ "$npmv" -lt "6" ]; then npm i -g npm; else echo "Node.js Docker Team finally decided to include npm v6+ in latest image; you can remove this script now"; fi
-      - run:
-          name: Install Dependencies
-          command: npm ci 
+          name: Test
+          command: npm run test
+
       # Set up Firebase
       - run:
           name: Create Firebase Config
           command: echo $FIREBASE_CONFIG > src/firebaseConfig.json
-      - run:
-          name: configure Git
-          command: git config --global user.email "xhuang@gmail.com"; git config --global user.name "Xun Wilson Huang (from CircleCI)"
-      - run:
-          name: Refresh data
-          command: sh refreshdata.sh
-      - run:
-          name: Pull main data
-          command: node refresh.js
 
-workflows:
-  version: 2
-  commit-workflow:
-    jobs:
-      - build 
-  scheduled-workflow:
-    triggers:
-      - schedule:
-          cron: "0,10,20,30,40,50 * * * *"
-          filters:
-            branches:
-              only:
-                - master
-    jobs:
-      - dataupdate
-
+      # Deploy
+      - run:
+          name: Deploy to Firebase
+          command: ./node_modules/.bin/firebase deploy --token $FIREBASE_TOKEN
