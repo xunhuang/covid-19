@@ -9,7 +9,7 @@ jobs:
     docker:
       # specify the version you desire here
       - image: circleci/node:lts
-      environment:
+        environment:
         TZ: "America/Los_Angeles"
 
       # Specify service dependencies here if necessary
@@ -59,8 +59,8 @@ jobs:
     docker:
       # specify the version you desire here
       - image: circleci/node:lts
-      environment:
-        TZ: "America/Los_Angeles"
+        environment:
+          TZ: "America/Los_Angeles"
     working_directory: ~/repo/website
     environment:
       TZ: "America/Los_Angeles"
