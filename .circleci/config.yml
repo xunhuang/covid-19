@@ -47,14 +47,14 @@ jobs:
           command: npm run data
 
       # Build
-      #- run:
-      #    name: Build
-      #    command: npm run build
+      - run:
+          name: Build
+          command: npm run build
 
       # Deploy
-      #- run:
-      #    name: Deploy to Firebase
-      #    command: ./node_modules/.bin/firebase deploy --token $FIREBASE_TOKEN --only hosting
+      - run:
+          name: Deploy to Firebase
+          command: ./node_modules/.bin/firebase deploy --token $FIREBASE_TOKEN --only hosting
   dataupdate:
     docker:
       # specify the version you desire here
