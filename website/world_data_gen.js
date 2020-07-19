@@ -164,6 +164,7 @@ const KeyRewriteMap = {
   "Japan/Hiroshima": ["Japan", "Hiroshima Prefecture"],
   "Japan/Hokkaido": ["Japan", "Hokkaidō Prefecture"],
   "Japan/Hyogo": ["Japan", "Hyōgo Prefecture"],
+  "Japan/Iwate": ["Japan", "Iwate Prefecture"],
   "Japan/Ibaraki": ["Japan", "Ibaraki Prefecture"],
   "Japan/Ishikawa": ["Japan", "Ishikawa Prefecture"],
   "Japan/Kagawa": ["Japan", "Kagawa Prefecture"],
