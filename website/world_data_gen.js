@@ -684,7 +684,13 @@ function resolve_key(key) {
       } else if (i === 1 && key[0] === key[1]) {
         // We get stuff like France/France, so just leave it at France
       } else {
-        throw new Error(`Unknown key ${key.join('/')}`);
+        console.log(`NEED TO FIX: UNKNOWN KEY ${key.join('/')}`);
+
+        // Commenting out error throwing as it's not worth breaking the site for unknown
+        // keys, when it's unknown, current behavior is to attribute it to country
+        // should inspect the logs and batch add these new locales
+        // 
+        // throw new Error(`Unknown key ${key.join('/')}`);
       }
     } else {
       // Clear extended data since we don't know anything about this thing
