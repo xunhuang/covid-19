@@ -48,14 +48,11 @@ const DailyConfirmedNew = (props) => {
   })
 
   const vKeyRefLines = getRefLines(props.source);
-  return <div>       <SectionHeader>
-    <Typography variant="h5" noWrap>
-      Comparing New Cases Per 100K People
-                    </Typography>
-  </SectionHeader><AdvancedGraph
-      serieses={serieses}
-      vRefLines={vKeyRefLines}
-    /></div>;
+  return <AdvancedGraph
+    title={"New Cases/100K"}
+    serieses={serieses}
+    vRefLines={vKeyRefLines}
+  />
 };
 
 const CovidCompare = (props) => {

@@ -8,6 +8,8 @@ import { scaleSymlog } from 'd3-scale';
 import { myShortNumber } from '../../Util';
 import { DateRangeSlider } from "../../DateRangeSlider"
 import { useStickyState } from '../../Util';
+import { SectionHeader } from "../../CovidUI"
+import Typography from '@material-ui/core/Typography'
 
 import { DataSeries } from '../../models/DataSeries';
 import axisScales from '../../graphs/GraphAxisScales'
@@ -131,6 +133,13 @@ export const AdvancedGraph = (props) => {
 
   return (
     <div className={props.className}>
+      {props.title &&
+        <SectionHeader>
+          <Typography variant="h5" noWrap>
+            {props.title}
+          </Typography>
+        </SectionHeader>
+      }
       <div className={classes.options}>
         <Display
           displays={scales}
