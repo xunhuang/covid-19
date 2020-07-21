@@ -5,7 +5,7 @@ import { AdvancedGraph } from '../components/graphs/AdvancedGraph'
 import { DataSeries } from '../models/DataSeries';
 import { getRefLines } from "../Util"
 
-const DailyConfirmedNew = (props) => {
+const PerCapitaCompare = (props) => {
   const [USData, setUSdata] = React.useState(null);
   React.useEffect(() => {
     props.source.dataPointsAsync().then(data => setUSdata(data));
@@ -31,9 +31,8 @@ const DailyConfirmedNew = (props) => {
   let color_index = 0;
   const serieses = all.map(s => {
     let data = (s === props.source) ? USData : s.dataPoints();
-    console.log(s);
     let series = DataSeries
-      .fromOldDataSourceDataPoints("Confirmed", data, "confirmed")
+      .fromOldDataSourceDataPoints("data", data, props.dataColumn)
       .change()
       .nDayAverage(7)
       .capita(s.population() / 100000)
@@ -47,21 +46,26 @@ const DailyConfirmedNew = (props) => {
 
   const vKeyRefLines = getRefLines(props.source);
   return <AdvancedGraph
-    title={"New Cases/100K"}
+    title={props.title}
     serieses={serieses}
     vRefLines={vKeyRefLines}
   />
 };
 
 const CovidCompare = (props) => {
-  const newconfirm = <DailyConfirmedNew
-    source={props.source}
-  />;
-
   if (props.source instanceof County) {
     return <div>
       <Summary source={props.source} />
-      {newconfirm}
+      <PerCapitaCompare
+        title={"New Cases/100K"}
+        source={props.source}
+        dataColumn={"confirmed"}
+      />
+      <PerCapitaCompare
+        title={"Deaths/100K"}
+        source={props.source}
+        dataColumn={"death"}
+      />
     </div >;
   }
 
