@@ -4,8 +4,6 @@ import { County } from "../UnitedStates";
 import { AdvancedGraph } from '../components/graphs/AdvancedGraph'
 import { DataSeries } from '../models/DataSeries';
 import { getRefLines } from "../Util"
-import { SectionHeader } from "../CovidUI"
-import Typography from '@material-ui/core/Typography'
 
 const DailyConfirmedNew = (props) => {
   const [USData, setUSdata] = React.useState(null);
