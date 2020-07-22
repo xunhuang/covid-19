@@ -1,22 +1,32 @@
-import {BasicDataComponent} from './BasicDataComponent';
-import {ChildrenComponent} from './ChildrenComponent';
-import {DataSeries} from './DataSeries';
-import {DivisionTypesComponent} from './DivisionTypesComponent';
-import {GeographyComponent} from './GeographyComponent';
-import {NameComponent} from './NameComponent';
-import {Path} from './Path';
-import {PopulationComponent} from './PopulationComponent';
-import {ProjectionsComponent} from './ProjectionsComponent';
-import {SearchIndexComponent} from './SearchIndexComponent';
-import {World} from './World';
+import { BasicDataComponent } from './BasicDataComponent';
+import { ChildrenComponent } from './ChildrenComponent';
+import { DataSeries } from './DataSeries';
+import { DivisionTypesComponent } from './DivisionTypesComponent';
+import { GeographyComponent } from './GeographyComponent';
+import { NameComponent } from './NameComponent';
+import { Path } from './Path';
+import { PopulationComponent } from './PopulationComponent';
+import { ProjectionsComponent } from './ProjectionsComponent';
+import { SearchIndexComponent } from './SearchIndexComponent';
+import { World } from './World';
+import { fetchWorldData } from "../PublicAllData"
 
-const earthBaseData = require('../data/WorldData.json');
+// const earthBaseData = require('../data/WorldData.json');
 const dataKeys = ['data'];
+var cachedData = null;
 
 export const SEARCH_INDEX_PATH = Path.parse('/_search_index');
 
-export function createBasicEarth() {
-  return new World(new BasicEarthSource(earthBaseData));
+// export function createBasicEarth() {
+//   return new World(new BasicEarthSource(earthBaseData));
+// }
+
+export async function createBasicEarthAsync() {
+  if (!cachedData) {
+    cachedData = await fetchWorldData();
+  }
+  console.log(cachedData);
+  return new World(new BasicEarthSource(cachedData));
 }
 
 class BasicEarthSource {
@@ -29,7 +39,7 @@ class BasicEarthSource {
     if (SEARCH_INDEX_PATH.equals(path)) {
       return [[path, [this.buildSearchIndex_()]]];
     } else if (path.matches('/:country/:division')
-        || path.matches('/:country/:division/:province/:division')) {
+      || path.matches('/:country/:division/:province/:division')) {
       // We don't know anything about ourselves, so just return
       return [];
     }
@@ -42,7 +52,7 @@ class BasicEarthSource {
     }
     if (!have.has(ProjectionsComponent)) {
       ourComponents.push(
-          ...this.projectionsComponentsFor_(data['data']['projections']));
+        ...this.projectionsComponentsFor_(data['data']['projections']));
     }
 
     if (have.has(DivisionTypesComponent)) {
@@ -50,7 +60,7 @@ class BasicEarthSource {
     }
 
     const children =
-        Object.entries(data).filter(([child,]) => !dataKeys.includes(child));
+      Object.entries(data).filter(([child,]) => !dataKeys.includes(child));
     const division = divisionUnder(path);
     if (!division) {
       if (children.length > 0) {
@@ -83,10 +93,10 @@ class BasicEarthSource {
     const components = [
       new NameComponent(data['name']),
       new BasicDataComponent(
-          DataSeries.fromTimestamps("Confirmed", data['Confirmed']),
-          DataSeries.fromTimestamps("Active", data['Active']),
-          DataSeries.fromTimestamps("Recovered", data['Recovered']),
-          DataSeries.fromTimestamps("Deaths", data['Deaths'])),
+        DataSeries.fromTimestamps("Confirmed", data['Confirmed']),
+        DataSeries.fromTimestamps("Active", data['Active']),
+        DataSeries.fromTimestamps("Recovered", data['Recovered']),
+        DataSeries.fromTimestamps("Deaths", data['Deaths'])),
     ];
     if (data['latitude'] && data['longitude']) {
       components.push(new GeographyComponent(data['latitude'], data['longitude']));
@@ -104,8 +114,8 @@ class BasicEarthSource {
 
     return [
       new ProjectionsComponent(
-          DataSeries.fromTimestamps(
-              "Confirmed (Projected)", projections['Confirmed'])),
+        DataSeries.fromTimestamps(
+          "Confirmed (Projected)", projections['Confirmed'])),
     ];
   }
 
@@ -132,7 +142,7 @@ class BasicEarthSource {
 
       const division = divisionUnder(path);
       const divisionPath =
-          division && division.id ? path.child(division.id) : path;
+        division && division.id ? path.child(division.id) : path;
       let passTerms;
       if (path.matches('/')) {
         passTerms = [];

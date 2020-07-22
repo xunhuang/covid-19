@@ -20,7 +20,7 @@ import routes from "./Routes";
 import { makeCountyFromDescription } from "./Util"
 
 import { WorldContext } from './WorldContext';
-import { createBasicEarth } from './models/Earth';
+import { createBasicEarthAsync } from './models/Earth';
 import { SearchIndexComponent } from './models/SearchIndexComponent';
 import { SEARCH_INDEX_PATH } from './models/Earth';
 
@@ -38,9 +38,12 @@ const MainApp = withRouter((props) => {
   const [country, setCountry] = React.useState(null);
   const [myCounty, setMyCounty] = React.useState(null);
   const [nonUSCountry, setNonUSCountry] = React.useState(null);
+  const ROW_special = props.location.pathname.startsWith("/country")
+    && !props.location.pathname.startsWith("/country/US");
   React.useEffect(() => {
-    setEarth(createBasicEarth);
-
+    if (ROW_special) {
+      createBasicEarthAsync().then(data => setEarth(data));
+    }
     const myCountry = new Country();
     setCountry(myCountry);
 
@@ -55,9 +58,9 @@ const MainApp = withRouter((props) => {
         setNonUSCountry(countyDescr.country);
       }
     });
-  }, []);
+  }, [ROW_special]);
 
-  if (earth === null || country === null) {
+  if ((ROW_special && earth === null) || country === null) {
     return <Splash />
   }
 
@@ -82,13 +85,22 @@ const MainApp = withRouter((props) => {
     return <Splash />
   }
 
+  if (ROW_special) {
+    return (
+      <WorldContext.Provider value={earth}>
+        <CountryContext.Provider value={country}>
+          <SafeRoutes />
+        </CountryContext.Provider>
+      </WorldContext.Provider>
+    );
+  };
+
   return (
-    <WorldContext.Provider value={earth}>
-      <CountryContext.Provider value={country}>
-        <SafeRoutes />
-      </CountryContext.Provider>
-    </WorldContext.Provider>
+    <CountryContext.Provider value={country}>
+      <SafeRoutes />
+    </CountryContext.Provider>
   );
+
 });
 
 class UnhookedSafeRoutes extends React.Component {

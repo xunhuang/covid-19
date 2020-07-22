@@ -822,5 +822,5 @@ async function main() {
 
 main().then((hierarchical) => {
   const content = JSON.stringify(hierarchical, null, 2);
-  fs.writeFileSync("./src/data/WorldData.json", content);
+  fs.writeFileSync("./public/AllData/WorldData.json", content);
 });

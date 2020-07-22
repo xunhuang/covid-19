@@ -16,4 +16,16 @@ async function fetchAllUSData() {
     });
 }
 
-export { fetchPublicCountyData, fetchAllUSData }
+async function fetchWorldData() {
+  return superagent
+    .get(`/AllData/WorldData.json`)
+    .then(res => {
+      return res.body;
+    });
+}
+
+export {
+  fetchPublicCountyData,
+  fetchAllUSData,
+  fetchWorldData
+}
