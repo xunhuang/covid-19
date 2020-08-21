@@ -285,12 +285,34 @@ function processJHUDataPoint(c, date) {
   }
 
   let datekey = date;
+  /*
+  if (county.Confirmed[datekey]) {
+    if (county.Confirmed[datekey] !== b.Confirmed) {
+      console.log(`${state_fips} ${county_fips} with multiple inconsistency entries for date: ${datekey}  (${county.Confirmed[datekey]}, ${b.Confirmed})`)
+      if (county.Confirmed[datekey] > b.Confirmed) {
+        // take the minimum if there are inconsistencies
+        console.log(`taking minimum ${b.Confirmed}`);
+        county.Confirmed[datekey] = b.Confirmed;
+        county.Death[datekey] = b.Deaths;
+      }
+    }
+  } else {
+    county.Confirmed[datekey] = b.Confirmed;
+    county.Death[datekey] = b.Deaths;
+  }
+  */
+
   county.Confirmed[datekey] = b.Confirmed;
   county.Death[datekey] = b.Deaths;
 
   // errata
   if (state_fips === "26" && county_fips === "0" && b.Confirmed > 6000) {
     county.Confirmed[datekey] = 0;
+  }
+
+  if (state_fips === "25" && county_fips === "0" && b.Confirmed > 6000) {
+    console.log("bad fixing");
+    county.Confirmed[datekey] = 3304;
   }
 
   // if (state_fips === "27" && datekey === "06/25/2020") {
