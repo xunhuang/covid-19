@@ -7,7 +7,7 @@ CSVTOJSON=./node_modules/.bin/csvtojson
 
 d=`date "+%m-%d-%Y"` 
 
-curl -s https://covidtracking.com/api/states/daily |jq >$temp_file
+curl -s https://api.covidtracking.com/v1/states/daily.json|jq >$temp_file
 filesize=$(wc -c <"$temp_file")
 if  [ "$filesize" -ge "100000" ]; then
     echo "Updated state_testing.json ($filesize)"
@@ -16,7 +16,7 @@ else
     echo "file size $filesize too small"
 fi
 
-curl -s https://covidtracking.com/api/us/daily |jq >$temp_file
+curl -s https://api.covidtracking.com/v1/us/daily.json |jq >$temp_file
 filesize=$(wc -c <"$temp_file")
 if  [ "$filesize" -ge "15000" ]; then
     echo "Updated us_testing.json ($filesize) "
