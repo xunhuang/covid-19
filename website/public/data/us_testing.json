@@ -1,5 +1,32 @@
 [
   {
+    "date": 20200831,
+    "states": 56,
+    "positive": 5999459,
+    "negative": 71749439,
+    "pending": 11128,
+    "hospitalizedCurrently": 35349,
+    "hospitalizedCumulative": 370380,
+    "inIcuCurrently": 7051,
+    "inIcuCumulative": 17537,
+    "onVentilatorCurrently": 2077,
+    "onVentilatorCumulative": 1877,
+    "recovered": 2184825,
+    "dateChecked": "2020-08-31T00:00:00Z",
+    "death": 175602,
+    "hospitalized": 370380,
+    "lastModified": "2020-08-31T00:00:00Z",
+    "total": 77760026,
+    "totalTestResults": 77748898,
+    "posNeg": 77748898,
+    "deathIncrease": 358,
+    "hospitalizedIncrease": 816,
+    "negativeIncrease": 648999,
+    "positiveIncrease": 31406,
+    "totalTestResultsIncrease": 680405,
+    "hash": "ec992cccb88e56f0cd3b9b2dd3cd13edbff5c60e"
+  },
+  {
     "date": 20200830,
     "states": 56,
     "positive": 5968053,
@@ -4645,7 +4672,7 @@
   },
   {
     "date": 20200311,
-    "states": 50,
+    "states": 51,
     "positive": 1830,
     "negative": 11188,
     "pending": 563,
@@ -4668,11 +4695,11 @@
     "negativeIncrease": 3421,
     "positiveIncrease": 449,
     "totalTestResultsIncrease": 3870,
-    "hash": "f008ffe56ddc8cd6bfdf965613e47742b5c16a36"
+    "hash": "472368b5d1cc7fa9faee6b4fe481b7258230d6a3"
   },
   {
     "date": 20200310,
-    "states": 50,
+    "states": 51,
     "positive": 1381,
     "negative": 7767,
     "pending": 469,
@@ -4695,11 +4722,11 @@
     "negativeIncrease": 2184,
     "positiveIncrease": 335,
     "totalTestResultsIncrease": 2519,
-    "hash": "f070847287736912e402b338e11b93f9f7aa99c3"
+    "hash": "87c96b16327539e1ef678e987cc88943c82b9154"
   },
   {
     "date": 20200309,
-    "states": 50,
+    "states": 51,
     "positive": 1046,
     "negative": 5583,
     "pending": 313,
@@ -4722,11 +4749,11 @@
     "negativeIncrease": 1534,
     "positiveIncrease": 256,
     "totalTestResultsIncrease": 1790,
-    "hash": "a59b2edc4e7230f745f2b608ff8d6b8e1e812806"
+    "hash": "ba95ab8bd3c9ea70dbc2d13e7ef71f649462a566"
   },
   {
     "date": 20200308,
-    "states": 50,
+    "states": 51,
     "positive": 790,
     "negative": 4049,
     "pending": 347,
@@ -4749,11 +4776,11 @@
     "negativeIncrease": 716,
     "positiveIncrease": 175,
     "totalTestResultsIncrease": 891,
-    "hash": "39e6149dc3c407e5fc067c94c4287d69a3c15db9"
+    "hash": "6c4cf875eb0c839ab83b5b3c9bdb0a9848a38ace"
   },
   {
     "date": 20200307,
-    "states": 50,
+    "states": 51,
     "positive": 615,
     "negative": 3333,
     "pending": 602,
@@ -4776,11 +4803,11 @@
     "negativeIncrease": 661,
     "positiveIncrease": 159,
     "totalTestResultsIncrease": 820,
-    "hash": "33578e42278abe538bf20f9861e99c5090bf7340"
+    "hash": "c46ad096daea95f6c0047d56076a9902d35eb86b"
   },
   {
     "date": 20200306,
-    "states": 36,
+    "states": 37,
     "positive": 456,
     "negative": 2672,
     "pending": 458,
@@ -4803,11 +4830,11 @@
     "negativeIncrease": 723,
     "positiveIncrease": 98,
     "totalTestResultsIncrease": 821,
-    "hash": "b0d24980d52e1fae765dc2e12b10a21c38d5bca5"
+    "hash": "83c916e80b3991768afba460a99948cc5069f368"
   },
   {
     "date": 20200305,
-    "states": 24,
+    "states": 25,
     "positive": 358,
     "negative": 1949,
     "pending": 197,
@@ -4830,11 +4857,11 @@
     "negativeIncrease": 532,
     "positiveIncrease": 99,
     "totalTestResultsIncrease": 631,
-    "hash": "1b075309d18a6faa98c3b5572dfadfec1f69ac9e"
+    "hash": "97c301d16d60e86e9c23437b2094fb5a33ff6424"
   },
   {
     "date": 20200304,
-    "states": 16,
+    "states": 18,
     "positive": 259,
     "negative": 1417,
     "pending": 103,
@@ -4857,11 +4884,11 @@
     "negativeIncrease": 971,
     "positiveIncrease": 133,
     "totalTestResultsIncrease": 1104,
-    "hash": "a4439efd769f454470f6b57e379dd69984a13efd"
+    "hash": "a0c1db244272352b4267a9666ee35a1831672731"
   },
   {
     "date": 20200303,
-    "states": 4,
+    "states": 6,
     "positive": 126,
     "negative": 446,
     "pending": null,
@@ -4884,11 +4911,11 @@
     "negativeIncrease": 203,
     "positiveIncrease": 41,
     "totalTestResultsIncrease": 244,
-    "hash": "b4d35f6aedcb1c3f18a26f91885102ab107bb3c4"
+    "hash": "843f99203fe8e103e33be57dcdf8ce42cf9bc97c"
   },
   {
     "date": 20200302,
-    "states": 4,
+    "states": 6,
     "positive": 85,
     "negative": 243,
     "pending": null,
@@ -4911,11 +4938,11 @@
     "negativeIncrease": 158,
     "positiveIncrease": 40,
     "totalTestResultsIncrease": 198,
-    "hash": "6bcf6d487d052b42f772cba4bd4db46fde2cc78c"
+    "hash": "0dbf0f7f44027f3502bac3535542a5e437a9081a"
   },
   {
     "date": 20200301,
-    "states": 4,
+    "states": 6,
     "positive": 45,
     "negative": 85,
     "pending": null,
@@ -4938,11 +4965,11 @@
     "negativeIncrease": 61,
     "positiveIncrease": 27,
     "totalTestResultsIncrease": 88,
-    "hash": "38c85105c6ec594baa6c0bf9f4257b6cb8ed77fe"
+    "hash": "018bc6d00fd64a77414f423a82714017e60f967d"
   },
   {
     "date": 20200229,
-    "states": 2,
+    "states": 4,
     "positive": 18,
     "negative": 24,
     "pending": null,
@@ -4965,11 +4992,11 @@
     "negativeIncrease": 24,
     "positiveIncrease": 18,
     "totalTestResultsIncrease": 42,
-    "hash": "4dfd317fb99ac5a11ef4612909565d0b46ce4899"
+    "hash": "e8bfe9db6d823a5eb909810abef9887d2fbb9898"
   },
   {
     "date": 20200228,
-    "states": 2,
+    "states": 4,
     "positive": 0,
     "negative": 0,
     "pending": null,
@@ -4992,11 +5019,11 @@
     "negativeIncrease": 0,
     "positiveIncrease": 0,
     "totalTestResultsIncrease": 0,
-    "hash": "619e7314a2891a6ad64ed8990d4d2de910307b15"
+    "hash": "e32d96910062fcdd632e72d59dd6218420709f43"
   },
   {
     "date": 20200227,
-    "states": 2,
+    "states": 4,
     "positive": 0,
     "negative": 0,
     "pending": null,
@@ -5019,11 +5046,11 @@
     "negativeIncrease": 0,
     "positiveIncrease": 0,
     "totalTestResultsIncrease": 0,
-    "hash": "eaf10894db628b6d6955430b1595ab2221d26429"
+    "hash": "7a6b9c55e5b2e48605fbbb652ed9d8f6ce0c516f"
   },
   {
     "date": 20200226,
-    "states": 2,
+    "states": 3,
     "positive": 0,
     "negative": 0,
     "pending": null,
@@ -5046,11 +5073,11 @@
     "negativeIncrease": 0,
     "positiveIncrease": 0,
     "totalTestResultsIncrease": 0,
-    "hash": "683262640bf399fbf891b585c7639f8970fb818a"
+    "hash": "7fd18cfd695b3876452a4759c07cd74b431c70c1"
   },
   {
     "date": 20200225,
-    "states": 2,
+    "states": 3,
     "positive": 0,
     "negative": 0,
     "pending": null,
@@ -5073,11 +5100,11 @@
     "negativeIncrease": 0,
     "positiveIncrease": 0,
     "totalTestResultsIncrease": 0,
-    "hash": "8c324b651fd189ba284d122c72ce4ef2bf74a671"
+    "hash": "546df3c71998c4cf4188373d077f4cedc6933d9a"
   },
   {
     "date": 20200224,
-    "states": 2,
+    "states": 3,
     "positive": 0,
     "negative": 0,
     "pending": null,
@@ -5100,11 +5127,11 @@
     "negativeIncrease": 0,
     "positiveIncrease": 0,
     "totalTestResultsIncrease": 0,
-    "hash": "c613cb859cde2e9a37c81ba183db0663bf6951ee"
+    "hash": "892a45536b84803c54018d56c49b4613372218e7"
   },
   {
     "date": 20200223,
-    "states": 2,
+    "states": 3,
     "positive": 0,
     "negative": 0,
     "pending": null,
@@ -5127,11 +5154,11 @@
     "negativeIncrease": 0,
     "positiveIncrease": 0,
     "totalTestResultsIncrease": 0,
-    "hash": "6531f81c991bf10f646f1a2e496d08e612d78368"
+    "hash": "f1629457f5b903efc056266d3a003a077fe44425"
   },
   {
     "date": 20200222,
-    "states": 2,
+    "states": 3,
     "positive": 0,
     "negative": 0,
     "pending": null,
@@ -5154,11 +5181,11 @@
     "negativeIncrease": 0,
     "positiveIncrease": 0,
     "totalTestResultsIncrease": 0,
-    "hash": "9ec01c57f8f98b01d693f5793f0adf8d1e4c75ca"
+    "hash": "4df67d2b63bed863d76d69d00698ebdcdc31b3f3"
   },
   {
     "date": 20200221,
-    "states": 2,
+    "states": 3,
     "positive": 0,
     "negative": 0,
     "pending": null,
@@ -5181,11 +5208,11 @@
     "negativeIncrease": 0,
     "positiveIncrease": 0,
     "totalTestResultsIncrease": 0,
-    "hash": "b0f28444f358129500c10f575760070b8707cdbf"
+    "hash": "7f0ac856ef16728ed819d4e3b659102c49f6e43a"
   },
   {
     "date": 20200220,
-    "states": 2,
+    "states": 3,
     "positive": 0,
     "negative": 0,
     "pending": null,
@@ -5208,11 +5235,11 @@
     "negativeIncrease": 0,
     "positiveIncrease": 0,
     "totalTestResultsIncrease": 0,
-    "hash": "26f649c84dcf42d6b35f0785f8341b231a34798f"
+    "hash": "1a9852cb7d8d92b28347aab35eb5606e372cadd5"
   },
   {
     "date": 20200219,
-    "states": 2,
+    "states": 3,
     "positive": 0,
     "negative": 0,
     "pending": null,
@@ -5235,11 +5262,11 @@
     "negativeIncrease": 0,
     "positiveIncrease": 0,
     "totalTestResultsIncrease": 0,
-    "hash": "5b478dd73966bbfb98049d0f4eefa7f27ae825bd"
+    "hash": "2c972a64785dd342fbad97e1f5cd9a407c7ac107"
   },
   {
     "date": 20200218,
-    "states": 2,
+    "states": 3,
     "positive": 0,
     "negative": 0,
     "pending": null,
@@ -5262,11 +5289,11 @@
     "negativeIncrease": 0,
     "positiveIncrease": 0,
     "totalTestResultsIncrease": 0,
-    "hash": "948cb25bc94500e3136ee92445dcb7cc5b5dedf5"
+    "hash": "b9771c64ca39cb7675bfcdd2c13a4f720f069aba"
   },
   {
     "date": 20200217,
-    "states": 2,
+    "states": 3,
     "positive": 0,
     "negative": 0,
     "pending": null,
@@ -5289,11 +5316,11 @@
     "negativeIncrease": 0,
     "positiveIncrease": 0,
     "totalTestResultsIncrease": 0,
-    "hash": "20447af1a2c179f40ca437ab0090188686e11c4d"
+    "hash": "821066754b993d15d0e3bd05685c12a7cfe5cb90"
   },
   {
     "date": 20200216,
-    "states": 2,
+    "states": 3,
     "positive": 0,
     "negative": 0,
     "pending": null,
@@ -5316,11 +5343,11 @@
     "negativeIncrease": 0,
     "positiveIncrease": 0,
     "totalTestResultsIncrease": 0,
-    "hash": "c82608c2b90ca8e9a93a7c2de368045635553333"
+    "hash": "d1632c4c6ea11aa1d09af42a855d36db099d88c4"
   },
   {
     "date": 20200215,
-    "states": 2,
+    "states": 3,
     "positive": 0,
     "negative": 0,
     "pending": null,
@@ -5343,11 +5370,11 @@
     "negativeIncrease": 0,
     "positiveIncrease": 0,
     "totalTestResultsIncrease": 0,
-    "hash": "8e74ea1015cf9d481a9decdc011460df1f6ddada"
+    "hash": "2dc9b940ebd2554cd84851a061392a921bbeb8fe"
   },
   {
     "date": 20200214,
-    "states": 2,
+    "states": 3,
     "positive": 0,
     "negative": 0,
     "pending": null,
@@ -5370,11 +5397,11 @@
     "negativeIncrease": 0,
     "positiveIncrease": 0,
     "totalTestResultsIncrease": 0,
-    "hash": "bec82e1356961fddfa85d623e5d4706bb5415d01"
+    "hash": "214f6ca03432d7f44929bddd86d47bd61a2e1d7e"
   },
   {
     "date": 20200213,
-    "states": 2,
+    "states": 3,
     "positive": 0,
     "negative": 0,
     "pending": null,
@@ -5397,11 +5424,11 @@
     "negativeIncrease": 0,
     "positiveIncrease": 0,
     "totalTestResultsIncrease": 0,
-    "hash": "6df981c9bff071823aad7c312e26c4b5ae367568"
+    "hash": "399329390bce10053bffcf0d122965a19a3a93a9"
   },
   {
     "date": 20200212,
-    "states": 2,
+    "states": 3,
     "positive": 0,
     "negative": 0,
     "pending": null,
@@ -5424,11 +5451,11 @@
     "negativeIncrease": 0,
     "positiveIncrease": 0,
     "totalTestResultsIncrease": 0,
-    "hash": "ff3bec9238f1097f5e22dfc7175499b10fe3a95d"
+    "hash": "68df6880bf30101ac41e4b6a21dbd8787c7d4a71"
   },
   {
     "date": 20200211,
-    "states": 2,
+    "states": 3,
     "positive": 0,
     "negative": 0,
     "pending": null,
@@ -5451,11 +5478,11 @@
     "negativeIncrease": 0,
     "positiveIncrease": 0,
     "totalTestResultsIncrease": 0,
-    "hash": "c5d00321cf24557bdd475fef84aab5c4e67df783"
+    "hash": "dd890414f05d64e4fbc01124e0964c9b5b8a1af3"
   },
   {
     "date": 20200210,
-    "states": 2,
+    "states": 3,
     "positive": 0,
     "negative": 0,
     "pending": null,
@@ -5478,11 +5505,11 @@
     "negativeIncrease": 0,
     "positiveIncrease": 0,
     "totalTestResultsIncrease": 0,
-    "hash": "302ea8bc09aa83d8235162eaa19396901724e76f"
+    "hash": "5c4dde7942c1a28345dc78492e2a9c5afd52cc62"
   },
   {
     "date": 20200209,
-    "states": 1,
+    "states": 2,
     "positive": 0,
     "negative": 0,
     "pending": null,
@@ -5505,11 +5532,11 @@
     "negativeIncrease": 0,
     "positiveIncrease": 0,
     "totalTestResultsIncrease": 0,
-    "hash": "b2e9ec447866615a39228a8e87b5e76f3d20069b"
+    "hash": "69ce4ee6b68fbf3c0eea00424415f9af7f342956"
   },
   {
     "date": 20200208,
-    "states": 1,
+    "states": 2,
     "positive": 0,
     "negative": 0,
     "pending": null,
@@ -5532,11 +5559,11 @@
     "negativeIncrease": 0,
     "positiveIncrease": 0,
     "totalTestResultsIncrease": 0,
-    "hash": "30d718b21dd47da556ed7612bc922ff8c45b2fd6"
+    "hash": "435f978d8dea79d19330ac9edb3f96fde50953df"
   },
   {
     "date": 20200207,
-    "states": 1,
+    "states": 2,
     "positive": 0,
     "negative": 0,
     "pending": null,
@@ -5559,11 +5586,11 @@
     "negativeIncrease": 0,
     "positiveIncrease": 0,
     "totalTestResultsIncrease": 0,
-    "hash": "793638ed6544fc4fbb20e20bfc164355f2bead73"
+    "hash": "98d1490aa9817eb65d40f5ae6b09b3f58ff7d9ce"
   },
   {
     "date": 20200206,
-    "states": 1,
+    "states": 2,
     "positive": 0,
     "negative": 0,
     "pending": null,
@@ -5586,11 +5613,11 @@
     "negativeIncrease": 0,
     "positiveIncrease": 0,
     "totalTestResultsIncrease": 0,
-    "hash": "e1839ca3f519cd6dfda5822ea125c4beaeeecc04"
+    "hash": "6424ce9e48ad97b680db81aa6c0d06c09a473f69"
   },
   {
     "date": 20200205,
-    "states": 1,
+    "states": 2,
     "positive": 0,
     "negative": 0,
     "pending": null,
@@ -5613,11 +5640,11 @@
     "negativeIncrease": 0,
     "positiveIncrease": 0,
     "totalTestResultsIncrease": 0,
-    "hash": "61662d131bb20cdcc01638e0ea98b5b64415574b"
+    "hash": "9a8c8b7eac1d419c7aa04a84bc9bc7ec0bb92da7"
   },
   {
     "date": 20200204,
-    "states": 1,
+    "states": 2,
     "positive": 0,
     "negative": 0,
     "pending": null,
@@ -5640,11 +5667,11 @@
     "negativeIncrease": 0,
     "positiveIncrease": 0,
     "totalTestResultsIncrease": 0,
-    "hash": "45a750e1bd0928001c359d9ce79ff55f32128545"
+    "hash": "16c916bcaa18b0aa6f02f6c97718e50c5443cd9c"
   },
   {
     "date": 20200203,
-    "states": 1,
+    "states": 2,
     "positive": 0,
     "negative": 0,
     "pending": null,
@@ -5667,11 +5694,11 @@
     "negativeIncrease": 0,
     "positiveIncrease": 0,
     "totalTestResultsIncrease": 0,
-    "hash": "c5da240de3be69fd4efedb156699050cac59e80d"
+    "hash": "c542f7ad74541b08270d6925274eece2c4f79334"
   },
   {
     "date": 20200202,
-    "states": 1,
+    "states": 2,
     "positive": 0,
     "negative": 0,
     "pending": null,
@@ -5694,11 +5721,11 @@
     "negativeIncrease": 0,
     "positiveIncrease": 0,
     "totalTestResultsIncrease": 0,
-    "hash": "d3e3ee56d4ff78642dedb11f922a308b484eb1fa"
+    "hash": "a1dd021af3e12d2a218df294663d03bdd573a330"
   },
   {
     "date": 20200201,
-    "states": 1,
+    "states": 2,
     "positive": 0,
     "negative": 0,
     "pending": null,
@@ -5721,11 +5748,11 @@
     "negativeIncrease": 0,
     "positiveIncrease": 0,
     "totalTestResultsIncrease": 0,
-    "hash": "469d2e7ee8c3894a4bb238054d86ce183bf335dc"
+    "hash": "10c29665184670bf22ba060ebb5650e298a6d1b8"
   },
   {
     "date": 20200131,
-    "states": 1,
+    "states": 2,
     "positive": 0,
     "negative": 0,
     "pending": null,
@@ -5748,11 +5775,11 @@
     "negativeIncrease": 0,
     "positiveIncrease": 0,
     "totalTestResultsIncrease": 0,
-    "hash": "9e1edd4625a65f3b44d62c8e7cf2f084c2165e08"
+    "hash": "529c83fead59f5b26a9898ce39996851806f9a2f"
   },
   {
     "date": 20200130,
-    "states": 1,
+    "states": 2,
     "positive": 0,
     "negative": 0,
     "pending": null,
@@ -5775,11 +5802,11 @@
     "negativeIncrease": 0,
     "positiveIncrease": 0,
     "totalTestResultsIncrease": 0,
-    "hash": "3e23ff65ac8ed0efbd35827143213a1e00c7f4cd"
+    "hash": "82859b598bd6e9643d8dc3b69b99d74c4f061282"
   },
   {
     "date": 20200129,
-    "states": 1,
+    "states": 2,
     "positive": 0,
     "negative": 0,
     "pending": null,
@@ -5802,11 +5829,11 @@
     "negativeIncrease": 0,
     "positiveIncrease": 0,
     "totalTestResultsIncrease": 0,
-    "hash": "65017a4e1f7477778da1c0b4d9842eef8fca1110"
+    "hash": "5829b18554ba8cfdd449dcdf8a767aaf8af806b2"
   },
   {
     "date": 20200128,
-    "states": 1,
+    "states": 2,
     "positive": 0,
     "negative": 0,
     "pending": null,
@@ -5829,11 +5856,11 @@
     "negativeIncrease": 0,
     "positiveIncrease": 0,
     "totalTestResultsIncrease": 0,
-    "hash": "00db446c85c4c4375d06206dfaa1420552136457"
+    "hash": "1e004b11f0e9c340d0e206a5e168b5ac2c154421"
   },
   {
     "date": 20200127,
-    "states": 1,
+    "states": 2,
     "positive": 0,
     "negative": 0,
     "pending": null,
@@ -5856,11 +5883,11 @@
     "negativeIncrease": 0,
     "positiveIncrease": 0,
     "totalTestResultsIncrease": 0,
-    "hash": "2e1c4802e539f083050d840c512ad936d5e10cb8"
+    "hash": "0dbe12f64745ae2d9e59003e934d50c66164fff3"
   },
   {
     "date": 20200126,
-    "states": 1,
+    "states": 2,
     "positive": 0,
     "negative": 0,
     "pending": null,
@@ -5883,11 +5910,11 @@
     "negativeIncrease": 0,
     "positiveIncrease": 0,
     "totalTestResultsIncrease": 0,
-    "hash": "cc383adf1487029b27b433f43267d2707eebf2e5"
+    "hash": "acd8dfc63d3542d3d579778290d4601b2433e48c"
   },
   {
     "date": 20200125,
-    "states": 1,
+    "states": 2,
     "positive": 0,
     "negative": 0,
     "pending": null,
@@ -5910,11 +5937,11 @@
     "negativeIncrease": 0,
     "positiveIncrease": 0,
     "totalTestResultsIncrease": 0,
-    "hash": "4d7e44a79216a55bf412d48148e7e5484eced52e"
+    "hash": "e90258fa02cb55fd9357b389669ed1940e381bbd"
   },
   {
     "date": 20200124,
-    "states": 1,
+    "states": 2,
     "positive": 0,
     "negative": 0,
     "pending": null,
@@ -5937,11 +5964,11 @@
     "negativeIncrease": 0,
     "positiveIncrease": 0,
     "totalTestResultsIncrease": 0,
-    "hash": "8eb8cd45fe1ed98db566c18be20ef7da83f6b440"
+    "hash": "babd004bb329a35eea647d8b431604c1a9ea2f97"
   },
   {
     "date": 20200123,
-    "states": 1,
+    "states": 2,
     "positive": 0,
     "negative": 0,
     "pending": null,
@@ -5964,11 +5991,11 @@
     "negativeIncrease": 0,
     "positiveIncrease": 0,
     "totalTestResultsIncrease": 0,
-    "hash": "5cd6491e25943f7a0953535af11f6d983cde097b"
+    "hash": "d9b1df660fd87df4ddc10fd71d5d024e1080fe06"
   },
   {
     "date": 20200122,
-    "states": 1,
+    "states": 2,
     "positive": 0,
     "negative": 0,
     "pending": null,
@@ -5991,6 +6018,6 @@
     "negativeIncrease": 0,
     "positiveIncrease": 0,
     "totalTestResultsIncrease": 0,
-    "hash": "e06a6f509d4132b053cd952945dcdf36e3ed2858"
+    "hash": "6955b9b8d895cdd26f91da2aedc369265b908816"
   }
 ]
