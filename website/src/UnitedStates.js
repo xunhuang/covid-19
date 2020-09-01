@@ -13,6 +13,7 @@ const CountyGeoData = require('./data/county_gps.json');
 const geolib = require('geolib');
 const moment = require('moment');
 const stateBounds = require("./data/states-bounding.json");
+
 const statemap = stateBounds.reduce((m, b) => {
   m[b.STATEFP] = b;
   return m;
@@ -706,6 +707,7 @@ export class County extends CovidSummarizable {
       this.name = covidRaw['CountyName'];
       this.population_ = covidRaw.Population;
       this.hospitalization_ = covidRaw.hospitalization;
+      this.ca_county_status = covidRaw.ca_county_status;
 
     } else {
       this.name = UNKNOWN_COUNTY_NAME;
@@ -716,6 +718,10 @@ export class County extends CovidSummarizable {
     }
 
     this.state_ = state;
+  }
+
+  ca_status() {
+    return this.ca_county_status;
   }
 
   metro() {

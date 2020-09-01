@@ -19,6 +19,8 @@ const DFHUSA = require("./src/data/DFH-USA.json");
 const TestingStates = require("./public/data/state_testing.json");
 const TestingUSA = require("./public/data/us_testing.json");
 
+const CACountyStatus = require("./src/data/CA_county_status.json");
+
 let AllData = {};
 function pad(n) { return n < 10 ? '0' + n : n }
 
@@ -1207,10 +1209,25 @@ async function addCountyHospitalization() {
   }
 }
 
+function addCACountyStatus() {
+  CACountyStatus
+  for (let countyLine of CACountyStatus) {
+    let countyName = countyLine.county;
+    let countyfips = CountyInfo.getFipsFromStateCountyName("CA", countyName);
+    let county = getCountyNode("06", countyfips);
+    if (county) {
+      county.ca_county_status = countyLine["Overall Status"];
+      setCountyNode("06", countyfips, county);
+    }
+  }
+}
+
 async function main() {
+
   process_USAFACTS(); // this sites tracks county level data before JHU
   await processAllJHUGithub();
   processAllJHU();
+  addCACountyStatus();
   await addCountyHospitalization();
   fillholes();
   summarize_counties();
