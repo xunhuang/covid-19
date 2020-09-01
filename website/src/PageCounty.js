@@ -10,7 +10,7 @@ import { GraphSection } from './graphs/Graphs';
 import { SectionHeader } from "./CovidUI"
 import { Title } from "./Title";
 import { Link } from '@material-ui/core';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 
 const CA_statusMap = {
   "4": {
