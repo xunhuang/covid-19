@@ -359,6 +359,7 @@ function fillarrayholes(v, increaseonly = true) {
     if (nextvalue === null || nextvalue === undefined) {
       v[nextkey] = lastvalue;
     } else {
+      /*
       if (increaseonly) {
         if (nextvalue < lastvalue) {
           v[nextkey] = lastvalue;
@@ -366,6 +367,7 @@ function fillarrayholes(v, increaseonly = true) {
       } else {
         // console.log("notincreasing  ");
       }
+      */
     }
     key = nextkey;
   }
