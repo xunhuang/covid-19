@@ -244,6 +244,19 @@ function process_USAFACTS() {
 }
 
 function processJHUDataPoint(c, date) {
+
+  const errataFipsMap = {
+    "Dukes and Nantucket": "25007",
+    // "Kansas City": "20209",
+    "Michigan Department of Corrections (MDOC)": "26997", // made up
+    "Bear River": "49985", // made up
+    "Central Utah": "49986", // made up
+    "Southeast Utah": "49987", // made up
+    "Southwest Utah": "49989", // made up
+    "TriCounty": "49984", // made up
+    "Weber-Morgan": "49057",
+  }
+
   let b = c.attributes;
   let county_fips = b.FIPS;
   let state_fips = CountyInfo.getFipsFromStateName(b.Province_State);
@@ -256,6 +269,9 @@ function processJHUDataPoint(c, date) {
     AllData["97"].Summary.Confirmed[date] = b.Confirmed;
     AllData["97"].Summary.Death[date] = b.Death;
     return;
+  } else if (errataFipsMap[b.Admin2]) {
+    county_fips = errataFipsMap[b.Admin2];
+    state_fips = county_fips.slice(0, 2);
   } else if (b.Province_State === "Northern Mariana Islands") {
     AllData["69"].Summary.Confirmed[date] = b.Confirmed;
     AllData["69"].Summary.Death[date] = b.Death;
@@ -265,7 +281,11 @@ function processJHUDataPoint(c, date) {
     county_fips = "0";
   } else if (county_fips.slice(0, 2) === "90") {
     county_fips = "0"; // until we find a better solution, JHU data change at 4/2
+  } else if (b.Province_State === "US Military") {
+    state_fips = "96";
+    county_fips = ("" + b.UID).slice(3, 8)
   }
+
   let county = getCountyNode(state_fips, county_fips);
   if (!county) {
     let statescode = states.getStateCodeByStateName(b.Province_State);
@@ -287,53 +307,13 @@ function processJHUDataPoint(c, date) {
   }
 
   let datekey = date;
-  /*
-  if (county.Confirmed[datekey]) {
-    if (county.Confirmed[datekey] !== b.Confirmed) {
-      console.log(`${state_fips} ${county_fips} with multiple inconsistency entries for date: ${datekey}  (${county.Confirmed[datekey]}, ${b.Confirmed})`)
-      if (county.Confirmed[datekey] > b.Confirmed) {
-        // take the minimum if there are inconsistencies
-        console.log(`taking minimum ${b.Confirmed}`);
-        county.Confirmed[datekey] = b.Confirmed;
-        county.Death[datekey] = b.Deaths;
-      }
-    }
-  } else {
-    county.Confirmed[datekey] = b.Confirmed;
-    county.Death[datekey] = b.Deaths;
-  }
-  */
-
   county.Confirmed[datekey] = b.Confirmed;
   county.Death[datekey] = b.Deaths;
 
-  // errata
-  if (state_fips === "26" && county_fips === "0" && b.Confirmed > 6000) {
+  if (county_fips === "0") {
     county.Confirmed[datekey] = 0;
+    county.Death[datekey] = 0;
   }
-
-  if (state_fips === "25" && county_fips === "0" && b.Confirmed > 6000) {
-    console.log("bad fixing");
-    county.Confirmed[datekey] = 3304;
-  }
-
-  // if (state_fips === "27" && datekey === "06/25/2020") {
-  //   // console.log("minnesota");
-  //   county.Confirmed[datekey] = 0;
-  //   county.Death[datekey] = 0;
-  // }
-
-  // if (state_fips === "39" && datekey === "06/30/2020") {
-  //   // console.log("OHIO");
-  //   county.Confirmed[datekey] = 0;
-  //   county.Death[datekey] = 0;
-  // }
-
-  // if (state_fips === "47" && datekey === "06/30/2020") {
-  //   // console.log("TENNESES");
-  //   county.Confirmed[datekey] = 0;
-  //   county.Death[datekey] = 0;
-  // }
 }
 
 function processJHU(dataset, date) {
@@ -822,7 +802,7 @@ async function processAllJHUGithubInner(json, mytype) {
 
   const errataFipsMap = {
     "Dukes and Nantucket": "25007",
-    "Kansas City": "20209",
+    // "Kansas City": "20209",
     "Michigan Department of Corrections (MDOC)": "26997", // made up
     "Federal Correctional Institution (FCI)": "97", // made up
     "Bear River": "49985", // made up
@@ -1235,11 +1215,11 @@ async function main() {
   summarize_counties();
   summarize_states();
   summarize_USA();
-  add_NYC_BOROS();
+  // add_NYC_BOROS();
   addMetros();
   Special_NYC_METRO()
-  processNYCBOROS_NEW();
-  processNYC_death();
+  // processNYCBOROS_NEW();
+  // processNYC_death();
   processsShelterInPlace();
   addUSRecovery();
   addStateRecovery();
