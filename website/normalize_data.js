@@ -1227,7 +1227,7 @@ function addCACountyStatus() {
 async function main() {
 
   process_USAFACTS(); // this sites tracks county level data before JHU
-  await processAllJHUGithub();
+  // await processAllJHUGithub();
   processAllJHU();
   addCACountyStatus();
   await addCountyHospitalization();
