@@ -160,11 +160,19 @@ export function getRefLines(source) {
     {
       date: moment("05/25/2020", "MM/DD/YYYY").unix(),
       label: "Memorial",
-    }, {
+    },
+    {
       date: moment("07/04/2020", "MM/DD/YYYY").unix(),
       label: "July 4th",
-    }
+    },
+    {
+      date: moment("09/07/2020", "MM/DD/YYYY").unix(),
+      label: "Labor Day",
+    },
   ]
+  if (!source) {
+    return vKeyRefLines
+  }
 
   let stayhome;
   if (source.stayHomeOrder) {
