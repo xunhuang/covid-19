@@ -105,6 +105,10 @@ export const AdvancedGraph = (props) => {
     ? DataSeries.alignT0([...allSerieses.values()].map(({ series }) => series))
     : DataSeries.flatten([...allSerieses.values()].map(({ series }) => series));
 
+  let yAxisFormatter = (props.yAxisFormatter)
+    ? props.yAxisFormatter
+    : myShortNumber;
+
   const seriesesAndEnvelopes = [...expandedSerieses.entries()];
   const allLabels = seriesesAndEnvelopes.map(([label,]) => label);
   const [known, setKnown] = React.useState(allLabels);
@@ -166,6 +170,7 @@ export const AdvancedGraph = (props) => {
         data={filterData(data)}
         scale={scales.get(scale).scale}
         timestampFormatter={timestampFormatter}
+        yAxisFormatter={yAxisFormatter}
         specs={
           seriesesAndEnvelopes
             .filter(([label,]) => selected.includes(label))
@@ -411,12 +416,12 @@ const Chart = (props) => {
           tick={{ fill: YAxis0Color }}
           scale={props.scale === 'Log' ? logScale : props.scale}
           width={50}
-          tickFormatter={(t) => myShortNumber(t)}
+          tickFormatter={props.yAxisFormatter}
         />
         {YAxis1Color &&
           <YAxis
             yAxisId={1}
-            tickFormatter={(t) => myShortNumber(t)}
+            tickFormatter={props.yAxisFormatter}
             width={35}
             tick={{ fill: YAxis1Color }}
             orientation="right"

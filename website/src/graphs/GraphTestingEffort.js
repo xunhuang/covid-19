@@ -116,11 +116,11 @@ const PostiveRate7Days = (props) => {
   }
 
   let totalTestResults_series = DataSeries.fromOldDataSourceDataPoints("Tests", sourceData, "totalTestResults");
-  let totalPositve_series = DataSeries.fromOldDataSourceDataPoints("Positve", sourceData, "positive");
+  let totalPositve_series = DataSeries.fromOldDataSourceDataPoints("Positive", sourceData, "positive");
 
   let positveDaily = totalPositve_series.change().nDayAverage(7);
   let testsDialy = totalTestResults_series.change().nDayAverage(7);
-  let rate = positveDaily.divide(testsDialy).setLabel("Postive Rate 7-days");
+  let rate = positveDaily.divide(testsDialy).setLabel("Positive Rate 7-days");
 
   const vRefLines = getRefLines();
 
@@ -146,13 +146,16 @@ const PostiveRate7Days = (props) => {
       ]
     }
     vRefLines={vRefLines}
+    yAxisFormatter={(y) => {
+      return y * 100 + "%";
+    }}
   />;
 }
 
 const GraphTestingWidget = withRouter((props) => {
   let subtabs = new Map([
     ['positverate', {
-      label: "Positve Rate 7-days",
+      label: "Positive Rate 7-days",
       widget: <PostiveRate7Days {...props} />
     }],
     ['effort', {
