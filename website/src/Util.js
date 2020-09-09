@@ -169,6 +169,26 @@ export function getRefLines(source) {
       date: moment("09/07/2020", "MM/DD/YYYY").unix(),
       label: "Labor Day",
     },
+    {
+      date: moment("11/26/2020", "MM/DD/YYYY").unix(),
+      label: "Thanksgiving",
+    },
+    {
+      date: moment("12/25/2020", "MM/DD/YYYY").unix(),
+      label: "XMas",
+    },
+    {
+      date: moment("01/01/2021", "MM/DD/YYYY").unix(),
+      label: "New Year",
+    },
+    {
+      date: moment("02/15/2021", "MM/DD/YYYY").unix(),
+      label: "President's Day",
+    },
+    {
+      date: moment("01/18/2021", "MM/DD/YYYY").unix(),
+      label: "MLK",
+    },
   ]
   if (!source) {
     return vKeyRefLines
