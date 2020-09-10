@@ -47,6 +47,8 @@ const DailyConfirmedNew = (props) => {
       ]
     }
     vRefLines={vKeyRefLines}
+    showControls={false}
+    title={props.source.name}
   />;
 };
 
@@ -57,20 +59,14 @@ const ChildrenAtAGlance = (props) => {
   />;
 
   const children = props.source.children().map(child => {
-    return <div>
-      <div>{child.name}</div>
-      <DailyConfirmedNew
-        source={child}
-      />
-    </div>;
+    return <DailyConfirmedNew
+      source={child}
+    />;
   });
 
   return <div>
     <Summary source={props.source} />
-    ChildrenAtAGlance
     {children}
-    {/* {newconfirm}
-    {newdeath} */}
   </div >;
 }
 

@@ -144,28 +144,30 @@ export const AdvancedGraph = (props) => {
           </Typography>
         </SectionHeader>
       }
-      <div className={classes.options}>
-        <Display
-          displays={scales}
-          selected={scale}
-          onChange={handleLogScaleToggle}
-        />
-        <div className={classes.slider} >
-          <div>
-            Date:</div>
-          <DateRangeSlider
-            currentDate={moment()}
-            startDate={moment("02/01/2020", "MM/DD/YYYY")}
-            valueChanged={handleSliderValueChange}
-            defaultValue={state.showPastDays}
+      {props.showControls &&
+        <div className={classes.options}>
+          <Display
+            displays={scales}
+            selected={scale}
+            onChange={handleLogScaleToggle}
           />
+          <div className={classes.slider} >
+            <div>
+              Date:</div>
+            <DateRangeSlider
+              currentDate={moment()}
+              startDate={moment("02/01/2020", "MM/DD/YYYY")}
+              valueChanged={handleSliderValueChange}
+              defaultValue={state.showPastDays}
+            />
+          </div>
+          <div className={classes.expand} />
+          <Legend
+            spec={seriesesAndEnvelopes}
+            selected={selected}
+            onChange={setSelected} />
         </div>
-        <div className={classes.expand} />
-        <Legend
-          spec={seriesesAndEnvelopes}
-          selected={selected}
-          onChange={setSelected} />
-      </div>
+      }
       <Chart
         data={filterData(data)}
         scale={scales.get(scale).scale}
@@ -197,6 +199,11 @@ AdvancedGraph.propTypes = {
         covidspecial: PropTypes.bool,
         showMovingAverage: PropTypes.bool,
       })).isRequired,
+  showControls: PropTypes.bool,
+};
+
+AdvancedGraph.defaultProps = {
+  showControls: true,
 };
 
 function expandSeriesesToMap(serieses) {
