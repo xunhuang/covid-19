@@ -2,6 +2,7 @@ import React from 'react'
 import { Summary } from './Summary'
 import { AdvancedGraph } from '../components/graphs/AdvancedGraph'
 import { getRefLines } from "../Util"
+import { makeStyles } from '@material-ui/core/styles';
 
 const DailyConfirmedNew = (props) => {
   const [dataSeries, setDataSeries] = React.useState(null);
@@ -18,11 +19,6 @@ const DailyConfirmedNew = (props) => {
   return <AdvancedGraph
     serieses={
       [
-        // {
-        //   series: dataSeries,
-        //   color: "#ff7300",
-        //   covidspecial: true,
-        // },
         {
           series: dataSeries.change().setLabel("New"),
           color: "#387908",
@@ -30,35 +26,45 @@ const DailyConfirmedNew = (props) => {
           covidspecial: true,
           showMovingAverage: true,
         },
-        // {
-        //   series: dataSeries.trend().setLabel(`${doubling} Days to 2X (+${dailyGrowth}% Daily)`),
-        //   color: "#ff7300",
-        //   stipple: true,
-        //   initial: 'off',
-        // },
       ]
     }
     vRefLines={vKeyRefLines}
     showControls={false}
     title={props.source.name}
   />;
-};
+}
+
+const useStyles = makeStyles(theme => ({
+  container: {
+    display: "flex",
+    flexWrap: "wrap",
+  },
+  graph: {
+    // maxWidth: 400,
+    minWidth: 400,
+  }
+}));
 
 const ChildrenAtAGlance = (props) => {
+  const classes = useStyles();
 
   const children_sorted = props.source.children().sort((a, b) => {
     return b.summary().confirmed - a.summary().confirmed;
   });
 
   const display = children_sorted.map(child => {
-    return <DailyConfirmedNew
-      source={child}
-    />;
+    return <div className={classes.graph}>
+      <DailyConfirmedNew
+        source={child}
+      />
+    </div>
   });
 
   return <div>
     <Summary source={props.source} />
-    {display}
+    <div className={classes.container}>
+      {display}
+    </div>
   </div >;
 }
 
