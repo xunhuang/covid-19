@@ -1,11 +1,7 @@
 import React from 'react'
 import { Summary } from './Summary'
-import { County, Country, State } from "../UnitedStates";
-import { MapUS } from "../MapUS"
-import { GraphAllBedProjectionState, GraphAllBedProjectionUS } from "./GraphHospitalizationProjection"
 import { AdvancedGraph } from '../components/graphs/AdvancedGraph'
 import { getRefLines } from "../Util"
-import { GraphCountyHospitalization } from "./GraphCountyHospitalization"
 
 const DailyConfirmedNew = (props) => {
   const [dataSeries, setDataSeries] = React.useState(null);
@@ -16,10 +12,6 @@ const DailyConfirmedNew = (props) => {
   if (!dataSeries || dataSeries.length === 0) {
     return <div> Loading</div>;
   }
-
-  // end of init
-  let doubling = Math.round(dataSeries.daysTo2X());
-  let dailyGrowth = Math.round(dataSeries.dailyGrowthRate() * 100);
 
   const vKeyRefLines = getRefLines(props.source);
 
@@ -54,11 +46,11 @@ const DailyConfirmedNew = (props) => {
 
 const ChildrenAtAGlance = (props) => {
 
-  const newconfirm = <DailyConfirmedNew
-    source={props.source}
-  />;
+  const children_sorted = props.source.children().sort((a, b) => {
+    return b.summary().confirmed - a.summary().confirmed;
+  });
 
-  const children = props.source.children().map(child => {
+  const display = children_sorted.map(child => {
     return <DailyConfirmedNew
       source={child}
     />;
@@ -66,7 +58,7 @@ const ChildrenAtAGlance = (props) => {
 
   return <div>
     <Summary source={props.source} />
-    {children}
+    {display}
   </div >;
 }
 
