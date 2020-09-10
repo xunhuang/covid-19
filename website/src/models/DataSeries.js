@@ -48,6 +48,9 @@ export class DataSeries {
     const formatters = new Set();
 
     for (const series of serieses) {
+      if (!series) {
+        continue;
+      }
       formatters.add(series.formatter());
 
       if (!series.points()) {
@@ -235,10 +238,12 @@ export class DataSeries {
 
   daysTo2X() {
     let points = this.doublingInterval().points();
-    for (let i = points.length - 1; i >= 0; i--) {
-      let v = points[i][1];
-      if (!isNaN(v)) {
-        return v;
+    if (points) {
+      for (let i = points.length - 1; i >= 0; i--) {
+        let v = points[i][1];
+        if (!isNaN(v)) {
+          return v;
+        }
       }
     }
     return 9999;
@@ -304,7 +309,7 @@ export class DataSeries {
   last2PointSeries() {
     const points = this.points();
     if (!points || points.length < 2) {
-      return undefined;
+      return new EmptySeries("empty", this.period_);
     }
     const dropped = new DataSeries(this.label_, undefined, this.period_);
     dropped.points_ = [
@@ -346,7 +351,11 @@ export class DataSeries {
 
   nDayAverage(MOVING_WIN_SIZE) {
     const name = `${this.label_} (${MOVING_WIN_SIZE}-${this.period_.smoothLabel} avg)`;
-    const points = this.points();
+    let points = this.points();
+    if (!points) {
+      return new EmptySeries(name, this.period_);
+    }
+
     const values = points.map(p => p[1]);
     let avg = ma(values, MOVING_WIN_SIZE);
     const smoothed = [];

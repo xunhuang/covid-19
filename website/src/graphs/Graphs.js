@@ -6,6 +6,7 @@ import Badge from '@material-ui/core/Badge';
 import { withStyles } from '@material-ui/core/styles';
 import { withRouter } from 'react-router-dom'
 import { AtAGlance } from './AtAGlance.js'
+import { ChildrenAtAGlance } from './ChildrenAtAGlance.js'
 import { CovidCompare } from './CovidCompare.js'
 import { GraphDaysToDoubleOverTime } from './GraphDaysToDoubleOverTime'
 import { GraphGrowthRateOverTime } from './GraphGrowthRateOverTime'
@@ -68,6 +69,13 @@ class UnhookedGraphSection extends React.Component {
     const history = this.props.history;
     const source = this.props.source;
     const tabs = new Map();
+
+    if (!(source instanceof County)) {
+      tabs.set('childrenglance', {
+        label: "Sub-Regions",
+        content: ChildrenAtAGlance,
+      });
+    }
 
     tabs.set('glance', {
       label: "At a glance",

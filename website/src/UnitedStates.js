@@ -208,6 +208,10 @@ export class Country extends CovidSummarizable {
     return undefined;
   }
 
+  children() {
+    return this.allStates();
+  }
+
   testData() {
     return {
       totalTests: this.covidRaw_.Summary.totalTests,
@@ -394,6 +398,10 @@ export class State extends CovidSummarizable {
 
   parent() {
     return this.country();
+  }
+
+  children() {
+    return this.allCounties();
   }
 
   addMetro(id, data, country) {
@@ -608,6 +616,10 @@ export class Metro extends CovidSummarizable {
     }).filter(c => c); // some county may not have data
   }
 
+  children() {
+    return this.allCounties();
+  }
+
   allCounties() {
     return this.counties_;
   }
@@ -734,6 +746,10 @@ export class County extends CovidSummarizable {
 
   parent() {
     return this.metro() || this.state();
+  }
+
+  children() {
+    return null;
   }
 
   fips() {

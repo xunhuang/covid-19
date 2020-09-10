@@ -241,8 +241,14 @@ function expandSeriesesToMap(serieses) {
     return result;
   });
 
-  return new Map(expanded.map((seriesInfo) =>
-    [seriesInfo.series.label(), seriesInfo]));
+  return new Map(expanded.map((seriesInfo) => {
+    let series = seriesInfo.series;
+    let label = "empty";
+    if (series) {
+      label = series.label();
+    }
+    return [label, seriesInfo];
+  }));
 }
 
 const useDisplayStyles = makeStyles(theme => ({
