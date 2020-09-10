@@ -41,7 +41,7 @@ const useStyles = makeStyles(theme => ({
   },
   graph: {
     // maxWidth: 400,
-    minWidth: 400,
+    minWidth: 350,
   }
 }));
 
