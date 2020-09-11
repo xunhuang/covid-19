@@ -120,6 +120,13 @@ export class CovidSummarizable {
   totalConfirmed() {
     return this.summary().confirmed;
   }
+
+  serverityIndex() {
+    if (!this.population()) {
+      return 0;
+    }
+    return this.normalizedRaw_.Last2WeeksConfirmedDelta / this.population();
+  }
 }
 
 export class Country extends CovidSummarizable {

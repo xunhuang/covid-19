@@ -22,7 +22,6 @@ const DailyConfirmedNew = (props) => {
         {
           series: dataSeries.change().setLabel("New"),
           color: "#387908",
-          // rightAxis: true,
           covidspecial: true,
           showMovingAverage: true,
         },
@@ -31,6 +30,7 @@ const DailyConfirmedNew = (props) => {
     vRefLines={vKeyRefLines}
     showControls={false}
     title={props.source.name}
+    subtitle={`Avg ${Math.round(props.source.serverityIndex() * 100000 / 14)}/100K/day past 2 weeks`}
   />;
 }
 
@@ -49,6 +49,8 @@ const ChildrenAtAGlance = (props) => {
   const classes = useStyles();
 
   const children_sorted = props.source.children().sort((a, b) => {
+    // return b.summary().confirmed - a.summary().confirmed;
+    return b.serverityIndex() - a.serverityIndex();
     return b.summary().confirmed - a.summary().confirmed;
   });
 

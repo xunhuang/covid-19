@@ -74,6 +74,7 @@ class UnhookedGraphSection extends React.Component {
       tabs.set('childrenglance', {
         label: "Sub-Regions",
         content: ChildrenAtAGlance,
+        showRibbon: true,
       });
     }
 
@@ -105,7 +106,6 @@ class UnhookedGraphSection extends React.Component {
         tabs.set(tab.id, {
           label: tab.label,
           content: tab.graph,
-          showRibbon: true,  // TO SHOW THE RIBBON ADD A LINE LIKE THIS
         }));
 
     if (source instanceof State || source instanceof Country) {
@@ -114,7 +114,6 @@ class UnhookedGraphSection extends React.Component {
         tabs.set(maybeTesting.id, {
           label: maybeTesting.label,
           content: maybeTesting.graph,
-          showRibbon: true,
         });
       }
     }

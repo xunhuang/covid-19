@@ -141,6 +141,9 @@ export const AdvancedGraph = (props) => {
         <SectionHeader>
           <Typography variant="h5" noWrap>
             {props.title}
+            <Typography variant="body1" noWrap>
+              {props.subtitle}
+            </Typography>
           </Typography>
         </SectionHeader>
       }

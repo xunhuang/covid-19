@@ -453,6 +453,17 @@ function summarize_one_county(county) {
   county.DaysToDoubleDeath = getDoubleDays(county.Death);
 
 
+  const today = moment();
+  const dayminus1 = today.subtract(1, "days").format("MM/DD/YYYY");
+  const dayminus15 = today.subtract(15, "days").format("MM/DD/YYYY");
+  let n1 = county.Confirmed[dayminus1];
+  let n15 = county.Confirmed[dayminus15];
+  if (!isNaN(n1) && !isNaN(n15)) {
+    county.Last2WeeksConfirmedDelta = n1 - n15;
+  } else {
+    county.Last2WeeksConfirmedDelta = n1;
+  }
+
   let hospinfo = DFHCounty[county.CountyFIPS];
   if (hospinfo) {
     county.beds = hospinfo.NUM_LICENSED_BEDS;
@@ -510,6 +521,17 @@ function summarize_states() {
     Summary.LastDeathNew = DD.newnum;
     Summary.DaysToDouble = getDoubleDays(Confirmed);
     Summary.DaysToDoubleDeath = getDoubleDays(Death);
+
+    const today = moment();
+    const dayminus1 = today.subtract(1, "days").format("MM/DD/YYYY");
+    const dayminus15 = today.subtract(15, "days").format("MM/DD/YYYY");
+    let n1 = Confirmed[dayminus1];
+    let n15 = Confirmed[dayminus15];
+    if (!isNaN(n1) && !isNaN(n15)) {
+      Summary.Last2WeeksConfirmedDelta = n1 - n15;
+    } else {
+      Summary.Last2WeeksConfirmedDelta = n1;
+    }
 
     let hospinfo = DFHState[s];
     if (hospinfo) {
