@@ -51,7 +51,6 @@ const ChildrenAtAGlance = (props) => {
   const children_sorted = props.source.children().sort((a, b) => {
     // return b.summary().confirmed - a.summary().confirmed;
     return b.serverityIndex() - a.serverityIndex();
-    return b.summary().confirmed - a.summary().confirmed;
   });
 
   const display = children_sorted.map(child => {
