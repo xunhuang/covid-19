@@ -266,6 +266,9 @@ function processJHUDataPoint(c, date) {
     state_fips = "96";
     county_fips = ("" + b.UID).slice(3, 8);
   } else if (b.UID === 84070013 || b.UID == 84070012) { // prison
+    if (AllData["97"].Summary.Confirmed[date]) {
+      return;
+    }
     AllData["97"].Summary.Confirmed[date] = b.Confirmed;
     AllData["97"].Summary.Death[date] = b.Death;
     return;
@@ -273,6 +276,9 @@ function processJHUDataPoint(c, date) {
     county_fips = errataFipsMap[b.Admin2];
     state_fips = county_fips.slice(0, 2);
   } else if (b.Province_State === "Northern Mariana Islands") {
+    if (AllData["69"].Summary.Confirmed[date]) {
+      return;
+    }
     AllData["69"].Summary.Confirmed[date] = b.Confirmed;
     AllData["69"].Summary.Death[date] = b.Death;
     return;
@@ -307,6 +313,11 @@ function processJHUDataPoint(c, date) {
   }
 
   let datekey = date;
+  // if data already exist (perhaps from github), don't override it.
+  if (county.Confirmed[datekey]) {
+    return;
+  }
+
   county.Confirmed[datekey] = b.Confirmed;
   county.Death[datekey] = b.Deaths;
 
@@ -1207,7 +1218,7 @@ function addCACountyStatus() {
 async function main() {
 
   process_USAFACTS(); // this sites tracks county level data before JHU
-  // await processAllJHUGithub();
+  await processAllJHUGithub();
   processAllJHU();
   addCACountyStatus();
   await addCountyHospitalization();
