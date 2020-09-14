@@ -70,6 +70,11 @@ class UnhookedGraphSection extends React.Component {
     const source = this.props.source;
     const tabs = new Map();
 
+    tabs.set('glance', {
+      label: "At a glance",
+      content: AtAGlance,
+    });
+
     if (!(source instanceof County)) {
       tabs.set('childrenglance', {
         label: "Sub-Regions",
@@ -77,11 +82,6 @@ class UnhookedGraphSection extends React.Component {
         showRibbon: true,
       });
     }
-
-    tabs.set('glance', {
-      label: "At a glance",
-      content: AtAGlance,
-    });
 
     const maybeDaily = maybeDailyTabFor(source);
     if (maybeDaily) {
