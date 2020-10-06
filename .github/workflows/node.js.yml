@@ -33,5 +33,7 @@ jobs:
     - run: pushd  ./coronavirus-data/ ;  git checkout master; git pull; popd
     - run: npmv=$(echo $(npm -v) | head -c 1); if [ "$npmv" -lt "6" ]; then npm i -g npm; else echo "Node.js Docker Team finally decided to include npm v6+ in latest image; you can remove this script now"; fi
     - run: cd website; npm ci  ; cd ..
+    - run: cd website; echo ${{ secrets.FIREBASE_CONFIG }} > src/firebaseConfig.json; cd ..
+    - run: cd website; npm run data; cd ..
     - run: cd website; npm run build --if-present; cd ..
 
