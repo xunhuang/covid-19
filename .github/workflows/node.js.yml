@@ -28,12 +28,14 @@ jobs:
       uses: zcong1993/setup-timezone@master
       with:
         timezone: America/Los_Angeles
+    - name: firebaseConfig
+      FIREBASE_CONFIG: ${{ secrets.FIREBASE_CONFIG }}
+      run: cd website; echo "${FIREBASE_CONFIG}" > src/firebaseConfig.json; sed  -e 's/\(.\)/\1 /g'  src/firebaseconfig.json; cd ..
     - run: git submodule init ;  git submodule update 
     - run: pushd ./COVID-19/ ; git checkout master; git pull; popd
     - run: pushd  ./coronavirus-data/ ;  git checkout master; git pull; popd
     - run: npmv=$(echo $(npm -v) | head -c 1); if [ "$npmv" -lt "6" ]; then npm i -g npm; else echo "Node.js Docker Team finally decided to include npm v6+ in latest image; you can remove this script now"; fi
     - run: cd website; npm ci  ; cd ..
-    - run: cd website; echo "${{ secrets.FIREBASE_CONFIG }}" > src/firebaseConfig.json; cd ..
     - run: cd website; npm run data; cd ..
     - run: cd website; npm run build --if-present; cd ..
 
