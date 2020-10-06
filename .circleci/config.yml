@@ -5,7 +5,7 @@
 version: 2
 jobs:
   build:
-    resource_class: large
+    # resource_class: large
     docker:
       # specify the version you desire here
       - image: circleci/node:lts
