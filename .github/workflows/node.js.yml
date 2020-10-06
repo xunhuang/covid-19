@@ -29,7 +29,8 @@ jobs:
       with:
         timezone: America/Los_Angeles
     - name: firebaseConfig
-      FIREBASE_CONFIG: ${{ secrets.FIREBASE_CONFIG }}
+      env:
+        FIREBASE_CONFIG: ${{ secrets.FIREBASE_CONFIG }}
       run: cd website; echo "${FIREBASE_CONFIG}" > src/firebaseConfig.json; sed  -e 's/\(.\)/\1 /g'  src/firebaseconfig.json; cd ..
     - run: git submodule init ;  git submodule update 
     - run: pushd ./COVID-19/ ; git checkout master; git pull; popd
