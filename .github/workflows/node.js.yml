@@ -39,4 +39,7 @@ jobs:
     - run: cd website; npm ci  ; cd ..
     - run: cd website; npm run data; cd ..
     - run: cd website; npm run build --if-present; cd ..
-
+    - name: Deploy
+      env:
+        FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+      run: cd website; ./node_modules/.bin/firebase deploy --token $FIREBASE_TOKEN --only hosting

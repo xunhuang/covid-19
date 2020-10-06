@@ -100,9 +100,9 @@ jobs:
 
 workflows:
   version: 2
-  commit-workflow:
-    jobs:
-      - build 
+  # commit-workflow:
+  # jobs:
+  # - build 
   scheduled-workflow:
     triggers:
       - schedule:
