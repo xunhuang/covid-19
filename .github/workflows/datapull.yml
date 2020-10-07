@@ -10,6 +10,10 @@ on:
   - cron: "10,30,50 * * * *"
   workflow_dispatch:
 
+defaults:
+    run:
+       shell: bash
+
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
