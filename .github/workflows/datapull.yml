@@ -29,17 +29,11 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - run: source script-mac.sh
-      - name: Setup tmate session
-        uses: mxschmitt/action-tmate@v
-      - name: Setup timezone
-        uses: zcong1993/setup-timezone@master
-        with:
-          timezone: America/Los_Angeles
       - name: firebaseConfig
         env:
           FIREBASE_CONFIG: ${{ secrets.FIREBASE_CONFIG }}
         run: cd website; echo "${FIREBASE_CONFIG}" > src/firebaseConfig.json;  cd ..
+      - run: sudo systemsetup -settimezone "America/Los_Angeles"
       - run: cd website; npm ci  ; cd ..
       - run: cd website; git config --global user.email "xhuang@gmail.com"; git config --global user.name "Xun Wilson Huang (from GitHub Action )"; cd ..
       - run: cd website; sh -x refreshdata.sh ; cd .. 
