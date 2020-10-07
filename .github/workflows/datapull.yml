@@ -34,6 +34,6 @@ jobs:
         run: cd website; echo "${FIREBASE_CONFIG}" > src/firebaseConfig.json;  cd ..
       - run: cd website; npm ci  ; cd ..
       - run: cd website; git config --global user.email "xhuang@gmail.com"; git config --global user.name "Xun Wilson Huang (from GitHub Action )"; cd ..
-      - run: cd website; sh refreshdata.sh ; cd .. 
+      - run: cd website; sh -x refreshdata.sh ; cd .. 
       - run: cd website; pushd countydata/CA-06; sh fetch.sh; popd; cd .. 
       - run: cd website; node refresh.js ; cd .. 
