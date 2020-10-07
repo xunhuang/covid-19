@@ -8,6 +8,7 @@ name: Data Pull (refresh)
 on:
   schedule:
   - cron: "10,30,50 * * * *"
+  workflow_dispatch:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
