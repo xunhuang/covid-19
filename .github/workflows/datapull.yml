@@ -39,3 +39,10 @@ jobs:
       - run: cd website; sh -x refreshdata.sh ; cd .. 
       - run: cd website; pushd countydata/CA-06; sh fetch.sh; popd; cd .. 
       - run: cd website; node refresh.js ; cd .. 
+      - uses: EndBug/add-and-commit@v5
+        with:
+          author_name: Xun Huang
+          author_email: xhuang@gmail.com
+          message: "data refresh from github action"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
