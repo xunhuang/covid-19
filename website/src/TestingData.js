@@ -8,7 +8,7 @@ const testingUSURL = "/data/us_testing.json";
 
 function addfulldate(sourceData) {
   let data = sourceData.map(t => {
-    let md = t.date % 1000;
+    let md = t.date % 10000;
     let m = Math.floor(md / 100);
     let d = md % 100;
     t.name = `${m}/${d}`;
