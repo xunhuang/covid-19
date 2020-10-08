@@ -44,3 +44,11 @@ jobs:
       env:
         FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
       run: cd website; ./node_modules/.bin/firebase deploy --token $FIREBASE_TOKEN --only hosting
+    - uses: EndBug/add-and-commit@v5
+      with:
+        author_name: Xun Huang
+        author_email: xhuang@gmail.com
+        message: "data refresh from github action"
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  
