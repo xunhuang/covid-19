@@ -247,7 +247,7 @@ function processJHUDataPoint(c, date) {
 
   const errataFipsMap = {
     "Dukes and Nantucket": "25007",
-    // "Kansas City": "20209",
+    "Kansas City": "29999", // maded up county, this is in Missori, not Kansas
     "Michigan Department of Corrections (MDOC)": "26997", // made up
     "Bear River": "49985", // made up
     "Central Utah": "49986", // made up
@@ -257,9 +257,12 @@ function processJHUDataPoint(c, date) {
     "Weber-Morgan": "49057",
   }
 
+
   let b = c.attributes;
   let county_fips = b.FIPS;
   let state_fips = CountyInfo.getFipsFromStateName(b.Province_State);
+
+
   if (county_fips === null && b.Admin2 === "Harris" && b.Province_State === "Texas") {
     county_fips = "48201";
   } else if (b.Province_State === "US Military") {
@@ -291,6 +294,7 @@ function processJHUDataPoint(c, date) {
     state_fips = "96";
     county_fips = ("" + b.UID).slice(3, 8)
   }
+
 
   let county = getCountyNode(state_fips, county_fips);
   if (!county) {
@@ -835,7 +839,7 @@ async function processAllJHUGithubInner(json, mytype) {
 
   const errataFipsMap = {
     "Dukes and Nantucket": "25007",
-    // "Kansas City": "20209",
+    "Kansas City": "29999",// maded up county, this is in Missori, not Kansas
     "Michigan Department of Corrections (MDOC)": "26997", // made up
     "Federal Correctional Institution (FCI)": "97", // made up
     "Bear River": "49985", // made up
@@ -1238,7 +1242,6 @@ function addCACountyStatus() {
 }
 
 async function main() {
-
   process_USAFACTS(); // this sites tracks county level data before JHU
   await processAllJHUGithub();
   processAllJHU();

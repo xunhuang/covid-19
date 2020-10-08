@@ -9,6 +9,8 @@ on:
   pull_request:
     branches: [ master ]
   workflow_dispatch:
+  schedule:
+  - cron: "15,45 * * * *"
 
 jobs:
   build:
