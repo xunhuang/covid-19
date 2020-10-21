@@ -56,6 +56,9 @@ const CustomTooltip = (props) => {
       }
       if ("total" in p) {
         totalTested = p.total;
+        if (totalTested === 0) {
+          totalTested = p.totalTestResults;
+        }
       }
       return null;
     });
@@ -222,10 +225,14 @@ const GraphTestingWidget1 = (props) => {
   data = mergeDataSeries(data, pos);
   data = mergeDataSeries(data, neg);
 
+  console.log(data);
   let total_tests = data.reduce((m, a) => { return a.total > m ? a.total : m }, 0);
   let total_positives = data.reduce((m, a) => { return a.positive > m ? a.positive : m }, 0);
   let total_negatives = data.reduce((m, a) => { return a.negative > m ? a.negative : m }, 0);
+  if (total_tests === 0) {
+    total_tests = data.reduce((m, a) => { return a.totalTestResults > m ? a.totalTestResults : m }, 0);
 
+  }
   // If true, show area chart.
   // If false, show line chart.
   let chart = useAreaChart ?
@@ -260,7 +267,7 @@ const GraphTestingWidget1 = (props) => {
       {/* <Line type="monotone" name="Negative" dataKey="negativeThatDay" stroke="#00aeef" yAxisId={0} strokeWidth={3} /> */}
       <Legend verticalAlign="top" />
       <Tooltip content={<CustomTooltip />} />
-    </LineChart>;
+    </LineChart>
 
   return <div>
     <Grid container alignItems="center" justify="space-between" spacing={1}>
