@@ -441,6 +441,10 @@ function getStateNameFromFips(state_fips) {
 }
 
 function getStateAbbreviationFromFips(state_fips) {
+  // console.log(state_fips)
+  if (state_fips === '00') {
+    return "NN";
+  }
   return fipsToState[state_fips].abbreviation;
 }
 
