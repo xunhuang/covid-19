@@ -1,5 +1,32 @@
 [
   {
+    "date": 20201027,
+    "states": 56,
+    "positive": 8723438,
+    "negative": 116276445,
+    "pending": 8129,
+    "hospitalizedCurrently": 44212,
+    "hospitalizedCumulative": 465777,
+    "inIcuCurrently": 8909,
+    "inIcuCumulative": 23701,
+    "onVentilatorCurrently": 2287,
+    "onVentilatorCumulative": 2719,
+    "recovered": 3487666,
+    "dateChecked": "2020-10-27T00:00:00Z",
+    "death": 218349,
+    "hospitalized": 465777,
+    "totalTestResults": 138457135,
+    "lastModified": "2020-10-27T00:00:00Z",
+    "total": 0,
+    "posNeg": 0,
+    "deathIncrease": 931,
+    "hospitalizedIncrease": 2248,
+    "negativeIncrease": 818919,
+    "positiveIncrease": 73096,
+    "totalTestResultsIncrease": 1052874,
+    "hash": "e7ea90657cb6c47893546e3af1ae34b8975a32fa"
+  },
+  {
     "date": 20201026,
     "states": 56,
     "positive": 8650342,
@@ -15,7 +42,7 @@
     "dateChecked": "2020-10-26T00:00:00Z",
     "death": 217418,
     "hospitalized": 463529,
-    "totalTestResults": 133740036,
+    "totalTestResults": 137404261,
     "lastModified": "2020-10-26T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -23,8 +50,8 @@
     "hospitalizedIncrease": 1838,
     "negativeIncrease": 981108,
     "positiveIncrease": 62274,
-    "totalTestResultsIncrease": 1152999,
-    "hash": "2f1facd0d3702ec6178d200b8b78e4a33bbf477d"
+    "totalTestResultsIncrease": 1177574,
+    "hash": "1ff4c92e05550fd225d1e85c1a06a55f69e83dff"
   },
   {
     "date": 20201025,
@@ -42,7 +69,7 @@
     "dateChecked": "2020-10-25T00:00:00Z",
     "death": 217029,
     "hospitalized": 461691,
-    "totalTestResults": 132587037,
+    "totalTestResults": 136226687,
     "lastModified": "2020-10-25T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -50,8 +77,8 @@
     "hospitalizedIncrease": 1153,
     "negativeIncrease": 901330,
     "positiveIncrease": 65650,
-    "totalTestResultsIncrease": 1123075,
-    "hash": "0434aff7e46d8ba9b23fcd9192969da286569768"
+    "totalTestResultsIncrease": 1158665,
+    "hash": "e87a9bf14ab7423ca93cfc8ae166b8d9675c18f9"
   },
   {
     "date": 20201024,
@@ -69,7 +96,7 @@
     "dateChecked": "2020-10-24T00:00:00Z",
     "death": 216652,
     "hospitalized": 460538,
-    "totalTestResults": 131463962,
+    "totalTestResults": 135068022,
     "lastModified": "2020-10-24T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -77,8 +104,8 @@
     "hospitalizedIncrease": 1756,
     "negativeIncrease": 962036,
     "positiveIncrease": 82925,
-    "totalTestResultsIncrease": 1222526,
-    "hash": "6aa5409ca5f7ee100b48648b892975db97a464e8"
+    "totalTestResultsIncrease": 1270790,
+    "hash": "49ce9ca133af8926735f0b187b1befcbaa9376f8"
   },
   {
     "date": 20201023,
@@ -96,7 +123,7 @@
     "dateChecked": "2020-10-23T00:00:00Z",
     "death": 215762,
     "hospitalized": 458782,
-    "totalTestResults": 130241436,
+    "totalTestResults": 133797232,
     "lastModified": "2020-10-23T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -104,8 +131,8 @@
     "hospitalizedIncrease": 15005,
     "negativeIncrease": 1043191,
     "positiveIncrease": 83057,
-    "totalTestResultsIncrease": 1286625,
-    "hash": "d1ca4ba4ac3f646e82e979c3ae7ee72069061dd4"
+    "totalTestResultsIncrease": 1335695,
+    "hash": "92b869c8bf2bca2bfb640410e104982daabab50f"
   },
   {
     "date": 20201022,
@@ -123,7 +150,7 @@
     "dateChecked": "2020-10-22T00:00:00Z",
     "death": 214845,
     "hospitalized": 443777,
-    "totalTestResults": 128954811,
+    "totalTestResults": 132461537,
     "lastModified": "2020-10-22T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -131,8 +158,8 @@
     "hospitalizedIncrease": 2571,
     "negativeIncrease": 913969,
     "positiveIncrease": 73007,
-    "totalTestResultsIncrease": 1126699,
-    "hash": "812606f3c962fd01d17cd41e7be4ae2cbfb8d23f"
+    "totalTestResultsIncrease": 1172304,
+    "hash": "be3265c0b16798ca770a12aa8a193f76670e7e56"
   },
   {
     "date": 20201021,
@@ -150,7 +177,7 @@
     "dateChecked": "2020-10-21T00:00:00Z",
     "death": 213702,
     "hospitalized": 441206,
-    "totalTestResults": 127828112,
+    "totalTestResults": 131289233,
     "lastModified": "2020-10-21T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -158,8 +185,8 @@
     "hospitalizedIncrease": 2239,
     "negativeIncrease": 691316,
     "positiveIncrease": 60712,
-    "totalTestResultsIncrease": 882948,
-    "hash": "38b4ce946cf954b2f6e25b5a056c9d31dc3486ce"
+    "totalTestResultsIncrease": 912743,
+    "hash": "747a7793468da597e0423560d9e8e8231a2396a9"
   },
   {
     "date": 20201020,
@@ -177,7 +204,7 @@
     "dateChecked": "2020-10-20T00:00:00Z",
     "death": 212678,
     "hospitalized": 438967,
-    "totalTestResults": 126945164,
+    "totalTestResults": 130376490,
     "lastModified": "2020-10-20T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -185,8 +212,8 @@
     "hospitalizedIncrease": 2150,
     "negativeIncrease": 757254,
     "positiveIncrease": 60558,
-    "totalTestResultsIncrease": 909280,
-    "hash": "b4ce65bd196010aa340b1e39db69c62936fdb8a0"
+    "totalTestResultsIncrease": 939024,
+    "hash": "551ac9a3859dd9998304e02750c01b519bf4ed69"
   },
   {
     "date": 20201019,
@@ -204,7 +231,7 @@
     "dateChecked": "2020-10-19T00:00:00Z",
     "death": 211846,
     "hospitalized": 436817,
-    "totalTestResults": 126035884,
+    "totalTestResults": 129437466,
     "lastModified": "2020-10-19T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -212,8 +239,8 @@
     "hospitalizedIncrease": 1684,
     "negativeIncrease": 1025339,
     "positiveIncrease": 57132,
-    "totalTestResultsIncrease": 1203152,
-    "hash": "18c54fcde00189d248322fa3dd976d810b264923"
+    "totalTestResultsIncrease": 1222341,
+    "hash": "00d0ac38939e7e89dec1d42d13b1ea080a13d5d6"
   },
   {
     "date": 20201018,
@@ -231,7 +258,7 @@
     "dateChecked": "2020-10-18T00:00:00Z",
     "death": 211390,
     "hospitalized": 435133,
-    "totalTestResults": 124832732,
+    "totalTestResults": 128215125,
     "lastModified": "2020-10-18T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -239,8 +266,8 @@
     "hospitalizedIncrease": 853,
     "negativeIncrease": 770454,
     "positiveIncrease": 48857,
-    "totalTestResultsIncrease": 982369,
-    "hash": "af16a9bea6acc4a045d4e7912bb95aff856cdae7"
+    "totalTestResultsIncrease": 1017256,
+    "hash": "fbc8c2a7f4eaa10e3a9b39bd676b81218f4b2f69"
   },
   {
     "date": 20201017,
@@ -258,7 +285,7 @@
     "dateChecked": "2020-10-17T00:00:00Z",
     "death": 210997,
     "hospitalized": 434280,
-    "totalTestResults": 123850363,
+    "totalTestResults": 127197869,
     "lastModified": "2020-10-17T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -266,8 +293,8 @@
     "hospitalizedIncrease": 1535,
     "negativeIncrease": 954766,
     "positiveIncrease": 57867,
-    "totalTestResultsIncrease": 1195470,
-    "hash": "54e75fd1c704f45360ab14e36d534a3078a2037b"
+    "totalTestResultsIncrease": 1241938,
+    "hash": "1ac4437e0f0ce37c541d8489bc36a5f18df22fd2"
   },
   {
     "date": 20201016,
@@ -285,7 +312,7 @@
     "dateChecked": "2020-10-16T00:00:00Z",
     "death": 210217,
     "hospitalized": 432745,
-    "totalTestResults": 122654893,
+    "totalTestResults": 125955931,
     "lastModified": "2020-10-16T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -293,8 +320,8 @@
     "hospitalizedIncrease": 1858,
     "negativeIncrease": 979899,
     "positiveIncrease": 68040,
-    "totalTestResultsIncrease": 1143077,
-    "hash": "8ae230a93cb0c200bbde37873d815816c0fbfb60"
+    "totalTestResultsIncrease": 1190643,
+    "hash": "97d09143e5da295b3b2bc8ca9f9b35b0e3b63499"
   },
   {
     "date": 20201015,
@@ -312,7 +339,7 @@
     "dateChecked": "2020-10-15T00:00:00Z",
     "death": 209340,
     "hospitalized": 430887,
-    "totalTestResults": 121511816,
+    "totalTestResults": 124765288,
     "lastModified": "2020-10-15T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -320,8 +347,8 @@
     "hospitalizedIncrease": 2007,
     "negativeIncrease": 848075,
     "positiveIncrease": 63102,
-    "totalTestResultsIncrease": 1019064,
-    "hash": "2e94d9d4fbbd4f3a0d30cb34cc4d7c20411dcea4"
+    "totalTestResultsIncrease": 1054445,
+    "hash": "6a58ff6a1a3a73890e4cbf21958afc7797bb061c"
   },
   {
     "date": 20201014,
@@ -339,7 +366,7 @@
     "dateChecked": "2020-10-14T00:00:00Z",
     "death": 208389,
     "hospitalized": 428880,
-    "totalTestResults": 120492752,
+    "totalTestResults": 123710843,
     "lastModified": "2020-10-14T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -347,8 +374,8 @@
     "hospitalizedIncrease": 2537,
     "negativeIncrease": 624821,
     "positiveIncrease": 56722,
-    "totalTestResultsIncrease": 980986,
-    "hash": "9c1ef5136be79cc29a625f1bb026c38a5be15868"
+    "totalTestResultsIncrease": 1011853,
+    "hash": "bf7ad82b529602627f9cfdbbf53b6626c17623fa"
   },
   {
     "date": 20201013,
@@ -366,7 +393,7 @@
     "dateChecked": "2020-10-13T00:00:00Z",
     "death": 207578,
     "hospitalized": 426343,
-    "totalTestResults": 119511766,
+    "totalTestResults": 122698990,
     "lastModified": "2020-10-13T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -374,8 +401,8 @@
     "hospitalizedIncrease": 2048,
     "negativeIncrease": 854225,
     "positiveIncrease": 48319,
-    "totalTestResultsIncrease": 985976,
-    "hash": "a73c24288627453e685d7b55142a955bb030d0e5"
+    "totalTestResultsIncrease": 1013682,
+    "hash": "c7a3264d5a7f8e391ed05f661fec0dd980007a9a"
   },
   {
     "date": 20201012,
@@ -393,7 +420,7 @@
     "dateChecked": "2020-10-12T00:00:00Z",
     "death": 206888,
     "hospitalized": 424295,
-    "totalTestResults": 118525790,
+    "totalTestResults": 121685308,
     "lastModified": "2020-10-12T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -401,8 +428,8 @@
     "hospitalizedIncrease": 1189,
     "negativeIncrease": 889434,
     "positiveIncrease": 43110,
-    "totalTestResultsIncrease": 1016949,
-    "hash": "c3257762d22bee67e77f69a660f8d56358c58fc1"
+    "totalTestResultsIncrease": 1037013,
+    "hash": "8e52db10aaa47993cc09b9cec6b246d3ac415f6d"
   },
   {
     "date": 20201011,
@@ -420,7 +447,7 @@
     "dateChecked": "2020-10-11T00:00:00Z",
     "death": 206601,
     "hospitalized": 423106,
-    "totalTestResults": 117508841,
+    "totalTestResults": 120648295,
     "lastModified": "2020-10-11T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -428,8 +455,8 @@
     "hospitalizedIncrease": 1015,
     "negativeIncrease": 803858,
     "positiveIncrease": 46790,
-    "totalTestResultsIncrease": 971852,
-    "hash": "1e7a813a1d1025ac8052b8b32cc706eccf302851"
+    "totalTestResultsIncrease": 1045443,
+    "hash": "cfd8369980d5cb190f11f9b45aee72def3db3898"
   },
   {
     "date": 20201010,
@@ -447,7 +474,7 @@
     "dateChecked": "2020-10-10T00:00:00Z",
     "death": 206135,
     "hospitalized": 422091,
-    "totalTestResults": 116536989,
+    "totalTestResults": 119602852,
     "lastModified": "2020-10-10T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -455,8 +482,8 @@
     "hospitalizedIncrease": 1504,
     "negativeIncrease": 959373,
     "positiveIncrease": 57492,
-    "totalTestResultsIncrease": 1185902,
-    "hash": "b8cb6431f5ac1d6eb85ab63089347fe575df9c06"
+    "totalTestResultsIncrease": 1208425,
+    "hash": "1895465a27e9f2d640c631f806ef1061101d6268"
   },
   {
     "date": 20201009,
@@ -474,7 +501,7 @@
     "dateChecked": "2020-10-09T00:00:00Z",
     "death": 205470,
     "hospitalized": 420587,
-    "totalTestResults": 115351087,
+    "totalTestResults": 118394427,
     "lastModified": "2020-10-09T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -482,8 +509,8 @@
     "hospitalizedIncrease": 1802,
     "negativeIncrease": 950718,
     "positiveIncrease": 57005,
-    "totalTestResultsIncrease": 1126832,
-    "hash": "c8e052644cf2900acd2b4bc5abc3a72db32c491b"
+    "totalTestResultsIncrease": 1168125,
+    "hash": "4207cc07837b0e68270540d7755027f26e97b23b"
   },
   {
     "date": 20201008,
@@ -501,7 +528,7 @@
     "dateChecked": "2020-10-08T00:00:00Z",
     "death": 204577,
     "hospitalized": 418785,
-    "totalTestResults": 114224255,
+    "totalTestResults": 117226302,
     "lastModified": "2020-10-08T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -509,8 +536,8 @@
     "hospitalizedIncrease": 2074,
     "negativeIncrease": 880813,
     "positiveIncrease": 55292,
-    "totalTestResultsIncrease": 1076031,
-    "hash": "58e7fc137f1d78a61119e05ddb9bd9b5869bc29a"
+    "totalTestResultsIncrease": 1117455,
+    "hash": "9083dc1dfedaee55dc156f20d04461f5b3c0d927"
   },
   {
     "date": 20201007,
@@ -528,7 +555,7 @@
     "dateChecked": "2020-10-07T00:00:00Z",
     "death": 203591,
     "hospitalized": 416711,
-    "totalTestResults": 113148224,
+    "totalTestResults": 116108847,
     "lastModified": "2020-10-07T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -536,8 +563,8 @@
     "hospitalizedIncrease": 2250,
     "negativeIncrease": 732692,
     "positiveIncrease": 50564,
-    "totalTestResultsIncrease": 900852,
-    "hash": "3cb6ffc9ee3a8b5e54b82ee5969ea95873bae4a0"
+    "totalTestResultsIncrease": 935581,
+    "hash": "7b5fc510e04a4f634b596403b501c7adefd285b8"
   },
   {
     "date": 20201006,
@@ -555,7 +582,7 @@
     "dateChecked": "2020-10-06T00:00:00Z",
     "death": 202675,
     "hospitalized": 414461,
-    "totalTestResults": 112247372,
+    "totalTestResults": 115173266,
     "lastModified": "2020-10-06T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -563,8 +590,8 @@
     "hospitalizedIncrease": -624,
     "negativeIncrease": 722475,
     "positiveIncrease": 38611,
-    "totalTestResultsIncrease": 859771,
-    "hash": "1b5e3874fc97f6b414147427fb79e6c24b235aab"
+    "totalTestResultsIncrease": 881919,
+    "hash": "14aff8a89796dfd023afbb2aac2b90ecd0f1ace3"
   },
   {
     "date": 20201005,
@@ -582,7 +609,7 @@
     "dateChecked": "2020-10-05T00:00:00Z",
     "death": 202041,
     "hospitalized": 415085,
-    "totalTestResults": 111387601,
+    "totalTestResults": 114291347,
     "lastModified": "2020-10-05T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -590,8 +617,8 @@
     "hospitalizedIncrease": 1519,
     "negativeIncrease": 846256,
     "positiveIncrease": 38124,
-    "totalTestResultsIncrease": 947300,
-    "hash": "9d132ab5f02d0b01d2d765b34f1ba7201f3226d0"
+    "totalTestResultsIncrease": 966865,
+    "hash": "d2bb34c02ff366d7aad0ae096ee67f3483ba87b9"
   },
   {
     "date": 20201004,
@@ -609,7 +636,7 @@
     "dateChecked": "2020-10-04T00:00:00Z",
     "death": 201715,
     "hospitalized": 413566,
-    "totalTestResults": 110440301,
+    "totalTestResults": 113324482,
     "lastModified": "2020-10-04T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -617,8 +644,8 @@
     "hospitalizedIncrease": 649,
     "negativeIncrease": 824848,
     "positiveIncrease": 38357,
-    "totalTestResultsIncrease": 973737,
-    "hash": "e7051c9441a7879fa1ea5beaca28391f1fea58d3"
+    "totalTestResultsIncrease": 1002834,
+    "hash": "0a04d1ed6172337980872d539e9feeb7d3b7e811"
   },
   {
     "date": 20201003,
@@ -636,7 +663,7 @@
     "dateChecked": "2020-10-03T00:00:00Z",
     "death": 201352,
     "hospitalized": 412917,
-    "totalTestResults": 109466564,
+    "totalTestResults": 112321648,
     "lastModified": "2020-10-03T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -644,8 +671,8 @@
     "hospitalizedIncrease": 1166,
     "negativeIncrease": 846390,
     "positiveIncrease": 51338,
-    "totalTestResultsIncrease": 1033763,
-    "hash": "0cea0dc0bda983c94c44067e4b10ffe0bc4e9a52"
+    "totalTestResultsIncrease": 1067109,
+    "hash": "9057f49f50faa86f84a8f1034cc7612a8763d191"
   },
   {
     "date": 20201002,
@@ -663,7 +690,7 @@
     "dateChecked": "2020-10-02T00:00:00Z",
     "death": 200611,
     "hospitalized": 411751,
-    "totalTestResults": 108432801,
+    "totalTestResults": 111254539,
     "lastModified": "2020-10-02T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -671,8 +698,8 @@
     "hospitalizedIncrease": 1342,
     "negativeIncrease": 977186,
     "positiveIncrease": 49484,
-    "totalTestResultsIncrease": 1163796,
-    "hash": "bab53d9dfb477488102085dea5e2c66afbfb1a5a"
+    "totalTestResultsIncrease": 1208773,
+    "hash": "bdf04154b03193b1d0d5c573d15d19256e8076f3"
   },
   {
     "date": 20201001,
@@ -690,7 +717,7 @@
     "dateChecked": "2020-10-01T00:00:00Z",
     "death": 199776,
     "hospitalized": 410409,
-    "totalTestResults": 107269005,
+    "totalTestResults": 110045766,
     "lastModified": "2020-10-01T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -698,8 +725,8 @@
     "hospitalizedIncrease": 1760,
     "negativeIncrease": 759865,
     "positiveIncrease": 45617,
-    "totalTestResultsIncrease": 932115,
-    "hash": "8200d85a734483d4c294ca6516267070040438af"
+    "totalTestResultsIncrease": 967447,
+    "hash": "746feece7562e32f09ab5907e15d04e8e87ce0bd"
   },
   {
     "date": 20200930,
@@ -717,7 +744,7 @@
     "dateChecked": "2020-09-30T00:00:00Z",
     "death": 198925,
     "hospitalized": 408649,
-    "totalTestResults": 106336890,
+    "totalTestResults": 109078319,
     "lastModified": "2020-09-30T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -725,8 +752,8 @@
     "hospitalizedIncrease": 1590,
     "negativeIncrease": 674267,
     "positiveIncrease": 44356,
-    "totalTestResultsIncrease": 846727,
-    "hash": "9a5a1edb56fd62c931b7bd1c14cb70f1ed83f291"
+    "totalTestResultsIncrease": 876454,
+    "hash": "1e8cfb18bb45c0f0e4427ed49cb2b41587fa70d7"
   },
   {
     "date": 20200929,
@@ -744,7 +771,7 @@
     "dateChecked": "2020-09-29T00:00:00Z",
     "death": 197864,
     "hospitalized": 407059,
-    "totalTestResults": 105490163,
+    "totalTestResults": 108201865,
     "lastModified": "2020-09-29T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -752,8 +779,8 @@
     "hospitalizedIncrease": 1733,
     "negativeIncrease": 707529,
     "positiveIncrease": 36890,
-    "totalTestResultsIncrease": 858142,
-    "hash": "d8774a90f1716341cbe74d97cc6072f8cd021439"
+    "totalTestResultsIncrease": 893977,
+    "hash": "afc49455b964f334b83aa094b831e7c440665970"
   },
   {
     "date": 20200928,
@@ -771,7 +798,7 @@
     "dateChecked": "2020-09-28T00:00:00Z",
     "death": 197125,
     "hospitalized": 405326,
-    "totalTestResults": 104632021,
+    "totalTestResults": 107307888,
     "lastModified": "2020-09-28T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -779,8 +806,8 @@
     "hospitalizedIncrease": 1241,
     "negativeIncrease": 919021,
     "positiveIncrease": 36514,
-    "totalTestResultsIncrease": 1128303,
-    "hash": "ad9fccbf998e0c7608b49dfdd6c830ab712c0c2c"
+    "totalTestResultsIncrease": 1139086,
+    "hash": "ac51c633c2c5934b079b5fa6107b56024f59ffb3"
   },
   {
     "date": 20200927,
@@ -798,7 +825,7 @@
     "dateChecked": "2020-09-27T00:00:00Z",
     "death": 196868,
     "hospitalized": 404085,
-    "totalTestResults": 103503718,
+    "totalTestResults": 106168802,
     "lastModified": "2020-09-27T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -806,8 +833,8 @@
     "hospitalizedIncrease": 760,
     "negativeIncrease": 669524,
     "positiveIncrease": 35419,
-    "totalTestResultsIncrease": 849681,
-    "hash": "cf2299c4d6030a7f449d64b2e79003e184f0dda2"
+    "totalTestResultsIncrease": 876550,
+    "hash": "41918f7252cf7af25a6462500710a7f1218866f1"
   },
   {
     "date": 20200926,
@@ -825,7 +852,7 @@
     "dateChecked": "2020-09-26T00:00:00Z",
     "death": 196561,
     "hospitalized": 403325,
-    "totalTestResults": 102654037,
+    "totalTestResults": 105292252,
     "lastModified": "2020-09-26T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -833,8 +860,8 @@
     "hospitalizedIncrease": 1154,
     "negativeIncrease": 889151,
     "positiveIncrease": 47792,
-    "totalTestResultsIncrease": 1056574,
-    "hash": "65fec65d4460ed909f3a80817d99d09dcc20ab1b"
+    "totalTestResultsIncrease": 1094065,
+    "hash": "5412af2cea29945c379972af4097e26e369ec94c"
   },
   {
     "date": 20200925,
@@ -852,7 +879,7 @@
     "dateChecked": "2020-09-25T00:00:00Z",
     "death": 195692,
     "hospitalized": 402171,
-    "totalTestResults": 101597463,
+    "totalTestResults": 104198187,
     "lastModified": "2020-09-25T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -860,8 +887,8 @@
     "hospitalizedIncrease": 1331,
     "negativeIncrease": 877895,
     "positiveIncrease": 55488,
-    "totalTestResultsIncrease": 1054219,
-    "hash": "a8fb68c4006c51b4d34f803c120efa6df2493b99"
+    "totalTestResultsIncrease": 1093377,
+    "hash": "e2bc719314abc13b48a3b27be9912176c83bf70a"
   },
   {
     "date": 20200924,
@@ -879,7 +906,7 @@
     "dateChecked": "2020-09-24T00:00:00Z",
     "death": 194848,
     "hospitalized": 400840,
-    "totalTestResults": 100543244,
+    "totalTestResults": 103104810,
     "lastModified": "2020-09-24T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -887,8 +914,8 @@
     "hospitalizedIncrease": 1588,
     "negativeIncrease": 802073,
     "positiveIncrease": 43708,
-    "totalTestResultsIncrease": 974716,
-    "hash": "f59f167f4e734629b0bddc1d69a9048d9c8d3aa1"
+    "totalTestResultsIncrease": 1009357,
+    "hash": "5aa2db1491eeda80a4034b1f072318a5631c0132"
   },
   {
     "date": 20200923,
@@ -906,7 +933,7 @@
     "dateChecked": "2020-09-23T00:00:00Z",
     "death": 193927,
     "hospitalized": 399252,
-    "totalTestResults": 99568528,
+    "totalTestResults": 102095453,
     "lastModified": "2020-09-23T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -914,8 +941,8 @@
     "hospitalizedIncrease": 1451,
     "negativeIncrease": 800878,
     "positiveIncrease": 38571,
-    "totalTestResultsIncrease": 962740,
-    "hash": "47074676f7c23e1027ab281208ff5cedcc8b6d07"
+    "totalTestResultsIncrease": 988024,
+    "hash": "817a476734d9c4479dac6777a7d8474608b4d82d"
   },
   {
     "date": 20200922,
@@ -933,7 +960,7 @@
     "dateChecked": "2020-09-22T00:00:00Z",
     "death": 192768,
     "hospitalized": 397801,
-    "totalTestResults": 98605788,
+    "totalTestResults": 101107429,
     "lastModified": "2020-09-22T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -941,8 +968,8 @@
     "hospitalizedIncrease": 1446,
     "negativeIncrease": 672641,
     "positiveIncrease": 49383,
-    "totalTestResultsIncrease": 812466,
-    "hash": "dffb8c98fcdb705b1cc62636f3ea283aa23ec822"
+    "totalTestResultsIncrease": 833962,
+    "hash": "54a2ea7cbb8e809921a24d1f5ede849ec347c102"
   },
   {
     "date": 20200921,
@@ -960,7 +987,7 @@
     "dateChecked": "2020-09-21T00:00:00Z",
     "death": 191914,
     "hospitalized": 396355,
-    "totalTestResults": 97793322,
+    "totalTestResults": 100273467,
     "lastModified": "2020-09-21T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -968,8 +995,8 @@
     "hospitalizedIncrease": 1140,
     "negativeIncrease": 639272,
     "positiveIncrease": 39458,
-    "totalTestResultsIncrease": 736085,
-    "hash": "d2f4794c7663ecf7c4ccc088e298dd5f93d1950c"
+    "totalTestResultsIncrease": 756208,
+    "hash": "ca9986d94a95f86c11bf5b53febe2e9b162f8626"
   },
   {
     "date": 20200920,
@@ -987,7 +1014,7 @@
     "dateChecked": "2020-09-20T00:00:00Z",
     "death": 191627,
     "hospitalized": 395215,
-    "totalTestResults": 97057237,
+    "totalTestResults": 99517259,
     "lastModified": "2020-09-20T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -995,8 +1022,8 @@
     "hospitalizedIncrease": 516,
     "negativeIncrease": 790601,
     "positiveIncrease": 36271,
-    "totalTestResultsIncrease": 932867,
-    "hash": "048f53b1ed98b22fd453c14d5b83fbe26952aa10"
+    "totalTestResultsIncrease": 959830,
+    "hash": "f80bbe8c149194e3ff13343de47bfed66b4ed154"
   },
   {
     "date": 20200919,
@@ -1014,7 +1041,7 @@
     "dateChecked": "2020-09-19T00:00:00Z",
     "death": 191300,
     "hospitalized": 394699,
-    "totalTestResults": 96124370,
+    "totalTestResults": 98557429,
     "lastModified": "2020-09-19T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -1022,8 +1049,8 @@
     "hospitalizedIncrease": 1067,
     "negativeIncrease": 946890,
     "positiveIncrease": 45501,
-    "totalTestResultsIncrease": 1100771,
-    "hash": "bd2b1108dc3b272926bf53ff4ae8b9bf35bd56f9"
+    "totalTestResultsIncrease": 1148761,
+    "hash": "3b28ea8f2f33d26ae2c1fa7fe17e90c3ce9e96ca"
   },
   {
     "date": 20200918,
@@ -1041,7 +1068,7 @@
     "dateChecked": "2020-09-18T00:00:00Z",
     "death": 190560,
     "hospitalized": 393632,
-    "totalTestResults": 95023599,
+    "totalTestResults": 97408668,
     "lastModified": "2020-09-18T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -1049,8 +1076,8 @@
     "hospitalizedIncrease": 1459,
     "negativeIncrease": 856141,
     "positiveIncrease": 47459,
-    "totalTestResultsIncrease": 1019019,
-    "hash": "0332654a0ae92effc1e49eb96b2b99e12d6ef2a0"
+    "totalTestResultsIncrease": 1067900,
+    "hash": "453bc3a9959b04ec4c05b794a36d9af17da0765a"
   },
   {
     "date": 20200917,
@@ -1068,7 +1095,7 @@
     "dateChecked": "2020-09-17T00:00:00Z",
     "death": 189659,
     "hospitalized": 392173,
-    "totalTestResults": 94004580,
+    "totalTestResults": 96340768,
     "lastModified": "2020-09-17T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -1076,8 +1103,8 @@
     "hospitalizedIncrease": 1549,
     "negativeIncrease": 733211,
     "positiveIncrease": 43576,
-    "totalTestResultsIncrease": 885819,
-    "hash": "4017a946b50710f9ef156497c463525f05e55305"
+    "totalTestResultsIncrease": 932054,
+    "hash": "98c3d97f5ee3afc493ec2b00dba8916af6002539"
   },
   {
     "date": 20200916,
@@ -1095,7 +1122,7 @@
     "dateChecked": "2020-09-16T00:00:00Z",
     "death": 188796,
     "hospitalized": 390624,
-    "totalTestResults": 93118761,
+    "totalTestResults": 95408714,
     "lastModified": "2020-09-16T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -1103,8 +1130,8 @@
     "hospitalizedIncrease": 1517,
     "negativeIncrease": 625601,
     "positiveIncrease": 39954,
-    "totalTestResultsIncrease": 770452,
-    "hash": "6611803ec6d2d9f0fadd569812cadcb4f0aa8f60"
+    "totalTestResultsIncrease": 806916,
+    "hash": "359eb10ac09e10cafee6154aba69cfbcaa10b166"
   },
   {
     "date": 20200915,
@@ -1122,7 +1149,7 @@
     "dateChecked": "2020-09-15T00:00:00Z",
     "death": 187596,
     "hospitalized": 389107,
-    "totalTestResults": 92348309,
+    "totalTestResults": 94601798,
     "lastModified": "2020-09-15T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -1130,8 +1157,8 @@
     "hospitalizedIncrease": 1491,
     "negativeIncrease": 649588,
     "positiveIncrease": 35072,
-    "totalTestResultsIncrease": 760068,
-    "hash": "2acb9f3601f5eb3818d376722757dc2ec7beee9e"
+    "totalTestResultsIncrease": 795698,
+    "hash": "82125e0764e654e3add6ee97adeba153bd82d203"
   },
   {
     "date": 20200914,
@@ -1149,7 +1176,7 @@
     "dateChecked": "2020-09-14T00:00:00Z",
     "death": 186565,
     "hospitalized": 387616,
-    "totalTestResults": 91588241,
+    "totalTestResults": 93806100,
     "lastModified": "2020-09-14T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -1157,8 +1184,8 @@
     "hospitalizedIncrease": 937,
     "negativeIncrease": 371748,
     "positiveIncrease": 33846,
-    "totalTestResultsIncrease": 457565,
-    "hash": "a57fde373f793dcf1c964ab17560fe97f9f4dbb2"
+    "totalTestResultsIncrease": 486536,
+    "hash": "aa45732c5ebaeca0dfd159eee1d402e3d484bac8"
   },
   {
     "date": 20200913,
@@ -1176,7 +1203,7 @@
     "dateChecked": "2020-09-13T00:00:00Z",
     "death": 186161,
     "hospitalized": 386679,
-    "totalTestResults": 91130676,
+    "totalTestResults": 93319564,
     "lastModified": "2020-09-13T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -1184,8 +1211,8 @@
     "hospitalizedIncrease": 592,
     "negativeIncrease": 612437,
     "positiveIncrease": 34425,
-    "totalTestResultsIncrease": 720597,
-    "hash": "860cc4773590e20ca0ed2b3f45fe1aedcfa73600"
+    "totalTestResultsIncrease": 754417,
+    "hash": "75eb4829a898a3028f3f3ea64462734ec1531a1b"
   },
   {
     "date": 20200912,
@@ -1203,7 +1230,7 @@
     "dateChecked": "2020-09-12T00:00:00Z",
     "death": 185771,
     "hospitalized": 386087,
-    "totalTestResults": 90410079,
+    "totalTestResults": 92565147,
     "lastModified": "2020-09-12T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -1211,8 +1238,8 @@
     "hospitalizedIncrease": 1076,
     "negativeIncrease": 806722,
     "positiveIncrease": 42068,
-    "totalTestResultsIncrease": 930274,
-    "hash": "054cd0d06db14e7090b2d442dcbd2ebe20cd38e7"
+    "totalTestResultsIncrease": 976727,
+    "hash": "2690d96c01e0bad41db2e490c6315ce501794d48"
   },
   {
     "date": 20200911,
@@ -1230,7 +1257,7 @@
     "dateChecked": "2020-09-11T00:00:00Z",
     "death": 184961,
     "hospitalized": 385011,
-    "totalTestResults": 89479805,
+    "totalTestResults": 91588420,
     "lastModified": "2020-09-11T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -1238,8 +1265,8 @@
     "hospitalizedIncrease": 1553,
     "negativeIncrease": 721070,
     "positiveIncrease": 44881,
-    "totalTestResultsIncrease": 856962,
-    "hash": "9f8cf66928f0192b114c826d785dcc960bea798b"
+    "totalTestResultsIncrease": 896647,
+    "hash": "494ea0077aebd12c117899d06c681791ea466378"
   },
   {
     "date": 20200910,
@@ -1257,7 +1284,7 @@
     "dateChecked": "2020-09-10T00:00:00Z",
     "death": 183943,
     "hospitalized": 383458,
-    "totalTestResults": 88622843,
+    "totalTestResults": 90691773,
     "lastModified": "2020-09-10T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -1265,8 +1292,8 @@
     "hospitalizedIncrease": 1532,
     "negativeIncrease": 576461,
     "positiveIncrease": 37535,
-    "totalTestResultsIncrease": 730390,
-    "hash": "da6204b66590fd50753b833ecde3f7610bcf29eb"
+    "totalTestResultsIncrease": 757262,
+    "hash": "b44438fe78974b8399d64a24186d63b0f3c7e818"
   },
   {
     "date": 20200909,
@@ -1284,7 +1311,7 @@
     "dateChecked": "2020-09-09T00:00:00Z",
     "death": 182773,
     "hospitalized": 381926,
-    "totalTestResults": 87892453,
+    "totalTestResults": 89934511,
     "lastModified": "2020-09-09T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -1292,8 +1319,8 @@
     "hospitalizedIncrease": 2060,
     "negativeIncrease": 553429,
     "positiveIncrease": 31064,
-    "totalTestResultsIncrease": 659031,
-    "hash": "6d6a42398b52e1390d58f1471cb44ae81e489c66"
+    "totalTestResultsIncrease": 683580,
+    "hash": "d6b6c6dfa19a2204cd47fa64f5089931594c1f7c"
   },
   {
     "date": 20200908,
@@ -1311,7 +1338,7 @@
     "dateChecked": "2020-09-08T00:00:00Z",
     "death": 181689,
     "hospitalized": 379866,
-    "totalTestResults": 87233422,
+    "totalTestResults": 89250931,
     "lastModified": "2020-09-08T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -1319,8 +1346,8 @@
     "hospitalizedIncrease": 959,
     "negativeIncrease": 486487,
     "positiveIncrease": 22197,
-    "totalTestResultsIncrease": 552093,
-    "hash": "77551da255e3b1c089cc200cb4a2330c2afe361d"
+    "totalTestResultsIncrease": 573264,
+    "hash": "e0e7f58069e5ef4411b432f5fa2285a113fde618"
   },
   {
     "date": 20200907,
@@ -1338,7 +1365,7 @@
     "dateChecked": "2020-09-07T00:00:00Z",
     "death": 181331,
     "hospitalized": 378907,
-    "totalTestResults": 86681329,
+    "totalTestResults": 88677667,
     "lastModified": "2020-09-07T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -1346,8 +1373,8 @@
     "hospitalizedIncrease": 492,
     "negativeIncrease": 559616,
     "positiveIncrease": 28656,
-    "totalTestResultsIncrease": 626030,
-    "hash": "e51209dcf147f41d22edf21c4bfad4d1af9d719f"
+    "totalTestResultsIncrease": 649936,
+    "hash": "8bd06a68ebbfdbe2e0563a4268e9b994cef68251"
   },
   {
     "date": 20200906,
@@ -1365,7 +1392,7 @@
     "dateChecked": "2020-09-06T00:00:00Z",
     "death": 181106,
     "hospitalized": 378415,
-    "totalTestResults": 86055299,
+    "totalTestResults": 88027731,
     "lastModified": "2020-09-06T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -1373,8 +1400,8 @@
     "hospitalizedIncrease": 489,
     "negativeIncrease": 702709,
     "positiveIncrease": 33066,
-    "totalTestResultsIncrease": 789759,
-    "hash": "d31c36733838ca250f8d80c9671bf19411e4bcd6"
+    "totalTestResultsIncrease": 818814,
+    "hash": "e8c3cc7a036f99402303b6685ccbc10e86ac179d"
   },
   {
     "date": 20200905,
@@ -1392,7 +1419,7 @@
     "dateChecked": "2020-09-05T00:00:00Z",
     "death": 180657,
     "hospitalized": 377926,
-    "totalTestResults": 85265540,
+    "totalTestResults": 87208917,
     "lastModified": "2020-09-05T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -1400,8 +1427,8 @@
     "hospitalizedIncrease": 1287,
     "negativeIncrease": 761056,
     "positiveIncrease": 44842,
-    "totalTestResultsIncrease": 908107,
-    "hash": "3e067afe9f26555a21fef5bf7390e5ed34629946"
+    "totalTestResultsIncrease": 945868,
+    "hash": "eea1046d86049fffcfbd824dcd7bfaaa83c1d044"
   },
   {
     "date": 20200904,
@@ -1419,7 +1446,7 @@
     "dateChecked": "2020-09-04T00:00:00Z",
     "death": 179739,
     "hospitalized": 376639,
-    "totalTestResults": 84357433,
+    "totalTestResults": 86263049,
     "lastModified": "2020-09-04T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -1427,8 +1454,8 @@
     "hospitalizedIncrease": 1239,
     "negativeIncrease": 850612,
     "positiveIncrease": 51540,
-    "totalTestResultsIncrease": 979225,
-    "hash": "b97f8aff5f7d55b757e44385b8e1077534086bb9"
+    "totalTestResultsIncrease": 1019454,
+    "hash": "6c6c2e0f2ba001131f9c03f141c3ccf7d6c59535"
   },
   {
     "date": 20200903,
@@ -1446,7 +1473,7 @@
     "dateChecked": "2020-09-03T00:00:00Z",
     "death": 178741,
     "hospitalized": 375400,
-    "totalTestResults": 83378208,
+    "totalTestResults": 85243595,
     "lastModified": "2020-09-03T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -1454,8 +1481,8 @@
     "hospitalizedIncrease": 1536,
     "negativeIncrease": 679230,
     "positiveIncrease": 44630,
-    "totalTestResultsIncrease": 828942,
-    "hash": "9d292f8bec84a7166eb79493f99f93bd042872dc"
+    "totalTestResultsIncrease": 862549,
+    "hash": "96acd14087cfc6b5a5c3f1fb93f352f8bfc9eba6"
   },
   {
     "date": 20200902,
@@ -1473,7 +1500,7 @@
     "dateChecked": "2020-09-02T00:00:00Z",
     "death": 177671,
     "hospitalized": 373864,
-    "totalTestResults": 82549266,
+    "totalTestResults": 84381046,
     "lastModified": "2020-09-02T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -1481,8 +1508,8 @@
     "hospitalizedIncrease": 1647,
     "negativeIncrease": 614433,
     "positiveIncrease": 30511,
-    "totalTestResultsIncrease": 703918,
-    "hash": "89b1e60c85c14d4951e95fa77b2752bafcbc35f4"
+    "totalTestResultsIncrease": 730090,
+    "hash": "f6db48cbc2e85dcc35e02dfab16a07733152a66f"
   },
   {
     "date": 20200901,
@@ -1500,7 +1527,7 @@
     "dateChecked": "2020-09-01T00:00:00Z",
     "death": 176639,
     "hospitalized": 372217,
-    "totalTestResults": 81845348,
+    "totalTestResults": 83650956,
     "lastModified": "2020-09-01T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -1508,8 +1535,8 @@
     "hospitalizedIncrease": 1837,
     "negativeIncrease": 656103,
     "positiveIncrease": 42351,
-    "totalTestResultsIncrease": 755810,
-    "hash": "087d7db4b4ab9b0b8f0e247b474a2a8f75b9486d"
+    "totalTestResultsIncrease": 805855,
+    "hash": "322ada6e58d1bef1b07256018b355b11ba542f35"
   },
   {
     "date": 20200831,
@@ -1527,7 +1554,7 @@
     "dateChecked": "2020-08-31T00:00:00Z",
     "death": 175612,
     "hospitalized": 370380,
-    "totalTestResults": 81089538,
+    "totalTestResults": 82845101,
     "lastModified": "2020-08-31T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -1535,8 +1562,8 @@
     "hospitalizedIncrease": 816,
     "negativeIncrease": 648999,
     "positiveIncrease": 31397,
-    "totalTestResultsIncrease": 709738,
-    "hash": "f3651cf4a5b6101e34d3582b489d6b4f53b0d8c5"
+    "totalTestResultsIncrease": 727369,
+    "hash": "7171162f62162eba967ce914ef3cb18b1f28c783"
   },
   {
     "date": 20200830,
@@ -1554,7 +1581,7 @@
     "dateChecked": "2020-08-30T00:00:00Z",
     "death": 175246,
     "hospitalized": 369564,
-    "totalTestResults": 80379800,
+    "totalTestResults": 82117732,
     "lastModified": "2020-08-30T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -1562,8 +1589,8 @@
     "hospitalizedIncrease": 680,
     "negativeIncrease": 700008,
     "positiveIncrease": 39465,
-    "totalTestResultsIncrease": 786725,
-    "hash": "2c10ae2252eaad2941354dd949e1b5884bde730b"
+    "totalTestResultsIncrease": 814254,
+    "hash": "69fdcb30b6453a2eb1dfe518b114e28331b0100c"
   },
   {
     "date": 20200829,
@@ -1581,7 +1608,7 @@
     "dateChecked": "2020-08-29T00:00:00Z",
     "death": 174771,
     "hospitalized": 368884,
-    "totalTestResults": 79593075,
+    "totalTestResults": 81303478,
     "lastModified": "2020-08-29T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -1589,8 +1616,8 @@
     "hospitalizedIncrease": 1296,
     "negativeIncrease": 719736,
     "positiveIncrease": 44436,
-    "totalTestResultsIncrease": 840956,
-    "hash": "cccf89951a7d64e316a0b6704c9cfa80cc630b07"
+    "totalTestResultsIncrease": 876413,
+    "hash": "45b6c2a8224f81bcb5a4b0ea39f60ac109abb59a"
   },
   {
     "date": 20200828,
@@ -1608,7 +1635,7 @@
     "dateChecked": "2020-08-28T00:00:00Z",
     "death": 173756,
     "hospitalized": 367588,
-    "totalTestResults": 78752119,
+    "totalTestResults": 80427065,
     "lastModified": "2020-08-28T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -1616,8 +1643,8 @@
     "hospitalizedIncrease": 1595,
     "negativeIncrease": 725710,
     "positiveIncrease": 46465,
-    "totalTestResultsIncrease": 847480,
-    "hash": "65d5a916c17cb2b2d25d4cbc19d288a26794dfe1"
+    "totalTestResultsIncrease": 882514,
+    "hash": "551075f9a2db41b08fb8bfc26f6c875cba996090"
   },
   {
     "date": 20200827,
@@ -1635,7 +1662,7 @@
     "dateChecked": "2020-08-27T00:00:00Z",
     "death": 172732,
     "hospitalized": 365993,
-    "totalTestResults": 77904639,
+    "totalTestResults": 79544551,
     "lastModified": "2020-08-27T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -1643,8 +1670,8 @@
     "hospitalizedIncrease": 1668,
     "negativeIncrease": 698076,
     "positiveIncrease": 43944,
-    "totalTestResultsIncrease": 814624,
-    "hash": "604af9d852b709a58243eed694d459778a586b40"
+    "totalTestResultsIncrease": 840770,
+    "hash": "183adb630160f71a4d90f975b2478c0fab69c55b"
   },
   {
     "date": 20200826,
@@ -1662,7 +1689,7 @@
     "dateChecked": "2020-08-26T00:00:00Z",
     "death": 171603,
     "hospitalized": 364325,
-    "totalTestResults": 77090015,
+    "totalTestResults": 78703781,
     "lastModified": "2020-08-26T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -1670,8 +1697,8 @@
     "hospitalizedIncrease": 1873,
     "negativeIncrease": 631672,
     "positiveIncrease": 43770,
-    "totalTestResultsIncrease": 694763,
-    "hash": "24a7870520fd66a249c8de3e44c4ccd1c76d2c86"
+    "totalTestResultsIncrease": 725272,
+    "hash": "dd6d211311828c8fe5c59061e5b132c974f76ebd"
   },
   {
     "date": 20200825,
@@ -1689,7 +1716,7 @@
     "dateChecked": "2020-08-25T00:00:00Z",
     "death": 170305,
     "hospitalized": 362452,
-    "totalTestResults": 76395252,
+    "totalTestResults": 77978509,
     "lastModified": "2020-08-25T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -1697,8 +1724,8 @@
     "hospitalizedIncrease": 1999,
     "negativeIncrease": 597782,
     "positiveIncrease": 36371,
-    "totalTestResultsIncrease": 687363,
-    "hash": "f040fe12f046e74f32aed6c3d55395cae8cd8f26"
+    "totalTestResultsIncrease": 704236,
+    "hash": "8bc76ce8b4d4f0cc420d9f82ceb1390b7b0ec79b"
   },
   {
     "date": 20200824,
@@ -1716,7 +1743,7 @@
     "dateChecked": "2020-08-24T00:00:00Z",
     "death": 169158,
     "hospitalized": 360453,
-    "totalTestResults": 75707889,
+    "totalTestResults": 77274273,
     "lastModified": "2020-08-24T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -1724,8 +1751,8 @@
     "hospitalizedIncrease": 1049,
     "negativeIncrease": 648010,
     "positiveIncrease": 34609,
-    "totalTestResultsIncrease": 695969,
-    "hash": "724ca0e8d3eb716dc93a94a0a9afc968a3deff38"
+    "totalTestResultsIncrease": 716643,
+    "hash": "335d2d88622c278f2e4ca65cb133f3e398b5aca6"
   },
   {
     "date": 20200823,
@@ -1743,7 +1770,7 @@
     "dateChecked": "2020-08-23T00:00:00Z",
     "death": 168815,
     "hospitalized": 359404,
-    "totalTestResults": 75011920,
+    "totalTestResults": 76557630,
     "lastModified": "2020-08-23T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -1751,8 +1778,8 @@
     "hospitalizedIncrease": 774,
     "negativeIncrease": 577947,
     "positiveIncrease": 37596,
-    "totalTestResultsIncrease": 668144,
-    "hash": "5c1c4a8a2156c63402b0d61dd565d105d54bb2a0"
+    "totalTestResultsIncrease": 693708,
+    "hash": "596bf7556f4a48e53b3b25c2af84993ecc42a646"
   },
   {
     "date": 20200822,
@@ -1770,7 +1797,7 @@
     "dateChecked": "2020-08-22T00:00:00Z",
     "death": 168243,
     "hospitalized": 358630,
-    "totalTestResults": 74343776,
+    "totalTestResults": 75863922,
     "lastModified": "2020-08-22T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -1778,8 +1805,8 @@
     "hospitalizedIncrease": 1537,
     "negativeIncrease": 710293,
     "positiveIncrease": 46185,
-    "totalTestResultsIncrease": 820510,
-    "hash": "4fb6820fc23b0bf6018cb0732c771a284c0af5bd"
+    "totalTestResultsIncrease": 871022,
+    "hash": "a0e6b5e7e4814bbc6aab738d9eea8614b4d04b1f"
   },
   {
     "date": 20200821,
@@ -1797,7 +1824,7 @@
     "dateChecked": "2020-08-21T00:00:00Z",
     "death": 167214,
     "hospitalized": 357093,
-    "totalTestResults": 73523266,
+    "totalTestResults": 74992900,
     "lastModified": "2020-08-21T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -1805,8 +1832,8 @@
     "hospitalizedIncrease": 1817,
     "negativeIncrease": 697054,
     "positiveIncrease": 46493,
-    "totalTestResultsIncrease": 816152,
-    "hash": "88e6dc844b29d9bdaaf43cf51ea6be888dce4c62"
+    "totalTestResultsIncrease": 852144,
+    "hash": "6912341839d127a27f959d2d119dd8db137e9e4a"
   },
   {
     "date": 20200820,
@@ -1824,7 +1851,7 @@
     "dateChecked": "2020-08-20T00:00:00Z",
     "death": 166091,
     "hospitalized": 355276,
-    "totalTestResults": 72707114,
+    "totalTestResults": 74140756,
     "lastModified": "2020-08-20T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -1832,8 +1859,8 @@
     "hospitalizedIncrease": 2010,
     "negativeIncrease": 634078,
     "positiveIncrease": 43719,
-    "totalTestResultsIncrease": 751913,
-    "hash": "464f3654b46f19a1c1f9f9169e5562c712396dbf"
+    "totalTestResultsIncrease": 788671,
+    "hash": "0b30281ee4868a5b5c080cd9d5d7721a57ec6f4e"
   },
   {
     "date": 20200819,
@@ -1851,7 +1878,7 @@
     "dateChecked": "2020-08-19T00:00:00Z",
     "death": 164957,
     "hospitalized": 353266,
-    "totalTestResults": 71955201,
+    "totalTestResults": 73352085,
     "lastModified": "2020-08-19T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -1859,8 +1886,8 @@
     "hospitalizedIncrease": 2032,
     "negativeIncrease": 644823,
     "positiveIncrease": 44920,
-    "totalTestResultsIncrease": 732257,
-    "hash": "6a136db9cef2714da4216219dd79bc234e06ca3e"
+    "totalTestResultsIncrease": 762919,
+    "hash": "33cd7dc8ae25a8bd686e9efcf3c1079f6b81fbbc"
   },
   {
     "date": 20200818,
@@ -1878,7 +1905,7 @@
     "dateChecked": "2020-08-18T00:00:00Z",
     "death": 163537,
     "hospitalized": 351234,
-    "totalTestResults": 71222944,
+    "totalTestResults": 72589166,
     "lastModified": "2020-08-18T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -1886,8 +1913,8 @@
     "hospitalizedIncrease": 2273,
     "negativeIncrease": 616859,
     "positiveIncrease": 40744,
-    "totalTestResultsIncrease": 696218,
-    "hash": "e1ff894df272a87c0065634a597e8500a40d27b8"
+    "totalTestResultsIncrease": 718333,
+    "hash": "0fd1c95b54501019b1a2a7efb67b2aa7ddd7c306"
   },
   {
     "date": 20200817,
@@ -1905,7 +1932,7 @@
     "dateChecked": "2020-08-17T00:00:00Z",
     "death": 162341,
     "hospitalized": 348961,
-    "totalTestResults": 70526726,
+    "totalTestResults": 71870833,
     "lastModified": "2020-08-17T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -1913,8 +1940,8 @@
     "hospitalizedIncrease": 1267,
     "negativeIncrease": 625846,
     "positiveIncrease": 37851,
-    "totalTestResultsIncrease": 712871,
-    "hash": "502ca709edf5d68980a6b66fab7498e67d225917"
+    "totalTestResultsIncrease": 725224,
+    "hash": "a709e0b3f6853c113bc989a99c53f4ef5abb07c3"
   },
   {
     "date": 20200816,
@@ -1932,7 +1959,7 @@
     "dateChecked": "2020-08-16T00:00:00Z",
     "death": 161934,
     "hospitalized": 347694,
-    "totalTestResults": 69813855,
+    "totalTestResults": 71145609,
     "lastModified": "2020-08-16T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -1940,8 +1967,8 @@
     "hospitalizedIncrease": 649,
     "negativeIncrease": 740599,
     "positiveIncrease": 42455,
-    "totalTestResultsIncrease": 820962,
-    "hash": "d0838690bba831be602a45a7dfed2b32487ecafb"
+    "totalTestResultsIncrease": 839829,
+    "hash": "2e0782c9df356b39ee41de0983ed37db735c903a"
   },
   {
     "date": 20200815,
@@ -1959,7 +1986,7 @@
     "dateChecked": "2020-08-15T00:00:00Z",
     "death": 161315,
     "hospitalized": 347045,
-    "totalTestResults": 68992893,
+    "totalTestResults": 70305780,
     "lastModified": "2020-08-15T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -1967,8 +1994,8 @@
     "hospitalizedIncrease": 2031,
     "negativeIncrease": 693310,
     "positiveIncrease": 56088,
-    "totalTestResultsIncrease": 812290,
-    "hash": "2ae41211424a850e09e46d9c8f1a4b6156aa22a1"
+    "totalTestResultsIncrease": 850938,
+    "hash": "36ce98f54b77d854585d2c03c923fc0492d5ad9f"
   },
   {
     "date": 20200814,
@@ -1986,7 +2013,7 @@
     "dateChecked": "2020-08-14T00:00:00Z",
     "death": 160094,
     "hospitalized": 345014,
-    "totalTestResults": 68180603,
+    "totalTestResults": 69454842,
     "lastModified": "2020-08-14T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -1994,8 +2021,8 @@
     "hospitalizedIncrease": 2212,
     "negativeIncrease": 798904,
     "positiveIncrease": 57485,
-    "totalTestResultsIncrease": 918141,
-    "hash": "59436c0c8d5addb635bd037f99678a5958e10b58"
+    "totalTestResultsIncrease": 952577,
+    "hash": "99cf2b9978d67d046c3bc776d8fb2fa8393af2fe"
   },
   {
     "date": 20200813,
@@ -2013,7 +2040,7 @@
     "dateChecked": "2020-08-13T00:00:00Z",
     "death": 158878,
     "hospitalized": 342802,
-    "totalTestResults": 67262462,
+    "totalTestResults": 68502265,
     "lastModified": "2020-08-13T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -2021,8 +2048,8 @@
     "hospitalizedIncrease": 2685,
     "negativeIncrease": 843535,
     "positiveIncrease": 51750,
-    "totalTestResultsIncrease": 956780,
-    "hash": "56357fa5c17cb12f868c0d42e19a7e498e2ed84d"
+    "totalTestResultsIncrease": 986746,
+    "hash": "e3dc9329b247ece037da9f2e4e82d19f46ce9c30"
   },
   {
     "date": 20200812,
@@ -2040,7 +2067,7 @@
     "dateChecked": "2020-08-12T00:00:00Z",
     "death": 157715,
     "hospitalized": 340117,
-    "totalTestResults": 66305682,
+    "totalTestResults": 67515519,
     "lastModified": "2020-08-12T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -2048,8 +2075,8 @@
     "hospitalizedIncrease": 3055,
     "negativeIncrease": 439024,
     "positiveIncrease": 56120,
-    "totalTestResultsIncrease": 506714,
-    "hash": "cd09f546f5ed1b717d9e2deaa68aac0af53f922a"
+    "totalTestResultsIncrease": 535393,
+    "hash": "411843e231ac2eeaf6982e49bf8a86aa22ef17df"
   },
   {
     "date": 20200811,
@@ -2067,7 +2094,7 @@
     "dateChecked": "2020-08-11T00:00:00Z",
     "death": 156196,
     "hospitalized": 337062,
-    "totalTestResults": 65798968,
+    "totalTestResults": 66980126,
     "lastModified": "2020-08-11T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -2075,8 +2102,8 @@
     "hospitalizedIncrease": 2715,
     "negativeIncrease": 698757,
     "positiveIncrease": 55632,
-    "totalTestResultsIncrease": 775410,
-    "hash": "2c8531e99ac1fa32dfba0239219204754e70fc2b"
+    "totalTestResultsIncrease": 795533,
+    "hash": "ba2dd8c3ad1beac31cae1b30a74641e4d5095b69"
   },
   {
     "date": 20200810,
@@ -2094,7 +2121,7 @@
     "dateChecked": "2020-08-10T00:00:00Z",
     "death": 154870,
     "hospitalized": 334347,
-    "totalTestResults": 65023558,
+    "totalTestResults": 66184593,
     "lastModified": "2020-08-10T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -2102,8 +2129,8 @@
     "hospitalizedIncrease": 1654,
     "negativeIncrease": 693402,
     "positiveIncrease": 42084,
-    "totalTestResultsIncrease": 777321,
-    "hash": "b276ccbb91eae6f83fd4d8df5d412792ff91e741"
+    "totalTestResultsIncrease": 797066,
+    "hash": "cac3de35add8cef5f3eef66b82f942c8931b4053"
   },
   {
     "date": 20200809,
@@ -2121,7 +2148,7 @@
     "dateChecked": "2020-08-09T00:00:00Z",
     "death": 154444,
     "hospitalized": 332693,
-    "totalTestResults": 64246237,
+    "totalTestResults": 65387527,
     "lastModified": "2020-08-09T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -2129,8 +2156,8 @@
     "hospitalizedIncrease": 855,
     "negativeIncrease": 666939,
     "positiveIncrease": 50537,
-    "totalTestResultsIncrease": 742472,
-    "hash": "62044ced483a4e00e26027e5a387e85d7621aec4"
+    "totalTestResultsIncrease": 774321,
+    "hash": "4ebab8c64a214ea9ca2b4c43209d59db291abd5a"
   },
   {
     "date": 20200808,
@@ -2148,7 +2175,7 @@
     "dateChecked": "2020-08-08T00:00:00Z",
     "death": 153828,
     "hospitalized": 331838,
-    "totalTestResults": 63503765,
+    "totalTestResults": 64613206,
     "lastModified": "2020-08-08T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -2156,8 +2183,8 @@
     "hospitalizedIncrease": 1414,
     "negativeIncrease": 621980,
     "positiveIncrease": 53553,
-    "totalTestResultsIncrease": 705216,
-    "hash": "be0e7bd9b9f3c421743ddb390c595b0cffbffa2e"
+    "totalTestResultsIncrease": 739829,
+    "hash": "f8a70fd81b9f42a09edf80b24fd217c480283c6a"
   },
   {
     "date": 20200807,
@@ -2175,7 +2202,7 @@
     "dateChecked": "2020-08-07T00:00:00Z",
     "death": 152739,
     "hospitalized": 330424,
-    "totalTestResults": 62798549,
+    "totalTestResults": 63873377,
     "lastModified": "2020-08-07T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -2183,8 +2210,8 @@
     "hospitalizedIncrease": 8036,
     "negativeIncrease": 715719,
     "positiveIncrease": 61200,
-    "totalTestResultsIncrease": 845477,
-    "hash": "99ce11f1e77c886aaa47a72701df1663f06ddd74"
+    "totalTestResultsIncrease": 879803,
+    "hash": "8e79a20acf920e678c4cfe4e71eabe6dbb1786cf"
   },
   {
     "date": 20200806,
@@ -2202,7 +2229,7 @@
     "dateChecked": "2020-08-06T00:00:00Z",
     "death": 151406,
     "hospitalized": 322388,
-    "totalTestResults": 61953072,
+    "totalTestResults": 62993574,
     "lastModified": "2020-08-06T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -2210,8 +2237,8 @@
     "hospitalizedIncrease": 2682,
     "negativeIncrease": 691399,
     "positiveIncrease": 54110,
-    "totalTestResultsIncrease": 798813,
-    "hash": "c000b62664496300cf506d7c3e9c761a5020b16d"
+    "totalTestResultsIncrease": 845156,
+    "hash": "5306e9bacb623b94c8ccd4f3faee76275b3c90e3"
   },
   {
     "date": 20200805,
@@ -2229,7 +2256,7 @@
     "dateChecked": "2020-08-05T00:00:00Z",
     "death": 150155,
     "hospitalized": 319706,
-    "totalTestResults": 61154259,
+    "totalTestResults": 62148418,
     "lastModified": "2020-08-05T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -2237,8 +2264,8 @@
     "hospitalizedIncrease": 2269,
     "negativeIncrease": 643615,
     "positiveIncrease": 52339,
-    "totalTestResultsIncrease": 739182,
-    "hash": "9785d955424eb95703b2e4ad857e2a008216d22f"
+    "totalTestResultsIncrease": 757688,
+    "hash": "5c2bd6dc30b65d9965567abf03fdb562b4fb9102"
   },
   {
     "date": 20200804,
@@ -2256,7 +2283,7 @@
     "dateChecked": "2020-08-04T00:00:00Z",
     "death": 148809,
     "hospitalized": 317437,
-    "totalTestResults": 60415077,
+    "totalTestResults": 61390730,
     "lastModified": "2020-08-04T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -2264,8 +2291,8 @@
     "hospitalizedIncrease": 4490,
     "negativeIncrease": 659553,
     "positiveIncrease": 51777,
-    "totalTestResultsIncrease": 746571,
-    "hash": "748a91559d518052e010877eb63ff408dd1fb1ce"
+    "totalTestResultsIncrease": 763391,
+    "hash": "4197c8e7c2c6b1557bacd40b719d0c4e8b29d1ed"
   },
   {
     "date": 20200803,
@@ -2283,7 +2310,7 @@
     "dateChecked": "2020-08-03T00:00:00Z",
     "death": 147554,
     "hospitalized": 312947,
-    "totalTestResults": 59668506,
+    "totalTestResults": 60627339,
     "lastModified": "2020-08-03T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -2291,8 +2318,8 @@
     "hospitalizedIncrease": 1724,
     "negativeIncrease": 692703,
     "positiveIncrease": 49775,
-    "totalTestResultsIncrease": 779475,
-    "hash": "4cf4182056a156dd0ac5d9e958db1de5669fe360"
+    "totalTestResultsIncrease": 799525,
+    "hash": "6f6b011ff1b85b44db59b1dc6c31ec5f1dbc3849"
   },
   {
     "date": 20200802,
@@ -2310,7 +2337,7 @@
     "dateChecked": "2020-08-02T00:00:00Z",
     "death": 147035,
     "hospitalized": 311223,
-    "totalTestResults": 58889031,
+    "totalTestResults": 59827814,
     "lastModified": "2020-08-02T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -2318,8 +2345,8 @@
     "hospitalizedIncrease": 817,
     "negativeIncrease": 643326,
     "positiveIncrease": 46764,
-    "totalTestResultsIncrease": 711073,
-    "hash": "da2dcfa3baa3ca30f03e3bd2b5615581fd247d46"
+    "totalTestResultsIncrease": 743899,
+    "hash": "1a4226d302a1931a789621bd060eadd64e706638"
   },
   {
     "date": 20200801,
@@ -2337,7 +2364,7 @@
     "dateChecked": "2020-08-01T00:00:00Z",
     "death": 146537,
     "hospitalized": 310406,
-    "totalTestResults": 58177958,
+    "totalTestResults": 59083915,
     "lastModified": "2020-08-01T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -2345,8 +2372,8 @@
     "hospitalizedIncrease": 2318,
     "negativeIncrease": 673904,
     "positiveIncrease": 60961,
-    "totalTestResultsIncrease": 776574,
-    "hash": "bfe5f69d6c13204af9f6964023fafaffeab7f5a0"
+    "totalTestResultsIncrease": 809814,
+    "hash": "4c0e2e9024f69863acdc3e0eda8c300af35d81c1"
   },
   {
     "date": 20200731,
@@ -2364,7 +2391,7 @@
     "dateChecked": "2020-07-31T00:00:00Z",
     "death": 145347,
     "hospitalized": 308088,
-    "totalTestResults": 57401384,
+    "totalTestResults": 58274101,
     "lastModified": "2020-07-31T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -2372,8 +2399,8 @@
     "hospitalizedIncrease": 2627,
     "negativeIncrease": 657827,
     "positiveIncrease": 67516,
-    "totalTestResultsIncrease": 950778,
-    "hash": "dc5a4aa0cdcff33149f77b00761dedc8049ffa09"
+    "totalTestResultsIncrease": 984116,
+    "hash": "7caa755b351868ee423e704a1d2290b65189186b"
   },
   {
     "date": 20200730,
@@ -2391,7 +2418,7 @@
     "dateChecked": "2020-07-30T00:00:00Z",
     "death": 144035,
     "hospitalized": 305461,
-    "totalTestResults": 56450606,
+    "totalTestResults": 57289985,
     "lastModified": "2020-07-30T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -2399,8 +2426,8 @@
     "hospitalizedIncrease": 3383,
     "negativeIncrease": 737950,
     "positiveIncrease": 69297,
-    "totalTestResultsIncrease": 853161,
-    "hash": "845838b86d01682be573d2a948faad56d799db08"
+    "totalTestResultsIncrease": 881046,
+    "hash": "6abce99d5cc6b4ff2e118f3377511403fba07224"
   },
   {
     "date": 20200729,
@@ -2418,7 +2445,7 @@
     "dateChecked": "2020-07-29T00:00:00Z",
     "death": 142776,
     "hospitalized": 302078,
-    "totalTestResults": 55597445,
+    "totalTestResults": 56408939,
     "lastModified": "2020-07-29T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -2426,8 +2453,8 @@
     "hospitalizedIncrease": 2934,
     "negativeIncrease": 767208,
     "positiveIncrease": 64282,
-    "totalTestResultsIncrease": 867424,
-    "hash": "55a8ccaddde2a46b10dac2be75b77187f9348bee"
+    "totalTestResultsIncrease": 895605,
+    "hash": "f65216c059a210cf3e2499fc6a8350240a08a639"
   },
   {
     "date": 20200728,
@@ -2445,7 +2472,7 @@
     "dateChecked": "2020-07-28T00:00:00Z",
     "death": 141284,
     "hospitalized": 299144,
-    "totalTestResults": 54730021,
+    "totalTestResults": 55513334,
     "lastModified": "2020-07-28T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -2453,8 +2480,8 @@
     "hospitalizedIncrease": 4672,
     "negativeIncrease": 703685,
     "positiveIncrease": 58911,
-    "totalTestResultsIncrease": 806437,
-    "hash": "ec7b3394ff3914137a2e30736c6f019352748dd6"
+    "totalTestResultsIncrease": 834141,
+    "hash": "d2a90d84d3877fecd5b2ee030a38d5db6307f236"
   },
   {
     "date": 20200727,
@@ -2472,7 +2499,7 @@
     "dateChecked": "2020-07-27T00:00:00Z",
     "death": 140162,
     "hospitalized": 294472,
-    "totalTestResults": 53923584,
+    "totalTestResults": 54679193,
     "lastModified": "2020-07-27T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -2480,8 +2507,8 @@
     "hospitalizedIncrease": 1690,
     "negativeIncrease": 707142,
     "positiveIncrease": 55244,
-    "totalTestResultsIncrease": 793453,
-    "hash": "521f1bab1cab2957d8444781a7586104e25fc312"
+    "totalTestResultsIncrease": 823879,
+    "hash": "1f6d74a88eef685913e162360eb8b6f48482e134"
   },
   {
     "date": 20200726,
@@ -2499,7 +2526,7 @@
     "dateChecked": "2020-07-26T00:00:00Z",
     "death": 139102,
     "hospitalized": 292782,
-    "totalTestResults": 53130131,
+    "totalTestResults": 53855314,
     "lastModified": "2020-07-26T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -2507,8 +2534,8 @@
     "hospitalizedIncrease": 1435,
     "negativeIncrease": 780054,
     "positiveIncrease": 60902,
-    "totalTestResultsIncrease": 860118,
-    "hash": "a2008574bd47f7fa24009949bf18b0ddb042f71c"
+    "totalTestResultsIncrease": 891570,
+    "hash": "57af643dfad1dc7586687cb69a43507e8be8bbfa"
   },
   {
     "date": 20200725,
@@ -2526,7 +2553,7 @@
     "dateChecked": "2020-07-25T00:00:00Z",
     "death": 138543,
     "hospitalized": 291347,
-    "totalTestResults": 52270013,
+    "totalTestResults": 52963744,
     "lastModified": "2020-07-25T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -2534,8 +2561,8 @@
     "hospitalizedIncrease": 1977,
     "negativeIncrease": 715969,
     "positiveIncrease": 64587,
-    "totalTestResultsIncrease": 817823,
-    "hash": "49e4181e18c360121e28b653ec5c36c141a289ee"
+    "totalTestResultsIncrease": 860739,
+    "hash": "5ae740687ce9ec5601861ee231f1f19f9a1ffda1"
   },
   {
     "date": 20200724,
@@ -2553,7 +2580,7 @@
     "dateChecked": "2020-07-24T00:00:00Z",
     "death": 137520,
     "hospitalized": 289370,
-    "totalTestResults": 51452190,
+    "totalTestResults": 52103005,
     "lastModified": "2020-07-24T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -2561,8 +2588,8 @@
     "hospitalizedIncrease": 3032,
     "negativeIncrease": 851205,
     "positiveIncrease": 75111,
-    "totalTestResultsIncrease": 960811,
-    "hash": "0465acd6d78107dec99b6265bbfcf423ba1b09c2"
+    "totalTestResultsIncrease": 985910,
+    "hash": "7a69ada180d55e23218b3fe5f04e2601cdec1fe1"
   },
   {
     "date": 20200723,
@@ -2580,7 +2607,7 @@
     "dateChecked": "2020-07-23T00:00:00Z",
     "death": 136344,
     "hospitalized": 286338,
-    "totalTestResults": 50491379,
+    "totalTestResults": 51117095,
     "lastModified": "2020-07-23T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -2588,8 +2615,8 @@
     "hospitalizedIncrease": 2509,
     "negativeIncrease": 769521,
     "positiveIncrease": 71416,
-    "totalTestResultsIncrease": 877068,
-    "hash": "7d50a5218e0c1818ccdf4962c5e9c08dbfe89ef7"
+    "totalTestResultsIncrease": 901017,
+    "hash": "2813942ba64db1e27c2a108adc7a8c5bf9b9720a"
   },
   {
     "date": 20200722,
@@ -2607,7 +2634,7 @@
     "dateChecked": "2020-07-22T00:00:00Z",
     "death": 135288,
     "hospitalized": 283829,
-    "totalTestResults": 49614311,
+    "totalTestResults": 50216078,
     "lastModified": "2020-07-22T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -2615,8 +2642,8 @@
     "hospitalizedIncrease": 2248,
     "negativeIncrease": 727105,
     "positiveIncrease": 69212,
-    "totalTestResultsIncrease": 822664,
-    "hash": "05cbef941887e9daa5fa066e9aa85902ac9c3fd3"
+    "totalTestResultsIncrease": 856409,
+    "hash": "a43dccfe42cf055c930d0d93abcdbe467a5caf0e"
   },
   {
     "date": 20200721,
@@ -2634,7 +2661,7 @@
     "dateChecked": "2020-07-21T00:00:00Z",
     "death": 134117,
     "hospitalized": 281581,
-    "totalTestResults": 48791647,
+    "totalTestResults": 49359669,
     "lastModified": "2020-07-21T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -2642,8 +2669,8 @@
     "hospitalizedIncrease": 2551,
     "negativeIncrease": 686361,
     "positiveIncrease": 63753,
-    "totalTestResultsIncrease": 785977,
-    "hash": "4863b89cbe592febbd58f8399819b1689c5c0b0f"
+    "totalTestResultsIncrease": 804965,
+    "hash": "99d39d3ce3ce588b1a152a7b56fb957d27139466"
   },
   {
     "date": 20200720,
@@ -2661,7 +2688,7 @@
     "dateChecked": "2020-07-20T00:00:00Z",
     "death": 133078,
     "hospitalized": 279030,
-    "totalTestResults": 48005670,
+    "totalTestResults": 48554704,
     "lastModified": "2020-07-20T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -2669,8 +2696,8 @@
     "hospitalizedIncrease": 1647,
     "negativeIncrease": 654148,
     "positiveIncrease": 57099,
-    "totalTestResultsIncrease": 727501,
-    "hash": "7ea9385c42f95d9929d175eb266f7298fe9595b4"
+    "totalTestResultsIncrease": 746892,
+    "hash": "744e7986e05d47b5b54a4b9d3c875a95f053f26a"
   },
   {
     "date": 20200719,
@@ -2688,7 +2715,7 @@
     "dateChecked": "2020-07-19T00:00:00Z",
     "death": 132715,
     "hospitalized": 277383,
-    "totalTestResults": 47278169,
+    "totalTestResults": 47807812,
     "lastModified": "2020-07-19T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -2696,8 +2723,8 @@
     "hospitalizedIncrease": 944,
     "negativeIncrease": 715331,
     "positiveIncrease": 64167,
-    "totalTestResultsIncrease": 790299,
-    "hash": "e90dd60a4da61913f6a2342c3ce9a315e34c1faf"
+    "totalTestResultsIncrease": 821335,
+    "hash": "6a24358e719d3be64ead8eaed86f8828c7698890"
   },
   {
     "date": 20200718,
@@ -2715,7 +2742,7 @@
     "dateChecked": "2020-07-18T00:00:00Z",
     "death": 132188,
     "hospitalized": 276439,
-    "totalTestResults": 46487870,
+    "totalTestResults": 46986477,
     "lastModified": "2020-07-18T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -2723,8 +2750,8 @@
     "hospitalizedIncrease": 2003,
     "negativeIncrease": 691886,
     "positiveIncrease": 64796,
-    "totalTestResultsIncrease": 791824,
-    "hash": "32aa7d12f363f2993a2e1b9b5202b517f0758481"
+    "totalTestResultsIncrease": 821453,
+    "hash": "69de221877bb2e48f2f4c0450836c4dac5c8b927"
   },
   {
     "date": 20200717,
@@ -2742,7 +2769,7 @@
     "dateChecked": "2020-07-17T00:00:00Z",
     "death": 131316,
     "hospitalized": 274436,
-    "totalTestResults": 45696046,
+    "totalTestResults": 46165024,
     "lastModified": "2020-07-17T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -2750,8 +2777,8 @@
     "hospitalizedIncrease": 2678,
     "negativeIncrease": 757657,
     "positiveIncrease": 76550,
-    "totalTestResultsIncrease": 864196,
-    "hash": "987a957de72cbb85153c13b384ea5a7594965507"
+    "totalTestResultsIncrease": 891062,
+    "hash": "98fd42d53b96b27e252959c5201c6c4230107c54"
   },
   {
     "date": 20200716,
@@ -2769,7 +2796,7 @@
     "dateChecked": "2020-07-16T00:00:00Z",
     "death": 130365,
     "hospitalized": 271758,
-    "totalTestResults": 44831850,
+    "totalTestResults": 45273962,
     "lastModified": "2020-07-16T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -2777,8 +2804,8 @@
     "hospitalizedIncrease": 2215,
     "negativeIncrease": 756287,
     "positiveIncrease": 70830,
-    "totalTestResultsIncrease": 856361,
-    "hash": "95ae9eda52ba75175d3b14d4b3121598dde5e935"
+    "totalTestResultsIncrease": 879986,
+    "hash": "b939561ba43096b3e74db73521c67e94518675b9"
   },
   {
     "date": 20200715,
@@ -2796,7 +2823,7 @@
     "dateChecked": "2020-07-15T00:00:00Z",
     "death": 129418,
     "hospitalized": 269543,
-    "totalTestResults": 43975489,
+    "totalTestResults": 44393976,
     "lastModified": "2020-07-15T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -2804,8 +2831,8 @@
     "hospitalizedIncrease": 2416,
     "negativeIncrease": 703090,
     "positiveIncrease": 65608,
-    "totalTestResultsIncrease": 802531,
-    "hash": "d46962e910eeaeab3f9768f3412d597a96534427"
+    "totalTestResultsIncrease": 823051,
+    "hash": "7c6d51a3ca25251722e2dbeee112d303d34fe442"
   },
   {
     "date": 20200714,
@@ -2823,7 +2850,7 @@
     "dateChecked": "2020-07-14T00:00:00Z",
     "death": 128560,
     "hospitalized": 267127,
-    "totalTestResults": 43172958,
+    "totalTestResults": 43570925,
     "lastModified": "2020-07-14T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -2831,8 +2858,8 @@
     "hospitalizedIncrease": 2262,
     "negativeIncrease": 702900,
     "positiveIncrease": 62676,
-    "totalTestResultsIncrease": 790362,
-    "hash": "5ecc83e1f57287450f37e522580d85dcbbe78f22"
+    "totalTestResultsIncrease": 804193,
+    "hash": "a5266ea9635d9c0613ea1b1d2346905a4b275598"
   },
   {
     "date": 20200713,
@@ -2850,7 +2877,7 @@
     "dateChecked": "2020-07-13T00:00:00Z",
     "death": 127824,
     "hospitalized": 264865,
-    "totalTestResults": 42382596,
+    "totalTestResults": 42766732,
     "lastModified": "2020-07-13T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -2858,8 +2885,8 @@
     "hospitalizedIncrease": 1214,
     "negativeIncrease": 636500,
     "positiveIncrease": 57716,
-    "totalTestResultsIncrease": 716256,
-    "hash": "1bcd6152d7ee42ad92757cf6841c9f910cb21504"
+    "totalTestResultsIncrease": 752088,
+    "hash": "0a112cd08fe76aba67815946483ac5a83809b8c3"
   },
   {
     "date": 20200712,
@@ -2877,7 +2904,7 @@
     "dateChecked": "2020-07-12T00:00:00Z",
     "death": 127497,
     "hospitalized": 263651,
-    "totalTestResults": 41666340,
+    "totalTestResults": 42014644,
     "lastModified": "2020-07-12T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -2885,8 +2912,8 @@
     "hospitalizedIncrease": 939,
     "negativeIncrease": 702394,
     "positiveIncrease": 61161,
-    "totalTestResultsIncrease": 778815,
-    "hash": "754a3435b319a913afc2f84a8a6ba485994bc18b"
+    "totalTestResultsIncrease": 809403,
+    "hash": "ae95a44d8f7a746a86015dab42334274a2bac5a3"
   },
   {
     "date": 20200711,
@@ -2904,7 +2931,7 @@
     "dateChecked": "2020-07-11T00:00:00Z",
     "death": 127021,
     "hospitalized": 262712,
-    "totalTestResults": 40887525,
+    "totalTestResults": 41205241,
     "lastModified": "2020-07-11T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -2912,8 +2939,8 @@
     "hospitalizedIncrease": 5141,
     "negativeIncrease": 637755,
     "positiveIncrease": 62809,
-    "totalTestResultsIncrease": 718483,
-    "hash": "43f634f55dff6ef2dd7d14185f70b519208db977"
+    "totalTestResultsIncrease": 742405,
+    "hash": "e94aec022c0a1618be03d572da0592a27d3fb3a1"
   },
   {
     "date": 20200710,
@@ -2931,7 +2958,7 @@
     "dateChecked": "2020-07-10T00:00:00Z",
     "death": 126264,
     "hospitalized": 257571,
-    "totalTestResults": 40169042,
+    "totalTestResults": 40462836,
     "lastModified": "2020-07-10T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -2939,8 +2966,8 @@
     "hospitalizedIncrease": 2318,
     "negativeIncrease": 742929,
     "positiveIncrease": 66663,
-    "totalTestResultsIncrease": 847271,
-    "hash": "1e1313c3cb8d014e3841c93bef77efed398af0d6"
+    "totalTestResultsIncrease": 868181,
+    "hash": "ed640e8998f432f1d2dbe4a43942e057b3cda22a"
   },
   {
     "date": 20200709,
@@ -2958,7 +2985,7 @@
     "dateChecked": "2020-07-09T00:00:00Z",
     "death": 125410,
     "hospitalized": 255253,
-    "totalTestResults": 39321771,
+    "totalTestResults": 39594655,
     "lastModified": "2020-07-09T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -2966,8 +2993,8 @@
     "hospitalizedIncrease": 1719,
     "negativeIncrease": 646844,
     "positiveIncrease": 59112,
-    "totalTestResultsIncrease": 734949,
-    "hash": "e5cdbbc58a21ad0d44e194315bdb7e8c5092897e"
+    "totalTestResultsIncrease": 744579,
+    "hash": "b9428bfafb7a5d8fcebbe1a4749346dd92c36bc0"
   },
   {
     "date": 20200708,
@@ -2985,7 +3012,7 @@
     "dateChecked": "2020-07-08T00:00:00Z",
     "death": 124543,
     "hospitalized": 253534,
-    "totalTestResults": 38586822,
+    "totalTestResults": 38850076,
     "lastModified": "2020-07-08T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -2993,8 +3020,8 @@
     "hospitalizedIncrease": 2035,
     "negativeIncrease": 575559,
     "positiveIncrease": 62630,
-    "totalTestResultsIncrease": 671512,
-    "hash": "088bf80cbccd09192f8c75c8e1853fa3ae49aeb8"
+    "totalTestResultsIncrease": 687977,
+    "hash": "42dc4667630fffe9f937c0f1c5d6e62274588fdc"
   },
   {
     "date": 20200707,
@@ -3012,7 +3039,7 @@
     "dateChecked": "2020-07-07T00:00:00Z",
     "death": 123736,
     "hospitalized": 251499,
-    "totalTestResults": 37915310,
+    "totalTestResults": 38162099,
     "lastModified": "2020-07-07T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -3020,8 +3047,8 @@
     "hospitalizedIncrease": 1960,
     "negativeIncrease": 584171,
     "positiveIncrease": 51639,
-    "totalTestResultsIncrease": 665218,
-    "hash": "128917754e5ec88e743c2c182933088eb00f2fb5"
+    "totalTestResultsIncrease": 673374,
+    "hash": "727cd0363ad657e2fc13a26b39e96671d99ba0c6"
   },
   {
     "date": 20200706,
@@ -3039,7 +3066,7 @@
     "dateChecked": "2020-07-06T00:00:00Z",
     "death": 122813,
     "hospitalized": 249539,
-    "totalTestResults": 37250092,
+    "totalTestResults": 37488725,
     "lastModified": "2020-07-06T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -3047,8 +3074,8 @@
     "hospitalizedIncrease": 794,
     "negativeIncrease": 471602,
     "positiveIncrease": 41860,
-    "totalTestResultsIncrease": 630376,
-    "hash": "45970f3fa5818f3f1e35a9098df0c104800a9db8"
+    "totalTestResultsIncrease": 637243,
+    "hash": "e39399b794a32a7eaae4d79b3652e4ba80a13c70"
   },
   {
     "date": 20200705,
@@ -3066,7 +3093,7 @@
     "dateChecked": "2020-07-05T00:00:00Z",
     "death": 122570,
     "hospitalized": 248745,
-    "totalTestResults": 36619716,
+    "totalTestResults": 36851482,
     "lastModified": "2020-07-05T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -3074,8 +3101,8 @@
     "hospitalizedIncrease": 590,
     "negativeIncrease": 633339,
     "positiveIncrease": 45409,
-    "totalTestResultsIncrease": 677377,
-    "hash": "d9e51a7e9205ae5ab5aa5b0781a414d8a5c08b0f"
+    "totalTestResultsIncrease": 687666,
+    "hash": "af36e51060f8cd467deed6c31175bd60946c1fac"
   },
   {
     "date": 20200704,
@@ -3093,7 +3120,7 @@
     "dateChecked": "2020-07-04T00:00:00Z",
     "death": 122361,
     "hospitalized": 248155,
-    "totalTestResults": 35942339,
+    "totalTestResults": 36163816,
     "lastModified": "2020-07-04T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -3101,8 +3128,8 @@
     "hospitalizedIncrease": 871,
     "negativeIncrease": 577481,
     "positiveIncrease": 54210,
-    "totalTestResultsIncrease": 631008,
-    "hash": "caa79678bd8da19cb4bdb523e45b047b63bcc5ec"
+    "totalTestResultsIncrease": 643839,
+    "hash": "3511ac8d16586678eefddec31f99c9b88c85c36b"
   },
   {
     "date": 20200703,
@@ -3120,7 +3147,7 @@
     "dateChecked": "2020-07-03T00:00:00Z",
     "death": 122055,
     "hospitalized": 247284,
-    "totalTestResults": 35311331,
+    "totalTestResults": 35519977,
     "lastModified": "2020-07-03T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -3128,8 +3155,8 @@
     "hospitalizedIncrease": 1435,
     "negativeIncrease": 654043,
     "positiveIncrease": 53784,
-    "totalTestResultsIncrease": 710758,
-    "hash": "e93c93c08cce03c759512ee8b35ab42956b8eb28"
+    "totalTestResultsIncrease": 722368,
+    "hash": "0b14885679f386ef10913cfeb2bb18a256e7eb1e"
   },
   {
     "date": 20200702,
@@ -3147,7 +3174,7 @@
     "dateChecked": "2020-07-02T00:00:00Z",
     "death": 121457,
     "hospitalized": 245849,
-    "totalTestResults": 34600573,
+    "totalTestResults": 34797609,
     "lastModified": "2020-07-02T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -3155,8 +3182,8 @@
     "hospitalizedIncrease": 2003,
     "negativeIncrease": 608354,
     "positiveIncrease": 53418,
-    "totalTestResultsIncrease": 674243,
-    "hash": "91c1a34b2d818153279be3e8f78bd89d3b3dfa19"
+    "totalTestResultsIncrease": 685574,
+    "hash": "90b53e9aa0f098409efe95491b0a13c451faf7d2"
   },
   {
     "date": 20200701,
@@ -3174,7 +3201,7 @@
     "dateChecked": "2020-07-01T00:00:00Z",
     "death": 120762,
     "hospitalized": 243846,
-    "totalTestResults": 33926330,
+    "totalTestResults": 34112035,
     "lastModified": "2020-07-01T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -3182,8 +3209,8 @@
     "hospitalizedIncrease": 1438,
     "negativeIncrease": 589398,
     "positiveIncrease": 50963,
-    "totalTestResultsIncrease": 644406,
-    "hash": "4a3d3f12c32077ee19ae37c51d0b2a19f8e46fe2"
+    "totalTestResultsIncrease": 650913,
+    "hash": "2d1253d9a3086ee781940db7fa5b826c2ff1fff4"
   },
   {
     "date": 20200630,
@@ -3201,7 +3228,7 @@
     "dateChecked": "2020-06-30T00:00:00Z",
     "death": 120061,
     "hospitalized": 242408,
-    "totalTestResults": 33281924,
+    "totalTestResults": 33461122,
     "lastModified": "2020-06-30T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -3209,8 +3236,8 @@
     "hospitalizedIncrease": 1582,
     "negativeIncrease": 580152,
     "positiveIncrease": 47798,
-    "totalTestResultsIncrease": 648708,
-    "hash": "a811e0586a5564ff0c6dfac282c89f0f3199b8ed"
+    "totalTestResultsIncrease": 655949,
+    "hash": "929c32449556cac45552b5e729b21bb3795b49cb"
   },
   {
     "date": 20200629,
@@ -3228,7 +3255,7 @@
     "dateChecked": "2020-06-29T00:00:00Z",
     "death": 119465,
     "hospitalized": 240826,
-    "totalTestResults": 32633216,
+    "totalTestResults": 32805173,
     "lastModified": "2020-06-29T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -3236,8 +3263,8 @@
     "hospitalizedIncrease": 670,
     "negativeIncrease": 615988,
     "positiveIncrease": 39910,
-    "totalTestResultsIncrease": 664404,
-    "hash": "c20480b10db98b67ee1e3697c23c79766be3e9ea"
+    "totalTestResultsIncrease": 671168,
+    "hash": "84704c7e77df8687f6c4fa2fad5ac75d02765740"
   },
   {
     "date": 20200628,
@@ -3255,7 +3282,7 @@
     "dateChecked": "2020-06-28T00:00:00Z",
     "death": 119133,
     "hospitalized": 240156,
-    "totalTestResults": 31968812,
+    "totalTestResults": 32134005,
     "lastModified": "2020-06-28T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -3263,8 +3290,8 @@
     "hospitalizedIncrease": 580,
     "negativeIncrease": 535806,
     "positiveIncrease": 41394,
-    "totalTestResultsIncrease": 575702,
-    "hash": "5a08d171754bd72fea6b01902a0833f72f757a7b"
+    "totalTestResultsIncrease": 588296,
+    "hash": "6e88bf75ef4a8cbde781ceb87043a4e91ac82334"
   },
   {
     "date": 20200627,
@@ -3282,7 +3309,7 @@
     "dateChecked": "2020-06-27T00:00:00Z",
     "death": 118862,
     "hospitalized": 239576,
-    "totalTestResults": 31393110,
+    "totalTestResults": 31545709,
     "lastModified": "2020-06-27T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -3290,8 +3317,8 @@
     "hospitalizedIncrease": 1057,
     "negativeIncrease": 555647,
     "positiveIncrease": 43113,
-    "totalTestResultsIncrease": 603207,
-    "hash": "abe463dec4ca9c7e8b37ef877d174b125a739073"
+    "totalTestResultsIncrease": 613822,
+    "hash": "290ec2cd4ce2c996b8b4390cca498b545dfc8c39"
   },
   {
     "date": 20200626,
@@ -3309,7 +3336,7 @@
     "dateChecked": "2020-06-26T00:00:00Z",
     "death": 118351,
     "hospitalized": 238519,
-    "totalTestResults": 30789903,
+    "totalTestResults": 30931887,
     "lastModified": "2020-06-26T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -3317,8 +3344,8 @@
     "hospitalizedIncrease": 1526,
     "negativeIncrease": 565494,
     "positiveIncrease": 44415,
-    "totalTestResultsIncrease": 713826,
-    "hash": "38989f4b28c37f6d8396512033ee3200ca5e7dd3"
+    "totalTestResultsIncrease": 730727,
+    "hash": "cdb88b1bf08a1fc2de023c9f4883d0b3a52e6463"
   },
   {
     "date": 20200625,
@@ -3336,7 +3363,7 @@
     "dateChecked": "2020-06-25T00:00:00Z",
     "death": 117714,
     "hospitalized": 236993,
-    "totalTestResults": 30076077,
+    "totalTestResults": 30201160,
     "lastModified": "2020-06-25T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -3344,8 +3371,8 @@
     "hospitalizedIncrease": 1257,
     "negativeIncrease": 602693,
     "positiveIncrease": 39624,
-    "totalTestResultsIncrease": 634923,
-    "hash": "469373b962db8f0584e7fdd63141bbe291132493"
+    "totalTestResultsIncrease": 635699,
+    "hash": "300f824fa2455ae0c5c18b9e0478e24cea153f4f"
   },
   {
     "date": 20200624,
@@ -3363,7 +3390,7 @@
     "dateChecked": "2020-06-24T00:00:00Z",
     "death": 117067,
     "hospitalized": 235736,
-    "totalTestResults": 29441154,
+    "totalTestResults": 29565461,
     "lastModified": "2020-06-24T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -3371,8 +3398,8 @@
     "hospitalizedIncrease": 1310,
     "negativeIncrease": 485049,
     "positiveIncrease": 39035,
-    "totalTestResultsIncrease": 485655,
-    "hash": "c84c8852ae7212c961f96ec680aed0c3ef9d4815"
+    "totalTestResultsIncrease": 490703,
+    "hash": "c4ba127e1c1d8d68fc7f75be752052fca9e00e24"
   },
   {
     "date": 20200623,
@@ -3390,7 +3417,7 @@
     "dateChecked": "2020-06-23T00:00:00Z",
     "death": 116343,
     "hospitalized": 234426,
-    "totalTestResults": 28955499,
+    "totalTestResults": 29074758,
     "lastModified": "2020-06-23T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -3398,8 +3425,8 @@
     "hospitalizedIncrease": 1257,
     "negativeIncrease": 469104,
     "positiveIncrease": 33959,
-    "totalTestResultsIncrease": 632463,
-    "hash": "cf4a8bdb619a0f80c6bf1b85fb5147d6700abe28"
+    "totalTestResultsIncrease": 642363,
+    "hash": "0c31baa8e8569091882dbb2b8735503c48abbadb"
   },
   {
     "date": 20200622,
@@ -3417,7 +3444,7 @@
     "dateChecked": "2020-06-22T00:00:00Z",
     "death": 115633,
     "hospitalized": 233169,
-    "totalTestResults": 28323036,
+    "totalTestResults": 28432395,
     "lastModified": "2020-06-22T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -3425,8 +3452,8 @@
     "hospitalizedIncrease": 800,
     "negativeIncrease": 444089,
     "positiveIncrease": 27106,
-    "totalTestResultsIncrease": 470266,
-    "hash": "aac28bdc0e6662e9e57bfe32677cf4e8aca2883a"
+    "totalTestResultsIncrease": 486244,
+    "hash": "0e1daf4cc2dc86b4ab0b8fff6413dc805033abf6"
   },
   {
     "date": 20200621,
@@ -3444,7 +3471,7 @@
     "dateChecked": "2020-06-21T00:00:00Z",
     "death": 115347,
     "hospitalized": 232369,
-    "totalTestResults": 27852770,
+    "totalTestResults": 27946151,
     "lastModified": "2020-06-21T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -3452,8 +3479,8 @@
     "hospitalizedIncrease": 514,
     "negativeIncrease": 496049,
     "positiveIncrease": 29051,
-    "totalTestResultsIncrease": 529459,
-    "hash": "e7949d3d11e6e2f7281041a8acf8488ba6ba78bc"
+    "totalTestResultsIncrease": 527404,
+    "hash": "e0a3aec1c060be0c8c1092a3a7299226adf4bf16"
   },
   {
     "date": 20200620,
@@ -3471,7 +3498,7 @@
     "dateChecked": "2020-06-20T00:00:00Z",
     "death": 115053,
     "hospitalized": 231855,
-    "totalTestResults": 27323311,
+    "totalTestResults": 27418747,
     "lastModified": "2020-06-20T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -3479,8 +3506,8 @@
     "hospitalizedIncrease": 745,
     "negativeIncrease": 533304,
     "positiveIncrease": 32247,
-    "totalTestResultsIncrease": 557809,
-    "hash": "9bb677419e06e5457c17bb45d6e7e78abe5ce0b2"
+    "totalTestResultsIncrease": 560429,
+    "hash": "823435467036b006aa2281c19e80ecf30c2f4823"
   },
   {
     "date": 20200619,
@@ -3498,7 +3525,7 @@
     "dateChecked": "2020-06-19T00:00:00Z",
     "death": 114424,
     "hospitalized": 231110,
-    "totalTestResults": 26765502,
+    "totalTestResults": 26858318,
     "lastModified": "2020-06-19T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -3506,8 +3533,8 @@
     "hospitalizedIncrease": 1613,
     "negativeIncrease": 548107,
     "positiveIncrease": 30962,
-    "totalTestResultsIncrease": 588561,
-    "hash": "9b9a9f8c36e2a11fb739930a8b0c3f3ad092c82b"
+    "totalTestResultsIncrease": 599032,
+    "hash": "96c206826ad2ccf8de327db39fc6f05da1fcd9c7"
   },
   {
     "date": 20200618,
@@ -3525,7 +3552,7 @@
     "dateChecked": "2020-06-18T00:00:00Z",
     "death": 113769,
     "hospitalized": 229497,
-    "totalTestResults": 26176941,
+    "totalTestResults": 26259286,
     "lastModified": "2020-06-18T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -3533,8 +3560,8 @@
     "hospitalizedIncrease": 1040,
     "negativeIncrease": 491625,
     "positiveIncrease": 27233,
-    "totalTestResultsIncrease": 527623,
-    "hash": "d7b810cfa8930b725e6a98c40f26f84d618b29e7"
+    "totalTestResultsIncrease": 531675,
+    "hash": "cf0573ce6a05764c741f2814f2698dcc055a4db4"
   },
   {
     "date": 20200617,
@@ -3552,7 +3579,7 @@
     "dateChecked": "2020-06-17T00:00:00Z",
     "death": 113064,
     "hospitalized": 228457,
-    "totalTestResults": 25649318,
+    "totalTestResults": 25727611,
     "lastModified": "2020-06-17T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -3560,8 +3587,8 @@
     "hospitalizedIncrease": 1130,
     "negativeIncrease": 463168,
     "positiveIncrease": 23818,
-    "totalTestResultsIncrease": 514832,
-    "hash": "21b4717c6f122cd9d37356be870299c36e7b701d"
+    "totalTestResultsIncrease": 512390,
+    "hash": "c3a433739fb2ccba5e4dfc040c541392ec04a74d"
   },
   {
     "date": 20200616,
@@ -3579,7 +3606,7 @@
     "dateChecked": "2020-06-16T00:00:00Z",
     "death": 112297,
     "hospitalized": 227327,
-    "totalTestResults": 25134486,
+    "totalTestResults": 25215221,
     "lastModified": "2020-06-16T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -3587,8 +3614,8 @@
     "hospitalizedIncrease": 1301,
     "negativeIncrease": 442650,
     "positiveIncrease": 23386,
-    "totalTestResultsIncrease": 481920,
-    "hash": "82c0633407c9140eaceb4685c6af0a8fe4ad03f3"
+    "totalTestResultsIncrease": 486300,
+    "hash": "24097cd0bfa38f608788b4c903ecea24882da378"
   },
   {
     "date": 20200615,
@@ -3606,7 +3633,7 @@
     "dateChecked": "2020-06-15T00:00:00Z",
     "death": 111567,
     "hospitalized": 226026,
-    "totalTestResults": 24652566,
+    "totalTestResults": 24728921,
     "lastModified": "2020-06-15T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -3614,8 +3641,8 @@
     "hospitalizedIncrease": 543,
     "negativeIncrease": 415390,
     "positiveIncrease": 18651,
-    "totalTestResultsIncrease": 438317,
-    "hash": "cb4f7563f2e8e10bd13f2286746b3c155025bc92"
+    "totalTestResultsIncrease": 448053,
+    "hash": "06842e07ecf9087a3c57fbd05e55fbe782f56d8a"
   },
   {
     "date": 20200614,
@@ -3633,7 +3660,7 @@
     "dateChecked": "2020-06-14T00:00:00Z",
     "death": 111186,
     "hospitalized": 225483,
-    "totalTestResults": 24214249,
+    "totalTestResults": 24280868,
     "lastModified": "2020-06-14T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -3641,8 +3668,8 @@
     "hospitalizedIncrease": 640,
     "negativeIncrease": 464154,
     "positiveIncrease": 21516,
-    "totalTestResultsIncrease": 474771,
-    "hash": "3cc057651bb9bd961effe81be62ec412f62de503"
+    "totalTestResultsIncrease": 481844,
+    "hash": "7af1b89e93cc06656797efb7ae1d4a6530819f1c"
   },
   {
     "date": 20200613,
@@ -3660,7 +3687,7 @@
     "dateChecked": "2020-06-13T00:00:00Z",
     "death": 110830,
     "hospitalized": 224843,
-    "totalTestResults": 23739478,
+    "totalTestResults": 23799024,
     "lastModified": "2020-06-13T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -3668,8 +3695,8 @@
     "hospitalizedIncrease": 1105,
     "negativeIncrease": 471388,
     "positiveIncrease": 25271,
-    "totalTestResultsIncrease": 513860,
-    "hash": "5ace1978e167d88f2f106474c182315f70348ca5"
+    "totalTestResultsIncrease": 514458,
+    "hash": "528be5fa9b9d44863e3458b201d41ceda785e1ee"
   },
   {
     "date": 20200612,
@@ -3687,7 +3714,7 @@
     "dateChecked": "2020-06-12T00:00:00Z",
     "death": 110136,
     "hospitalized": 223738,
-    "totalTestResults": 23225618,
+    "totalTestResults": 23284566,
     "lastModified": "2020-06-12T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -3695,8 +3722,8 @@
     "hospitalizedIncrease": 1245,
     "negativeIncrease": 599972,
     "positiveIncrease": 23329,
-    "totalTestResultsIncrease": 599158,
-    "hash": "a661e91e6a7746e7ca23302b0f7841157ad6dd4f"
+    "totalTestResultsIncrease": 600767,
+    "hash": "ec11f6572f302bfa6c08b7b27b0f3d906d110cd4"
   },
   {
     "date": 20200611,
@@ -3714,7 +3741,7 @@
     "dateChecked": "2020-06-11T00:00:00Z",
     "death": 109361,
     "hospitalized": 222493,
-    "totalTestResults": 22626460,
+    "totalTestResults": 22683799,
     "lastModified": "2020-06-11T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -3722,8 +3749,8 @@
     "hospitalizedIncrease": 1367,
     "negativeIncrease": 438062,
     "positiveIncrease": 22124,
-    "totalTestResultsIncrease": 470818,
-    "hash": "637d44c6f76d70c0284485642a2d4da9561b1a43"
+    "totalTestResultsIncrease": 470918,
+    "hash": "6257e8729373450d47e595fb0171cbc0f40162da"
   },
   {
     "date": 20200610,
@@ -3741,7 +3768,7 @@
     "dateChecked": "2020-06-10T00:00:00Z",
     "death": 108462,
     "hospitalized": 221126,
-    "totalTestResults": 22155642,
+    "totalTestResults": 22212881,
     "lastModified": "2020-06-10T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -3749,8 +3776,8 @@
     "hospitalizedIncrease": 1484,
     "negativeIncrease": 408971,
     "positiveIncrease": 20765,
-    "totalTestResultsIncrease": 435794,
-    "hash": "a5afa24e15d61f8a07aa9c40cf423ce7b9fbf0d6"
+    "totalTestResultsIncrease": 436544,
+    "hash": "819596f1aa083d7c38e5a68d990c18c031a5e586"
   },
   {
     "date": 20200609,
@@ -3768,7 +3795,7 @@
     "dateChecked": "2020-06-09T00:00:00Z",
     "death": 107575,
     "hospitalized": 219642,
-    "totalTestResults": 21719848,
+    "totalTestResults": 21776337,
     "lastModified": "2020-06-09T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -3776,8 +3803,8 @@
     "hospitalizedIncrease": 1527,
     "negativeIncrease": 404379,
     "positiveIncrease": 17374,
-    "totalTestResultsIncrease": 443804,
-    "hash": "6a366beb1ad2cc3ca890938425f70ed2b1437b8c"
+    "totalTestResultsIncrease": 449162,
+    "hash": "e6af4fcf1786caf666a7a9a71ba857847934d4c0"
   },
   {
     "date": 20200608,
@@ -3795,7 +3822,7 @@
     "dateChecked": "2020-06-08T00:00:00Z",
     "death": 106673,
     "hospitalized": 218115,
-    "totalTestResults": 21276044,
+    "totalTestResults": 21327175,
     "lastModified": "2020-06-08T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -3803,8 +3830,8 @@
     "hospitalizedIncrease": 714,
     "negativeIncrease": 380221,
     "positiveIncrease": 17272,
-    "totalTestResultsIncrease": 408181,
-    "hash": "69a8a8a82fcc7e2d30137e979aa2ecc66f2786fb"
+    "totalTestResultsIncrease": 414666,
+    "hash": "39f4b794bb584110e6addc12f5596f3735251f7d"
   },
   {
     "date": 20200607,
@@ -3822,7 +3849,7 @@
     "dateChecked": "2020-06-07T00:00:00Z",
     "death": 106012,
     "hospitalized": 217401,
-    "totalTestResults": 20867863,
+    "totalTestResults": 20912509,
     "lastModified": "2020-06-07T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -3830,8 +3857,8 @@
     "hospitalizedIncrease": 685,
     "negativeIncrease": 404383,
     "positiveIncrease": 18952,
-    "totalTestResultsIncrease": 415125,
-    "hash": "cd14f18a34e17c29e6b80d3040612ea6af827d7b"
+    "totalTestResultsIncrease": 423655,
+    "hash": "28272826ced8894b1910a070e85ad5bcf04be442"
   },
   {
     "date": 20200606,
@@ -3849,7 +3876,7 @@
     "dateChecked": "2020-06-06T00:00:00Z",
     "death": 105565,
     "hospitalized": 216716,
-    "totalTestResults": 20452738,
+    "totalTestResults": 20488854,
     "lastModified": "2020-06-06T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -3857,8 +3884,8 @@
     "hospitalizedIncrease": 1017,
     "negativeIncrease": 521778,
     "positiveIncrease": 23038,
-    "totalTestResultsIncrease": 561386,
-    "hash": "96e87a3fc5a5024e2b61293badf7a484550ed6c1"
+    "totalTestResultsIncrease": 558015,
+    "hash": "dfcca0efd484b98c206eeaa11909904a4920a435"
   },
   {
     "date": 20200605,
@@ -3876,7 +3903,7 @@
     "dateChecked": "2020-06-05T00:00:00Z",
     "death": 104837,
     "hospitalized": 215699,
-    "totalTestResults": 19891352,
+    "totalTestResults": 19930839,
     "lastModified": "2020-06-05T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -3884,8 +3911,8 @@
     "hospitalizedIncrease": 1440,
     "negativeIncrease": 484686,
     "positiveIncrease": 23108,
-    "totalTestResultsIncrease": 585099,
-    "hash": "d8bcc64d4cae28bfdde90bc3bc21a00bad4880f8"
+    "totalTestResultsIncrease": 585751,
+    "hash": "a72e73110ab5d777bec7bed360ce970344e7c4f4"
   },
   {
     "date": 20200604,
@@ -3903,7 +3930,7 @@
     "dateChecked": "2020-06-04T00:00:00Z",
     "death": 104011,
     "hospitalized": 214259,
-    "totalTestResults": 19306253,
+    "totalTestResults": 19345088,
     "lastModified": "2020-06-04T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -3911,8 +3938,8 @@
     "hospitalizedIncrease": -2841,
     "negativeIncrease": 441895,
     "positiveIncrease": 20732,
-    "totalTestResultsIncrease": 478145,
-    "hash": "29cc1b19500ac2681114fb879083c828b19a98d7"
+    "totalTestResultsIncrease": 486731,
+    "hash": "f81a3ad5dfbfdb40951c576ecd25f019a2bd2223"
   },
   {
     "date": 20200603,
@@ -3930,7 +3957,7 @@
     "dateChecked": "2020-06-03T00:00:00Z",
     "death": 103118,
     "hospitalized": 217100,
-    "totalTestResults": 18828108,
+    "totalTestResults": 18858357,
     "lastModified": "2020-06-03T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -3938,8 +3965,8 @@
     "hospitalizedIncrease": 2255,
     "negativeIncrease": 448319,
     "positiveIncrease": 20282,
-    "totalTestResultsIncrease": 474639,
-    "hash": "aea4efd7ee1e5e38a0bc5347fcd2d1c11e24a895"
+    "totalTestResultsIncrease": 469211,
+    "hash": "00a89e7a812016025a759518be54e2370ae28cbf"
   },
   {
     "date": 20200602,
@@ -3957,7 +3984,7 @@
     "dateChecked": "2020-06-02T00:00:00Z",
     "death": 102125,
     "hospitalized": 214845,
-    "totalTestResults": 18353469,
+    "totalTestResults": 18389146,
     "lastModified": "2020-06-02T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -3965,8 +3992,8 @@
     "hospitalizedIncrease": 1585,
     "negativeIncrease": 400600,
     "positiveIncrease": 20094,
-    "totalTestResultsIncrease": 434634,
-    "hash": "e4b44d1c622a4d57baeb4847324c0fa1231893e2"
+    "totalTestResultsIncrease": 435465,
+    "hash": "2068317f6442a2f24d70bd477fe3ebfc7c4a0cd7"
   },
   {
     "date": 20200601,
@@ -3984,7 +4011,7 @@
     "dateChecked": "2020-06-01T00:00:00Z",
     "death": 101163,
     "hospitalized": 213260,
-    "totalTestResults": 17918835,
+    "totalTestResults": 17953681,
     "lastModified": "2020-06-01T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -3992,8 +4019,8 @@
     "hospitalizedIncrease": 2796,
     "negativeIncrease": 393669,
     "positiveIncrease": 20518,
-    "totalTestResultsIncrease": 413959,
-    "hash": "f0cab72f213157cddadaea61143a3d74a94c767e"
+    "totalTestResultsIncrease": 419097,
+    "hash": "08333a0cdaadb5f112280672085d91725199ed18"
   },
   {
     "date": 20200531,
@@ -4011,7 +4038,7 @@
     "dateChecked": "2020-05-31T00:00:00Z",
     "death": 100495,
     "hospitalized": 210464,
-    "totalTestResults": 17504876,
+    "totalTestResults": 17534584,
     "lastModified": "2020-05-31T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -4019,8 +4046,8 @@
     "hospitalizedIncrease": 976,
     "negativeIncrease": 375191,
     "positiveIncrease": 21689,
-    "totalTestResultsIncrease": 393522,
-    "hash": "6e5ed28e97c22affb3a356609acc9e6f274d2669"
+    "totalTestResultsIncrease": 393723,
+    "hash": "1ac6ebb717f1b67d85d8ab82fdb8239659f0cf70"
   },
   {
     "date": 20200530,
@@ -4038,7 +4065,7 @@
     "dateChecked": "2020-05-30T00:00:00Z",
     "death": 99843,
     "hospitalized": 209488,
-    "totalTestResults": 17111354,
+    "totalTestResults": 17140861,
     "lastModified": "2020-05-30T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -4046,8 +4073,8 @@
     "hospitalizedIncrease": 1424,
     "negativeIncrease": 402861,
     "positiveIncrease": 23507,
-    "totalTestResultsIncrease": 428228,
-    "hash": "2b4e15b076e99b2764b1b7d5ff8452137b8036f3"
+    "totalTestResultsIncrease": 430989,
+    "hash": "3681548a98630e98d1873e598ef2b854e322f35c"
   },
   {
     "date": 20200529,
@@ -4065,7 +4092,7 @@
     "dateChecked": "2020-05-29T00:00:00Z",
     "death": 98911,
     "hospitalized": 208064,
-    "totalTestResults": 16683126,
+    "totalTestResults": 16709872,
     "lastModified": "2020-05-29T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -4073,8 +4100,8 @@
     "hospitalizedIncrease": 1715,
     "negativeIncrease": 465104,
     "positiveIncrease": 23581,
-    "totalTestResultsIncrease": 497690,
-    "hash": "1a4ac4ede91e9c3f4b7c5a1ea4d78e43f6161844"
+    "totalTestResultsIncrease": 502795,
+    "hash": "9ff30b08947ec4484bb0b47c81adb9a5759949f5"
   },
   {
     "date": 20200528,
@@ -4092,7 +4119,7 @@
     "dateChecked": "2020-05-28T00:00:00Z",
     "death": 97727,
     "hospitalized": 206349,
-    "totalTestResults": 16185436,
+    "totalTestResults": 16207077,
     "lastModified": "2020-05-28T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -4100,8 +4127,8 @@
     "hospitalizedIncrease": 1630,
     "negativeIncrease": 413429,
     "positiveIncrease": 22585,
-    "totalTestResultsIncrease": 442800,
-    "hash": "870c200b9bce3c5ee1044f66c51ccba8f236ddda"
+    "totalTestResultsIncrease": 444289,
+    "hash": "c5a2f52442eaf86461f80755e77405d0d29f3aca"
   },
   {
     "date": 20200527,
@@ -4119,7 +4146,7 @@
     "dateChecked": "2020-05-27T00:00:00Z",
     "death": 96496,
     "hospitalized": 204719,
-    "totalTestResults": 15742636,
+    "totalTestResults": 15762788,
     "lastModified": "2020-05-27T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -4127,8 +4154,8 @@
     "hospitalizedIncrease": 1713,
     "negativeIncrease": 290562,
     "positiveIncrease": 19543,
-    "totalTestResultsIncrease": 325899,
-    "hash": "44b5a7c6f198d05afa17854ee40ec312e668c037"
+    "totalTestResultsIncrease": 329428,
+    "hash": "5a6f3f3924c01c32705120a932034cfdce07a3d1"
   },
   {
     "date": 20200526,
@@ -4146,7 +4173,7 @@
     "dateChecked": "2020-05-26T00:00:00Z",
     "death": 95175,
     "hospitalized": 203006,
-    "totalTestResults": 15416737,
+    "totalTestResults": 15433360,
     "lastModified": "2020-05-26T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -4154,8 +4181,8 @@
     "hospitalizedIncrease": 17320,
     "negativeIncrease": 291055,
     "positiveIncrease": 16819,
-    "totalTestResultsIncrease": 313830,
-    "hash": "f2e5817d89a0a1c0404f7a13c71e202128a3687f"
+    "totalTestResultsIncrease": 316913,
+    "hash": "47fe56affaf1cb68e8a155102e55865e8b4efc39"
   },
   {
     "date": 20200525,
@@ -4173,7 +4200,7 @@
     "dateChecked": "2020-05-25T00:00:00Z",
     "death": 94530,
     "hospitalized": 185686,
-    "totalTestResults": 15102907,
+    "totalTestResults": 15116447,
     "lastModified": "2020-05-25T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -4181,8 +4208,8 @@
     "hospitalizedIncrease": 1002,
     "negativeIncrease": 404718,
     "positiveIncrease": 18772,
-    "totalTestResultsIncrease": 431364,
-    "hash": "dc21e19614ac3400766e3cf689e6ed1343763234"
+    "totalTestResultsIncrease": 431741,
+    "hash": "7dc6dccc9f86b77e481fdef190aab77dea09ba07"
   },
   {
     "date": 20200524,
@@ -4200,7 +4227,7 @@
     "dateChecked": "2020-05-24T00:00:00Z",
     "death": 93971,
     "hospitalized": 184684,
-    "totalTestResults": 14671543,
+    "totalTestResults": 14684706,
     "lastModified": "2020-05-24T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -4208,8 +4235,8 @@
     "hospitalizedIncrease": 921,
     "negativeIncrease": 361940,
     "positiveIncrease": 19877,
-    "totalTestResultsIncrease": 373399,
-    "hash": "25c130086b3daa32d18694fa96d7365e5056e139"
+    "totalTestResultsIncrease": 374502,
+    "hash": "273e70a9dcfbf9b37179356d7f489ee3918d1c49"
   },
   {
     "date": 20200523,
@@ -4227,7 +4254,7 @@
     "dateChecked": "2020-05-23T00:00:00Z",
     "death": 93291,
     "hospitalized": 183763,
-    "totalTestResults": 14298144,
+    "totalTestResults": 14310204,
     "lastModified": "2020-05-23T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -4235,8 +4262,8 @@
     "hospitalizedIncrease": 1378,
     "negativeIncrease": 369149,
     "positiveIncrease": 21588,
-    "totalTestResultsIncrease": 413744,
-    "hash": "7f8d27d1a255277da6865875fea5903548a3c09b"
+    "totalTestResultsIncrease": 418599,
+    "hash": "102c87e527a9d6b5e30204d0aec6781674d52714"
   },
   {
     "date": 20200522,
@@ -4254,7 +4281,7 @@
     "dateChecked": "2020-05-22T00:00:00Z",
     "death": 92228,
     "hospitalized": 182385,
-    "totalTestResults": 13884400,
+    "totalTestResults": 13891605,
     "lastModified": "2020-05-22T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -4262,8 +4289,8 @@
     "hospitalizedIncrease": 4046,
     "negativeIncrease": 385791,
     "positiveIncrease": 24382,
-    "totalTestResultsIncrease": 413609,
-    "hash": "64eed860fc37298045602e3738c9574f3736381f"
+    "totalTestResultsIncrease": 415934,
+    "hash": "c7c3f835209d63163a3393064c2932a9d889503f"
   },
   {
     "date": 20200521,
@@ -4281,7 +4308,7 @@
     "dateChecked": "2020-05-21T00:00:00Z",
     "death": 90887,
     "hospitalized": 178339,
-    "totalTestResults": 13470791,
+    "totalTestResults": 13475671,
     "lastModified": "2020-05-21T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -4289,8 +4316,8 @@
     "hospitalizedIncrease": 4630,
     "negativeIncrease": 436275,
     "positiveIncrease": 26674,
-    "totalTestResultsIncrease": 484984,
-    "hash": "86c4a37c178b08c12fdd22877b4468c8dfc094c0"
+    "totalTestResultsIncrease": 487620,
+    "hash": "161a2adf0e9eb0e1f8ef02acdd621baa5e564ba9"
   },
   {
     "date": 20200520,
@@ -4308,7 +4335,7 @@
     "dateChecked": "2020-05-20T00:00:00Z",
     "death": 89493,
     "hospitalized": 173709,
-    "totalTestResults": 12985807,
+    "totalTestResults": 12988051,
     "lastModified": "2020-05-20T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -4316,8 +4343,8 @@
     "hospitalizedIncrease": 1996,
     "negativeIncrease": 387243,
     "positiveIncrease": 21256,
-    "totalTestResultsIncrease": 417508,
-    "hash": "97ad15b629488098fb9832fcb38e1d8aa1731b22"
+    "totalTestResultsIncrease": 433389,
+    "hash": "29d52436b2689aa67ca1ece48fc42985a814a716"
   },
   {
     "date": 20200519,
@@ -4335,7 +4362,7 @@
     "dateChecked": "2020-05-19T00:00:00Z",
     "death": 88094,
     "hospitalized": 171713,
-    "totalTestResults": 12568299,
+    "totalTestResults": 12554662,
     "lastModified": "2020-05-19T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -4343,8 +4370,8 @@
     "hospitalizedIncrease": 1597,
     "negativeIncrease": 381974,
     "positiveIncrease": 21007,
-    "totalTestResultsIncrease": 409497,
-    "hash": "94544a957997e47a0d88617bd7716201a65f9ef5"
+    "totalTestResultsIncrease": 400425,
+    "hash": "15e48a4e473c7b778281c5dc3e9d18a04528ba52"
   },
   {
     "date": 20200518,
@@ -4362,7 +4389,7 @@
     "dateChecked": "2020-05-18T00:00:00Z",
     "death": 86768,
     "hospitalized": 170116,
-    "totalTestResults": 12158802,
+    "totalTestResults": 12154237,
     "lastModified": "2020-05-18T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -4370,8 +4397,8 @@
     "hospitalizedIncrease": 1157,
     "negativeIncrease": 335177,
     "positiveIncrease": 20828,
-    "totalTestResultsIncrease": 370109,
-    "hash": "13190b8c5d52e9bd8a319b85cb57ce029bd5954a"
+    "totalTestResultsIncrease": 365001,
+    "hash": "4e8f2785388e7e17f3cd93655094d1f450a0e29a"
   },
   {
     "date": 20200517,
@@ -4389,7 +4416,7 @@
     "dateChecked": "2020-05-17T00:00:00Z",
     "death": 85920,
     "hospitalized": 168959,
-    "totalTestResults": 11788693,
+    "totalTestResults": 11789236,
     "lastModified": "2020-05-17T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -4397,8 +4424,8 @@
     "hospitalizedIncrease": 1199,
     "negativeIncrease": 351570,
     "positiveIncrease": 20368,
-    "totalTestResultsIncrease": 366761,
-    "hash": "a17b832e44f3d735561747819cd6e5d09eb8858b"
+    "totalTestResultsIncrease": 366206,
+    "hash": "42c492f452a45d89d02aa7eff1f8bac7da31dfe1"
   },
   {
     "date": 20200516,
@@ -4416,7 +4443,7 @@
     "dateChecked": "2020-05-16T00:00:00Z",
     "death": 85071,
     "hospitalized": 167760,
-    "totalTestResults": 11421932,
+    "totalTestResults": 11423030,
     "lastModified": "2020-05-16T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -4424,8 +4451,8 @@
     "hospitalizedIncrease": 1856,
     "negativeIncrease": 338158,
     "positiveIncrease": 23581,
-    "totalTestResultsIncrease": 367294,
-    "hash": "55eba26eead2e2a0b11bcc672b14fb6801af4d62"
+    "totalTestResultsIncrease": 353811,
+    "hash": "2aed0fe35f1009ddd1fba6182a111749168111ff"
   },
   {
     "date": 20200515,
@@ -4443,7 +4470,7 @@
     "dateChecked": "2020-05-15T00:00:00Z",
     "death": 84084,
     "hospitalized": 165904,
-    "totalTestResults": 11054638,
+    "totalTestResults": 11069219,
     "lastModified": "2020-05-15T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -4451,8 +4478,8 @@
     "hospitalizedIncrease": 1353,
     "negativeIncrease": 334713,
     "positiveIncrease": 25471,
-    "totalTestResultsIncrease": 384183,
-    "hash": "09b53862124ee456d42be806193ed891dc337d7c"
+    "totalTestResultsIncrease": 398931,
+    "hash": "cb73648894037ba67ac89c0b86e03f65919c68f4"
   },
   {
     "date": 20200514,
@@ -4470,7 +4497,7 @@
     "dateChecked": "2020-05-14T00:00:00Z",
     "death": 82577,
     "hospitalized": 164551,
-    "totalTestResults": 10670455,
+    "totalTestResults": 10670288,
     "lastModified": "2020-05-14T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -4478,8 +4505,8 @@
     "hospitalizedIncrease": 3206,
     "negativeIncrease": 338711,
     "positiveIncrease": 26769,
-    "totalTestResultsIncrease": 378244,
-    "hash": "6d72fa1be50ab9f29580b60cd17f3660b32efec2"
+    "totalTestResultsIncrease": 379886,
+    "hash": "de31540fdeb39f71285309688b139194f8c26001"
   },
   {
     "date": 20200513,
@@ -4497,7 +4524,7 @@
     "dateChecked": "2020-05-13T00:00:00Z",
     "death": 80698,
     "hospitalized": 161345,
-    "totalTestResults": 10292211,
+    "totalTestResults": 10290402,
     "lastModified": "2020-05-13T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -4505,8 +4532,8 @@
     "hospitalizedIncrease": 1809,
     "negativeIncrease": 299164,
     "positiveIncrease": 21605,
-    "totalTestResultsIncrease": 330064,
-    "hash": "2288d973246f0cd379d615dca24a27b9cced52d4"
+    "totalTestResultsIncrease": 329142,
+    "hash": "8be5d2c623c55226d53cb55bd50fab2970d1606c"
   },
   {
     "date": 20200512,
@@ -4524,7 +4551,7 @@
     "dateChecked": "2020-05-12T00:00:00Z",
     "death": 78994,
     "hospitalized": 159536,
-    "totalTestResults": 9962147,
+    "totalTestResults": 9961260,
     "lastModified": "2020-05-12T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -4532,8 +4559,8 @@
     "hospitalizedIncrease": 1579,
     "negativeIncrease": 286983,
     "positiveIncrease": 22555,
-    "totalTestResultsIncrease": 323138,
-    "hash": "5ce823abf962d2f418e31af9961634dadfacf254"
+    "totalTestResultsIncrease": 326081,
+    "hash": "9f95320b06a1786995fe01db17273b68015910c9"
   },
   {
     "date": 20200511,
@@ -4551,7 +4578,7 @@
     "dateChecked": "2020-05-11T00:00:00Z",
     "death": 77508,
     "hospitalized": 157957,
-    "totalTestResults": 9639009,
+    "totalTestResults": 9635179,
     "lastModified": "2020-05-11T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -4559,8 +4586,8 @@
     "hospitalizedIncrease": 1238,
     "negativeIncrease": 365238,
     "positiveIncrease": 18374,
-    "totalTestResultsIncrease": 391647,
-    "hash": "62115a9b615d4599524763837d3d50022db8c2da"
+    "totalTestResultsIncrease": 387321,
+    "hash": "b68edc03ec0d67c8fec153b788e08bb7c976a815"
   },
   {
     "date": 20200510,
@@ -4578,7 +4605,7 @@
     "dateChecked": "2020-05-10T00:00:00Z",
     "death": 76616,
     "hospitalized": 156719,
-    "totalTestResults": 9247362,
+    "totalTestResults": 9247858,
     "lastModified": "2020-05-10T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -4586,8 +4613,8 @@
     "hospitalizedIncrease": 1055,
     "negativeIncrease": 245353,
     "positiveIncrease": 21141,
-    "totalTestResultsIncrease": 261252,
-    "hash": "d1839d68d4d344642abc954590a894dc689c1b5a"
+    "totalTestResultsIncrease": 263633,
+    "hash": "4d27e358229b8d2c5fa6491eb4314c277ce74cb0"
   },
   {
     "date": 20200509,
@@ -4605,7 +4632,7 @@
     "dateChecked": "2020-05-09T00:00:00Z",
     "death": 75580,
     "hospitalized": 155664,
-    "totalTestResults": 8986110,
+    "totalTestResults": 8984225,
     "lastModified": "2020-05-09T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -4613,8 +4640,8 @@
     "hospitalizedIncrease": 1708,
     "negativeIncrease": 267236,
     "positiveIncrease": 25181,
-    "totalTestResultsIncrease": 303477,
-    "hash": "13d3dd9d9ea7ae2358570d33c0c092663259ae89"
+    "totalTestResultsIncrease": 305869,
+    "hash": "380aad037f431acfad3d259e4213b429a1a0ef89"
   },
   {
     "date": 20200508,
@@ -4632,7 +4659,7 @@
     "dateChecked": "2020-05-08T00:00:00Z",
     "death": 74135,
     "hospitalized": 153956,
-    "totalTestResults": 8682633,
+    "totalTestResults": 8678356,
     "lastModified": "2020-05-08T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -4640,8 +4667,8 @@
     "hospitalizedIncrease": 6892,
     "negativeIncrease": 271123,
     "positiveIncrease": 27195,
-    "totalTestResultsIncrease": 318481,
-    "hash": "4fad384d39a8aba00ab46112ad555248d84daa98"
+    "totalTestResultsIncrease": 315419,
+    "hash": "fd8f35582f6e4dd77417c4bbb116a6a6d16f3459"
   },
   {
     "date": 20200507,
@@ -4659,7 +4686,7 @@
     "dateChecked": "2020-05-07T00:00:00Z",
     "death": 72337,
     "hospitalized": 147064,
-    "totalTestResults": 8364152,
+    "totalTestResults": 8362937,
     "lastModified": "2020-05-07T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -4667,8 +4694,8 @@
     "hospitalizedIncrease": 3742,
     "negativeIncrease": 275015,
     "positiveIncrease": 27336,
-    "totalTestResultsIncrease": 299773,
-    "hash": "ffa32708739049d496f4abbdee4085dbe1d5a8d2"
+    "totalTestResultsIncrease": 300886,
+    "hash": "9626084a0f58c4c500969de0eedcc377cadd6550"
   },
   {
     "date": 20200506,
@@ -4686,7 +4713,7 @@
     "dateChecked": "2020-05-06T00:00:00Z",
     "death": 69585,
     "hospitalized": 143322,
-    "totalTestResults": 8064379,
+    "totalTestResults": 8062051,
     "lastModified": "2020-05-06T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -4694,8 +4721,8 @@
     "hospitalizedIncrease": 2119,
     "negativeIncrease": 220849,
     "positiveIncrease": 25133,
-    "totalTestResultsIncrease": 268358,
-    "hash": "3a01c91cea8bef24cbee9497a36184a0a2c5d79d"
+    "totalTestResultsIncrease": 268783,
+    "hash": "df5175e6129c9f5349c91188e23a9859d0ae00d4"
   },
   {
     "date": 20200505,
@@ -4713,7 +4740,7 @@
     "dateChecked": "2020-05-05T00:00:00Z",
     "death": 67637,
     "hospitalized": 141203,
-    "totalTestResults": 7796021,
+    "totalTestResults": 7793268,
     "lastModified": "2020-05-05T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -4721,8 +4748,8 @@
     "hospitalizedIncrease": 1983,
     "negativeIncrease": 250081,
     "positiveIncrease": 22476,
-    "totalTestResultsIncrease": 285564,
-    "hash": "09f35274dbe31dc5275179f8a2fe301cd3a04c94"
+    "totalTestResultsIncrease": 285178,
+    "hash": "bb2f7d4351adc0dbe984092b38ad359e3eaafbc1"
   },
   {
     "date": 20200504,
@@ -4740,7 +4767,7 @@
     "dateChecked": "2020-05-04T00:00:00Z",
     "death": 65185,
     "hospitalized": 139220,
-    "totalTestResults": 7510457,
+    "totalTestResults": 7508090,
     "lastModified": "2020-05-04T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -4748,8 +4775,8 @@
     "hospitalizedIncrease": 1651,
     "negativeIncrease": 209668,
     "positiveIncrease": 22598,
-    "totalTestResultsIncrease": 233496,
-    "hash": "6b24dd037d9a60f9e7cc9df495b32fe190d5c451"
+    "totalTestResultsIncrease": 232838,
+    "hash": "a503d00de94c7b090e52bea11474e507b4909350"
   },
   {
     "date": 20200503,
@@ -4767,7 +4794,7 @@
     "dateChecked": "2020-05-03T00:00:00Z",
     "death": 64150,
     "hospitalized": 137569,
-    "totalTestResults": 7276961,
+    "totalTestResults": 7275252,
     "lastModified": "2020-05-03T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -4775,8 +4802,8 @@
     "hospitalizedIncrease": 1963,
     "negativeIncrease": 211117,
     "positiveIncrease": 25718,
-    "totalTestResultsIncrease": 227516,
-    "hash": "484045ca7a7fd49b34287d81651a24626f2a31b3"
+    "totalTestResultsIncrease": 227715,
+    "hash": "6b0ce9cf9f8defb47dd1a39043c42ba9bac23975"
   },
   {
     "date": 20200502,
@@ -4794,7 +4821,7 @@
     "dateChecked": "2020-05-02T00:00:00Z",
     "death": 62918,
     "hospitalized": 135606,
-    "totalTestResults": 7049445,
+    "totalTestResults": 7047537,
     "lastModified": "2020-05-02T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -4802,8 +4829,8 @@
     "hospitalizedIncrease": 2031,
     "negativeIncrease": 218321,
     "positiveIncrease": 29122,
-    "totalTestResultsIncrease": 263738,
-    "hash": "f6e19dfcb94acf1587380a970fd89a9ae6bd3f87"
+    "totalTestResultsIncrease": 266843,
+    "hash": "525889834dcfb734ca5bcaebc294a5457b880153"
   },
   {
     "date": 20200501,
@@ -4821,7 +4848,7 @@
     "dateChecked": "2020-05-01T00:00:00Z",
     "death": 61356,
     "hospitalized": 133575,
-    "totalTestResults": 6785707,
+    "totalTestResults": 6780694,
     "lastModified": "2020-05-01T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -4829,8 +4856,8 @@
     "hospitalizedIncrease": 9789,
     "negativeIncrease": 263100,
     "positiveIncrease": 32960,
-    "totalTestResultsIncrease": 297991,
-    "hash": "946f8ae49f8404a5780284b40049fe26187a3491"
+    "totalTestResultsIncrease": 295983,
+    "hash": "eb4a822cb6291d7fe10dd1ff559e7d95a2e6b40e"
   },
   {
     "date": 20200430,
@@ -4848,7 +4875,7 @@
     "dateChecked": "2020-04-30T00:00:00Z",
     "death": 59577,
     "hospitalized": 123786,
-    "totalTestResults": 6487716,
+    "totalTestResults": 6484711,
     "lastModified": "2020-04-30T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -4856,8 +4883,8 @@
     "hospitalizedIncrease": 2290,
     "negativeIncrease": 203903,
     "positiveIncrease": 29992,
-    "totalTestResultsIncrease": 254645,
-    "hash": "3b111fe117909ea86903dc9125c25f9c4c98eab4"
+    "totalTestResultsIncrease": 255381,
+    "hash": "25b9bfd3372911142d905e758ce974b0b3d0e1fe"
   },
   {
     "date": 20200429,
@@ -4875,7 +4902,7 @@
     "dateChecked": "2020-04-29T00:00:00Z",
     "death": 57438,
     "hospitalized": 121496,
-    "totalTestResults": 6233071,
+    "totalTestResults": 6229330,
     "lastModified": "2020-04-29T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -4883,8 +4910,8 @@
     "hospitalizedIncrease": 3415,
     "negativeIncrease": 212653,
     "positiveIncrease": 26164,
-    "totalTestResultsIncrease": 242810,
-    "hash": "81c3793a9133eff49c0457a3c2503eba6fb621de"
+    "totalTestResultsIncrease": 243214,
+    "hash": "849f1cd23270345fa155340206a6429f59c80f75"
   },
   {
     "date": 20200428,
@@ -4902,7 +4929,7 @@
     "dateChecked": "2020-04-28T00:00:00Z",
     "death": 54725,
     "hospitalized": 118081,
-    "totalTestResults": 5990261,
+    "totalTestResults": 5986116,
     "lastModified": "2020-04-28T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -4910,8 +4937,8 @@
     "hospitalizedIncrease": 2079,
     "negativeIncrease": 181953,
     "positiveIncrease": 25320,
-    "totalTestResultsIncrease": 215091,
-    "hash": "75b3edb2d4791b27a66590a205390959b28fd332"
+    "totalTestResultsIncrease": 216402,
+    "hash": "d342c8e9898ce4f9a0a1cf9544cc081624ea9ad8"
   },
   {
     "date": 20200427,
@@ -4929,7 +4956,7 @@
     "dateChecked": "2020-04-27T00:00:00Z",
     "death": 52653,
     "hospitalized": 116002,
-    "totalTestResults": 5775170,
+    "totalTestResults": 5769714,
     "lastModified": "2020-04-27T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -4937,8 +4964,8 @@
     "hospitalizedIncrease": 3076,
     "negativeIncrease": 173380,
     "positiveIncrease": 22617,
-    "totalTestResultsIncrease": 196840,
-    "hash": "86487372fa4e40ff32dbdbe6660a96fa2388c501"
+    "totalTestResultsIncrease": 193958,
+    "hash": "12eee5df7b56b238cdad9dd772cceb58ec73f893"
   },
   {
     "date": 20200426,
@@ -4956,7 +4983,7 @@
     "dateChecked": "2020-04-26T00:00:00Z",
     "death": 51383,
     "hospitalized": 112926,
-    "totalTestResults": 5578330,
+    "totalTestResults": 5575756,
     "lastModified": "2020-04-26T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -4964,8 +4991,8 @@
     "hospitalizedIncrease": 2192,
     "negativeIncrease": 179284,
     "positiveIncrease": 27416,
-    "totalTestResultsIncrease": 201688,
-    "hash": "060e9a26ed0612a572beca9625ef394bc6157398"
+    "totalTestResultsIncrease": 206968,
+    "hash": "102dbd60d7d75e6f4d1942933cdb9e88af01c3dd"
   },
   {
     "date": 20200425,
@@ -4983,7 +5010,7 @@
     "dateChecked": "2020-04-25T00:00:00Z",
     "death": 50168,
     "hospitalized": 110734,
-    "totalTestResults": 5376642,
+    "totalTestResults": 5368788,
     "lastModified": "2020-04-25T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -4991,8 +5018,8 @@
     "hospitalizedIncrease": 2456,
     "negativeIncrease": 240717,
     "positiveIncrease": 35958,
-    "totalTestResultsIncrease": 279207,
-    "hash": "db0a67f4c3c5a2c7a3c0ae9c6348162fe3c78893"
+    "totalTestResultsIncrease": 276405,
+    "hash": "5972dfea5a32444d9cc26783c238786b3af2e987"
   },
   {
     "date": 20200424,
@@ -5010,7 +5037,7 @@
     "dateChecked": "2020-04-24T00:00:00Z",
     "death": 48420,
     "hospitalized": 108278,
-    "totalTestResults": 5097435,
+    "totalTestResults": 5092383,
     "lastModified": "2020-04-24T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -5018,8 +5045,8 @@
     "hospitalizedIncrease": 2338,
     "negativeIncrease": 202285,
     "positiveIncrease": 34103,
-    "totalTestResultsIncrease": 240278,
-    "hash": "6ce9a9af2a98722ae5679571cf282f146cfd61ed"
+    "totalTestResultsIncrease": 238766,
+    "hash": "555d3742b0a9369f7892389bd9950142f3d2c462"
   },
   {
     "date": 20200423,
@@ -5037,7 +5064,7 @@
     "dateChecked": "2020-04-23T00:00:00Z",
     "death": 46525,
     "hospitalized": 105940,
-    "totalTestResults": 4857157,
+    "totalTestResults": 4853617,
     "lastModified": "2020-04-23T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -5045,8 +5072,8 @@
     "hospitalizedIncrease": 2802,
     "negativeIncrease": 161630,
     "positiveIncrease": 31986,
-    "totalTestResultsIncrease": 197355,
-    "hash": "987e1dd44fab489be91b8d70ae1c5dd42f231519"
+    "totalTestResultsIncrease": 200164,
+    "hash": "f4a00e884f6e293825607b4de2316dffc5327fe9"
   },
   {
     "date": 20200422,
@@ -5064,7 +5091,7 @@
     "dateChecked": "2020-04-22T00:00:00Z",
     "death": 44734,
     "hospitalized": 103138,
-    "totalTestResults": 4659802,
+    "totalTestResults": 4653453,
     "lastModified": "2020-04-22T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -5072,8 +5099,8 @@
     "hospitalizedIncrease": 3087,
     "negativeIncrease": 295229,
     "positiveIncrease": 29004,
-    "totalTestResultsIncrease": 339800,
-    "hash": "f9ee65fddb18c63932891d01da6765a9bb038c93"
+    "totalTestResultsIncrease": 340421,
+    "hash": "30ff8813f67d96eb8948265731c89cca6079f895"
   },
   {
     "date": 20200421,
@@ -5091,7 +5118,7 @@
     "dateChecked": "2020-04-21T00:00:00Z",
     "death": 42636,
     "hospitalized": 100051,
-    "totalTestResults": 4320002,
+    "totalTestResults": 4313032,
     "lastModified": "2020-04-21T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -5099,8 +5126,8 @@
     "hospitalizedIncrease": 2682,
     "negativeIncrease": 127063,
     "positiveIncrease": 26278,
-    "totalTestResultsIncrease": 161353,
-    "hash": "5c315ad22da776607ea30a8743d2433b499b80ec"
+    "totalTestResultsIncrease": 161187,
+    "hash": "b27b6dee56985c3fcc8a90cd6010b489ffedf9f8"
   },
   {
     "date": 20200420,
@@ -5118,7 +5145,7 @@
     "dateChecked": "2020-04-20T00:00:00Z",
     "death": 40169,
     "hospitalized": 97369,
-    "totalTestResults": 4158649,
+    "totalTestResults": 4151845,
     "lastModified": "2020-04-20T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -5126,8 +5153,8 @@
     "hospitalizedIncrease": 2211,
     "negativeIncrease": 120369,
     "positiveIncrease": 25946,
-    "totalTestResultsIncrease": 149429,
-    "hash": "2663e30405ad87709f24cd41f77450138e2f36d5"
+    "totalTestResultsIncrease": 148452,
+    "hash": "179a477f78a8199f3f24fcba293bfee80cee8af6"
   },
   {
     "date": 20200419,
@@ -5145,7 +5172,7 @@
     "dateChecked": "2020-04-19T00:00:00Z",
     "death": 38371,
     "hospitalized": 95158,
-    "totalTestResults": 4009220,
+    "totalTestResults": 4003393,
     "lastModified": "2020-04-19T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -5153,8 +5180,8 @@
     "hospitalizedIncrease": 2239,
     "negativeIncrease": 126832,
     "positiveIncrease": 27401,
-    "totalTestResultsIncrease": 153218,
-    "hash": "ae56ce93aea57f2b17ef891d08b8f8671aeca9c1"
+    "totalTestResultsIncrease": 152810,
+    "hash": "badbe027a32368ec7665d4e341c2e2e14cf78412"
   },
   {
     "date": 20200418,
@@ -5172,7 +5199,7 @@
     "dateChecked": "2020-04-18T00:00:00Z",
     "death": 36599,
     "hospitalized": 92919,
-    "totalTestResults": 3856002,
+    "totalTestResults": 3850583,
     "lastModified": "2020-04-18T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -5180,8 +5207,8 @@
     "hospitalizedIncrease": 3563,
     "negativeIncrease": 118251,
     "positiveIncrease": 27840,
-    "totalTestResultsIncrease": 148734,
-    "hash": "955f530fcd6842cf2d931a46a854e159ec03ff4f"
+    "totalTestResultsIncrease": 149906,
+    "hash": "5d3bf99ddcc1fcd184e68897031830df457ed264"
   },
   {
     "date": 20200417,
@@ -5199,7 +5226,7 @@
     "dateChecked": "2020-04-17T00:00:00Z",
     "death": 34706,
     "hospitalized": 89356,
-    "totalTestResults": 3707268,
+    "totalTestResults": 3700677,
     "lastModified": "2020-04-17T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -5207,8 +5234,8 @@
     "hospitalizedIncrease": 3405,
     "negativeIncrease": 127342,
     "positiveIncrease": 32001,
-    "totalTestResultsIncrease": 167110,
-    "hash": "6c6645e9a9f270979bda57c6bc61db1ece4516a4"
+    "totalTestResultsIncrease": 167005,
+    "hash": "857627bcc224e987db89f61c2fc04d92f688058e"
   },
   {
     "date": 20200416,
@@ -5226,7 +5253,7 @@
     "dateChecked": "2020-04-16T00:00:00Z",
     "death": 32587,
     "hospitalized": 85951,
-    "totalTestResults": 3540158,
+    "totalTestResults": 3533672,
     "lastModified": "2020-04-16T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -5234,8 +5261,8 @@
     "hospitalizedIncrease": 3071,
     "negativeIncrease": 133173,
     "positiveIncrease": 31489,
-    "totalTestResultsIncrease": 168803,
-    "hash": "f6ed3f94248b0db9d487997d66e7e33cd908627e"
+    "totalTestResultsIncrease": 172178,
+    "hash": "36628657e05eb861c6a08b9ad47c39153c2eefb2"
   },
   {
     "date": 20200415,
@@ -5253,7 +5280,7 @@
     "dateChecked": "2020-04-15T00:00:00Z",
     "death": 30387,
     "hospitalized": 82880,
-    "totalTestResults": 3371355,
+    "totalTestResults": 3361494,
     "lastModified": "2020-04-15T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -5261,8 +5288,8 @@
     "hospitalizedIncrease": 4434,
     "negativeIncrease": 107024,
     "positiveIncrease": 29755,
-    "totalTestResultsIncrease": 146630,
-    "hash": "6f067674dcc9c8723ac483fbbd0b472474569558"
+    "totalTestResultsIncrease": 143274,
+    "hash": "e369542b4ed3b1688f19ed15c2d52ad95c8ad935"
   },
   {
     "date": 20200414,
@@ -5280,7 +5307,7 @@
     "dateChecked": "2020-04-14T00:00:00Z",
     "death": 27843,
     "hospitalized": 78446,
-    "totalTestResults": 3224725,
+    "totalTestResults": 3218220,
     "lastModified": "2020-04-14T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -5288,8 +5315,8 @@
     "hospitalizedIncrease": 3282,
     "negativeIncrease": 126412,
     "positiveIncrease": 25875,
-    "totalTestResultsIncrease": 159371,
-    "hash": "a3e6a8155f0de34339d3f406002887d6bf63fa51"
+    "totalTestResultsIncrease": 160933,
+    "hash": "7a45b62997ec0e6d9d1d0322c77a96b8b2b67c14"
   },
   {
     "date": 20200413,
@@ -5307,7 +5334,7 @@
     "dateChecked": "2020-04-13T00:00:00Z",
     "death": 25507,
     "hospitalized": 75164,
-    "totalTestResults": 3065354,
+    "totalTestResults": 3057287,
     "lastModified": "2020-04-13T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -5315,8 +5342,8 @@
     "hospitalizedIncrease": 4285,
     "negativeIncrease": 109349,
     "positiveIncrease": 24758,
-    "totalTestResultsIncrease": 139238,
-    "hash": "5d2edc87fb2351f45b2cb8fb966400e54a92ebaf"
+    "totalTestResultsIncrease": 134918,
+    "hash": "b44c6c6e921ede07f9140705fdaa1b52657854ac"
   },
   {
     "date": 20200412,
@@ -5334,7 +5361,7 @@
     "dateChecked": "2020-04-12T00:00:00Z",
     "death": 23864,
     "hospitalized": 70879,
-    "totalTestResults": 2926116,
+    "totalTestResults": 2922369,
     "lastModified": "2020-04-12T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -5342,8 +5369,8 @@
     "hospitalizedIncrease": 3288,
     "negativeIncrease": 111204,
     "positiveIncrease": 27987,
-    "totalTestResultsIncrease": 134923,
-    "hash": "ffbb57a51f5b17ab2da5ae46534aae28d010da55"
+    "totalTestResultsIncrease": 136151,
+    "hash": "cd17c386bf641252ca533d9672fcff4637574c11"
   },
   {
     "date": 20200411,
@@ -5361,7 +5388,7 @@
     "dateChecked": "2020-04-11T00:00:00Z",
     "death": 22161,
     "hospitalized": 67591,
-    "totalTestResults": 2791193,
+    "totalTestResults": 2786218,
     "lastModified": "2020-04-11T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -5369,8 +5396,8 @@
     "hospitalizedIncrease": 2825,
     "negativeIncrease": 106592,
     "positiveIncrease": 30626,
-    "totalTestResultsIncrease": 137836,
-    "hash": "bd19c538d09021c7f50bb1197a42161411a18eff"
+    "totalTestResultsIncrease": 137050,
+    "hash": "9f1ac791f723ca8182d701331133274d0b80d879"
   },
   {
     "date": 20200410,
@@ -5388,7 +5415,7 @@
     "dateChecked": "2020-04-10T00:00:00Z",
     "death": 20107,
     "hospitalized": 64766,
-    "totalTestResults": 2653357,
+    "totalTestResults": 2649168,
     "lastModified": "2020-04-10T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -5396,8 +5423,8 @@
     "hospitalizedIncrease": 4934,
     "negativeIncrease": 124192,
     "positiveIncrease": 34246,
-    "totalTestResultsIncrease": 159725,
-    "hash": "30695585661a0284ae0b9ca57ddde3a1d9bd0537"
+    "totalTestResultsIncrease": 163589,
+    "hash": "d72c5db079fd11ecfb6b53fbdb9e2b0d50e94ef8"
   },
   {
     "date": 20200409,
@@ -5415,7 +5442,7 @@
     "dateChecked": "2020-04-09T00:00:00Z",
     "death": 17999,
     "hospitalized": 59832,
-    "totalTestResults": 2493632,
+    "totalTestResults": 2485579,
     "lastModified": "2020-04-09T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -5423,8 +5450,8 @@
     "hospitalizedIncrease": 3923,
     "negativeIncrease": 136748,
     "positiveIncrease": 34640,
-    "totalTestResultsIncrease": 172597,
-    "hash": "91ed5938b97727b56e0ebde289433b15c8e00f58"
+    "totalTestResultsIncrease": 169538,
+    "hash": "46d28c88e8663c5a654afb0a9fa80a5e8d03140c"
   },
   {
     "date": 20200408,
@@ -5442,7 +5469,7 @@
     "dateChecked": "2020-04-08T00:00:00Z",
     "death": 15956,
     "hospitalized": 55909,
-    "totalTestResults": 2321035,
+    "totalTestResults": 2316041,
     "lastModified": "2020-04-08T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -5450,8 +5477,8 @@
     "hospitalizedIncrease": 4311,
     "negativeIncrease": 117154,
     "positiveIncrease": 30975,
-    "totalTestResultsIncrease": 152648,
-    "hash": "e5ca6da9a3259f5c0bdedf50043d4e39bbaaac99"
+    "totalTestResultsIncrease": 158888,
+    "hash": "c886cb5e3e70914501a2ba7ff83c73146572e4c4"
   },
   {
     "date": 20200407,
@@ -5469,7 +5496,7 @@
     "dateChecked": "2020-04-07T00:00:00Z",
     "death": 13946,
     "hospitalized": 51598,
-    "totalTestResults": 2168387,
+    "totalTestResults": 2157153,
     "lastModified": "2020-04-07T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -5477,8 +5504,8 @@
     "hospitalizedIncrease": 2981,
     "negativeIncrease": 123604,
     "positiveIncrease": 30621,
-    "totalTestResultsIncrease": 154960,
-    "hash": "bff7ff7f48f15e79426d09db38d4ff5fee2c7028"
+    "totalTestResultsIncrease": 151399,
+    "hash": "db6a21858bb818e002462f9a5a7fdcae2a736161"
   },
   {
     "date": 20200406,
@@ -5496,7 +5523,7 @@
     "dateChecked": "2020-04-06T00:00:00Z",
     "death": 11922,
     "hospitalized": 48617,
-    "totalTestResults": 2013427,
+    "totalTestResults": 2005754,
     "lastModified": "2020-04-06T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -5504,8 +5531,8 @@
     "hospitalizedIncrease": 2946,
     "negativeIncrease": 123253,
     "positiveIncrease": 28592,
-    "totalTestResultsIncrease": 155069,
-    "hash": "4bfef1c09ecc3270baaa7716c99dadf07b0af3e9"
+    "totalTestResultsIncrease": 152627,
+    "hash": "5f13f8456ab06c6aa8245081728db0e493a43b7f"
   },
   {
     "date": 20200405,
@@ -5523,7 +5550,7 @@
     "dateChecked": "2020-04-05T00:00:00Z",
     "death": 10604,
     "hospitalized": 45671,
-    "totalTestResults": 1858358,
+    "totalTestResults": 1853127,
     "lastModified": "2020-04-05T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -5531,8 +5558,8 @@
     "hospitalizedIncrease": 3903,
     "negativeIncrease": 94299,
     "positiveIncrease": 25608,
-    "totalTestResultsIncrease": 119770,
-    "hash": "9728ce1fc6894f6459c9e316c837a4e800b04dae"
+    "totalTestResultsIncrease": 120468,
+    "hash": "d99802e23b0ed7edb5ca163402a95a8385bf8cae"
   },
   {
     "date": 20200404,
@@ -5550,7 +5577,7 @@
     "dateChecked": "2020-04-04T00:00:00Z",
     "death": 9264,
     "hospitalized": 41768,
-    "totalTestResults": 1738588,
+    "totalTestResults": 1732659,
     "lastModified": "2020-04-04T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -5558,8 +5585,8 @@
     "hospitalizedIncrease": 5086,
     "negativeIncrease": 196066,
     "positiveIncrease": 32967,
-    "totalTestResultsIncrease": 228165,
-    "hash": "3e44e7f9f00956f8422b78100fe982144cff45f6"
+    "totalTestResultsIncrease": 228803,
+    "hash": "c8183501378a7ac8552f1f8cebe77b19297aba92"
   },
   {
     "date": 20200403,
@@ -5577,7 +5604,7 @@
     "dateChecked": "2020-04-03T00:00:00Z",
     "death": 7782,
     "hospitalized": 36682,
-    "totalTestResults": 1510423,
+    "totalTestResults": 1503856,
     "lastModified": "2020-04-03T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -5585,8 +5612,8 @@
     "hospitalizedIncrease": 4554,
     "negativeIncrease": 101013,
     "positiveIncrease": 31769,
-    "totalTestResultsIncrease": 135990,
-    "hash": "314b3673d88ebbef5c2b1cdf6935078d732ee1b7"
+    "totalTestResultsIncrease": 134554,
+    "hash": "722f172dedb45790b162172b81e399ce3d18fdb8"
   },
   {
     "date": 20200402,
@@ -5604,7 +5631,7 @@
     "dateChecked": "2020-04-02T00:00:00Z",
     "death": 6496,
     "hospitalized": 32128,
-    "totalTestResults": 1374433,
+    "totalTestResults": 1369302,
     "lastModified": "2020-04-02T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -5612,8 +5639,8 @@
     "hospitalizedIncrease": 4175,
     "negativeIncrease": 91058,
     "positiveIncrease": 28037,
-    "totalTestResultsIncrease": 122541,
-    "hash": "9361acc1c271fe1387b24432b9b65c73d1f4d3ac"
+    "totalTestResultsIncrease": 120196,
+    "hash": "4c18eaf5042fefc2f4ad9d68263d3d18d53a34b0"
   },
   {
     "date": 20200401,
@@ -5631,7 +5658,7 @@
     "dateChecked": "2020-04-01T00:00:00Z",
     "death": 5324,
     "hospitalized": 27953,
-    "totalTestResults": 1251892,
+    "totalTestResults": 1249106,
     "lastModified": "2020-04-01T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -5639,8 +5666,8 @@
     "hospitalizedIncrease": 4228,
     "negativeIncrease": 82981,
     "positiveIncrease": 26078,
-    "totalTestResultsIncrease": 112822,
-    "hash": "fc339b4cbeab4bcee3b7eca3fd676999bb873ee3"
+    "totalTestResultsIncrease": 114887,
+    "hash": "321b00102bb1ab72eb4d7c3183ab2063cd59f270"
   },
   {
     "date": 20200331,
@@ -5658,7 +5685,7 @@
     "dateChecked": "2020-03-31T00:00:00Z",
     "death": 4313,
     "hospitalized": 23725,
-    "totalTestResults": 1139070,
+    "totalTestResults": 1134219,
     "lastModified": "2020-03-31T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -5666,8 +5693,8 @@
     "hospitalizedIncrease": 3906,
     "negativeIncrease": 87657,
     "positiveIncrease": 24840,
-    "totalTestResultsIncrease": 115963,
-    "hash": "1303c2628425989300d443660b39c3854d7b75af"
+    "totalTestResultsIncrease": 115978,
+    "hash": "56178d7629e794aef18ba2c3f9e2f4519bc6075b"
   },
   {
     "date": 20200330,
@@ -5685,7 +5712,7 @@
     "dateChecked": "2020-03-30T00:00:00Z",
     "death": 3423,
     "hospitalized": 19819,
-    "totalTestResults": 1023107,
+    "totalTestResults": 1018241,
     "lastModified": "2020-03-30T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -5693,8 +5720,8 @@
     "hospitalizedIncrease": 2536,
     "negativeIncrease": 96706,
     "positiveIncrease": 21691,
-    "totalTestResultsIncrease": 118989,
-    "hash": "6b44e101318d23fb327cb8591f4740198a2a0d83"
+    "totalTestResultsIncrease": 116095,
+    "hash": "35b947098a494aabbf01e06cdb579562bfb31ff2"
   },
   {
     "date": 20200329,
@@ -5712,7 +5739,7 @@
     "dateChecked": "2020-03-29T00:00:00Z",
     "death": 2834,
     "hospitalized": 17283,
-    "totalTestResults": 904118,
+    "totalTestResults": 902146,
     "lastModified": "2020-03-29T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -5720,8 +5747,8 @@
     "hospitalizedIncrease": 2775,
     "negativeIncrease": 66620,
     "positiveIncrease": 19570,
-    "totalTestResultsIncrease": 83868,
-    "hash": "c1c558bea33a63901ff0aba2249568215beb61f3"
+    "totalTestResultsIncrease": 85834,
+    "hash": "dd1c40f3b0845a0bfe3e8a672671ad4077f81650"
   },
   {
     "date": 20200328,
@@ -5739,7 +5766,7 @@
     "dateChecked": "2020-03-28T00:00:00Z",
     "death": 2319,
     "hospitalized": 14508,
-    "totalTestResults": 820250,
+    "totalTestResults": 816312,
     "lastModified": "2020-03-28T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -5747,8 +5774,8 @@
     "hospitalizedIncrease": 2425,
     "negativeIncrease": 88942,
     "positiveIncrease": 19586,
-    "totalTestResultsIncrease": 92176,
-    "hash": "e1973f086021e981a0da90ac6d484a7beb492276"
+    "totalTestResultsIncrease": 90581,
+    "hash": "aed98bc6a583c6088bc5e0356343b4a422cb8047"
   },
   {
     "date": 20200327,
@@ -5766,7 +5793,7 @@
     "dateChecked": "2020-03-27T00:00:00Z",
     "death": 1775,
     "hospitalized": 12083,
-    "totalTestResults": 728074,
+    "totalTestResults": 725731,
     "lastModified": "2020-03-27T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -5774,8 +5801,8 @@
     "hospitalizedIncrease": 2563,
     "negativeIncrease": 83781,
     "positiveIncrease": 19253,
-    "totalTestResultsIncrease": 107392,
-    "hash": "f197204fdae0f061a8bdc232629cb81fa1e8a00d"
+    "totalTestResultsIncrease": 108038,
+    "hash": "dd8b5e9f35e4129758941aa0838e62776f698fef"
   },
   {
     "date": 20200326,
@@ -5793,7 +5820,7 @@
     "dateChecked": "2020-03-26T00:00:00Z",
     "death": 1369,
     "hospitalized": 9520,
-    "totalTestResults": 620682,
+    "totalTestResults": 617693,
     "lastModified": "2020-03-26T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -5801,8 +5828,8 @@
     "hospitalizedIncrease": 2499,
     "negativeIncrease": 84311,
     "positiveIncrease": 17544,
-    "totalTestResultsIncrease": 110238,
-    "hash": "5235c8ed168bacf1a4a8197b52a420758e3efd72"
+    "totalTestResultsIncrease": 108276,
+    "hash": "dd9182e265aa1d878d2433db15e63d448a21e3be"
   },
   {
     "date": 20200325,
@@ -5820,7 +5847,7 @@
     "dateChecked": "2020-03-25T00:00:00Z",
     "death": 1050,
     "hospitalized": 7021,
-    "totalTestResults": 510444,
+    "totalTestResults": 509417,
     "lastModified": "2020-03-25T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -5828,8 +5855,8 @@
     "hospitalizedIncrease": 1904,
     "negativeIncrease": 71728,
     "positiveIncrease": 12921,
-    "totalTestResultsIncrease": 86380,
-    "hash": "e57031fa26ab78b60cfad36f3f251e7adb64f4db"
+    "totalTestResultsIncrease": 86731,
+    "hash": "35535904d820183890d7f91f3464e6533ed92b61"
   },
   {
     "date": 20200324,
@@ -5847,7 +5874,7 @@
     "dateChecked": "2020-03-24T00:00:00Z",
     "death": 815,
     "hospitalized": 5117,
-    "totalTestResults": 424064,
+    "totalTestResults": 422686,
     "lastModified": "2020-03-24T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -5855,8 +5882,8 @@
     "hospitalizedIncrease": 1180,
     "negativeIncrease": 58695,
     "positiveIncrease": 10704,
-    "totalTestResultsIncrease": 71271,
-    "hash": "f7610e80a0bac76596cb32989d8089dcb010f301"
+    "totalTestResultsIncrease": 70701,
+    "hash": "955afb65b0df93ef6823c839c422c09bbd2e3070"
   },
   {
     "date": 20200323,
@@ -5874,7 +5901,7 @@
     "dateChecked": "2020-03-23T00:00:00Z",
     "death": 581,
     "hospitalized": 3937,
-    "totalTestResults": 352793,
+    "totalTestResults": 351985,
     "lastModified": "2020-03-23T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -5882,8 +5909,8 @@
     "hospitalizedIncrease": 914,
     "negativeIncrease": 46894,
     "positiveIncrease": 11396,
-    "totalTestResultsIncrease": 59646,
-    "hash": "ec5cd42d981fc3aa6af011150c4f8426e63d6cca"
+    "totalTestResultsIncrease": 59072,
+    "hash": "83a0405f3eebbe0ad14c7b3dcc14cbebc6937583"
   },
   {
     "date": 20200322,
@@ -5901,7 +5928,7 @@
     "dateChecked": "2020-03-22T00:00:00Z",
     "death": 480,
     "hospitalized": 3023,
-    "totalTestResults": 293147,
+    "totalTestResults": 292913,
     "lastModified": "2020-03-22T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -5909,8 +5936,8 @@
     "hospitalizedIncrease": 1003,
     "negativeIncrease": 36456,
     "positiveIncrease": 9156,
-    "totalTestResultsIncrease": 49063,
-    "hash": "982f2e4200d5cbc43d9d72b9580994d306099d6e"
+    "totalTestResultsIncrease": 49744,
+    "hash": "578b09208434fc50bc8a0298932a2455d5912415"
   },
   {
     "date": 20200321,
@@ -5928,7 +5955,7 @@
     "dateChecked": "2020-03-21T00:00:00Z",
     "death": 334,
     "hospitalized": 2020,
-    "totalTestResults": 244084,
+    "totalTestResults": 243169,
     "lastModified": "2020-03-21T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -5936,8 +5963,8 @@
     "hospitalizedIncrease": 1912,
     "negativeIncrease": 38628,
     "positiveIncrease": 6797,
-    "totalTestResultsIncrease": 50664,
-    "hash": "48cb8a48bda122c6e3a5dc52ffbdce7165adff4a"
+    "totalTestResultsIncrease": 47232,
+    "hash": "f95684d506e88dff7a3caa7a8bebb4552a060636"
   },
   {
     "date": 20200320,
@@ -5955,7 +5982,7 @@
     "dateChecked": "2020-03-20T00:00:00Z",
     "death": 272,
     "hospitalized": 108,
-    "totalTestResults": 193420,
+    "totalTestResults": 195937,
     "lastModified": "2020-03-20T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -5963,8 +5990,8 @@
     "hospitalizedIncrease": 23,
     "negativeIncrease": 30568,
     "positiveIncrease": 6093,
-    "totalTestResultsIncrease": 41923,
-    "hash": "5a219eb8726524da66b0438f5ca82ef0749a7e77"
+    "totalTestResultsIncrease": 42612,
+    "hash": "b516731227cf3c304296315d5251b96f07a32e1e"
   },
   {
     "date": 20200319,
@@ -5982,7 +6009,7 @@
     "dateChecked": "2020-03-19T00:00:00Z",
     "death": 203,
     "hospitalized": 85,
-    "totalTestResults": 151497,
+    "totalTestResults": 153325,
     "lastModified": "2020-03-19T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -5990,8 +6017,8 @@
     "hospitalizedIncrease": 18,
     "negativeIncrease": 23323,
     "positiveIncrease": 4674,
-    "totalTestResultsIncrease": 31729,
-    "hash": "40ae3207ada29ba87e82e2491faa329b60c83d18"
+    "totalTestResultsIncrease": 32377,
+    "hash": "e395fbfdd752f31aed32905317bb3541781b9f03"
   },
   {
     "date": 20200318,
@@ -6009,7 +6036,7 @@
     "dateChecked": "2020-03-18T00:00:00Z",
     "death": 155,
     "hospitalized": 67,
-    "totalTestResults": 119768,
+    "totalTestResults": 120948,
     "lastModified": "2020-03-18T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -6017,8 +6044,8 @@
     "hospitalizedIncrease": 12,
     "negativeIncrease": 22068,
     "positiveIncrease": 3023,
-    "totalTestResultsIncrease": 28943,
-    "hash": "7f57a0434d4d841920c6856c2c9568d91116ecc1"
+    "totalTestResultsIncrease": 29300,
+    "hash": "0fdeb610b1681fb2cbc61ded8d24cd39194370a5"
   },
   {
     "date": 20200317,
@@ -6036,7 +6063,7 @@
     "dateChecked": "2020-03-17T00:00:00Z",
     "death": 123,
     "hospitalized": 55,
-    "totalTestResults": 90825,
+    "totalTestResults": 91648,
     "lastModified": "2020-03-17T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -6044,8 +6071,8 @@
     "hospitalizedIncrease": 13,
     "negativeIncrease": 13945,
     "positiveIncrease": 2570,
-    "totalTestResultsIncrease": 19255,
-    "hash": "73fb85038b322269767331389e6aa59ba373050e"
+    "totalTestResultsIncrease": 19563,
+    "hash": "185ce2e9c4f1ace293494846bf7dd4325c7971db"
   },
   {
     "date": 20200316,
@@ -6063,7 +6090,7 @@
     "dateChecked": "2020-03-16T00:00:00Z",
     "death": 100,
     "hospitalized": 42,
-    "totalTestResults": 71570,
+    "totalTestResults": 72085,
     "lastModified": "2020-03-16T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -6071,8 +6098,8 @@
     "hospitalizedIncrease": 6,
     "negativeIncrease": 16525,
     "positiveIncrease": 1754,
-    "totalTestResultsIncrease": 20445,
-    "hash": "b24c498ae3435da955cf885021676d31661c7ffd"
+    "totalTestResultsIncrease": 20589,
+    "hash": "9c8ceaeee2370bbd59c98d49fdf6a54de1202a92"
   },
   {
     "date": 20200315,
@@ -6090,7 +6117,7 @@
     "dateChecked": "2020-03-15T00:00:00Z",
     "death": 79,
     "hospitalized": 36,
-    "totalTestResults": 51125,
+    "totalTestResults": 51496,
     "lastModified": "2020-03-15T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -6098,8 +6125,8 @@
     "hospitalizedIncrease": 10,
     "negativeIncrease": 6553,
     "positiveIncrease": 1292,
-    "totalTestResultsIncrease": 8623,
-    "hash": "16e50f4c76ca34825998a0c1b0b05466d4eda59b"
+    "totalTestResultsIncrease": 8819,
+    "hash": "113b994d4e83cea31576d39dad55b3e0c006acce"
   },
   {
     "date": 20200314,
@@ -6117,7 +6144,7 @@
     "dateChecked": "2020-03-14T00:00:00Z",
     "death": 64,
     "hospitalized": 26,
-    "totalTestResults": 42502,
+    "totalTestResults": 42677,
     "lastModified": "2020-03-14T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -6125,8 +6152,8 @@
     "hospitalizedIncrease": 4,
     "negativeIncrease": 3852,
     "positiveIncrease": 917,
-    "totalTestResultsIncrease": 5968,
-    "hash": "38a944714c5fb4b202dd2c4f72dc0605797d7506"
+    "totalTestResultsIncrease": 6147,
+    "hash": "e64470c51cb4e3739401a378020e1a5691c2ab08"
   },
   {
     "date": 20200313,
@@ -6144,7 +6171,7 @@
     "dateChecked": "2020-03-13T00:00:00Z",
     "death": 55,
     "hospitalized": 22,
-    "totalTestResults": 36534,
+    "totalTestResults": 36530,
     "lastModified": "2020-03-13T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -6152,8 +6179,8 @@
     "hospitalizedIncrease": 6,
     "negativeIncrease": 8318,
     "positiveIncrease": 1059,
-    "totalTestResultsIncrease": 10536,
-    "hash": "4e62527e1ece113748ac19b7abf044050daa3e8c"
+    "totalTestResultsIncrease": 10472,
+    "hash": "a8461d7bbadb9d807b2e95db24a7d29728a7cf12"
   },
   {
     "date": 20200312,
@@ -6171,7 +6198,7 @@
     "dateChecked": "2020-03-12T00:00:00Z",
     "death": 51,
     "hospitalized": 16,
-    "totalTestResults": 25998,
+    "totalTestResults": 26058,
     "lastModified": "2020-03-12T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -6179,8 +6206,8 @@
     "hospitalizedIncrease": 5,
     "negativeIncrease": 4750,
     "positiveIncrease": 673,
-    "totalTestResultsIncrease": 5787,
-    "hash": "629d75341737dc987b198b901cf3ea290a527a3e"
+    "totalTestResultsIncrease": 5834,
+    "hash": "a347faca00e83b5c795bdbe70651a3aa22564797"
   },
   {
     "date": 20200311,
@@ -6198,7 +6225,7 @@
     "dateChecked": "2020-03-11T00:00:00Z",
     "death": 43,
     "hospitalized": 11,
-    "totalTestResults": 20211,
+    "totalTestResults": 20224,
     "lastModified": "2020-03-11T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -6206,8 +6233,8 @@
     "hospitalizedIncrease": 3,
     "negativeIncrease": 3421,
     "positiveIncrease": 502,
-    "totalTestResultsIncrease": 4079,
-    "hash": "0ad749fe9aa5a41a35e60b4bec0548122c064541"
+    "totalTestResultsIncrease": 4069,
+    "hash": "b2afd9fd0feaaf1f19080304d95c6e9bac35a393"
   },
   {
     "date": 20200310,
@@ -6225,7 +6252,7 @@
     "dateChecked": "2020-03-10T00:00:00Z",
     "death": 37,
     "hospitalized": 8,
-    "totalTestResults": 16132,
+    "totalTestResults": 16155,
     "lastModified": "2020-03-10T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -6233,8 +6260,8 @@
     "hospitalizedIncrease": 0,
     "negativeIncrease": 2184,
     "positiveIncrease": 391,
-    "totalTestResultsIncrease": 2669,
-    "hash": "4e8969c5a79584aa52038beb7b464f45cba56abb"
+    "totalTestResultsIncrease": 2666,
+    "hash": "de76f40dfecb36f8aba3110cd2e9ad0106071cbf"
   },
   {
     "date": 20200309,
@@ -6252,7 +6279,7 @@
     "dateChecked": "2020-03-09T00:00:00Z",
     "death": 35,
     "hospitalized": 8,
-    "totalTestResults": 13463,
+    "totalTestResults": 13489,
     "lastModified": "2020-03-09T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -6260,8 +6287,8 @@
     "hospitalizedIncrease": 2,
     "negativeIncrease": 1534,
     "positiveIncrease": 292,
-    "totalTestResultsIncrease": 1886,
-    "hash": "2abd76fd2dcce8f522920d2851a1c4a099bc81a9"
+    "totalTestResultsIncrease": 1899,
+    "hash": "64c59bc0d1947dd1feb3507a97bc85960b8b5b54"
   },
   {
     "date": 20200308,
@@ -6279,7 +6306,7 @@
     "dateChecked": "2020-03-08T00:00:00Z",
     "death": 31,
     "hospitalized": 6,
-    "totalTestResults": 11577,
+    "totalTestResults": 11590,
     "lastModified": "2020-03-08T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -6287,8 +6314,8 @@
     "hospitalizedIncrease": 0,
     "negativeIncrease": 716,
     "positiveIncrease": 199,
-    "totalTestResultsIncrease": 939,
-    "hash": "a12399e2f9b45b3a1ab944abb2bd78b86fcc2222"
+    "totalTestResultsIncrease": 944,
+    "hash": "59c7232abbe1bb97c748bb4513ffbb300b4c49f9"
   },
   {
     "date": 20200307,
@@ -6306,7 +6333,7 @@
     "dateChecked": "2020-03-07T00:00:00Z",
     "death": 27,
     "hospitalized": 6,
-    "totalTestResults": 10638,
+    "totalTestResults": 10646,
     "lastModified": "2020-03-07T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -6314,8 +6341,8 @@
     "hospitalizedIncrease": 0,
     "negativeIncrease": 661,
     "positiveIncrease": 173,
-    "totalTestResultsIncrease": 929,
-    "hash": "1788e9d77e16e8bd900d6bcb7f8612d853a75efc"
+    "totalTestResultsIncrease": 932,
+    "hash": "3119cb8c940669f399fbe65ec2cab55f2d1d592a"
   },
   {
     "date": 20200306,
@@ -6333,7 +6360,7 @@
     "dateChecked": "2020-03-06T00:00:00Z",
     "death": 26,
     "hospitalized": 6,
-    "totalTestResults": 9709,
+    "totalTestResults": 9714,
     "lastModified": "2020-03-06T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -6341,8 +6368,8 @@
     "hospitalizedIncrease": 1,
     "negativeIncrease": 723,
     "positiveIncrease": 113,
-    "totalTestResultsIncrease": 867,
-    "hash": "39cad4a8f3e1487dc8a3d6de6ce8da9f5617c54e"
+    "totalTestResultsIncrease": 869,
+    "hash": "9343a64681bc9f3f8f4dd7d4c4a6dbc91af13210"
   },
   {
     "date": 20200305,
@@ -6360,7 +6387,7 @@
     "dateChecked": "2020-03-05T00:00:00Z",
     "death": 20,
     "hospitalized": 5,
-    "totalTestResults": 8842,
+    "totalTestResults": 8845,
     "lastModified": "2020-03-05T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -6368,8 +6395,8 @@
     "hospitalizedIncrease": 1,
     "negativeIncrease": 532,
     "positiveIncrease": 104,
-    "totalTestResultsIncrease": 627,
-    "hash": "406a8bdefa3b6acfc576c59fee8fb36314bcb5ac"
+    "totalTestResultsIncrease": 635,
+    "hash": "8e4284fbca8a6b980e861c9334fd3834d536bc6b"
   },
   {
     "date": 20200304,
@@ -6387,7 +6414,7 @@
     "dateChecked": "2020-03-04T00:00:00Z",
     "death": 16,
     "hospitalized": 4,
-    "totalTestResults": 8215,
+    "totalTestResults": 8210,
     "lastModified": "2020-03-04T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -6395,8 +6422,8 @@
     "hospitalizedIncrease": 4,
     "negativeIncrease": 971,
     "positiveIncrease": 138,
-    "totalTestResultsIncrease": 1124,
-    "hash": "f62c2e29455500d156358cce70347dac99c301af"
+    "totalTestResultsIncrease": 1102,
+    "hash": "7d6b323e82afd66294dae6ce0ab852476ef7f6b9"
   },
   {
     "date": 20200303,
@@ -6414,7 +6441,7 @@
     "dateChecked": "2020-03-03T00:00:00Z",
     "death": 14,
     "hospitalized": null,
-    "totalTestResults": 7091,
+    "totalTestResults": 7108,
     "lastModified": "2020-03-03T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -6422,8 +6449,8 @@
     "hospitalizedIncrease": 0,
     "negativeIncrease": 203,
     "positiveIncrease": 50,
-    "totalTestResultsIncrease": 270,
-    "hash": "026cce2f7b274807347157e92d7a073a0617b5ac"
+    "totalTestResultsIncrease": 272,
+    "hash": "bbe26575a6dfcf49ee318d485ba2b91ca576161e"
   },
   {
     "date": 20200302,
@@ -6441,7 +6468,7 @@
     "dateChecked": "2020-03-02T00:00:00Z",
     "death": 11,
     "hospitalized": null,
-    "totalTestResults": 6821,
+    "totalTestResults": 6836,
     "lastModified": "2020-03-02T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -6450,7 +6477,7 @@
     "negativeIncrease": 158,
     "positiveIncrease": 44,
     "totalTestResultsIncrease": 212,
-    "hash": "1253eb30478a3931e64a43f0fdfc581d8e2a51a1"
+    "hash": "02038257cfb2e8f1d9b781f0d1d39410c003306e"
   },
   {
     "date": 20200301,
@@ -6468,7 +6495,7 @@
     "dateChecked": "2020-03-01T00:00:00Z",
     "death": 8,
     "hospitalized": null,
-    "totalTestResults": 6609,
+    "totalTestResults": 6624,
     "lastModified": "2020-03-01T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -6477,7 +6504,7 @@
     "negativeIncrease": 61,
     "positiveIncrease": 32,
     "totalTestResultsIncrease": 97,
-    "hash": "82f023b962f241b23a1e72c7f25417bae3804913"
+    "hash": "e7981fdeaf89b0e84a5d81313dc08892b822bc10"
   },
   {
     "date": 20200229,
@@ -6495,7 +6522,7 @@
     "dateChecked": "2020-02-29T00:00:00Z",
     "death": 5,
     "hospitalized": null,
-    "totalTestResults": 6512,
+    "totalTestResults": 6527,
     "lastModified": "2020-02-29T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -6504,7 +6531,7 @@
     "negativeIncrease": 24,
     "positiveIncrease": 18,
     "totalTestResultsIncrease": 47,
-    "hash": "e3dbb3b0eda6c3c4c226a7a477975fdbfa8b85bf"
+    "hash": "3ed8315a7b15d686a2814795254b135b8431d595"
   },
   {
     "date": 20200228,
@@ -6522,7 +6549,7 @@
     "dateChecked": "2020-02-28T00:00:00Z",
     "death": 4,
     "hospitalized": null,
-    "totalTestResults": 6465,
+    "totalTestResults": 6480,
     "lastModified": "2020-02-28T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -6531,7 +6558,7 @@
     "negativeIncrease": 0,
     "positiveIncrease": 0,
     "totalTestResultsIncrease": 3,
-    "hash": "ed35fa0cba7db943df6d33c1c6ebfd7ac13a5db9"
+    "hash": "5c9dc18453e360c146bcb764b6d4fa04118b73fa"
   },
   {
     "date": 20200227,
@@ -6549,7 +6576,7 @@
     "dateChecked": "2020-02-27T00:00:00Z",
     "death": 2,
     "hospitalized": null,
-    "totalTestResults": 6462,
+    "totalTestResults": 6477,
     "lastModified": "2020-02-27T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -6558,7 +6585,7 @@
     "negativeIncrease": 0,
     "positiveIncrease": 0,
     "totalTestResultsIncrease": 6446,
-    "hash": "7bab7f4c09a4dcb1043578eff6e6d2c357becc15"
+    "hash": "9392d4da0cace84f366eddd9b0bbe451a2e913da"
   },
   {
     "date": 20200226,
@@ -6576,7 +6603,7 @@
     "dateChecked": "2020-02-26T00:00:00Z",
     "death": 2,
     "hospitalized": null,
-    "totalTestResults": 16,
+    "totalTestResults": 31,
     "lastModified": "2020-02-26T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -6585,7 +6612,7 @@
     "negativeIncrease": 0,
     "positiveIncrease": 0,
     "totalTestResultsIncrease": 0,
-    "hash": "25f0fe5f018cdbcb3346f4ccfd4ff5cc0dc07b8f"
+    "hash": "e3fc78eba43599b141b73226ade89a7f0ff0f848"
   },
   {
     "date": 20200225,
@@ -6603,7 +6630,7 @@
     "dateChecked": "2020-02-25T00:00:00Z",
     "death": 0,
     "hospitalized": null,
-    "totalTestResults": 16,
+    "totalTestResults": 31,
     "lastModified": "2020-02-25T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -6611,8 +6638,8 @@
     "hospitalizedIncrease": 0,
     "negativeIncrease": 0,
     "positiveIncrease": 0,
-    "totalTestResultsIncrease": 0,
-    "hash": "2111e94afc823b376ea84511bccdaecb48f1e13b"
+    "totalTestResultsIncrease": 1,
+    "hash": "ebfb489ac32bf1b3b18b7348142085df939c9f00"
   },
   {
     "date": 20200224,
@@ -6630,7 +6657,7 @@
     "dateChecked": "2020-02-24T00:00:00Z",
     "death": 0,
     "hospitalized": null,
-    "totalTestResults": 16,
+    "totalTestResults": 30,
     "lastModified": "2020-02-24T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -6639,7 +6666,7 @@
     "negativeIncrease": 0,
     "positiveIncrease": 0,
     "totalTestResultsIncrease": 2,
-    "hash": "aec683b118995177a8212fc993de3111114700cb"
+    "hash": "6a62d4cea55a649cf96aa33861ff4573a3bcaea0"
   },
   {
     "date": 20200223,
@@ -6657,7 +6684,7 @@
     "dateChecked": "2020-02-23T00:00:00Z",
     "death": 0,
     "hospitalized": null,
-    "totalTestResults": 14,
+    "totalTestResults": 28,
     "lastModified": "2020-02-23T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -6666,7 +6693,7 @@
     "negativeIncrease": 0,
     "positiveIncrease": 0,
     "totalTestResultsIncrease": 0,
-    "hash": "0b7b1487797432dc11446fd43714e252e53b1025"
+    "hash": "5b5afb5db76f99dace317b117f8a3b235d3fe537"
   },
   {
     "date": 20200222,
@@ -6684,7 +6711,7 @@
     "dateChecked": "2020-02-22T00:00:00Z",
     "death": 0,
     "hospitalized": null,
-    "totalTestResults": 14,
+    "totalTestResults": 28,
     "lastModified": "2020-02-22T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -6692,8 +6719,8 @@
     "hospitalizedIncrease": 0,
     "negativeIncrease": 0,
     "positiveIncrease": 0,
-    "totalTestResultsIncrease": 0,
-    "hash": "2ffe4f64fdf6cf774498256f6f9a593eca1ec452"
+    "totalTestResultsIncrease": 1,
+    "hash": "5738cd2cb57876737892c5840d701f6fa8d1d2d4"
   },
   {
     "date": 20200221,
@@ -6711,7 +6738,7 @@
     "dateChecked": "2020-02-21T00:00:00Z",
     "death": 0,
     "hospitalized": null,
-    "totalTestResults": 14,
+    "totalTestResults": 27,
     "lastModified": "2020-02-21T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -6720,7 +6747,7 @@
     "negativeIncrease": 0,
     "positiveIncrease": 0,
     "totalTestResultsIncrease": 0,
-    "hash": "9866dbe46165743ecb0b3a1ea4e4fad213720fa2"
+    "hash": "b433a8616049bd5d9e1ec5c2f5e06d9be54c208d"
   },
   {
     "date": 20200220,
@@ -6738,7 +6765,7 @@
     "dateChecked": "2020-02-20T00:00:00Z",
     "death": 0,
     "hospitalized": null,
-    "totalTestResults": 14,
+    "totalTestResults": 27,
     "lastModified": "2020-02-20T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -6747,7 +6774,7 @@
     "negativeIncrease": 0,
     "positiveIncrease": 0,
     "totalTestResultsIncrease": 1,
-    "hash": "a501225be6e3d41d76c4cc109b755a144d0b88e2"
+    "hash": "fd7b1bef986becaf5afe27357d06dbd255abae60"
   },
   {
     "date": 20200219,
@@ -6765,7 +6792,7 @@
     "dateChecked": "2020-02-19T00:00:00Z",
     "death": 0,
     "hospitalized": null,
-    "totalTestResults": 13,
+    "totalTestResults": 26,
     "lastModified": "2020-02-19T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -6774,7 +6801,7 @@
     "negativeIncrease": 0,
     "positiveIncrease": 0,
     "totalTestResultsIncrease": 0,
-    "hash": "26a975cac664f405fe3c925e136910244cbe95bc"
+    "hash": "be38ea8f03a8023f3e38684b98bf139e3172aa55"
   },
   {
     "date": 20200218,
@@ -6792,7 +6819,7 @@
     "dateChecked": "2020-02-18T00:00:00Z",
     "death": 0,
     "hospitalized": null,
-    "totalTestResults": 13,
+    "totalTestResults": 26,
     "lastModified": "2020-02-18T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -6801,7 +6828,7 @@
     "negativeIncrease": 0,
     "positiveIncrease": 0,
     "totalTestResultsIncrease": 0,
-    "hash": "aa7601c185865194eabe8584fa11d27bdb8763ee"
+    "hash": "e2c780d46583dbd1ab8cb66f1fde37743053104d"
   },
   {
     "date": 20200217,
@@ -6819,7 +6846,7 @@
     "dateChecked": "2020-02-17T00:00:00Z",
     "death": 0,
     "hospitalized": null,
-    "totalTestResults": 13,
+    "totalTestResults": 26,
     "lastModified": "2020-02-17T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -6827,8 +6854,8 @@
     "hospitalizedIncrease": 0,
     "negativeIncrease": 0,
     "positiveIncrease": 0,
-    "totalTestResultsIncrease": 0,
-    "hash": "e969129686dd4be4fe5256b2cb211a002a5af37e"
+    "totalTestResultsIncrease": 1,
+    "hash": "a6088e425c2d788c6f2de41ed913f94c1ada756f"
   },
   {
     "date": 20200216,
@@ -6846,7 +6873,7 @@
     "dateChecked": "2020-02-16T00:00:00Z",
     "death": 0,
     "hospitalized": null,
-    "totalTestResults": 13,
+    "totalTestResults": 25,
     "lastModified": "2020-02-16T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -6855,7 +6882,7 @@
     "negativeIncrease": 0,
     "positiveIncrease": 0,
     "totalTestResultsIncrease": 0,
-    "hash": "fcbb093f3485f48e68b51bc87a3a7c84ae06f657"
+    "hash": "615f11719d7a0a66cfa527f38c12184e6708761b"
   },
   {
     "date": 20200215,
@@ -6873,7 +6900,7 @@
     "dateChecked": "2020-02-15T00:00:00Z",
     "death": 0,
     "hospitalized": null,
-    "totalTestResults": 13,
+    "totalTestResults": 25,
     "lastModified": "2020-02-15T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -6881,8 +6908,8 @@
     "hospitalizedIncrease": 0,
     "negativeIncrease": 0,
     "positiveIncrease": 0,
-    "totalTestResultsIncrease": 0,
-    "hash": "5cefb858fec31681cf5d17da0afb563665108841"
+    "totalTestResultsIncrease": 3,
+    "hash": "4211a2ca0531578615f0d1cb625dbbbefaacfced"
   },
   {
     "date": 20200214,
@@ -6900,7 +6927,7 @@
     "dateChecked": "2020-02-14T00:00:00Z",
     "death": 0,
     "hospitalized": null,
-    "totalTestResults": 13,
+    "totalTestResults": 22,
     "lastModified": "2020-02-14T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -6909,7 +6936,7 @@
     "negativeIncrease": 0,
     "positiveIncrease": 0,
     "totalTestResultsIncrease": 0,
-    "hash": "d45579f5ca89c7f3ac274e58aa0d10375f293be1"
+    "hash": "4646475e178bbb7b4441cc6fc648569ef93932d3"
   },
   {
     "date": 20200213,
@@ -6927,7 +6954,7 @@
     "dateChecked": "2020-02-13T00:00:00Z",
     "death": 0,
     "hospitalized": null,
-    "totalTestResults": 13,
+    "totalTestResults": 22,
     "lastModified": "2020-02-13T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -6935,8 +6962,8 @@
     "hospitalizedIncrease": 0,
     "negativeIncrease": 0,
     "positiveIncrease": 0,
-    "totalTestResultsIncrease": 0,
-    "hash": "a3e94798a85a0e7f16a4c585c751de3f66a2284f"
+    "totalTestResultsIncrease": 1,
+    "hash": "c43c66b310d38808f5350d5ca975fcde1b20fef1"
   },
   {
     "date": 20200212,
@@ -6954,7 +6981,7 @@
     "dateChecked": "2020-02-12T00:00:00Z",
     "death": 0,
     "hospitalized": null,
-    "totalTestResults": 13,
+    "totalTestResults": 21,
     "lastModified": "2020-02-12T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -6963,7 +6990,7 @@
     "negativeIncrease": 0,
     "positiveIncrease": 0,
     "totalTestResultsIncrease": 1,
-    "hash": "4de3f8bab5d33fcdb24c177f93b96a87ca943152"
+    "hash": "41c3abae1ad0f3b394c71ef64296cceafc5893d8"
   },
   {
     "date": 20200211,
@@ -6981,7 +7008,7 @@
     "dateChecked": "2020-02-11T00:00:00Z",
     "death": 0,
     "hospitalized": null,
-    "totalTestResults": 12,
+    "totalTestResults": 20,
     "lastModified": "2020-02-11T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -6989,8 +7016,8 @@
     "hospitalizedIncrease": 0,
     "negativeIncrease": 0,
     "positiveIncrease": 0,
-    "totalTestResultsIncrease": 0,
-    "hash": "0e84b282c20f07df90471c522093ed797b66c9d4"
+    "totalTestResultsIncrease": 1,
+    "hash": "53466fdb5c8301d3545af79311362a2083d7ed21"
   },
   {
     "date": 20200210,
@@ -7008,7 +7035,7 @@
     "dateChecked": "2020-02-10T00:00:00Z",
     "death": 0,
     "hospitalized": null,
-    "totalTestResults": 12,
+    "totalTestResults": 19,
     "lastModified": "2020-02-10T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -7017,7 +7044,7 @@
     "negativeIncrease": 0,
     "positiveIncrease": 0,
     "totalTestResultsIncrease": 1,
-    "hash": "16a749d6028b8f498a5fbe310066623173dd0890"
+    "hash": "e4bf2186112756b6ba5da95335adb448f5c57e8e"
   },
   {
     "date": 20200209,
@@ -7035,7 +7062,7 @@
     "dateChecked": "2020-02-09T00:00:00Z",
     "death": null,
     "hospitalized": null,
-    "totalTestResults": 11,
+    "totalTestResults": 18,
     "lastModified": "2020-02-09T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -7044,7 +7071,7 @@
     "negativeIncrease": 0,
     "positiveIncrease": 0,
     "totalTestResultsIncrease": 0,
-    "hash": "a59c50b34043431d0b86e93cb112247610b60a11"
+    "hash": "16e9a282cb406291be05d158bcab35c1182cb288"
   },
   {
     "date": 20200208,
@@ -7062,7 +7089,7 @@
     "dateChecked": "2020-02-08T00:00:00Z",
     "death": null,
     "hospitalized": null,
-    "totalTestResults": 11,
+    "totalTestResults": 18,
     "lastModified": "2020-02-08T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -7070,8 +7097,8 @@
     "hospitalizedIncrease": 0,
     "negativeIncrease": 0,
     "positiveIncrease": 0,
-    "totalTestResultsIncrease": 1,
-    "hash": "5b12167d3828a77caf106a4b7fd67b4b7ded50ac"
+    "totalTestResultsIncrease": 2,
+    "hash": "0a6f14a40f13009a8acaa7e68d6fe117b52d3cd2"
   },
   {
     "date": 20200207,
@@ -7089,7 +7116,7 @@
     "dateChecked": "2020-02-07T00:00:00Z",
     "death": null,
     "hospitalized": null,
-    "totalTestResults": 10,
+    "totalTestResults": 16,
     "lastModified": "2020-02-07T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -7098,7 +7125,7 @@
     "negativeIncrease": 0,
     "positiveIncrease": 0,
     "totalTestResultsIncrease": 0,
-    "hash": "ac05691c3c1fbb7cb883321c0e2820a706e99049"
+    "hash": "a08366148e74cadeead0614f5f8bd26cc06f4551"
   },
   {
     "date": 20200206,
@@ -7116,7 +7143,7 @@
     "dateChecked": "2020-02-06T00:00:00Z",
     "death": null,
     "hospitalized": null,
-    "totalTestResults": 10,
+    "totalTestResults": 16,
     "lastModified": "2020-02-06T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -7125,7 +7152,7 @@
     "negativeIncrease": 0,
     "positiveIncrease": 0,
     "totalTestResultsIncrease": 1,
-    "hash": "56deae7441000c440b47ee8fcee42c9a9c571f3c"
+    "hash": "529e791d1b7eda09e994275acf34602ceff633e3"
   },
   {
     "date": 20200205,
@@ -7143,7 +7170,7 @@
     "dateChecked": "2020-02-05T00:00:00Z",
     "death": null,
     "hospitalized": null,
-    "totalTestResults": 9,
+    "totalTestResults": 15,
     "lastModified": "2020-02-05T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -7152,7 +7179,7 @@
     "negativeIncrease": 0,
     "positiveIncrease": 0,
     "totalTestResultsIncrease": 0,
-    "hash": "814a4b83aed8488260e64bbd8bc74aa8d7824fdf"
+    "hash": "ec596a2af9fccbbb2df05d9f9208e1523b0fa81f"
   },
   {
     "date": 20200204,
@@ -7170,7 +7197,7 @@
     "dateChecked": "2020-02-04T00:00:00Z",
     "death": null,
     "hospitalized": null,
-    "totalTestResults": 9,
+    "totalTestResults": 15,
     "lastModified": "2020-02-04T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -7178,8 +7205,8 @@
     "hospitalizedIncrease": 0,
     "negativeIncrease": 0,
     "positiveIncrease": 0,
-    "totalTestResultsIncrease": 2,
-    "hash": "508473806123293fef09cbc20fcc9186aaec18f1"
+    "totalTestResultsIncrease": 4,
+    "hash": "d025f376adf208435e9e406bb0a604a31ad8dd36"
   },
   {
     "date": 20200203,
@@ -7197,7 +7224,7 @@
     "dateChecked": "2020-02-03T00:00:00Z",
     "death": null,
     "hospitalized": null,
-    "totalTestResults": 7,
+    "totalTestResults": 11,
     "lastModified": "2020-02-03T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -7206,7 +7233,7 @@
     "negativeIncrease": 0,
     "positiveIncrease": 0,
     "totalTestResultsIncrease": 3,
-    "hash": "8fa9647d358c5c96178cb6c1db512e565e36d7da"
+    "hash": "253f6a97f6f999fe5c0094e07390aa32325b1d81"
   },
   {
     "date": 20200202,
@@ -7224,7 +7251,7 @@
     "dateChecked": "2020-02-02T00:00:00Z",
     "death": null,
     "hospitalized": null,
-    "totalTestResults": 4,
+    "totalTestResults": 8,
     "lastModified": "2020-02-02T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -7233,7 +7260,7 @@
     "negativeIncrease": 0,
     "positiveIncrease": 0,
     "totalTestResultsIncrease": 0,
-    "hash": "b4b26b9240dbd7515dae2fe2fa25ec7059494fd7"
+    "hash": "7bed7cfdfe2a16f17204db68ddedd254ed96048e"
   },
   {
     "date": 20200201,
@@ -7251,7 +7278,7 @@
     "dateChecked": "2020-02-01T00:00:00Z",
     "death": null,
     "hospitalized": null,
-    "totalTestResults": 4,
+    "totalTestResults": 8,
     "lastModified": "2020-02-01T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -7260,7 +7287,7 @@
     "negativeIncrease": 0,
     "positiveIncrease": 0,
     "totalTestResultsIncrease": 0,
-    "hash": "56381fbed6fb1f2af9b3d3714cb4d9356859be3e"
+    "hash": "6af5e48298780ed37ace496d2d8ab0ddfcada7c3"
   },
   {
     "date": 20200131,
@@ -7278,7 +7305,7 @@
     "dateChecked": "2020-01-31T00:00:00Z",
     "death": null,
     "hospitalized": null,
-    "totalTestResults": 4,
+    "totalTestResults": 8,
     "lastModified": "2020-01-31T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -7286,8 +7313,8 @@
     "hospitalizedIncrease": 0,
     "negativeIncrease": 0,
     "positiveIncrease": 0,
-    "totalTestResultsIncrease": 0,
-    "hash": "e403baf0d58e7aafd3c5b2f527a341e80abe8e11"
+    "totalTestResultsIncrease": 3,
+    "hash": "0db01b4c7514328114e7f612c083ce6e0aee0617"
   },
   {
     "date": 20200130,
@@ -7305,7 +7332,7 @@
     "dateChecked": "2020-01-30T00:00:00Z",
     "death": null,
     "hospitalized": null,
-    "totalTestResults": 4,
+    "totalTestResults": 5,
     "lastModified": "2020-01-30T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -7314,7 +7341,7 @@
     "negativeIncrease": 0,
     "positiveIncrease": 0,
     "totalTestResultsIncrease": 0,
-    "hash": "9c3c831ccddc216b86efc01f37e1afd2754b79bd"
+    "hash": "7899be09b729191a8f25e474513886ab5516f749"
   },
   {
     "date": 20200129,
@@ -7332,7 +7359,7 @@
     "dateChecked": "2020-01-29T00:00:00Z",
     "death": null,
     "hospitalized": null,
-    "totalTestResults": 4,
+    "totalTestResults": 5,
     "lastModified": "2020-01-29T00:00:00Z",
     "total": 0,
     "posNeg": 0,
@@ -7340,8 +7367,8 @@
     "hospitalizedIncrease": 0,
     "negativeIncrease": 0,
     "positiveIncrease": 0,
-    "totalTestResultsIncrease": 1,
-    "hash": "2a47a6e6b4953337dcec27ca4c61b4cc545874e7"
+    "totalTestResultsIncrease": 2,
+    "hash": "36c925aa5803cd51afe912eb2e1f01e41bacfadc"
   },
   {
     "date": 20200128,
