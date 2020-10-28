@@ -46,7 +46,7 @@ const ColorScale = {
     .domain([1000, 10000, 1000000])
     .range([NO_DATA_COLOR, "#f44336", "#2f0707"]),
   confirmedPerMillion: logColors()
-    .domain([10, 1000, 10000])
+    .domain([1000, 20000, 40000])
     .range([NO_DATA_COLOR, "#f44336", "#2f0707"]),
   confirmedNew: logColors()
     .domain([1, 200, 2000])
