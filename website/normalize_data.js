@@ -48,6 +48,12 @@ AllData.Summary = {};
 // --------------------------------------------------------------
 
 function getStateNode(state_fips) {
+  /*
+  console.log("getStateNote " + state_fips);
+  if (!AllData[state_fips]) {
+    return {};
+  }
+  */
   return AllData[state_fips];
 }
 
@@ -1092,10 +1098,52 @@ function addCACountyStatus() {
   }
 }
 
+
+async function processVaccineData() {
+
+  function properNumber(n) {
+    if (n === '' || !n) {
+      return 0;
+    }
+    return n.parseInt();
+  }
+
+  const vaccineDataCSV = '../vaccine-module/data_tables/vaccine_data/raw_data/vaccine_data_us_state_timeline.csv';
+  const json = await csv().fromFile(vaccineDataCSV);
+
+  for (let entry of json) {
+    let state_fips = CountyInfo.getFipsFromStateShortName(entry.stabbr);
+
+    let stateNode = getStateNode[state_fips];
+    console.log(stateNode);
+    /*
+    if (stateNode) {
+
+      let doses_admin_total = stateNode["doses_admin_total"] ? stateNode["doses_admin_total"] : {};
+      doses_admin_total[entry.date] = properNumber(entry.doses_admin_total);
+
+      let doses_alloc_total = stateNode["doses_alloc_total"] ? stateNode["doses_alloc_total"] : {};
+      doses_alloc_total[entry.date] = properNumber(entry.doses_alloc_total);
+
+      let doses_shipped_total = stateNode["doses_shipped_total"] ? stateNode["doses_shipped_total"] : {};
+      doses_shipped_total[entry.date] = properNumber(entry.doses_shipped_total);
+
+      stateNode['doses_alloc_total'] = doses_alloc_total;
+      stateNode['doses_admin_total'] = doses_admin_total;
+      stateNode['doses_shipped_total'] = doses_shipped_total;
+
+      AllData[state_fips] = stateNode;
+    }
+    */
+    // AllData[state_fips] = {};
+  }
+}
+
 async function main() {
   process_USAFACTS(); // this sites tracks county level data before JHU
   await processAllJHUGithub();
   processAllJHU();
+  // await processVaccineData();
   addCACountyStatus();
   await addCountyHospitalization();
   fillholes();
