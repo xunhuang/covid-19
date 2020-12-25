@@ -1,6 +1,7 @@
 
 # pushd ../COVID-19/ ; git checkout master; git pull; popd
 # pushd  ../coronavirus-data/ ;  git checkout master; git pull; popd
+# pushd  ../vaccine-module/ ;  git checkout master; git pull; popd
 
 temp_file=$(mktemp)
 CSVTOJSON=./node_modules/.bin/csvtojson 

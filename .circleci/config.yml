@@ -33,6 +33,9 @@ jobs:
       - run:
           name: Pulling Sub-modules2
           command: pushd  ../coronavirus-data/ ;  git checkout master; git pull; popd
+      - run:
+          name: Pulling Sub-modules3
+          command: pushd  ../vaccine-module/ ;  git checkout master; git pull; popd
 
       # Install exact dependencies
       - run:
