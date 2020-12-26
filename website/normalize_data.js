@@ -48,20 +48,18 @@ AllData.Summary = {};
 // --------------------------------------------------------------
 
 function getStateNode(state_fips) {
-  /*
-  console.log("getStateNote " + state_fips);
+  // console.log("getStateNote " + state_fips);
   if (!AllData[state_fips]) {
-    return {};
+    return { Summary: {} };
   }
-  */
   return AllData[state_fips];
 }
 
 function getCountyNode(state_fips, county_fips) {
   let state = getStateNode(state_fips);
   if (!state) {
-    AllData[state_fips] = {};
-    state = getStateNode(state_fips);
+    throw ("should never happy");
+    // state = getStateNode(state_fips);
   }
   return state[county_fips];
 }
@@ -1101,11 +1099,36 @@ function addCACountyStatus() {
 
 async function processVaccineData() {
 
+  function fillvaccineholes(v, increaseonly = true) {
+    const today = moment().format("MM/DD/YYYY");
+    let keys = Object.keys(v).sort((a, b) => moment(a, "MM/DD/YYYY").toDate() - moment(b, "MM/DD/YYYY").toDate());
+    if (keys.length === 0) {
+      return v;
+    }
+    let key = keys[0];
+    while (key !== today) {
+      let lastvalue = v[key];
+      let nextkey = moment(key, "MM/DD/YYYY").add(1, "days").format("MM/DD/YYYY");
+      let nextvalue = v[nextkey];
+      if (nextvalue === null || nextvalue === undefined) {
+        v[nextkey] = lastvalue;
+      } else {
+        if (increaseonly) {
+          if (nextvalue < lastvalue) {
+            v[nextkey] = lastvalue;
+          }
+        }
+      }
+      key = nextkey;
+    }
+    return v;
+  }
+
   function properNumber(n) {
     if (n === '' || !n) {
       return 0;
     }
-    return n.parseInt();
+    return parseInt(n);
   }
 
   const vaccineDataCSV = '../vaccine-module/data_tables/vaccine_data/raw_data/vaccine_data_us_state_timeline.csv';
@@ -1113,29 +1136,39 @@ async function processVaccineData() {
 
   for (let entry of json) {
     let state_fips = CountyInfo.getFipsFromStateShortName(entry.stabbr);
-
-    let stateNode = getStateNode[state_fips];
-    console.log(stateNode);
-    /*
+    let stateNode = getStateNode(state_fips);
     if (stateNode) {
-
-      let doses_admin_total = stateNode["doses_admin_total"] ? stateNode["doses_admin_total"] : {};
+      let Summary = stateNode.Summary;
+      let doses_admin_total = Summary["doses_admin_total"] ? Summary["doses_admin_total"] : {};
       doses_admin_total[entry.date] = properNumber(entry.doses_admin_total);
 
-      let doses_alloc_total = stateNode["doses_alloc_total"] ? stateNode["doses_alloc_total"] : {};
+      let doses_alloc_total = Summary["doses_alloc_total"] ? Summary["doses_alloc_total"] : {};
       doses_alloc_total[entry.date] = properNumber(entry.doses_alloc_total);
 
-      let doses_shipped_total = stateNode["doses_shipped_total"] ? stateNode["doses_shipped_total"] : {};
+      let doses_shipped_total = Summary["doses_shipped_total"] ? Summary["doses_shipped_total"] : {};
       doses_shipped_total[entry.date] = properNumber(entry.doses_shipped_total);
 
-      stateNode['doses_alloc_total'] = doses_alloc_total;
-      stateNode['doses_admin_total'] = doses_admin_total;
-      stateNode['doses_shipped_total'] = doses_shipped_total;
+      stateNode.Summary.doses_alloc_total = doses_alloc_total;
+      stateNode.Summary.doses_admin_total = doses_admin_total;
+      stateNode.Summary.doses_shipped_total = doses_shipped_total;
 
       AllData[state_fips] = stateNode;
     }
-    */
-    // AllData[state_fips] = {};
+  }
+  // now fix up vaccine data
+
+  for (s in AllData) {
+    state = AllData[s];
+    if (state.Summary && state.Summary.doses_admin_total) {
+      state.Summary.doses_alloc_total = fillvaccineholes(state.Summary.doses_alloc_total);
+      state.Summary.doses_admin_total = fillvaccineholes(state.Summary.doses_admin_total);
+      state.Summary.doses_shipped_total = fillvaccineholes(state.Summary.doses_shipped_total);
+
+      state.Summary.doses_alloc_total_Last = getValueFromLastDate(state.Summary.doses_alloc_total).num;
+      state.Summary.doses_admin_total_Last = getValueFromLastDate(state.Summary.doses_admin_total).num;
+      state.Summary.doses_shippied_total_Last = getValueFromLastDate(state.Summary.doses_shipped_total).num;
+      // console.log(state.Summary);
+    }
   }
 }
 
@@ -1143,7 +1176,7 @@ async function main() {
   process_USAFACTS(); // this sites tracks county level data before JHU
   await processAllJHUGithub();
   processAllJHU();
-  // await processVaccineData();
+  await processVaccineData();
   addCACountyStatus();
   await addCountyHospitalization();
   fillholes();
