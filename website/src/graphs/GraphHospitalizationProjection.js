@@ -106,8 +106,50 @@ function maybeHospitalizationProjectionTabFor(source) {
   }
 }
 
+// cut here ---
+
+const GraphVaccinationState = (props) => {
+  return <GraphVaccination {...props} source={props.state} />
+}
+
+const GraphVaccination = (props) => {
+  const source = props.source;
+
+  // let hospitalized = DataSeries.fromOldDataSourceDataPoints("Vaccine Administered", data, "doses_admin_total");
+  let admin = props.source.vaccineAdminSeries();
+  let shipped = props.source.vaccineShippedSeries();
+  let alloc = props.source.vaccineAllocSeries();
+  // let icu =
+  //   DataSeries.fromOldDataSourceDataPoints("In ICU", data, "inIcuCurrently");
+  // let onVentilatorCurrently =
+  //   DataSeries.fromOldDataSourceDataPoints("On Ventilator", data, "onVentilatorCurrently")
+
+
+  return <AdvancedGraph
+    serieses={
+      [
+        {
+          series: admin,
+          color: "blue",
+        },
+        {
+          series: alloc,
+          color: "green",
+        },
+        {
+          series: shipped,
+          color: "grey",
+        },
+      ]
+    }
+  // vRefLines={getRefLines(source)}
+  // hRefLines={hrefs}
+  />;
+}
+
 export {
   maybeHospitalizationProjectionTabFor,
   GraphAllBedProjectionState,
   GraphAllBedProjectionUS,
+  GraphVaccinationState
 }

@@ -43,6 +43,16 @@ export class DataSeries {
     return new DataSeries(label, raw, periods.daily);
   }
 
+  static fromDateStr(label, data) {
+    let raw = [];
+    for (var key in data) {
+      let ts = moment(key, "MM/DD/YYYY").unix();
+      let value = data[key];
+      raw.push([ts, value]);
+    }
+    return new DataSeries(label, raw, periods.daily);
+  }
+
   static flatten(serieses) {
     const points = new Map();
     const formatters = new Set();

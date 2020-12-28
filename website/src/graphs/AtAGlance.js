@@ -2,7 +2,7 @@ import React from 'react'
 import { Summary } from './Summary'
 import { County, Country, State } from "../UnitedStates";
 import { MapUS } from "../MapUS"
-import { GraphAllBedProjectionState, GraphAllBedProjectionUS } from "./GraphHospitalizationProjection"
+import { GraphAllBedProjectionState, GraphAllBedProjectionUS, GraphVaccinationState } from "./GraphHospitalizationProjection"
 import { AdvancedGraph } from '../components/graphs/AdvancedGraph'
 import { getRefLines } from "../Util"
 import { GraphCountyHospitalization } from "./GraphCountyHospitalization"
@@ -116,6 +116,7 @@ const AtAGlance = (props) => {
       {newdeath}
       <MapUS source={props.source} />
       <GraphAllBedProjectionState state={props.source} />
+      <GraphVaccinationState state={props.source} />
     </div >;
   }
 

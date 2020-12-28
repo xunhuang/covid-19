@@ -458,6 +458,7 @@ export class State extends CovidSummarizable {
   async dataPointsAsync() {
     return datesToDataPoints(this.covidRaw_.Summary);
   }
+
   dataPoints() {
     return datesToDataPoints(this.covidRaw_.Summary);
   }
@@ -480,6 +481,16 @@ export class State extends CovidSummarizable {
 
   newCases() {
     return this.covidRaw_.Summary.LastConfirmedNew;
+  }
+
+  vaccineAdminSeries() {
+    return DataSeries.fromDateStr("Vaccine Admin", this.covidRaw_.Summary.doses_admin_total);
+  }
+  vaccineShippedSeries() {
+    return DataSeries.fromDateStr("Vaccine Shippped", this.covidRaw_.Summary.doses_shipped_total);
+  }
+  vaccineAllocSeries() {
+    return DataSeries.fromDateStr("Vaccine Allocated", this.covidRaw_.Summary.doses_alloc_total);
   }
 
   population() {

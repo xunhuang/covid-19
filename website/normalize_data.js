@@ -1105,11 +1105,13 @@ async function processVaccineData() {
     if (keys.length === 0) {
       return v;
     }
+
     let key = keys[0];
     while (key !== today) {
       let lastvalue = v[key];
       let nextkey = moment(key, "MM/DD/YYYY").add(1, "days").format("MM/DD/YYYY");
       let nextvalue = v[nextkey];
+
       if (nextvalue === null || nextvalue === undefined) {
         v[nextkey] = lastvalue;
       } else {
@@ -1121,7 +1123,15 @@ async function processVaccineData() {
       }
       key = nextkey;
     }
-    return v;
+
+    let final = {};
+    for (const k in v) {
+      if (moment(k, "MM/DD/YYYY").isAfter(moment("12/10/2020", "MM/DD/YYYY"))) {
+        final[k] = v[k];
+      }
+
+    }
+    return final;
   }
 
   function properNumber(n) {
@@ -1167,7 +1177,6 @@ async function processVaccineData() {
       state.Summary.doses_alloc_total_Last = getValueFromLastDate(state.Summary.doses_alloc_total).num;
       state.Summary.doses_admin_total_Last = getValueFromLastDate(state.Summary.doses_admin_total).num;
       state.Summary.doses_shippied_total_Last = getValueFromLastDate(state.Summary.doses_shipped_total).num;
-      // console.log(state.Summary);
     }
   }
 }
