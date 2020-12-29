@@ -159,7 +159,7 @@ export const AdvancedGraph = (props) => {
               Date:</div>
             <DateRangeSlider
               currentDate={moment()}
-              startDate={moment("06/01/2020", "MM/DD/YYYY")}
+              startDate={moment("02/01/2020", "MM/DD/YYYY")}
               valueChanged={handleSliderValueChange}
               defaultValue={state.showPastDays}
             />
