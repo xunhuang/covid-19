@@ -113,7 +113,6 @@ const GraphVaccinationState = (props) => {
 }
 
 const GraphVaccination = (props) => {
-  const source = props.source;
 
   // let hospitalized = DataSeries.fromOldDataSourceDataPoints("Vaccine Administered", data, "doses_admin_total");
   let admin = props.source.vaccineAdminSeries();
