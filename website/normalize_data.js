@@ -1147,16 +1147,21 @@ async function processVaccineData() {
   for (let entry of json) {
     let state_fips = CountyInfo.getFipsFromStateShortName(entry.stabbr);
     let stateNode = getStateNode(state_fips);
+    let date = entry.date;
+    if (date.length == 8) {
+      date = date + "20"; // date like 12/17/20
+    }
+    // console.log(date)
     if (stateNode) {
       let Summary = stateNode.Summary;
       let doses_admin_total = Summary["doses_admin_total"] ? Summary["doses_admin_total"] : {};
-      doses_admin_total[entry.date] = properNumber(entry.doses_admin_total);
+      doses_admin_total[date] = properNumber(entry.doses_admin_total);
 
       let doses_alloc_total = Summary["doses_alloc_total"] ? Summary["doses_alloc_total"] : {};
-      doses_alloc_total[entry.date] = properNumber(entry.doses_alloc_total);
+      doses_alloc_total[date] = properNumber(entry.doses_alloc_total);
 
       let doses_shipped_total = Summary["doses_shipped_total"] ? Summary["doses_shipped_total"] : {};
-      doses_shipped_total[entry.date] = properNumber(entry.doses_shipped_total);
+      doses_shipped_total[date] = properNumber(entry.doses_shipped_total);
 
       stateNode.Summary.doses_alloc_total = doses_alloc_total;
       stateNode.Summary.doses_admin_total = doses_admin_total;
