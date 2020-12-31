@@ -54,3 +54,5 @@ else
     echo "file size $filesize too small"
 fi
 
+node refreshvaccine.js
+git add src/data/bloomberg-$d.json
