@@ -1022,41 +1022,6 @@ function exportIntColumnFromDataSeries(data, column) {
   return ret
 }
 
-async function addMITProjection() {
-
-  function getDataFor(src, state) {
-    let data = src.filter(s => s.Province === state && s.Country === "US");
-    data = data.map(a => {
-      a.fulldate = moment(a.Day, "YYYY-MM-DD").format("MM/DD/YYYY");
-      return a;
-    });
-    return data;
-  }
-
-  const file = "../data/projections/MIT-06-18-2020.csv";
-  const json = await csv().fromFile(file);
-  for (s in AllData) {
-    state = AllData[s];
-    let Summary = state.Summary ? state.Summary : {};
-    let statename = CountyInfo.getStateNameFromFips(s);
-
-    let data = getDataFor(json, statename);
-    if (data.length >= 0) {
-      Summary.ProjectionMIT = {
-        Confirmed: exportIntColumnFromDataSeries(data, 'Total Detected'),
-        // Active: exportIntColumnFromDataSeries(data, 'Active'),
-        // HospitaliedCurrently: exportIntColumnFromDataSeries(data, 'Active Hospitalized'),
-        // HospitalizationCumulative: exportIntColumnFromDataSeries(data, 'Cumulative Hospitalized'),
-        // Deaths: exportIntColumnFromDataSeries(data, 'Total Detected Deaths'),
-        // ICUCurrently: exportIntColumnFromDataSeries(data, 'Active Ventilated'),
-      };
-    }
-  }
-  const data = getDataFor(json, "None");
-  AllData.Summary.ProjectionMIT = {
-    Confirmed: exportIntColumnFromDataSeries(data, 'Total Detected'),
-  }
-}
 
 async function addCountyHospitalization() {
   const list = [
@@ -1170,11 +1135,42 @@ async function processVaccineData() {
       AllData[state_fips] = stateNode;
     }
   }
-  // now fix up vaccine data
 
+  const bloomberg_data = require("./vaccine-bloomberg.json");
+
+  for (let entry of Object.values(bloomberg_data)) {
+
+    let state_fips = entry.fips;
+    let stateNode = getStateNode(state_fips);
+    if (state_fips && state_fips != '99' && stateNode) {
+      let date = moment(entry.dateUpdated, "YYYY-MM-DD");
+      if (date.isValid()) {
+        let date = moment(entry.dateUpdated, "YYYY-MM-DD").format("MM/DD/YYYY");
+        let Summary = stateNode.Summary;
+        let doses_admin_total = Summary["doses_admin_total"] ? Summary["doses_admin_total"] : {};
+        doses_admin_total[date] = properNumber(entry.cdcDosesAdministeredTotal);
+
+        let doses_alloc_total = Summary["doses_alloc_total"] ? Summary["doses_alloc_total"] : {};
+        doses_alloc_total[date] = properNumber(entry.totalAllottedWarpSpeedFirstDose);
+
+        let doses_shipped_total = Summary["doses_shipped_total"] ? Summary["doses_shipped_total"] : {};
+        doses_shipped_total[date] = properNumber(entry.cdcDosesDistributedTotal);
+
+        stateNode.Summary.doses_alloc_total = doses_alloc_total;
+        stateNode.Summary.doses_admin_total = doses_admin_total;
+        stateNode.Summary.doses_shipped_total = doses_shipped_total;
+
+        AllData[state_fips] = stateNode;
+      }
+    }
+  }
+
+  // now fix up vaccine data
   for (s in AllData) {
     state = AllData[s];
     if (state.Summary && state.Summary.doses_admin_total) {
+
+
       state.Summary.doses_alloc_total = fillvaccineholes(state.Summary.doses_alloc_total);
       state.Summary.doses_admin_total = fillvaccineholes(state.Summary.doses_admin_total);
       state.Summary.doses_shipped_total = fillvaccineholes(state.Summary.doses_shipped_total);
@@ -1182,6 +1178,7 @@ async function processVaccineData() {
       state.Summary.doses_alloc_total_Last = getValueFromLastDate(state.Summary.doses_alloc_total).num;
       state.Summary.doses_admin_total_Last = getValueFromLastDate(state.Summary.doses_admin_total).num;
       state.Summary.doses_shippied_total_Last = getValueFromLastDate(state.Summary.doses_shipped_total).num;
+      // console.log(state.Summary)
     }
   }
 }
@@ -1202,7 +1199,6 @@ async function main() {
   addUSRecovery();
   addStateRecovery();
   processTestData();
-  // await addMITProjection();
 }
 
 main().then(() => {
