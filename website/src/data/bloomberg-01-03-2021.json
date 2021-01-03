@@ -1528,6 +1528,16 @@
             "eventTypeShortPlural": "Approvals",
             "eventTypeShort": "Approval",
             "eventTypeKey": "available"
+          },
+          {
+            "companyName": "AstraZeneca/Oxford",
+            "eventType": "Regulatory approval",
+            "eventDate": "2021-01-02",
+            "eventText": "India authorizes for emergency use",
+            "eventDateObj": "2021-01-02T00:00:00.000Z",
+            "eventTypeShortPlural": "Approvals",
+            "eventTypeShort": "Approval",
+            "eventTypeKey": "available"
           }
         ],
         "earlyApprovalEvents": [],
@@ -2858,14 +2868,14 @@
       },
       {
         "color": "#5bd28b",
-        "from": 0.015,
-        "symbol": "1.5",
+        "from": 0.02,
+        "symbol": "2",
         "type": "bar"
       },
       {
         "color": "#0ac263",
-        "from": 0.02,
-        "symbol": "2%",
+        "from": 0.03,
+        "symbol": "3%",
         "type": "bar"
       }
     ],
@@ -2910,26 +2920,26 @@
       },
       {
         "color": "#baefd2",
-        "from": 0.001,
-        "symbol": "0.1",
+        "from": 0.0025,
+        "symbol": "0.25",
         "type": "bar"
       },
       {
         "color": "#8ce1b0",
-        "from": 0.002,
-        "symbol": "0.2",
+        "from": 0.005,
+        "symbol": "0.5",
         "type": "bar"
       },
       {
         "color": "#5bd28b",
-        "from": 0.004,
-        "symbol": "0.4",
+        "from": 0.01,
+        "symbol": "1",
         "type": "bar"
       },
       {
         "color": "#0ac263",
-        "from": 0.006,
-        "symbol": "0.6",
+        "from": 0.015,
+        "symbol": "1.5",
         "type": "bar"
       }
     ],
@@ -3000,8 +3010,8 @@
         "name": "Global Total",
         "parentIso": null,
         "iso": "BBG",
-        "dateUpdated": "2021-01-02",
-        "noDosesTotal": 12065323,
+        "dateUpdated": "2021-01-03",
+        "noDosesTotal": 12368187,
         "noPeopleTotal": null,
         "noVaccinesReceived": null,
         "noDosesTotalPerCapita": null,
@@ -3022,44 +3032,44 @@
         "name": "Bahrain",
         "parentIso": null,
         "iso": "BHR",
-        "dateUpdated": "2021-01-02",
-        "noDosesTotal": 60097,
+        "dateUpdated": "2021-01-03",
+        "noDosesTotal": 60689,
         "noPeopleTotal": null,
         "noVaccinesReceived": null,
-        "noDosesTotalPerCapita": 0.0404966307277628,
+        "noDosesTotalPerCapita": 0.0408955525606469,
         "noPeopleTotalPerCapita": null
       },
       {
         "name": "Canada",
         "parentIso": null,
         "iso": "CAN",
-        "dateUpdated": "2021-01-02",
-        "noDosesTotal": 103105,
+        "dateUpdated": "2021-01-03",
+        "noDosesTotal": 114766,
         "noPeopleTotal": null,
         "noVaccinesReceived": null,
-        "noDosesTotalPerCapita": 0.002747488474964692,
+        "noDosesTotalPerCapita": 0.0030582247448503745,
         "noPeopleTotalPerCapita": null
       },
       {
         "name": "Alberta",
         "parentIso": "CAN",
         "iso": "CAN-AB",
-        "dateUpdated": "2020-12-30",
-        "noDosesTotal": 11102,
+        "dateUpdated": "2021-01-01",
+        "noDosesTotal": 14244,
         "noPeopleTotal": null,
         "noVaccinesReceived": null,
-        "noDosesTotalPerCapita": 0.00254906174689943,
+        "noDosesTotalPerCapita": 0.0032704769881855052,
         "noPeopleTotalPerCapita": null
       },
       {
         "name": "British Columbia",
         "parentIso": "CAN",
         "iso": "CAN-BC",
-        "dateUpdated": "2020-12-30",
-        "noDosesTotal": 14027,
+        "dateUpdated": "2020-12-31",
+        "noDosesTotal": 17510,
         "noPeopleTotal": null,
         "noVaccinesReceived": null,
-        "noDosesTotalPerCapita": 0.0027603081579926636,
+        "noDosesTotalPerCapita": 0.0034457115453376728,
         "noPeopleTotalPerCapita": null
       },
       {
@@ -3099,55 +3109,55 @@
         "name": "Nova Scotia",
         "parentIso": "CAN",
         "iso": "CAN-NS",
-        "dateUpdated": "2020-12-30",
-        "noDosesTotal": 2290,
+        "dateUpdated": "2020-01-03",
+        "noDosesTotal": 2596,
         "noPeopleTotal": null,
         "noVaccinesReceived": null,
-        "noDosesTotalPerCapita": 0.002364385946255133,
+        "noDosesTotalPerCapita": 0.0026803257277197923,
         "noPeopleTotalPerCapita": null
       },
       {
         "name": "Ontario",
         "parentIso": "CAN",
         "iso": "CAN-ON",
-        "dateUpdated": "2021-01-02",
-        "noDosesTotal": 33191,
+        "dateUpdated": "2021-01-03",
+        "noDosesTotal": 37551,
         "noPeopleTotal": null,
         "noVaccinesReceived": null,
-        "noDosesTotalPerCapita": 0.00228594168248779,
+        "noDosesTotalPerCapita": 0.002586225064598807,
         "noPeopleTotalPerCapita": null
       },
       {
         "name": "Prince Edward Island",
         "parentIso": "CAN",
         "iso": "CAN-PE",
-        "dateUpdated": "2020-12-30",
-        "noDosesTotal": 1500,
+        "dateUpdated": "2020-01-03",
+        "noDosesTotal": 1950,
         "noPeopleTotal": null,
         "noVaccinesReceived": null,
-        "noDosesTotalPerCapita": 0.009574386600965098,
+        "noDosesTotalPerCapita": 0.012446702581254628,
         "noPeopleTotalPerCapita": null
       },
       {
         "name": "Quebec",
         "parentIso": "CAN",
         "iso": "CAN-QC",
-        "dateUpdated": "2020-12-31",
-        "noDosesTotal": 29250,
+        "dateUpdated": "2021-01-03",
+        "noDosesTotal": 28762,
         "noPeopleTotal": null,
         "noVaccinesReceived": null,
-        "noDosesTotalPerCapita": 0.003445807230116426,
+        "noDosesTotalPerCapita": 0.003388318206926791,
         "noPeopleTotalPerCapita": null
       },
       {
         "name": "Saskatchewan",
         "parentIso": "CAN",
         "iso": "CAN-SK",
-        "dateUpdated": "2020-12-30",
-        "noDosesTotal": 3458,
+        "dateUpdated": "2021-01-03",
+        "noDosesTotal": 3866,
         "noPeopleTotal": null,
         "noVaccinesReceived": null,
-        "noDosesTotalPerCapita": 0.002951569675139555,
+        "noDosesTotalPerCapita": 0.0032998173406852283,
         "noPeopleTotalPerCapita": null
       },
       {
@@ -3188,21 +3198,21 @@
         "parentIso": null,
         "iso": "DEU",
         "dateUpdated": "2021-01-02",
-        "noDosesTotal": 188553,
+        "noDosesTotal": 238809,
         "noPeopleTotal": null,
         "noVaccinesReceived": null,
-        "noDosesTotalPerCapita": 0.0022691803160314345,
+        "noDosesTotalPerCapita": 0.002873996606212316,
         "noPeopleTotalPerCapita": null
       },
       {
         "name": "Denmark",
         "parentIso": null,
         "iso": "DNK",
-        "dateUpdated": "2021-01-02",
-        "noDosesTotal": 32368,
+        "dateUpdated": "2021-01-03",
+        "noDosesTotal": 40541,
         "noPeopleTotal": null,
         "noVaccinesReceived": null,
-        "noDosesTotalPerCapita": 0.005574922493971754,
+        "noDosesTotalPerCapita": 0.006982604202549087,
         "noPeopleTotalPerCapita": null
       },
       {
@@ -3231,11 +3241,11 @@
         "name": "France",
         "parentIso": null,
         "iso": "FRA",
-        "dateUpdated": "2021-01-02",
-        "noDosesTotal": 352,
+        "dateUpdated": "2021-01-03",
+        "noDosesTotal": 516,
         "noPeopleTotal": null,
         "noVaccinesReceived": null,
-        "noDosesTotalPerCapita": 0.000005430255160285089,
+        "noDosesTotalPerCapita": 0.000007960260405417913,
         "noPeopleTotalPerCapita": null
       },
       {
@@ -3330,23 +3340,23 @@
         "name": "Israel",
         "parentIso": null,
         "iso": "ISR",
-        "dateUpdated": "2021-01-01",
-        "noDosesTotal": 950000,
+        "dateUpdated": "2021-01-03",
+        "noDosesTotal": 1090000,
         "noPeopleTotal": null,
         "noVaccinesReceived": null,
-        "noDosesTotalPerCapita": 0.10496077781460612,
+        "noDosesTotalPerCapita": 0.1204286819136007,
         "noPeopleTotalPerCapita": null
       },
       {
         "name": "Italy",
         "parentIso": null,
         "iso": "ITA",
-        "dateUpdated": "2021-01-02",
-        "noDosesTotal": 48416,
-        "noPeopleTotal": 48416,
+        "dateUpdated": "2021-01-03",
+        "noDosesTotal": 84730,
+        "noPeopleTotal": 84730,
         "noVaccinesReceived": null,
-        "noDosesTotalPerCapita": 0.0008021206096752816,
-        "noPeopleTotalPerCapita": 0.0008021206096752816
+        "noDosesTotalPerCapita": 0.001403744201457919,
+        "noPeopleTotalPerCapita": 0.001403744201457919
       },
       {
         "name": "Kuwait",
@@ -3396,11 +3406,11 @@
         "name": "Oman",
         "parentIso": null,
         "iso": "OMN",
-        "dateUpdated": "2021-01-01",
-        "noDosesTotal": 6516,
+        "dateUpdated": "2021-01-03",
+        "noDosesTotal": 7231,
         "noPeopleTotal": null,
         "noVaccinesReceived": null,
-        "noDosesTotalPerCapita": 0.0015536480686695279,
+        "noDosesTotalPerCapita": 0.0017241297091082498,
         "noPeopleTotalPerCapita": null
       },
       {
@@ -3429,11 +3439,11 @@
         "name": "Romania",
         "parentIso": null,
         "iso": "ROU",
-        "dateUpdated": "2020-12-29",
-        "noDosesTotal": 2778,
+        "dateUpdated": "2021-01-03",
+        "noDosesTotal": 13596,
         "noPeopleTotal": null,
         "noVaccinesReceived": null,
-        "noDosesTotalPerCapita": 0.00014315897964442155,
+        "noDosesTotalPerCapita": 0.0007006441638752899,
         "noPeopleTotalPerCapita": null
       },
       {
@@ -3463,11 +3473,11 @@
         "name": "U.S.",
         "parentIso": null,
         "iso": "USA",
-        "dateUpdated": "2021-01-02",
-        "noDosesTotal": 4284534,
+        "dateUpdated": "2021-01-03",
+        "noDosesTotal": 4328705,
         "noPeopleTotal": null,
         "noVaccinesReceived": null,
-        "noDosesTotalPerCapita": 0.013044270095993132,
+        "noDosesTotalPerCapita": 0.013178748770782529,
         "noPeopleTotalPerCapita": null
       }
     ],
@@ -3571,9 +3581,9 @@
         "cdcDosesDistributedTotal": 13071925,
         "cdcDosesAdministeredTotal": 4225756,
         "cdcDosesAdministeredPerDistributed": 0.32327,
-        "noDosesTotal": 4284534,
-        "noDosesTotalPerCdcDistributed": 0.327766,
-        "dateUpdated": "2021-01-02",
+        "noDosesTotal": 4328705,
+        "noDosesTotalPerCdcDistributed": 0.331145,
+        "dateUpdated": "2021-01-03",
         "noVaccinesReceived": null
       },
       {
@@ -3585,14 +3595,14 @@
         "cdcDosesDistributedTotal": 1476425,
         "cdcDosesAdministeredTotal": 412076,
         "cdcDosesAdministeredPerDistributed": 0.279104,
-        "noDosesTotal": 412076,
-        "noDosesTotalPerCdcDistributed": 0.279104,
-        "dateUpdated": "2021-01-02",
-        "noVaccinesReceived": null,
+        "noDosesTotal": 414684,
+        "noDosesTotalPerCdcDistributed": 0.28087,
+        "dateUpdated": "2021-01-03",
+        "noVaccinesReceived": 1762900,
         "ap": "Calif.",
         "whiteText": true,
         "population": 39512223,
-        "noDosesTotalPerCapita": 0.010429076592324355
+        "noDosesTotalPerCapita": 0.010495081484025842
       },
       {
         "name": "Colorado",
@@ -3603,14 +3613,14 @@
         "cdcDosesDistributedTotal": 246275,
         "cdcDosesAdministeredTotal": 104622,
         "cdcDosesAdministeredPerDistributed": 0.424818,
-        "noDosesTotal": 104622,
-        "noDosesTotalPerCdcDistributed": 0.424818,
-        "dateUpdated": "2021-01-02",
+        "noDosesTotal": 105842,
+        "noDosesTotalPerCdcDistributed": 0.429772,
+        "dateUpdated": "2021-01-03",
         "noVaccinesReceived": null,
         "ap": "Colo.",
         "whiteText": true,
         "population": 5758736,
-        "noDosesTotalPerCapita": 0.018167528429849884
+        "noDosesTotalPerCapita": 0.018379380475159825
       },
       {
         "name": "Connecticut",
@@ -3657,14 +3667,14 @@
         "cdcDosesDistributedTotal": 44925,
         "cdcDosesAdministeredTotal": 11066,
         "cdcDosesAdministeredPerDistributed": 0.246322,
-        "noDosesTotal": 13080,
-        "noDosesTotalPerCdcDistributed": 0.291152,
-        "dateUpdated": "2021-01-02",
-        "noVaccinesReceived": 42975,
+        "noDosesTotal": 14113,
+        "noDosesTotalPerCdcDistributed": 0.314146,
+        "dateUpdated": "2021-01-03",
+        "noVaccinesReceived": 44925,
         "ap": "Del.",
         "whiteText": false,
         "population": 973764,
-        "noDosesTotalPerCapita": 0.013432412781741777
+        "noDosesTotalPerCapita": 0.014493244769779947
       },
       {
         "name": "Florida",
@@ -3675,14 +3685,14 @@
         "cdcDosesDistributedTotal": 801150,
         "cdcDosesAdministeredTotal": 246587,
         "cdcDosesAdministeredPerDistributed": 0.307791,
-        "noDosesTotal": 246587,
-        "noDosesTotalPerCdcDistributed": 0.307791,
-        "dateUpdated": "2021-01-02",
+        "noDosesTotal": 255808,
+        "noDosesTotalPerCdcDistributed": 0.319301,
+        "dateUpdated": "2021-01-03",
         "noVaccinesReceived": null,
         "ap": "Fla.",
         "whiteText": true,
         "population": 21477737,
-        "noDosesTotalPerCapita": 0.011481051285803527
+        "noDosesTotalPerCapita": 0.011910379571181079
       },
       {
         "name": "Micronesia",
@@ -3782,14 +3792,14 @@
         "cdcDosesDistributedTotal": 71825,
         "cdcDosesAdministeredTotal": 18535,
         "cdcDosesAdministeredPerDistributed": 0.258058,
-        "noDosesTotal": 18535,
-        "noDosesTotalPerCdcDistributed": 0.258058,
-        "dateUpdated": "2021-01-02",
+        "noDosesTotal": 19119,
+        "noDosesTotalPerCdcDistributed": 0.266189,
+        "dateUpdated": "2021-01-03",
         "noVaccinesReceived": null,
         "ap": "Idaho",
         "whiteText": true,
         "population": 1787065,
-        "noDosesTotalPerCapita": 0.010371754804665751
+        "noDosesTotalPerCapita": 0.010698547618581305
       },
       {
         "name": "Illinois",
@@ -3926,14 +3936,14 @@
         "cdcDosesDistributedTotal": 53075,
         "cdcDosesAdministeredTotal": 30849,
         "cdcDosesAdministeredPerDistributed": 0.581234,
-        "noDosesTotal": 32090,
-        "noDosesTotalPerCdcDistributed": 0.604616,
-        "dateUpdated": "2021-01-02",
+        "noDosesTotal": 32995,
+        "noDosesTotalPerCdcDistributed": 0.621667,
+        "dateUpdated": "2021-01-03",
         "noVaccinesReceived": null,
         "ap": "Maine",
         "whiteText": true,
         "population": 1344212,
-        "noDosesTotalPerCapita": 0.023872722457469506
+        "noDosesTotalPerCapita": 0.024545979354447068
       },
       {
         "name": "Marshall Islands",
@@ -4141,14 +4151,14 @@
         "cdcDosesDistributedTotal": 332825,
         "cdcDosesAdministeredTotal": 92934,
         "cdcDosesAdministeredPerDistributed": 0.279228,
-        "noDosesTotal": 92934,
-        "noDosesTotalPerCdcDistributed": 0.279228,
-        "dateUpdated": "2021-01-02",
+        "noDosesTotal": 95693,
+        "noDosesTotalPerCdcDistributed": 0.287517,
+        "dateUpdated": "2021-01-03",
         "noVaccinesReceived": null,
         "ap": "N.J.",
         "whiteText": false,
         "population": 8882190,
-        "noDosesTotalPerCapita": 0.010462960148341794
+        "noDosesTotalPerCapita": 0.010773581740539214
       },
       {
         "name": "New Mexico",
@@ -4213,14 +4223,14 @@
         "cdcDosesDistributedTotal": 291100,
         "cdcDosesAdministeredTotal": 152178,
         "cdcDosesAdministeredPerDistributed": 0.522769,
-        "noDosesTotal": 152178,
-        "noDosesTotalPerCdcDistributed": 0.522769,
-        "dateUpdated": "2021-01-02",
+        "noDosesTotal": 159706,
+        "noDosesTotalPerCdcDistributed": 0.548629,
+        "dateUpdated": "2021-01-03",
         "noVaccinesReceived": null,
         "ap": "Ohio",
         "whiteText": true,
         "population": 11689100,
-        "noDosesTotalPerCapita": 0.013018795287917804
+        "noDosesTotalPerCapita": 0.013662814074650743
       },
       {
         "name": "Oklahoma",
@@ -4249,14 +4259,14 @@
         "cdcDosesDistributedTotal": 167100,
         "cdcDosesAdministeredTotal": 44420,
         "cdcDosesAdministeredPerDistributed": 0.265829,
-        "noDosesTotal": 45295,
-        "noDosesTotalPerCdcDistributed": 0.271065,
-        "dateUpdated": "2021-01-02",
+        "noDosesTotal": 48725,
+        "noDosesTotalPerCdcDistributed": 0.291592,
+        "dateUpdated": "2021-01-03",
         "noVaccinesReceived": 190500,
         "ap": "Ore.",
         "whiteText": true,
         "population": 4217737,
-        "noDosesTotalPerCapita": 0.010739171266487218
+        "noDosesTotalPerCapita": 0.011552403575661545
       },
       {
         "name": "Pennsylvania",
@@ -4356,14 +4366,14 @@
         "cdcDosesDistributedTotal": 38225,
         "cdcDosesAdministeredTotal": 26409,
         "cdcDosesAdministeredPerDistributed": 0.690883,
-        "noDosesTotal": 26409,
-        "noDosesTotalPerCdcDistributed": 0.690883,
-        "dateUpdated": "2021-01-02",
+        "noDosesTotal": 26870,
+        "noDosesTotalPerCdcDistributed": 0.702943,
+        "dateUpdated": "2021-01-03",
         "noVaccinesReceived": null,
         "ap": "S.D.",
         "whiteText": true,
         "population": 884659,
-        "noDosesTotalPerCapita": 0.029852180331630607
+        "noDosesTotalPerCapita": 0.030373285073683757
       },
       {
         "name": "Tennessee",
@@ -4392,14 +4402,14 @@
         "cdcDosesDistributedTotal": 942825,
         "cdcDosesAdministeredTotal": 337392,
         "cdcDosesAdministeredPerDistributed": 0.357852,
-        "noDosesTotal": 365455,
-        "noDosesTotalPerCdcDistributed": 0.387617,
-        "dateUpdated": "2021-01-02",
-        "noVaccinesReceived": 926375,
+        "noDosesTotal": 377050,
+        "noDosesTotalPerCdcDistributed": 0.399915,
+        "dateUpdated": "2021-01-03",
+        "noVaccinesReceived": 789925,
         "ap": "Texas",
         "whiteText": true,
         "population": 28995881,
-        "noDosesTotalPerCapita": 0.012603686709846823
+        "noDosesTotalPerCapita": 0.013003571093425304
       },
       {
         "name": "Utah",
@@ -4410,14 +4420,14 @@
         "cdcDosesDistributedTotal": 127375,
         "cdcDosesAdministeredTotal": 44565,
         "cdcDosesAdministeredPerDistributed": 0.349872,
-        "noDosesTotal": 46374,
-        "noDosesTotalPerCdcDistributed": 0.364075,
-        "dateUpdated": "2021-01-02",
+        "noDosesTotal": 47382,
+        "noDosesTotalPerCdcDistributed": 0.371988,
+        "dateUpdated": "2021-01-03",
         "noVaccinesReceived": 127375,
         "ap": "Utah",
         "whiteText": true,
         "population": 3205958,
-        "noDosesTotalPerCapita": 0.0144649430840953
+        "noDosesTotalPerCapita": 0.014779357683413196
       },
       {
         "name": "Virginia",
@@ -4431,7 +4441,7 @@
         "noDosesTotal": 90011,
         "noDosesTotalPerCdcDistributed": 0.231927,
         "dateUpdated": "2021-01-02",
-        "noVaccinesReceived": 388100,
+        "noVaccinesReceived": 404675,
         "ap": "Va.",
         "whiteText": true,
         "population": 8535519,
@@ -4485,7 +4495,7 @@
         "noDosesTotal": 82464,
         "noDosesTotalPerCdcDistributed": 0.291444,
         "dateUpdated": "2021-01-02",
-        "noVaccinesReceived": null,
+        "noVaccinesReceived": 357925,
         "ap": "Wash.",
         "whiteText": true,
         "population": 7614893,
@@ -4518,14 +4528,14 @@
         "cdcDosesDistributedTotal": 103375,
         "cdcDosesAdministeredTotal": 49827,
         "cdcDosesAdministeredPerDistributed": 0.482002,
-        "noDosesTotal": 49827,
-        "noDosesTotalPerCdcDistributed": 0.482002,
-        "dateUpdated": "2021-01-02",
+        "noDosesTotal": 51646,
+        "noDosesTotalPerCdcDistributed": 0.499599,
+        "dateUpdated": "2021-01-03",
         "noVaccinesReceived": 103375,
         "ap": "W.Va.",
         "whiteText": true,
         "population": 1792147,
-        "noDosesTotalPerCapita": 0.027802964823756087
+        "noDosesTotalPerCapita": 0.02881794852765984
       },
       {
         "name": "Wyoming",
@@ -4611,13 +4621,13 @@
         "code": "new-york-city",
         "specialNote": true,
         "totalAllottedWarpSpeedFirstDose": 495175,
-        "cdcDosesDistributedTotal": 358250,
+        "cdcDosesDistributedTotal": 391400,
         "cdcDosesAdministeredTotal": null,
         "cdcDosesAdministeredPerDistributed": 0,
-        "noDosesTotal": 100878,
-        "noDosesTotalPerCdcDistributed": 0.281585,
-        "dateUpdated": "2021-01-02",
-        "noVaccinesReceived": 358250
+        "noDosesTotal": 104910,
+        "noDosesTotalPerCdcDistributed": 0.268038,
+        "dateUpdated": "2021-01-03",
+        "noVaccinesReceived": 391400
       },
       {
         "name": "Veterans Health",
