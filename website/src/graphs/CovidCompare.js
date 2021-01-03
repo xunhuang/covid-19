@@ -57,12 +57,12 @@ const CovidCompare = (props) => {
     return <div>
       <Summary source={props.source} />
       <PerCapitaCompare
-        title={"New Cases/100K"}
+        title={"New Cases/100K (7-day average)"}
         source={props.source}
         dataColumn={"confirmed"}
       />
       <PerCapitaCompare
-        title={"Deaths/100K"}
+        title={"Deaths/100K (7-day average)"}
         source={props.source}
         dataColumn={"death"}
       />
