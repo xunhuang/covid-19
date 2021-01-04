@@ -2984,8 +2984,8 @@
     "cdcDosesDistributedTotal": 15418500,
     "cdcDosesAdministeredTotal": 4563260,
     "cdcDosesAdministeredPerDistributed": 0.29596,
-    "noDosesTotal": 4622056,
-    "noDosesTotalPerCdcDistributed": 0.299773,
+    "noDosesTotal": 4661821,
+    "noDosesTotalPerCdcDistributed": 0.302352,
     "dateUpdated": "2021-01-04",
     "noVaccinesReceived": null
   },
@@ -2998,14 +2998,14 @@
     "cdcDosesDistributedTotal": 1866075,
     "cdcDosesAdministeredTotal": 451702,
     "cdcDosesAdministeredPerDistributed": 0.24206,
-    "noDosesTotal": 451702,
-    "noDosesTotalPerCdcDistributed": 0.24206,
+    "noDosesTotal": 454306,
+    "noDosesTotalPerCdcDistributed": 0.243455,
     "dateUpdated": "2021-01-04",
-    "noVaccinesReceived": 1762900,
+    "noVaccinesReceived": null,
     "ap": "Calif.",
     "whiteText": true,
     "population": 39512223,
-    "noDosesTotalPerCapita": 0.011431956131650704
+    "noDosesTotalPerCapita": 0.011497859788855716
   },
   "08/CO/null/2021-01-04": {
     "name": "Colorado",
@@ -3739,7 +3739,7 @@
     "noDosesTotal": 48909,
     "noDosesTotalPerCdcDistributed": 0.338998,
     "dateUpdated": "2021-01-04",
-    "noVaccinesReceived": 127375,
+    "noVaccinesReceived": 142875,
     "ap": "Utah",
     "whiteText": true,
     "population": 3205958,
@@ -3958,5 +3958,23 @@
     "noDosesTotalPerCdcDistributed": 0.247262,
     "dateUpdated": "2021-01-04",
     "noVaccinesReceived": null
+  },
+  "48/TX/null/2021-01-04": {
+    "name": "Texas",
+    "fips": "48",
+    "parentFips": null,
+    "code": "TX",
+    "totalAllottedWarpSpeedFirstDose": 1524950,
+    "cdcDosesDistributedTotal": 1004300,
+    "cdcDosesAdministeredTotal": 374238,
+    "cdcDosesAdministeredPerDistributed": 0.372636,
+    "noDosesTotal": 414211,
+    "noDosesTotalPerCdcDistributed": 0.412438,
+    "dateUpdated": "2021-01-04",
+    "noVaccinesReceived": 793625,
+    "ap": "Texas",
+    "whiteText": true,
+    "population": 28995881,
+    "noDosesTotalPerCapita": 0.014285166917328706
   }
 }
