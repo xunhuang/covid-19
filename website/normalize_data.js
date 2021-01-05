@@ -1181,6 +1181,8 @@ async function processVaccineData() {
       // console.log(state.Summary)
     }
   }
+  delete AllData["64"];
+  delete AllData["70"];
 }
 
 async function main() {
