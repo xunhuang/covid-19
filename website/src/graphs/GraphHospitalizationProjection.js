@@ -114,15 +114,9 @@ const GraphVaccinationState = (props) => {
 
 const GraphVaccination = (props) => {
 
-  // let hospitalized = DataSeries.fromOldDataSourceDataPoints("Vaccine Administered", data, "doses_admin_total");
   let admin = props.source.vaccineAdminSeries();
   let shipped = props.source.vaccineShippedSeries();
   let alloc = props.source.vaccineAllocSeries();
-  // let icu =
-  //   DataSeries.fromOldDataSourceDataPoints("In ICU", data, "inIcuCurrently");
-  // let onVentilatorCurrently =
-  //   DataSeries.fromOldDataSourceDataPoints("On Ventilator", data, "onVentilatorCurrently")
-
 
   return <AdvancedGraph
     serieses={
