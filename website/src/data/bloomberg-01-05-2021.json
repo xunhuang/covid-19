@@ -2875,7 +2875,7 @@
       {
         "color": "#0ac263",
         "from": 0.025,
-        "symbol": "2.5%",
+        "symbol": "2.5",
         "type": "bar"
       }
     ],
@@ -3018,11 +3018,11 @@
         "noPeopleTotalPerCapita": null
       },
       {
-        "name": "Global Total",
+        "name": "Global total",
         "parentIso": null,
         "iso": "BBG",
         "dateUpdated": "2021-01-05",
-        "noDosesTotal": 15011005,
+        "noDosesTotal": 15013589,
         "noPeopleTotal": null,
         "noVaccinesReceived": null,
         "noDosesTotalPerCapita": null,
@@ -3529,10 +3529,10 @@
         "parentIso": null,
         "iso": "USA",
         "dateUpdated": "2021-01-05",
-        "noDosesTotal": 5047645,
+        "noDosesTotal": 5050229,
         "noPeopleTotal": null,
         "noVaccinesReceived": null,
-        "noDosesTotalPerCapita": 0.015367562663451673,
+        "noDosesTotalPerCapita": 0.015375429655271097,
         "noPeopleTotalPerCapita": null
       }
     ],
@@ -3549,11 +3549,13 @@
         "noDosesTotal": 19050,
         "noDosesTotalPerCdcDistributed": 0.25,
         "dateUpdated": "2021-01-05",
+        "noVaccinatedTotal": null,
         "noVaccinesReceived": null,
         "ap": "Alaska",
         "whiteText": true,
         "population": 731545,
-        "noDosesTotalPerCapita": 0.02604077671230068
+        "noDosesTotalPerCapita": 0.02604077671230068,
+        "noVaccinatedTotalPerCapita": null
       },
       {
         "name": "Alabama",
@@ -3567,11 +3569,13 @@
         "noDosesTotal": 42810,
         "noDosesTotalPerCdcDistributed": 0.248895,
         "dateUpdated": "2021-01-05",
+        "noVaccinatedTotal": null,
         "noVaccinesReceived": null,
         "ap": "Ala.",
         "whiteText": true,
         "population": 4903185,
-        "noDosesTotalPerCapita": 0.008731059505199172
+        "noDosesTotalPerCapita": 0.008731059505199172,
+        "noVaccinatedTotalPerCapita": null
       },
       {
         "name": "Arkansas",
@@ -3585,11 +3589,13 @@
         "noDosesTotal": 40899,
         "noDosesTotalPerCdcDistributed": 0.268763,
         "dateUpdated": "2021-01-05",
+        "noVaccinatedTotal": null,
         "noVaccinesReceived": null,
         "ap": "Ark.",
         "whiteText": true,
         "population": 3017804,
-        "noDosesTotalPerCapita": 0.013552570014487356
+        "noDosesTotalPerCapita": 0.013552570014487356,
+        "noVaccinatedTotalPerCapita": null
       },
       {
         "name": "American Samoa",
@@ -3603,11 +3609,13 @@
         "noDosesTotal": 1022,
         "noDosesTotalPerCdcDistributed": 0.123879,
         "dateUpdated": "2021-01-05",
+        "noVaccinatedTotal": null,
         "noVaccinesReceived": null,
         "ap": "A.S.",
         "whiteText": null,
         "population": 49437,
-        "noDosesTotalPerCapita": 0.020672775451584847
+        "noDosesTotalPerCapita": 0.020672775451584847,
+        "noVaccinatedTotalPerCapita": null
       },
       {
         "name": "Arizona",
@@ -3621,11 +3629,13 @@
         "noDosesTotal": 101030,
         "noDosesTotalPerCdcDistributed": 0.241021,
         "dateUpdated": "2021-01-05",
+        "noVaccinatedTotal": null,
         "noVaccinesReceived": null,
         "ap": "Ariz.",
         "whiteText": true,
         "population": 7278717,
-        "noDosesTotalPerCapita": 0.013880193446180144
+        "noDosesTotalPerCapita": 0.013880193446180144,
+        "noVaccinatedTotalPerCapita": null
       },
       {
         "name": "U.S. totals",
@@ -3636,9 +3646,10 @@
         "cdcDosesDistributedTotal": 17020575,
         "cdcDosesAdministeredTotal": 4836469,
         "cdcDosesAdministeredPerDistributed": 0.284154,
-        "noDosesTotal": 5047645,
-        "noDosesTotalPerCdcDistributed": 0.296561,
+        "noDosesTotal": 5050229,
+        "noDosesTotalPerCdcDistributed": 0.296713,
         "dateUpdated": "2021-01-05",
+        "noVaccinatedTotal": null,
         "noVaccinesReceived": null
       },
       {
@@ -3650,14 +3661,16 @@
         "cdcDosesDistributedTotal": 2039100,
         "cdcDosesAdministeredTotal": 456980,
         "cdcDosesAdministeredPerDistributed": 0.224109,
-        "noDosesTotal": 456980,
-        "noDosesTotalPerCdcDistributed": 0.224109,
+        "noDosesTotal": 459564,
+        "noDosesTotalPerCdcDistributed": 0.225376,
         "dateUpdated": "2021-01-05",
+        "noVaccinatedTotal": null,
         "noVaccinesReceived": null,
         "ap": "Calif.",
         "whiteText": true,
         "population": 39512223,
-        "noDosesTotalPerCapita": 0.011565535049749037
+        "noDosesTotalPerCapita": 0.011630932534471675,
+        "noVaccinatedTotalPerCapita": null
       },
       {
         "name": "Colorado",
@@ -3671,11 +3684,13 @@
         "noDosesTotal": 114555,
         "noDosesTotalPerCdcDistributed": 0.406368,
         "dateUpdated": "2021-01-05",
+        "noVaccinatedTotal": null,
         "noVaccinesReceived": null,
         "ap": "Colo.",
         "whiteText": true,
         "population": 5758736,
-        "noDosesTotalPerCapita": 0.019892386106951248
+        "noDosesTotalPerCapita": 0.019892386106951248,
+        "noVaccinatedTotalPerCapita": null
       },
       {
         "name": "Connecticut",
@@ -3689,11 +3704,13 @@
         "noDosesTotal": 81970,
         "noDosesTotalPerCdcDistributed": 0.546831,
         "dateUpdated": "2021-01-05",
+        "noVaccinatedTotal": null,
         "noVaccinesReceived": null,
         "ap": "Conn.",
         "whiteText": false,
         "population": 3565287,
-        "noDosesTotalPerCapita": 0.02299113647793291
+        "noDosesTotalPerCapita": 0.02299113647793291,
+        "noVaccinatedTotalPerCapita": null
       },
       {
         "name": "District of Columbia",
@@ -3707,11 +3724,13 @@
         "noDosesTotal": 16989,
         "noDosesTotalPerCdcDistributed": 0.478901,
         "dateUpdated": "2021-01-04",
+        "noVaccinatedTotal": null,
         "noVaccinesReceived": 40075,
         "ap": "D.C.",
         "whiteText": null,
         "population": 705749,
-        "noDosesTotalPerCapita": 0.0240722976582326
+        "noDosesTotalPerCapita": 0.0240722976582326,
+        "noVaccinatedTotalPerCapita": null
       },
       {
         "name": "Delaware",
@@ -3725,11 +3744,13 @@
         "noDosesTotal": 15460,
         "noDosesTotalPerCdcDistributed": 0.288164,
         "dateUpdated": "2021-01-05",
+        "noVaccinatedTotal": null,
         "noVaccinesReceived": 50725,
         "ap": "Del.",
         "whiteText": false,
         "population": 973764,
-        "noDosesTotalPerCapita": 0.015876536820009775
+        "noDosesTotalPerCapita": 0.015876536820009775,
+        "noVaccinatedTotalPerCapita": null
       },
       {
         "name": "Florida",
@@ -3743,11 +3764,13 @@
         "noDosesTotal": 291770,
         "noDosesTotalPerCdcDistributed": 0.253273,
         "dateUpdated": "2021-01-05",
+        "noVaccinatedTotal": 1997,
         "noVaccinesReceived": null,
         "ap": "Fla.",
         "whiteText": true,
         "population": 21477737,
-        "noDosesTotalPerCapita": 0.013584764540137538
+        "noDosesTotalPerCapita": 0.013584764540137538,
+        "noVaccinatedTotalPerCapita": 0.0000929800006397322
       },
       {
         "name": "Micronesia",
@@ -3761,10 +3784,12 @@
         "noDosesTotal": 30,
         "noDosesTotalPerCdcDistributed": 0.003061,
         "dateUpdated": "2021-01-05",
+        "noVaccinatedTotal": null,
         "noVaccinesReceived": null,
         "ap": "",
         "whiteText": null,
-        "noDosesTotalPerCapita": null
+        "noDosesTotalPerCapita": null,
+        "noVaccinatedTotalPerCapita": null
       },
       {
         "name": "Georgia",
@@ -3778,11 +3803,13 @@
         "noDosesTotal": 94607,
         "noDosesTotalPerCdcDistributed": 0.191658,
         "dateUpdated": "2021-01-05",
+        "noVaccinatedTotal": null,
         "noVaccinesReceived": 475050,
         "ap": "Ga.",
         "whiteText": true,
         "population": 10617423,
-        "noDosesTotalPerCapita": 0.00891054260530074
+        "noDosesTotalPerCapita": 0.00891054260530074,
+        "noVaccinatedTotalPerCapita": null
       },
       {
         "name": "Guam",
@@ -3796,11 +3823,13 @@
         "noDosesTotal": 4945,
         "noDosesTotalPerCdcDistributed": 0.256218,
         "dateUpdated": "2021-01-04",
+        "noVaccinatedTotal": null,
         "noVaccinesReceived": null,
         "ap": "Guam",
         "whiteText": null,
         "population": 168485,
-        "noDosesTotalPerCapita": 0.029349793750185475
+        "noDosesTotalPerCapita": 0.029349793750185475,
+        "noVaccinatedTotalPerCapita": null
       },
       {
         "name": "Hawaii",
@@ -3814,11 +3843,13 @@
         "noDosesTotal": 25000,
         "noDosesTotalPerCdcDistributed": 0.30303,
         "dateUpdated": "2020-12-31",
+        "noVaccinatedTotal": null,
         "noVaccinesReceived": 49750,
         "ap": "Hawaii",
         "whiteText": false,
         "population": 1415872,
-        "noDosesTotalPerCapita": 0.017656963341318988
+        "noDosesTotalPerCapita": 0.017656963341318988,
+        "noVaccinatedTotalPerCapita": null
       },
       {
         "name": "Iowa",
@@ -3832,11 +3863,13 @@
         "noDosesTotal": 60137,
         "noDosesTotalPerCdcDistributed": 0.500412,
         "dateUpdated": "2021-01-05",
+        "noVaccinatedTotal": null,
         "noVaccinesReceived": null,
         "ap": "Iowa",
         "whiteText": true,
         "population": 3155070,
-        "noDosesTotalPerCapita": 0.019060432890553935
+        "noDosesTotalPerCapita": 0.019060432890553935,
+        "noVaccinatedTotalPerCapita": null
       },
       {
         "name": "Idaho",
@@ -3850,11 +3883,13 @@
         "noDosesTotal": 20843,
         "noDosesTotalPerCdcDistributed": 0.255664,
         "dateUpdated": "2021-01-05",
+        "noVaccinatedTotal": null,
         "noVaccinesReceived": null,
         "ap": "Idaho",
         "whiteText": true,
         "population": 1787065,
-        "noDosesTotalPerCapita": 0.011663257911715578
+        "noDosesTotalPerCapita": 0.011663257911715578,
+        "noVaccinatedTotalPerCapita": null
       },
       {
         "name": "Illinois",
@@ -3868,11 +3903,13 @@
         "noDosesTotal": 176586,
         "noDosesTotalPerCdcDistributed": 0.328044,
         "dateUpdated": "2021-01-05",
+        "noVaccinatedTotal": null,
         "noVaccinesReceived": null,
         "ap": "Ill.",
         "whiteText": true,
         "population": 12671821,
-        "noDosesTotalPerCapita": 0.013935329421083205
+        "noDosesTotalPerCapita": 0.013935329421083205,
+        "noVaccinatedTotalPerCapita": null
       },
       {
         "name": "Indiana",
@@ -3886,11 +3923,13 @@
         "noDosesTotal": 100487,
         "noDosesTotalPerCdcDistributed": 0.282406,
         "dateUpdated": "2021-01-05",
+        "noVaccinatedTotal": null,
         "noVaccinesReceived": null,
         "ap": "Ind.",
         "whiteText": true,
         "population": 6732219,
-        "noDosesTotalPerCapita": 0.014926282106984339
+        "noDosesTotalPerCapita": 0.014926282106984339,
+        "noVaccinatedTotalPerCapita": null
       },
       {
         "name": "Kansas",
@@ -3904,11 +3943,13 @@
         "noDosesTotal": 20158,
         "noDosesTotalPerCdcDistributed": 0.153002,
         "dateUpdated": "2021-01-05",
+        "noVaccinatedTotal": null,
         "noVaccinesReceived": null,
         "ap": "Kan.",
         "whiteText": true,
         "population": 2913314,
-        "noDosesTotalPerCapita": 0.006919267885301756
+        "noDosesTotalPerCapita": 0.006919267885301756,
+        "noVaccinatedTotalPerCapita": null
       },
       {
         "name": "Kentucky",
@@ -3922,11 +3963,13 @@
         "noDosesTotal": 61408,
         "noDosesTotalPerCdcDistributed": 0.352616,
         "dateUpdated": "2021-01-05",
+        "noVaccinatedTotal": null,
         "noVaccinesReceived": 174750,
         "ap": "Ky.",
         "whiteText": true,
         "population": 4467673,
-        "noDosesTotalPerCapita": 0.013744962981847597
+        "noDosesTotalPerCapita": 0.013744962981847597,
+        "noVaccinatedTotalPerCapita": null
       },
       {
         "name": "Louisiana",
@@ -3940,11 +3983,13 @@
         "noDosesTotal": 56452,
         "noDosesTotalPerCdcDistributed": 0.24531,
         "dateUpdated": "2021-01-05",
+        "noVaccinatedTotal": null,
         "noVaccinesReceived": null,
         "ap": "La.",
         "whiteText": true,
         "population": 4648794,
-        "noDosesTotalPerCapita": 0.012143364494103201
+        "noDosesTotalPerCapita": 0.012143364494103201,
+        "noVaccinatedTotalPerCapita": null
       },
       {
         "name": "Massachusetts",
@@ -3958,11 +4003,13 @@
         "noDosesTotal": 114465,
         "noDosesTotalPerCdcDistributed": 0.348024,
         "dateUpdated": "2021-01-05",
+        "noVaccinatedTotal": null,
         "noVaccinesReceived": 285050,
         "ap": "Mass.",
         "whiteText": false,
         "population": 6892503,
-        "noDosesTotalPerCapita": 0.016607174490892496
+        "noDosesTotalPerCapita": 0.016607174490892496,
+        "noVaccinatedTotalPerCapita": null
       },
       {
         "name": "Maryland",
@@ -3976,11 +4023,13 @@
         "noDosesTotal": 77274,
         "noDosesTotalPerCdcDistributed": 0.264864,
         "dateUpdated": "2021-01-05",
+        "noVaccinatedTotal": null,
         "noVaccinesReceived": null,
         "ap": "Md.",
         "whiteText": false,
         "population": 6045680,
-        "noDosesTotalPerCapita": 0.01278168874303635
+        "noDosesTotalPerCapita": 0.01278168874303635,
+        "noVaccinatedTotalPerCapita": null
       },
       {
         "name": "Maine",
@@ -3994,11 +4043,13 @@
         "noDosesTotal": 35536,
         "noDosesTotalPerCdcDistributed": 0.506572,
         "dateUpdated": "2021-01-05",
+        "noVaccinatedTotal": null,
         "noVaccinesReceived": null,
         "ap": "Maine",
         "whiteText": true,
         "population": 1344212,
-        "noDosesTotalPerCapita": 0.02643630617789456
+        "noDosesTotalPerCapita": 0.02643630617789456,
+        "noVaccinatedTotalPerCapita": null
       },
       {
         "name": "Marshall Islands",
@@ -4012,10 +4063,12 @@
         "noDosesTotal": null,
         "noDosesTotalPerCdcDistributed": null,
         "dateUpdated": null,
+        "noVaccinatedTotal": null,
         "noVaccinesReceived": null,
         "ap": "",
         "whiteText": null,
-        "noDosesTotalPerCapita": null
+        "noDosesTotalPerCapita": null,
+        "noVaccinatedTotalPerCapita": null
       },
       {
         "name": "Michigan",
@@ -4029,11 +4082,13 @@
         "noDosesTotal": 128390,
         "noDosesTotalPerCdcDistributed": 0.26815,
         "dateUpdated": "2021-01-04",
+        "noVaccinatedTotal": null,
         "noVaccinesReceived": 379325,
         "ap": "Mich.",
         "whiteText": true,
         "population": 9986857,
-        "noDosesTotalPerCapita": 0.012855896504776228
+        "noDosesTotalPerCapita": 0.012855896504776228,
+        "noVaccinatedTotalPerCapita": null
       },
       {
         "name": "Minnesota",
@@ -4047,11 +4102,13 @@
         "noDosesTotal": 86329,
         "noDosesTotalPerCdcDistributed": 0.318117,
         "dateUpdated": "2021-01-05",
+        "noVaccinatedTotal": null,
         "noVaccinesReceived": null,
         "ap": "Minn.",
         "whiteText": true,
         "population": 5639632,
-        "noDosesTotalPerCapita": 0.01530755907477651
+        "noDosesTotalPerCapita": 0.01530755907477651,
+        "noVaccinatedTotalPerCapita": null
       },
       {
         "name": "Missouri",
@@ -4065,11 +4122,13 @@
         "noDosesTotal": 98589,
         "noDosesTotalPerCdcDistributed": 0.344626,
         "dateUpdated": "2021-01-05",
+        "noVaccinatedTotal": null,
         "noVaccinesReceived": null,
         "ap": "Mo.",
         "whiteText": true,
         "population": 6137428,
-        "noDosesTotalPerCapita": 0.01606356929971317
+        "noDosesTotalPerCapita": 0.01606356929971317,
+        "noVaccinatedTotalPerCapita": null
       },
       {
         "name": "Northern Marianas",
@@ -4083,11 +4142,13 @@
         "noDosesTotal": 3083,
         "noDosesTotalPerCdcDistributed": 0.219431,
         "dateUpdated": "2021-01-05",
+        "noVaccinatedTotal": null,
         "noVaccinesReceived": null,
         "ap": "N.M.I.",
         "whiteText": null,
         "population": 51433,
-        "noDosesTotalPerCapita": 0.05994206054478642
+        "noDosesTotalPerCapita": 0.05994206054478642,
+        "noVaccinatedTotalPerCapita": null
       },
       {
         "name": "Mississippi",
@@ -4101,11 +4162,13 @@
         "noDosesTotal": 25324,
         "noDosesTotalPerCdcDistributed": 0.259867,
         "dateUpdated": "2021-01-05",
+        "noVaccinatedTotal": null,
         "noVaccinesReceived": 175450,
         "ap": "Miss.",
         "whiteText": true,
         "population": 2976149,
-        "noDosesTotalPerCapita": 0.00850898258118125
+        "noDosesTotalPerCapita": 0.00850898258118125,
+        "noVaccinatedTotalPerCapita": null
       },
       {
         "name": "Montana",
@@ -4119,11 +4182,13 @@
         "noDosesTotal": 23526,
         "noDosesTotalPerCdcDistributed": 0.448541,
         "dateUpdated": "2021-01-05",
+        "noVaccinatedTotal": null,
         "noVaccinesReceived": null,
         "ap": "Mont.",
         "whiteText": true,
         "population": 1068778,
-        "noDosesTotalPerCapita": 0.022012054888854375
+        "noDosesTotalPerCapita": 0.022012054888854375,
+        "noVaccinatedTotalPerCapita": null
       },
       {
         "name": "North Carolina",
@@ -4137,11 +4202,13 @@
         "noDosesTotal": 123598,
         "noDosesTotalPerCdcDistributed": 0.247965,
         "dateUpdated": "2021-01-05",
+        "noVaccinatedTotal": 461,
         "noVaccinesReceived": null,
         "ap": "N.C.",
         "whiteText": true,
         "population": 10488084,
-        "noDosesTotalPerCapita": 0.011784611946281132
+        "noDosesTotalPerCapita": 0.011784611946281132,
+        "noVaccinatedTotalPerCapita": 0.00004395464414663345
       },
       {
         "name": "North Dakota",
@@ -4155,11 +4222,13 @@
         "noDosesTotal": 22358,
         "noDosesTotalPerCdcDistributed": 0.547655,
         "dateUpdated": "2021-01-05",
+        "noVaccinatedTotal": null,
         "noVaccinesReceived": 35250,
         "ap": "N.D.",
         "whiteText": true,
         "population": 762062,
-        "noDosesTotalPerCapita": 0.02933882020098102
+        "noDosesTotalPerCapita": 0.02933882020098102,
+        "noVaccinatedTotalPerCapita": null
       },
       {
         "name": "Nebraska",
@@ -4173,11 +4242,13 @@
         "noDosesTotal": 36753,
         "noDosesTotalPerCdcDistributed": 0.404435,
         "dateUpdated": "2021-01-05",
+        "noVaccinatedTotal": 107,
         "noVaccinesReceived": 94647,
         "ap": "Neb.",
         "whiteText": true,
         "population": 1934408,
-        "noDosesTotalPerCapita": 0.018999611250573818
+        "noDosesTotalPerCapita": 0.018999611250573818,
+        "noVaccinatedTotalPerCapita": 0.00005531408058692892
       },
       {
         "name": "New Hampshire",
@@ -4191,11 +4262,13 @@
         "noDosesTotal": 30035,
         "noDosesTotalPerCdcDistributed": 0.559571,
         "dateUpdated": "2021-01-05",
+        "noVaccinatedTotal": null,
         "noVaccinesReceived": 3135,
         "ap": "N.H.",
         "whiteText": false,
         "population": 1359711,
-        "noDosesTotalPerCapita": 0.022089252789747233
+        "noDosesTotalPerCapita": 0.022089252789747233,
+        "noVaccinatedTotalPerCapita": null
       },
       {
         "name": "New Jersey",
@@ -4209,11 +4282,13 @@
         "noDosesTotal": 120947,
         "noDosesTotalPerCdcDistributed": 0.309406,
         "dateUpdated": "2021-01-05",
+        "noVaccinatedTotal": null,
         "noVaccinesReceived": null,
         "ap": "N.J.",
         "whiteText": false,
         "population": 8882190,
-        "noDosesTotalPerCapita": 0.013616799460493415
+        "noDosesTotalPerCapita": 0.013616799460493415,
+        "noVaccinatedTotalPerCapita": null
       },
       {
         "name": "New Mexico",
@@ -4227,11 +4302,13 @@
         "noDosesTotal": 42380,
         "noDosesTotalPerCdcDistributed": 0.398215,
         "dateUpdated": "2021-01-05",
+        "noVaccinatedTotal": null,
         "noVaccinesReceived": null,
         "ap": "N.M.",
         "whiteText": true,
         "population": 2096829,
-        "noDosesTotalPerCapita": 0.020211471703224248
+        "noDosesTotalPerCapita": 0.020211471703224248,
+        "noVaccinatedTotalPerCapita": null
       },
       {
         "name": "Nevada",
@@ -4245,11 +4322,13 @@
         "noDosesTotal": 34549,
         "noDosesTotalPerCdcDistributed": 0.242407,
         "dateUpdated": "2021-01-05",
+        "noVaccinatedTotal": null,
         "noVaccinesReceived": null,
         "ap": "Nev.",
         "whiteText": true,
         "population": 3080156,
-        "noDosesTotalPerCapita": 0.0112166396766917
+        "noDosesTotalPerCapita": 0.0112166396766917,
+        "noVaccinatedTotalPerCapita": null
       },
       {
         "name": "New York",
@@ -4263,11 +4342,13 @@
         "noDosesTotal": 300000,
         "noDosesTotalPerCdcDistributed": 0.320881,
         "dateUpdated": "2021-01-04",
+        "noVaccinatedTotal": null,
         "noVaccinesReceived": null,
         "ap": "N.Y.",
         "whiteText": true,
         "population": 19453561,
-        "noDosesTotalPerCapita": 0.01542134111076116
+        "noDosesTotalPerCapita": 0.01542134111076116,
+        "noVaccinatedTotalPerCapita": null
       },
       {
         "name": "Ohio",
@@ -4281,11 +4362,13 @@
         "noDosesTotal": 175408,
         "noDosesTotalPerCdcDistributed": 0.487515,
         "dateUpdated": "2021-01-05",
+        "noVaccinatedTotal": null,
         "noVaccinesReceived": null,
         "ap": "Ohio",
         "whiteText": true,
         "population": 11689100,
-        "noDosesTotalPerCapita": 0.015006116809677391
+        "noDosesTotalPerCapita": 0.015006116809677391,
+        "noVaccinatedTotalPerCapita": null
       },
       {
         "name": "Oklahoma",
@@ -4299,11 +4382,13 @@
         "noDosesTotal": 63090,
         "noDosesTotalPerCdcDistributed": 0.289172,
         "dateUpdated": "2021-01-05",
+        "noVaccinatedTotal": null,
         "noVaccinesReceived": 174900,
         "ap": "Okla.",
         "whiteText": true,
         "population": 3956971,
-        "noDosesTotalPerCapita": 0.015944013741824237
+        "noDosesTotalPerCapita": 0.015944013741824237,
+        "noVaccinatedTotalPerCapita": null
       },
       {
         "name": "Oregon",
@@ -4317,11 +4402,13 @@
         "noDosesTotal": 51283,
         "noDosesTotalPerCdcDistributed": 0.226215,
         "dateUpdated": "2021-01-05",
+        "noVaccinatedTotal": 9,
         "noVaccinesReceived": 190500,
         "ap": "Ore.",
         "whiteText": true,
         "population": 4217737,
-        "noDosesTotalPerCapita": 0.012158889945010796
+        "noDosesTotalPerCapita": 0.012158889945010796,
+        "noVaccinatedTotalPerCapita": 0.0000021338457092037744
       },
       {
         "name": "Pennsylvania",
@@ -4335,11 +4422,13 @@
         "noDosesTotal": 164552,
         "noDosesTotalPerCdcDistributed": 0.263115,
         "dateUpdated": "2021-01-05",
+        "noVaccinatedTotal": null,
         "noVaccinesReceived": null,
         "ap": "Pa.",
         "whiteText": true,
         "population": 12801989,
-        "noDosesTotalPerCapita": 0.012853627666763344
+        "noDosesTotalPerCapita": 0.012853627666763344,
+        "noVaccinatedTotalPerCapita": null
       },
       {
         "name": "Puerto Rico",
@@ -4353,11 +4442,13 @@
         "noDosesTotal": 70000,
         "noDosesTotalPerCdcDistributed": 0.405562,
         "dateUpdated": "2021-01-05",
+        "noVaccinatedTotal": null,
         "noVaccinesReceived": null,
         "ap": "P.R.",
         "whiteText": false,
         "population": 3193694,
-        "noDosesTotalPerCapita": 0.021918192538170532
+        "noDosesTotalPerCapita": 0.021918192538170532,
+        "noVaccinatedTotalPerCapita": null
       },
       {
         "name": "Palau",
@@ -4371,10 +4462,12 @@
         "noDosesTotal": 120,
         "noDosesTotalPerCdcDistributed": 0.042857,
         "dateUpdated": "2021-01-05",
+        "noVaccinatedTotal": null,
         "noVaccinesReceived": null,
         "ap": "",
         "whiteText": null,
-        "noDosesTotalPerCapita": null
+        "noDosesTotalPerCapita": null,
+        "noVaccinatedTotalPerCapita": null
       },
       {
         "name": "Rhode Island",
@@ -4388,11 +4481,13 @@
         "noDosesTotal": 26163,
         "noDosesTotalPerCdcDistributed": 0.470558,
         "dateUpdated": "2021-01-05",
+        "noVaccinatedTotal": 400,
         "noVaccinesReceived": null,
         "ap": "R.I.",
         "whiteText": false,
         "population": 1059361,
-        "noDosesTotalPerCapita": 0.02469696354689289
+        "noDosesTotalPerCapita": 0.02469696354689289,
+        "noVaccinatedTotalPerCapita": 0.00037758611087249767
       },
       {
         "name": "South Carolina",
@@ -4406,11 +4501,13 @@
         "noDosesTotal": 61797,
         "noDosesTotalPerCdcDistributed": 0.422544,
         "dateUpdated": "2021-01-05",
+        "noVaccinatedTotal": 169,
         "noVaccinesReceived": 146250,
         "ap": "S.C.",
         "whiteText": true,
         "population": 5148714,
-        "noDosesTotalPerCapita": 0.012002414583525129
+        "noDosesTotalPerCapita": 0.012002414583525129,
+        "noVaccinatedTotalPerCapita": 0.000032823730352860926
       },
       {
         "name": "South Dakota",
@@ -4424,11 +4521,13 @@
         "noDosesTotal": 28581,
         "noDosesTotalPerCdcDistributed": 0.645169,
         "dateUpdated": "2021-01-05",
+        "noVaccinatedTotal": null,
         "noVaccinesReceived": null,
         "ap": "S.D.",
         "whiteText": true,
         "population": 884659,
-        "noDosesTotalPerCapita": 0.03230736362824546
+        "noDosesTotalPerCapita": 0.03230736362824546,
+        "noVaccinatedTotalPerCapita": null
       },
       {
         "name": "Tennessee",
@@ -4442,11 +4541,13 @@
         "noDosesTotal": 169070,
         "noDosesTotalPerCdcDistributed": 0.514673,
         "dateUpdated": "2021-01-05",
+        "noVaccinatedTotal": null,
         "noVaccinesReceived": null,
         "ap": "Tenn.",
         "whiteText": true,
         "population": 6829174,
-        "noDosesTotalPerCapita": 0.024757020395145886
+        "noDosesTotalPerCapita": 0.024757020395145886,
+        "noVaccinatedTotalPerCapita": null
       },
       {
         "name": "Texas",
@@ -4460,11 +4561,13 @@
         "noDosesTotal": 451210,
         "noDosesTotalPerCdcDistributed": 0.32908,
         "dateUpdated": "2021-01-05",
+        "noVaccinatedTotal": null,
         "noVaccinesReceived": 1333450,
         "ap": "Texas",
         "whiteText": true,
         "population": 28995881,
-        "noDosesTotalPerCapita": 0.015561175740788838
+        "noDosesTotalPerCapita": 0.015561175740788838,
+        "noVaccinatedTotalPerCapita": null
       },
       {
         "name": "Utah",
@@ -4478,11 +4581,13 @@
         "noDosesTotal": 55981,
         "noDosesTotalPerCdcDistributed": 0.354478,
         "dateUpdated": "2021-01-05",
+        "noVaccinatedTotal": null,
         "noVaccinesReceived": 150125,
         "ap": "Utah",
         "whiteText": true,
         "population": 3205958,
-        "noDosesTotalPerCapita": 0.017461551274221308
+        "noDosesTotalPerCapita": 0.017461551274221308,
+        "noVaccinatedTotalPerCapita": null
       },
       {
         "name": "Virginia",
@@ -4496,11 +4601,13 @@
         "noDosesTotal": 126363,
         "noDosesTotalPerCdcDistributed": 0.262409,
         "dateUpdated": "2021-01-05",
+        "noVaccinatedTotal": null,
         "noVaccinesReceived": 481550,
         "ap": "Va.",
         "whiteText": true,
         "population": 8535519,
-        "noDosesTotalPerCapita": 0.014804372177017003
+        "noDosesTotalPerCapita": 0.014804372177017003,
+        "noVaccinatedTotalPerCapita": null
       },
       {
         "name": "U.S. Virgin Islands",
@@ -4514,11 +4621,13 @@
         "noDosesTotal": 231,
         "noDosesTotalPerCdcDistributed": 0.035,
         "dateUpdated": "2021-01-05",
+        "noVaccinatedTotal": null,
         "noVaccinesReceived": null,
         "ap": "V.I.",
         "whiteText": null,
         "population": 106235,
-        "noDosesTotalPerCapita": 0.0021744246246528922
+        "noDosesTotalPerCapita": 0.0021744246246528922,
+        "noVaccinatedTotalPerCapita": null
       },
       {
         "name": "Vermont",
@@ -4532,11 +4641,13 @@
         "noDosesTotal": 15955,
         "noDosesTotalPerCdcDistributed": 0.470302,
         "dateUpdated": "2021-01-05",
+        "noVaccinatedTotal": null,
         "noVaccinesReceived": null,
         "ap": "Vt.",
         "whiteText": false,
         "population": 623989,
-        "noDosesTotalPerCapita": 0.025569360998350932
+        "noDosesTotalPerCapita": 0.025569360998350932,
+        "noVaccinatedTotalPerCapita": null
       },
       {
         "name": "Washington",
@@ -4550,11 +4661,13 @@
         "noDosesTotal": 96845,
         "noDosesTotalPerCdcDistributed": 0.244867,
         "dateUpdated": "2021-01-05",
+        "noVaccinatedTotal": null,
         "noVaccinesReceived": 357925,
         "ap": "Wash.",
         "whiteText": true,
         "population": 7614893,
-        "noDosesTotalPerCapita": 0.012717841209324938
+        "noDosesTotalPerCapita": 0.012717841209324938,
+        "noVaccinatedTotalPerCapita": null
       },
       {
         "name": "Wisconsin",
@@ -4568,11 +4681,13 @@
         "noDosesTotal": 85609,
         "noDosesTotalPerCdcDistributed": 0.321024,
         "dateUpdated": "2021-01-05",
+        "noVaccinatedTotal": null,
         "noVaccinesReceived": 266675,
         "ap": "Wis.",
         "whiteText": true,
         "population": 5822434,
-        "noDosesTotalPerCapita": 0.01470330105931643
+        "noDosesTotalPerCapita": 0.01470330105931643,
+        "noVaccinatedTotalPerCapita": null
       },
       {
         "name": "West Virginia",
@@ -4586,11 +4701,13 @@
         "noDosesTotal": 56664,
         "noDosesTotalPerCdcDistributed": 0.448735,
         "dateUpdated": "2021-01-05",
+        "noVaccinatedTotal": null,
         "noVaccinesReceived": 103375,
         "ap": "W.Va.",
         "whiteText": true,
         "population": 1792147,
-        "noDosesTotalPerCapita": 0.03161794205497652
+        "noDosesTotalPerCapita": 0.03161794205497652,
+        "noVaccinatedTotalPerCapita": null
       },
       {
         "name": "Wyoming",
@@ -4604,11 +4721,13 @@
         "noDosesTotal": 8928,
         "noDosesTotalPerCdcDistributed": 0.291289,
         "dateUpdated": "2021-01-05",
+        "noVaccinatedTotal": null,
         "noVaccinesReceived": 25775,
         "ap": "Wyo.",
         "whiteText": true,
         "population": 578759,
-        "noDosesTotalPerCapita": 0.015426110004336866
+        "noDosesTotalPerCapita": 0.015426110004336866,
+        "noVaccinatedTotalPerCapita": null
       },
       {
         "name": "Bureau of Prisons",
@@ -4622,6 +4741,7 @@
         "noDosesTotal": 8700,
         "noDosesTotalPerCdcDistributed": 0.679688,
         "dateUpdated": "2021-01-05",
+        "noVaccinatedTotal": null,
         "noVaccinesReceived": null
       },
       {
@@ -4636,6 +4756,7 @@
         "noDosesTotal": 67766,
         "noDosesTotalPerCdcDistributed": 0.250869,
         "dateUpdated": "2021-01-05",
+        "noVaccinatedTotal": null,
         "noVaccinesReceived": null
       },
       {
@@ -4650,10 +4771,12 @@
         "noDosesTotal": 233471,
         "noDosesTotalPerCdcDistributed": 0.223948,
         "dateUpdated": "2021-01-05",
+        "noVaccinatedTotal": null,
         "noVaccinesReceived": null,
         "ap": "",
         "whiteText": null,
-        "noDosesTotalPerCapita": null
+        "noDosesTotalPerCapita": null,
+        "noVaccinatedTotalPerCapita": null
       },
       {
         "name": "Indian Health Service",
@@ -4667,6 +4790,7 @@
         "noDosesTotal": 38053,
         "noDosesTotalPerCdcDistributed": 0.217074,
         "dateUpdated": "2021-01-05",
+        "noVaccinatedTotal": null,
         "noVaccinesReceived": null
       },
       {
@@ -4682,6 +4806,7 @@
         "noDosesTotal": 119060,
         "noDosesTotalPerCdcDistributed": 0.247758,
         "dateUpdated": "2021-01-05",
+        "noVaccinatedTotal": 756,
         "noVaccinesReceived": 480550
       },
       {
@@ -4696,6 +4821,7 @@
         "noDosesTotal": 118952,
         "noDosesTotalPerCdcDistributed": 0.20358,
         "dateUpdated": "2021-01-05",
+        "noVaccinatedTotal": null,
         "noVaccinesReceived": null
       }
     ]
