@@ -1182,6 +1182,7 @@ async function processVaccineData() {
     }
   }
   delete AllData["64"];
+  delete AllData["68"];
   delete AllData["70"];
 }
 
