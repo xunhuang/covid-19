@@ -40,8 +40,17 @@ jobs:
     - run: cd website; npm run data; cd ..
     - run: cd website; npm run build --if-present; cd ..
     - run: cd website; echo "covid-19.town" > build/CNAME; cd ..
-    - name: Setup new git
-      run: cd website; git init; git remote add origin git@github.com:xunhuang/my-app.git; cd ..
-    - name: Deploy
-      run: cd website node node_modules/gh-pages/bin/gh-pages.js -d build
+      # - name: Setup new git
+      # run: cd website; git init; git remote add origin git@github.com:xunhuang/my-app.git; cd ..
+      # - name: Deploy
+      # run: cd website node node_modules/gh-pages/bin/gh-pages.js -d build
+
+    - name: Deploy 
+      uses: JamesIves/github-pages-deploy-action@3.7.1
+      with:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        BRANCH: gh-pages # The branch the action should deploy to.
+        FOLDER: website/build # The folder the action should deploy.
+        CLEAN: true # Automatically remove deleted files from the deploy branch
+
 
