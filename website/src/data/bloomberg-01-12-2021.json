@@ -3091,7 +3091,7 @@
         "parentIso": null,
         "iso": "BBG",
         "dateUpdated": "2021-01-12",
-        "noDosesTotal": 30558382,
+        "noDosesTotal": 30565168,
         "noCompletedVaccination": null,
         "noVaccinesReceived": null,
         "noDosesTotalPerCapita": null
@@ -3104,7 +3104,8 @@
         "noDosesTotal": 3213745,
         "noCompletedVaccination": null,
         "noVaccinesReceived": null,
-        "noDosesTotalPerCapita": null
+        "population": 444260000,
+        "noDosesTotalPerCapita": 0.007233928330257057
       },
       {
         "name": "Bulgaria",
@@ -3695,11 +3696,11 @@
         "parentIso": null,
         "iso": "USA",
         "dateUpdated": "2021-01-12",
-        "noDosesTotal": 9937259,
+        "noDosesTotal": 9944045,
         "noCompletedVaccination": null,
         "noVaccinesReceived": null,
         "population": 328461000,
-        "noDosesTotalPerCapita": 0.03025399971381686
+        "noDosesTotalPerCapita": 0.030274659700847285
       }
     ],
     "usa": [
@@ -3711,10 +3712,10 @@
         "cdcDosesDistributedTotal": 27696150,
         "cdcFirstDosesAdministeredTotal": 9327138,
         "cdcFirstDosesAdministeredPerDistributed": 0.336767,
-        "noDosesTotal": 9937259,
-        "noDosesTotalPerCdcDistributed": 0.358796,
+        "noDosesTotal": 9944045,
+        "noDosesTotalPerCdcDistributed": 0.359041,
         "dateUpdated": "2021-01-12",
-        "noCompletedVaccination": 563714,
+        "noCompletedVaccination": 636172,
         "noVaccinesReceived": null
       },
       {
@@ -3972,16 +3973,16 @@
         "cdcDosesDistributedTotal": 903100,
         "cdcFirstDosesAdministeredTotal": 347005,
         "cdcFirstDosesAdministeredPerDistributed": 0.384238,
-        "noDosesTotal": 347005,
-        "noDosesTotalPerCdcDistributed": 0.384238,
+        "noDosesTotal": 353791,
+        "noDosesTotalPerCdcDistributed": 0.391752,
         "dateUpdated": "2021-01-12",
-        "noCompletedVaccination": null,
+        "noCompletedVaccination": 72458,
         "noVaccinesReceived": null,
         "ap": "Ill.",
         "whiteText": true,
         "population": 12671821,
-        "noDosesTotalPerCapita": 0.027383988457538977,
-        "noCompletedVaccinationPerCapita": null
+        "noDosesTotalPerCapita": 0.02791950738571828,
+        "noCompletedVaccinationPerCapita": 0.005718041629533751
       },
       {
         "name": "Indiana",
@@ -5398,7 +5399,7 @@
           ],
           [
             "2021-01-12",
-            9937259
+            9944045
           ]
         ],
         "CAN-BC": [
@@ -6554,7 +6555,7 @@
           ],
           [
             "2021-01-12",
-            30558382
+            30565168
           ]
         ],
         "FRA": [
@@ -6878,7 +6879,7 @@
           ],
           [
             "2021-01-12",
-            9937259
+            9944045
           ]
         ],
         "AL": [
@@ -7485,6 +7486,10 @@
           [
             "2021-01-11",
             331171
+          ],
+          [
+            "2021-01-12",
+            353791
           ]
         ],
         "chicago": [
@@ -9358,7 +9363,7 @@
           ],
           [
             "2021-01-12",
-            9937259
+            9944045
           ]
         ],
         "KS": [
@@ -10112,8 +10117,8 @@
       ],
       [
         "2021-01-12",
-        1441087,
-        2047862.13989899
+        1447873,
+        2048831.5684704187
       ]
     ],
     "usa": {
@@ -10220,8 +10225,8 @@
         ],
         [
           "2021-01-12",
-          668380,
-          698147.1428571428
+          675166,
+          699116.5714285715
         ]
       ],
       "AL": [
@@ -10974,6 +10979,11 @@
           "2021-01-11",
           97120,
           22084.85714285714
+        ],
+        [
+          "2021-01-12",
+          22620,
+          22151.75
         ]
       ],
       "chicago": [
@@ -13296,8 +13306,8 @@
         ],
         [
           "2021-01-12",
-          668380,
-          659429.75
+          675166,
+          660278
         ]
       ],
       "KS": [
@@ -14653,8 +14663,8 @@
         ],
         [
           "2021-01-12",
-          668380,
-          698147.1428571428
+          675166,
+          699116.5714285715
         ]
       ],
       "CAN-BC": [
@@ -16081,8 +16091,8 @@
         ],
         [
           "2021-01-12",
-          1519870,
-          2220684.714285714
+          1526656,
+          2221654.1428571427
         ]
       ],
       "FRA": [
