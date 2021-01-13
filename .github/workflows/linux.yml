@@ -9,10 +9,9 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: fastai/workflows/ssh@master
-      with:
-        ssh_key: ${{ secrets.SSH_KEY }}
-        key_file: id_ecdsa
     - uses: actions/checkout@v2
+    - run: cd website; npm ci ; cd ..
     - name: Setup tmate session
       uses: mxschmitt/action-tmate@master
+      env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
