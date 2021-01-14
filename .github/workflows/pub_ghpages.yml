@@ -37,8 +37,9 @@ jobs:
     - run: pushd  ./vaccine-module/ ;  git checkout master; git pull; popd
     - run: npmv=$(echo $(npm -v) | head -c 1); if [ "$npmv" -lt "6" ]; then npm i -g npm; else echo "Node.js Docker Team finally decided to include npm v6+ in latest image; you can remove this script now"; fi
     - run: cd website; npm ci  ; cd ..
-    - run: cd website; npm run data; cd ..
-    - run: cd website; npm run build --if-present; cd ..
+      # - run: cd website; npm run data; cd ..
+      # - run: cd website; npm run build --if-present; cd ..
+    - run: cd website; mkdir -p build; echo "Hello Wilson " > build/index.html; cd ..
     - run: cd website; echo "covid-19.town" > build/CNAME; cd ..
       # - name: Setup new git
       # run: cd website; git init; git remote add origin git@github.com:xunhuang/my-app.git; cd ..
@@ -52,5 +53,3 @@ jobs:
         BRANCH: gh-pages # The branch the action should deploy to.
         FOLDER: website/build # The folder the action should deploy.
         CLEAN: true # Automatically remove deleted files from the deploy branch
-
-
