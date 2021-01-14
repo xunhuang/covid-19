@@ -361,7 +361,8 @@
     "01/10/2021": 63,
     "01/11/2021": 65,
     "01/12/2021": 63,
-    "01/13/2021": 63
+    "01/13/2021": 63,
+    "01/14/2021": 67
   },
   "Death": {
     "01/22/2020": 0,
@@ -721,15 +722,16 @@
     "01/10/2021": 0,
     "01/11/2021": 0,
     "01/12/2021": 0,
-    "01/13/2021": 0
+    "01/13/2021": 0,
+    "01/14/2021": 0
   },
   "Population": 3240,
   "ca_county_status": "2",
-  "LastConfirmed": 63,
+  "LastConfirmed": 67,
   "LastDeath": 0,
-  "LastConfirmedNew": 0,
+  "LastConfirmedNew": 4,
   "LastDeathNew": 0,
-  "DaysToDouble": 175.62939163909965,
+  "DaysToDouble": 621.0093285089724,
   "DaysToDoubleDeath": null,
-  "Last2WeeksConfirmedDelta": 29
+  "Last2WeeksConfirmedDelta": 25
 }

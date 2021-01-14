@@ -361,7 +361,8 @@
     "01/10/2021": 13647,
     "01/11/2021": 13968,
     "01/12/2021": 14233,
-    "01/13/2021": 14367
+    "01/13/2021": 14367,
+    "01/14/2021": 14425
   },
   "Death": {
     "01/22/2020": 0,
@@ -721,7 +722,8 @@
     "01/10/2021": 101,
     "01/11/2021": 111,
     "01/12/2021": 115,
-    "01/13/2021": 115
+    "01/13/2021": 115,
+    "01/14/2021": 119
   },
   "beds": 1701,
   "bedsICU": 54,
@@ -2471,13 +2473,13 @@
       "icu_covid_patients": 7
     }
   ],
-  "LastConfirmed": 14367,
-  "LastDeath": 115,
-  "LastConfirmedNew": 134,
-  "LastDeathNew": 0,
-  "DaysToDouble": 25.03816574663585,
-  "DaysToDoubleDeath": 17.51765720392068,
-  "Last2WeeksConfirmedDelta": 4079,
+  "LastConfirmed": 14425,
+  "LastDeath": 119,
+  "LastConfirmedNew": 58,
+  "LastDeathNew": 4,
+  "DaysToDouble": 29.623573276144246,
+  "DaysToDoubleDeath": 18.489456362211257,
+  "Last2WeeksConfirmedDelta": 4107,
   "StayHomeOrder": {
     "StartUrl": "https://www.emergencyslo.org/en/shelter-at-home-order.aspx",
     "StartDate": "2020-03-19T00:00:00Z",

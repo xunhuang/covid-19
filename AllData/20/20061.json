@@ -361,7 +361,8 @@
     "01/10/2021": 2054,
     "01/11/2021": 2099,
     "01/12/2021": 2099,
-    "01/13/2021": 2389
+    "01/13/2021": 2389,
+    "01/14/2021": 2389
   },
   "Death": {
     "01/22/2020": 0,
@@ -721,7 +722,8 @@
     "01/10/2021": 17,
     "01/11/2021": 17,
     "01/12/2021": 17,
-    "01/13/2021": 14
+    "01/13/2021": 14,
+    "01/14/2021": 14
   },
   "beds": 139,
   "bedsICU": 6,
@@ -730,11 +732,11 @@
   "Population": 34362,
   "LastConfirmed": 2389,
   "LastDeath": 14,
-  "LastConfirmedNew": 290,
+  "LastConfirmedNew": 0,
   "LastDeathNew": 0,
-  "DaysToDouble": 51.286533447489,
-  "DaysToDoubleDeath": null,
-  "Last2WeeksConfirmedDelta": 403,
+  "DaysToDouble": 28.528246530601347,
+  "DaysToDoubleDeath": -33.32049076024613,
+  "Last2WeeksConfirmedDelta": 693,
   "StayHomeOrder": {
     "StartUrl": "https://www.wibw.com/content/news/Geary-County-to-enact-Stay-at-Home-order-starting-at-midnight-569168241.html",
     "StartDate": "2020-03-28T00:00:00Z",
