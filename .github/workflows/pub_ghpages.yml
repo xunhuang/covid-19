@@ -37,13 +37,13 @@ jobs:
     - run: pushd  ./vaccine-module/ ;  git checkout master; git pull; popd
     - run: npmv=$(echo $(npm -v) | head -c 1); if [ "$npmv" -lt "6" ]; then npm i -g npm; else echo "Node.js Docker Team finally decided to include npm v6+ in latest image; you can remove this script now"; fi
     - run: cd website; npm ci  ; cd ..
-      # - run: cd website; npm run data; cd ..
-      # - run: cd website; npm run build --if-present; cd ..
-    - run: cd website; mkdir -p build; echo "Hello Wilson " > build/index.html; cd ..
+    - run: cd website; npm run data; cd ..
+    - run: cd website; npm run build --if-present; cd ..
+    #- run: cd website; mkdir -p build; echo "Hello Wilson " > build/index.html; cd ..
     - run: cd website; echo "covid-19.town" > build/CNAME; cd ..
-      # - name: Setup new git
-      # run: cd website; git init; git remote add origin git@github.com:xunhuang/my-app.git; cd ..
-      # - name: Deploy
+    - name: Setup new git
+      run: cd website; git init; git remote add origin git@github.com:xunhuang/my-app.git; cd ..
+    # - name: Deploy
       # run: cd website node node_modules/gh-pages/bin/gh-pages.js -d build
 
     - name: Deploy 

@@ -207,10 +207,10 @@ const Banner = withRouter((props) => {
             this too shall pass
           </Typography> */}
           <DonateButton />
-          <MaterialLink variant="body1" to="/country/" component={RouterLink} >
+          {/* <MaterialLink variant="body1" to="/country/" component={RouterLink} >
             Beta: Rest of World
           </MaterialLink>
-
+ */}
         </span>
       </div >
       {showNews &&
