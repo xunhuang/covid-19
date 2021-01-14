@@ -1,0 +1,2481 @@
+{
+  "CountyName": "Fresno",
+  "StateName": "CA",
+  "CountyFIPS": "06019",
+  "StateFIPS": "06",
+  "Confirmed": {
+    "01/22/2020": 0,
+    "01/23/2020": 0,
+    "01/24/2020": 0,
+    "01/25/2020": 0,
+    "01/26/2020": 0,
+    "01/27/2020": 0,
+    "01/28/2020": 0,
+    "01/29/2020": 0,
+    "01/30/2020": 0,
+    "01/31/2020": 0,
+    "02/01/2020": 0,
+    "02/02/2020": 0,
+    "02/03/2020": 0,
+    "02/04/2020": 0,
+    "02/05/2020": 0,
+    "02/06/2020": 0,
+    "02/07/2020": 0,
+    "02/08/2020": 0,
+    "02/09/2020": 0,
+    "02/10/2020": 0,
+    "02/11/2020": 0,
+    "02/12/2020": 0,
+    "02/13/2020": 0,
+    "02/14/2020": 0,
+    "02/15/2020": 0,
+    "02/16/2020": 0,
+    "02/17/2020": 0,
+    "02/18/2020": 0,
+    "02/19/2020": 0,
+    "02/20/2020": 0,
+    "02/21/2020": 0,
+    "02/22/2020": 0,
+    "02/23/2020": 0,
+    "02/24/2020": 0,
+    "02/25/2020": 0,
+    "02/26/2020": 0,
+    "02/27/2020": 0,
+    "02/28/2020": 0,
+    "02/29/2020": 0,
+    "03/01/2020": 0,
+    "03/02/2020": 0,
+    "03/03/2020": 0,
+    "03/04/2020": 0,
+    "03/05/2020": 0,
+    "03/06/2020": 0,
+    "03/07/2020": 0,
+    "03/08/2020": 1,
+    "03/09/2020": 1,
+    "03/10/2020": 1,
+    "03/11/2020": 2,
+    "03/12/2020": 2,
+    "03/13/2020": 1,
+    "03/14/2020": 1,
+    "03/15/2020": 1,
+    "03/16/2020": 2,
+    "03/17/2020": 2,
+    "03/18/2020": 2,
+    "03/19/2020": 3,
+    "03/20/2020": 6,
+    "03/21/2020": 6,
+    "03/22/2020": 6,
+    "03/23/2020": 6,
+    "03/24/2020": 13,
+    "03/25/2020": 18,
+    "03/26/2020": 19,
+    "03/27/2020": 27,
+    "03/28/2020": 31,
+    "03/29/2020": 43,
+    "03/30/2020": 43,
+    "03/31/2020": 53,
+    "04/01/2020": 68,
+    "04/02/2020": 82,
+    "04/03/2020": 94,
+    "04/04/2020": 100,
+    "04/05/2020": 103,
+    "04/06/2020": 108,
+    "04/07/2020": 124,
+    "04/08/2020": 146,
+    "04/09/2020": 156,
+    "04/10/2020": 173,
+    "04/11/2020": 191,
+    "04/12/2020": 201,
+    "04/13/2020": 201,
+    "04/14/2020": 222,
+    "04/15/2020": 251,
+    "04/16/2020": 265,
+    "04/17/2020": 295,
+    "04/18/2020": 311,
+    "04/19/2020": 315,
+    "04/20/2020": 315,
+    "04/21/2020": 351,
+    "04/22/2020": 371,
+    "04/23/2020": 419,
+    "04/24/2020": 443,
+    "04/25/2020": 443,
+    "04/26/2020": 458,
+    "04/27/2020": 458,
+    "04/28/2020": 498,
+    "04/29/2020": 538,
+    "04/30/2020": 538,
+    "05/01/2020": 615,
+    "05/02/2020": 615,
+    "05/03/2020": 633,
+    "05/04/2020": 633,
+    "05/05/2020": 672,
+    "05/06/2020": 777,
+    "05/07/2020": 777,
+    "05/08/2020": 813,
+    "05/09/2020": 841,
+    "05/10/2020": 885,
+    "05/11/2020": 945,
+    "05/12/2020": 984,
+    "05/13/2020": 984,
+    "05/14/2020": 1074,
+    "05/15/2020": 1074,
+    "05/16/2020": 1156,
+    "05/17/2020": 1192,
+    "05/18/2020": 1192,
+    "05/19/2020": 1287,
+    "05/20/2020": 1338,
+    "05/21/2020": 1338,
+    "05/22/2020": 1372,
+    "05/23/2020": 1417,
+    "05/24/2020": 1448,
+    "05/25/2020": 1482,
+    "05/26/2020": 1482,
+    "05/27/2020": 1535,
+    "05/28/2020": 1658,
+    "05/29/2020": 1658,
+    "05/30/2020": 1714,
+    "05/31/2020": 1743,
+    "06/01/2020": 1743,
+    "06/02/2020": 1882,
+    "06/03/2020": 1914,
+    "06/04/2020": 1944,
+    "06/05/2020": 2014,
+    "06/06/2020": 2080,
+    "06/07/2020": 2122,
+    "06/08/2020": 2122,
+    "06/09/2020": 2216,
+    "06/10/2020": 2318,
+    "06/11/2020": 2395,
+    "06/12/2020": 2395,
+    "06/13/2020": 2547,
+    "06/14/2020": 2547,
+    "06/15/2020": 2706,
+    "06/16/2020": 2788,
+    "06/17/2020": 2788,
+    "06/18/2020": 3058,
+    "06/19/2020": 3187,
+    "06/20/2020": 3245,
+    "06/21/2020": 3245,
+    "06/22/2020": 3485,
+    "06/23/2020": 3672,
+    "06/24/2020": 3892,
+    "06/25/2020": 4053,
+    "06/26/2020": 4374,
+    "06/27/2020": 4474,
+    "06/28/2020": 4474,
+    "06/29/2020": 4811,
+    "06/30/2020": 4811,
+    "07/01/2020": 5289,
+    "07/02/2020": 5626,
+    "07/03/2020": 5626,
+    "07/04/2020": 5851,
+    "07/05/2020": 6110,
+    "07/06/2020": 6110,
+    "07/07/2020": 6924,
+    "07/08/2020": 7281,
+    "07/09/2020": 7627,
+    "07/10/2020": 7627,
+    "07/11/2020": 7906,
+    "07/12/2020": 8282,
+    "07/13/2020": 8282,
+    "07/14/2020": 8756,
+    "07/15/2020": 8941,
+    "07/16/2020": 9124,
+    "07/17/2020": 9565,
+    "07/18/2020": 9954,
+    "07/19/2020": 9954,
+    "07/20/2020": 10639,
+    "07/21/2020": 10970,
+    "07/22/2020": 11412,
+    "07/23/2020": 11756,
+    "07/24/2020": 12148,
+    "07/25/2020": 12564,
+    "07/26/2020": 12564,
+    "07/27/2020": 12564,
+    "07/28/2020": 13209,
+    "07/29/2020": 13336,
+    "07/30/2020": 14312,
+    "07/31/2020": 14439,
+    "08/01/2020": 14439,
+    "08/02/2020": 15083,
+    "08/03/2020": 15083,
+    "08/04/2020": 15759,
+    "08/05/2020": 15945,
+    "08/06/2020": 16625,
+    "08/07/2020": 16625,
+    "08/08/2020": 17031,
+    "08/09/2020": 17290,
+    "08/10/2020": 17846,
+    "08/11/2020": 17846,
+    "08/12/2020": 17978,
+    "08/13/2020": 18344,
+    "08/14/2020": 19157,
+    "08/15/2020": 19157,
+    "08/16/2020": 19900,
+    "08/17/2020": 19900,
+    "08/18/2020": 21010,
+    "08/19/2020": 21798,
+    "08/20/2020": 22167,
+    "08/21/2020": 22535,
+    "08/22/2020": 22840,
+    "08/23/2020": 23197,
+    "08/24/2020": 23414,
+    "08/25/2020": 23618,
+    "08/26/2020": 23932,
+    "08/27/2020": 24071,
+    "08/28/2020": 24367,
+    "08/29/2020": 24612,
+    "08/30/2020": 24821,
+    "08/31/2020": 24963,
+    "09/01/2020": 25185,
+    "09/02/2020": 25542,
+    "09/03/2020": 25785,
+    "09/04/2020": 25978,
+    "09/05/2020": 26147,
+    "09/06/2020": 26325,
+    "09/07/2020": 26471,
+    "09/08/2020": 26565,
+    "09/09/2020": 26640,
+    "09/10/2020": 26724,
+    "09/11/2020": 26783,
+    "09/12/2020": 26917,
+    "09/13/2020": 27076,
+    "09/14/2020": 27196,
+    "09/15/2020": 27232,
+    "09/16/2020": 27312,
+    "09/17/2020": 27381,
+    "09/18/2020": 27487,
+    "09/19/2020": 27560,
+    "09/20/2020": 27668,
+    "09/21/2020": 27769,
+    "09/22/2020": 27843,
+    "09/23/2020": 27944,
+    "09/24/2020": 28019,
+    "09/25/2020": 28106,
+    "09/26/2020": 28199,
+    "09/27/2020": 28336,
+    "09/28/2020": 28441,
+    "09/29/2020": 28517,
+    "09/30/2020": 28621,
+    "10/01/2020": 28706,
+    "10/02/2020": 28796,
+    "10/03/2020": 28855,
+    "10/04/2020": 28975,
+    "10/05/2020": 29065,
+    "10/06/2020": 29136,
+    "10/07/2020": 29136,
+    "10/08/2020": 29069,
+    "10/09/2020": 29111,
+    "10/10/2020": 29208,
+    "10/11/2020": 29286,
+    "10/12/2020": 29419,
+    "10/13/2020": 29523,
+    "10/14/2020": 29579,
+    "10/15/2020": 29650,
+    "10/16/2020": 29727,
+    "10/17/2020": 29796,
+    "10/18/2020": 29911,
+    "10/19/2020": 30051,
+    "10/20/2020": 30152,
+    "10/21/2020": 30220,
+    "10/22/2020": 30328,
+    "10/23/2020": 30471,
+    "10/24/2020": 30590,
+    "10/25/2020": 30752,
+    "10/26/2020": 30858,
+    "10/27/2020": 30969,
+    "10/28/2020": 31096,
+    "10/29/2020": 31195,
+    "10/30/2020": 31321,
+    "10/31/2020": 31409,
+    "11/01/2020": 31558,
+    "11/02/2020": 31613,
+    "11/03/2020": 31738,
+    "11/04/2020": 31856,
+    "11/05/2020": 31952,
+    "11/06/2020": 32056,
+    "11/07/2020": 32278,
+    "11/08/2020": 32497,
+    "11/09/2020": 32619,
+    "11/10/2020": 32755,
+    "11/11/2020": 33024,
+    "11/12/2020": 33287,
+    "11/13/2020": 33459,
+    "11/14/2020": 33693,
+    "11/15/2020": 33969,
+    "11/16/2020": 34297,
+    "11/17/2020": 34593,
+    "11/18/2020": 34765,
+    "11/19/2020": 34997,
+    "11/20/2020": 35278,
+    "11/21/2020": 35635,
+    "11/22/2020": 35973,
+    "11/23/2020": 36315,
+    "11/24/2020": 36688,
+    "11/25/2020": 37021,
+    "11/26/2020": 37349,
+    "11/27/2020": 37724,
+    "11/28/2020": 37994,
+    "11/29/2020": 38288,
+    "11/30/2020": 38568,
+    "12/01/2020": 38712,
+    "12/02/2020": 39004,
+    "12/03/2020": 39324,
+    "12/04/2020": 39680,
+    "12/05/2020": 40108,
+    "12/06/2020": 40568,
+    "12/07/2020": 40869,
+    "12/08/2020": 41098,
+    "12/09/2020": 41574,
+    "12/10/2020": 41954,
+    "12/11/2020": 42461,
+    "12/12/2020": 43071,
+    "12/13/2020": 43756,
+    "12/14/2020": 44114,
+    "12/15/2020": 44726,
+    "12/16/2020": 47316,
+    "12/17/2020": 49173,
+    "12/18/2020": 49918,
+    "12/19/2020": 52643,
+    "12/20/2020": 55428,
+    "12/21/2020": 57616,
+    "12/22/2020": 58568,
+    "12/23/2020": 59640,
+    "12/24/2020": 60488,
+    "12/25/2020": 61435,
+    "12/26/2020": 62251,
+    "12/27/2020": 63080,
+    "12/28/2020": 63811,
+    "12/29/2020": 64274,
+    "12/30/2020": 65149,
+    "12/31/2020": 65400,
+    "01/01/2021": 66442,
+    "01/02/2021": 67484,
+    "01/03/2021": 68740,
+    "01/04/2021": 69318,
+    "01/05/2021": 69871,
+    "01/06/2021": 70971,
+    "01/07/2021": 71404,
+    "01/08/2021": 72557,
+    "01/09/2021": 73689,
+    "01/10/2021": 74816,
+    "01/11/2021": 75621,
+    "01/12/2021": 76581,
+    "01/13/2021": 77651
+  },
+  "Death": {
+    "01/22/2020": 0,
+    "01/23/2020": 0,
+    "01/24/2020": 0,
+    "01/25/2020": 0,
+    "01/26/2020": 0,
+    "01/27/2020": 0,
+    "01/28/2020": 0,
+    "01/29/2020": 0,
+    "01/30/2020": 0,
+    "01/31/2020": 0,
+    "02/01/2020": 0,
+    "02/02/2020": 0,
+    "02/03/2020": 0,
+    "02/04/2020": 0,
+    "02/05/2020": 0,
+    "02/06/2020": 0,
+    "02/07/2020": 0,
+    "02/08/2020": 0,
+    "02/09/2020": 0,
+    "02/10/2020": 0,
+    "02/11/2020": 0,
+    "02/12/2020": 0,
+    "02/13/2020": 0,
+    "02/14/2020": 0,
+    "02/15/2020": 0,
+    "02/16/2020": 0,
+    "02/17/2020": 0,
+    "02/18/2020": 0,
+    "02/19/2020": 0,
+    "02/20/2020": 0,
+    "02/21/2020": 0,
+    "02/22/2020": 0,
+    "02/23/2020": 0,
+    "02/24/2020": 0,
+    "02/25/2020": 0,
+    "02/26/2020": 0,
+    "02/27/2020": 0,
+    "02/28/2020": 0,
+    "02/29/2020": 0,
+    "03/01/2020": 0,
+    "03/02/2020": 0,
+    "03/03/2020": 0,
+    "03/04/2020": 0,
+    "03/05/2020": 0,
+    "03/06/2020": 0,
+    "03/07/2020": 0,
+    "03/08/2020": 0,
+    "03/09/2020": 0,
+    "03/10/2020": 0,
+    "03/11/2020": 0,
+    "03/12/2020": 0,
+    "03/13/2020": 0,
+    "03/14/2020": 0,
+    "03/15/2020": 0,
+    "03/16/2020": 0,
+    "03/17/2020": 0,
+    "03/18/2020": 0,
+    "03/19/2020": 0,
+    "03/20/2020": 0,
+    "03/21/2020": 0,
+    "03/22/2020": 0,
+    "03/23/2020": 0,
+    "03/24/2020": 0,
+    "03/25/2020": 0,
+    "03/26/2020": 0,
+    "03/27/2020": 0,
+    "03/28/2020": 0,
+    "03/29/2020": 0,
+    "03/30/2020": 0,
+    "03/31/2020": 0,
+    "04/01/2020": 0,
+    "04/02/2020": 0,
+    "04/03/2020": 0,
+    "04/04/2020": 1,
+    "04/05/2020": 1,
+    "04/06/2020": 1,
+    "04/07/2020": 2,
+    "04/08/2020": 3,
+    "04/09/2020": 3,
+    "04/10/2020": 3,
+    "04/11/2020": 5,
+    "04/12/2020": 5,
+    "04/13/2020": 5,
+    "04/14/2020": 5,
+    "04/15/2020": 7,
+    "04/16/2020": 7,
+    "04/17/2020": 7,
+    "04/18/2020": 7,
+    "04/19/2020": 7,
+    "04/20/2020": 7,
+    "04/21/2020": 7,
+    "04/22/2020": 7,
+    "04/23/2020": 7,
+    "04/24/2020": 7,
+    "04/25/2020": 7,
+    "04/26/2020": 7,
+    "04/27/2020": 7,
+    "04/28/2020": 7,
+    "04/29/2020": 7,
+    "04/30/2020": 7,
+    "05/01/2020": 8,
+    "05/02/2020": 8,
+    "05/03/2020": 8,
+    "05/04/2020": 8,
+    "05/05/2020": 9,
+    "05/06/2020": 9,
+    "05/07/2020": 9,
+    "05/08/2020": 9,
+    "05/09/2020": 9,
+    "05/10/2020": 9,
+    "05/11/2020": 9,
+    "05/12/2020": 10,
+    "05/13/2020": 10,
+    "05/14/2020": 13,
+    "05/15/2020": 13,
+    "05/16/2020": 16,
+    "05/17/2020": 16,
+    "05/18/2020": 16,
+    "05/19/2020": 17,
+    "05/20/2020": 20,
+    "05/21/2020": 20,
+    "05/22/2020": 22,
+    "05/23/2020": 22,
+    "05/24/2020": 22,
+    "05/25/2020": 22,
+    "05/26/2020": 22,
+    "05/27/2020": 26,
+    "05/28/2020": 32,
+    "05/29/2020": 32,
+    "05/30/2020": 35,
+    "05/31/2020": 35,
+    "06/01/2020": 35,
+    "06/02/2020": 36,
+    "06/03/2020": 37,
+    "06/04/2020": 37,
+    "06/05/2020": 40,
+    "06/06/2020": 43,
+    "06/07/2020": 43,
+    "06/08/2020": 43,
+    "06/09/2020": 46,
+    "06/10/2020": 49,
+    "06/11/2020": 51,
+    "06/12/2020": 51,
+    "06/13/2020": 52,
+    "06/14/2020": 52,
+    "06/15/2020": 55,
+    "06/16/2020": 57,
+    "06/17/2020": 57,
+    "06/18/2020": 62,
+    "06/19/2020": 66,
+    "06/20/2020": 66,
+    "06/21/2020": 66,
+    "06/22/2020": 67,
+    "06/23/2020": 70,
+    "06/24/2020": 71,
+    "06/25/2020": 71,
+    "06/26/2020": 72,
+    "06/27/2020": 72,
+    "06/28/2020": 72,
+    "06/29/2020": 72,
+    "06/30/2020": 72,
+    "07/01/2020": 75,
+    "07/02/2020": 77,
+    "07/03/2020": 77,
+    "07/04/2020": 77,
+    "07/05/2020": 77,
+    "07/06/2020": 77,
+    "07/07/2020": 81,
+    "07/08/2020": 84,
+    "07/09/2020": 87,
+    "07/10/2020": 87,
+    "07/11/2020": 87,
+    "07/12/2020": 88,
+    "07/13/2020": 88,
+    "07/14/2020": 91,
+    "07/15/2020": 91,
+    "07/16/2020": 91,
+    "07/17/2020": 100,
+    "07/18/2020": 100,
+    "07/19/2020": 100,
+    "07/20/2020": 100,
+    "07/21/2020": 104,
+    "07/22/2020": 104,
+    "07/23/2020": 104,
+    "07/24/2020": 112,
+    "07/25/2020": 112,
+    "07/26/2020": 112,
+    "07/27/2020": 112,
+    "07/28/2020": 112,
+    "07/29/2020": 120,
+    "07/30/2020": 120,
+    "07/31/2020": 138,
+    "08/01/2020": 138,
+    "08/02/2020": 138,
+    "08/03/2020": 138,
+    "08/04/2020": 138,
+    "08/05/2020": 157,
+    "08/06/2020": 157,
+    "08/07/2020": 157,
+    "08/08/2020": 171,
+    "08/09/2020": 171,
+    "08/10/2020": 171,
+    "08/11/2020": 171,
+    "08/12/2020": 191,
+    "08/13/2020": 191,
+    "08/14/2020": 203,
+    "08/15/2020": 203,
+    "08/16/2020": 203,
+    "08/17/2020": 203,
+    "08/18/2020": 208,
+    "08/19/2020": 208,
+    "08/20/2020": 208,
+    "08/21/2020": 208,
+    "08/22/2020": 226,
+    "08/23/2020": 226,
+    "08/24/2020": 226,
+    "08/25/2020": 239,
+    "08/26/2020": 239,
+    "08/27/2020": 239,
+    "08/28/2020": 263,
+    "08/29/2020": 263,
+    "08/30/2020": 263,
+    "08/31/2020": 263,
+    "09/01/2020": 290,
+    "09/02/2020": 290,
+    "09/03/2020": 290,
+    "09/04/2020": 312,
+    "09/05/2020": 312,
+    "09/06/2020": 312,
+    "09/07/2020": 312,
+    "09/08/2020": 326,
+    "09/09/2020": 326,
+    "09/10/2020": 326,
+    "09/11/2020": 337,
+    "09/12/2020": 337,
+    "09/13/2020": 337,
+    "09/14/2020": 337,
+    "09/15/2020": 348,
+    "09/16/2020": 348,
+    "09/17/2020": 348,
+    "09/18/2020": 355,
+    "09/19/2020": 355,
+    "09/20/2020": 355,
+    "09/21/2020": 355,
+    "09/22/2020": 362,
+    "09/23/2020": 362,
+    "09/24/2020": 362,
+    "09/25/2020": 382,
+    "09/26/2020": 382,
+    "09/27/2020": 382,
+    "09/28/2020": 382,
+    "09/29/2020": 390,
+    "09/30/2020": 390,
+    "10/01/2020": 390,
+    "10/02/2020": 399,
+    "10/03/2020": 399,
+    "10/04/2020": 399,
+    "10/05/2020": 399,
+    "10/06/2020": 406,
+    "10/07/2020": 406,
+    "10/08/2020": 406,
+    "10/09/2020": 406,
+    "10/10/2020": 406,
+    "10/11/2020": 406,
+    "10/12/2020": 406,
+    "10/13/2020": 424,
+    "10/14/2020": 424,
+    "10/15/2020": 424,
+    "10/16/2020": 429,
+    "10/17/2020": 429,
+    "10/18/2020": 429,
+    "10/19/2020": 429,
+    "10/20/2020": 430,
+    "10/21/2020": 430,
+    "10/22/2020": 430,
+    "10/23/2020": 436,
+    "10/24/2020": 436,
+    "10/25/2020": 436,
+    "10/26/2020": 436,
+    "10/27/2020": 439,
+    "10/28/2020": 439,
+    "10/29/2020": 439,
+    "10/30/2020": 443,
+    "10/31/2020": 443,
+    "11/01/2020": 443,
+    "11/02/2020": 443,
+    "11/03/2020": 447,
+    "11/04/2020": 447,
+    "11/05/2020": 447,
+    "11/06/2020": 454,
+    "11/07/2020": 454,
+    "11/08/2020": 454,
+    "11/09/2020": 454,
+    "11/10/2020": 456,
+    "11/11/2020": 456,
+    "11/12/2020": 456,
+    "11/13/2020": 460,
+    "11/14/2020": 460,
+    "11/15/2020": 460,
+    "11/16/2020": 460,
+    "11/17/2020": 463,
+    "11/18/2020": 463,
+    "11/19/2020": 463,
+    "11/20/2020": 471,
+    "11/21/2020": 471,
+    "11/22/2020": 471,
+    "11/23/2020": 471,
+    "11/24/2020": 477,
+    "11/25/2020": 477,
+    "11/26/2020": 477,
+    "11/27/2020": 481,
+    "11/28/2020": 481,
+    "11/29/2020": 481,
+    "11/30/2020": 481,
+    "12/01/2020": 488,
+    "12/02/2020": 488,
+    "12/03/2020": 488,
+    "12/04/2020": 506,
+    "12/05/2020": 506,
+    "12/06/2020": 506,
+    "12/07/2020": 506,
+    "12/08/2020": 514,
+    "12/09/2020": 514,
+    "12/10/2020": 514,
+    "12/11/2020": 542,
+    "12/12/2020": 542,
+    "12/13/2020": 542,
+    "12/14/2020": 542,
+    "12/15/2020": 557,
+    "12/16/2020": 557,
+    "12/17/2020": 557,
+    "12/18/2020": 557,
+    "12/19/2020": 557,
+    "12/20/2020": 557,
+    "12/21/2020": 557,
+    "12/22/2020": 646,
+    "12/23/2020": 646,
+    "12/24/2020": 646,
+    "12/25/2020": 646,
+    "12/26/2020": 646,
+    "12/27/2020": 646,
+    "12/28/2020": 646,
+    "12/29/2020": 646,
+    "12/30/2020": 646,
+    "12/31/2020": 646,
+    "01/01/2021": 711,
+    "01/02/2021": 711,
+    "01/03/2021": 711,
+    "01/04/2021": 711,
+    "01/05/2021": 711,
+    "01/06/2021": 711,
+    "01/07/2021": 711,
+    "01/08/2021": 711,
+    "01/09/2021": 711,
+    "01/10/2021": 711,
+    "01/11/2021": 802,
+    "01/12/2021": 846,
+    "01/13/2021": 846
+  },
+  "beds": 3072,
+  "bedsICU": 141,
+  "hospitals": 13,
+  "bedsAvail": 1661,
+  "Population": 930450,
+  "ca_county_status": "4",
+  "hospitalization": [
+    {
+      "fulldate": "03/29/2020",
+      "hospitalized_covid_patients": 124,
+      "icu_available_beds": 22,
+      "icu_covid_patients": 17
+    },
+    {
+      "fulldate": "03/30/2020",
+      "hospitalized_covid_patients": 98,
+      "icu_available_beds": 24,
+      "icu_covid_patients": 17
+    },
+    {
+      "fulldate": "03/31/2020",
+      "hospitalized_covid_patients": 304,
+      "icu_available_beds": 23,
+      "icu_covid_patients": 23
+    },
+    {
+      "fulldate": "04/01/2020",
+      "hospitalized_covid_patients": 120,
+      "icu_available_beds": 53,
+      "icu_covid_patients": 18
+    },
+    {
+      "fulldate": "04/02/2020",
+      "hospitalized_covid_patients": 91,
+      "icu_available_beds": 33,
+      "icu_covid_patients": 19
+    },
+    {
+      "fulldate": "04/03/2020",
+      "hospitalized_covid_patients": 96,
+      "icu_available_beds": 35,
+      "icu_covid_patients": 23
+    },
+    {
+      "fulldate": "04/04/2020",
+      "hospitalized_covid_patients": 107,
+      "icu_available_beds": 36,
+      "icu_covid_patients": 27
+    },
+    {
+      "fulldate": "04/05/2020",
+      "hospitalized_covid_patients": 97,
+      "icu_available_beds": 39,
+      "icu_covid_patients": 23
+    },
+    {
+      "fulldate": "04/06/2020",
+      "hospitalized_covid_patients": 99,
+      "icu_available_beds": 45,
+      "icu_covid_patients": 31
+    },
+    {
+      "fulldate": "04/07/2020",
+      "hospitalized_covid_patients": 102,
+      "icu_available_beds": 50,
+      "icu_covid_patients": 24
+    },
+    {
+      "fulldate": "04/08/2020",
+      "hospitalized_covid_patients": 85,
+      "icu_available_beds": 64,
+      "icu_covid_patients": 18
+    },
+    {
+      "fulldate": "04/09/2020",
+      "hospitalized_covid_patients": 66,
+      "icu_available_beds": 59,
+      "icu_covid_patients": 19
+    },
+    {
+      "fulldate": "04/10/2020",
+      "hospitalized_covid_patients": 68,
+      "icu_available_beds": 57,
+      "icu_covid_patients": 20
+    },
+    {
+      "fulldate": "04/11/2020",
+      "hospitalized_covid_patients": 91,
+      "icu_available_beds": 52,
+      "icu_covid_patients": 19
+    },
+    {
+      "fulldate": "04/12/2020",
+      "hospitalized_covid_patients": 69,
+      "icu_available_beds": 54,
+      "icu_covid_patients": 15
+    },
+    {
+      "fulldate": "04/13/2020",
+      "hospitalized_covid_patients": 79,
+      "icu_available_beds": 60,
+      "icu_covid_patients": 20
+    },
+    {
+      "fulldate": "04/14/2020",
+      "hospitalized_covid_patients": 69,
+      "icu_available_beds": 42,
+      "icu_covid_patients": 20
+    },
+    {
+      "fulldate": "04/15/2020",
+      "hospitalized_covid_patients": 58,
+      "icu_available_beds": 44,
+      "icu_covid_patients": 14
+    },
+    {
+      "fulldate": "04/16/2020",
+      "hospitalized_covid_patients": 66,
+      "icu_available_beds": 48,
+      "icu_covid_patients": 16
+    },
+    {
+      "fulldate": "04/17/2020",
+      "hospitalized_covid_patients": 60,
+      "icu_available_beds": 52,
+      "icu_covid_patients": 14
+    },
+    {
+      "fulldate": "04/18/2020",
+      "hospitalized_covid_patients": 67,
+      "icu_available_beds": 51,
+      "icu_covid_patients": 15
+    },
+    {
+      "fulldate": "04/19/2020",
+      "hospitalized_covid_patients": 67,
+      "icu_available_beds": 59,
+      "icu_covid_patients": 16
+    },
+    {
+      "fulldate": "04/20/2020",
+      "hospitalized_covid_patients": 65,
+      "icu_available_beds": 55,
+      "icu_covid_patients": 16
+    },
+    {
+      "fulldate": "04/21/2020",
+      "hospitalized_covid_patients": 70,
+      "icu_available_beds": 46,
+      "icu_covid_patients": 18
+    },
+    {
+      "fulldate": "04/22/2020",
+      "hospitalized_covid_patients": 79,
+      "icu_available_beds": 52,
+      "icu_covid_patients": 18
+    },
+    {
+      "fulldate": "04/23/2020",
+      "hospitalized_covid_patients": 78,
+      "icu_available_beds": 52,
+      "icu_covid_patients": 20
+    },
+    {
+      "fulldate": "04/24/2020",
+      "hospitalized_covid_patients": 78,
+      "icu_available_beds": 47,
+      "icu_covid_patients": 20
+    },
+    {
+      "fulldate": "04/25/2020",
+      "hospitalized_covid_patients": 86,
+      "icu_available_beds": 86,
+      "icu_covid_patients": 21
+    },
+    {
+      "fulldate": "04/26/2020",
+      "hospitalized_covid_patients": 81,
+      "icu_available_beds": 79,
+      "icu_covid_patients": 27
+    },
+    {
+      "fulldate": "04/27/2020",
+      "hospitalized_covid_patients": 91,
+      "icu_available_beds": 89,
+      "icu_covid_patients": 20
+    },
+    {
+      "fulldate": "04/28/2020",
+      "hospitalized_covid_patients": 83,
+      "icu_available_beds": 87,
+      "icu_covid_patients": 21
+    },
+    {
+      "fulldate": "04/29/2020",
+      "hospitalized_covid_patients": 86,
+      "icu_available_beds": 91,
+      "icu_covid_patients": 24
+    },
+    {
+      "fulldate": "04/30/2020",
+      "hospitalized_covid_patients": 78,
+      "icu_available_beds": 83,
+      "icu_covid_patients": 19
+    },
+    {
+      "fulldate": "05/01/2020",
+      "hospitalized_covid_patients": 72,
+      "icu_available_beds": 77,
+      "icu_covid_patients": 21
+    },
+    {
+      "fulldate": "05/02/2020",
+      "hospitalized_covid_patients": 81,
+      "icu_available_beds": 87,
+      "icu_covid_patients": 19
+    },
+    {
+      "fulldate": "05/03/2020",
+      "hospitalized_covid_patients": 88,
+      "icu_available_beds": 86,
+      "icu_covid_patients": 22
+    },
+    {
+      "fulldate": "05/04/2020",
+      "hospitalized_covid_patients": 86,
+      "icu_available_beds": 89,
+      "icu_covid_patients": 25
+    },
+    {
+      "fulldate": "05/05/2020",
+      "hospitalized_covid_patients": 99,
+      "icu_available_beds": 88,
+      "icu_covid_patients": 27
+    },
+    {
+      "fulldate": "05/06/2020",
+      "hospitalized_covid_patients": 94,
+      "icu_available_beds": 92,
+      "icu_covid_patients": 22
+    },
+    {
+      "fulldate": "05/07/2020",
+      "hospitalized_covid_patients": 88,
+      "icu_available_beds": 92,
+      "icu_covid_patients": 18
+    },
+    {
+      "fulldate": "05/08/2020",
+      "hospitalized_covid_patients": 81,
+      "icu_available_beds": 89,
+      "icu_covid_patients": 19
+    },
+    {
+      "fulldate": "05/09/2020",
+      "hospitalized_covid_patients": 98,
+      "icu_available_beds": 88,
+      "icu_covid_patients": 21
+    },
+    {
+      "fulldate": "05/10/2020",
+      "hospitalized_covid_patients": 98,
+      "icu_available_beds": 89,
+      "icu_covid_patients": 31
+    },
+    {
+      "fulldate": "05/11/2020",
+      "hospitalized_covid_patients": 93,
+      "icu_available_beds": 87,
+      "icu_covid_patients": 30
+    },
+    {
+      "fulldate": "05/12/2020",
+      "hospitalized_covid_patients": 110,
+      "icu_available_beds": 84,
+      "icu_covid_patients": 23
+    },
+    {
+      "fulldate": "05/13/2020",
+      "hospitalized_covid_patients": 129,
+      "icu_available_beds": 78,
+      "icu_covid_patients": 23
+    },
+    {
+      "fulldate": "05/14/2020",
+      "hospitalized_covid_patients": 116,
+      "icu_available_beds": 82,
+      "icu_covid_patients": 23
+    },
+    {
+      "fulldate": "05/15/2020",
+      "hospitalized_covid_patients": 91,
+      "icu_available_beds": 81,
+      "icu_covid_patients": 18
+    },
+    {
+      "fulldate": "05/16/2020",
+      "hospitalized_covid_patients": 97,
+      "icu_available_beds": 85,
+      "icu_covid_patients": 20
+    },
+    {
+      "fulldate": "05/17/2020",
+      "hospitalized_covid_patients": 106,
+      "icu_available_beds": 94,
+      "icu_covid_patients": 28
+    },
+    {
+      "fulldate": "05/18/2020",
+      "hospitalized_covid_patients": 105,
+      "icu_available_beds": 99,
+      "icu_covid_patients": 19
+    },
+    {
+      "fulldate": "05/19/2020",
+      "hospitalized_covid_patients": 107,
+      "icu_available_beds": 88,
+      "icu_covid_patients": 24
+    },
+    {
+      "fulldate": "05/20/2020",
+      "hospitalized_covid_patients": 97,
+      "icu_available_beds": 97,
+      "icu_covid_patients": 18
+    },
+    {
+      "fulldate": "05/21/2020",
+      "hospitalized_covid_patients": 118,
+      "icu_available_beds": 99,
+      "icu_covid_patients": 20
+    },
+    {
+      "fulldate": "05/22/2020",
+      "hospitalized_covid_patients": 94,
+      "icu_available_beds": 89,
+      "icu_covid_patients": 26
+    },
+    {
+      "fulldate": "05/23/2020",
+      "hospitalized_covid_patients": 103,
+      "icu_available_beds": 85,
+      "icu_covid_patients": 27
+    },
+    {
+      "fulldate": "05/24/2020",
+      "hospitalized_covid_patients": 106,
+      "icu_available_beds": 91,
+      "icu_covid_patients": 23
+    },
+    {
+      "fulldate": "05/25/2020",
+      "hospitalized_covid_patients": 104,
+      "icu_available_beds": 92,
+      "icu_covid_patients": 20
+    },
+    {
+      "fulldate": "05/26/2020",
+      "hospitalized_covid_patients": 98,
+      "icu_available_beds": 96,
+      "icu_covid_patients": 22
+    },
+    {
+      "fulldate": "05/27/2020",
+      "hospitalized_covid_patients": 115,
+      "icu_available_beds": 93,
+      "icu_covid_patients": 23
+    },
+    {
+      "fulldate": "05/28/2020",
+      "hospitalized_covid_patients": 107,
+      "icu_available_beds": 82,
+      "icu_covid_patients": 18
+    },
+    {
+      "fulldate": "05/29/2020",
+      "hospitalized_covid_patients": 107,
+      "icu_available_beds": 86,
+      "icu_covid_patients": 22
+    },
+    {
+      "fulldate": "05/30/2020",
+      "hospitalized_covid_patients": 118,
+      "icu_available_beds": 89,
+      "icu_covid_patients": 19
+    },
+    {
+      "fulldate": "05/31/2020",
+      "hospitalized_covid_patients": 120,
+      "icu_available_beds": 83,
+      "icu_covid_patients": 28
+    },
+    {
+      "fulldate": "06/01/2020",
+      "hospitalized_covid_patients": 122,
+      "icu_available_beds": 393,
+      "icu_covid_patients": 23
+    },
+    {
+      "fulldate": "06/02/2020",
+      "hospitalized_covid_patients": 101,
+      "icu_available_beds": 90,
+      "icu_covid_patients": 18
+    },
+    {
+      "fulldate": "06/03/2020",
+      "hospitalized_covid_patients": 97,
+      "icu_available_beds": 88,
+      "icu_covid_patients": 19
+    },
+    {
+      "fulldate": "06/04/2020",
+      "hospitalized_covid_patients": 101,
+      "icu_available_beds": 95,
+      "icu_covid_patients": 19
+    },
+    {
+      "fulldate": "06/05/2020",
+      "hospitalized_covid_patients": 97,
+      "icu_available_beds": 91,
+      "icu_covid_patients": 19
+    },
+    {
+      "fulldate": "06/06/2020",
+      "hospitalized_covid_patients": 111,
+      "icu_available_beds": 88,
+      "icu_covid_patients": 19
+    },
+    {
+      "fulldate": "06/07/2020",
+      "hospitalized_covid_patients": 100,
+      "icu_available_beds": 97,
+      "icu_covid_patients": 20
+    },
+    {
+      "fulldate": "06/08/2020",
+      "hospitalized_covid_patients": 107,
+      "icu_available_beds": 97,
+      "icu_covid_patients": 17
+    },
+    {
+      "fulldate": "06/09/2020",
+      "hospitalized_covid_patients": 104,
+      "icu_available_beds": 92,
+      "icu_covid_patients": 16
+    },
+    {
+      "fulldate": "06/10/2020",
+      "hospitalized_covid_patients": 102,
+      "icu_available_beds": 84,
+      "icu_covid_patients": 23
+    },
+    {
+      "fulldate": "06/11/2020",
+      "hospitalized_covid_patients": 99,
+      "icu_available_beds": 79,
+      "icu_covid_patients": 18
+    },
+    {
+      "fulldate": "06/12/2020",
+      "hospitalized_covid_patients": 102,
+      "icu_available_beds": 87,
+      "icu_covid_patients": 20
+    },
+    {
+      "fulldate": "06/13/2020",
+      "hospitalized_covid_patients": 98,
+      "icu_available_beds": 83,
+      "icu_covid_patients": 24
+    },
+    {
+      "fulldate": "06/14/2020",
+      "hospitalized_covid_patients": 93,
+      "icu_available_beds": 79,
+      "icu_covid_patients": 24
+    },
+    {
+      "fulldate": "06/15/2020",
+      "hospitalized_covid_patients": 86,
+      "icu_available_beds": 86,
+      "icu_covid_patients": 24
+    },
+    {
+      "fulldate": "06/16/2020",
+      "hospitalized_covid_patients": 103,
+      "icu_available_beds": 86,
+      "icu_covid_patients": 24
+    },
+    {
+      "fulldate": "06/17/2020",
+      "hospitalized_covid_patients": 103,
+      "icu_available_beds": 81,
+      "icu_covid_patients": 17
+    },
+    {
+      "fulldate": "06/18/2020",
+      "hospitalized_covid_patients": 98,
+      "icu_available_beds": 70,
+      "icu_covid_patients": 13
+    },
+    {
+      "fulldate": "06/19/2020",
+      "hospitalized_covid_patients": 101,
+      "icu_available_beds": 72,
+      "icu_covid_patients": 18
+    },
+    {
+      "fulldate": "06/20/2020",
+      "hospitalized_covid_patients": 115,
+      "icu_available_beds": 80,
+      "icu_covid_patients": 17
+    },
+    {
+      "fulldate": "06/21/2020",
+      "hospitalized_covid_patients": 104,
+      "icu_available_beds": 83,
+      "icu_covid_patients": 20
+    },
+    {
+      "fulldate": "06/22/2020",
+      "hospitalized_covid_patients": 122,
+      "icu_available_beds": 82,
+      "icu_covid_patients": 19
+    },
+    {
+      "fulldate": "06/23/2020",
+      "hospitalized_covid_patients": 139,
+      "icu_available_beds": 83,
+      "icu_covid_patients": 22
+    },
+    {
+      "fulldate": "06/24/2020",
+      "hospitalized_covid_patients": 139,
+      "icu_available_beds": 86,
+      "icu_covid_patients": 24
+    },
+    {
+      "fulldate": "06/25/2020",
+      "hospitalized_covid_patients": 147,
+      "icu_available_beds": 74,
+      "icu_covid_patients": 26
+    },
+    {
+      "fulldate": "06/26/2020",
+      "hospitalized_covid_patients": 157,
+      "icu_available_beds": 73,
+      "icu_covid_patients": 28
+    },
+    {
+      "fulldate": "06/27/2020",
+      "hospitalized_covid_patients": 164,
+      "icu_available_beds": 73,
+      "icu_covid_patients": 29
+    },
+    {
+      "fulldate": "06/28/2020",
+      "hospitalized_covid_patients": 166,
+      "icu_available_beds": 68,
+      "icu_covid_patients": 31
+    },
+    {
+      "fulldate": "06/29/2020",
+      "hospitalized_covid_patients": 170,
+      "icu_available_beds": 76,
+      "icu_covid_patients": 32
+    },
+    {
+      "fulldate": "06/30/2020",
+      "hospitalized_covid_patients": 171,
+      "icu_available_beds": 74,
+      "icu_covid_patients": 37
+    },
+    {
+      "fulldate": "07/01/2020",
+      "hospitalized_covid_patients": 149,
+      "icu_available_beds": 80,
+      "icu_covid_patients": 37
+    },
+    {
+      "fulldate": "07/02/2020",
+      "hospitalized_covid_patients": 145,
+      "icu_available_beds": 68,
+      "icu_covid_patients": 35
+    },
+    {
+      "fulldate": "07/03/2020",
+      "hospitalized_covid_patients": 154,
+      "icu_available_beds": 77,
+      "icu_covid_patients": 37
+    },
+    {
+      "fulldate": "07/04/2020",
+      "hospitalized_covid_patients": 162,
+      "icu_available_beds": 78,
+      "icu_covid_patients": 38
+    },
+    {
+      "fulldate": "07/05/2020",
+      "hospitalized_covid_patients": 163,
+      "icu_available_beds": 81,
+      "icu_covid_patients": 40
+    },
+    {
+      "fulldate": "07/06/2020",
+      "hospitalized_covid_patients": 162,
+      "icu_available_beds": 89,
+      "icu_covid_patients": 32
+    },
+    {
+      "fulldate": "07/07/2020",
+      "hospitalized_covid_patients": 177,
+      "icu_available_beds": 71,
+      "icu_covid_patients": 38
+    },
+    {
+      "fulldate": "07/08/2020",
+      "hospitalized_covid_patients": 206,
+      "icu_available_beds": 74,
+      "icu_covid_patients": 43
+    },
+    {
+      "fulldate": "07/09/2020",
+      "hospitalized_covid_patients": 229,
+      "icu_available_beds": 74,
+      "icu_covid_patients": 42
+    },
+    {
+      "fulldate": "07/10/2020",
+      "hospitalized_covid_patients": 235,
+      "icu_available_beds": 71,
+      "icu_covid_patients": 46
+    },
+    {
+      "fulldate": "07/11/2020",
+      "hospitalized_covid_patients": 239,
+      "icu_available_beds": 78,
+      "icu_covid_patients": 42
+    },
+    {
+      "fulldate": "07/12/2020",
+      "hospitalized_covid_patients": 241,
+      "icu_available_beds": 65,
+      "icu_covid_patients": 42
+    },
+    {
+      "fulldate": "07/13/2020",
+      "hospitalized_covid_patients": 252,
+      "icu_available_beds": 59,
+      "icu_covid_patients": 50
+    },
+    {
+      "fulldate": "07/14/2020",
+      "hospitalized_covid_patients": 270,
+      "icu_available_beds": 56,
+      "icu_covid_patients": 48
+    },
+    {
+      "fulldate": "07/15/2020",
+      "hospitalized_covid_patients": 274,
+      "icu_available_beds": 60,
+      "icu_covid_patients": 47
+    },
+    {
+      "fulldate": "07/16/2020",
+      "hospitalized_covid_patients": 281,
+      "icu_available_beds": 65,
+      "icu_covid_patients": 48
+    },
+    {
+      "fulldate": "07/17/2020",
+      "hospitalized_covid_patients": 284,
+      "icu_available_beds": 56,
+      "icu_covid_patients": 55
+    },
+    {
+      "fulldate": "07/18/2020",
+      "hospitalized_covid_patients": 297,
+      "icu_available_beds": 58,
+      "icu_covid_patients": 56
+    },
+    {
+      "fulldate": "07/19/2020",
+      "hospitalized_covid_patients": 307,
+      "icu_available_beds": 52,
+      "icu_covid_patients": 54
+    },
+    {
+      "fulldate": "07/20/2020",
+      "hospitalized_covid_patients": 336,
+      "icu_available_beds": 46,
+      "icu_covid_patients": 58
+    },
+    {
+      "fulldate": "07/21/2020",
+      "hospitalized_covid_patients": 352,
+      "icu_available_beds": 44,
+      "icu_covid_patients": 61
+    },
+    {
+      "fulldate": "07/22/2020",
+      "hospitalized_covid_patients": 352,
+      "icu_available_beds": 2,
+      "icu_covid_patients": 66
+    },
+    {
+      "fulldate": "07/23/2020",
+      "hospitalized_covid_patients": 376,
+      "icu_available_beds": 11,
+      "icu_covid_patients": 71
+    },
+    {
+      "fulldate": "07/24/2020",
+      "hospitalized_covid_patients": 376,
+      "icu_available_beds": 13,
+      "icu_covid_patients": 69
+    },
+    {
+      "fulldate": "07/25/2020",
+      "hospitalized_covid_patients": 357,
+      "icu_available_beds": 27,
+      "icu_covid_patients": 70
+    },
+    {
+      "fulldate": "07/26/2020",
+      "hospitalized_covid_patients": 364,
+      "icu_available_beds": 22,
+      "icu_covid_patients": 57
+    },
+    {
+      "fulldate": "07/27/2020",
+      "hospitalized_covid_patients": 345,
+      "icu_available_beds": 26,
+      "icu_covid_patients": 58
+    },
+    {
+      "fulldate": "07/28/2020",
+      "hospitalized_covid_patients": 333,
+      "icu_available_beds": 13,
+      "icu_covid_patients": 69
+    },
+    {
+      "fulldate": "07/29/2020",
+      "hospitalized_covid_patients": 328,
+      "icu_available_beds": 13,
+      "icu_covid_patients": 70
+    },
+    {
+      "fulldate": "07/30/2020",
+      "hospitalized_covid_patients": 353,
+      "icu_available_beds": 15,
+      "icu_covid_patients": 60
+    },
+    {
+      "fulldate": "07/31/2020",
+      "hospitalized_covid_patients": 343,
+      "icu_available_beds": 14,
+      "icu_covid_patients": 60
+    },
+    {
+      "fulldate": "08/01/2020",
+      "hospitalized_covid_patients": 332,
+      "icu_available_beds": 12,
+      "icu_covid_patients": 61
+    },
+    {
+      "fulldate": "08/02/2020",
+      "hospitalized_covid_patients": 328,
+      "icu_available_beds": 18,
+      "icu_covid_patients": 67
+    },
+    {
+      "fulldate": "08/03/2020",
+      "hospitalized_covid_patients": 336,
+      "icu_available_beds": 19,
+      "icu_covid_patients": 62
+    },
+    {
+      "fulldate": "08/04/2020",
+      "hospitalized_covid_patients": 336,
+      "icu_available_beds": 13,
+      "icu_covid_patients": 60
+    },
+    {
+      "fulldate": "08/05/2020",
+      "hospitalized_covid_patients": 336,
+      "icu_available_beds": 14,
+      "icu_covid_patients": 60
+    },
+    {
+      "fulldate": "08/06/2020",
+      "hospitalized_covid_patients": 335,
+      "icu_available_beds": 17,
+      "icu_covid_patients": 61
+    },
+    {
+      "fulldate": "08/07/2020",
+      "hospitalized_covid_patients": 324,
+      "icu_available_beds": 8,
+      "icu_covid_patients": 60
+    },
+    {
+      "fulldate": "08/08/2020",
+      "hospitalized_covid_patients": 327,
+      "icu_available_beds": 13,
+      "icu_covid_patients": 54
+    },
+    {
+      "fulldate": "08/09/2020",
+      "hospitalized_covid_patients": 315,
+      "icu_available_beds": 13,
+      "icu_covid_patients": 53
+    },
+    {
+      "fulldate": "08/10/2020",
+      "hospitalized_covid_patients": 310,
+      "icu_available_beds": 10,
+      "icu_covid_patients": 59
+    },
+    {
+      "fulldate": "08/11/2020",
+      "hospitalized_covid_patients": 304,
+      "icu_available_beds": 8,
+      "icu_covid_patients": 57
+    },
+    {
+      "fulldate": "08/12/2020",
+      "hospitalized_covid_patients": 299,
+      "icu_available_beds": 9,
+      "icu_covid_patients": 59
+    },
+    {
+      "fulldate": "08/13/2020",
+      "hospitalized_covid_patients": 287,
+      "icu_available_beds": 9,
+      "icu_covid_patients": 56
+    },
+    {
+      "fulldate": "08/14/2020",
+      "hospitalized_covid_patients": 272,
+      "icu_available_beds": 11,
+      "icu_covid_patients": 57
+    },
+    {
+      "fulldate": "08/15/2020",
+      "hospitalized_covid_patients": 275,
+      "icu_available_beds": 16,
+      "icu_covid_patients": 59
+    },
+    {
+      "fulldate": "08/16/2020",
+      "hospitalized_covid_patients": 274,
+      "icu_available_beds": 11,
+      "icu_covid_patients": 59
+    },
+    {
+      "fulldate": "08/17/2020",
+      "hospitalized_covid_patients": 275,
+      "icu_available_beds": 11,
+      "icu_covid_patients": 63
+    },
+    {
+      "fulldate": "08/18/2020",
+      "hospitalized_covid_patients": 260,
+      "icu_available_beds": 11,
+      "icu_covid_patients": 63
+    },
+    {
+      "fulldate": "08/19/2020",
+      "hospitalized_covid_patients": 273,
+      "icu_available_beds": 15,
+      "icu_covid_patients": 64
+    },
+    {
+      "fulldate": "08/20/2020",
+      "hospitalized_covid_patients": 273,
+      "icu_available_beds": 14,
+      "icu_covid_patients": 63
+    },
+    {
+      "fulldate": "08/21/2020",
+      "hospitalized_covid_patients": 283,
+      "icu_available_beds": 14,
+      "icu_covid_patients": 63
+    },
+    {
+      "fulldate": "08/22/2020",
+      "hospitalized_covid_patients": 275,
+      "icu_available_beds": 8,
+      "icu_covid_patients": 60
+    },
+    {
+      "fulldate": "08/23/2020",
+      "hospitalized_covid_patients": 273,
+      "icu_available_beds": 17,
+      "icu_covid_patients": 59
+    },
+    {
+      "fulldate": "08/24/2020",
+      "hospitalized_covid_patients": 272,
+      "icu_available_beds": 20,
+      "icu_covid_patients": 54
+    },
+    {
+      "fulldate": "08/25/2020",
+      "hospitalized_covid_patients": 256,
+      "icu_available_beds": 16,
+      "icu_covid_patients": 54
+    },
+    {
+      "fulldate": "08/26/2020",
+      "hospitalized_covid_patients": 257,
+      "icu_available_beds": 15,
+      "icu_covid_patients": 52
+    },
+    {
+      "fulldate": "08/27/2020",
+      "hospitalized_covid_patients": 249,
+      "icu_available_beds": 10,
+      "icu_covid_patients": 48
+    },
+    {
+      "fulldate": "08/28/2020",
+      "hospitalized_covid_patients": 228,
+      "icu_available_beds": 13,
+      "icu_covid_patients": 44
+    },
+    {
+      "fulldate": "08/29/2020",
+      "hospitalized_covid_patients": 225,
+      "icu_available_beds": 17,
+      "icu_covid_patients": 53
+    },
+    {
+      "fulldate": "08/30/2020",
+      "hospitalized_covid_patients": 224,
+      "icu_available_beds": 19,
+      "icu_covid_patients": 47
+    },
+    {
+      "fulldate": "08/31/2020",
+      "hospitalized_covid_patients": 209,
+      "icu_available_beds": 21,
+      "icu_covid_patients": 49
+    },
+    {
+      "fulldate": "09/01/2020",
+      "hospitalized_covid_patients": 206,
+      "icu_available_beds": 18,
+      "icu_covid_patients": 50
+    },
+    {
+      "fulldate": "09/02/2020",
+      "hospitalized_covid_patients": 188,
+      "icu_available_beds": 17,
+      "icu_covid_patients": 46
+    },
+    {
+      "fulldate": "09/03/2020",
+      "hospitalized_covid_patients": 181,
+      "icu_available_beds": 15,
+      "icu_covid_patients": 45
+    },
+    {
+      "fulldate": "09/04/2020",
+      "hospitalized_covid_patients": 176,
+      "icu_available_beds": 12,
+      "icu_covid_patients": 47
+    },
+    {
+      "fulldate": "09/05/2020",
+      "hospitalized_covid_patients": 173,
+      "icu_available_beds": 22,
+      "icu_covid_patients": 45
+    },
+    {
+      "fulldate": "09/06/2020",
+      "hospitalized_covid_patients": 170,
+      "icu_available_beds": 17,
+      "icu_covid_patients": 45
+    },
+    {
+      "fulldate": "09/07/2020",
+      "hospitalized_covid_patients": 169,
+      "icu_available_beds": 24,
+      "icu_covid_patients": 43
+    },
+    {
+      "fulldate": "09/08/2020",
+      "hospitalized_covid_patients": 168,
+      "icu_available_beds": 29,
+      "icu_covid_patients": 36
+    },
+    {
+      "fulldate": "09/09/2020",
+      "hospitalized_covid_patients": 157,
+      "icu_available_beds": 29,
+      "icu_covid_patients": 34
+    },
+    {
+      "fulldate": "09/10/2020",
+      "hospitalized_covid_patients": 143,
+      "icu_available_beds": 33,
+      "icu_covid_patients": 33
+    },
+    {
+      "fulldate": "09/11/2020",
+      "hospitalized_covid_patients": 127,
+      "icu_available_beds": 37,
+      "icu_covid_patients": 30
+    },
+    {
+      "fulldate": "09/12/2020",
+      "hospitalized_covid_patients": 137,
+      "icu_available_beds": 31,
+      "icu_covid_patients": 39
+    },
+    {
+      "fulldate": "09/13/2020",
+      "hospitalized_covid_patients": 122,
+      "icu_available_beds": 29,
+      "icu_covid_patients": 35
+    },
+    {
+      "fulldate": "09/14/2020",
+      "hospitalized_covid_patients": 146,
+      "icu_available_beds": 30,
+      "icu_covid_patients": 35
+    },
+    {
+      "fulldate": "09/15/2020",
+      "hospitalized_covid_patients": 137,
+      "icu_available_beds": 25,
+      "icu_covid_patients": 35
+    },
+    {
+      "fulldate": "09/16/2020",
+      "hospitalized_covid_patients": 126,
+      "icu_available_beds": 25,
+      "icu_covid_patients": 31
+    },
+    {
+      "fulldate": "09/17/2020",
+      "hospitalized_covid_patients": 131,
+      "icu_available_beds": 23,
+      "icu_covid_patients": 31
+    },
+    {
+      "fulldate": "09/18/2020",
+      "hospitalized_covid_patients": 114,
+      "icu_available_beds": 21,
+      "icu_covid_patients": 32
+    },
+    {
+      "fulldate": "09/19/2020",
+      "hospitalized_covid_patients": 115,
+      "icu_available_beds": 30,
+      "icu_covid_patients": 32
+    },
+    {
+      "fulldate": "09/20/2020",
+      "hospitalized_covid_patients": 105,
+      "icu_available_beds": 29,
+      "icu_covid_patients": 32
+    },
+    {
+      "fulldate": "09/21/2020",
+      "hospitalized_covid_patients": 106,
+      "icu_available_beds": 18,
+      "icu_covid_patients": 30
+    },
+    {
+      "fulldate": "09/22/2020",
+      "hospitalized_covid_patients": 105,
+      "icu_available_beds": 21,
+      "icu_covid_patients": 29
+    },
+    {
+      "fulldate": "09/23/2020",
+      "hospitalized_covid_patients": 108,
+      "icu_available_beds": 24,
+      "icu_covid_patients": 29
+    },
+    {
+      "fulldate": "09/24/2020",
+      "hospitalized_covid_patients": 103,
+      "icu_available_beds": 24,
+      "icu_covid_patients": 25
+    },
+    {
+      "fulldate": "09/25/2020",
+      "hospitalized_covid_patients": 101,
+      "icu_available_beds": 20,
+      "icu_covid_patients": 21
+    },
+    {
+      "fulldate": "09/26/2020",
+      "hospitalized_covid_patients": 97,
+      "icu_available_beds": 16,
+      "icu_covid_patients": 22
+    },
+    {
+      "fulldate": "09/27/2020",
+      "hospitalized_covid_patients": 96,
+      "icu_available_beds": 14,
+      "icu_covid_patients": 22
+    },
+    {
+      "fulldate": "09/28/2020",
+      "hospitalized_covid_patients": 90,
+      "icu_available_beds": 13,
+      "icu_covid_patients": 22
+    },
+    {
+      "fulldate": "09/29/2020",
+      "hospitalized_covid_patients": 94,
+      "icu_available_beds": 14,
+      "icu_covid_patients": 27
+    },
+    {
+      "fulldate": "09/30/2020",
+      "hospitalized_covid_patients": 106,
+      "icu_available_beds": 21,
+      "icu_covid_patients": 23
+    },
+    {
+      "fulldate": "10/01/2020",
+      "hospitalized_covid_patients": 113,
+      "icu_available_beds": 18,
+      "icu_covid_patients": 21
+    },
+    {
+      "fulldate": "10/02/2020",
+      "hospitalized_covid_patients": 115,
+      "icu_available_beds": 22,
+      "icu_covid_patients": 25
+    },
+    {
+      "fulldate": "10/03/2020",
+      "hospitalized_covid_patients": 118,
+      "icu_available_beds": 18,
+      "icu_covid_patients": 24
+    },
+    {
+      "fulldate": "10/04/2020",
+      "hospitalized_covid_patients": 116,
+      "icu_available_beds": 17,
+      "icu_covid_patients": 25
+    },
+    {
+      "fulldate": "10/05/2020",
+      "hospitalized_covid_patients": 125,
+      "icu_available_beds": 12,
+      "icu_covid_patients": 23
+    },
+    {
+      "fulldate": "10/06/2020",
+      "hospitalized_covid_patients": 122,
+      "icu_available_beds": 32,
+      "icu_covid_patients": 21
+    },
+    {
+      "fulldate": "10/07/2020",
+      "hospitalized_covid_patients": 127,
+      "icu_available_beds": 32,
+      "icu_covid_patients": 14
+    },
+    {
+      "fulldate": "10/08/2020",
+      "hospitalized_covid_patients": 128,
+      "icu_available_beds": 23,
+      "icu_covid_patients": 19
+    },
+    {
+      "fulldate": "10/09/2020",
+      "hospitalized_covid_patients": 116,
+      "icu_available_beds": 18,
+      "icu_covid_patients": 17
+    },
+    {
+      "fulldate": "10/10/2020",
+      "hospitalized_covid_patients": 104,
+      "icu_available_beds": 27,
+      "icu_covid_patients": 15
+    },
+    {
+      "fulldate": "10/11/2020",
+      "hospitalized_covid_patients": 112,
+      "icu_available_beds": 29,
+      "icu_covid_patients": 14
+    },
+    {
+      "fulldate": "10/12/2020",
+      "hospitalized_covid_patients": 101,
+      "icu_available_beds": 36,
+      "icu_covid_patients": 18
+    },
+    {
+      "fulldate": "10/13/2020",
+      "hospitalized_covid_patients": 105,
+      "icu_available_beds": 32,
+      "icu_covid_patients": 20
+    },
+    {
+      "fulldate": "10/14/2020",
+      "hospitalized_covid_patients": 116,
+      "icu_available_beds": 36,
+      "icu_covid_patients": 21
+    },
+    {
+      "fulldate": "10/15/2020",
+      "hospitalized_covid_patients": 110,
+      "icu_available_beds": 33,
+      "icu_covid_patients": 17
+    },
+    {
+      "fulldate": "10/16/2020",
+      "hospitalized_covid_patients": 109,
+      "icu_available_beds": 43,
+      "icu_covid_patients": 24
+    },
+    {
+      "fulldate": "10/17/2020",
+      "hospitalized_covid_patients": 109,
+      "icu_available_beds": 38,
+      "icu_covid_patients": 25
+    },
+    {
+      "fulldate": "10/18/2020",
+      "hospitalized_covid_patients": 116,
+      "icu_available_beds": 29,
+      "icu_covid_patients": 30
+    },
+    {
+      "fulldate": "10/19/2020",
+      "hospitalized_covid_patients": 117,
+      "icu_available_beds": 34,
+      "icu_covid_patients": 26
+    },
+    {
+      "fulldate": "10/20/2020",
+      "hospitalized_covid_patients": 134,
+      "icu_available_beds": 27,
+      "icu_covid_patients": 25
+    },
+    {
+      "fulldate": "10/21/2020",
+      "hospitalized_covid_patients": 129,
+      "icu_available_beds": 36,
+      "icu_covid_patients": 19
+    },
+    {
+      "fulldate": "10/22/2020",
+      "hospitalized_covid_patients": 113,
+      "icu_available_beds": 37,
+      "icu_covid_patients": 21
+    },
+    {
+      "fulldate": "10/23/2020",
+      "hospitalized_covid_patients": 115,
+      "icu_available_beds": 17,
+      "icu_covid_patients": 25
+    },
+    {
+      "fulldate": "10/24/2020",
+      "hospitalized_covid_patients": 117,
+      "icu_available_beds": 21,
+      "icu_covid_patients": 24
+    },
+    {
+      "fulldate": "10/25/2020",
+      "hospitalized_covid_patients": 99,
+      "icu_available_beds": 22,
+      "icu_covid_patients": 25
+    },
+    {
+      "fulldate": "10/26/2020",
+      "hospitalized_covid_patients": 107,
+      "icu_available_beds": 24,
+      "icu_covid_patients": 26
+    },
+    {
+      "fulldate": "10/27/2020",
+      "hospitalized_covid_patients": 112,
+      "icu_available_beds": 23,
+      "icu_covid_patients": 28
+    },
+    {
+      "fulldate": "10/28/2020",
+      "hospitalized_covid_patients": 106,
+      "icu_available_beds": 23,
+      "icu_covid_patients": 30
+    },
+    {
+      "fulldate": "10/29/2020",
+      "hospitalized_covid_patients": 99,
+      "icu_available_beds": 23,
+      "icu_covid_patients": 25
+    },
+    {
+      "fulldate": "10/30/2020",
+      "hospitalized_covid_patients": 105,
+      "icu_available_beds": 25,
+      "icu_covid_patients": 27
+    },
+    {
+      "fulldate": "10/31/2020",
+      "hospitalized_covid_patients": 110,
+      "icu_available_beds": 29,
+      "icu_covid_patients": 26
+    },
+    {
+      "fulldate": "11/01/2020",
+      "hospitalized_covid_patients": 109,
+      "icu_available_beds": 32,
+      "icu_covid_patients": 26
+    },
+    {
+      "fulldate": "11/02/2020",
+      "hospitalized_covid_patients": 120,
+      "icu_available_beds": 31,
+      "icu_covid_patients": 29
+    },
+    {
+      "fulldate": "11/03/2020",
+      "hospitalized_covid_patients": 110,
+      "icu_available_beds": 20,
+      "icu_covid_patients": 32
+    },
+    {
+      "fulldate": "11/04/2020",
+      "hospitalized_covid_patients": 119,
+      "icu_available_beds": 20,
+      "icu_covid_patients": 28
+    },
+    {
+      "fulldate": "11/05/2020",
+      "hospitalized_covid_patients": 123,
+      "icu_available_beds": 21,
+      "icu_covid_patients": 30
+    },
+    {
+      "fulldate": "11/06/2020",
+      "hospitalized_covid_patients": 119,
+      "icu_available_beds": 23,
+      "icu_covid_patients": 26
+    },
+    {
+      "fulldate": "11/07/2020",
+      "hospitalized_covid_patients": 131,
+      "icu_available_beds": 17,
+      "icu_covid_patients": 25
+    },
+    {
+      "fulldate": "11/08/2020",
+      "hospitalized_covid_patients": 130,
+      "icu_available_beds": -4,
+      "icu_covid_patients": 27
+    },
+    {
+      "fulldate": "11/09/2020",
+      "hospitalized_covid_patients": 136,
+      "icu_available_beds": 26,
+      "icu_covid_patients": 32
+    },
+    {
+      "fulldate": "11/10/2020",
+      "hospitalized_covid_patients": 145,
+      "icu_available_beds": 13,
+      "icu_covid_patients": 30
+    },
+    {
+      "fulldate": "11/11/2020",
+      "hospitalized_covid_patients": 139,
+      "icu_available_beds": 11,
+      "icu_covid_patients": 34
+    },
+    {
+      "fulldate": "11/12/2020",
+      "hospitalized_covid_patients": 139,
+      "icu_available_beds": 15,
+      "icu_covid_patients": 29
+    },
+    {
+      "fulldate": "11/13/2020",
+      "hospitalized_covid_patients": 147,
+      "icu_available_beds": 22,
+      "icu_covid_patients": 34
+    },
+    {
+      "fulldate": "11/14/2020",
+      "hospitalized_covid_patients": 167,
+      "icu_available_beds": 17,
+      "icu_covid_patients": 34
+    },
+    {
+      "fulldate": "11/15/2020",
+      "hospitalized_covid_patients": 167,
+      "icu_available_beds": 10,
+      "icu_covid_patients": 37
+    },
+    {
+      "fulldate": "11/16/2020",
+      "hospitalized_covid_patients": 172,
+      "icu_available_beds": 21,
+      "icu_covid_patients": 38
+    },
+    {
+      "fulldate": "11/17/2020",
+      "hospitalized_covid_patients": 184,
+      "icu_available_beds": 15,
+      "icu_covid_patients": 36
+    },
+    {
+      "fulldate": "11/18/2020",
+      "hospitalized_covid_patients": 189,
+      "icu_available_beds": 19,
+      "icu_covid_patients": 29
+    },
+    {
+      "fulldate": "11/19/2020",
+      "hospitalized_covid_patients": 200,
+      "icu_available_beds": 25,
+      "icu_covid_patients": 27
+    },
+    {
+      "fulldate": "11/20/2020",
+      "hospitalized_covid_patients": 217,
+      "icu_available_beds": 20,
+      "icu_covid_patients": 32
+    },
+    {
+      "fulldate": "11/21/2020",
+      "hospitalized_covid_patients": 224,
+      "icu_available_beds": 18,
+      "icu_covid_patients": 32
+    },
+    {
+      "fulldate": "11/22/2020",
+      "hospitalized_covid_patients": 247,
+      "icu_available_beds": 19,
+      "icu_covid_patients": 34
+    },
+    {
+      "fulldate": "11/23/2020",
+      "hospitalized_covid_patients": 268,
+      "icu_available_beds": 20,
+      "icu_covid_patients": 40
+    },
+    {
+      "fulldate": "11/24/2020",
+      "hospitalized_covid_patients": 288,
+      "icu_available_beds": 14,
+      "icu_covid_patients": 42
+    },
+    {
+      "fulldate": "11/25/2020",
+      "hospitalized_covid_patients": 275,
+      "icu_available_beds": 20,
+      "icu_covid_patients": 47
+    },
+    {
+      "fulldate": "11/26/2020",
+      "hospitalized_covid_patients": 280,
+      "icu_available_beds": 14,
+      "icu_covid_patients": 41
+    },
+    {
+      "fulldate": "11/27/2020",
+      "hospitalized_covid_patients": 294,
+      "icu_available_beds": 17,
+      "icu_covid_patients": 54
+    },
+    {
+      "fulldate": "11/28/2020",
+      "hospitalized_covid_patients": 310,
+      "icu_available_beds": 17,
+      "icu_covid_patients": 57
+    },
+    {
+      "fulldate": "11/29/2020",
+      "hospitalized_covid_patients": 312,
+      "icu_available_beds": 14,
+      "icu_covid_patients": 57
+    },
+    {
+      "fulldate": "11/30/2020",
+      "hospitalized_covid_patients": 336,
+      "icu_available_beds": 12,
+      "icu_covid_patients": 55
+    },
+    {
+      "fulldate": "12/01/2020",
+      "hospitalized_covid_patients": 318,
+      "icu_available_beds": 9,
+      "icu_covid_patients": 64
+    },
+    {
+      "fulldate": "12/02/2020",
+      "hospitalized_covid_patients": 367,
+      "icu_available_beds": 10,
+      "icu_covid_patients": 64
+    },
+    {
+      "fulldate": "12/03/2020",
+      "hospitalized_covid_patients": 378,
+      "icu_available_beds": 11,
+      "icu_covid_patients": 70
+    },
+    {
+      "fulldate": "12/04/2020",
+      "hospitalized_covid_patients": 390,
+      "icu_available_beds": 5,
+      "icu_covid_patients": 58
+    },
+    {
+      "fulldate": "12/05/2020",
+      "hospitalized_covid_patients": 420,
+      "icu_available_beds": 6,
+      "icu_covid_patients": 64
+    },
+    {
+      "fulldate": "12/06/2020",
+      "hospitalized_covid_patients": 436,
+      "icu_available_beds": 7,
+      "icu_covid_patients": 67
+    },
+    {
+      "fulldate": "12/07/2020",
+      "hospitalized_covid_patients": 455,
+      "icu_available_beds": 9,
+      "icu_covid_patients": 82
+    },
+    {
+      "fulldate": "12/08/2020",
+      "hospitalized_covid_patients": 492,
+      "icu_available_beds": 7,
+      "icu_covid_patients": 77
+    },
+    {
+      "fulldate": "12/09/2020",
+      "hospitalized_covid_patients": 491,
+      "icu_available_beds": 8,
+      "icu_covid_patients": 97
+    },
+    {
+      "fulldate": "12/10/2020",
+      "hospitalized_covid_patients": 513,
+      "icu_available_beds": 11,
+      "icu_covid_patients": 87
+    },
+    {
+      "fulldate": "12/11/2020",
+      "hospitalized_covid_patients": 491,
+      "icu_available_beds": 14,
+      "icu_covid_patients": 93
+    },
+    {
+      "fulldate": "12/12/2020",
+      "hospitalized_covid_patients": 489,
+      "icu_available_beds": 12,
+      "icu_covid_patients": 92
+    },
+    {
+      "fulldate": "12/13/2020",
+      "hospitalized_covid_patients": 507,
+      "icu_available_beds": 13,
+      "icu_covid_patients": 98
+    },
+    {
+      "fulldate": "12/14/2020",
+      "hospitalized_covid_patients": 528,
+      "icu_available_beds": 16,
+      "icu_covid_patients": 76
+    },
+    {
+      "fulldate": "12/15/2020",
+      "hospitalized_covid_patients": 531,
+      "icu_available_beds": 11,
+      "icu_covid_patients": 88
+    },
+    {
+      "fulldate": "12/16/2020",
+      "hospitalized_covid_patients": 557,
+      "icu_available_beds": 10,
+      "icu_covid_patients": 96
+    },
+    {
+      "fulldate": "12/17/2020",
+      "hospitalized_covid_patients": 592,
+      "icu_available_beds": 13,
+      "icu_covid_patients": 106
+    },
+    {
+      "fulldate": "12/18/2020",
+      "hospitalized_covid_patients": 598,
+      "icu_available_beds": 13,
+      "icu_covid_patients": 111
+    },
+    {
+      "fulldate": "12/19/2020",
+      "hospitalized_covid_patients": 605,
+      "icu_available_beds": 8,
+      "icu_covid_patients": 115
+    },
+    {
+      "fulldate": "12/20/2020",
+      "hospitalized_covid_patients": 598,
+      "icu_available_beds": 18,
+      "icu_covid_patients": 109
+    },
+    {
+      "fulldate": "12/21/2020",
+      "hospitalized_covid_patients": 615,
+      "icu_available_beds": 14,
+      "icu_covid_patients": 126
+    },
+    {
+      "fulldate": "12/22/2020",
+      "hospitalized_covid_patients": 590,
+      "icu_available_beds": 7,
+      "icu_covid_patients": 109
+    },
+    {
+      "fulldate": "12/23/2020",
+      "hospitalized_covid_patients": 666,
+      "icu_available_beds": 4,
+      "icu_covid_patients": 127
+    },
+    {
+      "fulldate": "12/24/2020",
+      "hospitalized_covid_patients": 650,
+      "icu_available_beds": 5,
+      "icu_covid_patients": 110
+    },
+    {
+      "fulldate": "12/25/2020",
+      "hospitalized_covid_patients": 640,
+      "icu_available_beds": 7,
+      "icu_covid_patients": 139
+    },
+    {
+      "fulldate": "12/26/2020",
+      "hospitalized_covid_patients": 652,
+      "icu_available_beds": 8,
+      "icu_covid_patients": 139
+    },
+    {
+      "fulldate": "12/27/2020",
+      "hospitalized_covid_patients": 666,
+      "icu_available_beds": 8,
+      "icu_covid_patients": 143
+    },
+    {
+      "fulldate": "12/28/2020",
+      "hospitalized_covid_patients": 677,
+      "icu_available_beds": 13,
+      "icu_covid_patients": 118
+    },
+    {
+      "fulldate": "12/29/2020",
+      "hospitalized_covid_patients": 652,
+      "icu_available_beds": 7,
+      "icu_covid_patients": 136
+    },
+    {
+      "fulldate": "12/30/2020",
+      "hospitalized_covid_patients": 621,
+      "icu_available_beds": 12,
+      "icu_covid_patients": 122
+    },
+    {
+      "fulldate": "12/31/2020",
+      "hospitalized_covid_patients": 628,
+      "icu_available_beds": 10,
+      "icu_covid_patients": 148
+    },
+    {
+      "fulldate": "01/01/2021",
+      "hospitalized_covid_patients": 617,
+      "icu_available_beds": 10,
+      "icu_covid_patients": 136
+    },
+    {
+      "fulldate": "01/02/2021",
+      "hospitalized_covid_patients": 628,
+      "icu_available_beds": 11,
+      "icu_covid_patients": 131
+    },
+    {
+      "fulldate": "01/03/2021",
+      "hospitalized_covid_patients": 663,
+      "icu_available_beds": 6,
+      "icu_covid_patients": 132
+    },
+    {
+      "fulldate": "01/04/2021",
+      "hospitalized_covid_patients": 686,
+      "icu_available_beds": 11,
+      "icu_covid_patients": 129
+    },
+    {
+      "fulldate": "01/05/2021",
+      "hospitalized_covid_patients": 695,
+      "icu_available_beds": 6,
+      "icu_covid_patients": 122
+    },
+    {
+      "fulldate": "01/06/2021",
+      "hospitalized_covid_patients": 655,
+      "icu_available_beds": 8,
+      "icu_covid_patients": 114
+    },
+    {
+      "fulldate": "01/07/2021",
+      "hospitalized_covid_patients": 662,
+      "icu_available_beds": 6,
+      "icu_covid_patients": 102
+    },
+    {
+      "fulldate": "01/08/2021",
+      "hospitalized_covid_patients": 650,
+      "icu_available_beds": 9,
+      "icu_covid_patients": 119
+    },
+    {
+      "fulldate": "01/09/2021",
+      "hospitalized_covid_patients": 673,
+      "icu_available_beds": 11,
+      "icu_covid_patients": 117
+    },
+    {
+      "fulldate": "01/10/2021",
+      "hospitalized_covid_patients": 676,
+      "icu_available_beds": 13,
+      "icu_covid_patients": 117
+    },
+    {
+      "fulldate": "01/11/2021",
+      "hospitalized_covid_patients": 684,
+      "icu_available_beds": 13,
+      "icu_covid_patients": 102
+    },
+    {
+      "fulldate": "01/12/2021",
+      "hospitalized_covid_patients": 675,
+      "icu_available_beds": 9,
+      "icu_covid_patients": 111
+    }
+  ],
+  "LastConfirmed": 77651,
+  "LastDeath": 846,
+  "LastConfirmedNew": 1070,
+  "LastDeathNew": 0,
+  "DaysToDouble": 51.94162553277538,
+  "DaysToDoubleDeath": 25.456173164547007,
+  "Last2WeeksConfirmedDelta": 12770
+}
