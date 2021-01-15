@@ -362,7 +362,8 @@
     "01/11/2021": 3809,
     "01/12/2021": 3809,
     "01/13/2021": 3884,
-    "01/14/2021": 3965
+    "01/14/2021": 3965,
+    "01/15/2021": 3965
   },
   "Death": {
     "01/22/2020": 0,
@@ -723,16 +724,17 @@
     "01/11/2021": 58,
     "01/12/2021": 59,
     "01/13/2021": 59,
-    "01/14/2021": 64
+    "01/14/2021": 64,
+    "01/15/2021": 64
   },
   "Population": 54635,
   "LastConfirmed": 3965,
   "LastDeath": 64,
-  "LastConfirmedNew": 81,
-  "LastDeathNew": 5,
-  "DaysToDouble": 75.48871405911058,
-  "DaysToDoubleDeath": 101.74844144538474,
-  "Last2WeeksConfirmedDelta": 706,
+  "LastConfirmedNew": 0,
+  "LastDeathNew": 0,
+  "DaysToDouble": 99.08889344989039,
+  "DaysToDoubleDeath": 55.99516455771231,
+  "Last2WeeksConfirmedDelta": 611,
   "StayHomeOrder": {
     "StartUrl": "http://www.co.hardin.tx.us/upload/page/3683/docs/COVID-19/Executive%20Order%20Number%20WM%2004%20Order%20to%20Stay%20at%20Home.pdf",
     "StartDate": "2020-03-27T00:00:00Z",

@@ -362,7 +362,8 @@
     "01/11/2021": 47940,
     "01/12/2021": 48449,
     "01/13/2021": 49082,
-    "01/14/2021": 49082
+    "01/14/2021": 49082,
+    "01/15/2021": 49759
   },
   "Death": {
     "01/22/2020": 0,
@@ -723,7 +724,8 @@
     "01/11/2021": 392,
     "01/12/2021": 392,
     "01/13/2021": 395,
-    "01/14/2021": 395
+    "01/14/2021": 395,
+    "01/15/2021": 410
   },
   "beds": 1697,
   "bedsICU": 163,
@@ -2479,13 +2481,13 @@
       "icu_covid_patients": 62
     }
   ],
-  "LastConfirmed": 49082,
-  "LastDeath": 395,
-  "LastConfirmedNew": 0,
-  "LastDeathNew": 0,
-  "DaysToDouble": 44.12746207772461,
-  "DaysToDoubleDeath": 63.455683176362896,
-  "Last2WeeksConfirmedDelta": 10053,
+  "LastConfirmed": 49759,
+  "LastDeath": 410,
+  "LastConfirmedNew": 677,
+  "LastDeathNew": 15,
+  "DaysToDouble": 49.8428778154435,
+  "DaysToDoubleDeath": 88.75775410081802,
+  "Last2WeeksConfirmedDelta": 9691,
   "StayHomeOrder": {
     "StartUrl": "https://www.sfchronicle.com/bayarea/article/Bay-Area-coronavirus-decision-Behind-the-scenes-15148425.php",
     "StartDate": "2020-03-17T00:00:00Z",

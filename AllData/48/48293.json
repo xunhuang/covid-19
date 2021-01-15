@@ -362,7 +362,8 @@
     "01/11/2021": 1352,
     "01/12/2021": 1352,
     "01/13/2021": 1361,
-    "01/14/2021": 1371
+    "01/14/2021": 1371,
+    "01/15/2021": 1371
   },
   "Death": {
     "01/22/2020": 0,
@@ -723,7 +724,8 @@
     "01/11/2021": 32,
     "01/12/2021": 32,
     "01/13/2021": 32,
-    "01/14/2021": 32
+    "01/14/2021": 32,
+    "01/15/2021": 32
   },
   "beds": 78,
   "bedsICU": 6,
@@ -732,11 +734,11 @@
   "Population": 23384,
   "LastConfirmed": 1371,
   "LastDeath": 32,
-  "LastConfirmedNew": 10,
+  "LastConfirmedNew": 0,
   "LastDeathNew": 0,
-  "DaysToDouble": 221.48255942812403,
-  "DaysToDoubleDeath": 203.76815518938201,
-  "Last2WeeksConfirmedDelta": 130,
+  "DaysToDouble": 196.04054261770582,
+  "DaysToDoubleDeath": null,
+  "Last2WeeksConfirmedDelta": 134,
   "StayHomeOrder": {
     "StartUrl": "http://www.co.limestone.tx.us/upload/page/9849/docs/20200402%20Limestone%20County%20Shelter%20In%20Place%20Order.pdf",
     "StartDate": "2020-04-02T00:00:00Z",
