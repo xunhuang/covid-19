@@ -3103,7 +3103,7 @@
         "parentIso": null,
         "iso": "BBG",
         "dateUpdated": "2021-01-14",
-        "noDosesTotal": 35089364,
+        "noDosesTotal": 35089499,
         "noCompletedVaccination": null,
         "noVaccinesReceived": null,
         "noDosesTotalPerCapita": null
@@ -3785,11 +3785,11 @@
         "parentIso": null,
         "iso": "USA",
         "dateUpdated": "2021-01-14",
-        "noDosesTotal": 11869343,
+        "noDosesTotal": 11869478,
         "noCompletedVaccination": null,
         "noVaccinesReceived": null,
         "population": 328461000,
-        "noDosesTotalPerCapita": 0.036136232307640785
+        "noDosesTotalPerCapita": 0.036136643315340326
       }
     ],
     "usa": [
@@ -3801,9 +3801,9 @@
         "cdcDosesDistributedTotal": 30628175,
         "cdcFirstDosesAdministeredTotal": 11148991,
         "cdcFirstDosesAdministeredPerDistributed": 0.364011,
-        "noDosesTotal": 11869343,
+        "noDosesTotal": 11869478,
         "noCompletedVaccination": 1460985,
-        "noDosesTotalPerCdcDistributed": 0.38753,
+        "noDosesTotalPerCdcDistributed": 0.387535,
         "dateUpdated": "2021-01-14",
         "noVaccinesReceived": null
       },
@@ -4440,12 +4440,12 @@
         "parentFips": "36",
         "code": "new-york-city",
         "specialNote": true,
-        "cdcDosesDistributedTotal": 0,
+        "cdcDosesDistributedTotal": 794650,
         "cdcFirstDosesAdministeredTotal": 0,
-        "cdcFirstDosesAdministeredPerDistributed": null,
+        "cdcFirstDosesAdministeredPerDistributed": 0,
         "noDosesTotal": 303671,
         "noCompletedVaccination": 37114,
-        "noDosesTotalPerCdcDistributed": null,
+        "noDosesTotalPerCdcDistributed": 0.382144,
         "dateUpdated": "2021-01-14",
         "noVaccinesReceived": 794650
       },
@@ -4818,9 +4818,9 @@
         "cdcDosesDistributedTotal": 9800,
         "cdcFirstDosesAdministeredTotal": 605,
         "cdcFirstDosesAdministeredPerDistributed": null,
-        "noDosesTotal": 605,
+        "noDosesTotal": 740,
         "noCompletedVaccination": 1,
-        "noDosesTotalPerCdcDistributed": 0.061735,
+        "noDosesTotalPerCdcDistributed": 0.07551,
         "dateUpdated": "2021-01-14",
         "noVaccinesReceived": null,
         "ap": "",
@@ -5126,7 +5126,7 @@
           ],
           [
             "2021-01-14",
-            11869343
+            11869478
           ]
         ],
         "CAN-ON": [
@@ -6932,7 +6932,7 @@
           ],
           [
             "2021-01-14",
-            35089364
+            35089499
           ]
         ],
         "FRA": [
@@ -7396,7 +7396,7 @@
           ],
           [
             "2021-01-14",
-            11869343
+            11869478
           ]
         ],
         "AL": [
@@ -10206,7 +10206,7 @@
           ],
           [
             "2021-01-14",
-            11869343
+            11869478
           ]
         ],
         "KS": [
@@ -10950,7 +10950,7 @@
           ],
           [
             "2021-01-14",
-            605
+            740
           ]
         ],
         "PW": [
@@ -11131,8 +11131,8 @@
       ],
       [
         "2021-01-14",
-        2157527,
-        2281990.6806637803
+        2157662,
+        2282009.966378066
       ]
     ],
     "usa": {
@@ -11269,8 +11269,8 @@
         ],
         [
           "2021-01-14",
-          1080573,
-          802441.1428571428
+          1080708,
+          802460.4285714285
         ]
       ],
       "AL": [
@@ -14758,8 +14758,8 @@
         ],
         [
           "2021-01-14",
-          1080573,
-          720752.2
+          1080708,
+          720765.7
         ]
       ],
       "KS": [
@@ -15679,8 +15679,8 @@
         ],
         [
           "2021-01-14",
-          40,
-          72.14285714285714
+          175,
+          91.42857142857143
         ]
       ],
       "PW": [
@@ -15862,8 +15862,8 @@
         ],
         [
           "2021-01-14",
-          1080573,
-          802441.1428571428
+          1080708,
+          802460.4285714285
         ]
       ],
       "CAN-ON": [
@@ -18098,8 +18098,8 @@
         ],
         [
           "2021-01-14",
-          2589400,
-          2512543
+          2589535,
+          2512562.285714286
         ]
       ],
       "FRA": [
