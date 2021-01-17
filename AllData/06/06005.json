@@ -364,7 +364,8 @@
     "01/13/2021": 2897,
     "01/14/2021": 2921,
     "01/15/2021": 2951,
-    "01/16/2021": 2953
+    "01/16/2021": 2953,
+    "01/17/2021": 2965
   },
   "Death": {
     "01/22/2020": 0,
@@ -727,7 +728,8 @@
     "01/13/2021": 29,
     "01/14/2021": 29,
     "01/15/2021": 29,
-    "01/16/2021": 29
+    "01/16/2021": 29,
+    "01/17/2021": 29
   },
   "beds": 52,
   "bedsICU": 6,
@@ -2495,13 +2497,13 @@
       "icu_covid_patients": 7
     }
   ],
-  "LastConfirmed": 2953,
+  "LastConfirmed": 2965,
   "LastDeath": 29,
-  "LastConfirmedNew": 2,
+  "LastConfirmedNew": 12,
   "LastDeathNew": 0,
-  "DaysToDouble": 85.93012977947116,
-  "DaysToDoubleDeath": 33.39963725932795,
-  "Last2WeeksConfirmedDelta": 449,
+  "DaysToDouble": 90.435448929663,
+  "DaysToDoubleDeath": 44.83572150388727,
+  "Last2WeeksConfirmedDelta": 438,
   "StayHomeOrder": {
     "StartUrl": "https://www.amadorgov.org/home/showdocument?id=34891",
     "StartDate": "2020-03-20T00:00:00Z",

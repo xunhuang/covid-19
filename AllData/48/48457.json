@@ -364,7 +364,8 @@
     "01/13/2021": 1404,
     "01/14/2021": 1410,
     "01/15/2021": 1418,
-    "01/16/2021": 1440
+    "01/16/2021": 1440,
+    "01/17/2021": 1440
   },
   "Death": {
     "01/22/2020": 0,
@@ -727,7 +728,8 @@
     "01/13/2021": 15,
     "01/14/2021": 17,
     "01/15/2021": 18,
-    "01/16/2021": 18
+    "01/16/2021": 18,
+    "01/17/2021": 18
   },
   "beds": 49,
   "bedsICU": 0,
@@ -736,11 +738,11 @@
   "Population": 21766,
   "LastConfirmed": 1440,
   "LastDeath": 18,
-  "LastConfirmedNew": 22,
+  "LastConfirmedNew": 0,
   "LastDeathNew": 0,
-  "DaysToDouble": 102.27519236088558,
-  "DaysToDoubleDeath": 16.023240565093854,
-  "Last2WeeksConfirmedDelta": 632,
+  "DaysToDouble": 80.4127994935107,
+  "DaysToDoubleDeath": 13.378192859548784,
+  "Last2WeeksConfirmedDelta": 654,
   "StayHomeOrder": {
     "StartUrl": "http://www.co.tyler.tx.us/upload/page/3281/docs/Emergency/Second%20Executive%20Order%2003282020.PDF",
     "StartDate": "2020-03-28T00:00:00Z",
