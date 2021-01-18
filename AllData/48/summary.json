@@ -2270,9 +2270,9 @@
     "hospitals": 73,
     "bedsAvail": 4963,
     "Population": 4092459,
-    "LastConfirmed": 281422,
+    "LastConfirmed": 284917,
     "LastDeath": 3792,
-    "LastConfirmedNew": 0,
+    "LastConfirmedNew": 3495,
     "LastDeathNew": 15,
     "DaysToDouble": 60.36647107343628,
     "DaysToDoubleDeath": 78.83727707743006,
@@ -6118,7 +6118,7 @@
       "01/14/2021": 2068637,
       "01/15/2021": 2094921,
       "01/16/2021": 2112662,
-      "01/17/2021": 2122469
+      "01/17/2021": 2125964
     },
     "Death": {
       "01/22/2020": 0,
@@ -6598,8 +6598,8 @@
     "doses_alloc_total_Last": 1843950,
     "doses_admin_total_Last": 451210,
     "doses_shippied_total_Last": 2105600,
-    "LastConfirmed": 2122469,
-    "LastConfirmedNew": 9807,
+    "LastConfirmed": 2125964,
+    "LastConfirmedNew": 13302,
     "LastDeath": 32596,
     "LastDeathNew": 168,
     "DaysToDouble": 56.83046031359406,
@@ -6716,13 +6716,13 @@
     },
     "LastRecovered": 251346,
     "LastRecoveredNew": 0,
-    "totalTests": 15844262,
-    "totalTestResults": 15584254,
-    "totalTestPositive": 2097560,
-    "totalRecovered": 1666745,
-    "hospitalized": 13929,
+    "totalTests": 15978462,
+    "totalTestResults": 15718021,
+    "totalTestPositive": 2113962,
+    "totalRecovered": 1677588,
+    "hospitalized": 13728,
     "hospitalizedIncreased": 0,
-    "inIcu": 3656,
+    "inIcu": 3605,
     "onVentilator": null
   }
 }
