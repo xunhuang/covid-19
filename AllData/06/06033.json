@@ -366,7 +366,8 @@
     "01/15/2021": 2417,
     "01/16/2021": 2434,
     "01/17/2021": 2504,
-    "01/18/2021": 2572
+    "01/18/2021": 2572,
+    "01/19/2021": 2572
   },
   "Death": {
     "01/22/2020": 0,
@@ -731,7 +732,8 @@
     "01/15/2021": 28,
     "01/16/2021": 28,
     "01/17/2021": 28,
-    "01/18/2021": 28
+    "01/18/2021": 28,
+    "01/19/2021": 30
   },
   "beds": 62,
   "bedsICU": 8,
@@ -2512,12 +2514,12 @@
     }
   ],
   "LastConfirmed": 2572,
-  "LastDeath": 28,
-  "LastConfirmedNew": 68,
-  "LastDeathNew": 0,
-  "DaysToDouble": 53.492985148474794,
-  "DaysToDoubleDeath": 106.73290227154266,
-  "Last2WeeksConfirmedDelta": 616,
+  "LastDeath": 30,
+  "LastConfirmedNew": 0,
+  "LastDeathNew": 2,
+  "DaysToDouble": 79.53273300282957,
+  "DaysToDoubleDeath": 177.88817045257113,
+  "Last2WeeksConfirmedDelta": 647,
   "StayHomeOrder": {
     "StartUrl": "http://health.co.lake.ca.us/Assets/Departments/Health/Public+Health+Division/COVID-19/OrderC20.3.pdf",
     "StartDate": "2020-03-19T00:00:00Z",
