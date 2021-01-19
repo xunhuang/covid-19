@@ -6,6 +6,8 @@ name: Publish To GH Pages
 on:
   push:
     branches: [ master ]
+  schedule:
+  - cron: "10,30,50 * * * *"
   workflow_dispatch:
 
 jobs:
