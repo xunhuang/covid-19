@@ -2531,7 +2531,7 @@
       "01/17/2021": 109354,
       "01/18/2021": 109354,
       "01/19/2021": 109354,
-      "01/20/2021": 123702,
+      "01/20/2021": 109354,
       "12/15/2020": 0,
       "12/16/2020": 0,
       "12/17/2020": 0,
@@ -2571,7 +2571,7 @@
       "01/17/2021": 282625,
       "01/18/2021": 282625,
       "01/19/2021": 282625,
-      "01/20/2021": 372825,
+      "01/20/2021": 307950,
       "12/15/2020": 0,
       "12/16/2020": 0,
       "12/17/2020": 0,
@@ -2585,8 +2585,8 @@
       "12/25/2020": 0
     },
     "doses_alloc_total_Last": 168775,
-    "doses_admin_total_Last": 123702,
-    "doses_shippied_total_Last": 372825,
+    "doses_admin_total_Last": 109354,
+    "doses_shippied_total_Last": 307950,
     "LastConfirmed": 256827,
     "LastConfirmedNew": 1702,
     "LastDeath": 5638,
@@ -2674,13 +2674,13 @@
     },
     "LastRecovered": 15707,
     "LastRecoveredNew": 0,
-    "totalTests": 1511240,
-    "totalTestResults": 1511240,
-    "totalTestPositive": 255125,
+    "totalTests": 1512942,
+    "totalTestResults": 1512942,
+    "totalTestPositive": 256827,
     "totalRecovered": 207769,
     "hospitalized": 8546,
     "hospitalizedIncreased": 0,
-    "inIcu": 329,
-    "onVentilator": 192
+    "inIcu": 301,
+    "onVentilator": 180
   }
 }

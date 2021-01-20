@@ -364,10 +364,10 @@
     "hospitals": 10,
     "bedsAvail": 440,
     "Population": 498886,
-    "LastConfirmed": 23759,
-    "LastDeath": 582,
-    "LastConfirmedNew": 0,
-    "LastDeathNew": 0,
+    "LastConfirmed": 23936,
+    "LastDeath": 585,
+    "LastConfirmedNew": 177,
+    "LastDeathNew": 3,
     "DaysToDouble": 123.00455647412613,
     "DaysToDoubleDeath": 279.2233207287641,
     "Last2WeeksConfirmedDelta": 3352,
@@ -1964,7 +1964,7 @@
       "01/17/2021": 770985,
       "01/18/2021": 774566,
       "01/19/2021": 781947,
-      "01/20/2021": 787407
+      "01/20/2021": 787584
     },
     "Death": {
       "01/22/2020": 0,
@@ -2331,7 +2331,7 @@
       "01/17/2021": 19255,
       "01/18/2021": 19330,
       "01/19/2021": 19423,
-      "01/20/2021": 19808
+      "01/20/2021": 19811
     },
     "doses_alloc_total": {
       "12/14/2020": 0,
@@ -2406,7 +2406,7 @@
       "01/17/2021": 164552,
       "01/18/2021": 164552,
       "01/19/2021": 164552,
-      "01/20/2021": 477929,
+      "01/20/2021": 164552,
       "12/17/2020": 0,
       "12/18/2020": 0,
       "12/19/2020": 0,
@@ -2446,7 +2446,7 @@
       "01/17/2021": 1075350,
       "01/18/2021": 1075350,
       "01/19/2021": 1075350,
-      "01/20/2021": 1075350,
+      "01/20/2021": 1223250,
       "12/17/2020": 17550,
       "12/18/2020": 17550,
       "12/19/2020": 17550,
@@ -2454,12 +2454,12 @@
       "12/22/2020": 127755
     },
     "doses_alloc_total_Last": 798500,
-    "doses_admin_total_Last": 477929,
-    "doses_shippied_total_Last": 1075350,
-    "LastConfirmed": 787407,
-    "LastConfirmedNew": 5460,
-    "LastDeath": 19808,
-    "LastDeathNew": 385,
+    "doses_admin_total_Last": 164552,
+    "doses_shippied_total_Last": 1223250,
+    "LastConfirmed": 787584,
+    "LastConfirmedNew": 5637,
+    "LastDeath": 19811,
+    "LastDeathNew": 388,
     "DaysToDouble": 91.3053397294776,
     "DaysToDoubleDeath": 80.09131102885826,
     "Last2WeeksConfirmedDelta": 111908,
@@ -2574,13 +2574,13 @@
     },
     "LastRecovered": 83308,
     "LastRecoveredNew": 645,
-    "totalTests": 4271465,
-    "totalTestResults": 4271465,
-    "totalTestPositive": 777186,
-    "totalRecovered": 598433,
-    "hospitalized": 4593,
+    "totalTests": 4290262,
+    "totalTestResults": 4290262,
+    "totalTestPositive": 783170,
+    "totalRecovered": 610872,
+    "hospitalized": 4882,
     "hospitalizedIncreased": 0,
-    "inIcu": 918,
-    "onVentilator": 564
+    "inIcu": 889,
+    "onVentilator": 546
   }
 }
