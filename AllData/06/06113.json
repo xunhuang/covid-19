@@ -367,7 +367,8 @@
     "01/16/2021": 10240,
     "01/17/2021": 10406,
     "01/18/2021": 10519,
-    "01/19/2021": 10620
+    "01/19/2021": 10620,
+    "01/20/2021": 10620
   },
   "Death": {
     "01/22/2020": 0,
@@ -733,7 +734,8 @@
     "01/16/2021": 131,
     "01/17/2021": 131,
     "01/18/2021": 131,
-    "01/19/2021": 131
+    "01/19/2021": 131,
+    "01/20/2021": 131
   },
   "beds": 125,
   "bedsICU": 14,
@@ -2521,11 +2523,11 @@
   ],
   "LastConfirmed": 10620,
   "LastDeath": 131,
-  "LastConfirmedNew": 101,
+  "LastConfirmedNew": 0,
   "LastDeathNew": 0,
-  "DaysToDouble": 50.76386923029374,
-  "DaysToDoubleDeath": 844.2491347598726,
-  "Last2WeeksConfirmedDelta": 1948,
+  "DaysToDouble": 52.67406492739997,
+  "DaysToDoubleDeath": null,
+  "Last2WeeksConfirmedDelta": 1947,
   "StayHomeOrder": {
     "StartUrl": "https://www.sacbee.com/news/coronavirus/article241307681.html",
     "StartDate": "2020-03-19T00:00:00Z",
