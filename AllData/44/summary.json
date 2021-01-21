@@ -25,11 +25,11 @@
     "Population": 49875,
     "LastConfirmed": 3499,
     "LastDeath": 97,
-    "LastConfirmedNew": 248,
-    "LastDeathNew": 19,
-    "DaysToDouble": 862017116176384.1,
-    "DaysToDoubleDeath": -1724034232352768.2,
-    "Last2WeeksConfirmedDelta": 848,
+    "LastConfirmedNew": 0,
+    "LastDeathNew": 0,
+    "DaysToDouble": 88.00124252390596,
+    "DaysToDoubleDeath": 29.67573315859787,
+    "Last2WeeksConfirmedDelta": 1096,
     "Recovered": null
   },
   "44003": {
@@ -46,11 +46,11 @@
     "Population": 166158,
     "LastConfirmed": 12645,
     "LastDeath": 236,
-    "LastConfirmedNew": 843,
-    "LastDeathNew": 9,
-    "DaysToDouble": null,
-    "DaysToDoubleDeath": 862017116176384.1,
-    "Last2WeeksConfirmedDelta": 1901,
+    "LastConfirmedNew": 0,
+    "LastDeathNew": 0,
+    "DaysToDouble": 93.76872633065422,
+    "DaysToDoubleDeath": 166.38570636369172,
+    "Last2WeeksConfirmedDelta": 2744,
     "Recovered": null
   },
   "44005": {
@@ -67,11 +67,11 @@
     "Population": 82888,
     "LastConfirmed": 3999,
     "LastDeath": 12,
-    "LastConfirmedNew": 421,
+    "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 431008558088192.06,
+    "DaysToDouble": 58.15672091026894,
     "DaysToDoubleDeath": null,
-    "Last2WeeksConfirmedDelta": 983,
+    "Last2WeeksConfirmedDelta": 1404,
     "Recovered": null
   },
   "44007": {
@@ -88,11 +88,11 @@
     "Population": 626667,
     "LastConfirmed": 71172,
     "LastDeath": 1533,
-    "LastConfirmedNew": 3646,
-    "LastDeathNew": 53,
-    "DaysToDouble": 431008558088192.06,
-    "DaysToDoubleDeath": null,
-    "Last2WeeksConfirmedDelta": 8580,
+    "LastConfirmedNew": 0,
+    "LastDeathNew": 0,
+    "DaysToDouble": 123.02282921009297,
+    "DaysToDoubleDeath": 183.8699273228252,
+    "Last2WeeksConfirmedDelta": 12226,
     "Recovered": null
   },
   "44009": {
@@ -109,11 +109,11 @@
     "Population": 126979,
     "LastConfirmed": 5887,
     "LastDeath": 132,
-    "LastConfirmedNew": 366,
-    "LastDeathNew": 6,
-    "DaysToDouble": null,
-    "DaysToDoubleDeath": null,
-    "Last2WeeksConfirmedDelta": 1039,
+    "LastConfirmedNew": 0,
+    "LastDeathNew": 0,
+    "DaysToDouble": 100.78864248822175,
+    "DaysToDoubleDeath": 139.06645552315118,
+    "Last2WeeksConfirmedDelta": 1405,
     "Recovered": null
   },
   "80044": {
@@ -499,7 +499,8 @@
       "01/17/2021": 91678,
       "01/18/2021": 91678,
       "01/19/2021": 91678,
-      "01/20/2021": 97202
+      "01/20/2021": 97202,
+      "01/21/2021": 97202
     },
     "Death": {
       "01/22/2020": 0,
@@ -866,7 +867,8 @@
       "01/17/2021": 1923,
       "01/18/2021": 1923,
       "01/19/2021": 1923,
-      "01/20/2021": 2010
+      "01/20/2021": 2010,
+      "01/21/2021": 2010
     },
     "doses_alloc_total": {
       "12/14/2020": 29000,
@@ -906,7 +908,8 @@
       "01/20/2021": 77800,
       "12/15/2020": 29000,
       "12/16/2020": 29000,
-      "12/17/2020": 29000
+      "12/17/2020": 29000,
+      "01/21/2021": 77800
     },
     "doses_admin_total": {
       "12/14/2020": 0,
@@ -946,7 +949,8 @@
       "01/20/2021": 51220,
       "12/15/2020": 0,
       "12/16/2020": 0,
-      "12/17/2020": 0
+      "12/17/2020": 0,
+      "01/21/2021": 51220
     },
     "doses_shipped_total": {
       "12/14/2020": 5000,
@@ -986,18 +990,19 @@
       "01/20/2021": 122575,
       "12/15/2020": 5000,
       "12/16/2020": 5000,
-      "12/17/2020": 5000
+      "12/17/2020": 5000,
+      "01/21/2021": 122575
     },
     "doses_alloc_total_Last": 77800,
     "doses_admin_total_Last": 51220,
     "doses_shippied_total_Last": 122575,
     "LastConfirmed": 97202,
-    "LastConfirmedNew": 5524,
+    "LastConfirmedNew": 0,
     "LastDeath": 2010,
-    "LastDeathNew": 87,
-    "DaysToDouble": -431008558088192.06,
-    "DaysToDoubleDeath": 862017116176384.1,
-    "Last2WeeksConfirmedDelta": 13351,
+    "LastDeathNew": 0,
+    "DaysToDouble": 110.57085760679809,
+    "DaysToDoubleDeath": 146.2062993746478,
+    "Last2WeeksConfirmedDelta": 18875,
     "beds": 3413,
     "bedsICU": 246,
     "hospitals": 15,
