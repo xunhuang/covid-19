@@ -208,8 +208,8 @@
         "name": "Canada",
         "iso": "CAN",
         "pop2019": 37527,
-        "totalInoculations": 113.8763806,
-        "inoculationsPerCapita": 3.034518628
+        "totalInoculations": 123.8763806,
+        "inoculationsPerCapita": 3.300993433
       },
       {
         "name": "Cape Verde",
@@ -1237,8 +1237,8 @@
         "name": "Vietnam",
         "iso": "VNM",
         "pop2019": 96462,
-        "totalInoculations": 4.823178549,
-        "inoculationsPerCapita": 0.0500008143
+        "totalInoculations": 19.82317855,
+        "inoculationsPerCapita": 0.2055024626
       },
       {
         "name": "Yemen",
@@ -2139,8 +2139,8 @@
       {
         "country": "Canada",
         "vaccine": "Pfizer/BioNTech",
-        "purchaseSize": 20,
-        "inoculations": 10,
+        "purchaseSize": 40,
+        "inoculations": 20,
         "isoOrGroup": "CAN"
       },
       {
@@ -2765,6 +2765,13 @@
         "purchaseSize": 70,
         "inoculations": 35,
         "isoOrGroup": "UZB"
+      },
+      {
+        "country": "Vietnam",
+        "vaccine": "AstraZeneca/Oxford",
+        "purchaseSize": 30,
+        "inoculations": 15,
+        "isoOrGroup": "VNM"
       }
     ],
     "trialEnrollmentEventTypes": [
@@ -3140,7 +3147,7 @@
         "parentIso": null,
         "iso": "BBG",
         "dateUpdated": "2021-01-21",
-        "noDosesTotal": 56680097,
+        "noDosesTotal": 56740891,
         "noCompletedVaccination": null,
         "noVaccinesReceived": null,
         "noDosesTotalPerCapita": null
@@ -3583,13 +3590,13 @@
         "name": "Indonesia",
         "parentIso": null,
         "iso": "IDN",
-        "dateUpdated": "2021-01-13",
-        "noDosesTotal": 21,
+        "dateUpdated": "2021-01-20",
+        "noDosesTotal": 60815,
         "noCompletedVaccination": null,
         "noVaccinesReceived": null,
         "nameShort": "Indon.",
         "population": 266912000,
-        "noDosesTotalPerCapita": 7.867761659273469e-8
+        "noDosesTotalPerCapita": 0.00022784663109938857
       },
       {
         "name": "India",
@@ -7884,7 +7891,7 @@
           ],
           [
             "2021-01-21",
-            56680097
+            56740891
           ]
         ],
         "FRA": [
@@ -8487,6 +8494,10 @@
           [
             "2021-01-13",
             21
+          ],
+          [
+            "2021-01-20",
+            60815
           ]
         ],
         "PLW": [
@@ -13912,13 +13923,13 @@
       ],
       [
         "2021-01-20",
-        8059211,
-        2702133.6596681094
+        8120005,
+        2710818.5168109667
       ],
       [
         "2021-01-21",
         2998730,
-        2841009.5553391054
+        2849694.4124819627
       ]
     ],
     "usa": {
@@ -23741,8 +23752,8 @@
         ],
         [
           "2021-01-21",
-          2301638,
-          3084371.1428571427
+          2362432,
+          3093056
         ]
       ],
       "FRA": [
@@ -24485,6 +24496,11 @@
           "2021-01-13",
           21,
           null
+        ],
+        [
+          "2021-01-20",
+          60794,
+          8684.857142857143
         ]
       ],
       "PLW": [
