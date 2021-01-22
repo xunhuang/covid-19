@@ -369,7 +369,8 @@
     "01/18/2021": 3114,
     "01/19/2021": 3114,
     "01/20/2021": 3192,
-    "01/21/2021": 3192
+    "01/21/2021": 3192,
+    "01/22/2021": 3206
   },
   "Death": {
     "01/22/2020": 0,
@@ -737,7 +738,8 @@
     "01/18/2021": 32,
     "01/19/2021": 32,
     "01/20/2021": 32,
-    "01/21/2021": 32
+    "01/21/2021": 32,
+    "01/22/2021": 32
   },
   "beds": 142,
   "bedsICU": 14,
@@ -2535,13 +2537,13 @@
       "icu_covid_patients": 3
     }
   ],
-  "LastConfirmed": 3192,
+  "LastConfirmed": 3206,
   "LastDeath": 32,
-  "LastConfirmedNew": 0,
+  "LastConfirmedNew": 14,
   "LastDeathNew": 0,
-  "DaysToDouble": 106.55650371775852,
-  "DaysToDoubleDeath": 101.88407759469101,
-  "Last2WeeksConfirmedDelta": 478,
+  "DaysToDouble": 94.37933603203649,
+  "DaysToDoubleDeath": 122.2608931136321,
+  "Last2WeeksConfirmedDelta": 441,
   "StayHomeOrder": {
     "StartUrl": "https://www.advocate-news.com/2020/03/18/shelter-in-place-orders-issued-for-mendocino-county/",
     "StartDate": "2020-03-18T00:00:00Z",

@@ -369,7 +369,8 @@
     "01/18/2021": 7604,
     "01/19/2021": 7754,
     "01/20/2021": 7828,
-    "01/21/2021": 7828
+    "01/21/2021": 7828,
+    "01/22/2021": 7855
   },
   "Death": {
     "01/22/2020": 0,
@@ -737,7 +738,8 @@
     "01/18/2021": 77,
     "01/19/2021": 78,
     "01/20/2021": 79,
-    "01/21/2021": 79
+    "01/21/2021": 79,
+    "01/22/2021": 82
   },
   "beds": 30,
   "bedsICU": 0,
@@ -2535,13 +2537,13 @@
       "icu_covid_patients": 0
     }
   ],
-  "LastConfirmed": 7828,
-  "LastDeath": 79,
-  "LastConfirmedNew": 0,
-  "LastDeathNew": 0,
-  "DaysToDouble": 80.96779620215656,
-  "DaysToDoubleDeath": 136.72471799705366,
-  "Last2WeeksConfirmedDelta": 1031,
+  "LastConfirmed": 7855,
+  "LastDeath": 82,
+  "LastConfirmedNew": 27,
+  "LastDeathNew": 3,
+  "DaysToDouble": 77.62135187174391,
+  "DaysToDoubleDeath": 137.53353169658934,
+  "Last2WeeksConfirmedDelta": 970,
   "StayHomeOrder": {
     "StartUrl": "https://www.actionnewsnow.com/content/news/Yuba-Sutter-Health-Officer-issues-new-restrictions-on-stay-at-home-order-569420231.html",
     "StartDate": "2020-03-18T00:00:00Z",

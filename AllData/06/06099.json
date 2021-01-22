@@ -369,7 +369,8 @@
     "01/18/2021": 42548,
     "01/19/2021": 42882,
     "01/20/2021": 43121,
-    "01/21/2021": 43392
+    "01/21/2021": 43392,
+    "01/22/2021": 43492
   },
   "Death": {
     "01/22/2020": 0,
@@ -737,7 +738,8 @@
     "01/18/2021": 749,
     "01/19/2021": 758,
     "01/20/2021": 766,
-    "01/21/2021": 773
+    "01/21/2021": 773,
+    "01/22/2021": 773
   },
   "beds": 1394,
   "bedsICU": 74,
@@ -2535,13 +2537,13 @@
       "icu_covid_patients": 73
     }
   ],
-  "LastConfirmed": 43392,
+  "LastConfirmed": 43492,
   "LastDeath": 773,
-  "LastConfirmedNew": 271,
-  "LastDeathNew": 7,
-  "DaysToDouble": 73.2111686178671,
-  "DaysToDoubleDeath": 70.70053985078184,
-  "Last2WeeksConfirmedDelta": 6682,
+  "LastConfirmedNew": 100,
+  "LastDeathNew": 0,
+  "DaysToDouble": 88.4341438388253,
+  "DaysToDoubleDeath": 72.18738793012226,
+  "Last2WeeksConfirmedDelta": 6559,
   "StayHomeOrder": {
     "StartUrl": "http://www.schsa.org/PublicHealth/pages/corona-virus/pdf/health-order-mar-31.pdf",
     "StartDate": "2020-04-02T00:00:00Z",

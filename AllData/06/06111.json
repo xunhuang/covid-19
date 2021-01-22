@@ -369,7 +369,8 @@
     "01/18/2021": 61257,
     "01/19/2021": 62101,
     "01/20/2021": 62774,
-    "01/21/2021": 63413
+    "01/21/2021": 63413,
+    "01/22/2021": 63608
   },
   "Death": {
     "01/22/2020": 0,
@@ -737,7 +738,8 @@
     "01/18/2021": 412,
     "01/19/2021": 436,
     "01/20/2021": 462,
-    "01/21/2021": 462
+    "01/21/2021": 462,
+    "01/22/2021": 491
   },
   "beds": 1437,
   "bedsICU": 153,
@@ -2535,13 +2537,13 @@
       "icu_covid_patients": 87
     }
   ],
-  "LastConfirmed": 63413,
-  "LastDeath": 462,
-  "LastConfirmedNew": 639,
-  "LastDeathNew": 0,
-  "DaysToDouble": 39.32123484212471,
-  "DaysToDoubleDeath": 36.07134416855307,
-  "Last2WeeksConfirmedDelta": 17760,
+  "LastConfirmed": 63608,
+  "LastDeath": 491,
+  "LastConfirmedNew": 195,
+  "LastDeathNew": 29,
+  "DaysToDouble": 46.102878452287904,
+  "DaysToDoubleDeath": 30.839505232462614,
+  "Last2WeeksConfirmedDelta": 16957,
   "StayHomeOrder": {
     "StartUrl": "https://www.vcstar.com/story/news/2020/03/17/cornavirus-california-ventura-county-business-closures-covid-19/5074822002/",
     "StartDate": "2020-03-17T00:00:00Z",

@@ -369,7 +369,8 @@
     "01/18/2021": 23800,
     "01/19/2021": 24452,
     "01/20/2021": 24570,
-    "01/21/2021": 24570
+    "01/21/2021": 24570,
+    "01/22/2021": 24788
   },
   "Death": {
     "01/22/2020": 0,
@@ -737,7 +738,8 @@
     "01/18/2021": 296,
     "01/19/2021": 308,
     "01/20/2021": 316,
-    "01/21/2021": 316
+    "01/21/2021": 316,
+    "01/22/2021": 320
   },
   "beds": 242,
   "bedsICU": 24,
@@ -2535,13 +2537,13 @@
       "icu_covid_patients": 19
     }
   ],
-  "LastConfirmed": 24570,
-  "LastDeath": 316,
-  "LastConfirmedNew": 0,
-  "LastDeathNew": 0,
-  "DaysToDouble": 73.13309385441019,
-  "DaysToDoubleDeath": 57.57983821807732,
-  "Last2WeeksConfirmedDelta": 3796,
+  "LastConfirmed": 24788,
+  "LastDeath": 320,
+  "LastConfirmedNew": 218,
+  "LastDeathNew": 4,
+  "DaysToDouble": 73.40902269707405,
+  "DaysToDoubleDeath": 52.933049798897116,
+  "Last2WeeksConfirmedDelta": 3655,
   "StayHomeOrder": {
     "StartUrl": "https://www.co.merced.ca.us/DocumentCenter/View/23837/Health-Officer-Order-3-20-20",
     "StartDate": "2020-03-20T00:00:00Z",
