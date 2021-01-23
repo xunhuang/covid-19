@@ -371,7 +371,7 @@
     "01/20/2021": 1621,
     "01/21/2021": 1637,
     "01/22/2021": 1647,
-    "01/23/2021": 1647
+    "01/23/2021": 1672
   },
   "Death": {
     "01/22/2020": 0,
@@ -2543,11 +2543,17 @@
       "hospitalized_covid_patients": 5,
       "icu_available_beds": 5,
       "icu_covid_patients": 2
+    },
+    {
+      "fulldate": "01/22/2021",
+      "hospitalized_covid_patients": 4,
+      "icu_available_beds": 6,
+      "icu_covid_patients": 2
     }
   ],
-  "LastConfirmed": 1647,
+  "LastConfirmed": 1672,
   "LastDeath": 23,
-  "LastConfirmedNew": 0,
+  "LastConfirmedNew": 25,
   "LastDeathNew": 0,
   "DaysToDouble": 73.46012233006059,
   "DaysToDoubleDeath": 1724034232352768.2,

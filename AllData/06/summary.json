@@ -400,7 +400,7 @@
       "01/20/2021": 3074833,
       "01/21/2021": 3100048,
       "01/22/2021": 3124441,
-      "01/23/2021": 3124998
+      "01/23/2021": 3131219
     },
     "Death": {
       "01/22/2020": 0,
@@ -770,7 +770,7 @@
       "01/20/2021": 35060,
       "01/21/2021": 35796,
       "01/22/2021": 36362,
-      "01/23/2021": 36371
+      "01/23/2021": 36405
     },
     "doses_alloc_total": {
       "01/02/2021": 2226350,
@@ -856,10 +856,10 @@
     "doses_alloc_total_Last": 2691675,
     "doses_admin_total_Last": 1393224,
     "doses_shippied_total_Last": 4714625,
-    "LastConfirmed": 3124998,
-    "LastConfirmedNew": 557,
-    "LastDeath": 36371,
-    "LastDeathNew": 9,
+    "LastConfirmed": 3131219,
+    "LastConfirmedNew": 6778,
+    "LastDeath": 36405,
+    "LastDeathNew": 43,
     "DaysToDouble": 77.16955336426099,
     "DaysToDoubleDeath": 46.41834650021742,
     "Last2WeeksConfirmedDelta": 548065,
@@ -2812,11 +2812,17 @@
         "hospitalized_covid_patients": 451,
         "icu_available_beds": 66,
         "icu_covid_patients": 127
+      },
+      {
+        "fulldate": "01/22/2021",
+        "hospitalized_covid_patients": 444,
+        "icu_available_beds": 69,
+        "icu_covid_patients": 119
       }
     ],
-    "LastConfirmed": 69554,
+    "LastConfirmed": 69693,
     "LastDeath": 856,
-    "LastConfirmedNew": 0,
+    "LastConfirmedNew": 139,
     "LastDeathNew": 0,
     "DaysToDouble": 87.21527356217867,
     "DaysToDoubleDeath": 34.7966294970732,
@@ -4636,11 +4642,17 @@
         "hospitalized_covid_patients": 12,
         "icu_available_beds": 0,
         "icu_covid_patients": 5
+      },
+      {
+        "fulldate": "01/22/2021",
+        "hospitalized_covid_patients": 12,
+        "icu_available_beds": 0,
+        "icu_covid_patients": 5
       }
     ],
-    "LastConfirmed": 3038,
+    "LastConfirmed": 3042,
     "LastDeath": 32,
-    "LastConfirmedNew": 0,
+    "LastConfirmedNew": 4,
     "LastDeathNew": 0,
     "DaysToDouble": 170.52440953620444,
     "DaysToDoubleDeath": 34.726083276006904,
@@ -6460,11 +6472,17 @@
         "hospitalized_covid_patients": 58,
         "icu_available_beds": 7,
         "icu_covid_patients": 8
+      },
+      {
+        "fulldate": "01/22/2021",
+        "hospitalized_covid_patients": 50,
+        "icu_available_beds": 14,
+        "icu_covid_patients": 7
       }
     ],
-    "LastConfirmed": 9643,
+    "LastConfirmed": 9711,
     "LastDeath": 134,
-    "LastConfirmedNew": 0,
+    "LastConfirmedNew": 68,
     "LastDeathNew": 0,
     "DaysToDouble": 102.25773404588541,
     "DaysToDoubleDeath": 38.36542601904667,
@@ -8278,11 +8296,17 @@
         "hospitalized_covid_patients": 5,
         "icu_available_beds": 5,
         "icu_covid_patients": 2
+      },
+      {
+        "fulldate": "01/22/2021",
+        "hospitalized_covid_patients": 4,
+        "icu_available_beds": 6,
+        "icu_covid_patients": 2
       }
     ],
-    "LastConfirmed": 1647,
+    "LastConfirmed": 1672,
     "LastDeath": 23,
-    "LastConfirmedNew": 0,
+    "LastConfirmedNew": 25,
     "LastDeathNew": 0,
     "DaysToDouble": 73.46012233006059,
     "DaysToDoubleDeath": 1724034232352768.2,
@@ -10102,6 +10126,12 @@
         "hospitalized_covid_patients": 280,
         "icu_available_beds": 26,
         "icu_covid_patients": 59
+      },
+      {
+        "fulldate": "01/22/2021",
+        "hospitalized_covid_patients": 272,
+        "icu_available_beds": 32,
+        "icu_covid_patients": 55
       }
     ],
     "LastConfirmed": 54140,
@@ -11926,6 +11956,12 @@
         "hospitalized_covid_patients": 26,
         "icu_available_beds": 3,
         "icu_covid_patients": 9
+      },
+      {
+        "fulldate": "01/22/2021",
+        "hospitalized_covid_patients": 24,
+        "icu_available_beds": 4,
+        "icu_covid_patients": 6
       }
     ],
     "LastConfirmed": 8002,
@@ -13750,11 +13786,17 @@
         "hospitalized_covid_patients": 584,
         "icu_available_beds": 8,
         "icu_covid_patients": 91
+      },
+      {
+        "fulldate": "01/22/2021",
+        "hospitalized_covid_patients": 543,
+        "icu_available_beds": 7,
+        "icu_covid_patients": 91
       }
     ],
-    "LastConfirmed": 84137,
+    "LastConfirmed": 84744,
     "LastDeath": 1043,
-    "LastConfirmedNew": 0,
+    "LastConfirmedNew": 607,
     "LastDeathNew": 0,
     "DaysToDouble": 87.06517961180627,
     "DaysToDoubleDeath": 34.911692156562815,
@@ -15566,6 +15608,12 @@
       {
         "fulldate": "01/21/2021",
         "hospitalized_covid_patients": 17,
+        "icu_available_beds": 12,
+        "icu_covid_patients": 7
+      },
+      {
+        "fulldate": "01/22/2021",
+        "hospitalized_covid_patients": 23,
         "icu_available_beds": 12,
         "icu_covid_patients": 7
       }
@@ -17392,11 +17440,17 @@
         "hospitalized_covid_patients": 115,
         "icu_available_beds": 0,
         "icu_covid_patients": 59
+      },
+      {
+        "fulldate": "01/22/2021",
+        "hospitalized_covid_patients": 105,
+        "icu_available_beds": 0,
+        "icu_covid_patients": 52
       }
     ],
-    "LastConfirmed": 25509,
+    "LastConfirmed": 25562,
     "LastDeath": 493,
-    "LastConfirmedNew": 0,
+    "LastConfirmedNew": 53,
     "LastDeathNew": 0,
     "DaysToDouble": 217.191450299301,
     "DaysToDoubleDeath": 62.85221572439397,
@@ -19215,6 +19269,12 @@
         "fulldate": "01/21/2021",
         "hospitalized_covid_patients": 2,
         "icu_available_beds": 2,
+        "icu_covid_patients": 0
+      },
+      {
+        "fulldate": "01/22/2021",
+        "hospitalized_covid_patients": 3,
+        "icu_available_beds": 1,
         "icu_covid_patients": 0
       }
     ],
@@ -21040,6 +21100,12 @@
         "hospitalized_covid_patients": 415,
         "icu_available_beds": 23,
         "icu_covid_patients": 100
+      },
+      {
+        "fulldate": "01/22/2021",
+        "hospitalized_covid_patients": 391,
+        "icu_available_beds": 23,
+        "icu_covid_patients": 99
       }
     ],
     "LastConfirmed": 88399,
@@ -22858,12 +22924,18 @@
         "hospitalized_covid_patients": 7226,
         "icu_available_beds": 274,
         "icu_covid_patients": 1680
+      },
+      {
+        "fulldate": "01/22/2021",
+        "hospitalized_covid_patients": 7014,
+        "icu_available_beds": 281,
+        "icu_covid_patients": 1644
       }
     ],
-    "LastConfirmed": 1054802,
-    "LastDeath": 14894,
-    "LastConfirmedNew": 0,
-    "LastDeathNew": 0,
+    "LastConfirmed": 1055154,
+    "LastDeath": 14912,
+    "LastConfirmedNew": 352,
+    "LastDeathNew": 18,
     "DaysToDouble": 87.50315342470343,
     "DaysToDoubleDeath": 50.24624845943268,
     "Last2WeeksConfirmedDelta": 182598,
@@ -24682,11 +24754,17 @@
         "hospitalized_covid_patients": 49,
         "icu_available_beds": 2,
         "icu_covid_patients": 16
+      },
+      {
+        "fulldate": "01/22/2021",
+        "hospitalized_covid_patients": 59,
+        "icu_available_beds": 1,
+        "icu_covid_patients": 14
       }
     ],
-    "LastConfirmed": 13664,
+    "LastConfirmed": 13781,
     "LastDeath": 151,
-    "LastConfirmedNew": 0,
+    "LastConfirmedNew": 117,
     "LastDeathNew": 0,
     "DaysToDouble": 77.62555603761953,
     "DaysToDoubleDeath": 21.601245429030104,
@@ -26500,9 +26578,15 @@
         "hospitalized_covid_patients": 31,
         "icu_available_beds": 9,
         "icu_covid_patients": 8
+      },
+      {
+        "fulldate": "01/22/2021",
+        "hospitalized_covid_patients": 36,
+        "icu_available_beds": 8,
+        "icu_covid_patients": 8
       }
     ],
-    "LastConfirmed": 11899,
+    "LastConfirmed": 11898,
     "LastDeath": 163,
     "LastConfirmedNew": 0,
     "LastDeathNew": 0,
@@ -28324,6 +28408,12 @@
         "hospitalized_covid_patients": 17,
         "icu_available_beds": 6,
         "icu_covid_patients": 5
+      },
+      {
+        "fulldate": "01/22/2021",
+        "hospitalized_covid_patients": 18,
+        "icu_available_beds": 2,
+        "icu_covid_patients": 4
       }
     ],
     "LastConfirmed": 3234,
@@ -30148,6 +30238,12 @@
         "hospitalized_covid_patients": 55,
         "icu_available_beds": 2,
         "icu_covid_patients": 14
+      },
+      {
+        "fulldate": "01/22/2021",
+        "hospitalized_covid_patients": 45,
+        "icu_available_beds": 4,
+        "icu_covid_patients": 13
       }
     ],
     "LastConfirmed": 25048,
@@ -31972,6 +32068,12 @@
         "hospitalized_covid_patients": 1,
         "icu_available_beds": 2,
         "icu_covid_patients": 0
+      },
+      {
+        "fulldate": "01/22/2021",
+        "hospitalized_covid_patients": 0,
+        "icu_available_beds": 2,
+        "icu_covid_patients": 0
       }
     ],
     "LastConfirmed": 1135,
@@ -33790,6 +33892,12 @@
         "hospitalized_covid_patients": 176,
         "icu_available_beds": 17,
         "icu_covid_patients": 31
+      },
+      {
+        "fulldate": "01/22/2021",
+        "hospitalized_covid_patients": 184,
+        "icu_available_beds": 14,
+        "icu_covid_patients": 29
       }
     ],
     "LastConfirmed": 36950,
@@ -35614,12 +35722,18 @@
         "hospitalized_covid_patients": 27,
         "icu_available_beds": 1,
         "icu_covid_patients": 7
+      },
+      {
+        "fulldate": "01/22/2021",
+        "hospitalized_covid_patients": 23,
+        "icu_available_beds": 4,
+        "icu_covid_patients": 6
       }
     ],
-    "LastConfirmed": 7774,
-    "LastDeath": 46,
-    "LastConfirmedNew": 0,
-    "LastDeathNew": 0,
+    "LastConfirmed": 7828,
+    "LastDeath": 47,
+    "LastConfirmedNew": 54,
+    "LastDeathNew": 1,
     "DaysToDouble": 57.668804400695144,
     "DaysToDoubleDeath": 20.515404315288997,
     "Last2WeeksConfirmedDelta": 1432,
@@ -37438,11 +37552,17 @@
         "hospitalized_covid_patients": 8,
         "icu_available_beds": 3,
         "icu_covid_patients": 2
+      },
+      {
+        "fulldate": "01/22/2021",
+        "hospitalized_covid_patients": 10,
+        "icu_available_beds": 2,
+        "icu_covid_patients": 2
       }
     ],
-    "LastConfirmed": 3292,
+    "LastConfirmed": 3296,
     "LastDeath": 74,
-    "LastConfirmedNew": 0,
+    "LastConfirmedNew": 4,
     "LastDeathNew": 0,
     "DaysToDouble": 71.8910005491991,
     "DaysToDoubleDeath": 237.7458154414122,
@@ -39262,11 +39382,17 @@
         "hospitalized_covid_patients": 1925,
         "icu_available_beds": 96,
         "icu_covid_patients": 522
+      },
+      {
+        "fulldate": "01/22/2021",
+        "hospitalized_covid_patients": 1849,
+        "icu_available_beds": 80,
+        "icu_covid_patients": 484
       }
     ],
-    "LastConfirmed": 218867,
+    "LastConfirmed": 220384,
     "LastDeath": 2547,
-    "LastConfirmedNew": 0,
+    "LastConfirmedNew": 1517,
     "LastDeathNew": 0,
     "DaysToDouble": 89.01612606330458,
     "DaysToDoubleDeath": 40.12349259112375,
@@ -41080,6 +41206,12 @@
         "hospitalized_covid_patients": 136,
         "icu_available_beds": 8,
         "icu_covid_patients": 30
+      },
+      {
+        "fulldate": "01/22/2021",
+        "hospitalized_covid_patients": 126,
+        "icu_available_beds": 12,
+        "icu_covid_patients": 28
       }
     ],
     "LastConfirmed": 17675,
@@ -42904,6 +43036,12 @@
         "hospitalized_covid_patients": 1578,
         "icu_available_beds": 26,
         "icu_covid_patients": 342
+      },
+      {
+        "fulldate": "01/22/2021",
+        "hospitalized_covid_patients": 1539,
+        "icu_available_beds": 38,
+        "icu_covid_patients": 354
       }
     ],
     "LastConfirmed": 258532,
@@ -44728,11 +44866,17 @@
         "hospitalized_covid_patients": 444,
         "icu_available_beds": 57,
         "icu_covid_patients": 129
+      },
+      {
+        "fulldate": "01/22/2021",
+        "hospitalized_covid_patients": 422,
+        "icu_available_beds": 52,
+        "icu_covid_patients": 124
       }
     ],
-    "LastConfirmed": 82303,
+    "LastConfirmed": 82861,
     "LastDeath": 1157,
-    "LastConfirmedNew": 0,
+    "LastConfirmedNew": 558,
     "LastDeathNew": 0,
     "DaysToDouble": 128.30766464117298,
     "DaysToDoubleDeath": 52.8859700678748,
@@ -46552,11 +46696,17 @@
         "hospitalized_covid_patients": 14,
         "icu_available_beds": 0,
         "icu_covid_patients": 6
+      },
+      {
+        "fulldate": "01/22/2021",
+        "hospitalized_covid_patients": 14,
+        "icu_available_beds": 0,
+        "icu_covid_patients": 6
       }
     ],
-    "LastConfirmed": 5101,
+    "LastConfirmed": 5143,
     "LastDeath": 48,
-    "LastConfirmedNew": 0,
+    "LastConfirmedNew": 42,
     "LastDeathNew": 0,
     "DaysToDouble": 84.9968163973501,
     "DaysToDoubleDeath": 36.45905291911254,
@@ -48376,12 +48526,18 @@
         "hospitalized_covid_patients": 1457,
         "icu_available_beds": 44,
         "icu_covid_patients": 317
+      },
+      {
+        "fulldate": "01/22/2021",
+        "hospitalized_covid_patients": 1415,
+        "icu_available_beds": 57,
+        "icu_covid_patients": 317
       }
     ],
-    "LastConfirmed": 261199,
-    "LastDeath": 1579,
-    "LastConfirmedNew": 0,
-    "LastDeathNew": 0,
+    "LastConfirmed": 262858,
+    "LastDeath": 1594,
+    "LastConfirmedNew": 1659,
+    "LastDeathNew": 15,
     "DaysToDouble": 87.33998422218797,
     "DaysToDoubleDeath": 516.1819084250271,
     "Last2WeeksConfirmedDelta": 44805,
@@ -50194,6 +50350,12 @@
         "hospitalized_covid_patients": 1605,
         "icu_available_beds": 165,
         "icu_covid_patients": 438
+      },
+      {
+        "fulldate": "01/22/2021",
+        "hospitalized_covid_patients": 1564,
+        "icu_available_beds": 147,
+        "icu_covid_patients": 430
       }
     ],
     "LastConfirmed": 222578,
@@ -52018,11 +52180,17 @@
         "hospitalized_covid_patients": 223,
         "icu_available_beds": 52,
         "icu_covid_patients": 56
+      },
+      {
+        "fulldate": "01/22/2021",
+        "hospitalized_covid_patients": 214,
+        "icu_available_beds": 52,
+        "icu_covid_patients": 82
       }
     ],
-    "LastConfirmed": 29801,
+    "LastConfirmed": 30027,
     "LastDeath": 278,
-    "LastConfirmedNew": 0,
+    "LastConfirmedNew": 226,
     "LastDeathNew": 3,
     "DaysToDouble": 100.03018940281268,
     "DaysToDoubleDeath": 47.915373953439925,
@@ -53835,6 +54003,12 @@
         "fulldate": "01/21/2021",
         "hospitalized_covid_patients": 300,
         "icu_available_beds": 6,
+        "icu_covid_patients": 88
+      },
+      {
+        "fulldate": "01/22/2021",
+        "hospitalized_covid_patients": 300,
+        "icu_available_beds": 5,
         "icu_covid_patients": 88
       }
     ],
@@ -55660,6 +55834,12 @@
         "hospitalized_covid_patients": 53,
         "icu_available_beds": 18,
         "icu_covid_patients": 11
+      },
+      {
+        "fulldate": "01/22/2021",
+        "hospitalized_covid_patients": 49,
+        "icu_available_beds": 17,
+        "icu_covid_patients": 10
       }
     ],
     "LastConfirmed": 16437,
@@ -57484,6 +57664,12 @@
         "hospitalized_covid_patients": 182,
         "icu_available_beds": 10,
         "icu_covid_patients": 41
+      },
+      {
+        "fulldate": "01/22/2021",
+        "hospitalized_covid_patients": 172,
+        "icu_available_beds": 11,
+        "icu_covid_patients": 43
       }
     ],
     "LastConfirmed": 33731,
@@ -59308,11 +59494,17 @@
         "hospitalized_covid_patients": 195,
         "icu_available_beds": 13,
         "icu_covid_patients": 51
+      },
+      {
+        "fulldate": "01/22/2021",
+        "hospitalized_covid_patients": 199,
+        "icu_available_beds": 18,
+        "icu_covid_patients": 53
       }
     ],
-    "LastConfirmed": 25986,
+    "LastConfirmed": 25989,
     "LastDeath": 260,
-    "LastConfirmedNew": 0,
+    "LastConfirmedNew": 3,
     "LastDeathNew": 0,
     "DaysToDouble": 54.19054547440504,
     "DaysToDoubleDeath": 34.93774276217467,
@@ -61126,11 +61318,17 @@
         "hospitalized_covid_patients": 611,
         "icu_available_beds": 26,
         "icu_covid_patients": 144
+      },
+      {
+        "fulldate": "01/22/2021",
+        "hospitalized_covid_patients": 596,
+        "icu_available_beds": 34,
+        "icu_covid_patients": 148
       }
     ],
-    "LastConfirmed": 96340,
+    "LastConfirmed": 96435,
     "LastDeath": 1181,
-    "LastConfirmedNew": 0,
+    "LastConfirmedNew": 95,
     "LastDeathNew": 0,
     "DaysToDouble": 80.76661635799734,
     "DaysToDoubleDeath": 35.95435653877924,
@@ -62950,11 +63148,17 @@
         "hospitalized_covid_patients": 68,
         "icu_available_beds": 0,
         "icu_covid_patients": 9
+      },
+      {
+        "fulldate": "01/22/2021",
+        "hospitalized_covid_patients": 69,
+        "icu_available_beds": 2,
+        "icu_covid_patients": 9
       }
     ],
-    "LastConfirmed": 12649,
+    "LastConfirmed": 12687,
     "LastDeath": 130,
-    "LastConfirmedNew": 0,
+    "LastConfirmedNew": 38,
     "LastDeathNew": 0,
     "DaysToDouble": 60.91155182524021,
     "DaysToDoubleDeath": 35.897904492735556,
@@ -64774,6 +64978,12 @@
         "hospitalized_covid_patients": 46,
         "icu_available_beds": 14,
         "icu_covid_patients": 4
+      },
+      {
+        "fulldate": "01/22/2021",
+        "hospitalized_covid_patients": 42,
+        "icu_available_beds": 15,
+        "icu_covid_patients": 3
       }
     ],
     "LastConfirmed": 9920,
@@ -66589,6 +66799,12 @@
       },
       {
         "fulldate": "01/21/2021",
+        "hospitalized_covid_patients": 3,
+        "icu_available_beds": 4,
+        "icu_covid_patients": 1
+      },
+      {
+        "fulldate": "01/22/2021",
         "hospitalized_covid_patients": 3,
         "icu_available_beds": 4,
         "icu_covid_patients": 1
@@ -68410,6 +68626,12 @@
         "hospitalized_covid_patients": 181,
         "icu_available_beds": 2,
         "icu_covid_patients": 46
+      },
+      {
+        "fulldate": "01/22/2021",
+        "hospitalized_covid_patients": 177,
+        "icu_available_beds": 4,
+        "icu_covid_patients": 49
       }
     ],
     "LastConfirmed": 26494,
@@ -70234,11 +70456,17 @@
         "hospitalized_covid_patients": 100,
         "icu_available_beds": 18,
         "icu_covid_patients": 22
+      },
+      {
+        "fulldate": "01/22/2021",
+        "hospitalized_covid_patients": 105,
+        "icu_available_beds": 16,
+        "icu_covid_patients": 22
       }
     ],
-    "LastConfirmed": 24571,
+    "LastConfirmed": 24659,
     "LastDeath": 245,
-    "LastConfirmedNew": 0,
+    "LastConfirmedNew": 88,
     "LastDeathNew": 0,
     "DaysToDouble": 77.90651871009231,
     "DaysToDoubleDeath": 81.55211410448646,
@@ -72058,6 +72286,12 @@
         "hospitalized_covid_patients": 340,
         "icu_available_beds": 17,
         "icu_covid_patients": 72
+      },
+      {
+        "fulldate": "01/22/2021",
+        "hospitalized_covid_patients": 324,
+        "icu_available_beds": 18,
+        "icu_covid_patients": 73
       }
     ],
     "LastConfirmed": 43938,
@@ -73879,6 +74113,12 @@
       },
       {
         "fulldate": "01/21/2021",
+        "hospitalized_covid_patients": 0,
+        "icu_available_beds": 0,
+        "icu_covid_patients": 0
+      },
+      {
+        "fulldate": "01/22/2021",
         "hospitalized_covid_patients": 0,
         "icu_available_beds": 0,
         "icu_covid_patients": 0
@@ -75706,6 +75946,12 @@
         "hospitalized_covid_patients": 186,
         "icu_available_beds": 10,
         "icu_covid_patients": 26
+      },
+      {
+        "fulldate": "01/22/2021",
+        "hospitalized_covid_patients": 175,
+        "icu_available_beds": 12,
+        "icu_covid_patients": 23
       }
     ],
     "LastConfirmed": 42759,
@@ -77524,11 +77770,17 @@
         "hospitalized_covid_patients": 436,
         "icu_available_beds": 25,
         "icu_covid_patients": 91
+      },
+      {
+        "fulldate": "01/22/2021",
+        "hospitalized_covid_patients": 453,
+        "icu_available_beds": 25,
+        "icu_covid_patients": 91
       }
     ],
-    "LastConfirmed": 63995,
+    "LastConfirmed": 64404,
     "LastDeath": 507,
-    "LastConfirmedNew": 0,
+    "LastConfirmedNew": 409,
     "LastDeathNew": 0,
     "DaysToDouble": 52.49333145958356,
     "DaysToDoubleDeath": 17.84087082288413,
@@ -79348,11 +79600,17 @@
         "hospitalized_covid_patients": 32,
         "icu_available_beds": 1,
         "icu_covid_patients": 11
+      },
+      {
+        "fulldate": "01/22/2021",
+        "hospitalized_covid_patients": 32,
+        "icu_available_beds": 0,
+        "icu_covid_patients": 11
       }
     ],
-    "LastConfirmed": 10940,
+    "LastConfirmed": 11014,
     "LastDeath": 138,
-    "LastConfirmedNew": 0,
+    "LastConfirmedNew": 74,
     "LastDeathNew": 0,
     "DaysToDouble": 63.08503752234294,
     "DaysToDoubleDeath": 62.13816565482935,
@@ -81172,6 +81430,12 @@
         "hospitalized_covid_patients": 44,
         "icu_available_beds": 2,
         "icu_covid_patients": 13
+      },
+      {
+        "fulldate": "01/22/2021",
+        "hospitalized_covid_patients": 45,
+        "icu_available_beds": 2,
+        "icu_covid_patients": 12
       }
     ],
     "LastConfirmed": 5049,
@@ -83010,6 +83274,12 @@
         "hospitalized_covid_patients": 15,
         "icu_available_beds": 5,
         "icu_covid_patients": 0
+      },
+      {
+        "fulldate": "01/22/2021",
+        "hospitalized_covid_patients": 18,
+        "icu_available_beds": 5,
+        "icu_covid_patients": 0
       }
     ],
     "LastConfirmed": 1854,
@@ -84834,6 +85104,12 @@
         "hospitalized_covid_patients": 0,
         "icu_available_beds": 4,
         "icu_covid_patients": 0
+      },
+      {
+        "fulldate": "01/22/2021",
+        "hospitalized_covid_patients": 0,
+        "icu_available_beds": 3,
+        "icu_covid_patients": 0
       }
     ],
     "LastConfirmed": 870,
@@ -86652,11 +86928,17 @@
         "hospitalized_covid_patients": 6,
         "icu_available_beds": 0,
         "icu_covid_patients": 0
+      },
+      {
+        "fulldate": "01/22/2021",
+        "hospitalized_covid_patients": 6,
+        "icu_available_beds": 0,
+        "icu_covid_patients": 0
       }
     ],
-    "LastConfirmed": 1964,
+    "LastConfirmed": 1985,
     "LastDeath": 20,
-    "LastConfirmedNew": 0,
+    "LastConfirmedNew": 21,
     "LastDeathNew": 0,
     "DaysToDouble": 65.20467959918523,
     "DaysToDoubleDeath": 63.06256755850164,
@@ -88470,11 +88752,17 @@
         "hospitalized_covid_patients": 82,
         "icu_available_beds": 2,
         "icu_covid_patients": 11
+      },
+      {
+        "fulldate": "01/22/2021",
+        "hospitalized_covid_patients": 84,
+        "icu_available_beds": 4,
+        "icu_covid_patients": 11
       }
     ],
-    "LastConfirmed": 19703,
+    "LastConfirmed": 19760,
     "LastDeath": 160,
-    "LastConfirmedNew": 0,
+    "LastConfirmedNew": 57,
     "LastDeathNew": 0,
     "DaysToDouble": 130.12285278754297,
     "DaysToDoubleDeath": 20.248619407855468,
@@ -90294,11 +90582,17 @@
         "hospitalized_covid_patients": 11,
         "icu_available_beds": 1,
         "icu_covid_patients": 3
+      },
+      {
+        "fulldate": "01/22/2021",
+        "hospitalized_covid_patients": 9,
+        "icu_available_beds": 2,
+        "icu_covid_patients": 3
       }
     ],
-    "LastConfirmed": 2669,
+    "LastConfirmed": 2681,
     "LastDeath": 32,
-    "LastConfirmedNew": 0,
+    "LastConfirmedNew": 12,
     "LastDeathNew": 0,
     "DaysToDouble": 47.66004570711151,
     "DaysToDoubleDeath": 30.470428861712673,
@@ -92118,6 +92412,12 @@
         "hospitalized_covid_patients": 5,
         "icu_available_beds": 0,
         "icu_covid_patients": 0
+      },
+      {
+        "fulldate": "01/22/2021",
+        "hospitalized_covid_patients": 5,
+        "icu_available_beds": 0,
+        "icu_covid_patients": 0
       }
     ],
     "LastConfirmed": 5224,
@@ -93915,6 +94215,12 @@
       },
       {
         "fulldate": "01/21/2021",
+        "hospitalized_covid_patients": 0,
+        "icu_available_beds": 0,
+        "icu_covid_patients": 0
+      },
+      {
+        "fulldate": "01/22/2021",
         "hospitalized_covid_patients": 0,
         "icu_available_beds": 0,
         "icu_covid_patients": 0
@@ -95736,6 +96042,12 @@
         "hospitalized_covid_patients": 0,
         "icu_available_beds": 0,
         "icu_covid_patients": 0
+      },
+      {
+        "fulldate": "01/22/2021",
+        "hospitalized_covid_patients": 0,
+        "icu_available_beds": 0,
+        "icu_covid_patients": 0
       }
     ],
     "LastConfirmed": 386,
@@ -97551,6 +97863,12 @@
       },
       {
         "fulldate": "01/21/2021",
+        "hospitalized_covid_patients": 0,
+        "icu_available_beds": 0,
+        "icu_covid_patients": 0
+      },
+      {
+        "fulldate": "01/22/2021",
         "hospitalized_covid_patients": 0,
         "icu_available_beds": 0,
         "icu_covid_patients": 0
@@ -99390,6 +99708,12 @@
         "hospitalized_covid_patients": 15,
         "icu_available_beds": 1,
         "icu_covid_patients": 2
+      },
+      {
+        "fulldate": "01/22/2021",
+        "hospitalized_covid_patients": 18,
+        "icu_available_beds": 1,
+        "icu_covid_patients": 1
       }
     ],
     "LastConfirmed": 4408,
@@ -101205,6 +101529,12 @@
       },
       {
         "fulldate": "01/21/2021",
+        "hospitalized_covid_patients": 0,
+        "icu_available_beds": 0,
+        "icu_covid_patients": 0
+      },
+      {
+        "fulldate": "01/22/2021",
         "hospitalized_covid_patients": 0,
         "icu_available_beds": 0,
         "icu_covid_patients": 0
@@ -103025,6 +103355,12 @@
         "fulldate": "01/21/2021",
         "hospitalized_covid_patients": 7,
         "icu_available_beds": 0,
+        "icu_covid_patients": 2
+      },
+      {
+        "fulldate": "01/22/2021",
+        "hospitalized_covid_patients": 9,
+        "icu_available_beds": 2,
         "icu_covid_patients": 2
       }
     ],
