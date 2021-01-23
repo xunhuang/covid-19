@@ -370,7 +370,8 @@
     "01/19/2021": 8320,
     "01/20/2021": 8396,
     "01/21/2021": 8458,
-    "01/22/2021": 8563
+    "01/22/2021": 8563,
+    "01/23/2021": 8563
   },
   "Death": {
     "01/22/2020": 0,
@@ -739,7 +740,8 @@
     "01/19/2021": 223,
     "01/20/2021": 227,
     "01/21/2021": 230,
-    "01/22/2021": 230
+    "01/22/2021": 230,
+    "01/23/2021": 230
   },
   "beds": 101,
   "bedsICU": 10,
@@ -748,11 +750,11 @@
   "Population": 54258,
   "LastConfirmed": 8563,
   "LastDeath": 230,
-  "LastConfirmedNew": 105,
+  "LastConfirmedNew": 0,
   "LastDeathNew": 0,
-  "DaysToDouble": 82.83036985745359,
-  "DaysToDoubleDeath": 86.8040133011276,
-  "Last2WeeksConfirmedDelta": 1678,
+  "DaysToDouble": 86.80541116503557,
+  "DaysToDoubleDeath": 97.39010385401001,
+  "Last2WeeksConfirmedDelta": 1639,
   "StayHomeOrder": {
     "StartUrl": "https://co.maverick.tx.us/wp-content/uploads/2020/03/5th-Emergency-Declaration.pdf",
     "StartDate": "2020-03-31T00:00:00Z",
