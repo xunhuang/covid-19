@@ -37,6 +37,7 @@
     "moving-averages": "^4.0.5",
     "named-urls": "^2.0.0",
     "ode45-cash-karp": "^1.1.0",
+    "pako": "^2.0.3",
     "react": "^16.13.0",
     "react-device-detect": "^1.11.14",
     "react-dom": "^16.13.0",
@@ -51,19 +52,21 @@
     "react-tooltip": "^4.1.5",
     "react-virtualized": "^9.21.2",
     "recharts": "^2.0.0-beta.4",
+    "request": "^2.88.2",
     "short-number": "^1.0.7",
     "simple-statistics": "^7.1.0",
     "superagent": "^5.2.2",
     "tsutils": "^3.17.1",
     "typescript": "^3.8.3",
-    "us-state-codes": "^1.1.2"
+    "us-state-codes": "^1.1.2",
+    "zlib": "^1.0.5"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "deploy": "react-scripts build; firebase deploy --only hosting",
     "test": "react-scripts test",
-    "data": "node normalize_data.js; node slicer.js",
+    "data": "node normalize_data.js; node slicer.js; gzip public/AllData/AllData.json",
     "data2": "node normalize_data.js; node slicer.js ; node world_data_gen.js",
     "eject": "react-scripts eject"
   },

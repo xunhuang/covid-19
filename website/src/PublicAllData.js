@@ -8,12 +8,29 @@ async function fetchPublicCountyData(state_short, county_fips) {
     });
 }
 
+var request = require('request'), zlib = require('zlib');
+
+function streamToString(stream) {
+  const chunks = []
+  return new Promise((resolve, reject) => {
+    stream.on('data', chunk => chunks.push(chunk))
+    stream.on('error', reject)
+    stream.on('end', () => resolve(Buffer.concat(chunks).toString('utf8')))
+  })
+}
+
 async function fetchAllUSData() {
-  return superagent
-    .get(`/AllData/AllData.json`)
-    .then(res => {
-      return res.body;
-    });
+  var headers = {
+    'Accept-Encoding': 'gzip'
+  };
+
+  let unzippedStream = request({
+    url: window.location.origin + `/AllData/AllData.json.gz`,
+    'headers': headers
+  })
+    .pipe(zlib.createGunzip());
+  let jsonString = await streamToString(unzippedStream);
+  return JSON.parse(jsonString);
 }
 
 async function fetchWorldData() {
