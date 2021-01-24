@@ -371,7 +371,8 @@
     "01/20/2021": 31738,
     "01/21/2021": 32005,
     "01/22/2021": 32386,
-    "01/23/2021": 32749
+    "01/23/2021": 32749,
+    "01/24/2021": 32749
   },
   "Death": {
     "01/22/2020": 0,
@@ -741,7 +742,8 @@
     "01/20/2021": 360,
     "01/21/2021": 365,
     "01/22/2021": 366,
-    "01/23/2021": 373
+    "01/23/2021": 373,
+    "01/24/2021": 373
   },
   "beds": 1411,
   "bedsICU": 107,
@@ -750,11 +752,11 @@
   "Population": 488406,
   "LastConfirmed": 32749,
   "LastDeath": 373,
-  "LastConfirmedNew": 363,
-  "LastDeathNew": 7,
-  "DaysToDouble": 73.59296979373937,
-  "DaysToDoubleDeath": 175.44186661317758,
-  "Last2WeeksConfirmedDelta": 5417,
+  "LastConfirmedNew": 0,
+  "LastDeathNew": 0,
+  "DaysToDouble": 69.10044877389166,
+  "DaysToDoubleDeath": 116.08887027522859,
+  "Last2WeeksConfirmedDelta": 5334,
   "StayHomeOrder": {
     "StartUrl": "https://www.greensboro-nc.gov/Home/Components/News/News/14599/36",
     "StartDate": "2020-03-27T00:00:00Z",

@@ -371,7 +371,8 @@
     "01/20/2021": 33057,
     "01/21/2021": 33304,
     "01/22/2021": 33517,
-    "01/23/2021": 33748
+    "01/23/2021": 33748,
+    "01/24/2021": 33748
   },
   "Death": {
     "01/22/2020": 0,
@@ -741,7 +742,8 @@
     "01/20/2021": 1239,
     "01/21/2021": 1249,
     "01/22/2021": 1257,
-    "01/23/2021": 1257
+    "01/23/2021": 1257,
+    "01/24/2021": 1257
   },
   "beds": 1385,
   "bedsICU": 96,
@@ -750,11 +752,11 @@
   "Population": 406220,
   "LastConfirmed": 33748,
   "LastDeath": 1257,
-  "LastConfirmedNew": 231,
+  "LastConfirmedNew": 0,
   "LastDeathNew": 0,
-  "DaysToDouble": 159.26154303664507,
-  "DaysToDoubleDeath": 136.4446749501246,
-  "Last2WeeksConfirmedDelta": 2749,
+  "DaysToDouble": 119.31487923543143,
+  "DaysToDoubleDeath": 122.71834856011928,
+  "Last2WeeksConfirmedDelta": 2779,
   "StayHomeOrder": {
     "StartUrl": "https://www.krgv.com/news/watch-cameron-county-officials-provide-update-on-covid-19",
     "StartDate": "2020-03-25T00:00:00Z",

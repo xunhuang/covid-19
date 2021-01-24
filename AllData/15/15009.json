@@ -371,7 +371,8 @@
     "01/20/2021": 2026,
     "01/21/2021": 2056,
     "01/22/2021": 2104,
-    "01/23/2021": 2125
+    "01/23/2021": 2125,
+    "01/24/2021": 2125
   },
   "Death": {
     "01/22/2020": 0,
@@ -741,7 +742,8 @@
     "01/20/2021": 21,
     "01/21/2021": 21,
     "01/22/2021": 21,
-    "01/23/2021": 21
+    "01/23/2021": 21,
+    "01/24/2021": 21
   },
   "beds": 366,
   "bedsICU": 20,
@@ -750,11 +752,11 @@
   "Population": 154834,
   "LastConfirmed": 2125,
   "LastDeath": 21,
-  "LastConfirmedNew": 21,
+  "LastConfirmedNew": 0,
   "LastDeathNew": 0,
-  "DaysToDouble": 63.616606588894555,
+  "DaysToDouble": 58.988081060055954,
   "DaysToDoubleDeath": 66.29792905348717,
-  "Last2WeeksConfirmedDelta": 482,
+  "Last2WeeksConfirmedDelta": 446,
   "StayHomeOrder": {
     "StartUrl": "https://www.mauinews.com/news/local-news/2020/03/ige-takes-stay-at-home-mandate-statewide/",
     "StartDate": "2020-03-25T00:00:00Z",

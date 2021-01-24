@@ -398,11 +398,11 @@
       "01/21/2021": 234992,
       "01/22/2021": 237028,
       "01/23/2021": 237028,
+      "01/24/2021": 237028,
       "03/26/2020": 1012,
       "03/27/2020": 1291,
       "03/28/2020": 1524,
-      "03/29/2020": 1993,
-      "01/24/2021": 237028
+      "03/29/2020": 1993
     },
     "Death": {
       "01/22/2020": 0,
@@ -769,11 +769,11 @@
       "01/21/2021": 6768,
       "01/22/2021": 6814,
       "01/23/2021": 6814,
+      "01/24/2021": 6814,
       "03/26/2020": 21,
       "03/27/2020": 27,
       "03/28/2020": 33,
-      "03/29/2020": 34,
-      "01/24/2021": 6814
+      "03/29/2020": 34
     },
     "doses_alloc_total": {
       "12/13/2020": 31200,
@@ -817,7 +817,8 @@
       "01/23/2021": 255650,
       "12/14/2020": 31200,
       "12/15/2020": 31200,
-      "12/16/2020": 31200
+      "12/16/2020": 31200,
+      "01/24/2021": 255650
     },
     "doses_admin_total": {
       "12/13/2020": 0,
@@ -861,7 +862,8 @@
       "01/23/2021": 171035,
       "12/14/2020": 0,
       "12/15/2020": 0,
-      "12/16/2020": 0
+      "12/16/2020": 0,
+      "01/24/2021": 171035
     },
     "doses_shipped_total": {
       "12/13/2020": 0,
@@ -905,7 +907,8 @@
       "01/23/2021": 492850,
       "12/14/2020": 0,
       "12/15/2020": 0,
-      "12/16/2020": 0
+      "12/16/2020": 0,
+      "01/24/2021": 492850
     },
     "doses_alloc_total_Last": 255650,
     "doses_admin_total_Last": 171035,
@@ -1024,8 +1027,8 @@
     "LastDeath": 1886,
     "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 78.72417013539227,
-    "DaysToDoubleDeath": 128.23186001818289,
+    "DaysToDouble": 88.15857115481279,
+    "DaysToDoubleDeath": 137.36140704899026,
     "Last2WeeksConfirmedDelta": 7780,
     "Recovered": null
   },
@@ -1045,8 +1048,8 @@
     "LastDeath": 2048,
     "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 60.031060376562344,
-    "DaysToDoubleDeath": 145.05847528475533,
+    "DaysToDouble": 71.48711298232628,
+    "DaysToDoubleDeath": 152.20188319514656,
     "Last2WeeksConfirmedDelta": 8137,
     "Recovered": null
   },
@@ -1066,8 +1069,8 @@
     "LastDeath": 246,
     "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 69.1681449870921,
-    "DaysToDoubleDeath": 793.573570416353,
+    "DaysToDouble": 80.59613784895548,
+    "DaysToDoubleDeath": 528.688903638303,
     "Last2WeeksConfirmedDelta": 1152,
     "Recovered": null
   },
@@ -1087,8 +1090,8 @@
     "LastDeath": 307,
     "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 53.6978168876178,
-    "DaysToDoubleDeath": 80.57202183626728,
+    "DaysToDouble": 63.8543887332214,
+    "DaysToDoubleDeath": 85.71368074259186,
     "Last2WeeksConfirmedDelta": 1229,
     "Recovered": null
   },
@@ -1108,8 +1111,8 @@
     "LastDeath": 1738,
     "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 63.23502307640542,
-    "DaysToDoubleDeath": 155.44102877535866,
+    "DaysToDouble": 73.21524961348275,
+    "DaysToDoubleDeath": 145.53564693448232,
     "Last2WeeksConfirmedDelta": 7807,
     "Recovered": null
   },
@@ -1129,8 +1132,8 @@
     "LastDeath": 343,
     "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 38.04021611783076,
-    "DaysToDoubleDeath": 42.95066907388853,
+    "DaysToDouble": 44.54193192741561,
+    "DaysToDoubleDeath": 43.980955290908405,
     "Last2WeeksConfirmedDelta": 3250,
     "Recovered": null
   },
@@ -1150,8 +1153,8 @@
     "LastDeath": 126,
     "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 53.67482215266921,
-    "DaysToDoubleDeath": 302.9424763030602,
+    "DaysToDouble": 62.38715842045211,
+    "DaysToDoubleDeath": 303.5489742229432,
     "Last2WeeksConfirmedDelta": 979,
     "Recovered": null
   },
@@ -1171,8 +1174,8 @@
     "LastDeath": 120,
     "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 41.61776420732352,
-    "DaysToDoubleDeath": 24.578376459981648,
+    "DaysToDouble": 50.18523439172038,
+    "DaysToDoubleDeath": 26.15343726968081,
     "Last2WeeksConfirmedDelta": 1470,
     "Recovered": null
   }
