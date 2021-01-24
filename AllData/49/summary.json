@@ -134,7 +134,7 @@
     "LastDeathNew": 2,
     "DaysToDouble": 119.31123402567997,
     "DaysToDoubleDeath": 141.67042110722224,
-    "Last2WeeksConfirmedDelta": 3282,
+    "Last2WeeksConfirmedDelta": 3054,
     "StayHomeOrder": {
       "StartUrl": "https://www.sltrib.com/news/2020/04/01/davis-county-issues/",
       "StartDate": "2020-04-01T00:00:00Z",
@@ -376,7 +376,7 @@
     "LastDeathNew": 4,
     "DaysToDouble": 142.7859351382064,
     "DaysToDoubleDeath": 109.7810455980529,
-    "Last2WeeksConfirmedDelta": 11371,
+    "Last2WeeksConfirmedDelta": 10778,
     "StayHomeOrder": {
       "StartUrl": "https://www.ksl.com/article/46736005/salt-lake-county-issues-public-health-order",
       "StartDate": "2020-03-30T00:00:00Z",
@@ -403,7 +403,7 @@
     "LastDeathNew": 0,
     "DaysToDouble": 112.89669672149756,
     "DaysToDoubleDeath": 137.7885472193415,
-    "Last2WeeksConfirmedDelta": 216,
+    "Last2WeeksConfirmedDelta": 205,
     "Recovered": null
   },
   "49039": {
@@ -466,7 +466,7 @@
     "LastDeathNew": 0,
     "DaysToDouble": 81.64051727802581,
     "DaysToDoubleDeath": null,
-    "Last2WeeksConfirmedDelta": 757,
+    "Last2WeeksConfirmedDelta": 742,
     "StayHomeOrder": {
       "StartUrl": "https://www.kpcw.org/post/summit-county-issues-stay-home-order-residents",
       "StartDate": "2020-03-27T00:00:00Z",
@@ -493,7 +493,7 @@
     "LastDeathNew": 0,
     "DaysToDouble": 124.39248463254417,
     "DaysToDoubleDeath": 27.33507150726908,
-    "Last2WeeksConfirmedDelta": 765,
+    "Last2WeeksConfirmedDelta": 697,
     "Recovered": null
   },
   "49047": {
@@ -535,7 +535,7 @@
     "LastDeathNew": 2,
     "DaysToDouble": 138.88844564849867,
     "DaysToDoubleDeath": 47.97912785230517,
-    "Last2WeeksConfirmedDelta": 9008,
+    "Last2WeeksConfirmedDelta": 8455,
     "Recovered": null
   },
   "49051": {
@@ -556,7 +556,7 @@
     "LastDeathNew": 0,
     "DaysToDouble": 93.82984629126987,
     "DaysToDoubleDeath": null,
-    "Last2WeeksConfirmedDelta": 494,
+    "Last2WeeksConfirmedDelta": 464,
     "StayHomeOrder": {
       "StartUrl": "https://www.kpcw.org/post/wasatch-county-health-department-fields-questions-about-stay-home-order",
       "StartDate": "2020-04-01T00:00:00Z",
@@ -621,7 +621,7 @@
     "LastDeathNew": 0,
     "DaysToDouble": 117.95381556189999,
     "DaysToDoubleDeath": 90.6640500091573,
-    "Last2WeeksConfirmedDelta": 3020,
+    "Last2WeeksConfirmedDelta": 2821,
     "Recovered": null
   },
   "49984": {
@@ -637,7 +637,7 @@
     "LastDeathNew": 1,
     "DaysToDouble": 144.6197312194876,
     "DaysToDoubleDeath": null,
-    "Last2WeeksConfirmedDelta": 319,
+    "Last2WeeksConfirmedDelta": 288,
     "Recovered": null
   },
   "49985": {
@@ -653,7 +653,7 @@
     "LastDeathNew": 0,
     "DaysToDouble": 140.61892106328705,
     "DaysToDoubleDeath": 52.100509355650736,
-    "Last2WeeksConfirmedDelta": 1855,
+    "Last2WeeksConfirmedDelta": 1750,
     "Recovered": null
   },
   "49986": {
@@ -669,7 +669,7 @@
     "LastDeathNew": 1,
     "DaysToDouble": 111.3443937342788,
     "DaysToDoubleDeath": 36.535141394887056,
-    "Last2WeeksConfirmedDelta": 844,
+    "Last2WeeksConfirmedDelta": 788,
     "Recovered": null
   },
   "49987": {
@@ -685,7 +685,7 @@
     "LastDeathNew": 0,
     "DaysToDouble": 112.09739635759914,
     "DaysToDoubleDeath": 30.50242993449064,
-    "Last2WeeksConfirmedDelta": 292,
+    "Last2WeeksConfirmedDelta": 283,
     "Recovered": null
   },
   "49989": {
@@ -701,7 +701,7 @@
     "LastDeathNew": 1,
     "DaysToDouble": 97.97863922177056,
     "DaysToDoubleDeath": 64.65808587314973,
-    "Last2WeeksConfirmedDelta": 2840,
+    "Last2WeeksConfirmedDelta": 2701,
     "Recovered": null
   },
   "80049": {
@@ -1090,7 +1090,8 @@
       "01/10/2021": 305999,
       "01/11/2021": 307483,
       "01/12/2021": 309629,
-      "01/13/2021": 314218
+      "01/13/2021": 314218,
+      "01/24/2021": 334136
     },
     "Death": {
       "01/22/2020": 0,
@@ -1460,7 +1461,8 @@
       "01/10/2021": 1392,
       "01/11/2021": 1396,
       "01/12/2021": 1422,
-      "01/13/2021": 1449
+      "01/13/2021": 1449,
+      "01/24/2021": 1582
     },
     "doses_alloc_total": {
       "12/11/2020": 154400,
@@ -1604,12 +1606,12 @@
     "doses_admin_total_Last": 93127,
     "doses_shippied_total_Last": 341725,
     "LastConfirmed": 334136,
-    "LastConfirmedNew": 1756,
+    "LastConfirmedNew": 0,
     "LastDeath": 1582,
-    "LastDeathNew": 11,
-    "DaysToDouble": 129.60799872762234,
-    "DaysToDoubleDeath": 77.25472118769716,
-    "Last2WeeksConfirmedDelta": 35063,
+    "LastDeathNew": 0,
+    "DaysToDouble": 119.39679879483089,
+    "DaysToDoubleDeath": 66.37565010585833,
+    "Last2WeeksConfirmedDelta": 33026,
     "beds": 6834,
     "bedsICU": 513,
     "hospitals": 62,
