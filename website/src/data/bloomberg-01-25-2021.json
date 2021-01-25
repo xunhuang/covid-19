@@ -3122,20 +3122,20 @@
         "name": "Argentina",
         "parentIso": null,
         "iso": "ARG",
-        "dateUpdated": "2021-01-24",
-        "noDosesTotal": 292023,
-        "noCompletedVaccination": 31987,
+        "dateUpdated": "2021-01-25",
+        "noDosesTotal": 292386,
+        "noCompletedVaccination": 32264,
         "noVaccinesReceived": null,
         "nameShort": "Argen.",
         "population": 44939000,
-        "noDosesTotalPerCapita": 0.006498208682881239
+        "noDosesTotalPerCapita": 0.00650628629920559
       },
       {
         "name": "Austria",
         "parentIso": null,
         "iso": "AUT",
         "specialNote": true,
-        "dateUpdated": "2021-01-23",
+        "dateUpdated": "2021-01-24",
         "noDosesTotal": 170144,
         "noCompletedVaccination": null,
         "noVaccinesReceived": null,
@@ -3143,38 +3143,48 @@
         "noDosesTotalPerCapita": 0.01920577943334462
       },
       {
+        "name": "Global total",
+        "parentIso": null,
+        "iso": "BBG",
+        "dateUpdated": "2021-01-25",
+        "noDosesTotal": 65706580,
+        "noCompletedVaccination": null,
+        "noVaccinesReceived": null,
+        "noDosesTotalPerCapita": null
+      },
+      {
         "name": "EU",
         "parentIso": null,
         "iso": "BBG-EU",
-        "dateUpdated": "2021-01-24",
-        "noDosesTotal": 8572700,
+        "dateUpdated": "2021-01-25",
+        "noDosesTotal": 8608384,
         "noCompletedVaccination": null,
         "noVaccinesReceived": null,
         "population": 444260000,
-        "noDosesTotalPerCapita": 0.01929658308197902
+        "noDosesTotalPerCapita": 0.019376905415747537
       },
       {
         "name": "Belgium",
         "parentIso": null,
         "iso": "BEL",
-        "dateUpdated": "2021-01-24",
-        "noDosesTotal": 189896,
+        "dateUpdated": "2021-01-25",
+        "noDosesTotal": 192701,
         "noCompletedVaccination": 584,
         "noVaccinesReceived": null,
         "population": 11456000,
-        "noDosesTotalPerCapita": 0.016576117318435755
+        "noDosesTotalPerCapita": 0.01682096717877095
       },
       {
         "name": "Bulgaria",
         "parentIso": null,
         "iso": "BGR",
-        "dateUpdated": "2021-01-24",
-        "noDosesTotal": 26119,
+        "dateUpdated": "2021-01-25",
+        "noDosesTotal": 26143,
         "noCompletedVaccination": 4610,
         "noVaccinesReceived": null,
         "nameShort": "Bulg.",
         "population": 6951000,
-        "noDosesTotalPerCapita": 0.0037575888361386853
+        "noDosesTotalPerCapita": 0.0037610415767515464
       },
       {
         "name": "Bahrain",
@@ -3202,12 +3212,12 @@
         "name": "Canada",
         "parentIso": null,
         "iso": "CAN",
-        "dateUpdated": "2021-01-23",
-        "noDosesTotal": 796915,
-        "noCompletedVaccination": 73525,
+        "dateUpdated": "2021-01-24",
+        "noDosesTotal": 812910,
+        "noCompletedVaccination": 78649,
         "noVaccinesReceived": null,
         "population": 37527000,
-        "noDosesTotalPerCapita": 0.021235776907293415
+        "noDosesTotalPerCapita": 0.02166200335758254
       },
       {
         "name": "Alberta",
@@ -3413,19 +3423,19 @@
         "name": "Czech Republic",
         "parentIso": null,
         "iso": "CZE",
-        "dateUpdated": "2021-01-24",
-        "noDosesTotal": 192267,
+        "dateUpdated": "2021-01-25",
+        "noDosesTotal": 196304,
         "noCompletedVaccination": null,
         "noVaccinesReceived": null,
         "nameShort": "Cz. Rep.",
         "population": 10650000,
-        "noDosesTotalPerCapita": 0.018053239436619718
+        "noDosesTotalPerCapita": 0.01843230046948357
       },
       {
         "name": "Germany",
         "parentIso": null,
         "iso": "DEU",
-        "dateUpdated": "2021-01-23",
+        "dateUpdated": "2021-01-24",
         "noDosesTotal": 1632777,
         "noCompletedVaccination": 163424,
         "noVaccinesReceived": null,
@@ -3436,13 +3446,13 @@
         "name": "Denmark",
         "parentIso": null,
         "iso": "DNK",
-        "dateUpdated": "2021-01-24",
-        "noDosesTotal": 203166,
-        "noCompletedVaccination": 20998,
+        "dateUpdated": "2021-01-25",
+        "noDosesTotal": 209472,
+        "noCompletedVaccination": 26702,
         "noVaccinesReceived": null,
         "nameShort": "Den.",
         "population": 5806000,
-        "noDosesTotalPerCapita": 0.03499242163279366
+        "noDosesTotalPerCapita": 0.036078539441956596
       },
       {
         "name": "Spain",
@@ -3459,24 +3469,24 @@
         "name": "Estonia",
         "parentIso": null,
         "iso": "EST",
-        "dateUpdated": "2021-01-24",
-        "noDosesTotal": 25964,
-        "noCompletedVaccination": 2403,
+        "dateUpdated": "2021-01-25",
+        "noDosesTotal": 26126,
+        "noCompletedVaccination": 2404,
         "noVaccinesReceived": null,
         "nameShort": "Est.",
         "population": 1325000,
-        "noDosesTotalPerCapita": 0.019595471698113206
+        "noDosesTotalPerCapita": 0.019717735849056603
       },
       {
         "name": "Finland",
         "parentIso": null,
         "iso": "FIN",
-        "dateUpdated": "2021-01-24",
-        "noDosesTotal": 110054,
-        "noCompletedVaccination": 4434,
+        "dateUpdated": "2021-01-25",
+        "noDosesTotal": 110651,
+        "noCompletedVaccination": 4553,
         "noVaccinesReceived": null,
         "population": 5518000,
-        "noDosesTotalPerCapita": 0.019944545125045305
+        "noDosesTotalPerCapita": 0.020052736498731426
       },
       {
         "name": "France",
@@ -3636,12 +3646,12 @@
         "name": "Iceland",
         "parentIso": null,
         "iso": "ISL",
-        "dateUpdated": "2021-01-22",
-        "noDosesTotal": 12795,
-        "noCompletedVaccination": 4546,
+        "dateUpdated": "2021-01-25",
+        "noDosesTotal": 15224,
+        "noCompletedVaccination": 4789,
         "noVaccinesReceived": null,
         "population": 357000,
-        "noDosesTotalPerCapita": 0.03584033613445378
+        "noDosesTotalPerCapita": 0.04264425770308123
       },
       {
         "name": "Israel",
@@ -3658,12 +3668,12 @@
         "name": "Italy",
         "parentIso": null,
         "iso": "ITA",
-        "dateUpdated": "2021-01-24",
-        "noDosesTotal": 1379124,
-        "noCompletedVaccination": 100863,
+        "dateUpdated": "2021-01-25",
+        "noDosesTotal": 1382893,
+        "noCompletedVaccination": 104055,
         "noVaccinesReceived": 1853475,
         "population": 60360000,
-        "noDosesTotalPerCapita": 0.02284831013916501
+        "noDosesTotalPerCapita": 0.0229107521537442
       },
       {
         "name": "Kuwait",
@@ -3681,24 +3691,24 @@
         "parentIso": null,
         "iso": "LTU",
         "dateUpdated": "2021-01-24",
-        "noDosesTotal": 67036,
+        "noDosesTotal": 67468,
         "noCompletedVaccination": 8997,
         "noVaccinesReceived": null,
         "nameShort": "Lithu.",
         "population": 2783000,
-        "noDosesTotalPerCapita": 0.024087675170679123
+        "noDosesTotalPerCapita": 0.02424290334171757
       },
       {
         "name": "Luxembourg",
         "parentIso": null,
         "iso": "LUX",
-        "dateUpdated": "2021-01-22",
-        "noDosesTotal": 6897,
+        "dateUpdated": "2021-01-24",
+        "noDosesTotal": 7711,
         "noCompletedVaccination": 1244,
         "noVaccinesReceived": null,
         "nameShort": "Lux.",
         "population": 614000,
-        "noDosesTotalPerCapita": 0.011232899022801304
+        "noDosesTotalPerCapita": 0.012558631921824104
       },
       {
         "name": "Latvia",
@@ -3727,12 +3737,12 @@
         "name": "Malta",
         "parentIso": null,
         "iso": "MLT",
-        "dateUpdated": "2021-01-24",
-        "noDosesTotal": 18930,
-        "noCompletedVaccination": null,
+        "dateUpdated": "2021-01-25",
+        "noDosesTotal": 19981,
+        "noCompletedVaccination": 1198,
         "noVaccinesReceived": null,
         "population": 494000,
-        "noDosesTotalPerCapita": 0.03831983805668016
+        "noDosesTotalPerCapita": 0.040447368421052635
       },
       {
         "name": "Netherlands",
@@ -3750,12 +3760,12 @@
         "name": "Norway",
         "parentIso": null,
         "iso": "NOR",
-        "dateUpdated": "2021-01-22",
-        "noDosesTotal": 73844,
-        "noCompletedVaccination": 1873,
+        "dateUpdated": "2021-01-25",
+        "noDosesTotal": 78746,
+        "noCompletedVaccination": 1887,
         "noVaccinesReceived": null,
         "population": 5357000,
-        "noDosesTotalPerCapita": 0.013784580922157924
+        "noDosesTotalPerCapita": 0.014699645323875304
       },
       {
         "name": "Oman",
@@ -3794,12 +3804,12 @@
         "name": "Portugal",
         "parentIso": null,
         "iso": "PRT",
-        "dateUpdated": "2021-01-24",
-        "noDosesTotal": 249891,
-        "noCompletedVaccination": 24675,
+        "dateUpdated": "2021-01-25",
+        "noDosesTotal": 258317,
+        "noCompletedVaccination": 30651,
         "noVaccinesReceived": null,
         "population": 10276000,
-        "noDosesTotalPerCapita": 0.02431792526274815
+        "noDosesTotalPerCapita": 0.025137894122226546
       },
       {
         "name": "Romania",
@@ -3877,12 +3887,12 @@
         "parentIso": null,
         "iso": "SVN",
         "dateUpdated": "2021-01-24",
-        "noDosesTotal": 48717,
-        "noCompletedVaccination": 6963,
+        "noDosesTotal": 55978,
+        "noCompletedVaccination": 7121,
         "noVaccinesReceived": null,
         "nameShort": "Slvn.",
         "population": 2068000,
-        "noDosesTotalPerCapita": 0.023557543520309476
+        "noDosesTotalPerCapita": 0.027068665377176015
       },
       {
         "name": "Sweden",
@@ -6467,6 +6477,10 @@
           [
             "2021-01-23",
             796915
+          ],
+          [
+            "2021-01-24",
+            812910
           ]
         ],
         "CAN-SK": [
@@ -6989,6 +7003,10 @@
           [
             "2021-01-23",
             1632777
+          ],
+          [
+            "2021-01-24",
+            1632777
           ]
         ],
         "DNK": [
@@ -7099,6 +7117,10 @@
           [
             "2021-01-24",
             203166
+          ],
+          [
+            "2021-01-25",
+            209472
           ]
         ],
         "EST": [
@@ -7181,6 +7203,10 @@
           [
             "2021-01-24",
             25964
+          ],
+          [
+            "2021-01-25",
+            26126
           ]
         ],
         "HUN": [
@@ -7328,7 +7354,7 @@
           ],
           [
             "2021-01-24",
-            67036
+            67468
           ]
         ],
         "PRT": [
@@ -7379,6 +7405,10 @@
           [
             "2021-01-24",
             249891
+          ],
+          [
+            "2021-01-25",
+            258317
           ]
         ],
         "BGR": [
@@ -7461,6 +7491,10 @@
           [
             "2021-01-24",
             26119
+          ],
+          [
+            "2021-01-25",
+            26143
           ]
         ],
         "ITA": [
@@ -7567,6 +7601,10 @@
           [
             "2021-01-24",
             1379124
+          ],
+          [
+            "2021-01-25",
+            1382893
           ]
         ],
         "KWT": [
@@ -7814,7 +7852,7 @@
           ],
           [
             "2021-01-24",
-            48717
+            55978
           ]
         ],
         "AUT": [
@@ -7868,6 +7906,10 @@
           ],
           [
             "2021-01-23",
+            170144
+          ],
+          [
+            "2021-01-24",
             170144
           ]
         ],
@@ -7991,6 +8033,10 @@
           [
             "2021-01-22",
             6897
+          ],
+          [
+            "2021-01-24",
+            7711
           ]
         ],
         "ARG": [
@@ -8033,6 +8079,10 @@
           [
             "2021-01-24",
             292023
+          ],
+          [
+            "2021-01-25",
+            292386
           ]
         ],
         "FIN": [
@@ -8103,6 +8153,10 @@
           [
             "2021-01-24",
             110054
+          ],
+          [
+            "2021-01-25",
+            110651
           ]
         ],
         "POL": [
@@ -8451,6 +8505,10 @@
           [
             "2021-01-24",
             192267
+          ],
+          [
+            "2021-01-25",
+            196304
           ]
         ],
         "ARE": [
@@ -8575,6 +8633,10 @@
           [
             "2021-01-22",
             73844
+          ],
+          [
+            "2021-01-25",
+            78746
           ]
         ],
         "SAU": [
@@ -8707,6 +8769,10 @@
           [
             "2021-01-22",
             12795
+          ],
+          [
+            "2021-01-25",
+            15224
           ]
         ],
         "SRB": [
@@ -8795,6 +8861,10 @@
           [
             "2021-01-24",
             8572700
+          ],
+          [
+            "2021-01-25",
+            8608384
           ]
         ],
         "BEL": [
@@ -8829,6 +8899,10 @@
           [
             "2021-01-24",
             189896
+          ],
+          [
+            "2021-01-25",
+            192701
           ]
         ],
         "SGP": [
@@ -9001,6 +9075,10 @@
           [
             "2021-01-24",
             18930
+          ],
+          [
+            "2021-01-25",
+            19981
           ]
         ],
         "CYP": [
@@ -9266,7 +9344,11 @@
           ],
           [
             "2021-01-24",
-            65647932
+            65672434
+          ],
+          [
+            "2021-01-25",
+            65707305
           ]
         ]
       }
@@ -15334,8 +15416,8 @@
       ],
       [
         "2021-01-24",
-        2492882,
-        3380617.4168470423
+        2517384,
+        3368019.8419913426
       ]
     ],
     "usa": {
@@ -24253,6 +24335,11 @@
           "2021-01-23",
           31124,
           37036
+        ],
+        [
+          "2021-01-24",
+          15995,
+          36024.28571428572
         ]
       ],
       "CAN-SK": [
@@ -24902,6 +24989,11 @@
           "2021-01-23",
           131138,
           83516.71428571429
+        ],
+        [
+          "2021-01-24",
+          0,
+          73077.125
         ]
       ],
       "DNK": [
@@ -25323,8 +25415,8 @@
         ],
         [
           "2021-01-24",
-          105,
-          2873.285714285714
+          537,
+          2935
         ]
       ],
       "PRT": [
@@ -25927,8 +26019,8 @@
         ],
         [
           "2021-01-24",
-          547,
-          1039.7142857142858
+          7808,
+          2077
         ]
       ],
       "AUT": [
@@ -25996,6 +26088,11 @@
           "2021-01-23",
           3188,
           11849.857142857143
+        ],
+        [
+          "2021-01-24",
+          0,
+          9622
         ]
       ],
       "GRC": [
@@ -26147,6 +26244,11 @@
           "2021-01-22",
           704,
           502.77777777777777
+        ],
+        [
+          "2021-01-24",
+          814,
+          485.3636363636364
         ]
       ],
       "ARG": [
@@ -27722,8 +27824,8 @@
         ],
         [
           "2021-01-24",
-          2492882,
-          3440825.1428571427
+          2517384,
+          3444325.4285714286
         ]
       ]
     }
