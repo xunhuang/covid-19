@@ -371,7 +371,8 @@
       "01/22/2021": 2321,
       "01/23/2021": 2341,
       "01/24/2021": 2341,
-      "01/25/2021": 2350
+      "01/25/2021": 2350,
+      "01/26/2021": 2350
     },
     "Death": {
       "01/22/2020": 0,
@@ -743,7 +744,8 @@
       "01/22/2021": 24,
       "01/23/2021": 24,
       "01/24/2021": 24,
-      "01/25/2021": 24
+      "01/25/2021": 24,
+      "01/26/2021": 24
     },
     "doses_alloc_total": {
       "12/14/2020": 975,
@@ -788,7 +790,8 @@
       "12/29/2020": 975,
       "12/31/2020": 7200,
       "01/01/2021": 7200,
-      "01/03/2021": 7200
+      "01/03/2021": 7200,
+      "01/26/2021": 8875
     },
     "doses_admin_total": {
       "12/14/2020": 0,
@@ -833,7 +836,8 @@
       "12/29/2020": 260,
       "12/31/2020": 260,
       "01/01/2021": 260,
-      "01/03/2021": 260
+      "01/03/2021": 260,
+      "01/26/2021": 1200
     },
     "doses_shipped_total": {
       "12/14/2020": 975,
@@ -878,18 +882,19 @@
       "12/29/2020": 975,
       "12/31/2020": 3950,
       "01/01/2021": 3950,
-      "01/03/2021": 4925
+      "01/03/2021": 4925,
+      "01/26/2021": 14500
     },
     "doses_alloc_total_Last": 8875,
     "doses_admin_total_Last": 1200,
     "doses_shippied_total_Last": 14500,
     "LastConfirmed": 2350,
-    "LastConfirmedNew": 9,
+    "LastConfirmedNew": 0,
     "LastDeath": 24,
     "LastDeathNew": 0,
-    "DaysToDouble": 119.26342538893502,
+    "DaysToDouble": 145.6329037217764,
     "DaysToDoubleDeath": null,
-    "Last2WeeksConfirmedDelta": 198,
+    "Last2WeeksConfirmedDelta": 207,
     "StayHomeOrder": {
       "StartUrl": "https://www.vi.gov/wp-content/uploads/2020/03/2020-03.23-12-54pm-Order-Suppl-Exec-Order-re-Restrictions-to-Movement-Gatherings-Operations-of-Business-Govt.-and-Schools-fully-signed.pdf",
       "StartDate": "2020-03-25T00:00:00Z",
