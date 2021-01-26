@@ -3147,7 +3147,7 @@
         "parentIso": null,
         "iso": "BBG",
         "dateUpdated": "2021-01-25",
-        "noDosesTotal": 67811093,
+        "noDosesTotal": 68153138,
         "noCompletedVaccination": null,
         "noVaccinesReceived": null,
         "noDosesTotalPerCapita": null
@@ -3933,11 +3933,11 @@
         "parentIso": null,
         "iso": "USA",
         "dateUpdated": "2021-01-25",
-        "noDosesTotal": 23119449,
+        "noDosesTotal": 23461494,
         "noCompletedVaccination": null,
         "noVaccinesReceived": null,
         "population": 328461000,
-        "noDosesTotalPerCapita": 0.07038719665348397
+        "noDosesTotalPerCapita": 0.07142855316156256
       }
     ],
     "usa": [
@@ -3946,12 +3946,12 @@
         "fips": null,
         "parentFips": null,
         "code": "BBG",
-        "cdcDosesDistributedTotal": 41411550,
-        "cdcFirstDosesAdministeredTotal": 21848655,
-        "cdcFirstDosesAdministeredPerDistributed": 0.527598,
-        "noDosesTotal": 23119449,
-        "noCompletedVaccination": 3382016,
-        "noDosesTotalPerCdcDistributed": 0.5582850437,
+        "cdcDosesDistributedTotal": 41418325,
+        "cdcFirstDosesAdministeredTotal": 22734243,
+        "cdcFirstDosesAdministeredPerDistributed": 0.548893,
+        "noDosesTotal": 23461494,
+        "noCompletedVaccination": 3438079,
+        "noDosesTotalPerCdcDistributed": 0.5664520233,
         "dateUpdated": "2021-01-25",
         "noVaccinesReceived": null
       },
@@ -3961,10 +3961,10 @@
         "parentFips": null,
         "code": "AL",
         "cdcDosesDistributedTotal": 521225,
-        "cdcFirstDosesAdministeredTotal": 243737,
-        "cdcFirstDosesAdministeredPerDistributed": 0.467623,
+        "cdcFirstDosesAdministeredTotal": 250612,
+        "cdcFirstDosesAdministeredPerDistributed": 0.480813,
         "noDosesTotal": 255291,
-        "noCompletedVaccination": 29736,
+        "noCompletedVaccination": 29978,
         "noDosesTotalPerCdcDistributed": 0.4897903976,
         "dateUpdated": "2021-01-25",
         "noVaccinesReceived": 521225,
@@ -3972,7 +3972,7 @@
         "whiteText": true,
         "population": 4903185,
         "noDosesTotalPerCapita": 0.05206636094701709,
-        "noCompletedVaccinationPerCapita": 0.006064629419448787
+        "noCompletedVaccinationPerCapita": 0.006113985093362783
       },
       {
         "name": "Alaska",
@@ -3980,8 +3980,8 @@
         "parentFips": null,
         "code": "AK",
         "cdcDosesDistributedTotal": 155700,
-        "cdcFirstDosesAdministeredTotal": 94257,
-        "cdcFirstDosesAdministeredPerDistributed": 0.605376,
+        "cdcFirstDosesAdministeredTotal": 97031,
+        "cdcFirstDosesAdministeredPerDistributed": 0.623192,
         "noDosesTotal": 98137,
         "noCompletedVaccination": 17837,
         "noDosesTotalPerCdcDistributed": 0.6302954399,
@@ -3999,8 +3999,8 @@
         "parentFips": null,
         "code": "AZ",
         "cdcDosesDistributedTotal": 829500,
-        "cdcFirstDosesAdministeredTotal": 390623,
-        "cdcFirstDosesAdministeredPerDistributed": 0.470914,
+        "cdcFirstDosesAdministeredTotal": 413662,
+        "cdcFirstDosesAdministeredPerDistributed": 0.498688,
         "noDosesTotal": 458461,
         "noCompletedVaccination": 69646,
         "noDosesTotalPerCdcDistributed": 0.5526955998,
@@ -4018,18 +4018,18 @@
         "parentFips": null,
         "code": "AR",
         "cdcDosesDistributedTotal": 368650,
-        "cdcFirstDosesAdministeredTotal": 214240,
-        "cdcFirstDosesAdministeredPerDistributed": 0.581147,
-        "noDosesTotal": 218951,
-        "noCompletedVaccination": 32572,
-        "noDosesTotalPerCdcDistributed": 0.5939264885,
-        "dateUpdated": "2021-01-24",
+        "cdcFirstDosesAdministeredTotal": 221095,
+        "cdcFirstDosesAdministeredPerDistributed": 0.599742,
+        "noDosesTotal": 221095,
+        "noCompletedVaccination": 33159,
+        "noDosesTotalPerCdcDistributed": 0.599742303,
+        "dateUpdated": "2021-01-25",
         "noVaccinesReceived": 386750,
         "ap": "Ark.",
         "whiteText": true,
         "population": 3017804,
-        "noDosesTotalPerCapita": 0.0725530882721343,
-        "noCompletedVaccinationPerCapita": 0.010793278821288593
+        "noDosesTotalPerCapita": 0.07326353865260965,
+        "noCompletedVaccinationPerCapita": 0.010987791122286272
       },
       {
         "name": "California",
@@ -4037,10 +4037,10 @@
         "parentFips": null,
         "code": "CA",
         "cdcDosesDistributedTotal": 4906525,
-        "cdcFirstDosesAdministeredTotal": 2199908,
-        "cdcFirstDosesAdministeredPerDistributed": 0.448364,
+        "cdcFirstDosesAdministeredTotal": 2330633,
+        "cdcFirstDosesAdministeredPerDistributed": 0.475007,
         "noDosesTotal": 2437504,
-        "noCompletedVaccination": 356382,
+        "noCompletedVaccination": 371482,
         "noDosesTotalPerCdcDistributed": 0.4967882565,
         "dateUpdated": "2021-01-25",
         "noVaccinesReceived": 4564425,
@@ -4048,7 +4048,7 @@
         "whiteText": true,
         "population": 39512223,
         "noDosesTotalPerCapita": 0.06168987252375044,
-        "noCompletedVaccinationPerCapita": 0.009019538080659244
+        "noCompletedVaccinationPerCapita": 0.009401698304851134
       },
       {
         "name": "Colorado",
@@ -4056,18 +4056,18 @@
         "parentFips": null,
         "code": "CO",
         "cdcDosesDistributedTotal": 692700,
-        "cdcFirstDosesAdministeredTotal": 434496,
-        "cdcFirstDosesAdministeredPerDistributed": 0.62725,
-        "noDosesTotal": 445251,
-        "noCompletedVaccination": 80181,
-        "noDosesTotalPerCdcDistributed": 0.6427760935,
-        "dateUpdated": "2021-01-24",
+        "cdcFirstDosesAdministeredTotal": 447880,
+        "cdcFirstDosesAdministeredPerDistributed": 0.646571,
+        "noDosesTotal": 447880,
+        "noCompletedVaccination": 80467,
+        "noDosesTotalPerCdcDistributed": 0.6465713873,
+        "dateUpdated": "2021-01-25",
         "noVaccinesReceived": null,
         "ap": "Colo.",
         "whiteText": true,
         "population": 5758736,
-        "noDosesTotalPerCapita": 0.07731748772647332,
-        "noCompletedVaccinationPerCapita": 0.01392336790573487
+        "noDosesTotalPerCapita": 0.07777401151919448,
+        "noCompletedVaccinationPerCapita": 0.01397303158193048
       },
       {
         "name": "Connecticut",
@@ -4075,17 +4075,17 @@
         "parentFips": null,
         "code": "CT",
         "cdcDosesDistributedTotal": 492850,
-        "cdcFirstDosesAdministeredTotal": 321737,
-        "cdcFirstDosesAdministeredPerDistributed": 0.652809,
-        "noDosesTotal": 321737,
+        "cdcFirstDosesAdministeredTotal": 331264,
+        "cdcFirstDosesAdministeredPerDistributed": 0.67214,
+        "noDosesTotal": 331264,
         "noCompletedVaccination": 42555,
-        "noDosesTotalPerCdcDistributed": 0.6528091711,
-        "dateUpdated": "2021-01-24",
+        "noDosesTotalPerCdcDistributed": 0.6721395962,
+        "dateUpdated": "2021-01-25",
         "noVaccinesReceived": null,
         "ap": "Conn.",
         "whiteText": false,
         "population": 3565287,
-        "noDosesTotalPerCapita": 0.09024154296694768,
+        "noDosesTotalPerCapita": 0.09291369811182101,
         "noCompletedVaccinationPerCapita": 0.01193592549491808
       },
       {
@@ -4094,10 +4094,10 @@
         "parentFips": null,
         "code": "DE",
         "cdcDosesDistributedTotal": 116325,
-        "cdcFirstDosesAdministeredTotal": 64186,
-        "cdcFirstDosesAdministeredPerDistributed": 0.551782,
+        "cdcFirstDosesAdministeredTotal": 66914,
+        "cdcFirstDosesAdministeredPerDistributed": 0.575233,
         "noDosesTotal": 68995,
-        "noCompletedVaccination": 11464,
+        "noCompletedVaccination": 11647,
         "noDosesTotalPerCdcDistributed": 0.5931227165,
         "dateUpdated": "2021-01-25",
         "noVaccinesReceived": 96325,
@@ -4105,7 +4105,7 @@
         "whiteText": false,
         "population": 973764,
         "noDosesTotalPerCapita": 0.07085392353794143,
-        "noCompletedVaccinationPerCapita": 0.01177287309861527
+        "noCompletedVaccinationPerCapita": 0.011960803644414868
       },
       {
         "name": "District of Columbia",
@@ -4113,18 +4113,18 @@
         "parentFips": null,
         "code": "DC",
         "cdcDosesDistributedTotal": 91025,
-        "cdcFirstDosesAdministeredTotal": 62391,
-        "cdcFirstDosesAdministeredPerDistributed": 0.685427,
-        "noDosesTotal": 62391,
-        "noCompletedVaccination": 13043,
-        "noDosesTotalPerCdcDistributed": 0.6854270805,
-        "dateUpdated": "2021-01-24",
+        "cdcFirstDosesAdministeredTotal": 64194,
+        "cdcFirstDosesAdministeredPerDistributed": 0.705235,
+        "noDosesTotal": 64194,
+        "noCompletedVaccination": 13236,
+        "noDosesTotalPerCdcDistributed": 0.7052348256,
+        "dateUpdated": "2021-01-25",
         "noVaccinesReceived": 68750,
         "ap": "D.C.",
         "whiteText": null,
         "population": 705749,
-        "noDosesTotalPerCapita": 0.08840395097973926,
-        "noCompletedVaccinationPerCapita": 0.018481074716365165
+        "noDosesTotalPerCapita": 0.09095868361131224,
+        "noCompletedVaccinationPerCapita": 0.01875454304575706
       },
       {
         "name": "Florida",
@@ -4170,10 +4170,10 @@
         "parentFips": null,
         "code": "HI",
         "cdcDosesDistributedTotal": 191575,
-        "cdcFirstDosesAdministeredTotal": 84792,
-        "cdcFirstDosesAdministeredPerDistributed": 0.442605,
+        "cdcFirstDosesAdministeredTotal": 92092,
+        "cdcFirstDosesAdministeredPerDistributed": 0.48071,
         "noDosesTotal": 106654,
-        "noCompletedVaccination": 16802,
+        "noCompletedVaccination": 17795,
         "noDosesTotalPerCdcDistributed": 0.5567219105,
         "dateUpdated": "2021-01-25",
         "noVaccinesReceived": 154150,
@@ -4181,7 +4181,7 @@
         "whiteText": false,
         "population": 1415872,
         "noDosesTotalPerCapita": 0.07532743072820142,
-        "noCompletedVaccinationPerCapita": 0.011866891922433667
+        "noCompletedVaccinationPerCapita": 0.012568226506350857
       },
       {
         "name": "Idaho",
@@ -4189,8 +4189,8 @@
         "parentFips": null,
         "code": "ID",
         "cdcDosesDistributedTotal": 181100,
-        "cdcFirstDosesAdministeredTotal": 87128,
-        "cdcFirstDosesAdministeredPerDistributed": 0.481104,
+        "cdcFirstDosesAdministeredTotal": 91271,
+        "cdcFirstDosesAdministeredPerDistributed": 0.503981,
         "noDosesTotal": 93582,
         "noCompletedVaccination": 14648,
         "noDosesTotalPerCdcDistributed": 0.5167421314,
@@ -4208,17 +4208,17 @@
         "parentFips": null,
         "code": "IL",
         "cdcDosesDistributedTotal": 1417250,
-        "cdcFirstDosesAdministeredTotal": 699072,
-        "cdcFirstDosesAdministeredPerDistributed": 0.493259,
-        "noDosesTotal": 699072,
+        "cdcFirstDosesAdministeredTotal": 723203,
+        "cdcFirstDosesAdministeredPerDistributed": 0.510286,
+        "noDosesTotal": 723203,
         "noCompletedVaccination": 137990,
-        "noDosesTotalPerCdcDistributed": 0.4932594814,
-        "dateUpdated": "2021-01-24",
+        "noDosesTotalPerCdcDistributed": 0.5102861175,
+        "dateUpdated": "2021-01-25",
         "noVaccinesReceived": 1662775,
         "ap": "Ill.",
         "whiteText": true,
         "population": 12671821,
-        "noDosesTotalPerCapita": 0.05516744594166852,
+        "noDosesTotalPerCapita": 0.05707174998763003,
         "noCompletedVaccinationPerCapita": 0.010889516195028323
       },
       {
@@ -4227,8 +4227,8 @@
         "parentFips": null,
         "code": "IN",
         "cdcDosesDistributedTotal": 841725,
-        "cdcFirstDosesAdministeredTotal": 446029,
-        "cdcFirstDosesAdministeredPerDistributed": 0.529899,
+        "cdcFirstDosesAdministeredTotal": 491856,
+        "cdcFirstDosesAdministeredPerDistributed": 0.584343,
         "noDosesTotal": 540841,
         "noCompletedVaccination": 100019,
         "noDosesTotalPerCdcDistributed": 0.6425388339,
@@ -4246,18 +4246,18 @@
         "parentFips": null,
         "code": "IA",
         "cdcDosesDistributedTotal": 361475,
-        "cdcFirstDosesAdministeredTotal": 191183,
-        "cdcFirstDosesAdministeredPerDistributed": 0.528897,
-        "noDosesTotal": 191183,
-        "noCompletedVaccination": 30949,
-        "noDosesTotalPerCdcDistributed": 0.5288968808,
-        "dateUpdated": "2021-01-24",
+        "cdcFirstDosesAdministeredTotal": 196203,
+        "cdcFirstDosesAdministeredPerDistributed": 0.542784,
+        "noDosesTotal": 196203,
+        "noCompletedVaccination": 32149,
+        "noDosesTotalPerCdcDistributed": 0.5427844249,
+        "dateUpdated": "2021-01-25",
         "noVaccinesReceived": null,
         "ap": "Iowa",
         "whiteText": true,
         "population": 3155070,
-        "noDosesTotalPerCapita": 0.06059548599555636,
-        "noCompletedVaccinationPerCapita": 0.009809291077535523
+        "noDosesTotalPerCapita": 0.06218657589213551,
+        "noCompletedVaccinationPerCapita": 0.010189631291857232
       },
       {
         "name": "Kansas",
@@ -4265,8 +4265,8 @@
         "parentFips": null,
         "code": "KS",
         "cdcDosesDistributedTotal": 348175,
-        "cdcFirstDosesAdministeredTotal": 151249,
-        "cdcFirstDosesAdministeredPerDistributed": 0.434405,
+        "cdcFirstDosesAdministeredTotal": 154719,
+        "cdcFirstDosesAdministeredPerDistributed": 0.444371,
         "noDosesTotal": 157520,
         "noCompletedVaccination": 25218,
         "noDosesTotalPerCdcDistributed": 0.45241617,
@@ -4284,18 +4284,18 @@
         "parentFips": null,
         "code": "KY",
         "cdcDosesDistributedTotal": 471000,
-        "cdcFirstDosesAdministeredTotal": 299493,
-        "cdcFirstDosesAdministeredPerDistributed": 0.635866,
-        "noDosesTotal": 299493,
-        "noCompletedVaccination": 29346,
-        "noDosesTotalPerCdcDistributed": 0.635866242,
-        "dateUpdated": "2021-01-24",
+        "cdcFirstDosesAdministeredTotal": 307462,
+        "cdcFirstDosesAdministeredPerDistributed": 0.652786,
+        "noDosesTotal": 307462,
+        "noCompletedVaccination": 30010,
+        "noDosesTotalPerCdcDistributed": 0.6527855626,
+        "dateUpdated": "2021-01-25",
         "noVaccinesReceived": 466700,
         "ap": "Ky.",
         "whiteText": true,
         "population": 4467673,
-        "noDosesTotalPerCapita": 0.06703556862823219,
-        "noCompletedVaccinationPerCapita": 0.006568520122220225
+        "noDosesTotalPerCapita": 0.06881927124030787,
+        "noCompletedVaccinationPerCapita": 0.006717143354045831
       },
       {
         "name": "Louisiana",
@@ -4303,18 +4303,18 @@
         "parentFips": null,
         "code": "LA",
         "cdcDosesDistributedTotal": 543700,
-        "cdcFirstDosesAdministeredTotal": 334086,
-        "cdcFirstDosesAdministeredPerDistributed": 0.614468,
-        "noDosesTotal": 334086,
-        "noCompletedVaccination": 42520,
-        "noDosesTotalPerCdcDistributed": 0.6144675372,
-        "dateUpdated": "2021-01-24",
+        "cdcFirstDosesAdministeredTotal": 341447,
+        "cdcFirstDosesAdministeredPerDistributed": 0.628006,
+        "noDosesTotal": 341447,
+        "noCompletedVaccination": 43151,
+        "noDosesTotalPerCdcDistributed": 0.6280062534,
+        "dateUpdated": "2021-01-25",
         "noVaccinesReceived": null,
         "ap": "La.",
         "whiteText": true,
         "population": 4648794,
-        "noDosesTotalPerCapita": 0.07186509017177359,
-        "noCompletedVaccinationPerCapita": 0.009146458199696523
+        "noDosesTotalPerCapita": 0.07344851159246893,
+        "noCompletedVaccinationPerCapita": 0.009282192327730589
       },
       {
         "name": "Maine",
@@ -4322,8 +4322,8 @@
         "parentFips": null,
         "code": "ME",
         "cdcDosesDistributedTotal": 178450,
-        "cdcFirstDosesAdministeredTotal": 99815,
-        "cdcFirstDosesAdministeredPerDistributed": 0.559344,
+        "cdcFirstDosesAdministeredTotal": 104069,
+        "cdcFirstDosesAdministeredPerDistributed": 0.583183,
         "noDosesTotal": 110332,
         "noCompletedVaccination": 23040,
         "noDosesTotalPerCdcDistributed": 0.6182796301,
@@ -4341,8 +4341,8 @@
         "parentFips": null,
         "code": "MD",
         "cdcDosesDistributedTotal": 742175,
-        "cdcFirstDosesAdministeredTotal": 338544,
-        "cdcFirstDosesAdministeredPerDistributed": 0.456151,
+        "cdcFirstDosesAdministeredTotal": 350835,
+        "cdcFirstDosesAdministeredPerDistributed": 0.472712,
         "noDosesTotal": 372937,
         "noCompletedVaccination": 42228,
         "noDosesTotalPerCdcDistributed": 0.5024919999,
@@ -4360,18 +4360,18 @@
         "parentFips": null,
         "code": "MA",
         "cdcDosesDistributedTotal": 859175,
-        "cdcFirstDosesAdministeredTotal": 419806,
-        "cdcFirstDosesAdministeredPerDistributed": 0.488615,
-        "noDosesTotal": 419806,
-        "noCompletedVaccination": 63096,
-        "noDosesTotalPerCdcDistributed": 0.4886152414,
-        "dateUpdated": "2021-01-24",
+        "cdcFirstDosesAdministeredTotal": 433615,
+        "cdcFirstDosesAdministeredPerDistributed": 0.504688,
+        "noDosesTotal": 433615,
+        "noCompletedVaccination": 64648,
+        "noDosesTotalPerCdcDistributed": 0.5046876364,
+        "dateUpdated": "2021-01-25",
         "noVaccinesReceived": 591775,
         "ap": "Mass.",
         "whiteText": false,
         "population": 6892503,
-        "noDosesTotalPerCapita": 0.0609076267358897,
-        "noCompletedVaccinationPerCapita": 0.00915429416570439
+        "noDosesTotalPerCapita": 0.06291110790956493,
+        "noCompletedVaccinationPerCapita": 0.00937946635641653
       },
       {
         "name": "Michigan",
@@ -4379,8 +4379,8 @@
         "parentFips": null,
         "code": "MI",
         "cdcDosesDistributedTotal": 1095675,
-        "cdcFirstDosesAdministeredTotal": 695273,
-        "cdcFirstDosesAdministeredPerDistributed": 0.634561,
+        "cdcFirstDosesAdministeredTotal": 727437,
+        "cdcFirstDosesAdministeredPerDistributed": 0.663917,
         "noDosesTotal": 730453,
         "noCompletedVaccination": 119408,
         "noDosesTotalPerCdcDistributed": 0.6666694047,
@@ -4398,18 +4398,18 @@
         "parentFips": null,
         "code": "MN",
         "cdcDosesDistributedTotal": 680700,
-        "cdcFirstDosesAdministeredTotal": 321180,
-        "cdcFirstDosesAdministeredPerDistributed": 0.471838,
-        "noDosesTotal": 335477,
-        "noCompletedVaccination": 67716,
-        "noDosesTotalPerCdcDistributed": 0.4928411929,
+        "cdcFirstDosesAdministeredTotal": 346864,
+        "cdcFirstDosesAdministeredPerDistributed": 0.50957,
+        "noDosesTotal": 346864,
+        "noCompletedVaccination": 72266,
+        "noDosesTotalPerCdcDistributed": 0.5095695607,
         "dateUpdated": "2021-01-25",
         "noVaccinesReceived": 682675,
         "ap": "Minn.",
         "whiteText": true,
         "population": 5639632,
-        "noDosesTotalPerCapita": 0.05948561891981605,
-        "noCompletedVaccinationPerCapita": 0.012007166425043337
+        "noDosesTotalPerCapita": 0.06150472229393691,
+        "noCompletedVaccinationPerCapita": 0.012813956655327865
       },
       {
         "name": "Mississippi",
@@ -4417,8 +4417,8 @@
         "parentFips": null,
         "code": "MS",
         "cdcDosesDistributedTotal": 358100,
-        "cdcFirstDosesAdministeredTotal": 177636,
-        "cdcFirstDosesAdministeredPerDistributed": 0.496051,
+        "cdcFirstDosesAdministeredTotal": 180960,
+        "cdcFirstDosesAdministeredPerDistributed": 0.505334,
         "noDosesTotal": 184398,
         "noCompletedVaccination": 16542,
         "noDosesTotalPerCdcDistributed": 0.5149343759,
@@ -4436,8 +4436,8 @@
         "parentFips": null,
         "code": "MO",
         "cdcDosesDistributedTotal": 661400,
-        "cdcFirstDosesAdministeredTotal": 317737,
-        "cdcFirstDosesAdministeredPerDistributed": 0.480401,
+        "cdcFirstDosesAdministeredTotal": 335695,
+        "cdcFirstDosesAdministeredPerDistributed": 0.507552,
         "noDosesTotal": 351811,
         "noCompletedVaccination": 80587,
         "noDosesTotalPerCdcDistributed": 0.5319186574,
@@ -4455,18 +4455,18 @@
         "parentFips": null,
         "code": "MT",
         "cdcDosesDistributedTotal": 119500,
-        "cdcFirstDosesAdministeredTotal": 76590,
-        "cdcFirstDosesAdministeredPerDistributed": 0.640921,
-        "noDosesTotal": 76590,
-        "noCompletedVaccination": 14071,
-        "noDosesTotalPerCdcDistributed": 0.6409205021,
-        "dateUpdated": "2021-01-24",
+        "cdcFirstDosesAdministeredTotal": 77356,
+        "cdcFirstDosesAdministeredPerDistributed": 0.647331,
+        "noDosesTotal": 77356,
+        "noCompletedVaccination": 14111,
+        "noDosesTotalPerCdcDistributed": 0.6473305439,
+        "dateUpdated": "2021-01-25",
         "noVaccinesReceived": null,
         "ap": "Mont.",
         "whiteText": true,
         "population": 1068778,
-        "noDosesTotalPerCapita": 0.07166128045300334,
-        "noCompletedVaccinationPerCapita": 0.013165503032435173
+        "noDosesTotalPerCapita": 0.07237798682233354,
+        "noCompletedVaccinationPerCapita": 0.013202928952504637
       },
       {
         "name": "Nebraska",
@@ -4474,8 +4474,8 @@
         "parentFips": null,
         "code": "NE",
         "cdcDosesDistributedTotal": 238100,
-        "cdcFirstDosesAdministeredTotal": 132846,
-        "cdcFirstDosesAdministeredPerDistributed": 0.557942,
+        "cdcFirstDosesAdministeredTotal": 134033,
+        "cdcFirstDosesAdministeredPerDistributed": 0.562927,
         "noDosesTotal": 137249,
         "noCompletedVaccination": 24324,
         "noDosesTotalPerCdcDistributed": 0.5764342713,
@@ -4493,18 +4493,18 @@
         "parentFips": null,
         "code": "NV",
         "cdcDosesDistributedTotal": 286950,
-        "cdcFirstDosesAdministeredTotal": 152203,
-        "cdcFirstDosesAdministeredPerDistributed": 0.530416,
-        "noDosesTotal": 152203,
-        "noCompletedVaccination": 22068,
-        "noDosesTotalPerCdcDistributed": 0.5304164489,
-        "dateUpdated": "2021-01-24",
+        "cdcFirstDosesAdministeredTotal": 159869,
+        "cdcFirstDosesAdministeredPerDistributed": 0.557132,
+        "noDosesTotal": 159869,
+        "noCompletedVaccination": 22279,
+        "noDosesTotalPerCdcDistributed": 0.5571319045,
+        "dateUpdated": "2021-01-25",
         "noVaccinesReceived": 286950,
         "ap": "Nev.",
         "whiteText": true,
         "population": 3080156,
-        "noDosesTotalPerCapita": 0.049414055651726733,
-        "noCompletedVaccinationPerCapita": 0.007164572184006264
+        "noDosesTotalPerCapita": 0.0519028906328121,
+        "noCompletedVaccinationPerCapita": 0.007233075207879081
       },
       {
         "name": "New Hampshire",
@@ -4512,18 +4512,18 @@
         "parentFips": null,
         "code": "NH",
         "cdcDosesDistributedTotal": 162950,
-        "cdcFirstDosesAdministeredTotal": 93338,
-        "cdcFirstDosesAdministeredPerDistributed": 0.572801,
-        "noDosesTotal": 93338,
-        "noCompletedVaccination": 13355,
-        "noDosesTotalPerCdcDistributed": 0.5728014728,
-        "dateUpdated": "2021-01-24",
+        "cdcFirstDosesAdministeredTotal": 94623,
+        "cdcFirstDosesAdministeredPerDistributed": 0.580687,
+        "noDosesTotal": 94623,
+        "noCompletedVaccination": 13907,
+        "noDosesTotalPerCdcDistributed": 0.5806873274,
+        "dateUpdated": "2021-01-25",
         "noVaccinesReceived": 110160,
         "ap": "N.H.",
         "whiteText": false,
         "population": 1359711,
-        "noDosesTotalPerCapita": 0.06864546951521316,
-        "noCompletedVaccinationPerCapita": 0.009821940103448454
+        "noDosesTotalPerCapita": 0.06959052328031472,
+        "noCompletedVaccinationPerCapita": 0.01022790872472165
       },
       {
         "name": "New Jersey",
@@ -4531,8 +4531,8 @@
         "parentFips": null,
         "code": "NJ",
         "cdcDosesDistributedTotal": 989900,
-        "cdcFirstDosesAdministeredTotal": 535625,
-        "cdcFirstDosesAdministeredPerDistributed": 0.54109,
+        "cdcFirstDosesAdministeredTotal": 563141,
+        "cdcFirstDosesAdministeredPerDistributed": 0.568887,
         "noDosesTotal": 565401,
         "noCompletedVaccination": 72700,
         "noDosesTotalPerCdcDistributed": 0.5711698151,
@@ -4550,18 +4550,18 @@
         "parentFips": null,
         "code": "NM",
         "cdcDosesDistributedTotal": 257075,
-        "cdcFirstDosesAdministeredTotal": 200141,
-        "cdcFirstDosesAdministeredPerDistributed": 0.778532,
-        "noDosesTotal": 203830,
-        "noCompletedVaccination": 34878,
-        "noDosesTotalPerCdcDistributed": 0.7928814548,
-        "dateUpdated": "2021-01-24",
+        "cdcFirstDosesAdministeredTotal": 204670,
+        "cdcFirstDosesAdministeredPerDistributed": 0.796149,
+        "noDosesTotal": 204670,
+        "noCompletedVaccination": 35507,
+        "noDosesTotalPerCdcDistributed": 0.7961489838,
+        "dateUpdated": "2021-01-25",
         "noVaccinesReceived": 221375,
         "ap": "N.M.",
         "whiteText": true,
         "population": 2096829,
-        "noDosesTotalPerCapita": 0.09720868988362905,
-        "noCompletedVaccinationPerCapita": 0.01663368829790126
+        "noDosesTotalPerCapita": 0.0976092947970483,
+        "noCompletedVaccinationPerCapita": 0.016933665072354494
       },
       {
         "name": "New York",
@@ -4569,8 +4569,8 @@
         "parentFips": null,
         "code": "NY",
         "cdcDosesDistributedTotal": 2395950,
-        "cdcFirstDosesAdministeredTotal": 1365404,
-        "cdcFirstDosesAdministeredPerDistributed": 0.56988,
+        "cdcFirstDosesAdministeredTotal": 1418313,
+        "cdcFirstDosesAdministeredPerDistributed": 0.591963,
         "noDosesTotal": 1517605,
         "noCompletedVaccination": 191649,
         "noDosesTotalPerCdcDistributed": 0.6334042864,
@@ -4603,18 +4603,18 @@
         "parentFips": null,
         "code": "NC",
         "cdcDosesDistributedTotal": 1246600,
-        "cdcFirstDosesAdministeredTotal": 636439,
-        "cdcFirstDosesAdministeredPerDistributed": 0.51054,
-        "noDosesTotal": 636439,
-        "noCompletedVaccination": 83752,
-        "noDosesTotalPerCdcDistributed": 0.5105398684,
-        "dateUpdated": "2021-01-24",
+        "cdcFirstDosesAdministeredTotal": 676037,
+        "cdcFirstDosesAdministeredPerDistributed": 0.542305,
+        "noDosesTotal": 676037,
+        "noCompletedVaccination": 86064,
+        "noDosesTotalPerCdcDistributed": 0.5423046687,
+        "dateUpdated": "2021-01-25",
         "noVaccinesReceived": null,
         "ap": "N.C.",
         "whiteText": true,
         "population": 10488084,
-        "noDosesTotalPerCapita": 0.060682103613968,
-        "noCompletedVaccinationPerCapita": 0.007985443289737191
+        "noDosesTotalPerCapita": 0.06445762638819445,
+        "noCompletedVaccinationPerCapita": 0.00820588393456803
       },
       {
         "name": "North Dakota",
@@ -4622,18 +4622,18 @@
         "parentFips": null,
         "code": "ND",
         "cdcDosesDistributedTotal": 86750,
-        "cdcFirstDosesAdministeredTotal": 73175,
-        "cdcFirstDosesAdministeredPerDistributed": 0.843516,
-        "noDosesTotal": 74641,
-        "noCompletedVaccination": 15589,
-        "noDosesTotalPerCdcDistributed": 0.8604149856,
+        "cdcFirstDosesAdministeredTotal": 75242,
+        "cdcFirstDosesAdministeredPerDistributed": 0.867343,
+        "noDosesTotal": 75242,
+        "noCompletedVaccination": 15680,
+        "noDosesTotalPerCdcDistributed": 0.8673429395,
         "dateUpdated": "2021-01-25",
         "noVaccinesReceived": 93475,
         "ap": "N.D.",
         "whiteText": true,
         "population": 762062,
-        "noDosesTotalPerCapita": 0.09794609887384491,
-        "noCompletedVaccinationPerCapita": 0.020456340822662723
+        "noDosesTotalPerCapita": 0.09873474861625432,
+        "noCompletedVaccinationPerCapita": 0.02057575367883453
       },
       {
         "name": "Ohio",
@@ -4641,18 +4641,18 @@
         "parentFips": null,
         "code": "OH",
         "cdcDosesDistributedTotal": 1233075,
-        "cdcFirstDosesAdministeredTotal": 647104,
-        "cdcFirstDosesAdministeredPerDistributed": 0.524789,
-        "noDosesTotal": 647104,
-        "noCompletedVaccination": 71344,
-        "noDosesTotalPerCdcDistributed": 0.5247888409,
-        "dateUpdated": "2021-01-24",
+        "cdcFirstDosesAdministeredTotal": 685622,
+        "cdcFirstDosesAdministeredPerDistributed": 0.556026,
+        "noDosesTotal": 685622,
+        "noCompletedVaccination": 76949,
+        "noDosesTotalPerCdcDistributed": 0.5560261947,
+        "dateUpdated": "2021-01-25",
         "noVaccinesReceived": null,
         "ap": "Ohio",
         "whiteText": true,
         "population": 11689100,
-        "noDosesTotalPerCapita": 0.05535960852418065,
-        "noCompletedVaccinationPerCapita": 0.006103463910822903
+        "noDosesTotalPerCapita": 0.058654815169688,
+        "noCompletedVaccinationPerCapita": 0.006582970459658999
       },
       {
         "name": "Oklahoma",
@@ -4660,18 +4660,18 @@
         "parentFips": null,
         "code": "OK",
         "cdcDosesDistributedTotal": 496350,
-        "cdcFirstDosesAdministeredTotal": 322810,
-        "cdcFirstDosesAdministeredPerDistributed": 0.650368,
-        "noDosesTotal": 322810,
-        "noCompletedVaccination": 41289,
-        "noDosesTotalPerCdcDistributed": 0.6503676841,
-        "dateUpdated": "2021-01-24",
+        "cdcFirstDosesAdministeredTotal": 326546,
+        "cdcFirstDosesAdministeredPerDistributed": 0.657895,
+        "noDosesTotal": 326546,
+        "noCompletedVaccination": 41634,
+        "noDosesTotalPerCdcDistributed": 0.6578946308,
+        "dateUpdated": "2021-01-25",
         "noVaccinesReceived": 490775,
         "ap": "Okla.",
         "whiteText": true,
         "population": 3956971,
-        "noDosesTotalPerCapita": 0.08158007728638901,
-        "noCompletedVaccinationPerCapita": 0.010434496487338421
+        "noDosesTotalPerCapita": 0.08252423381419778,
+        "noCompletedVaccinationPerCapita": 0.01052168438939785
       },
       {
         "name": "Oregon",
@@ -4679,10 +4679,10 @@
         "parentFips": null,
         "code": "OR",
         "cdcDosesDistributedTotal": 492450,
-        "cdcFirstDosesAdministeredTotal": 285922,
-        "cdcFirstDosesAdministeredPerDistributed": 0.580611,
+        "cdcFirstDosesAdministeredTotal": 300676,
+        "cdcFirstDosesAdministeredPerDistributed": 0.610572,
         "noDosesTotal": 308050,
-        "noCompletedVaccination": 40775,
+        "noCompletedVaccination": 42426,
         "noDosesTotalPerCdcDistributed": 0.6255457407,
         "dateUpdated": "2021-01-25",
         "noVaccinesReceived": null,
@@ -4690,7 +4690,7 @@
         "whiteText": true,
         "population": 4217737,
         "noDosesTotalPerCapita": 0.07303679674669142,
-        "noCompletedVaccinationPerCapita": 0.009667506532531544
+        "noCompletedVaccinationPerCapita": 0.010058948673186593
       },
       {
         "name": "Pennsylvania",
@@ -4698,8 +4698,8 @@
         "parentFips": null,
         "code": "PA",
         "cdcDosesDistributedTotal": 1564125,
-        "cdcFirstDosesAdministeredTotal": 744591,
-        "cdcFirstDosesAdministeredPerDistributed": 0.476043,
+        "cdcFirstDosesAdministeredTotal": 776799,
+        "cdcFirstDosesAdministeredPerDistributed": 0.496635,
         "noDosesTotal": 789940,
         "noCompletedVaccination": 136646,
         "noDosesTotalPerCdcDistributed": 0.5050363622,
@@ -4717,8 +4717,8 @@
         "parentFips": null,
         "code": "RI",
         "cdcDosesDistributedTotal": 149225,
-        "cdcFirstDosesAdministeredTotal": 67566,
-        "cdcFirstDosesAdministeredPerDistributed": 0.452779,
+        "cdcFirstDosesAdministeredTotal": 70419,
+        "cdcFirstDosesAdministeredPerDistributed": 0.471898,
         "noDosesTotal": 73994,
         "noCompletedVaccination": 14735,
         "noDosesTotalPerCdcDistributed": 0.4958552521,
@@ -4736,18 +4736,18 @@
         "parentFips": null,
         "code": "SC",
         "cdcDosesDistributedTotal": 453250,
-        "cdcFirstDosesAdministeredTotal": 278795,
-        "cdcFirstDosesAdministeredPerDistributed": 0.615102,
-        "noDosesTotal": 278795,
-        "noCompletedVaccination": 43810,
-        "noDosesTotalPerCdcDistributed": 0.6151020408,
-        "dateUpdated": "2021-01-24",
+        "cdcFirstDosesAdministeredTotal": 307348,
+        "cdcFirstDosesAdministeredPerDistributed": 0.678098,
+        "noDosesTotal": 307348,
+        "noCompletedVaccination": 47563,
+        "noDosesTotalPerCdcDistributed": 0.6780981798,
+        "dateUpdated": "2021-01-25",
         "noVaccinesReceived": 542750,
         "ap": "S.C.",
         "whiteText": true,
         "population": 5148714,
-        "noDosesTotalPerCapita": 0.054148472803111615,
-        "noCompletedVaccinationPerCapita": 0.008508920868395487
+        "noDosesTotalPerCapita": 0.0596941294466929,
+        "noCompletedVaccinationPerCapita": 0.00923784075013683
       },
       {
         "name": "South Dakota",
@@ -4755,18 +4755,18 @@
         "parentFips": null,
         "code": "SD",
         "cdcDosesDistributedTotal": 106575,
-        "cdcFirstDosesAdministeredTotal": 80441,
-        "cdcFirstDosesAdministeredPerDistributed": 0.754783,
-        "noDosesTotal": 80441,
-        "noCompletedVaccination": 18220,
-        "noDosesTotalPerCdcDistributed": 0.7547830167,
-        "dateUpdated": "2021-01-24",
+        "cdcFirstDosesAdministeredTotal": 82512,
+        "cdcFirstDosesAdministeredPerDistributed": 0.774215,
+        "noDosesTotal": 82512,
+        "noCompletedVaccination": 18504,
+        "noDosesTotalPerCdcDistributed": 0.7742153413,
+        "dateUpdated": "2021-01-25",
         "noVaccinesReceived": null,
         "ap": "S.D.",
         "whiteText": true,
         "population": 884659,
-        "noDosesTotalPerCapita": 0.09092882116160012,
-        "noCompletedVaccinationPerCapita": 0.020595506291124603
+        "noDosesTotalPerCapita": 0.09326983617416429,
+        "noCompletedVaccinationPerCapita": 0.020916533941326546
       },
       {
         "name": "Tennessee",
@@ -4774,8 +4774,8 @@
         "parentFips": null,
         "code": "TN",
         "cdcDosesDistributedTotal": 838825,
-        "cdcFirstDosesAdministeredTotal": 452042,
-        "cdcFirstDosesAdministeredPerDistributed": 0.538899,
+        "cdcFirstDosesAdministeredTotal": 462646,
+        "cdcFirstDosesAdministeredPerDistributed": 0.551541,
         "noDosesTotal": 486197,
         "noCompletedVaccination": 104487,
         "noDosesTotalPerCdcDistributed": 0.5796167258,
@@ -4793,18 +4793,18 @@
         "parentFips": null,
         "code": "TX",
         "cdcDosesDistributedTotal": 3070825,
-        "cdcFirstDosesAdministeredTotal": 1763299,
-        "cdcFirstDosesAdministeredPerDistributed": 0.57421,
-        "noDosesTotal": 1763299,
-        "noCompletedVaccination": 265786,
-        "noDosesTotalPerCdcDistributed": 0.5742101878,
-        "dateUpdated": "2021-01-24",
+        "cdcFirstDosesAdministeredTotal": 1804006,
+        "cdcFirstDosesAdministeredPerDistributed": 0.587466,
+        "noDosesTotal": 1804006,
+        "noCompletedVaccination": 270118,
+        "noDosesTotalPerCdcDistributed": 0.5874662346,
+        "dateUpdated": "2021-01-25",
         "noVaccinesReceived": 2871700,
         "ap": "Texas",
         "whiteText": true,
         "population": 28995881,
-        "noDosesTotalPerCapita": 0.060812051201341324,
-        "noCompletedVaccinationPerCapita": 0.00916633641861063
+        "noDosesTotalPerCapita": 0.06221594025716963,
+        "noCompletedVaccinationPerCapita": 0.009315736948982512
       },
       {
         "name": "Utah",
@@ -4812,8 +4812,8 @@
         "parentFips": null,
         "code": "UT",
         "cdcDosesDistributedTotal": 341725,
-        "cdcFirstDosesAdministeredTotal": 202729,
-        "cdcFirstDosesAdministeredPerDistributed": 0.593252,
+        "cdcFirstDosesAdministeredTotal": 229007,
+        "cdcFirstDosesAdministeredPerDistributed": 0.67015,
         "noDosesTotal": 229575,
         "noCompletedVaccination": 28602,
         "noDosesTotalPerCdcDistributed": 0.6718121296,
@@ -4831,18 +4831,18 @@
         "parentFips": null,
         "code": "VT",
         "cdcDosesDistributedTotal": 90000,
-        "cdcFirstDosesAdministeredTotal": 51872,
-        "cdcFirstDosesAdministeredPerDistributed": 0.576356,
-        "noDosesTotal": 51872,
-        "noCompletedVaccination": 9942,
-        "noDosesTotalPerCdcDistributed": 0.5763555556,
-        "dateUpdated": "2021-01-24",
+        "cdcFirstDosesAdministeredTotal": 53624,
+        "cdcFirstDosesAdministeredPerDistributed": 0.595822,
+        "noDosesTotal": 53624,
+        "noCompletedVaccination": 10195,
+        "noDosesTotalPerCdcDistributed": 0.5958222222,
+        "dateUpdated": "2021-01-25",
         "noVaccinesReceived": 84800,
         "ap": "Vt.",
         "whiteText": false,
         "population": 623989,
-        "noDosesTotalPerCapita": 0.08312967055508991,
-        "noCompletedVaccinationPerCapita": 0.015932973177411783
+        "noDosesTotalPerCapita": 0.08593741235823067,
+        "noCompletedVaccinationPerCapita": 0.016338429042819666
       },
       {
         "name": "Virginia",
@@ -4850,8 +4850,8 @@
         "parentFips": null,
         "code": "VA",
         "cdcDosesDistributedTotal": 1069725,
-        "cdcFirstDosesAdministeredTotal": 451668,
-        "cdcFirstDosesAdministeredPerDistributed": 0.422228,
+        "cdcFirstDosesAdministeredTotal": 482973,
+        "cdcFirstDosesAdministeredPerDistributed": 0.451493,
         "noDosesTotal": 522853,
         "noCompletedVaccination": 64381,
         "noDosesTotalPerCdcDistributed": 0.4887732829,
@@ -4869,18 +4869,18 @@
         "parentFips": null,
         "code": "WA",
         "cdcDosesDistributedTotal": 846625,
-        "cdcFirstDosesAdministeredTotal": 449385,
-        "cdcFirstDosesAdministeredPerDistributed": 0.530796,
-        "noDosesTotal": 449385,
-        "noCompletedVaccination": 68486,
-        "noDosesTotalPerCdcDistributed": 0.5307958069,
-        "dateUpdated": "2021-01-24",
+        "cdcFirstDosesAdministeredTotal": 488785,
+        "cdcFirstDosesAdministeredPerDistributed": 0.577334,
+        "noDosesTotal": 488785,
+        "noCompletedVaccination": 73738,
+        "noDosesTotalPerCdcDistributed": 0.5773335302,
+        "dateUpdated": "2021-01-25",
         "noVaccinesReceived": 818925,
         "ap": "Wash.",
         "whiteText": true,
         "population": 7614893,
-        "noDosesTotalPerCapita": 0.05901396119420194,
-        "noCompletedVaccinationPerCapita": 0.00899369170387555
+        "noDosesTotalPerCapita": 0.0641880325829923,
+        "noCompletedVaccinationPerCapita": 0.009683392793569128
       },
       {
         "name": "West Virginia",
@@ -4888,8 +4888,8 @@
         "parentFips": null,
         "code": "WV",
         "cdcDosesDistributedTotal": 243100,
-        "cdcFirstDosesAdministeredTotal": 202883,
-        "cdcFirstDosesAdministeredPerDistributed": 0.834566,
+        "cdcFirstDosesAdministeredTotal": 203992,
+        "cdcFirstDosesAdministeredPerDistributed": 0.839128,
         "noDosesTotal": 206616,
         "noCompletedVaccination": 40258,
         "noDosesTotalPerCdcDistributed": 0.8499218429,
@@ -4907,8 +4907,8 @@
         "parentFips": null,
         "code": "WI",
         "cdcDosesDistributedTotal": 610100,
-        "cdcFirstDosesAdministeredTotal": 308290,
-        "cdcFirstDosesAdministeredPerDistributed": 0.505311,
+        "cdcFirstDosesAdministeredTotal": 315876,
+        "cdcFirstDosesAdministeredPerDistributed": 0.517745,
         "noDosesTotal": 345017,
         "noCompletedVaccination": 64364,
         "noDosesTotalPerCdcDistributed": 0.565508933,
@@ -4926,18 +4926,18 @@
         "parentFips": null,
         "code": "WY",
         "cdcDosesDistributedTotal": 70750,
-        "cdcFirstDosesAdministeredTotal": 40803,
-        "cdcFirstDosesAdministeredPerDistributed": 0.576721,
-        "noDosesTotal": 40803,
-        "noCompletedVaccination": 4895,
-        "noDosesTotalPerCdcDistributed": 0.5767208481,
-        "dateUpdated": "2021-01-24",
+        "cdcFirstDosesAdministeredTotal": 41156,
+        "cdcFirstDosesAdministeredPerDistributed": 0.58171,
+        "noDosesTotal": 41156,
+        "noCompletedVaccination": 4900,
+        "noDosesTotalPerCdcDistributed": 0.5817102473,
+        "dateUpdated": "2021-01-25",
         "noVaccinesReceived": 70850,
         "ap": "Wyo.",
         "whiteText": true,
         "population": 578759,
-        "noDosesTotalPerCapita": 0.0705008475030194,
-        "noCompletedVaccinationPerCapita": 0.008457751844895717
+        "noDosesTotalPerCapita": 0.07111077322339696,
+        "noCompletedVaccinationPerCapita": 0.008466391019405314
       },
       {
         "name": "American Samoa",
@@ -4950,7 +4950,7 @@
         "noDosesTotal": 8046,
         "noCompletedVaccination": 948,
         "noDosesTotalPerCdcDistributed": 0.436097561,
-        "dateUpdated": "2021-01-24",
+        "dateUpdated": "2021-01-25",
         "noVaccinesReceived": null,
         "ap": "A.S.",
         "whiteText": null,
@@ -4963,13 +4963,13 @@
         "fips": "64",
         "parentFips": null,
         "code": "FM",
-        "cdcDosesDistributedTotal": 13600,
-        "cdcFirstDosesAdministeredTotal": 2752,
+        "cdcDosesDistributedTotal": 19400,
+        "cdcFirstDosesAdministeredTotal": 2758,
         "cdcFirstDosesAdministeredPerDistributed": null,
-        "noDosesTotal": 2752,
+        "noDosesTotal": 2758,
         "noCompletedVaccination": 3,
-        "noDosesTotalPerCdcDistributed": 0.2023529412,
-        "dateUpdated": "2021-01-24",
+        "noDosesTotalPerCdcDistributed": 0.1421649485,
+        "dateUpdated": "2021-01-25",
         "noVaccinesReceived": null,
         "ap": "",
         "whiteText": null,
@@ -5006,7 +5006,7 @@
         "noDosesTotal": 3098,
         "noCompletedVaccination": 3,
         "noDosesTotalPerCdcDistributed": 0.2277941176,
-        "dateUpdated": "2021-01-24",
+        "dateUpdated": "2021-01-25",
         "noVaccinesReceived": null,
         "ap": "",
         "whiteText": null,
@@ -5019,17 +5019,17 @@
         "parentFips": null,
         "code": "MP",
         "cdcDosesDistributedTotal": 18650,
-        "cdcFirstDosesAdministeredTotal": 8390,
-        "cdcFirstDosesAdministeredPerDistributed": 0.449866,
-        "noDosesTotal": 8390,
+        "cdcFirstDosesAdministeredTotal": 8495,
+        "cdcFirstDosesAdministeredPerDistributed": 0.455496,
+        "noDosesTotal": 8495,
         "noCompletedVaccination": 3017,
-        "noDosesTotalPerCdcDistributed": 0.4498659517,
-        "dateUpdated": "2021-01-24",
+        "noDosesTotalPerCdcDistributed": 0.4554959786,
+        "dateUpdated": "2021-01-25",
         "noVaccinesReceived": null,
         "ap": "N.M.I.",
         "whiteText": null,
         "population": 51433,
-        "noDosesTotalPerCapita": 0.16312484202749208,
+        "noDosesTotalPerCapita": 0.16516633289911148,
         "noCompletedVaccinationPerCapita": 0.05865883771119709
       },
       {
@@ -5056,10 +5056,10 @@
         "parentFips": null,
         "code": "PR",
         "cdcDosesDistributedTotal": 371550,
-        "cdcFirstDosesAdministeredTotal": 184173,
-        "cdcFirstDosesAdministeredPerDistributed": 0.495688,
+        "cdcFirstDosesAdministeredTotal": 187617,
+        "cdcFirstDosesAdministeredPerDistributed": 0.504958,
         "noDosesTotal": 321965,
-        "noCompletedVaccination": 39016,
+        "noCompletedVaccination": 39384,
         "noDosesTotalPerCdcDistributed": 0.8665455524,
         "dateUpdated": "2021-01-25",
         "noVaccinesReceived": 352050,
@@ -5067,26 +5067,26 @@
         "whiteText": false,
         "population": 3193694,
         "noDosesTotalPerCapita": 0.10081272657931536,
-        "noCompletedVaccinationPerCapita": 0.012216574286703736
+        "noCompletedVaccinationPerCapita": 0.012331801356047261
       },
       {
         "name": "U.S. Virgin Islands",
         "fips": "78",
         "parentFips": null,
         "code": "VI",
-        "cdcDosesDistributedTotal": 13525,
-        "cdcFirstDosesAdministeredTotal": 3378,
-        "cdcFirstDosesAdministeredPerDistributed": 0.24976,
-        "noDosesTotal": 3378,
-        "noCompletedVaccination": 409,
-        "noDosesTotalPerCdcDistributed": 0.2497597043,
-        "dateUpdated": "2021-01-24",
+        "cdcDosesDistributedTotal": 14500,
+        "cdcFirstDosesAdministeredTotal": 3399,
+        "cdcFirstDosesAdministeredPerDistributed": 0.234414,
+        "noDosesTotal": 3399,
+        "noCompletedVaccination": 415,
+        "noDosesTotalPerCdcDistributed": 0.2344137931,
+        "dateUpdated": "2021-01-25",
         "noVaccinesReceived": 4825,
         "ap": "V.I.",
         "whiteText": null,
         "population": 106235,
-        "noDosesTotalPerCapita": 0.03179743022544359,
-        "noCompletedVaccinationPerCapita": 0.0038499552878053372
+        "noDosesTotalPerCapita": 0.03199510519132113,
+        "noCompletedVaccinationPerCapita": 0.003906433849484633
       },
       {
         "name": "Bureau of Prisons",
@@ -5094,12 +5094,12 @@
         "parentFips": "99",
         "code": "bureau-of-prisons",
         "cdcDosesDistributedTotal": 24750,
-        "cdcFirstDosesAdministeredTotal": 24082,
-        "cdcFirstDosesAdministeredPerDistributed": 0.97301,
-        "noDosesTotal": 24082,
-        "noCompletedVaccination": 5044,
-        "noDosesTotalPerCdcDistributed": 0.973010101,
-        "dateUpdated": "2021-01-24",
+        "cdcFirstDosesAdministeredTotal": 24360,
+        "cdcFirstDosesAdministeredPerDistributed": 0.984242,
+        "noDosesTotal": 24360,
+        "noCompletedVaccination": 5301,
+        "noDosesTotalPerCdcDistributed": 0.9842424242,
+        "dateUpdated": "2021-01-25",
         "noVaccinesReceived": null
       },
       {
@@ -5108,12 +5108,12 @@
         "parentFips": "99",
         "code": "dept-of-defense",
         "cdcDosesDistributedTotal": 677025,
-        "cdcFirstDosesAdministeredTotal": 336450,
-        "cdcFirstDosesAdministeredPerDistributed": 0.496954,
-        "noDosesTotal": 336450,
-        "noCompletedVaccination": 34204,
-        "noDosesTotalPerCdcDistributed": 0.4969535837,
-        "dateUpdated": "2021-01-24",
+        "cdcFirstDosesAdministeredTotal": 346180,
+        "cdcFirstDosesAdministeredPerDistributed": 0.511325,
+        "noDosesTotal": 346180,
+        "noCompletedVaccination": 35570,
+        "noDosesTotalPerCdcDistributed": 0.5113252834,
+        "dateUpdated": "2021-01-25",
         "noVaccinesReceived": null
       },
       {
@@ -5122,12 +5122,12 @@
         "parentFips": null,
         "code": "federal-entities",
         "cdcDosesDistributedTotal": 2211150,
-        "cdcFirstDosesAdministeredTotal": 1178561,
-        "cdcFirstDosesAdministeredPerDistributed": 0.533008,
-        "noDosesTotal": 1178561,
-        "noCompletedVaccination": 162219,
-        "noDosesTotalPerCdcDistributed": 0.5330081632,
-        "dateUpdated": "2021-01-24",
+        "cdcFirstDosesAdministeredTotal": 1228848,
+        "cdcFirstDosesAdministeredPerDistributed": 0.555751,
+        "noDosesTotal": 1228848,
+        "noCompletedVaccination": 166412,
+        "noDosesTotalPerCdcDistributed": 0.5557506275,
+        "dateUpdated": "2021-01-25",
         "noVaccinesReceived": null,
         "ap": "",
         "whiteText": null,
@@ -5140,12 +5140,12 @@
         "parentFips": "99",
         "code": "indian-health-service",
         "cdcDosesDistributedTotal": 357850,
-        "cdcFirstDosesAdministeredTotal": 153784,
-        "cdcFirstDosesAdministeredPerDistributed": 0.429744,
-        "noDosesTotal": 153784,
-        "noCompletedVaccination": 23643,
-        "noDosesTotalPerCdcDistributed": 0.4297443063,
-        "dateUpdated": "2021-01-24",
+        "cdcFirstDosesAdministeredTotal": 155529,
+        "cdcFirstDosesAdministeredPerDistributed": 0.434621,
+        "noDosesTotal": 155529,
+        "noCompletedVaccination": 24145,
+        "noDosesTotalPerCdcDistributed": 0.4346206511,
+        "dateUpdated": "2021-01-25",
         "noVaccinesReceived": null
       },
       {
@@ -5154,12 +5154,12 @@
         "parentFips": "99",
         "code": "veterans-health",
         "cdcDosesDistributedTotal": 1151525,
-        "cdcFirstDosesAdministeredTotal": 664245,
-        "cdcFirstDosesAdministeredPerDistributed": 0.576839,
-        "noDosesTotal": 664245,
-        "noCompletedVaccination": 99328,
-        "noDosesTotalPerCdcDistributed": 0.5768394086,
-        "dateUpdated": "2021-01-24",
+        "cdcFirstDosesAdministeredTotal": 702779,
+        "cdcFirstDosesAdministeredPerDistributed": 0.610303,
+        "noDosesTotal": 702779,
+        "noCompletedVaccination": 101396,
+        "noDosesTotalPerCdcDistributed": 0.6103028593,
+        "dateUpdated": "2021-01-25",
         "noVaccinesReceived": null
       }
     ]
@@ -5318,7 +5318,7 @@
           ],
           [
             "2021-01-25",
-            23119449
+            23461494
           ]
         ],
         "CAN-ON": [
@@ -9476,7 +9476,7 @@
           ],
           [
             "2021-01-25",
-            67811818
+            68153863
           ]
         ]
       }
@@ -9735,6 +9735,10 @@
           [
             "2021-01-24",
             218951
+          ],
+          [
+            "2021-01-25",
+            221095
           ]
         ],
         "CA": [
@@ -9931,6 +9935,10 @@
           [
             "2021-01-24",
             445251
+          ],
+          [
+            "2021-01-25",
+            447880
           ]
         ],
         "CT": [
@@ -10005,6 +10013,10 @@
           [
             "2021-01-24",
             321737
+          ],
+          [
+            "2021-01-25",
+            331264
           ]
         ],
         "DE": [
@@ -10621,6 +10633,10 @@
           [
             "2021-01-24",
             699072
+          ],
+          [
+            "2021-01-25",
+            723203
           ]
         ],
         "chicago": [
@@ -10811,6 +10827,10 @@
           [
             "2021-01-24",
             191183
+          ],
+          [
+            "2021-01-25",
+            196203
           ]
         ],
         "LA": [
@@ -10889,6 +10909,10 @@
           [
             "2021-01-24",
             334086
+          ],
+          [
+            "2021-01-25",
+            341447
           ]
         ],
         "ME": [
@@ -11093,6 +11117,10 @@
           [
             "2021-01-24",
             419806
+          ],
+          [
+            "2021-01-25",
+            433615
           ]
         ],
         "MI": [
@@ -11284,7 +11312,7 @@
           ],
           [
             "2021-01-25",
-            335477
+            346864
           ]
         ],
         "MS": [
@@ -11527,6 +11555,10 @@
           [
             "2021-01-24",
             76590
+          ],
+          [
+            "2021-01-25",
+            77356
           ]
         ],
         "NE": [
@@ -11687,6 +11719,10 @@
           [
             "2021-01-24",
             93338
+          ],
+          [
+            "2021-01-25",
+            94623
           ]
         ],
         "NJ": [
@@ -11867,6 +11903,10 @@
           [
             "2021-01-24",
             203830
+          ],
+          [
+            "2021-01-25",
+            204670
           ]
         ],
         "NY": [
@@ -12185,6 +12225,10 @@
           [
             "2021-01-24",
             636439
+          ],
+          [
+            "2021-01-25",
+            676037
           ]
         ],
         "ND": [
@@ -12266,7 +12310,7 @@
           ],
           [
             "2021-01-25",
-            74641
+            75242
           ]
         ],
         "OH": [
@@ -12393,6 +12437,10 @@
           [
             "2021-01-24",
             647104
+          ],
+          [
+            "2021-01-25",
+            685622
           ]
         ],
         "OK": [
@@ -12467,6 +12515,10 @@
           [
             "2021-01-24",
             322810
+          ],
+          [
+            "2021-01-25",
+            326546
           ]
         ],
         "OR": [
@@ -12871,6 +12923,10 @@
           [
             "2021-01-24",
             278795
+          ],
+          [
+            "2021-01-25",
+            307348
           ]
         ],
         "SD": [
@@ -12981,6 +13037,10 @@
           [
             "2021-01-24",
             80441
+          ],
+          [
+            "2021-01-25",
+            82512
           ]
         ],
         "TN": [
@@ -13157,6 +13217,10 @@
           [
             "2021-01-24",
             1763299
+          ],
+          [
+            "2021-01-25",
+            1804006
           ]
         ],
         "UT": [
@@ -13361,6 +13425,10 @@
           [
             "2021-01-24",
             51872
+          ],
+          [
+            "2021-01-25",
+            53624
           ]
         ],
         "WA": [
@@ -13435,6 +13503,10 @@
           [
             "2021-01-24",
             449385
+          ],
+          [
+            "2021-01-25",
+            488785
           ]
         ],
         "WV": [
@@ -13869,6 +13941,10 @@
           [
             "2021-01-24",
             299493
+          ],
+          [
+            "2021-01-25",
+            307462
           ]
         ],
         "WY": [
@@ -13971,6 +14047,10 @@
           [
             "2021-01-24",
             40803
+          ],
+          [
+            "2021-01-25",
+            41156
           ]
         ],
         "": [
@@ -14098,7 +14178,7 @@
           ],
           [
             "2021-01-25",
-            23119449
+            23461494
           ]
         ],
         "KS": [
@@ -14247,6 +14327,10 @@
           [
             "2021-01-24",
             1178561
+          ],
+          [
+            "2021-01-25",
+            1228848
           ]
         ],
         "indian-health-service": [
@@ -14317,6 +14401,10 @@
           [
             "2021-01-24",
             153784
+          ],
+          [
+            "2021-01-25",
+            155529
           ]
         ],
         "MD": [
@@ -14717,6 +14805,10 @@
           [
             "2021-01-24",
             62391
+          ],
+          [
+            "2021-01-25",
+            64194
           ]
         ],
         "NV": [
@@ -14783,6 +14875,10 @@
           [
             "2021-01-24",
             152203
+          ],
+          [
+            "2021-01-25",
+            159869
           ]
         ],
         "AS": [
@@ -14844,6 +14940,10 @@
           ],
           [
             "2021-01-24",
+            8046
+          ],
+          [
+            "2021-01-25",
             8046
           ]
         ],
@@ -14907,6 +15007,10 @@
           [
             "2021-01-24",
             8390
+          ],
+          [
+            "2021-01-25",
+            8495
           ]
         ],
         "VI": [
@@ -14965,6 +15069,10 @@
           [
             "2021-01-24",
             3378
+          ],
+          [
+            "2021-01-25",
+            3399
           ]
         ],
         "FM": [
@@ -15027,6 +15135,10 @@
           [
             "2021-01-24",
             2752
+          ],
+          [
+            "2021-01-25",
+            2758
           ]
         ],
         "MH": [
@@ -15084,6 +15196,10 @@
           ],
           [
             "2021-01-24",
+            3098
+          ],
+          [
+            "2021-01-25",
             3098
           ]
         ],
@@ -15143,6 +15259,10 @@
           [
             "2021-01-24",
             24082
+          ],
+          [
+            "2021-01-25",
+            24360
           ]
         ],
         "dept-of-defense": [
@@ -15205,6 +15325,10 @@
           [
             "2021-01-24",
             336450
+          ],
+          [
+            "2021-01-25",
+            346180
           ]
         ],
         "veterans-health": [
@@ -15267,6 +15391,10 @@
           [
             "2021-01-24",
             664245
+          ],
+          [
+            "2021-01-25",
+            702779
           ]
         ],
         "PW": [
@@ -15474,7 +15602,7 @@
           ],
           [
             "2021-01-25",
-            23119449
+            23461494
           ]
         ]
       }
@@ -15689,8 +15817,8 @@
       ],
       [
         "2021-01-25",
-        2062093,
-        3394362.7031746046
+        2404138,
+        3443226.274603176
       ]
     ],
     "usa": {
@@ -16008,6 +16136,11 @@
           "2021-01-24",
           17275,
           11663.42857142857
+        ],
+        [
+          "2021-01-25",
+          2144,
+          11505.142857142857
         ]
       ],
       "CA": [
@@ -16252,6 +16385,11 @@
           "2021-01-24",
           41355,
           19544.285714285714
+        ],
+        [
+          "2021-01-25",
+          2629,
+          17834.714285714286
         ]
       ],
       "CT": [
@@ -16344,6 +16482,11 @@
           "2021-01-24",
           14941,
           15096.777777777777
+        ],
+        [
+          "2021-01-25",
+          9527,
+          14539.8
         ]
       ],
       "DE": [
@@ -17111,6 +17254,11 @@
           "2021-01-24",
           41252,
           30290.285714285714
+        ],
+        [
+          "2021-01-25",
+          24131,
+          32520
         ]
       ],
       "chicago": [
@@ -17347,6 +17495,11 @@
           "2021-01-24",
           11073,
           7267.444444444444
+        ],
+        [
+          "2021-01-25",
+          5020,
+          7655.571428571428
         ]
       ],
       "LA": [
@@ -17444,6 +17597,11 @@
           "2021-01-24",
           19063,
           13270.9
+        ],
+        [
+          "2021-01-25",
+          7361,
+          12733.636363636364
         ]
       ],
       "ME": [
@@ -17698,6 +17856,11 @@
           "2021-01-24",
           26839,
           18070.11111111111
+        ],
+        [
+          "2021-01-25",
+          13809,
+          17644
         ]
       ],
       "MI": [
@@ -17935,8 +18098,8 @@
         ],
         [
           "2021-01-25",
-          14297,
-          13791.714285714286
+          25684,
+          15418.42857142857
         ]
       ],
       "MS": [
@@ -18238,6 +18401,11 @@
           "2021-01-24",
           4046,
           2843.3333333333335
+        ],
+        [
+          "2021-01-25",
+          766,
+          2635.6
         ]
       ],
       "NE": [
@@ -18437,6 +18605,11 @@
           "2021-01-24",
           3522,
           3424.5555555555557
+        ],
+        [
+          "2021-01-25",
+          1285,
+          3210.6
         ]
       ],
       "NJ": [
@@ -18661,6 +18834,11 @@
           "2021-01-24",
           17907,
           10597.111111111111
+        ],
+        [
+          "2021-01-25",
+          840,
+          9591.285714285714
         ]
       ],
       "NY": [
@@ -19057,6 +19235,11 @@
           "2021-01-24",
           59432,
           31024.1
+        ],
+        [
+          "2021-01-25",
+          39598,
+          31803.545454545456
         ]
       ],
       "ND": [
@@ -19157,8 +19340,8 @@
         ],
         [
           "2021-01-25",
-          586,
-          2168.6
+          1187,
+          2228.7
         ]
       ],
       "OH": [
@@ -19316,6 +19499,11 @@
           "2021-01-24",
           52180,
           30275.285714285714
+        ],
+        [
+          "2021-01-25",
+          38518,
+          34442.57142857143
         ]
       ],
       "OK": [
@@ -19408,6 +19596,11 @@
           "2021-01-24",
           18004,
           13266.666666666666
+        ],
+        [
+          "2021-01-25",
+          3736,
+          12313.6
         ]
       ],
       "OR": [
@@ -19911,6 +20104,11 @@
           "2021-01-24",
           10911,
           17223.285714285714
+        ],
+        [
+          "2021-01-25",
+          28553,
+          20506.85714285714
         ]
       ],
       "SD": [
@@ -20048,6 +20246,11 @@
           "2021-01-24",
           3241,
           2593.1111111111113
+        ],
+        [
+          "2021-01-25",
+          2071,
+          3627.285714285714
         ]
       ],
       "TN": [
@@ -20267,6 +20470,11 @@
           "2021-01-24",
           35430,
           69498.71428571429
+        ],
+        [
+          "2021-01-25",
+          40707,
+          65899.75
         ]
       ],
       "UT": [
@@ -20521,6 +20729,11 @@
           "2021-01-24",
           161,
           1717.2
+        ],
+        [
+          "2021-01-25",
+          1752,
+          2703.4285714285716
         ]
       ],
       "WA": [
@@ -20613,6 +20826,11 @@
           "2021-01-24",
           12388,
           22975.444444444445
+        ],
+        [
+          "2021-01-25",
+          39400,
+          24617.9
         ]
       ],
       "WV": [
@@ -21153,6 +21371,11 @@
           "2021-01-24",
           28533,
           12105.111111111111
+        ],
+        [
+          "2021-01-25",
+          7969,
+          13413.57142857143
         ]
       ],
       "WY": [
@@ -21280,6 +21503,11 @@
           "2021-01-24",
           3244,
           2034.2857142857142
+        ],
+        [
+          "2021-01-25",
+          353,
+          1824.125
         ]
       ],
       "": [
@@ -21437,8 +21665,8 @@
         ],
         [
           "2021-01-25",
-          722776,
-          1201752.142857143
+          1064821,
+          1250615.7142857143
         ]
       ],
       "KS": [
@@ -21623,6 +21851,11 @@
           "2021-01-24",
           76381,
           61375
+        ],
+        [
+          "2021-01-25",
+          50287,
+          60266.2
         ]
       ],
       "indian-health-service": [
@@ -21710,6 +21943,11 @@
           "2021-01-24",
           10106,
           7059.888888888889
+        ],
+        [
+          "2021-01-25",
+          1745,
+          6528.4
         ]
       ],
       "MD": [
@@ -22208,6 +22446,11 @@
           "2021-01-24",
           2598,
           2495.222222222222
+        ],
+        [
+          "2021-01-25",
+          1803,
+          2426
         ]
       ],
       "NV": [
@@ -22290,6 +22533,11 @@
           "2021-01-24",
           15172,
           7614.333333333333
+        ],
+        [
+          "2021-01-25",
+          7666,
+          7619.5
         ]
       ],
       "AS": [
@@ -22367,6 +22615,11 @@
           "2021-01-24",
           1215,
           462.55555555555554
+        ],
+        [
+          "2021-01-25",
+          0,
+          416.3
         ]
       ],
       "MP": [
@@ -22444,6 +22697,11 @@
           "2021-01-24",
           351,
           386.77777777777777
+        ],
+        [
+          "2021-01-25",
+          105,
+          358.6
         ]
       ],
       "VI": [
@@ -22516,6 +22774,11 @@
           "2021-01-24",
           23,
           194.11111111111111
+        ],
+        [
+          "2021-01-25",
+          21,
+          176.8
         ]
       ],
       "FM": [
@@ -22593,6 +22856,11 @@
           "2021-01-24",
           0,
           223.55555555555554
+        ],
+        [
+          "2021-01-25",
+          6,
+          201.8
         ]
       ],
       "MH": [
@@ -22665,6 +22933,11 @@
           "2021-01-24",
           225,
           271.1111111111111
+        ],
+        [
+          "2021-01-25",
+          0,
+          244
         ]
       ],
       "bureau-of-prisons": [
@@ -22737,6 +23010,11 @@
           "2021-01-24",
           737,
           821.8888888888889
+        ],
+        [
+          "2021-01-25",
+          278,
+          767.5
         ]
       ],
       "dept-of-defense": [
@@ -22814,6 +23092,11 @@
           "2021-01-24",
           24883,
           14996.111111111111
+        ],
+        [
+          "2021-01-25",
+          9730,
+          14469.5
         ]
       ],
       "veterans-health": [
@@ -22891,6 +23174,11 @@
           "2021-01-24",
           40655,
           38497.11111111111
+        ],
+        [
+          "2021-01-25",
+          38534,
+          38500.8
         ]
       ],
       "PW": [
@@ -23148,8 +23436,8 @@
         ],
         [
           "2021-01-25",
-          722776,
-          1201752.142857143
+          1064821,
+          1250615.7142857143
         ]
       ]
     },
@@ -23342,8 +23630,8 @@
         ],
         [
           "2021-01-25",
-          722776,
-          1201752.142857143
+          1064821,
+          1250615.7142857143
         ]
       ],
       "CAN-ON": [
@@ -28502,8 +28790,8 @@
         ],
         [
           "2021-01-25",
-          2062093,
-          3486687.8571428573
+          2404138,
+          3535551.4285714286
         ]
       ]
     }
