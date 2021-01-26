@@ -373,8 +373,8 @@
     "01/22/2021": 59395,
     "01/23/2021": 59395,
     "01/24/2021": 59395,
-    "01/25/2021": 59395,
-    "01/26/2021": 59395
+    "01/25/2021": 59665,
+    "01/26/2021": 59665
   },
   "Death": {
     "01/22/2020": 0,
@@ -746,8 +746,8 @@
     "01/22/2021": 808,
     "01/23/2021": 808,
     "01/24/2021": 808,
-    "01/25/2021": 808,
-    "01/26/2021": 808
+    "01/25/2021": 835,
+    "01/26/2021": 835
   },
   "beds": 1267,
   "bedsICU": 110,
@@ -2569,13 +2569,13 @@
       "icu_covid_patients": 87
     }
   ],
-  "LastConfirmed": 59395,
-  "LastDeath": 808,
+  "LastConfirmed": 59665,
+  "LastDeath": 835,
   "LastConfirmedNew": 0,
   "LastDeathNew": 0,
-  "DaysToDouble": 242.42081958002015,
-  "DaysToDoubleDeath": 143.3158102687085,
-  "Last2WeeksConfirmedDelta": 7468,
+  "DaysToDouble": 207.205087715219,
+  "DaysToDoubleDeath": 82.92968392628637,
+  "Last2WeeksConfirmedDelta": 7738,
   "StayHomeOrder": {
     "StartUrl": "https://www.sjgov.org/covid19/Press_Release_New_Order_by_PHO_and_DirEmergSvc_3-26-2020.pdf",
     "StartDate": "2020-03-21T00:00:00Z",
