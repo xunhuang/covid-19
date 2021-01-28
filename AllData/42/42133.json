@@ -375,7 +375,8 @@
     "01/24/2021": 30002,
     "01/25/2021": 30224,
     "01/26/2021": 30363,
-    "01/27/2021": 30646
+    "01/27/2021": 30646,
+    "01/28/2021": 30646
   },
   "Death": {
     "01/22/2020": 0,
@@ -749,7 +750,8 @@
     "01/24/2021": 604,
     "01/25/2021": 606,
     "01/26/2021": 616,
-    "01/27/2021": 623
+    "01/27/2021": 623,
+    "01/28/2021": 623
   },
   "beds": 962,
   "bedsICU": 70,
@@ -758,10 +760,10 @@
   "Population": 434972,
   "LastConfirmed": 30646,
   "LastDeath": 623,
-  "LastConfirmedNew": 283,
-  "LastDeathNew": 7,
-  "DaysToDouble": 100.72566003794977,
-  "DaysToDoubleDeath": 48.331763167467905,
+  "LastConfirmedNew": 0,
+  "LastDeathNew": 0,
+  "DaysToDouble": 101.0749610596997,
+  "DaysToDoubleDeath": 54.863946846228714,
   "Last2WeeksConfirmedDelta": 3641,
   "StayHomeOrder": {
     "StartUrl": "https://www.governor.pa.gov/newsroom/governor-wolf-and-health-secretary-expand-stay-at-home-order-to-nine-more-counties-to-mitigate-spread-of-covid-19-counties-now-total-19/",

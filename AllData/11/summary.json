@@ -13,11 +13,11 @@
     "Population": 601723,
     "LastConfirmed": 35865,
     "LastDeath": 895,
-    "LastConfirmedNew": 165,
-    "LastDeathNew": 7,
-    "DaysToDouble": 112.02498865694874,
-    "DaysToDoubleDeath": 154.2213701788742,
-    "Last2WeeksConfirmedDelta": 3707,
+    "LastConfirmedNew": 0,
+    "LastDeathNew": 0,
+    "DaysToDouble": 118.44805813404832,
+    "DaysToDoubleDeath": 118.40713280171802,
+    "Last2WeeksConfirmedDelta": 3442,
     "StayHomeOrder": {
       "StartUrl": "https://apnews.com/5abcb144b6d0f106436e67c7930a5243",
       "StartDate": "2020-04-01T00:00:00Z",
@@ -842,7 +842,8 @@
       "12/29/2020": 6825,
       "12/31/2020": 43825,
       "01/01/2021": 43825,
-      "01/03/2021": 43825
+      "01/03/2021": 43825,
+      "01/28/2021": 53100
     },
     "doses_admin_total": {
       "12/11/2020": 0,
@@ -892,7 +893,8 @@
       "12/29/2020": 0,
       "12/31/2020": 11370,
       "01/01/2021": 11370,
-      "01/03/2021": 15072
+      "01/03/2021": 15072,
+      "01/28/2021": 41053
     },
     "doses_shipped_total": {
       "12/11/2020": 0,
@@ -942,7 +944,8 @@
       "12/29/2020": 0,
       "12/31/2020": 22700,
       "01/01/2021": 22700,
-      "01/03/2021": 22700
+      "01/03/2021": 22700,
+      "01/28/2021": 107575
     },
     "doses_alloc_total_Last": 53100,
     "doses_admin_total_Last": 41053,

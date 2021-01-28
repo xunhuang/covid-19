@@ -28,11 +28,11 @@
     "Population": 185079,
     "LastConfirmed": 2159,
     "LastDeath": 53,
-    "LastConfirmedNew": 3,
+    "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 244.17848057235244,
-    "DaysToDoubleDeath": 34.85497481593973,
-    "Last2WeeksConfirmedDelta": 107,
+    "DaysToDouble": 338.73705556861336,
+    "DaysToDoubleDeath": 23.10144009784182,
+    "Last2WeeksConfirmedDelta": 106,
     "Recovered": null
   },
   "15003": {
@@ -49,11 +49,11 @@
     "Population": 953207,
     "LastConfirmed": 20813,
     "LastDeath": 322,
-    "LastConfirmedNew": 64,
-    "LastDeathNew": 2,
-    "DaysToDouble": 155.59996266622449,
-    "DaysToDoubleDeath": 23.864444790079784,
-    "Last2WeeksConfirmedDelta": 1296,
+    "LastConfirmedNew": 0,
+    "LastDeathNew": 0,
+    "DaysToDouble": 163.9673975378661,
+    "DaysToDoubleDeath": 17.914890264818514,
+    "Last2WeeksConfirmedDelta": 1277,
     "StayHomeOrder": {
       "StartUrl": "https://www.staradvertiser.com/2020/03/22/breaking-news/watch-live-honolulu-mayor-kirk-caldwell-discusses-coronavirus/",
       "StartDate": "2020-03-23T00:00:00Z",
@@ -95,7 +95,7 @@
     "LastDeath": 1,
     "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 345.46092028087116,
+    "DaysToDouble": 384.2052115786085,
     "DaysToDoubleDeath": null,
     "Last2WeeksConfirmedDelta": 11,
     "Recovered": null
@@ -114,11 +114,11 @@
     "Population": 154834,
     "LastConfirmed": 2215,
     "LastDeath": 25,
-    "LastConfirmedNew": 27,
-    "LastDeathNew": 1,
-    "DaysToDouble": 51.934565182678774,
-    "DaysToDoubleDeath": 48.44833531705513,
-    "Last2WeeksConfirmedDelta": 396,
+    "LastConfirmedNew": 0,
+    "LastDeathNew": 0,
+    "DaysToDouble": 59.29431336739166,
+    "DaysToDoubleDeath": 24.56341906933085,
+    "Last2WeeksConfirmedDelta": 402,
     "StayHomeOrder": {
       "StartUrl": "https://www.mauinews.com/news/local-news/2020/03/ige-takes-stay-at-home-mandate-statewide/",
       "StartDate": "2020-03-25T00:00:00Z",
@@ -939,7 +939,8 @@
       "01/24/2021": 101700,
       "01/25/2021": 101700,
       "01/26/2021": 101700,
-      "01/27/2021": 101700
+      "01/27/2021": 101700,
+      "01/28/2021": 101700
     },
     "doses_admin_total": {
       "12/15/2020": 0,
@@ -985,7 +986,8 @@
       "01/24/2021": 94003,
       "01/25/2021": 94003,
       "01/26/2021": 94003,
-      "01/27/2021": 109808
+      "01/27/2021": 109808,
+      "01/28/2021": 109808
     },
     "doses_shipped_total": {
       "12/15/2020": 0,
@@ -1031,7 +1033,8 @@
       "01/24/2021": 191575,
       "01/25/2021": 191575,
       "01/26/2021": 217425,
-      "01/27/2021": 217425
+      "01/27/2021": 217425,
+      "01/28/2021": 217425
     },
     "doses_alloc_total_Last": 101700,
     "doses_admin_total_Last": 109808,
