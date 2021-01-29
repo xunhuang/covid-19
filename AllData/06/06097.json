@@ -376,7 +376,8 @@
     "01/25/2021": 25141,
     "01/26/2021": 25160,
     "01/27/2021": 25536,
-    "01/28/2021": 25536
+    "01/28/2021": 25536,
+    "01/29/2021": 25678
   },
   "Death": {
     "01/22/2020": 0,
@@ -751,7 +752,8 @@
     "01/25/2021": 251,
     "01/26/2021": 251,
     "01/27/2021": 254,
-    "01/28/2021": 260
+    "01/28/2021": 260,
+    "01/29/2021": 260
   },
   "beds": 827,
   "bedsICU": 82,
@@ -2591,13 +2593,13 @@
       "icu_covid_patients": 22
     }
   ],
-  "LastConfirmed": 25536,
+  "LastConfirmed": 25678,
   "LastDeath": 260,
-  "LastConfirmedNew": 0,
-  "LastDeathNew": 6,
-  "DaysToDouble": 101.79767682731004,
-  "DaysToDoubleDeath": 112.39211560393315,
-  "Last2WeeksConfirmedDelta": 3345,
+  "LastConfirmedNew": 142,
+  "LastDeathNew": 0,
+  "DaysToDouble": 104.23894414403904,
+  "DaysToDoubleDeath": 77.56214320894351,
+  "Last2WeeksConfirmedDelta": 3005,
   "StayHomeOrder": {
     "StartUrl": "http://sonomacounty.ca.gov/CAO/Press-Releases/Health-Officer-Orders-County-Residents-Shelter-in-Place/",
     "StartDate": "2020-03-18T00:00:00Z",

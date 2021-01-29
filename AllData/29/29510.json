@@ -376,7 +376,8 @@
     "01/25/2021": 19942,
     "01/26/2021": 19947,
     "01/27/2021": 20009,
-    "01/28/2021": 20009
+    "01/28/2021": 20009,
+    "01/29/2021": 20061
   },
   "Death": {
     "01/22/2020": 0,
@@ -751,20 +752,21 @@
     "01/25/2021": 345,
     "01/26/2021": 346,
     "01/27/2021": 348,
-    "01/28/2021": 348
+    "01/28/2021": 348,
+    "01/29/2021": 348
   },
   "beds": 2511,
   "bedsICU": 196,
   "hospitals": 11,
   "bedsAvail": 715,
   "Population": 319294,
-  "LastConfirmed": 20009,
+  "LastConfirmed": 20061,
   "LastDeath": 348,
-  "LastConfirmedNew": 0,
+  "LastConfirmedNew": 52,
   "LastDeathNew": 0,
-  "DaysToDouble": 394.6682871815805,
-  "DaysToDoubleDeath": 230.5258950551534,
-  "Last2WeeksConfirmedDelta": 1072,
+  "DaysToDouble": 558.3714666819913,
+  "DaysToDoubleDeath": 239.4040006415615,
+  "Last2WeeksConfirmedDelta": 981,
   "StayHomeOrder": {
     "StartUrl": "https://www.kmov.com/news/st-louis-city-county-stay-at-home-orders-go-into/article_4119cbdc-6b91-11ea-8be5-2b26bdc82689.html",
     "StartDate": "2020-03-23T00:00:00Z",

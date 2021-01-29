@@ -376,7 +376,8 @@
     "01/25/2021": 8184,
     "01/26/2021": 8245,
     "01/27/2021": 8245,
-    "01/28/2021": 8268
+    "01/28/2021": 8268,
+    "01/29/2021": 8323
   },
   "Death": {
     "01/22/2020": 0,
@@ -751,7 +752,8 @@
     "01/25/2021": 62,
     "01/26/2021": 66,
     "01/27/2021": 66,
-    "01/28/2021": 71
+    "01/28/2021": 71,
+    "01/29/2021": 74
   },
   "beds": 190,
   "bedsICU": 28,
@@ -2591,13 +2593,13 @@
       "icu_covid_patients": 6
     }
   ],
-  "LastConfirmed": 8268,
-  "LastDeath": 71,
-  "LastConfirmedNew": 23,
-  "LastDeathNew": 5,
-  "DaysToDouble": 101.08245094899749,
-  "DaysToDoubleDeath": 20.825951348581157,
-  "Last2WeeksConfirmedDelta": 1023,
+  "LastConfirmed": 8323,
+  "LastDeath": 74,
+  "LastConfirmedNew": 55,
+  "LastDeathNew": 3,
+  "DaysToDouble": 103.3172683530242,
+  "DaysToDoubleDeath": 21.7633705644717,
+  "Last2WeeksConfirmedDelta": 942,
   "StayHomeOrder": {
     "StartUrl": "https://www.edcgov.us/County%20Press%20Releases/Pages/County-Issues-Shelter-in-Place-Directive.aspx",
     "StartDate": "2020-03-20T00:00:00Z",
