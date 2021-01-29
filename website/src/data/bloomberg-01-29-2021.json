@@ -1584,6 +1584,7 @@
         "slug": "nvax",
         "order": 4,
         "dosesNeeded": 2,
+        "linkEfficacyWeb": "https://www.bloomberg.com/news/articles/2021-01-28/novavax-shot-more-effective-in-u-k-than-in-south-africa-trial",
         "failedRegulatoryApproval": null,
         "goalEnrollment": 45000,
         "trialDetail": "UK phase 3 + US P3",
@@ -1656,6 +1657,7 @@
         "slug": "jnj",
         "order": 6,
         "dosesNeeded": 1,
+        "linkEfficacyWeb": "https://www.bloomberg.com/news/articles/2021-01-29/j-j-single-dose-vaccine-provides-strong-shield-against-covid-19",
         "failedRegulatoryApproval": null,
         "goalEnrollment": 70000,
         "trialDetail": "60k enrolled in a trial of 1 dose. recently announced a 30k study using 2 doses—just in case",
@@ -1663,6 +1665,7 @@
         "refrigeration": "2–8ºC",
         "refrigerationCategory": "fridge",
         "refrigerationNotes": "Standard Refrigeration (2–8ºC)",
+        "efficacy": "66%",
         "description": "Of the leading candidates, this is the easiest to distribute, requiring just one dose and standard refrigeration. To hedge its bets, J&J announced a separate trial with two doses in November.",
         "trialEnrollmentEvents": [
           {
@@ -1688,20 +1691,26 @@
           },
           {
             "companyName": "Johnson & Johnson",
-            "eventType": "Clinical results expected",
-            "eventDate": "Jan. 2021",
-            "eventText": "Company expects results by end of January",
-            "eventDateObj": "2021-01-01T00:00:00.000Z",
-            "eventTypeShort": "Results expected",
-            "eventTypeKey": "resultsExpected"
+            "eventType": "Clinical results",
+            "eventDate": "2021-01-29",
+            "eventText": "Trial shows 66% efficacy against moderate-to-severe infections",
+            "eventDateObj": "2021-01-29T00:00:00.000Z",
+            "eventTypeShort": "Results",
+            "eventTypeKey": "results"
           }
         ],
         "earlyApprovalEvents": [],
         "periods": [
           {
             "start": "2020-09-07",
-            "end": "Jan. 2021",
+            "end": "2021-01-29",
             "key": "trial"
+          },
+          {
+            "start": "2021-01-29",
+            "end": "NOW",
+            "key": "eua",
+            "taperingOff": true
           },
           {
             "period": "Jan. 2021",
@@ -3174,8 +3183,8 @@
         "name": "U.A.E.",
         "parentIso": null,
         "iso": "ARE",
-        "dateUpdated": "2021-01-28",
-        "noDosesTotal": 2868650,
+        "dateUpdated": "2021-01-29",
+        "noDosesTotal": 3006606,
         "noPeopleTotal": null,
         "noCompletedVaccination": null,
         "noVaccinesReceived": null,
@@ -3184,7 +3193,7 @@
         "noDosesTotalLatestRateDiffPrevious": 104200,
         "noDosesTotalLatestRateDatePrevious": "2021-01-27",
         "population": 10749000,
-        "noDosesTotalPerCapita": 0.26687598846404315,
+        "noDosesTotalPerCapita": 0.2797102986324309,
         "noPeopleTotalPerCapita": null,
         "noCompletedVaccinationPerCapita": null
       },
@@ -3217,10 +3226,10 @@
         "noPeopleTotal": 163806,
         "noCompletedVaccination": 5633,
         "noVaccinesReceived": null,
-        "noDosesTotalLatestRateValue": 4845.857142857143,
-        "noDosesTotalLatestRateDate": "2021-01-28",
-        "noDosesTotalLatestRateDiffPrevious": 0,
-        "noDosesTotalLatestRateDatePrevious": "2021-01-27",
+        "noDosesTotalLatestRateValue": 6454.714285714285,
+        "noDosesTotalLatestRateDate": "2021-01-27",
+        "noDosesTotalLatestRateDiffPrevious": 10243,
+        "noDosesTotalLatestRateDatePrevious": "2021-01-26",
         "population": 8859000,
         "noDosesTotalPerCapita": 0.019126199345298567,
         "noPeopleTotalPerCapita": 0.018490348797832713,
@@ -3230,12 +3239,12 @@
         "name": "Global total",
         "parentIso": null,
         "iso": "BBG",
-        "dateUpdated": "2021-01-28",
-        "noDosesTotal": 86452579,
+        "dateUpdated": "2021-01-29",
+        "noDosesTotal": 87190481,
         "noPeopleTotal": null,
         "noCompletedVaccination": null,
         "noVaccinesReceived": null,
-        "noDosesTotalLatestRateValue": 4191161.813492064,
+        "noDosesTotalLatestRateValue": 4192770.6706349207,
         "noDosesTotalLatestRateDate": "2021-01-28",
         "noDosesTotalLatestRateDiffPrevious": 3975537,
         "noDosesTotalLatestRateDatePrevious": "2021-01-28",
@@ -3247,19 +3256,19 @@
         "name": "EU",
         "parentIso": null,
         "iso": "BBG-EU",
-        "dateUpdated": "2021-01-28",
-        "noDosesTotal": 10914541,
-        "noPeopleTotal": 9203021,
-        "noCompletedVaccination": 1405023,
+        "dateUpdated": "2021-01-29",
+        "noDosesTotal": 11194127,
+        "noPeopleTotal": 9364434,
+        "noCompletedVaccination": 1523196,
         "noVaccinesReceived": null,
         "noDosesTotalLatestRateValue": 512570.14285714284,
         "noDosesTotalLatestRateDate": "2021-01-28",
         "noDosesTotalLatestRateDiffPrevious": 716807,
         "noDosesTotalLatestRateDatePrevious": "2021-01-27",
         "population": 444260000,
-        "noDosesTotalPerCapita": 0.024567912933867554,
-        "noPeopleTotalPerCapita": 0.020715394138567506,
-        "noCompletedVaccinationPerCapita": 0.0031626142349074865
+        "noDosesTotalPerCapita": 0.025197242605681357,
+        "noPeopleTotalPerCapita": 0.02107872417053077,
+        "noCompletedVaccinationPerCapita": 0.0034286138747580248
       },
       {
         "name": "Belgium",
@@ -3283,10 +3292,10 @@
         "name": "Bulgaria",
         "parentIso": null,
         "iso": "BGR",
-        "dateUpdated": "2021-01-28",
-        "noDosesTotal": 32917,
-        "noPeopleTotal": 25245,
-        "noCompletedVaccination": 7672,
+        "dateUpdated": "2021-01-29",
+        "noDosesTotal": 37636,
+        "noPeopleTotal": 26753,
+        "noCompletedVaccination": 10883,
         "noVaccinesReceived": null,
         "noDosesTotalLatestRateValue": 1255.7142857142858,
         "noDosesTotalLatestRateDate": "2021-01-28",
@@ -3294,9 +3303,9 @@
         "noDosesTotalLatestRateDatePrevious": "2021-01-27",
         "nameShort": "Bulg.",
         "population": 6951000,
-        "noDosesTotalPerCapita": 0.004735577614731693,
-        "noPeopleTotalPerCapita": 0.003631851532153647,
-        "noCompletedVaccinationPerCapita": 0.0011037260825780464
+        "noDosesTotalPerCapita": 0.0054144727377355775,
+        "noPeopleTotalPerCapita": 0.0038487987339951087,
+        "noCompletedVaccinationPerCapita": 0.001565674003740469
       },
       {
         "name": "Bahrain",
@@ -3718,19 +3727,19 @@
         "name": "Germany",
         "parentIso": null,
         "iso": "DEU",
-        "dateUpdated": "2021-01-28",
-        "noDosesTotal": 2104317,
-        "noPeopleTotal": 1738236,
-        "noCompletedVaccination": 366081,
+        "dateUpdated": "2021-01-29",
+        "noDosesTotal": 2216127,
+        "noPeopleTotal": 1799481,
+        "noCompletedVaccination": 416646,
         "noVaccinesReceived": null,
         "noDosesTotalLatestRateValue": 100374.85714285714,
         "noDosesTotalLatestRateDate": "2021-01-28",
         "noDosesTotalLatestRateDiffPrevious": 113428,
         "noDosesTotalLatestRateDatePrevious": "2021-01-27",
         "population": 83093000,
-        "noDosesTotalPerCapita": 0.0253248408409854,
-        "noPeopleTotalPerCapita": 0.020919162865704694,
-        "noCompletedVaccinationPerCapita": 0.00440567797528071
+        "noDosesTotalPerCapita": 0.02667044155344012,
+        "noPeopleTotalPerCapita": 0.0216562285631762,
+        "noCompletedVaccinationPerCapita": 0.005014212990263921
       },
       {
         "name": "Denmark",
@@ -3809,10 +3818,10 @@
         "name": "Estonia",
         "parentIso": null,
         "iso": "EST",
-        "dateUpdated": "2021-01-28",
-        "noDosesTotal": 31629,
-        "noPeopleTotal": 25415,
-        "noCompletedVaccination": 6214,
+        "dateUpdated": "2021-01-29",
+        "noDosesTotal": 34019,
+        "noPeopleTotal": 26412,
+        "noCompletedVaccination": 7607,
         "noVaccinesReceived": null,
         "noDosesTotalLatestRateValue": 1377.7142857142858,
         "noDosesTotalLatestRateDate": "2021-01-28",
@@ -3820,27 +3829,27 @@
         "noDosesTotalLatestRateDatePrevious": "2021-01-27",
         "nameShort": "Est.",
         "population": 1325000,
-        "noDosesTotalPerCapita": 0.023870943396226415,
-        "noPeopleTotalPerCapita": 0.0191811320754717,
-        "noCompletedVaccinationPerCapita": 0.004689811320754717
+        "noDosesTotalPerCapita": 0.025674716981132075,
+        "noPeopleTotalPerCapita": 0.019933584905660377,
+        "noCompletedVaccinationPerCapita": 0.005741132075471698
       },
       {
         "name": "Finland",
         "parentIso": null,
         "iso": "FIN",
-        "dateUpdated": "2021-01-28",
-        "noDosesTotal": 138323,
-        "noPeopleTotal": 127783,
-        "noCompletedVaccination": 10540,
+        "dateUpdated": "2021-01-29",
+        "noDosesTotal": 151790,
+        "noPeopleTotal": 137551,
+        "noCompletedVaccination": 14239,
         "noVaccinesReceived": null,
         "noDosesTotalLatestRateValue": 8574.714285714286,
         "noDosesTotalLatestRateDate": "2021-01-28",
         "noDosesTotalLatestRateDiffPrevious": 11413,
         "noDosesTotalLatestRateDatePrevious": "2021-01-27",
         "population": 5518000,
-        "noDosesTotalPerCapita": 0.02506759695541863,
-        "noPeopleTotalPerCapita": 0.02315748459586807,
-        "noCompletedVaccinationPerCapita": 0.001910112359550562
+        "noDosesTotalPerCapita": 0.027508155128669807,
+        "noPeopleTotalPerCapita": 0.024927691192461035,
+        "noCompletedVaccinationPerCapita": 0.0025804639362087714
       },
       {
         "name": "France",
@@ -4007,37 +4016,37 @@
         "name": "Croatia",
         "parentIso": null,
         "iso": "HRV",
-        "dateUpdated": "2021-01-25",
-        "noDosesTotal": 69984,
-        "noPeopleTotal": 58077,
-        "noCompletedVaccination": 11907,
+        "dateUpdated": "2021-01-29",
+        "noDosesTotal": 80000,
+        "noPeopleTotal": 59125,
+        "noCompletedVaccination": 20875,
         "noVaccinesReceived": null,
         "noDosesTotalLatestRateValue": 3439.714285714286,
         "noDosesTotalLatestRateDate": "2021-01-28",
         "noDosesTotalLatestRateDiffPrevious": 5033,
         "noDosesTotalLatestRateDatePrevious": "2021-01-24",
         "population": 4068000,
-        "noDosesTotalPerCapita": 0.01720353982300885,
-        "noPeopleTotalPerCapita": 0.014276548672566372,
-        "noCompletedVaccinationPerCapita": 0.002926991150442478
+        "noDosesTotalPerCapita": 0.01966568338249754,
+        "noPeopleTotalPerCapita": 0.014534169124877089,
+        "noCompletedVaccinationPerCapita": 0.005131514257620452
       },
       {
         "name": "Hungary",
         "parentIso": null,
         "iso": "HUN",
-        "dateUpdated": "2021-01-28",
-        "noDosesTotal": 187508,
-        "noPeopleTotal": 161215,
-        "noCompletedVaccination": 26293,
+        "dateUpdated": "2021-01-29",
+        "noDosesTotal": 213010,
+        "noPeopleTotal": 175283,
+        "noCompletedVaccination": 37727,
         "noVaccinesReceived": null,
         "noDosesTotalLatestRateValue": 6989.142857142857,
         "noDosesTotalLatestRateDate": "2021-01-28",
         "noDosesTotalLatestRateDiffPrevious": 17032,
         "noDosesTotalLatestRateDatePrevious": "2021-01-27",
         "population": 9773000,
-        "noDosesTotalPerCapita": 0.019186329683822778,
-        "noPeopleTotalPerCapita": 0.01649595825232784,
-        "noCompletedVaccinationPerCapita": 0.002690371431494935
+        "noDosesTotalPerCapita": 0.021795763839148673,
+        "noPeopleTotalPerCapita": 0.017935434359971348,
+        "noCompletedVaccinationPerCapita": 0.0038603294791773254
       },
       {
         "name": "Indonesia",
@@ -4116,19 +4125,19 @@
         "name": "Israel",
         "parentIso": null,
         "iso": "ISR",
-        "dateUpdated": "2021-01-28",
-        "noDosesTotal": 4347206,
-        "noPeopleTotal": 2849425,
-        "noCompletedVaccination": 1497781,
+        "dateUpdated": "2021-01-29",
+        "noDosesTotal": 4634427,
+        "noPeopleTotal": 2961917,
+        "noCompletedVaccination": 1672510,
         "noVaccinesReceived": null,
         "noDosesTotalLatestRateValue": 162715.42857142858,
         "noDosesTotalLatestRateDate": "2021-01-28",
         "noDosesTotalLatestRateDiffPrevious": 87257,
         "noDosesTotalLatestRateDatePrevious": "2021-01-27",
         "population": 9051000,
-        "noDosesTotalPerCapita": 0.48030118218981327,
-        "noPeopleTotalPerCapita": 0.3148188045519832,
-        "noCompletedVaccinationPerCapita": 0.16548237763783008
+        "noDosesTotalPerCapita": 0.5120348027842228,
+        "noPeopleTotalPerCapita": 0.32724748646558394,
+        "noCompletedVaccinationPerCapita": 0.18478731631863882
       },
       {
         "name": "Italy",
@@ -4170,10 +4179,10 @@
         "name": "Lithuania",
         "parentIso": null,
         "iso": "LTU",
-        "dateUpdated": "2021-01-28",
-        "noDosesTotal": 76387,
-        "noPeopleTotal": 64355,
-        "noCompletedVaccination": 12032,
+        "dateUpdated": "2021-01-29",
+        "noDosesTotal": 83550,
+        "noPeopleTotal": 67794,
+        "noCompletedVaccination": 15756,
         "noVaccinesReceived": null,
         "noDosesTotalLatestRateValue": 1681,
         "noDosesTotalLatestRateDate": "2021-01-28",
@@ -4181,9 +4190,9 @@
         "noDosesTotalLatestRateDatePrevious": "2021-01-27",
         "nameShort": "Lithu.",
         "population": 2783000,
-        "noDosesTotalPerCapita": 0.027447718289615522,
-        "noPeopleTotalPerCapita": 0.023124326266618755,
-        "noCompletedVaccinationPerCapita": 0.0043233920229967665
+        "noDosesTotalPerCapita": 0.030021559468199784,
+        "noPeopleTotalPerCapita": 0.0243600431189364,
+        "noCompletedVaccinationPerCapita": 0.005661516349263385
       },
       {
         "name": "Luxembourg",
@@ -4245,19 +4254,19 @@
         "name": "Malta",
         "parentIso": null,
         "iso": "MLT",
-        "dateUpdated": "2021-01-28",
-        "noDosesTotal": 23512,
-        "noPeopleTotal": 21417,
-        "noCompletedVaccination": 2095,
+        "dateUpdated": "2021-01-29",
+        "noDosesTotal": 24680,
+        "noPeopleTotal": 22162,
+        "noCompletedVaccination": 2518,
         "noVaccinesReceived": null,
         "noDosesTotalLatestRateValue": 1170.857142857143,
         "noDosesTotalLatestRateDate": "2021-01-28",
         "noDosesTotalLatestRateDiffPrevious": 1141,
         "noDosesTotalLatestRateDatePrevious": "2021-01-27",
         "population": 494000,
-        "noDosesTotalPerCapita": 0.04759514170040486,
-        "noPeopleTotalPerCapita": 0.043354251012145746,
-        "noCompletedVaccinationPerCapita": 0.004240890688259109
+        "noDosesTotalPerCapita": 0.049959514170040485,
+        "noPeopleTotalPerCapita": 0.044862348178137654,
+        "noCompletedVaccinationPerCapita": 0.005097165991902834
       },
       {
         "name": "Myanmar",
@@ -4355,19 +4364,19 @@
         "name": "Poland",
         "parentIso": null,
         "iso": "POL",
-        "dateUpdated": "2021-01-28",
-        "noDosesTotal": 1008253,
-        "noPeopleTotal": 858475,
-        "noCompletedVaccination": 149778,
-        "noVaccinesReceived": 1268385,
+        "dateUpdated": "2021-01-29",
+        "noDosesTotal": 1097036,
+        "noPeopleTotal": 917909,
+        "noCompletedVaccination": 179127,
+        "noVaccinesReceived": 1247435,
         "noDosesTotalLatestRateValue": 51893.42857142857,
         "noDosesTotalLatestRateDate": "2021-01-28",
         "noDosesTotalLatestRateDiffPrevious": 102796,
         "noDosesTotalLatestRateDatePrevious": "2021-01-27",
         "population": 37973000,
-        "noDosesTotalPerCapita": 0.026551839464882942,
-        "noPeopleTotalPerCapita": 0.022607510599636584,
-        "noCompletedVaccinationPerCapita": 0.003944328865246359
+        "noDosesTotalPerCapita": 0.028889895452031706,
+        "noPeopleTotalPerCapita": 0.02417267532193927,
+        "noCompletedVaccinationPerCapita": 0.0047172201300924345
       },
       {
         "name": "Portugal",
@@ -4467,9 +4476,9 @@
         "name": "Serbia",
         "parentIso": null,
         "iso": "SRB",
-        "dateUpdated": "2021-01-28",
-        "noDosesTotal": 393476,
-        "noPeopleTotal": 393476,
+        "dateUpdated": "2021-01-29",
+        "noDosesTotal": 426615,
+        "noPeopleTotal": 426615,
         "noCompletedVaccination": null,
         "noVaccinesReceived": null,
         "noDosesTotalLatestRateValue": 45089.71428571428,
@@ -4477,17 +4486,17 @@
         "noDosesTotalLatestRateDiffPrevious": 31646,
         "noDosesTotalLatestRateDatePrevious": "2021-01-27",
         "population": 6964000,
-        "noDosesTotalPerCapita": 0.05650143595634693,
-        "noPeopleTotalPerCapita": 0.05650143595634693,
+        "noDosesTotalPerCapita": 0.06126005169442849,
+        "noPeopleTotalPerCapita": 0.06126005169442849,
         "noCompletedVaccinationPerCapita": null
       },
       {
         "name": "Slovakia",
         "parentIso": null,
         "iso": "SVK",
-        "dateUpdated": "2021-01-28",
-        "noDosesTotal": 115399,
-        "noPeopleTotal": 115399,
+        "dateUpdated": "2021-01-29",
+        "noDosesTotal": 123999,
+        "noPeopleTotal": 123999,
         "noCompletedVaccination": null,
         "noVaccinesReceived": null,
         "noDosesTotalLatestRateValue": 4672,
@@ -4496,18 +4505,18 @@
         "noDosesTotalLatestRateDatePrevious": "2021-01-27",
         "nameShort": "Slvk.",
         "population": 5450000,
-        "noDosesTotalPerCapita": 0.021174128440366972,
-        "noPeopleTotalPerCapita": 0.021174128440366972,
+        "noDosesTotalPerCapita": 0.02275211009174312,
+        "noPeopleTotalPerCapita": 0.02275211009174312,
         "noCompletedVaccinationPerCapita": null
       },
       {
         "name": "Slovenia",
         "parentIso": null,
         "iso": "SVN",
-        "dateUpdated": "2021-01-28",
-        "noDosesTotal": 64972,
-        "noPeopleTotal": 51653,
-        "noCompletedVaccination": 13319,
+        "dateUpdated": "2021-01-29",
+        "noDosesTotal": 70940,
+        "noPeopleTotal": 52214,
+        "noCompletedVaccination": 18726,
         "noVaccinesReceived": null,
         "noDosesTotalLatestRateValue": 2637.875,
         "noDosesTotalLatestRateDate": "2021-01-28",
@@ -4515,9 +4524,9 @@
         "noDosesTotalLatestRateDatePrevious": "2021-01-27",
         "nameShort": "Slvn.",
         "population": 2068000,
-        "noDosesTotalPerCapita": 0.031417794970986464,
-        "noPeopleTotalPerCapita": 0.024977272727272726,
-        "noCompletedVaccinationPerCapita": 0.006440522243713733
+        "noDosesTotalPerCapita": 0.0343036750483559,
+        "noPeopleTotalPerCapita": 0.025248549323017407,
+        "noCompletedVaccinationPerCapita": 0.009055125725338491
       },
       {
         "name": "Sweden",
@@ -6394,6 +6403,10 @@
           [
             "2021-01-28",
             27300814
+          ],
+          [
+            "2021-01-29",
+            27300814
           ]
         ],
         "CAN-ON": [
@@ -6536,6 +6549,10 @@
           [
             "2021-01-28",
             317240
+          ],
+          [
+            "2021-01-29",
+            317240
           ]
         ],
         "CAN-QC": [
@@ -6674,6 +6691,10 @@
           [
             "2021-01-28",
             232986
+          ],
+          [
+            "2021-01-29",
+            232986
           ]
         ],
         "CAN-NL": [
@@ -6760,6 +6781,10 @@
           [
             "2021-01-28",
             10080
+          ],
+          [
+            "2021-01-29",
+            10080
           ]
         ],
         "CHN": [
@@ -6841,6 +6866,10 @@
           ],
           [
             "2021-01-28",
+            23000000
+          ],
+          [
+            "2021-01-29",
             23000000
           ]
         ],
@@ -6984,6 +7013,10 @@
           [
             "2021-01-28",
             4347206
+          ],
+          [
+            "2021-01-29",
+            4634427
           ]
         ],
         "RUS": [
@@ -7021,6 +7054,10 @@
           ],
           [
             "2021-01-28",
+            800000
+          ],
+          [
+            "2021-01-29",
             800000
           ]
         ],
@@ -7123,6 +7160,10 @@
           ],
           [
             "2021-01-28",
+            7923497
+          ],
+          [
+            "2021-01-29",
             7923497
           ]
         ],
@@ -7234,6 +7275,10 @@
           [
             "2021-01-28",
             6918853
+          ],
+          [
+            "2021-01-29",
+            6918853
           ]
         ],
         "GBR-SCT": [
@@ -7335,6 +7380,10 @@
           ],
           [
             "2021-01-28",
+            468688
+          ],
+          [
+            "2021-01-29",
             468688
           ]
         ],
@@ -7438,6 +7487,10 @@
           [
             "2021-01-28",
             336745
+          ],
+          [
+            "2021-01-29",
+            336745
           ]
         ],
         "GBR-NIR": [
@@ -7535,6 +7588,10 @@
           ],
           [
             "2021-01-28",
+            199211
+          ],
+          [
+            "2021-01-29",
             199211
           ]
         ],
@@ -7658,6 +7715,10 @@
           [
             "2021-01-28",
             124365
+          ],
+          [
+            "2021-01-29",
+            124365
           ]
         ],
         "CAN-AB": [
@@ -7768,6 +7829,10 @@
           [
             "2021-01-28",
             101123
+          ],
+          [
+            "2021-01-29",
+            101123
           ]
         ],
         "CAN-NB": [
@@ -7861,6 +7926,10 @@
           ],
           [
             "2021-01-28",
+            14257
+          ],
+          [
+            "2021-01-29",
             14257
           ]
         ],
@@ -7956,6 +8025,10 @@
           [
             "2021-01-28",
             13504
+          ],
+          [
+            "2021-01-29",
+            13504
           ]
         ],
         "CAN-PE": [
@@ -8049,6 +8122,10 @@
           ],
           [
             "2021-01-28",
+            7510
+          ],
+          [
+            "2021-01-29",
             7510
           ]
         ],
@@ -8196,6 +8273,10 @@
           [
             "2021-01-28",
             908963
+          ],
+          [
+            "2021-01-29",
+            908963
           ]
         ],
         "CAN-SK": [
@@ -8305,6 +8386,10 @@
           ],
           [
             "2021-01-28",
+            34672
+          ],
+          [
+            "2021-01-29",
             34672
           ]
         ],
@@ -8419,6 +8504,10 @@
           ],
           [
             "2021-01-28",
+            33361
+          ],
+          [
+            "2021-01-29",
             33361
           ]
         ],
@@ -8554,6 +8643,10 @@
           [
             "2021-01-28",
             167731
+          ],
+          [
+            "2021-01-29",
+            167731
           ]
         ],
         "CHL": [
@@ -8659,6 +8752,10 @@
           ],
           [
             "2021-01-28",
+            67113
+          ],
+          [
+            "2021-01-29",
             67113
           ]
         ],
@@ -8774,6 +8871,10 @@
           [
             "2021-01-28",
             656044
+          ],
+          [
+            "2021-01-29",
+            656044
           ]
         ],
         "CRI": [
@@ -8855,6 +8956,10 @@
           ],
           [
             "2021-01-28",
+            48128
+          ],
+          [
+            "2021-01-29",
             48128
           ]
         ],
@@ -8982,6 +9087,10 @@
           [
             "2021-01-28",
             2104317
+          ],
+          [
+            "2021-01-29",
+            2216127
           ]
         ],
         "DNK": [
@@ -9108,6 +9217,10 @@
           [
             "2021-01-28",
             221067
+          ],
+          [
+            "2021-01-29",
+            221067
           ]
         ],
         "EST": [
@@ -9214,6 +9327,10 @@
           [
             "2021-01-28",
             31629
+          ],
+          [
+            "2021-01-29",
+            34019
           ]
         ],
         "HUN": [
@@ -9324,6 +9441,10 @@
           [
             "2021-01-28",
             187508
+          ],
+          [
+            "2021-01-29",
+            213010
           ]
         ],
         "LTU": [
@@ -9418,6 +9539,10 @@
           [
             "2021-01-28",
             76387
+          ],
+          [
+            "2021-01-29",
+            83550
           ]
         ],
         "PRT": [
@@ -9523,6 +9648,10 @@
           ],
           [
             "2021-01-28",
+            302989
+          ],
+          [
+            "2021-01-29",
             302989
           ]
         ],
@@ -9634,6 +9763,10 @@
           [
             "2021-01-28",
             32917
+          ],
+          [
+            "2021-01-29",
+            37636
           ]
         ],
         "ITA": [
@@ -9756,6 +9889,10 @@
           [
             "2021-01-28",
             1653027
+          ],
+          [
+            "2021-01-29",
+            1653027
           ]
         ],
         "KWT": [
@@ -9837,6 +9974,10 @@
           ],
           [
             "2021-01-28",
+            35000
+          ],
+          [
+            "2021-01-29",
             35000
           ]
         ],
@@ -9952,6 +10093,10 @@
           [
             "2021-01-28",
             37045
+          ],
+          [
+            "2021-01-29",
+            37045
           ]
         ],
         "ROU": [
@@ -10058,6 +10203,10 @@
           [
             "2021-01-28",
             609396
+          ],
+          [
+            "2021-01-29",
+            609396
           ]
         ],
         "SVN": [
@@ -10148,6 +10297,10 @@
           [
             "2021-01-28",
             64972
+          ],
+          [
+            "2021-01-29",
+            70940
           ]
         ],
         "AUT": [
@@ -10240,8 +10393,8 @@
             195886
           ],
           [
-            "2021-01-28",
-            195886
+            "2021-01-29",
+            169439
           ]
         ],
         "GRC": [
@@ -10336,6 +10489,10 @@
           [
             "2021-01-28",
             232070
+          ],
+          [
+            "2021-01-29",
+            232070
           ]
         ],
         "HRV": [
@@ -10414,6 +10571,10 @@
           [
             "2021-01-28",
             69984
+          ],
+          [
+            "2021-01-29",
+            80000
           ]
         ],
         "LUX": [
@@ -10499,6 +10660,10 @@
           ],
           [
             "2021-01-28",
+            10449
+          ],
+          [
+            "2021-01-29",
             10449
           ]
         ],
@@ -10593,6 +10758,10 @@
           ],
           [
             "2021-01-28",
+            327999
+          ],
+          [
+            "2021-01-29",
             327999
           ]
         ],
@@ -10696,6 +10865,10 @@
           [
             "2021-01-28",
             138323
+          ],
+          [
+            "2021-01-29",
+            151790
           ]
         ],
         "POL": [
@@ -10798,6 +10971,10 @@
           [
             "2021-01-28",
             1008253
+          ],
+          [
+            "2021-01-29",
+            1097036
           ]
         ],
         "FRA": [
@@ -10904,6 +11081,10 @@
           [
             "2021-01-28",
             1349517
+          ],
+          [
+            "2021-01-29",
+            1349517
           ]
         ],
         "ESP": [
@@ -11002,6 +11183,10 @@
           [
             "2021-01-28",
             1395618
+          ],
+          [
+            "2021-01-29",
+            1395618
           ]
         ],
         "SVK": [
@@ -11096,6 +11281,10 @@
           [
             "2021-01-28",
             115399
+          ],
+          [
+            "2021-01-29",
+            123999
           ]
         ],
         "IRL": [
@@ -11181,6 +11370,10 @@
           ],
           [
             "2021-01-28",
+            161500
+          ],
+          [
+            "2021-01-29",
             161500
           ]
         ],
@@ -11276,6 +11469,10 @@
           [
             "2021-01-28",
             236697
+          ],
+          [
+            "2021-01-29",
+            236697
           ]
         ],
         "ARE": [
@@ -11366,6 +11563,10 @@
           [
             "2021-01-28",
             2868650
+          ],
+          [
+            "2021-01-29",
+            3006606
           ]
         ],
         "NOR": [
@@ -11460,6 +11661,10 @@
           [
             "2021-01-28",
             83883
+          ],
+          [
+            "2021-01-29",
+            83883
           ]
         ],
         "SAU": [
@@ -11545,6 +11750,10 @@
           ],
           [
             "2021-01-28",
+            295530
+          ],
+          [
+            "2021-01-29",
             295530
           ]
         ],
@@ -11632,6 +11841,10 @@
           [
             "2021-01-28",
             21355
+          ],
+          [
+            "2021-01-29",
+            21355
           ]
         ],
         "GIN": [
@@ -11714,6 +11927,10 @@
           [
             "2021-01-28",
             55
+          ],
+          [
+            "2021-01-29",
+            55
           ]
         ],
         "NLD": [
@@ -11791,6 +12008,10 @@
           ],
           [
             "2021-01-28",
+            203450
+          ],
+          [
+            "2021-01-29",
             203450
           ]
         ],
@@ -11870,6 +12091,10 @@
           [
             "2021-01-28",
             230517
+          ],
+          [
+            "2021-01-29",
+            230517
           ]
         ],
         "ISL": [
@@ -11943,6 +12168,10 @@
           ],
           [
             "2021-01-28",
+            15522
+          ],
+          [
+            "2021-01-29",
             15522
           ]
         ],
@@ -12018,6 +12247,10 @@
           [
             "2021-01-28",
             393476
+          ],
+          [
+            "2021-01-29",
+            426615
           ]
         ],
         "BBG-EU": [
@@ -12092,6 +12325,10 @@
           [
             "2021-01-28",
             10914541
+          ],
+          [
+            "2021-01-29",
+            11194127
           ]
         ],
         "BEL": [
@@ -12154,6 +12391,10 @@
           [
             "2021-01-28",
             246870
+          ],
+          [
+            "2021-01-29",
+            246870
           ]
         ],
         "SGP": [
@@ -12211,6 +12452,10 @@
           ],
           [
             "2021-01-28",
+            113050
+          ],
+          [
+            "2021-01-29",
             113050
           ]
         ],
@@ -12274,6 +12519,10 @@
           [
             "2021-01-28",
             632
+          ],
+          [
+            "2021-01-29",
+            632
           ]
         ],
         "CAN-NT": [
@@ -12331,6 +12580,10 @@
           ],
           [
             "2021-01-28",
+            9471
+          ],
+          [
+            "2021-01-29",
             9471
           ]
         ],
@@ -12398,6 +12651,10 @@
           [
             "2021-01-28",
             5170
+          ],
+          [
+            "2021-01-29",
+            5170
           ]
         ],
         "IDN": [
@@ -12455,6 +12712,10 @@
           ],
           [
             "2021-01-28",
+            373786
+          ],
+          [
+            "2021-01-29",
             373786
           ]
         ],
@@ -12528,6 +12789,10 @@
           [
             "2021-01-28",
             1698064
+          ],
+          [
+            "2021-01-29",
+            1698064
           ]
         ],
         "MLT": [
@@ -12586,6 +12851,10 @@
           [
             "2021-01-28",
             23512
+          ],
+          [
+            "2021-01-29",
+            24680
           ]
         ],
         "CYP": [
@@ -12635,6 +12904,10 @@
           ],
           [
             "2021-01-28",
+            17379
+          ],
+          [
+            "2021-01-29",
             17379
           ]
         ],
@@ -12690,6 +12963,10 @@
           [
             "2021-01-28",
             2355979
+          ],
+          [
+            "2021-01-29",
+            2355979
           ]
         ],
         "CAN-NU": [
@@ -12736,6 +13013,10 @@
           [
             "2021-01-28",
             5224
+          ],
+          [
+            "2021-01-29",
+            5224
           ]
         ],
         "BRA": [
@@ -12770,6 +13051,10 @@
           [
             "2021-01-28",
             1401886
+          ],
+          [
+            "2021-01-29",
+            1401886
           ]
         ],
         "CHE": [
@@ -12799,6 +13084,10 @@
           ],
           [
             "2021-01-28",
+            197368
+          ],
+          [
+            "2021-01-29",
             197368
           ]
         ],
@@ -12834,6 +13123,10 @@
           [
             "2021-01-28",
             11607
+          ],
+          [
+            "2021-01-29",
+            11607
           ]
         ],
         "SYC": [
@@ -12868,6 +13161,10 @@
           [
             "2021-01-28",
             25587
+          ],
+          [
+            "2021-01-29",
+            25587
           ]
         ],
         "PAN": [
@@ -12894,6 +13191,10 @@
           [
             "2021-01-28",
             8703
+          ],
+          [
+            "2021-01-29",
+            8703
           ]
         ],
         "BMU": [
@@ -12908,6 +13209,10 @@
           [
             "2021-01-28",
             2932
+          ],
+          [
+            "2021-01-29",
+            2932
           ]
         ],
         "EGY": [
@@ -12917,6 +13222,10 @@
           ],
           [
             "2021-01-28",
+            527
+          ],
+          [
+            "2021-01-29",
             527
           ]
         ],
@@ -12928,11 +13237,19 @@
           [
             "2021-01-28",
             68279
+          ],
+          [
+            "2021-01-29",
+            68279
           ]
         ],
         "ECU": [
           [
             "2021-01-28",
+            2982
+          ],
+          [
+            "2021-01-29",
             2982
           ]
         ],
@@ -13108,6 +13425,10 @@
           [
             "2021-01-28",
             86479751
+          ],
+          [
+            "2021-01-29",
+            87191206
           ]
         ]
       }
@@ -13217,6 +13538,10 @@
           ],
           [
             "2021-01-28",
+            302269
+          ],
+          [
+            "2021-01-29",
             302269
           ]
         ],
@@ -13344,6 +13669,10 @@
           [
             "2021-01-28",
             110400
+          ],
+          [
+            "2021-01-29",
+            110400
           ]
         ],
         "AR": [
@@ -13470,6 +13799,10 @@
           [
             "2021-01-28",
             252824
+          ],
+          [
+            "2021-01-29",
+            252824
           ]
         ],
         "CA": [
@@ -13583,6 +13916,10 @@
           ],
           [
             "2021-01-28",
+            2893493
+          ],
+          [
+            "2021-01-29",
             2893493
           ]
         ],
@@ -13722,6 +14059,10 @@
           [
             "2021-01-28",
             495706
+          ],
+          [
+            "2021-01-29",
+            495706
           ]
         ],
         "CT": [
@@ -13835,6 +14176,10 @@
           ],
           [
             "2021-01-28",
+            381160
+          ],
+          [
+            "2021-01-29",
             381160
           ]
         ],
@@ -13969,6 +14314,10 @@
           ],
           [
             "2021-01-28",
+            87511
+          ],
+          [
+            "2021-01-29",
             87511
           ]
         ],
@@ -14112,6 +14461,10 @@
           [
             "2021-01-28",
             1814482
+          ],
+          [
+            "2021-01-29",
+            1814482
           ]
         ],
         "GA": [
@@ -14226,6 +14579,10 @@
           [
             "2021-01-28",
             791254
+          ],
+          [
+            "2021-01-29",
+            791254
           ]
         ],
         "HI": [
@@ -14323,6 +14680,10 @@
           ],
           [
             "2021-01-28",
+            127419
+          ],
+          [
+            "2021-01-29",
             127419
           ]
         ],
@@ -14462,6 +14823,10 @@
           [
             "2021-01-28",
             108726
+          ],
+          [
+            "2021-01-29",
+            108726
           ]
         ],
         "IL": [
@@ -14591,6 +14956,10 @@
           ],
           [
             "2021-01-28",
+            829488
+          ],
+          [
+            "2021-01-29",
             829488
           ]
         ],
@@ -14732,6 +15101,10 @@
           [
             "2021-01-28",
             625370
+          ],
+          [
+            "2021-01-29",
+            625370
           ]
         ],
         "IA": [
@@ -14841,6 +15214,10 @@
           ],
           [
             "2021-01-28",
+            212497
+          ],
+          [
+            "2021-01-29",
             212497
           ]
         ],
@@ -14959,6 +15336,10 @@
           ],
           [
             "2021-01-28",
+            397371
+          ],
+          [
+            "2021-01-29",
             397371
           ]
         ],
@@ -15098,6 +15479,10 @@
           [
             "2021-01-28",
             128704
+          ],
+          [
+            "2021-01-29",
+            128704
           ]
         ],
         "MA": [
@@ -15215,6 +15600,10 @@
           ],
           [
             "2021-01-28",
+            496103
+          ],
+          [
+            "2021-01-29",
             496103
           ]
         ],
@@ -15338,6 +15727,10 @@
           [
             "2021-01-28",
             854084
+          ],
+          [
+            "2021-01-29",
+            854084
           ]
         ],
         "MN": [
@@ -15456,6 +15849,10 @@
           [
             "2021-01-28",
             407063
+          ],
+          [
+            "2021-01-29",
+            407063
           ]
         ],
         "MS": [
@@ -15569,6 +15966,10 @@
           ],
           [
             "2021-01-28",
+            216538
+          ],
+          [
+            "2021-01-29",
             216538
           ]
         ],
@@ -15684,6 +16085,10 @@
           [
             "2021-01-28",
             423839
+          ],
+          [
+            "2021-01-29",
+            423839
           ]
         ],
         "MT": [
@@ -15793,6 +16198,10 @@
           ],
           [
             "2021-01-28",
+            86213
+          ],
+          [
+            "2021-01-29",
             86213
           ]
         ],
@@ -15908,6 +16317,10 @@
           [
             "2021-01-28",
             153231
+          ],
+          [
+            "2021-01-29",
+            153231
           ]
         ],
         "NH": [
@@ -16017,6 +16430,10 @@
           ],
           [
             "2021-01-28",
+            110451
+          ],
+          [
+            "2021-01-29",
             110451
           ]
         ],
@@ -16144,6 +16561,10 @@
           [
             "2021-01-28",
             680601
+          ],
+          [
+            "2021-01-29",
+            680601
           ]
         ],
         "NM": [
@@ -16249,6 +16670,10 @@
           ],
           [
             "2021-01-28",
+            239015
+          ],
+          [
+            "2021-01-29",
             239015
           ]
         ],
@@ -16383,6 +16808,10 @@
           ],
           [
             "2021-01-28",
+            1644687
+          ],
+          [
+            "2021-01-29",
             1644687
           ]
         ],
@@ -16526,6 +16955,10 @@
           [
             "2021-01-28",
             699524
+          ],
+          [
+            "2021-01-29",
+            699524
           ]
         ],
         "NC": [
@@ -16635,6 +17068,10 @@
           ],
           [
             "2021-01-28",
+            849801
+          ],
+          [
+            "2021-01-29",
             849801
           ]
         ],
@@ -16761,6 +17198,10 @@
           ],
           [
             "2021-01-28",
+            85589
+          ],
+          [
+            "2021-01-29",
             85589
           ]
         ],
@@ -16904,6 +17345,10 @@
           [
             "2021-01-28",
             789869
+          ],
+          [
+            "2021-01-29",
+            789869
           ]
         ],
         "OK": [
@@ -17017,6 +17462,10 @@
           ],
           [
             "2021-01-28",
+            363253
+          ],
+          [
+            "2021-01-29",
             363253
           ]
         ],
@@ -17156,6 +17605,10 @@
           [
             "2021-01-28",
             359369
+          ],
+          [
+            "2021-01-29",
+            359369
           ]
         ],
         "PA": [
@@ -17286,6 +17739,10 @@
           [
             "2021-01-28",
             964692
+          ],
+          [
+            "2021-01-29",
+            964692
           ]
         ],
         "RI": [
@@ -17404,6 +17861,10 @@
           [
             "2021-01-28",
             86315
+          ],
+          [
+            "2021-01-29",
+            86315
           ]
         ],
         "SC": [
@@ -17517,6 +17978,10 @@
           ],
           [
             "2021-01-28",
+            359949
+          ],
+          [
+            "2021-01-29",
             359949
           ]
         ],
@@ -17656,6 +18121,10 @@
           [
             "2021-01-28",
             91776
+          ],
+          [
+            "2021-01-29",
+            91776
           ]
         ],
         "TN": [
@@ -17765,6 +18234,10 @@
           ],
           [
             "2021-01-28",
+            528630
+          ],
+          [
+            "2021-01-29",
             528630
           ]
         ],
@@ -17903,6 +18376,10 @@
           ],
           [
             "2021-01-28",
+            2107005
+          ],
+          [
+            "2021-01-29",
             2107005
           ]
         ],
@@ -18046,6 +18523,10 @@
           [
             "2021-01-28",
             267027
+          ],
+          [
+            "2021-01-29",
+            267027
           ]
         ],
         "VT": [
@@ -18156,6 +18637,10 @@
           [
             "2021-01-28",
             61546
+          ],
+          [
+            "2021-01-29",
+            61546
           ]
         ],
         "WA": [
@@ -18265,6 +18750,10 @@
           ],
           [
             "2021-01-28",
+            571135
+          ],
+          [
+            "2021-01-29",
             571135
           ]
         ],
@@ -18408,6 +18897,10 @@
           [
             "2021-01-28",
             227058
+          ],
+          [
+            "2021-01-29",
+            227058
           ]
         ],
         "WI": [
@@ -18522,6 +19015,10 @@
           [
             "2021-01-28",
             432102
+          ],
+          [
+            "2021-01-29",
+            432102
           ]
         ],
         "GU": [
@@ -18628,6 +19125,10 @@
           [
             "2021-01-28",
             23588
+          ],
+          [
+            "2021-01-29",
+            23588
           ]
         ],
         "PR": [
@@ -18733,6 +19234,10 @@
           ],
           [
             "2021-01-28",
+            321965
+          ],
+          [
+            "2021-01-29",
             321965
           ]
         ],
@@ -18856,6 +19361,10 @@
           [
             "2021-01-28",
             342200
+          ],
+          [
+            "2021-01-29",
+            342200
           ]
         ],
         "WY": [
@@ -18977,6 +19486,10 @@
           ],
           [
             "2021-01-28",
+            43992
+          ],
+          [
+            "2021-01-29",
             43992
           ]
         ],
@@ -19118,6 +19631,10 @@
           [
             "2021-01-28",
             27300814
+          ],
+          [
+            "2021-01-29",
+            27300814
           ]
         ],
         "KS": [
@@ -19227,6 +19744,10 @@
           ],
           [
             "2021-01-28",
+            190301
+          ],
+          [
+            "2021-01-29",
             190301
           ]
         ],
@@ -19338,6 +19859,10 @@
           [
             "2021-01-28",
             1391015
+          ],
+          [
+            "2021-01-29",
+            1391015
           ]
         ],
         "indian-health-service": [
@@ -19447,6 +19972,10 @@
           ],
           [
             "2021-01-28",
+            180226
+          ],
+          [
+            "2021-01-29",
             180226
           ]
         ],
@@ -19578,6 +20107,10 @@
           [
             "2021-01-28",
             449916
+          ],
+          [
+            "2021-01-29",
+            449916
           ]
         ],
         "VA": [
@@ -19704,6 +20237,10 @@
           [
             "2021-01-28",
             668401
+          ],
+          [
+            "2021-01-29",
+            668401
           ]
         ],
         "AZ": [
@@ -19822,6 +20359,10 @@
           [
             "2021-01-28",
             554760
+          ],
+          [
+            "2021-01-29",
+            554760
           ]
         ],
         "DC": [
@@ -19927,6 +20468,10 @@
           ],
           [
             "2021-01-28",
+            70839
+          ],
+          [
+            "2021-01-29",
             70839
           ]
         ],
@@ -20034,6 +20579,10 @@
           [
             "2021-01-28",
             194942
+          ],
+          [
+            "2021-01-29",
+            194942
           ]
         ],
         "AS": [
@@ -20135,6 +20684,10 @@
           ],
           [
             "2021-01-28",
+            9085
+          ],
+          [
+            "2021-01-29",
             9085
           ]
         ],
@@ -20238,6 +20791,10 @@
           [
             "2021-01-28",
             9251
+          ],
+          [
+            "2021-01-29",
+            9251
           ]
         ],
         "VI": [
@@ -20339,6 +20896,10 @@
           ],
           [
             "2021-01-28",
+            4620
+          ],
+          [
+            "2021-01-29",
             4620
           ]
         ],
@@ -20442,6 +21003,10 @@
           [
             "2021-01-28",
             3502
+          ],
+          [
+            "2021-01-29",
+            3502
           ]
         ],
         "MH": [
@@ -20544,6 +21109,10 @@
           [
             "2021-01-28",
             3755
+          ],
+          [
+            "2021-01-29",
+            3755
           ]
         ],
         "bureau-of-prisons": [
@@ -20641,6 +21210,10 @@
           ],
           [
             "2021-01-28",
+            28514
+          ],
+          [
+            "2021-01-29",
             28514
           ]
         ],
@@ -20744,6 +21317,10 @@
           [
             "2021-01-28",
             389927
+          ],
+          [
+            "2021-01-29",
+            389927
           ]
         ],
         "veterans-health": [
@@ -20846,6 +21423,10 @@
           [
             "2021-01-28",
             792348
+          ],
+          [
+            "2021-01-29",
+            792348
           ]
         ],
         "PW": [
@@ -20931,6 +21512,10 @@
           ],
           [
             "2021-01-28",
+            3067
+          ],
+          [
+            "2021-01-29",
             3067
           ]
         ],
@@ -21097,6 +21682,10 @@
           ],
           [
             "2021-01-28",
+            27300814
+          ],
+          [
+            "2021-01-29",
             27300814
           ]
         ]
@@ -21328,7 +21917,7 @@
       [
         "2021-01-28",
         3975537,
-        4191161.813492064
+        4192770.6706349207
       ]
     ],
     "usa": {
@@ -36274,11 +36863,6 @@
           "2021-01-27",
           10243,
           6454.714285714285
-        ],
-        [
-          "2021-01-28",
-          0,
-          4845.857142857143
         ]
       ],
       "GRC": [
