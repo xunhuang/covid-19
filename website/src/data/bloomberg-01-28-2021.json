@@ -1591,6 +1591,7 @@
         "refrigeration": "2–8ºC",
         "refrigerationCategory": "fridge",
         "refrigerationNotes": "Standard Refrigeration (2–8ºC)",
+        "efficacy": "89%",
         "description": "This small biotech firm has never brought a product to market. It received more than $1.6 billion from the U.S. and $399 million from the Coalition for Epidemic Preparedness. The stock rose 3,000% in nine months.",
         "trialEnrollmentEvents": [
           {
@@ -1616,20 +1617,26 @@
           },
           {
             "companyName": "Novavax",
-            "eventType": "Clinical results expected",
-            "eventDate": "Q1 2021",
-            "eventText": "",
-            "eventDateObj": "2021-01-01T00:00:00.000Z",
-            "eventTypeShort": "Results expected",
-            "eventTypeKey": "resultsExpected"
+            "eventType": "Clinical results",
+            "eventDate": "2021-01-28",
+            "eventText": "Trial shows 89.3% vaccine efficacy",
+            "eventDateObj": "2021-01-28T00:00:00.000Z",
+            "eventTypeShort": "Results",
+            "eventTypeKey": "results"
           }
         ],
         "earlyApprovalEvents": [],
         "periods": [
           {
             "start": "2020-09-28",
-            "end": "Q1 2021",
+            "end": "2021-01-28",
             "key": "trial"
+          },
+          {
+            "start": "2021-01-28",
+            "end": "NOW",
+            "key": "eua",
+            "taperingOff": true
           },
           {
             "period": "Q1 2021",
