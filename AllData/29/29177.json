@@ -378,7 +378,8 @@
     "01/27/2021": 1384,
     "01/28/2021": 1397,
     "01/29/2021": 1401,
-    "01/30/2021": 1407
+    "01/30/2021": 1407,
+    "01/31/2021": 1407
   },
   "Death": {
     "01/22/2020": 0,
@@ -755,7 +756,8 @@
     "01/27/2021": 17,
     "01/28/2021": 17,
     "01/29/2021": 17,
-    "01/30/2021": 19
+    "01/30/2021": 19,
+    "01/31/2021": 19
   },
   "beds": 34,
   "bedsICU": 0,
@@ -764,11 +766,11 @@
   "Population": 23494,
   "LastConfirmed": 1407,
   "LastDeath": 19,
-  "LastConfirmedNew": 6,
-  "LastDeathNew": 2,
-  "DaysToDouble": 129.33004558771572,
-  "DaysToDoubleDeath": null,
-  "Last2WeeksConfirmedDelta": 122,
+  "LastConfirmedNew": 0,
+  "LastDeathNew": 0,
+  "DaysToDouble": 136.62779504050204,
+  "DaysToDoubleDeath": 58.16441217723796,
+  "Last2WeeksConfirmedDelta": 116,
   "StayHomeOrder": {
     "StartUrl": "https://raycountymo.com/wp-content/uploads/2020/03/RayCounty-CourtOrder-032420.pdf",
     "StartDate": "2020-03-25T00:00:00Z",
