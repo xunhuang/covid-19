@@ -1162,13 +1162,13 @@
         "parentIso": null,
         "iso": "BBG",
         "dateUpdated": "2021-01-31",
-        "noDosesTotal": 97301368,
+        "noDosesTotal": 98301368,
         "noPeopleTotal": null,
         "noCompletedVaccination": null,
         "noVaccinesReceived": null,
-        "noDosesTotalLatestRateValue": 4523320.320499329,
+        "noDosesTotalLatestRateValue": 4198644.995824004,
         "noDosesTotalLatestRateDate": "2021-01-31",
-        "noDosesTotalLatestRateDiffPrevious": 2802405,
+        "noDosesTotalLatestRateDiffPrevious": 3802405,
         "noDosesTotalLatestRateDatePrevious": "2021-01-31",
         "noDosesTotalPerCapita": null,
         "noPeopleTotalPerCapita": null,
@@ -1575,17 +1575,17 @@
         "name": "China",
         "parentIso": null,
         "iso": "CHN",
-        "dateUpdated": "2021-01-27",
-        "noDosesTotal": 23000000,
+        "dateUpdated": "2021-01-31",
+        "noDosesTotal": 24000000,
         "noPeopleTotal": null,
         "noCompletedVaccination": null,
         "noVaccinesReceived": null,
-        "noDosesTotalLatestRateValue": 1142857.142857143,
-        "noDosesTotalLatestRateDate": "2021-01-27",
-        "noDosesTotalLatestRateDiffPrevious": 8000000,
-        "noDosesTotalLatestRateDatePrevious": "2021-01-20",
+        "noDosesTotalLatestRateValue": 818181.8181818182,
+        "noDosesTotalLatestRateDate": "2021-01-31",
+        "noDosesTotalLatestRateDiffPrevious": 1000000,
+        "noDosesTotalLatestRateDatePrevious": "2021-01-27",
         "population": 1400050000,
-        "noDosesTotalPerCapita": 0.016427984714831614,
+        "noDosesTotalPerCapita": 0.01714224491982429,
         "noPeopleTotalPerCapita": null,
         "noCompletedVaccinationPerCapita": null
       },
@@ -6103,6 +6103,10 @@
           [
             "2021-01-27",
             23000000
+          ],
+          [
+            "2021-01-31",
+            24000000
           ]
         ],
         "RUS": [
@@ -10028,7 +10032,7 @@
           ],
           [
             "2021-01-31",
-            97344593
+            98344593
           ]
         ]
       }
@@ -17916,8 +17920,8 @@
       ],
       [
         "2021-01-31",
-        2802405,
-        4523320.320499329
+        3802405,
+        4198644.995824004
       ]
     ],
     "usa": {
@@ -29795,6 +29799,11 @@
           "2021-01-27",
           8000000,
           1142857.142857143
+        ],
+        [
+          "2021-01-31",
+          1000000,
+          818181.8181818182
         ]
       ],
       "RUS": [
@@ -34668,8 +34677,8 @@
         ],
         [
           "2021-01-31",
-          2802405,
-          4522023
+          3802405,
+          4664880.142857143
         ]
       ]
     }
