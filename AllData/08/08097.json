@@ -379,7 +379,8 @@
     "01/28/2021": 1812,
     "01/29/2021": 1818,
     "01/30/2021": 1824,
-    "01/31/2021": 1831
+    "01/31/2021": 1831,
+    "02/01/2021": 1831
   },
   "Death": {
     "01/22/2020": 0,
@@ -757,7 +758,8 @@
     "01/28/2021": 4,
     "01/29/2021": 4,
     "01/30/2021": 4,
-    "01/31/2021": 4
+    "01/31/2021": 4,
+    "02/01/2021": 4
   },
   "beds": 25,
   "bedsICU": 4,
@@ -766,11 +768,11 @@
   "Population": 17148,
   "LastConfirmed": 1831,
   "LastDeath": 4,
-  "LastConfirmedNew": 7,
+  "LastConfirmedNew": 0,
   "LastDeathNew": 0,
-  "DaysToDouble": 111.50953449755286,
+  "DaysToDouble": 131.8923246487269,
   "DaysToDoubleDeath": null,
-  "Last2WeeksConfirmedDelta": 219,
+  "Last2WeeksConfirmedDelta": 180,
   "StayHomeOrder": {
     "StartUrl": "https://www.thedenverchannel.com/news/coronavirus/new-stay-at-home-orders-for-five-front-range-counties-announced",
     "StartDate": "2020-03-23T00:00:00Z",
