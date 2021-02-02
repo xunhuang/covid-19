@@ -40,7 +40,7 @@ const Splash = (props) => {
                 <Toolbar>
                     <div className={classes.grow}> </div>
                     <Typography className={classes.title} variant="h2" noWrap>
-                        Keep Calm
+                        Vaccinate!
         </Typography>
                     <div className={classes.grow}> </div>
                 </Toolbar>
