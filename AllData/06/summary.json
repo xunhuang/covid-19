@@ -790,7 +790,7 @@
       "01/30/2021": 40702,
       "01/31/2021": 40928,
       "02/01/2021": 41402,
-      "02/02/2021": 41358
+      "02/02/2021": 41359
     },
     "doses_alloc_total": {
       "01/02/2021": 2226350,
@@ -908,7 +908,7 @@
     "doses_shippied_total_Last": 5666550,
     "LastConfirmed": 3342838,
     "LastConfirmedNew": 170,
-    "LastDeath": 41358,
+    "LastDeath": 41359,
     "LastDeathNew": 0,
     "DaysToDouble": 125.8647924830744,
     "DaysToDoubleDeath": 52.431338623138394,
@@ -36921,9 +36921,9 @@
       }
     ],
     "LastConfirmed": 8404,
-    "LastDeath": 54,
+    "LastDeath": 55,
     "LastConfirmedNew": 0,
-    "LastDeathNew": 0,
+    "LastDeathNew": 1,
     "DaysToDouble": 107.65982658137946,
     "DaysToDoubleDeath": 56.401887221727115,
     "Last2WeeksConfirmedDelta": 1048,
@@ -84151,7 +84151,7 @@
     "Confirmed": null,
     "Death": null,
     "Population": 1175,
-    "ca_county_status": "3",
+    "ca_county_status": "2",
     "LastConfirmed": 74,
     "LastDeath": 0,
     "LastConfirmedNew": 0,
@@ -103027,7 +103027,7 @@
     "hospitals": 1,
     "bedsAvail": 19,
     "Population": 13786,
-    "ca_county_status": "3",
+    "ca_county_status": "2",
     "hospitalization": [
       {
         "fulldate": "03/29/2020",
