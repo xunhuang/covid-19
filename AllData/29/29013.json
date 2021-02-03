@@ -381,7 +381,8 @@
     "01/30/2021": 1030,
     "01/31/2021": 1034,
     "02/01/2021": 1037,
-    "02/02/2021": 1042
+    "02/02/2021": 1042,
+    "02/03/2021": 1042
   },
   "Death": {
     "01/22/2020": 0,
@@ -761,7 +762,8 @@
     "01/30/2021": 16,
     "01/31/2021": 16,
     "02/01/2021": 16,
-    "02/02/2021": 19
+    "02/02/2021": 19,
+    "02/03/2021": 19
   },
   "beds": 60,
   "bedsICU": 0,
@@ -770,11 +772,11 @@
   "Population": 17049,
   "LastConfirmed": 1042,
   "LastDeath": 19,
-  "LastConfirmedNew": 5,
-  "LastDeathNew": 3,
-  "DaysToDouble": 149.3273457152018,
-  "DaysToDoubleDeath": null,
-  "Last2WeeksConfirmedDelta": 73,
+  "LastConfirmedNew": 0,
+  "LastDeathNew": 0,
+  "DaysToDouble": 166.40560288514652,
+  "DaysToDoubleDeath": 37.645411772570334,
+  "Last2WeeksConfirmedDelta": 75,
   "StayHomeOrder": {
     "StartUrl": "https://www.batescountyhealthcenter.org/wp-content/uploads/2020/03/PUBLIC-HEALTH-EMERGENCY-ORDER_3.2020_rev1.pdf",
     "StartDate": "2020-03-30T00:00:00Z",

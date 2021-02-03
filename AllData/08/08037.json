@@ -381,7 +381,8 @@
     "01/30/2021": 4375,
     "01/31/2021": 4390,
     "02/01/2021": 4402,
-    "02/02/2021": 4427
+    "02/02/2021": 4427,
+    "02/03/2021": 4427
   },
   "Death": {
     "01/22/2020": 0,
@@ -761,7 +762,8 @@
     "01/30/2021": 17,
     "01/31/2021": 17,
     "02/01/2021": 17,
-    "02/02/2021": 17
+    "02/02/2021": 17,
+    "02/03/2021": 17
   },
   "beds": 56,
   "bedsICU": 5,
@@ -770,9 +772,9 @@
   "Population": 52197,
   "LastConfirmed": 4427,
   "LastDeath": 17,
-  "LastConfirmedNew": 25,
+  "LastConfirmedNew": 0,
   "LastDeathNew": 0,
-  "DaysToDouble": 123.38625665037023,
-  "DaysToDoubleDeath": -113.18322624105232,
-  "Last2WeeksConfirmedDelta": 426
+  "DaysToDouble": 127.1178097393823,
+  "DaysToDoubleDeath": null,
+  "Last2WeeksConfirmedDelta": 427
 }

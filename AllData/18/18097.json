@@ -381,7 +381,8 @@
     "01/30/2021": 86214,
     "01/31/2021": 86403,
     "02/01/2021": 86656,
-    "02/02/2021": 86857
+    "02/02/2021": 86857,
+    "02/03/2021": 86857
   },
   "Death": {
     "01/22/2020": 0,
@@ -761,7 +762,8 @@
     "01/30/2021": 1359,
     "01/31/2021": 1360,
     "02/01/2021": 1362,
-    "02/02/2021": 1373
+    "02/02/2021": 1373,
+    "02/03/2021": 1373
   },
   "beds": 3862,
   "bedsICU": 318,
@@ -770,11 +772,11 @@
   "Population": 903393,
   "LastConfirmed": 86857,
   "LastDeath": 1373,
-  "LastConfirmedNew": 201,
-  "LastDeathNew": 11,
-  "DaysToDouble": 201.91800702589387,
-  "DaysToDoubleDeath": 240.67988325933035,
-  "Last2WeeksConfirmedDelta": 5098,
+  "LastConfirmedNew": 0,
+  "LastDeathNew": 0,
+  "DaysToDouble": 217.93544043144792,
+  "DaysToDoubleDeath": 195.00685933470842,
+  "Last2WeeksConfirmedDelta": 4964,
   "StayHomeOrder": {
     "StartUrl": null,
     "StartDate": "2020-03-25T00:00:00Z",

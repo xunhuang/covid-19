@@ -381,7 +381,8 @@
     "01/30/2021": 16483,
     "01/31/2021": 16483,
     "02/01/2021": 16483,
-    "02/02/2021": 16838
+    "02/02/2021": 16838,
+    "02/03/2021": 16838
   },
   "Death": {
     "01/22/2020": 0,
@@ -761,7 +762,8 @@
     "01/30/2021": 263,
     "01/31/2021": 268,
     "02/01/2021": 268,
-    "02/02/2021": 269
+    "02/02/2021": 269,
+    "02/03/2021": 269
   },
   "beds": 137,
   "bedsICU": 7,
@@ -770,11 +772,11 @@
   "Population": 150934,
   "LastConfirmed": 16838,
   "LastDeath": 269,
-  "LastConfirmedNew": 355,
-  "LastDeathNew": 1,
-  "DaysToDouble": 108.76220086027708,
-  "DaysToDoubleDeath": 42.9553051843267,
-  "Last2WeeksConfirmedDelta": 2048,
+  "LastConfirmedNew": 0,
+  "LastDeathNew": 0,
+  "DaysToDouble": 105.26373734738772,
+  "DaysToDoubleDeath": 58.185964105038124,
+  "Last2WeeksConfirmedDelta": 2403,
   "StayHomeOrder": {
     "StartUrl": "http://www.johnsoncountytx.org/home/showdocument?id=8691",
     "StartDate": "2020-03-27T00:00:00Z",
