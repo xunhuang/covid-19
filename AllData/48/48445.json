@@ -382,7 +382,8 @@
     "01/31/2021": 1630,
     "02/01/2021": 1630,
     "02/02/2021": 1630,
-    "02/03/2021": 1639
+    "02/03/2021": 1639,
+    "02/04/2021": 1639
   },
   "Death": {
     "01/22/2020": 0,
@@ -763,7 +764,8 @@
     "01/31/2021": 50,
     "02/01/2021": 50,
     "02/02/2021": 50,
-    "02/03/2021": 50
+    "02/03/2021": 50,
+    "02/04/2021": 50
   },
   "beds": 45,
   "bedsICU": 0,
@@ -772,11 +774,11 @@
   "Population": 12651,
   "LastConfirmed": 1639,
   "LastDeath": 50,
-  "LastConfirmedNew": 9,
+  "LastConfirmedNew": 0,
   "LastDeathNew": 0,
-  "DaysToDouble": 154.19715372441976,
-  "DaysToDoubleDeath": 320.2231059208146,
-  "Last2WeeksConfirmedDelta": 155,
+  "DaysToDouble": 363.15423067826003,
+  "DaysToDoubleDeath": null,
+  "Last2WeeksConfirmedDelta": 164,
   "StayHomeOrder": {
     "StartUrl": "https://county.org/TAC/media/TACMedia/Legal/Declarations/County-Terry-3rd-Ratification-Stay-at-home-order-40220.pdf",
     "StartDate": "2020-04-03T00:00:00Z",
