@@ -383,7 +383,8 @@
     "02/01/2021": 31,
     "02/02/2021": 30,
     "02/03/2021": 30,
-    "02/04/2021": 31
+    "02/04/2021": 31,
+    "02/05/2021": 31
   },
   "Death": {
     "01/22/2020": 0,
@@ -765,16 +766,17 @@
     "02/01/2021": 2,
     "02/02/2021": 2,
     "02/03/2021": 2,
-    "02/04/2021": 2
+    "02/04/2021": 2,
+    "02/05/2021": 2
   },
   "Population": 416,
   "LastConfirmed": 31,
   "LastDeath": 2,
-  "LastConfirmedNew": 1,
+  "LastConfirmedNew": 0,
   "LastDeathNew": 0,
-  "DaysToDouble": 591.8946607443087,
+  "DaysToDouble": 295.9473303721035,
   "DaysToDoubleDeath": null,
-  "Last2WeeksConfirmedDelta": 0,
+  "Last2WeeksConfirmedDelta": 1,
   "StayHomeOrder": {
     "StartUrl": "http://www.co.kenedy.tx.us/upload/page/4734/2020/Kenedy%20Countys%20Stay%20at%20Home%20Order%20Dated%20March%2031%202020.pdf",
     "StartDate": "2020-03-31T00:00:00Z",
