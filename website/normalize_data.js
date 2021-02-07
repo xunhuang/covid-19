@@ -320,7 +320,16 @@ function processJHUDataPoint(c, date) {
     }
   }
 
+
   let datekey = date;
+  if (county_fips === '06001' && datekey === "02/05/2021") {
+    console.log(b.Confirmed)
+    county.Confirmed[datekey] = 75511; // errata
+    county.Death[datekey] = b.Deaths;
+    console.log("correct errata for Alameda")
+    return;
+  }
+
   // if data already exist (perhaps from github), don't override it.
   if (county.Confirmed[datekey]) {
     return;
@@ -1190,6 +1199,7 @@ async function main() {
   process_USAFACTS(); // this sites tracks county level data before JHU
   await processAllJHUGithub();
   processAllJHU();
+
   await processVaccineData();
   addCACountyStatus();
   await addCountyHospitalization();
