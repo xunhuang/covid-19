@@ -416,7 +416,7 @@
       "02/05/2021": 3397053,
       "02/06/2021": 3408262,
       "02/07/2021": 3418003,
-      "02/08/2021": 3418003
+      "02/08/2021": 3418237
     },
     "Death": {
       "01/22/2020": 0,
@@ -936,8 +936,8 @@
     "doses_alloc_total_Last": 2691675,
     "doses_admin_total_Last": 4650637,
     "doses_shippied_total_Last": 6963500,
-    "LastConfirmed": 3418003,
-    "LastConfirmedNew": 0,
+    "LastConfirmed": 3418237,
+    "LastConfirmedNew": 234,
     "LastDeath": 44155,
     "LastDeathNew": 0,
     "DaysToDouble": 182.43383426765942,
@@ -60542,9 +60542,9 @@
         "icu_covid_patients": 24
       }
     ],
-    "LastConfirmed": 36824,
+    "LastConfirmed": 37058,
     "LastDeath": 436,
-    "LastConfirmedNew": 0,
+    "LastConfirmedNew": 234,
     "LastDeathNew": 0,
     "DaysToDouble": 157.3463387377542,
     "DaysToDoubleDeath": 28.008600450788443,
