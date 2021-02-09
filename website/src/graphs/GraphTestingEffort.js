@@ -214,13 +214,18 @@ const GraphTestingWidget1 = (props) => {
     return a.date - b.date;
   });
 
-  let testTotalArray = exportColumnFromDataSeries(data, "total");
+  let testTotalArray = exportColumnFromDataSeries(data, "totalTestResults");
   let testPostives = exportColumnFromDataSeries(data, "positive");
-  let testNegatives = exportColumnFromDataSeries(data, "negative");
+  // negative field is not reliable, instead of relying on it, let's compute it instead.
+  // let testNegatives = exportColumnFromDataSeries(data, "negative");
+  let testNegatives = {};
+  for (let i in testTotalArray) {
+    testNegatives[i] = testTotalArray[i] - testPostives[i];
+  }
+
   let total = makeDataSeriesFromTotal(testTotalArray, "total", "testsThatDay", "testsThatDay_avg");
   let pos = makeDataSeriesFromTotal(testPostives, "postive", "positiveThatDay", "positiveThatDay_avg");
   let neg = makeDataSeriesFromTotal(testNegatives, "negative", "negativeThatDay", "negativeThatDay_avg");
-
   data = mergeDataSeries(data, total);
   data = mergeDataSeries(data, pos);
   data = mergeDataSeries(data, neg);
