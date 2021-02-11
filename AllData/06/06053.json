@@ -389,7 +389,8 @@
     "02/07/2021": 40532,
     "02/08/2021": 40532,
     "02/09/2021": 40908,
-    "02/10/2021": 40908
+    "02/10/2021": 40908,
+    "02/11/2021": 40971
   },
   "Death": {
     "01/22/2020": 0,
@@ -777,7 +778,8 @@
     "02/07/2021": 289,
     "02/08/2021": 289,
     "02/09/2021": 291,
-    "02/10/2021": 291
+    "02/10/2021": 291,
+    "02/11/2021": 294
   },
   "beds": 747,
   "bedsICU": 47,
@@ -2695,13 +2697,13 @@
       "icu_covid_patients": 12
     }
   ],
-  "LastConfirmed": 40908,
-  "LastDeath": 291,
-  "LastConfirmedNew": 0,
-  "LastDeathNew": 0,
-  "DaysToDouble": 255.83412138420329,
-  "DaysToDoubleDeath": 254.2648596519287,
-  "Last2WeeksConfirmedDelta": 3381,
+  "LastConfirmed": 40971,
+  "LastDeath": 294,
+  "LastConfirmedNew": 63,
+  "LastDeathNew": 3,
+  "DaysToDouble": 271.47509098928276,
+  "DaysToDoubleDeath": 266.8885620831438,
+  "Last2WeeksConfirmedDelta": 2474,
   "StayHomeOrder": {
     "StartUrl": "https://twitter.com/MontereyCoOES/status/1240035770959708160",
     "StartDate": "2020-03-18T00:00:00Z",

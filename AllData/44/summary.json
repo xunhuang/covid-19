@@ -25,11 +25,11 @@
     "Population": 49875,
     "LastConfirmed": 4019,
     "LastDeath": 117,
-    "LastConfirmedNew": 129,
-    "LastDeathNew": 3,
-    "DaysToDouble": 862017116176384.1,
-    "DaysToDoubleDeath": 1724034232352768.2,
-    "Last2WeeksConfirmedDelta": 391,
+    "LastConfirmedNew": 0,
+    "LastDeathNew": 0,
+    "DaysToDouble": 198.3013133356578,
+    "DaysToDoubleDeath": 249.05688327794255,
+    "Last2WeeksConfirmedDelta": 520,
     "Recovered": null
   },
   "44003": {
@@ -46,11 +46,11 @@
     "Population": 166158,
     "LastConfirmed": 14542,
     "LastDeath": 271,
-    "LastConfirmedNew": 413,
-    "LastDeathNew": 16,
-    "DaysToDouble": null,
-    "DaysToDoubleDeath": null,
-    "Last2WeeksConfirmedDelta": 1484,
+    "LastConfirmedNew": 0,
+    "LastDeathNew": 0,
+    "DaysToDouble": 224.54065745575184,
+    "DaysToDoubleDeath": 106.30752401577438,
+    "Last2WeeksConfirmedDelta": 1897,
     "Recovered": null
   },
   "44005": {
@@ -67,11 +67,11 @@
     "Population": 82888,
     "LastConfirmed": 4851,
     "LastDeath": 19,
-    "LastConfirmedNew": 220,
-    "LastDeathNew": 4,
-    "DaysToDouble": 431008558088192.06,
-    "DaysToDoubleDeath": null,
-    "Last2WeeksConfirmedDelta": 632,
+    "LastConfirmedNew": 0,
+    "LastDeathNew": 0,
+    "DaysToDouble": 139.38998241137153,
+    "DaysToDoubleDeath": 27.367516081784466,
+    "Last2WeeksConfirmedDelta": 852,
     "Recovered": null
   },
   "44007": {
@@ -88,11 +88,11 @@
     "Population": 626667,
     "LastConfirmed": 78666,
     "LastDeath": 1674,
-    "LastConfirmedNew": 1939,
-    "LastDeathNew": 42,
-    "DaysToDouble": null,
-    "DaysToDoubleDeath": null,
-    "Last2WeeksConfirmedDelta": 5555,
+    "LastConfirmedNew": 0,
+    "LastDeathNew": 0,
+    "DaysToDouble": 259.216917890195,
+    "DaysToDoubleDeath": 254.60236572760186,
+    "Last2WeeksConfirmedDelta": 7494,
     "Recovered": null
   },
   "44009": {
@@ -109,11 +109,11 @@
     "Population": 126979,
     "LastConfirmed": 7042,
     "LastDeath": 139,
-    "LastConfirmedNew": 277,
-    "LastDeathNew": 1,
-    "DaysToDouble": null,
-    "DaysToDoubleDeath": 862017116176384.1,
-    "Last2WeeksConfirmedDelta": 878,
+    "LastConfirmedNew": 0,
+    "LastDeathNew": 0,
+    "DaysToDouble": 161.21057256690594,
+    "DaysToDoubleDeath": 896.0043628670372,
+    "Last2WeeksConfirmedDelta": 1155,
     "Recovered": null
   },
   "80044": {
@@ -520,7 +520,8 @@
       "02/07/2021": 106142,
       "02/08/2021": 106142,
       "02/09/2021": 106142,
-      "02/10/2021": 109120
+      "02/10/2021": 109120,
+      "02/11/2021": 109120
     },
     "Death": {
       "01/22/2020": 0,
@@ -908,7 +909,8 @@
       "02/07/2021": 2154,
       "02/08/2021": 2154,
       "02/09/2021": 2154,
-      "02/10/2021": 2220
+      "02/10/2021": 2220,
+      "02/11/2021": 2220
     },
     "doses_alloc_total": {
       "12/14/2020": 29000,
@@ -969,7 +971,8 @@
       "02/10/2021": 77800,
       "12/15/2020": 29000,
       "12/16/2020": 29000,
-      "12/17/2020": 29000
+      "12/17/2020": 29000,
+      "02/11/2021": 77800
     },
     "doses_admin_total": {
       "12/14/2020": 0,
@@ -1030,7 +1033,8 @@
       "02/10/2021": 127857,
       "12/15/2020": 0,
       "12/16/2020": 0,
-      "12/17/2020": 0
+      "12/17/2020": 0,
+      "02/11/2021": 127857
     },
     "doses_shipped_total": {
       "12/14/2020": 5000,
@@ -1091,18 +1095,19 @@
       "02/10/2021": 208350,
       "12/15/2020": 5000,
       "12/16/2020": 5000,
-      "12/17/2020": 5000
+      "12/17/2020": 5000,
+      "02/11/2021": 208350
     },
     "doses_alloc_total_Last": 77800,
     "doses_admin_total_Last": 127857,
     "doses_shippied_total_Last": 208350,
     "LastConfirmed": 109120,
-    "LastConfirmedNew": 2978,
+    "LastConfirmedNew": 0,
     "LastDeath": 2220,
-    "LastDeathNew": 66,
-    "DaysToDouble": null,
-    "DaysToDoubleDeath": null,
-    "Last2WeeksConfirmedDelta": 8940,
+    "LastDeathNew": 0,
+    "DaysToDouble": 233.80145579890473,
+    "DaysToDoubleDeath": 214.35524837256793,
+    "Last2WeeksConfirmedDelta": 11918,
     "beds": 3413,
     "bedsICU": 246,
     "hospitals": 15,

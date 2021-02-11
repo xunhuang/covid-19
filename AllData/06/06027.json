@@ -389,7 +389,8 @@
     "02/07/2021": 1140,
     "02/08/2021": 1162,
     "02/09/2021": 1174,
-    "02/10/2021": 1174
+    "02/10/2021": 1174,
+    "02/11/2021": 1176
   },
   "Death": {
     "01/22/2020": 0,
@@ -777,7 +778,8 @@
     "02/07/2021": 29,
     "02/08/2021": 32,
     "02/09/2021": 34,
-    "02/10/2021": 34
+    "02/10/2021": 34,
+    "02/11/2021": 34
   },
   "beds": 29,
   "bedsICU": 4,
@@ -2695,13 +2697,13 @@
       "icu_covid_patients": 1
     }
   ],
-  "LastConfirmed": 1174,
+  "LastConfirmed": 1176,
   "LastDeath": 34,
-  "LastConfirmedNew": 0,
+  "LastConfirmedNew": 2,
   "LastDeathNew": 0,
-  "DaysToDouble": 76.84172875940752,
-  "DaysToDoubleDeath": 28.792260860686284,
-  "Last2WeeksConfirmedDelta": 123,
+  "DaysToDouble": 85.42234690767486,
+  "DaysToDoubleDeath": 21.715051081877945,
+  "Last2WeeksConfirmedDelta": 121,
   "StayHomeOrder": {
     "StartUrl": "https://www.inyocounty.us/sites/default/files/2020-03/ORDER_3.20.20.pdf",
     "StartDate": "2020-03-20T00:00:00Z",
