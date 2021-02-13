@@ -391,7 +391,8 @@
     "02/09/2021": 2003,
     "02/10/2021": 2014,
     "02/11/2021": 2031,
-    "02/12/2021": 2049
+    "02/12/2021": 2049,
+    "02/13/2021": 2049
   },
   "Death": {
     "01/22/2020": 0,
@@ -781,7 +782,8 @@
     "02/09/2021": 37,
     "02/10/2021": 37,
     "02/11/2021": 37,
-    "02/12/2021": 38
+    "02/12/2021": 38,
+    "02/13/2021": 38
   },
   "beds": 50,
   "bedsICU": 0,
@@ -790,11 +792,11 @@
   "Population": 18550,
   "LastConfirmed": 2049,
   "LastDeath": 38,
-  "LastConfirmedNew": 18,
-  "LastDeathNew": 1,
-  "DaysToDouble": 157.20954509885783,
-  "DaysToDoubleDeath": null,
-  "Last2WeeksConfirmedDelta": 161,
+  "LastConfirmedNew": 0,
+  "LastDeathNew": 0,
+  "DaysToDouble": 129.83828448058077,
+  "DaysToDoubleDeath": 242.58713612843866,
+  "Last2WeeksConfirmedDelta": 171,
   "StayHomeOrder": {
     "StartUrl": "http://www.co.young.tx.us/upload/page/2041/2020/First%20Amended%20to%20Local%20Declaration.pdf",
     "StartDate": "2020-04-01T00:00:00Z",
