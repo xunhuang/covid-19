@@ -425,7 +425,7 @@
       "02/14/2021": 3485862,
       "02/15/2021": 3491413,
       "02/16/2021": 3499892,
-      "02/17/2021": 3499892
+      "02/17/2021": 3500152
     },
     "Death": {
       "01/22/2020": 0,
@@ -820,7 +820,7 @@
       "02/14/2021": 47057,
       "02/15/2021": 47119,
       "02/16/2021": 47510,
-      "02/17/2021": 47510
+      "02/17/2021": 47549
     },
     "doses_alloc_total": {
       "01/02/2021": 2226350,
@@ -981,10 +981,10 @@
     "doses_alloc_total_Last": 2691675,
     "doses_admin_total_Last": 6262781,
     "doses_shippied_total_Last": 8250650,
-    "LastConfirmed": 3499892,
-    "LastConfirmedNew": 0,
-    "LastDeath": 47510,
-    "LastDeathNew": 0,
+    "LastConfirmed": 3500152,
+    "LastConfirmedNew": 260,
+    "LastDeath": 47549,
+    "LastDeathNew": 39,
     "DaysToDouble": 306.7962041248498,
     "DaysToDoubleDeath": 102.30969070358478,
     "Last2WeeksConfirmedDelta": 157224,
@@ -18869,9 +18869,9 @@
         "icu_covid_patients": 16
       }
     ],
-    "LastConfirmed": 26779,
+    "LastConfirmed": 26797,
     "LastDeath": 584,
-    "LastConfirmedNew": 0,
+    "LastConfirmedNew": 18,
     "LastDeathNew": 0,
     "DaysToDouble": 534.4864065407321,
     "DaysToDoubleDeath": 374.5674250585674,
@@ -52403,10 +52403,10 @@
         "icu_covid_patients": 156
       }
     ],
-    "LastConfirmed": 282494,
-    "LastDeath": 2418,
-    "LastConfirmedNew": 0,
-    "LastDeathNew": 0,
+    "LastConfirmed": 282736,
+    "LastDeath": 2457,
+    "LastConfirmedNew": 242,
+    "LastDeathNew": 39,
     "DaysToDouble": 375.46037999509116,
     "DaysToDoubleDeath": 39.4996200063018,
     "Last2WeeksConfirmedDelta": 7418,
