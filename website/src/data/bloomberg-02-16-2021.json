@@ -3402,7 +3402,8 @@
         "cdcDosesAdministeredTotal": 55220364,
         "cdcDosesDistributedTotal": 71657975,
         "noCompletedVaccination": 28743915,
-        "noDosesTotal": 181679663,
+        "noDosesTotal": 181680388,
+        "noDosesTotalBloomberg": 52192381,
         "noPeopleTotal": 96071636,
         "noDosesTotalLatestRateValue": 6193974,
         "noDosesTotalLatestRateDate": "2021-02-16",
@@ -3413,6 +3414,7 @@
         "cdcDosesDistributedTotalPerCapita": null,
         "noCompletedVaccinationPerCapita": null,
         "noDosesTotalPerCapita": null,
+        "noDosesTotalBloombergPerCapita": null,
         "noPeopleTotalPerCapita": null
       },
       {
@@ -4052,6 +4054,23 @@
         "noCompletedVaccinationPerCapita": 0
       },
       {
+        "name": "Palau",
+        "parentIso": null,
+        "iso": "PLW",
+        "dateUpdated": null,
+        "noDosesTotal": 725,
+        "noPeopleTotal": 0,
+        "noCompletedVaccination": 0,
+        "noDosesTotalLatestRateValue": 0,
+        "noDosesTotalLatestRateDate": "2021-02-16",
+        "noDosesTotalLatestRateDiffPrevious": null,
+        "noDosesTotalLatestRateDatePrevious": null,
+        "population": 17000,
+        "noDosesTotalPerCapita": 0.04264705882352941,
+        "noPeopleTotalPerCapita": 0,
+        "noCompletedVaccinationPerCapita": 0
+      },
+      {
         "name": "Panama",
         "parentIso": null,
         "iso": "PAN",
@@ -4459,6 +4478,7 @@
         "cdcDosesDistributedTotal": 71657975,
         "noCompletedVaccination": 15553171,
         "noDosesTotal": 56103604,
+        "noDosesTotalBloomberg": 52192381,
         "noPeopleTotal": 40220856,
         "noDosesTotalLatestRateValue": 1669975,
         "noDosesTotalLatestRateDate": "2021-02-16",
@@ -4469,6 +4489,7 @@
         "cdcDosesDistributedTotalPerCapita": 0.21816281080554464,
         "noCompletedVaccinationPerCapita": 0.0473516520987271,
         "noDosesTotalPerCapita": 0.17080750530504382,
+        "noDosesTotalBloombergPerCapita": 0.15889978110034372,
         "noPeopleTotalPerCapita": 0.12245245554266716
       },
       {
@@ -4534,6 +4555,7 @@
         "noCompletedVaccination": 152781,
         "cdcDosesDistributedTotal": 1015775,
         "cdcDosesAdministeredTotal": 636682,
+        "noDosesTotalBloomberg": 648987,
         "cdcDosesAdministeredPerDistributed": 0.626794319608181,
         "noDosesTotalPerCdcDistributed": 0.6389082227855578,
         "dateUpdated": null,
@@ -4548,7 +4570,8 @@
         "noPeopleTotalPerCapita": 0.10104962386693547,
         "noCompletedVaccinationPerCapita": 0.031159542215926993,
         "cdcDosesDistributedTotalPerCapita": 0.20716636227268603,
-        "cdcDosesAdministeredTotalPerCapita": 0.12985069908641017
+        "cdcDosesAdministeredTotalPerCapita": 0.12985069908641017,
+        "noDosesTotalBloombergPerCapita": 0.13236029234059085
       },
       {
         "name": "Alaska",
@@ -4560,6 +4583,7 @@
         "noCompletedVaccination": 65310,
         "cdcDosesDistributedTotal": 271550,
         "cdcDosesAdministeredTotal": 191008,
+        "noDosesTotalBloomberg": 193614,
         "cdcDosesAdministeredPerDistributed": 0.7033990057079728,
         "noDosesTotalPerCdcDistributed": 0.7129957650524765,
         "dateUpdated": null,
@@ -4574,7 +4598,8 @@
         "noPeopleTotalPerCapita": 0.1772385840925712,
         "noCompletedVaccinationPerCapita": 0.08927680457114737,
         "cdcDosesDistributedTotalPerCapita": 0.37120067801707346,
-        "cdcDosesAdministeredTotalPerCapita": 0.2611021878353348
+        "cdcDosesAdministeredTotalPerCapita": 0.2611021878353348,
+        "noDosesTotalBloombergPerCapita": 0.2646645114107813
       },
       {
         "name": "American Samoa",
@@ -4586,6 +4611,7 @@
         "noCompletedVaccination": 5860,
         "cdcDosesDistributedTotal": 29450,
         "cdcDosesAdministeredTotal": 16109,
+        "noDosesTotalBloomberg": 0,
         "cdcDosesAdministeredPerDistributed": 0.5469949066213922,
         "noDosesTotalPerCdcDistributed": 0.5469949066213922,
         "dateUpdated": null,
@@ -4600,7 +4626,8 @@
         "noPeopleTotalPerCapita": 0.20705139874992415,
         "noCompletedVaccinationPerCapita": 0.1185347007302223,
         "cdcDosesDistributedTotalPerCapita": 0.5957076683455711,
-        "cdcDosesAdministeredTotalPerCapita": 0.32584906042033296
+        "cdcDosesAdministeredTotalPerCapita": 0.32584906042033296,
+        "noDosesTotalBloombergPerCapita": 0
       },
       {
         "name": "Arizona",
@@ -4612,6 +4639,7 @@
         "noCompletedVaccination": 286738,
         "cdcDosesDistributedTotal": 1396475,
         "cdcDosesAdministeredTotal": 1154583,
+        "noDosesTotalBloomberg": 1227271,
         "cdcDosesAdministeredPerDistributed": 0.826783866521062,
         "noDosesTotalPerCdcDistributed": 0.8788349236470399,
         "dateUpdated": null,
@@ -4626,7 +4654,8 @@
         "noPeopleTotalPerCapita": 0.1282397708277434,
         "noCompletedVaccinationPerCapita": 0.03939403056884888,
         "cdcDosesDistributedTotalPerCapita": 0.19185730122492742,
-        "cdcDosesAdministeredTotalPerCapita": 0.15862452132704158
+        "cdcDosesAdministeredTotalPerCapita": 0.15862452132704158,
+        "noDosesTotalBloombergPerCapita": 0.16861089667313622
       },
       {
         "name": "Arkansas",
@@ -4638,6 +4667,7 @@
         "noCompletedVaccination": 136415,
         "cdcDosesDistributedTotal": 631675,
         "cdcDosesAdministeredTotal": 483438,
+        "noDosesTotalBloomberg": 478048,
         "cdcDosesAdministeredPerDistributed": 0.7653271065025528,
         "noDosesTotalPerCdcDistributed": 0.7653271065025528,
         "dateUpdated": null,
@@ -4652,7 +4682,8 @@
         "noPeopleTotalPerCapita": 0.1138698868448713,
         "noCompletedVaccinationPerCapita": 0.04520339955808926,
         "cdcDosesDistributedTotalPerCapita": 0.20931611198076483,
-        "cdcDosesAdministeredTotalPerCapita": 0.16019529432660307
+        "cdcDosesAdministeredTotalPerCapita": 0.16019529432660307,
+        "noDosesTotalBloombergPerCapita": 0.15840922737195656
       },
       {
         "name": "Bureau of Prisons",
@@ -4663,6 +4694,7 @@
         "noCompletedVaccination": 17256,
         "cdcDosesDistributedTotal": 44750,
         "cdcDosesAdministeredTotal": 48090,
+        "noDosesTotalBloomberg": 0,
         "cdcDosesAdministeredPerDistributed": 1.0746368715083798,
         "noDosesTotalPerCdcDistributed": 1.0746368715083798,
         "dateUpdated": null,
@@ -4676,7 +4708,8 @@
         "noPeopleTotalPerCapita": null,
         "noCompletedVaccinationPerCapita": null,
         "cdcDosesDistributedTotalPerCapita": null,
-        "cdcDosesAdministeredTotalPerCapita": null
+        "cdcDosesAdministeredTotalPerCapita": null,
+        "noDosesTotalBloombergPerCapita": null
       },
       {
         "name": "California",
@@ -4688,6 +4721,7 @@
         "noCompletedVaccination": 1456222,
         "cdcDosesDistributedTotal": 8250650,
         "cdcDosesAdministeredTotal": 6210992,
+        "noDosesTotalBloomberg": 6262781,
         "cdcDosesAdministeredPerDistributed": 0.7527882045657008,
         "noDosesTotalPerCdcDistributed": 0.759065164562792,
         "dateUpdated": null,
@@ -4702,7 +4736,24 @@
         "noPeopleTotalPerCapita": 0.11916836468553035,
         "noCompletedVaccinationPerCapita": 0.03685497523133538,
         "cdcDosesDistributedTotalPerCapita": 0.20881259958469053,
-        "cdcDosesAdministeredTotalPerCapita": 0.1571916619320558
+        "cdcDosesAdministeredTotalPerCapita": 0.1571916619320558,
+        "noDosesTotalBloombergPerCapita": 0.15850237026653752
+      },
+      {
+        "name": "Chicago",
+        "parentFips": "17",
+        "code": "chicago",
+        "noDosesTotal": 25264,
+        "noPeopleTotal": 0,
+        "cdcDosesAdministeredPerDistributed": null,
+        "noDosesTotalPerCdcDistributed": null,
+        "dateUpdated": null,
+        "noDosesTotalLatestRateDiffPrevious": null,
+        "noDosesTotalLatestRateDatePrevious": null,
+        "whiteText": null,
+        "population": null,
+        "noDosesTotalPerCapita": null,
+        "noPeopleTotalPerCapita": null
       },
       {
         "name": "Colorado",
@@ -4714,6 +4765,7 @@
         "noCompletedVaccination": 308992,
         "cdcDosesDistributedTotal": 1224575,
         "cdcDosesAdministeredTotal": 1000597,
+        "noDosesTotalBloomberg": 995662,
         "cdcDosesAdministeredPerDistributed": 0.8170973603086785,
         "noDosesTotalPerCdcDistributed": 0.8170973603086785,
         "dateUpdated": null,
@@ -4728,7 +4780,8 @@
         "noPeopleTotalPerCapita": 0.11927773733680447,
         "noCompletedVaccinationPerCapita": 0.05365621900361468,
         "cdcDosesDistributedTotalPerCapita": 0.2126464904798553,
-        "cdcDosesAdministeredTotalPerCapita": 0.1737528860499943
+        "cdcDosesAdministeredTotalPerCapita": 0.1737528860499943,
+        "noDosesTotalBloombergPerCapita": 0.17289592716179383
       },
       {
         "name": "Connecticut",
@@ -4740,6 +4793,7 @@
         "noCompletedVaccination": 218062,
         "cdcDosesDistributedTotal": 914075,
         "cdcDosesAdministeredTotal": 711142,
+        "noDosesTotalBloomberg": 691846,
         "cdcDosesAdministeredPerDistributed": 0.777990865082187,
         "noDosesTotalPerCdcDistributed": 0.777990865082187,
         "dateUpdated": null,
@@ -4754,7 +4808,8 @@
         "noPeopleTotalPerCapita": 0.13866289025259398,
         "noCompletedVaccinationPerCapita": 0.061162537546065716,
         "cdcDosesDistributedTotalPerCapita": 0.2563818845439371,
-        "cdcDosesAdministeredTotalPerCapita": 0.19946276414773903
+        "cdcDosesAdministeredTotalPerCapita": 0.19946276414773903,
+        "noDosesTotalBloombergPerCapita": 0.1940505771344635
       },
       {
         "name": "Delaware",
@@ -4766,6 +4821,7 @@
         "noCompletedVaccination": 34002,
         "cdcDosesDistributedTotal": 189050,
         "cdcDosesAdministeredTotal": 152387,
+        "noDosesTotalBloomberg": 154483,
         "cdcDosesAdministeredPerDistributed": 0.8060671779952393,
         "noDosesTotalPerCdcDistributed": 0.817154192012695,
         "dateUpdated": null,
@@ -4780,7 +4836,8 @@
         "noPeopleTotalPerCapita": 0.12076848189088937,
         "noCompletedVaccinationPerCapita": 0.03491811157528929,
         "cdcDosesDistributedTotalPerCapita": 0.19414355018259044,
-        "cdcDosesAdministeredTotalPerCapita": 0.15649274362165783
+        "cdcDosesAdministeredTotalPerCapita": 0.15649274362165783,
+        "noDosesTotalBloombergPerCapita": 0.1586452158839308
       },
       {
         "name": "Department of Defense",
@@ -4791,6 +4848,7 @@
         "noCompletedVaccination": 180770,
         "cdcDosesDistributedTotal": 1096375,
         "cdcDosesAdministeredTotal": 754935,
+        "noDosesTotalBloomberg": 0,
         "cdcDosesAdministeredPerDistributed": 0.6885737088131342,
         "noDosesTotalPerCdcDistributed": 0.6885737088131342,
         "dateUpdated": null,
@@ -4804,7 +4862,8 @@
         "noPeopleTotalPerCapita": null,
         "noCompletedVaccinationPerCapita": null,
         "cdcDosesDistributedTotalPerCapita": null,
-        "cdcDosesAdministeredTotalPerCapita": null
+        "cdcDosesAdministeredTotalPerCapita": null,
+        "noDosesTotalBloombergPerCapita": null
       },
       {
         "name": "District of Columbia",
@@ -4816,6 +4875,7 @@
         "noCompletedVaccination": 39060,
         "cdcDosesDistributedTotal": 193900,
         "cdcDosesAdministeredTotal": 126500,
+        "noDosesTotalBloomberg": 87289,
         "cdcDosesAdministeredPerDistributed": 0.6523981433728726,
         "noDosesTotalPerCdcDistributed": 0.6523981433728726,
         "dateUpdated": null,
@@ -4830,7 +4890,8 @@
         "noPeopleTotalPerCapita": 0.12361760342558048,
         "noCompletedVaccinationPerCapita": 0.05534545567900202,
         "cdcDosesDistributedTotalPerCapita": 0.274743570306157,
-        "cdcDosesAdministeredTotalPerCapita": 0.17924219517137113
+        "cdcDosesAdministeredTotalPerCapita": 0.17924219517137113,
+        "noDosesTotalBloombergPerCapita": 0.1236827824056428
       },
       {
         "name": "Federal Entities",
@@ -4841,6 +4902,7 @@
         "cdcDosesDistributedTotal": 3886525,
         "noCompletedVaccination": 778338,
         "noDosesTotal": 2881011,
+        "noDosesTotalBloomberg": 18000,
         "noPeopleTotal": 2085132,
         "cdcDosesAdministeredPerDistributed": 0.7412819935546536,
         "noDosesTotalPerCdcDistributed": 0.7412819935546536,
@@ -4856,6 +4918,7 @@
         "cdcDosesDistributedTotalPerCapita": null,
         "noCompletedVaccinationPerCapita": null,
         "noDosesTotalPerCapita": null,
+        "noDosesTotalBloombergPerCapita": null,
         "noPeopleTotalPerCapita": null
       },
       {
@@ -4868,6 +4931,7 @@
         "noCompletedVaccination": 1135963,
         "cdcDosesDistributedTotal": 4597575,
         "cdcDosesAdministeredTotal": 3598996,
+        "noDosesTotalBloomberg": 3566600,
         "cdcDosesAdministeredPerDistributed": 0.7828031081602801,
         "noDosesTotalPerCdcDistributed": 0.7828031081602801,
         "dateUpdated": null,
@@ -4882,7 +4946,8 @@
         "noPeopleTotalPerCapita": 0.11367254380664034,
         "noCompletedVaccinationPerCapita": 0.05289025561678123,
         "cdcDosesDistributedTotalPerCapita": 0.214062356755742,
-        "cdcDosesAdministeredTotalPerCapita": 0.1675686782085096
+        "cdcDosesAdministeredTotalPerCapita": 0.1675686782085096,
+        "noDosesTotalBloombergPerCapita": 0.16606032562927836
       },
       {
         "name": "Georgia",
@@ -4894,6 +4959,7 @@
         "noCompletedVaccination": 433618,
         "cdcDosesDistributedTotal": 2130100,
         "cdcDosesAdministeredTotal": 1473440,
+        "noDosesTotalBloomberg": 1491903,
         "cdcDosesAdministeredPerDistributed": 0.6917233932679216,
         "noDosesTotalPerCdcDistributed": 0.700391061452514,
         "dateUpdated": null,
@@ -4908,7 +4974,8 @@
         "noPeopleTotalPerCapita": 0.09967437484594896,
         "noCompletedVaccinationPerCapita": 0.04084023025172869,
         "cdcDosesDistributedTotalPerCapita": 0.20062307021204676,
-        "cdcDosesAdministeredTotalPerCapita": 0.13877567089490547
+        "cdcDosesAdministeredTotalPerCapita": 0.13877567089490547,
+        "noDosesTotalBloombergPerCapita": 0.14051460509767766
       },
       {
         "name": "Guam",
@@ -4920,6 +4987,7 @@
         "noCompletedVaccination": 13123,
         "cdcDosesDistributedTotal": 51300,
         "cdcDosesAdministeredTotal": 39504,
+        "noDosesTotalBloomberg": 41918,
         "cdcDosesAdministeredPerDistributed": 0.7700584795321638,
         "noDosesTotalPerCdcDistributed": 0.8171150097465887,
         "dateUpdated": null,
@@ -4934,7 +5002,8 @@
         "noPeopleTotalPerCapita": 0.17090542184764224,
         "noCompletedVaccinationPerCapita": 0.07788823930913731,
         "cdcDosesDistributedTotalPerCapita": 0.304478143454907,
-        "cdcDosesAdministeredTotalPerCapita": 0.2344659761996617
+        "cdcDosesAdministeredTotalPerCapita": 0.2344659761996617,
+        "noDosesTotalBloombergPerCapita": 0.24879366115677953
       },
       {
         "name": "Hawaii",
@@ -4946,6 +5015,7 @@
         "noCompletedVaccination": 68688,
         "cdcDosesDistributedTotal": 311200,
         "cdcDosesAdministeredTotal": 237172,
+        "noDosesTotalBloomberg": 261950,
         "cdcDosesAdministeredPerDistributed": 0.762120822622108,
         "noDosesTotalPerCdcDistributed": 0.8417416452442159,
         "dateUpdated": null,
@@ -4960,7 +5030,8 @@
         "noPeopleTotalPerCapita": 0.11899310107128327,
         "noCompletedVaccinationPerCapita": 0.04851285991954075,
         "cdcDosesDistributedTotalPerCapita": 0.21979387967273878,
-        "cdcDosesAdministeredTotalPerCapita": 0.1675094923834923
+        "cdcDosesAdministeredTotalPerCapita": 0.1675094923834923,
+        "noDosesTotalBloombergPerCapita": 0.18500966189034038
       },
       {
         "name": "Idaho",
@@ -4972,6 +5043,7 @@
         "noCompletedVaccination": 64687,
         "cdcDosesDistributedTotal": 333575,
         "cdcDosesAdministeredTotal": 263625,
+        "noDosesTotalBloomberg": 259500,
         "cdcDosesAdministeredPerDistributed": 0.7903020310275051,
         "noDosesTotalPerCdcDistributed": 0.7903020310275051,
         "dateUpdated": null,
@@ -4986,7 +5058,8 @@
         "noPeopleTotalPerCapita": 0.107270860321253,
         "noCompletedVaccinationPerCapita": 0.03619734033177305,
         "cdcDosesDistributedTotalPerCapita": 0.1866608097634949,
-        "cdcDosesAdministeredTotalPerCapita": 0.14751841706932875
+        "cdcDosesAdministeredTotalPerCapita": 0.14751841706932875,
+        "noDosesTotalBloombergPerCapita": 0.14521016303268208
       },
       {
         "name": "Illinois",
@@ -4998,6 +5071,7 @@
         "noCompletedVaccination": 430489,
         "cdcDosesDistributedTotal": 2661550,
         "cdcDosesAdministeredTotal": 1954382,
+        "noDosesTotalBloomberg": 1863562,
         "cdcDosesAdministeredPerDistributed": 0.7343021923315362,
         "noDosesTotalPerCdcDistributed": 0.7343021923315362,
         "dateUpdated": null,
@@ -5012,7 +5086,8 @@
         "noPeopleTotalPerCapita": 0.11826548054932279,
         "noCompletedVaccinationPerCapita": 0.03397214970129392,
         "cdcDosesDistributedTotalPerCapita": 0.2100368999846194,
-        "cdcDosesAdministeredTotalPerCapita": 0.15423055612922562
+        "cdcDosesAdministeredTotalPerCapita": 0.15423055612922562,
+        "noDosesTotalBloombergPerCapita": 0.1470634725664133
       },
       {
         "name": "Indian Health Service",
@@ -5023,6 +5098,7 @@
         "noCompletedVaccination": 100756,
         "cdcDosesDistributedTotal": 697025,
         "cdcDosesAdministeredTotal": 385284,
+        "noDosesTotalBloomberg": 18000,
         "cdcDosesAdministeredPerDistributed": 0.5527549227072199,
         "noDosesTotalPerCdcDistributed": 0.5527549227072199,
         "dateUpdated": null,
@@ -5036,7 +5112,8 @@
         "noPeopleTotalPerCapita": null,
         "noCompletedVaccinationPerCapita": null,
         "cdcDosesDistributedTotalPerCapita": null,
-        "cdcDosesAdministeredTotalPerCapita": null
+        "cdcDosesAdministeredTotalPerCapita": null,
+        "noDosesTotalBloombergPerCapita": null
       },
       {
         "name": "Indiana",
@@ -5048,6 +5125,7 @@
         "noCompletedVaccination": 347508,
         "cdcDosesDistributedTotal": 1445100,
         "cdcDosesAdministeredTotal": 1091762,
+        "noDosesTotalBloomberg": 1175586,
         "cdcDosesAdministeredPerDistributed": 0.755492353470348,
         "noDosesTotalPerCdcDistributed": 0.8134980278181441,
         "dateUpdated": null,
@@ -5062,7 +5140,8 @@
         "noPeopleTotalPerCapita": 0.12300223744949473,
         "noCompletedVaccinationPerCapita": 0.051618641639554506,
         "cdcDosesDistributedTotalPerCapita": 0.2146543361111693,
-        "cdcDosesAdministeredTotalPerCapita": 0.1621697095712424
+        "cdcDosesAdministeredTotalPerCapita": 0.1621697095712424,
+        "noDosesTotalBloombergPerCapita": 0.17462087908904925
       },
       {
         "name": "Iowa",
@@ -5074,6 +5153,7 @@
         "noCompletedVaccination": 125558,
         "cdcDosesDistributedTotal": 615100,
         "cdcDosesAdministeredTotal": 485710,
+        "noDosesTotalBloomberg": 496981,
         "cdcDosesAdministeredPerDistributed": 0.7896439603316534,
         "noDosesTotalPerCdcDistributed": 0.8079678101121769,
         "dateUpdated": null,
@@ -5088,7 +5168,8 @@
         "noPeopleTotalPerCapita": 0.11772258618667732,
         "noCompletedVaccinationPerCapita": 0.039795630524837804,
         "cdcDosesDistributedTotalPerCapita": 0.1949560548577369,
-        "cdcDosesAdministeredTotalPerCapita": 0.15394587124849846
+        "cdcDosesAdministeredTotalPerCapita": 0.15394587124849846,
+        "noDosesTotalBloombergPerCapita": 0.1575182167115151
       },
       {
         "name": "Kansas",
@@ -5100,6 +5181,7 @@
         "noCompletedVaccination": 102799,
         "cdcDosesDistributedTotal": 581975,
         "cdcDosesAdministeredTotal": 397247,
+        "noDosesTotalBloomberg": 394523,
         "cdcDosesAdministeredPerDistributed": 0.6825843034494609,
         "noDosesTotalPerCdcDistributed": 0.6825843034494609,
         "dateUpdated": null,
@@ -5114,7 +5196,8 @@
         "noPeopleTotalPerCapita": 0.10013544712310447,
         "noCompletedVaccinationPerCapita": 0.03528593210343959,
         "cdcDosesDistributedTotalPerCapita": 0.1997639114767581,
-        "cdcDosesAdministeredTotalPerCapita": 0.13635571036970268
+        "cdcDosesAdministeredTotalPerCapita": 0.13635571036970268,
+        "noDosesTotalBloombergPerCapita": 0.13542069272313248
       },
       {
         "name": "Kentucky",
@@ -5126,6 +5209,7 @@
         "noCompletedVaccination": 198180,
         "cdcDosesDistributedTotal": 903775,
         "cdcDosesAdministeredTotal": 711588,
+        "noDosesTotalBloomberg": 519063,
         "cdcDosesAdministeredPerDistributed": 0.7873508340018257,
         "noDosesTotalPerCdcDistributed": 0.7873508340018257,
         "dateUpdated": null,
@@ -5140,7 +5224,8 @@
         "noPeopleTotalPerCapita": 0.11618195870646755,
         "noCompletedVaccinationPerCapita": 0.04435866277590146,
         "cdcDosesDistributedTotalPerCapita": 0.20229211045660683,
-        "cdcDosesAdministeredTotalPerCapita": 0.1592748618799988
+        "cdcDosesAdministeredTotalPerCapita": 0.1592748618799988,
+        "noDosesTotalBloombergPerCapita": 0.11618195870646755
       },
       {
         "name": "Louisiana",
@@ -5152,6 +5237,7 @@
         "noCompletedVaccination": 255269,
         "cdcDosesDistributedTotal": 895350,
         "cdcDosesAdministeredTotal": 784976,
+        "noDosesTotalBloomberg": 782992,
         "cdcDosesAdministeredPerDistributed": 0.876725302954152,
         "noDosesTotalPerCdcDistributed": 0.876725302954152,
         "dateUpdated": null,
@@ -5166,7 +5252,8 @@
         "noPeopleTotalPerCapita": 0.11358902975696493,
         "noCompletedVaccinationPerCapita": 0.05491080052159764,
         "cdcDosesDistributedTotalPerCapita": 0.1925983384077677,
-        "cdcDosesAdministeredTotalPerCapita": 0.16885583658901643
+        "cdcDosesAdministeredTotalPerCapita": 0.16885583658901643,
+        "noDosesTotalBloombergPerCapita": 0.16842905923557808
       },
       {
         "name": "Maine",
@@ -5178,6 +5265,7 @@
         "noCompletedVaccination": 73021,
         "cdcDosesDistributedTotal": 317850,
         "cdcDosesAdministeredTotal": 238137,
+        "noDosesTotalBloomberg": 249913,
         "cdcDosesAdministeredPerDistributed": 0.7492118924020764,
         "noDosesTotalPerCdcDistributed": 0.786260814849772,
         "dateUpdated": null,
@@ -5192,7 +5280,8 @@
         "noPeopleTotalPerCapita": 0.13159531383442494,
         "noCompletedVaccinationPerCapita": 0.054322532457677805,
         "cdcDosesDistributedTotalPerCapita": 0.23645823724233975,
-        "cdcDosesAdministeredTotalPerCapita": 0.17715732339839252
+        "cdcDosesAdministeredTotalPerCapita": 0.17715732339839252,
+        "noDosesTotalBloombergPerCapita": 0.18591784629210273
       },
       {
         "name": "Marshall Islands",
@@ -5204,6 +5293,7 @@
         "noCompletedVaccination": 726,
         "cdcDosesDistributedTotal": 21000,
         "cdcDosesAdministeredTotal": 6455,
+        "noDosesTotalBloomberg": 0,
         "cdcDosesAdministeredPerDistributed": 0.30738095238095237,
         "noDosesTotalPerCdcDistributed": 0.30738095238095237,
         "dateUpdated": null,
@@ -5218,7 +5308,8 @@
         "noPeopleTotalPerCapita": null,
         "noCompletedVaccinationPerCapita": null,
         "cdcDosesDistributedTotalPerCapita": null,
-        "cdcDosesAdministeredTotalPerCapita": null
+        "cdcDosesAdministeredTotalPerCapita": null,
+        "noDosesTotalBloombergPerCapita": null
       },
       {
         "name": "Maryland",
@@ -5230,6 +5321,7 @@
         "noCompletedVaccination": 253702,
         "cdcDosesDistributedTotal": 1231825,
         "cdcDosesAdministeredTotal": 887943,
+        "noDosesTotalBloomberg": 908979,
         "cdcDosesAdministeredPerDistributed": 0.7208353459298196,
         "noDosesTotalPerCdcDistributed": 0.7379124469790758,
         "dateUpdated": null,
@@ -5244,7 +5336,8 @@
         "noPeopleTotalPerCapita": 0.10838764208492675,
         "noCompletedVaccinationPerCapita": 0.041964179380979474,
         "cdcDosesDistributedTotalPerCapita": 0.2037529277103651,
-        "cdcDosesAdministeredTotalPerCapita": 0.14687231213031454
+        "cdcDosesAdministeredTotalPerCapita": 0.14687231213031454,
+        "noDosesTotalBloombergPerCapita": 0.15035182146590623
       },
       {
         "name": "Massachusetts",
@@ -5256,6 +5349,7 @@
         "noCompletedVaccination": 304657,
         "cdcDosesDistributedTotal": 1517375,
         "cdcDosesAdministeredTotal": 1146860,
+        "noDosesTotalBloomberg": 1166516,
         "cdcDosesAdministeredPerDistributed": 0.7558184364445176,
         "noDosesTotalPerCdcDistributed": 0.7687723865227778,
         "dateUpdated": null,
@@ -5270,7 +5364,8 @@
         "noPeopleTotalPerCapita": 0.12532544418188865,
         "noCompletedVaccinationPerCapita": 0.044201213985688506,
         "cdcDosesDistributedTotalPerCapita": 0.2201486165475735,
-        "cdcDosesAdministeredTotalPerCapita": 0.16639238314441068
+        "cdcDosesAdministeredTotalPerCapita": 0.16639238314441068,
+        "noDosesTotalBloombergPerCapita": 0.16924417733296598
       },
       {
         "name": "Michigan",
@@ -5282,6 +5377,7 @@
         "noCompletedVaccination": 524898,
         "cdcDosesDistributedTotal": 2134425,
         "cdcDosesAdministeredTotal": 1657007,
+        "noDosesTotalBloomberg": 1657215,
         "cdcDosesAdministeredPerDistributed": 0.776324771308432,
         "noDosesTotalPerCdcDistributed": 0.7764222214413719,
         "dateUpdated": null,
@@ -5296,7 +5392,8 @@
         "noPeopleTotalPerCapita": 0.11255032489200556,
         "noCompletedVaccinationPerCapita": 0.0525588781335309,
         "cdcDosesDistributedTotalPerCapita": 0.21372339666023055,
-        "cdcDosesAdministeredTotalPerCapita": 0.16591876703551478
+        "cdcDosesAdministeredTotalPerCapita": 0.16591876703551478,
+        "noDosesTotalBloombergPerCapita": 0.16593959440893166
       },
       {
         "name": "Micronesia",
@@ -5308,6 +5405,7 @@
         "noCompletedVaccination": 1121,
         "cdcDosesDistributedTotal": 30000,
         "cdcDosesAdministeredTotal": 9980,
+        "noDosesTotalBloomberg": 740,
         "cdcDosesAdministeredPerDistributed": 0.33266666666666667,
         "noDosesTotalPerCdcDistributed": 0.33266666666666667,
         "dateUpdated": null,
@@ -5322,7 +5420,8 @@
         "noPeopleTotalPerCapita": null,
         "noCompletedVaccinationPerCapita": null,
         "cdcDosesDistributedTotalPerCapita": null,
-        "cdcDosesAdministeredTotalPerCapita": null
+        "cdcDosesAdministeredTotalPerCapita": null,
+        "noDosesTotalBloombergPerCapita": null
       },
       {
         "name": "Minnesota",
@@ -5334,6 +5433,7 @@
         "noCompletedVaccination": 240027,
         "cdcDosesDistributedTotal": 1165050,
         "cdcDosesAdministeredTotal": 908875,
+        "noDosesTotalBloomberg": 927384,
         "cdcDosesAdministeredPerDistributed": 0.7801167331874168,
         "noDosesTotalPerCdcDistributed": 0.7960036049954937,
         "dateUpdated": null,
@@ -5348,7 +5448,8 @@
         "noPeopleTotalPerCapita": 0.121676378884296,
         "noCompletedVaccinationPerCapita": 0.04256075573725378,
         "cdcDosesDistributedTotalPerCapita": 0.2065826280863716,
-        "cdcDosesAdministeredTotalPerCapita": 0.1611585649560113
+        "cdcDosesAdministeredTotalPerCapita": 0.1611585649560113,
+        "noDosesTotalBloombergPerCapita": 0.16444051668619514
       },
       {
         "name": "Mississippi",
@@ -5360,6 +5461,7 @@
         "noCompletedVaccination": 125845,
         "cdcDosesDistributedTotal": 614100,
         "cdcDosesAdministeredTotal": 438364,
+        "noDosesTotalBloomberg": 447312,
         "cdcDosesAdministeredPerDistributed": 0.7138316235140857,
         "noDosesTotalPerCdcDistributed": 0.7284025403028823,
         "dateUpdated": null,
@@ -5374,7 +5476,8 @@
         "noPeopleTotalPerCapita": 0.10801441728891933,
         "noCompletedVaccinationPerCapita": 0.04228450927692128,
         "cdcDosesDistributedTotalPerCapita": 0.2063404755608674,
-        "cdcDosesAdministeredTotalPerCapita": 0.14729235666628251
+        "cdcDosesAdministeredTotalPerCapita": 0.14729235666628251,
+        "noDosesTotalBloombergPerCapita": 0.15029892656584062
       },
       {
         "name": "Missouri",
@@ -5386,6 +5489,7 @@
         "noCompletedVaccination": 245424,
         "cdcDosesDistributedTotal": 1138575,
         "cdcDosesAdministeredTotal": 878941,
+        "noDosesTotalBloomberg": 886800,
         "cdcDosesAdministeredPerDistributed": 0.77196583448609,
         "noDosesTotalPerCdcDistributed": 0.7788683222449114,
         "dateUpdated": null,
@@ -5400,7 +5504,8 @@
         "noPeopleTotalPerCapita": 0.10450240719728199,
         "noCompletedVaccinationPerCapita": 0.03998808621461628,
         "cdcDosesDistributedTotalPerCapita": 0.18551337791661263,
-        "cdcDosesAdministeredTotalPerCapita": 0.14320998959173126
+        "cdcDosesAdministeredTotalPerCapita": 0.14320998959173126,
+        "noDosesTotalBloombergPerCapita": 0.14449049341189826
       },
       {
         "name": "Montana",
@@ -5412,6 +5517,7 @@
         "noCompletedVaccination": 53482,
         "cdcDosesDistributedTotal": 207250,
         "cdcDosesAdministeredTotal": 181665,
+        "noDosesTotalBloomberg": 184483,
         "cdcDosesAdministeredPerDistributed": 0.8765500603136309,
         "noDosesTotalPerCdcDistributed": 0.8901471652593486,
         "dateUpdated": null,
@@ -5426,7 +5532,8 @@
         "noPeopleTotalPerCapita": 0.12257082387549145,
         "noCompletedVaccinationPerCapita": 0.05004032642887485,
         "cdcDosesDistributedTotalPerCapita": 0.1939130483599026,
-        "cdcDosesAdministeredTotalPerCapita": 0.16997449423547267
+        "cdcDosesAdministeredTotalPerCapita": 0.16997449423547267,
+        "noDosesTotalBloombergPerCapita": 0.1726111503043663
       },
       {
         "name": "Nebraska",
@@ -5438,6 +5545,7 @@
         "noCompletedVaccination": 92373,
         "cdcDosesDistributedTotal": 407500,
         "cdcDosesAdministeredTotal": 290626,
+        "noDosesTotalBloomberg": 293362,
         "cdcDosesAdministeredPerDistributed": 0.7131926380368098,
         "noDosesTotalPerCdcDistributed": 0.7199067484662577,
         "dateUpdated": null,
@@ -5452,7 +5560,8 @@
         "noPeopleTotalPerCapita": 0.10390207236529211,
         "noCompletedVaccinationPerCapita": 0.04775259407529332,
         "cdcDosesDistributedTotalPerCapita": 0.21065876485208912,
-        "cdcDosesAdministeredTotalPerCapita": 0.15024028023043742
+        "cdcDosesAdministeredTotalPerCapita": 0.15024028023043742,
+        "noDosesTotalBloombergPerCapita": 0.15165466644058545
       },
       {
         "name": "Nevada",
@@ -5464,6 +5573,7 @@
         "noCompletedVaccination": 107905,
         "cdcDosesDistributedTotal": 550375,
         "cdcDosesAdministeredTotal": 446800,
+        "noDosesTotalBloomberg": 375402,
         "cdcDosesAdministeredPerDistributed": 0.8118101294571883,
         "noDosesTotalPerCdcDistributed": 0.8118101294571883,
         "dateUpdated": null,
@@ -5478,7 +5588,8 @@
         "noPeopleTotalPerCapita": 0.10922563662359959,
         "noCompletedVaccinationPerCapita": 0.03503231654500616,
         "cdcDosesDistributedTotalPerCapita": 0.1786841315829458,
-        "cdcDosesAdministeredTotalPerCapita": 0.14505758799229648
+        "cdcDosesAdministeredTotalPerCapita": 0.14505758799229648,
+        "noDosesTotalBloombergPerCapita": 0.1218775932128113
       },
       {
         "name": "New Hampshire",
@@ -5490,6 +5601,7 @@
         "noCompletedVaccination": 65235,
         "cdcDosesDistributedTotal": 321625,
         "cdcDosesAdministeredTotal": 216649,
+        "noDosesTotalBloomberg": 172000,
         "cdcDosesAdministeredPerDistributed": 0.6736074621064905,
         "noDosesTotalPerCdcDistributed": 0.6736074621064905,
         "dateUpdated": null,
@@ -5504,7 +5616,8 @@
         "noPeopleTotalPerCapita": 0.11123540222885599,
         "noCompletedVaccinationPerCapita": 0.047977106899922115,
         "cdcDosesDistributedTotalPerCapita": 0.23653923517571013,
-        "cdcDosesAdministeredTotalPerCapita": 0.1593345938953204
+        "cdcDosesAdministeredTotalPerCapita": 0.1593345938953204,
+        "noDosesTotalBloombergPerCapita": 0.12649746894744546
       },
       {
         "name": "New Jersey",
@@ -5516,6 +5629,7 @@
         "noCompletedVaccination": 386490,
         "cdcDosesDistributedTotal": 1790200,
         "cdcDosesAdministeredTotal": 1427336,
+        "noDosesTotalBloomberg": 1411270,
         "cdcDosesAdministeredPerDistributed": 0.797305329013518,
         "noDosesTotalPerCdcDistributed": 0.797305329013518,
         "dateUpdated": null,
@@ -5530,7 +5644,8 @@
         "noPeopleTotalPerCapita": 0.1168540641440906,
         "noCompletedVaccinationPerCapita": 0.04351291742239245,
         "cdcDosesDistributedTotalPerCapita": 0.20154939266104419,
-        "cdcDosesAdministeredTotalPerCapita": 0.16069640482808856
+        "cdcDosesAdministeredTotalPerCapita": 0.16069640482808856,
+        "noDosesTotalBloombergPerCapita": 0.15888761668012055
       },
       {
         "name": "New Mexico",
@@ -5542,6 +5657,7 @@
         "noCompletedVaccination": 138755,
         "cdcDosesDistributedTotal": 448500,
         "cdcDosesAdministeredTotal": 443359,
+        "noDosesTotalBloomberg": 441786,
         "cdcDosesAdministeredPerDistributed": 0.9885373467112597,
         "noDosesTotalPerCdcDistributed": 0.9885373467112597,
         "dateUpdated": null,
@@ -5556,7 +5672,8 @@
         "noPeopleTotalPerCapita": 0.14451869942661036,
         "noCompletedVaccinationPerCapita": 0.06617373185891649,
         "cdcDosesDistributedTotalPerCapita": 0.21389440912921368,
-        "cdcDosesAdministeredTotalPerCapita": 0.21144261167696554
+        "cdcDosesAdministeredTotalPerCapita": 0.21144261167696554,
+        "noDosesTotalBloombergPerCapita": 0.21069243128552687
       },
       {
         "name": "New York",
@@ -5568,6 +5685,7 @@
         "noCompletedVaccination": 1039493,
         "cdcDosesDistributedTotal": 3993825,
         "cdcDosesAdministeredTotal": 3110432,
+        "noDosesTotalBloomberg": 3272965,
         "cdcDosesAdministeredPerDistributed": 0.7788102883826907,
         "noDosesTotalPerCdcDistributed": 0.8195063629478007,
         "dateUpdated": null,
@@ -5582,7 +5700,8 @@
         "noPeopleTotalPerCapita": 0.1148104452444465,
         "noCompletedVaccinationPerCapita": 0.05343458711749484,
         "cdcDosesDistributedTotalPerCapita": 0.20530045887228565,
-        "cdcDosesAdministeredTotalPerCapita": 0.15989010957942354
+        "cdcDosesAdministeredTotalPerCapita": 0.15989010957942354,
+        "noDosesTotalBloombergPerCapita": 0.16824503236194135
       },
       {
         "name": "New York City",
@@ -5593,6 +5712,7 @@
         "noCompletedVaccination": 412644,
         "cdcDosesDistributedTotal": 1737800,
         "cdcDosesAdministeredTotal": 0,
+        "noDosesTotalBloomberg": 1336382,
         "cdcDosesAdministeredPerDistributed": 0,
         "noDosesTotalPerCdcDistributed": 0.7690079410749223,
         "dateUpdated": null,
@@ -5604,7 +5724,8 @@
         "noPeopleTotalPerCapita": 0.10971651378805594,
         "noCompletedVaccinationPerCapita": 0.04901158241358324,
         "cdcDosesDistributedTotalPerCapita": 0.2064063161425465,
-        "cdcDosesAdministeredTotalPerCapita": 0
+        "cdcDosesAdministeredTotalPerCapita": 0,
+        "noDosesTotalBloombergPerCapita": 0.1587280962016392
       },
       {
         "name": "North Carolina",
@@ -5616,6 +5737,7 @@
         "noCompletedVaccination": 571353,
         "cdcDosesDistributedTotal": 2074400,
         "cdcDosesAdministeredTotal": 1684845,
+        "noDosesTotalBloomberg": 1835001,
         "cdcDosesAdministeredPerDistributed": 0.8122083494022367,
         "noDosesTotalPerCdcDistributed": 0.8845936174315465,
         "dateUpdated": null,
@@ -5630,7 +5752,8 @@
         "noPeopleTotalPerCapita": 0.12048416088200667,
         "noCompletedVaccinationPerCapita": 0.05447639435382096,
         "cdcDosesDistributedTotalPerCapita": 0.1977863640298838,
-        "cdcDosesAdministeredTotalPerCapita": 0.16064373626298187
+        "cdcDosesAdministeredTotalPerCapita": 0.16064373626298187,
+        "noDosesTotalBloombergPerCapita": 0.17496055523582763
       },
       {
         "name": "North Dakota",
@@ -5642,6 +5765,7 @@
         "noCompletedVaccination": 50043,
         "cdcDosesDistributedTotal": 162175,
         "cdcDosesAdministeredTotal": 153427,
+        "noDosesTotalBloomberg": 163792,
         "cdcDosesAdministeredPerDistributed": 0.9460582703869277,
         "noDosesTotalPerCdcDistributed": 1.0099707106520734,
         "dateUpdated": null,
@@ -5656,7 +5780,8 @@
         "noPeopleTotalPerCapita": 0.13404552385501442,
         "noCompletedVaccinationPerCapita": 0.06566788529017324,
         "cdcDosesDistributedTotalPerCapita": 0.21281076867761417,
-        "cdcDosesAdministeredTotalPerCapita": 0.20133138773485623
+        "cdcDosesAdministeredTotalPerCapita": 0.20133138773485623,
+        "noDosesTotalBloombergPerCapita": 0.21493264327574396
       },
       {
         "name": "Northern Marianas",
@@ -5668,6 +5793,7 @@
         "noCompletedVaccination": 5465,
         "cdcDosesDistributedTotal": 29650,
         "cdcDosesAdministeredTotal": 14419,
+        "noDosesTotalBloomberg": 0,
         "cdcDosesAdministeredPerDistributed": 0.48630691399662734,
         "noDosesTotalPerCdcDistributed": 0.48630691399662734,
         "dateUpdated": null,
@@ -5682,7 +5808,8 @@
         "noPeopleTotalPerCapita": 0.17391557949176598,
         "noCompletedVaccinationPerCapita": 0.10625473917523769,
         "cdcDosesDistributedTotalPerCapita": 0.5764781366049034,
-        "cdcDosesAdministeredTotalPerCapita": 0.2803453035988568
+        "cdcDosesAdministeredTotalPerCapita": 0.2803453035988568,
+        "noDosesTotalBloombergPerCapita": 0
       },
       {
         "name": "Ohio",
@@ -5694,6 +5821,7 @@
         "noCompletedVaccination": 494754,
         "cdcDosesDistributedTotal": 2350375,
         "cdcDosesAdministeredTotal": 1794982,
+        "noDosesTotalBloomberg": 1818960,
         "cdcDosesAdministeredPerDistributed": 0.7637002605967133,
         "noDosesTotalPerCdcDistributed": 0.7739020369090038,
         "dateUpdated": null,
@@ -5708,7 +5836,8 @@
         "noPeopleTotalPerCapita": 0.1132855395197235,
         "noCompletedVaccinationPerCapita": 0.04232609867312282,
         "cdcDosesDistributedTotalPerCapita": 0.2010740775594357,
-        "cdcDosesAdministeredTotalPerCapita": 0.1535603254313848
+        "cdcDosesAdministeredTotalPerCapita": 0.1535603254313848,
+        "noDosesTotalBloombergPerCapita": 0.15561163819284632
       },
       {
         "name": "Oklahoma",
@@ -5720,6 +5849,7 @@
         "noCompletedVaccination": 206173,
         "cdcDosesDistributedTotal": 816650,
         "cdcDosesAdministeredTotal": 694616,
+        "noDosesTotalBloomberg": 620746,
         "cdcDosesAdministeredPerDistributed": 0.8505675626033184,
         "noDosesTotalPerCdcDistributed": 0.8505675626033184,
         "dateUpdated": null,
@@ -5734,7 +5864,8 @@
         "noPeopleTotalPerCapita": 0.12243658090999403,
         "noCompletedVaccinationPerCapita": 0.05210374298927134,
         "cdcDosesDistributedTotalPerCapita": 0.20638260932415223,
-        "cdcDosesAdministeredTotalPerCapita": 0.17554235297655707
+        "cdcDosesAdministeredTotalPerCapita": 0.17554235297655707,
+        "noDosesTotalBloombergPerCapita": 0.15687403319357154
       },
       {
         "name": "Oregon",
@@ -5746,6 +5877,7 @@
         "noCompletedVaccination": 199679,
         "cdcDosesDistributedTotal": 862025,
         "cdcDosesAdministeredTotal": 685214,
+        "noDosesTotalBloomberg": 691452,
         "cdcDosesAdministeredPerDistributed": 0.7948887793277457,
         "noDosesTotalPerCdcDistributed": 0.8021252283866477,
         "dateUpdated": null,
@@ -5760,7 +5892,8 @@
         "noPeopleTotalPerCapita": 0.1155294889178723,
         "noCompletedVaccinationPerCapita": 0.04734268637423339,
         "cdcDosesDistributedTotalPerCapita": 0.20438092749737596,
-        "cdcDosesAdministeredTotalPerCapita": 0.16246010597626168
+        "cdcDosesAdministeredTotalPerCapita": 0.16246010597626168,
+        "noDosesTotalBloombergPerCapita": 0.1639390981467076
       },
       {
         "name": "Palau",
@@ -5772,6 +5905,7 @@
         "noCompletedVaccination": 1566,
         "cdcDosesDistributedTotal": 9200,
         "cdcDosesAdministeredTotal": 4677,
+        "noDosesTotalBloomberg": 4676,
         "cdcDosesAdministeredPerDistributed": 0.5083695652173913,
         "noDosesTotalPerCdcDistributed": 0.5083695652173913,
         "dateUpdated": null,
@@ -5786,7 +5920,8 @@
         "noPeopleTotalPerCapita": null,
         "noCompletedVaccinationPerCapita": null,
         "cdcDosesDistributedTotalPerCapita": null,
-        "cdcDosesAdministeredTotalPerCapita": null
+        "cdcDosesAdministeredTotalPerCapita": null,
+        "noDosesTotalBloombergPerCapita": null
       },
       {
         "name": "Pennsylvania",
@@ -5798,6 +5933,7 @@
         "noCompletedVaccination": 493589,
         "cdcDosesDistributedTotal": 2711550,
         "cdcDosesAdministeredTotal": 1832629,
+        "noDosesTotalBloomberg": 1927580,
         "cdcDosesAdministeredPerDistributed": 0.6758603013036824,
         "noDosesTotalPerCdcDistributed": 0.710877542365068,
         "dateUpdated": null,
@@ -5812,7 +5948,8 @@
         "noPeopleTotalPerCapita": 0.1120131410829989,
         "noCompletedVaccinationPerCapita": 0.03855564943853646,
         "cdcDosesDistributedTotalPerCapita": 0.21180693093862213,
-        "cdcDosesAdministeredTotalPerCapita": 0.14315189616238538
+        "cdcDosesAdministeredTotalPerCapita": 0.14315189616238538,
+        "noDosesTotalBloombergPerCapita": 0.15056879052153538
       },
       {
         "name": "Puerto Rico",
@@ -5824,6 +5961,7 @@
         "noCompletedVaccination": 111002,
         "cdcDosesDistributedTotal": 716800,
         "cdcDosesAdministeredTotal": 387180,
+        "noDosesTotalBloomberg": 399711,
         "cdcDosesAdministeredPerDistributed": 0.5401506696428572,
         "noDosesTotalPerCdcDistributed": 0.5576325334821428,
         "dateUpdated": null,
@@ -5838,7 +5976,8 @@
         "noPeopleTotalPerCapita": 0.08602358272270293,
         "noCompletedVaccinationPerCapita": 0.03475661725888579,
         "cdcDosesDistributedTotalPerCapita": 0.22444229159086626,
-        "cdcDosesAdministeredTotalPerCapita": 0.12123265409898382
+        "cdcDosesAdministeredTotalPerCapita": 0.12123265409898382,
+        "noDosesTotalBloombergPerCapita": 0.1251563236803526
       },
       {
         "name": "Rhode Island",
@@ -5850,6 +5989,7 @@
         "noCompletedVaccination": 47801,
         "cdcDosesDistributedTotal": 234500,
         "cdcDosesAdministeredTotal": 147019,
+        "noDosesTotalBloomberg": 151170,
         "cdcDosesAdministeredPerDistributed": 0.6269466950959488,
         "noDosesTotalPerCdcDistributed": 0.6446481876332623,
         "dateUpdated": null,
@@ -5864,7 +6004,8 @@
         "noPeopleTotalPerCapita": 0.09757674673694802,
         "noCompletedVaccinationPerCapita": 0.045122484214540654,
         "cdcDosesDistributedTotalPerCapita": 0.22135985749900175,
-        "cdcDosesAdministeredTotalPerCapita": 0.13878083108590933
+        "cdcDosesAdministeredTotalPerCapita": 0.13878083108590933,
+        "noDosesTotalBloombergPerCapita": 0.14269923095148868
       },
       {
         "name": "South Carolina",
@@ -5876,6 +6017,7 @@
         "noCompletedVaccination": 183497,
         "cdcDosesDistributedTotal": 926750,
         "cdcDosesAdministeredTotal": 738476,
+        "noDosesTotalBloomberg": 577502,
         "cdcDosesAdministeredPerDistributed": 0.7968448880496358,
         "noDosesTotalPerCdcDistributed": 0.7968448880496358,
         "dateUpdated": null,
@@ -5890,7 +6032,8 @@
         "noPeopleTotalPerCapita": 0.10540632087934967,
         "noCompletedVaccinationPerCapita": 0.03563938490271551,
         "cdcDosesDistributedTotalPerCapita": 0.17999640298528916,
-        "cdcDosesAdministeredTotalPerCapita": 0.14342921358614985
+        "cdcDosesAdministeredTotalPerCapita": 0.14342921358614985,
+        "noDosesTotalBloombergPerCapita": 0.11216431909016504
       },
       {
         "name": "South Dakota",
@@ -5902,6 +6045,7 @@
         "noCompletedVaccination": 51631,
         "cdcDosesDistributedTotal": 189250,
         "cdcDosesAdministeredTotal": 162885,
+        "noDosesTotalBloomberg": 155260,
         "cdcDosesAdministeredPerDistributed": 0.8606869220607661,
         "noDosesTotalPerCdcDistributed": 0.8606869220607661,
         "dateUpdated": null,
@@ -5916,7 +6060,8 @@
         "noPeopleTotalPerCapita": 0.12564276178731013,
         "noCompletedVaccinationPerCapita": 0.058362600730903096,
         "cdcDosesDistributedTotalPerCapita": 0.21392423521379425,
-        "cdcDosesAdministeredTotalPerCapita": 0.18412179156036393
+        "cdcDosesAdministeredTotalPerCapita": 0.18412179156036393,
+        "noDosesTotalBloombergPerCapita": 0.17550265130406179
       },
       {
         "name": "Tennessee",
@@ -5928,6 +6073,7 @@
         "noCompletedVaccination": 331702,
         "cdcDosesDistributedTotal": 1385925,
         "cdcDosesAdministeredTotal": 992988,
+        "noDosesTotalBloomberg": 1026918,
         "cdcDosesAdministeredPerDistributed": 0.7164803290221332,
         "noDosesTotalPerCdcDistributed": 0.7409621732777748,
         "dateUpdated": null,
@@ -5942,7 +6088,8 @@
         "noPeopleTotalPerCapita": 0.10149660852103051,
         "noCompletedVaccinationPerCapita": 0.048571320631162714,
         "cdcDosesDistributedTotalPerCapita": 0.20294181990384197,
-        "cdcDosesAdministeredTotalPerCapita": 0.1454038218970552
+        "cdcDosesAdministeredTotalPerCapita": 0.1454038218970552,
+        "noDosesTotalBloombergPerCapita": 0.1503722119248975
       },
       {
         "name": "Texas",
@@ -5954,6 +6101,7 @@
         "noCompletedVaccination": 1215236,
         "cdcDosesDistributedTotal": 5112975,
         "cdcDosesAdministeredTotal": 4256383,
+        "noDosesTotalBloomberg": 4213172,
         "cdcDosesAdministeredPerDistributed": 0.8324670079552511,
         "noDosesTotalPerCdcDistributed": 0.8324670079552511,
         "dateUpdated": null,
@@ -5968,7 +6116,8 @@
         "noPeopleTotalPerCapita": 0.10476612178122817,
         "noCompletedVaccinationPerCapita": 0.04191064241158943,
         "cdcDosesDistributedTotalPerCapita": 0.17633452834214625,
-        "cdcDosesAdministeredTotalPerCapita": 0.14679267720818692
+        "cdcDosesAdministeredTotalPerCapita": 0.14679267720818692,
+        "noDosesTotalBloombergPerCapita": 0.14530243105908733
       },
       {
         "name": "U.S. Totals",
@@ -5978,6 +6127,7 @@
         "cdcDosesDistributedTotal": 71657975,
         "noCompletedVaccination": 15553171,
         "noDosesTotal": 56103604,
+        "noDosesTotalBloomberg": 52192381,
         "noPeopleTotal": 40220856,
         "cdcDosesAdministeredPerDistributed": 0.7706101658608131,
         "noDosesTotalPerCdcDistributed": 0.7829359397889767,
@@ -5992,6 +6142,7 @@
         "cdcDosesDistributedTotalPerCapita": 0.21816281080554464,
         "noCompletedVaccinationPerCapita": 0.0473516520987271,
         "noDosesTotalPerCapita": 0.17080750530504382,
+        "noDosesTotalBloombergPerCapita": 0.15889978110034372,
         "noPeopleTotalPerCapita": 0.12245245554266716
       },
       {
@@ -6004,6 +6155,7 @@
         "noCompletedVaccination": 3612,
         "cdcDosesDistributedTotal": 26425,
         "cdcDosesAdministeredTotal": 12418,
+        "noDosesTotalBloomberg": 1200,
         "cdcDosesAdministeredPerDistributed": 0.4699337748344371,
         "noDosesTotalPerCdcDistributed": 0.4699337748344371,
         "dateUpdated": null,
@@ -6018,7 +6170,8 @@
         "noPeopleTotalPerCapita": 0.08289170235797995,
         "noCompletedVaccinationPerCapita": 0.03400009413093613,
         "cdcDosesDistributedTotalPerCapita": 0.24874099872923236,
-        "cdcDosesAdministeredTotalPerCapita": 0.11689179648891608
+        "cdcDosesAdministeredTotalPerCapita": 0.11689179648891608,
+        "noDosesTotalBloombergPerCapita": 0.01129571233585918
       },
       {
         "name": "Utah",
@@ -6030,6 +6183,7 @@
         "noCompletedVaccination": 164775,
         "cdcDosesDistributedTotal": 604675,
         "cdcDosesAdministeredTotal": 532635,
+        "noDosesTotalBloomberg": 532985,
         "cdcDosesAdministeredPerDistributed": 0.8808616198784471,
         "noDosesTotalPerCdcDistributed": 0.8814404432132964,
         "dateUpdated": null,
@@ -6044,7 +6198,8 @@
         "noPeopleTotalPerCapita": 0.11485178533218464,
         "noCompletedVaccinationPerCapita": 0.051396493653379116,
         "cdcDosesDistributedTotalPerCapita": 0.18860976968506762,
-        "cdcDosesAdministeredTotalPerCapita": 0.16613910724968947
+        "cdcDosesAdministeredTotalPerCapita": 0.16613910724968947,
+        "noDosesTotalBloombergPerCapita": 0.16624827898556374
       },
       {
         "name": "Vermont",
@@ -6056,6 +6211,7 @@
         "noCompletedVaccination": 37452,
         "cdcDosesDistributedTotal": 147425,
         "cdcDosesAdministeredTotal": 114986,
+        "noDosesTotalBloomberg": 115658,
         "cdcDosesAdministeredPerDistributed": 0.7799626928946922,
         "noDosesTotalPerCdcDistributed": 0.7845209428522978,
         "dateUpdated": null,
@@ -6070,7 +6226,8 @@
         "noPeopleTotalPerCapita": 0.12533233758928441,
         "noCompletedVaccinationPerCapita": 0.060020288819193926,
         "cdcDosesDistributedTotalPerCapita": 0.23626217769864533,
-        "cdcDosesAdministeredTotalPerCapita": 0.1842756843469997
+        "cdcDosesAdministeredTotalPerCapita": 0.1842756843469997,
+        "noDosesTotalBloombergPerCapita": 0.18535262640847835
       },
       {
         "name": "Veterans Health",
@@ -6081,6 +6238,7 @@
         "noCompletedVaccination": 479556,
         "cdcDosesDistributedTotal": 2048375,
         "cdcDosesAdministeredTotal": 1692702,
+        "noDosesTotalBloomberg": 0,
         "cdcDosesAdministeredPerDistributed": 0.826363336791359,
         "noDosesTotalPerCdcDistributed": 0.826363336791359,
         "dateUpdated": null,
@@ -6094,7 +6252,8 @@
         "noPeopleTotalPerCapita": null,
         "noCompletedVaccinationPerCapita": null,
         "cdcDosesDistributedTotalPerCapita": null,
-        "cdcDosesAdministeredTotalPerCapita": null
+        "cdcDosesAdministeredTotalPerCapita": null,
+        "noDosesTotalBloombergPerCapita": null
       },
       {
         "name": "Virginia",
@@ -6106,6 +6265,7 @@
         "noCompletedVaccination": 354097,
         "cdcDosesDistributedTotal": 1648500,
         "cdcDosesAdministeredTotal": 1431501,
+        "noDosesTotalBloomberg": 1399221,
         "cdcDosesAdministeredPerDistributed": 0.8683657870791629,
         "noDosesTotalPerCdcDistributed": 0.8683657870791629,
         "dateUpdated": null,
@@ -6120,7 +6280,8 @@
         "noPeopleTotalPerCapita": 0.12275527709562828,
         "noCompletedVaccinationPerCapita": 0.041485116487937054,
         "cdcDosesDistributedTotalPerCapita": 0.19313412576317854,
-        "cdcDosesAdministeredTotalPerCapita": 0.16771106713018857
+        "cdcDosesAdministeredTotalPerCapita": 0.16771106713018857,
+        "noDosesTotalBloombergPerCapita": 0.1639292232844892
       },
       {
         "name": "Washington",
@@ -6132,6 +6293,7 @@
         "noCompletedVaccination": 296840,
         "cdcDosesDistributedTotal": 1453425,
         "cdcDosesAdministeredTotal": 1201284,
+        "noDosesTotalBloomberg": 1057844,
         "cdcDosesAdministeredPerDistributed": 0.8265194282470716,
         "noDosesTotalPerCdcDistributed": 0.8265194282470716,
         "dateUpdated": null,
@@ -6146,7 +6308,8 @@
         "noPeopleTotalPerCapita": 0.11691326457246345,
         "noCompletedVaccinationPerCapita": 0.038981506371790126,
         "cdcDosesDistributedTotalPerCapita": 0.19086610934651346,
-        "cdcDosesAdministeredTotalPerCapita": 0.15775454756882334
+        "cdcDosesAdministeredTotalPerCapita": 0.15775454756882334,
+        "noDosesTotalBloombergPerCapita": 0.13891777599501398
       },
       {
         "name": "West Virginia",
@@ -6158,6 +6321,7 @@
         "noCompletedVaccination": 144250,
         "cdcDosesDistributedTotal": 429800,
         "cdcDosesAdministeredTotal": 393643,
+        "noDosesTotalBloomberg": 396348,
         "cdcDosesAdministeredPerDistributed": 0.9158748255002327,
         "noDosesTotalPerCdcDistributed": 0.9221684504420661,
         "dateUpdated": null,
@@ -6172,7 +6336,8 @@
         "noPeopleTotalPerCapita": 0.14066814831595845,
         "noCompletedVaccinationPerCapita": 0.08049004908637516,
         "cdcDosesDistributedTotalPerCapita": 0.23982407693118923,
-        "cdcDosesAdministeredTotalPerCapita": 0.2196488346101073
+        "cdcDosesAdministeredTotalPerCapita": 0.2196488346101073,
+        "noDosesTotalBloombergPerCapita": 0.2211581974023336
       },
       {
         "name": "Wisconsin",
@@ -6184,6 +6349,7 @@
         "noCompletedVaccination": 249933,
         "cdcDosesDistributedTotal": 1223525,
         "cdcDosesAdministeredTotal": 991691,
+        "noDosesTotalBloomberg": 996591,
         "cdcDosesAdministeredPerDistributed": 0.8105196052389612,
         "noDosesTotalPerCdcDistributed": 0.8145244273717334,
         "dateUpdated": null,
@@ -6198,7 +6364,8 @@
         "noPeopleTotalPerCapita": 0.12655600733301572,
         "noCompletedVaccinationPerCapita": 0.04292586227684161,
         "cdcDosesDistributedTotalPerCapita": 0.2101397800301386,
-        "cdcDosesAdministeredTotalPerCapita": 0.17032241155503008
+        "cdcDosesAdministeredTotalPerCapita": 0.17032241155503008,
+        "noDosesTotalBloombergPerCapita": 0.17116398399707064
       },
       {
         "name": "Wyoming",
@@ -6210,6 +6377,7 @@
         "noCompletedVaccination": 27905,
         "cdcDosesDistributedTotal": 122200,
         "cdcDosesAdministeredTotal": 100186,
+        "noDosesTotalBloomberg": 97908,
         "cdcDosesAdministeredPerDistributed": 0.8198527004909983,
         "noDosesTotalPerCdcDistributed": 0.8198527004909983,
         "dateUpdated": null,
@@ -6224,7 +6392,8 @@
         "noPeopleTotalPerCapita": 0.12498984896995122,
         "noCompletedVaccinationPerCapita": 0.048215232938062305,
         "cdcDosesDistributedTotalPerCapita": 0.21114142501455702,
-        "cdcDosesAdministeredTotalPerCapita": 0.17310486748370219
+        "cdcDosesAdministeredTotalPerCapita": 0.17310486748370219,
+        "noDosesTotalBloombergPerCapita": 0.16916885957712968
       }
     ]
   },
