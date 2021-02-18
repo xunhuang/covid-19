@@ -396,7 +396,8 @@
     "02/14/2021": 1863,
     "02/15/2021": 1866,
     "02/16/2021": 1871,
-    "02/17/2021": 1872
+    "02/17/2021": 1872,
+    "02/18/2021": 1899
   },
   "Death": {
     "01/22/2020": 0,
@@ -791,7 +792,8 @@
     "02/14/2021": 25,
     "02/15/2021": 25,
     "02/16/2021": 25,
-    "02/17/2021": 25
+    "02/17/2021": 25,
+    "02/18/2021": 25
   },
   "beds": 48,
   "bedsICU": 0,
@@ -2751,13 +2753,13 @@
       "icu_covid_patients": 1
     }
   ],
-  "LastConfirmed": 1872,
+  "LastConfirmed": 1899,
   "LastDeath": 25,
-  "LastConfirmedNew": 1,
+  "LastConfirmedNew": 27,
   "LastDeathNew": 0,
-  "DaysToDouble": 324.9938688430083,
+  "DaysToDouble": 354.26197695747067,
   "DaysToDoubleDeath": null,
-  "Last2WeeksConfirmedDelta": 93,
+  "Last2WeeksConfirmedDelta": 87,
   "StayHomeOrder": {
     "StartUrl": "https://www.mymotherlode.com/news/local/1033803/calaveras-county-issues-local-stay-at-home-order.html",
     "StartDate": "2020-03-27T00:00:00Z",

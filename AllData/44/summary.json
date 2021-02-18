@@ -25,11 +25,11 @@
     "Population": 49875,
     "LastConfirmed": 4115,
     "LastDeath": 123,
-    "LastConfirmedNew": 96,
-    "LastDeathNew": 6,
-    "DaysToDouble": null,
-    "DaysToDoubleDeath": -431008558088192.06,
-    "Last2WeeksConfirmedDelta": 304,
+    "LastConfirmedNew": 0,
+    "LastDeathNew": 0,
+    "DaysToDouble": 274.0595945357363,
+    "DaysToDoubleDeath": 129.3605134867506,
+    "Last2WeeksConfirmedDelta": 400,
     "Recovered": null
   },
   "44003": {
@@ -46,11 +46,11 @@
     "Population": 166158,
     "LastConfirmed": 14896,
     "LastDeath": 290,
-    "LastConfirmedNew": 354,
-    "LastDeathNew": 19,
-    "DaysToDouble": null,
-    "DaysToDoubleDeath": null,
-    "Last2WeeksConfirmedDelta": 1083,
+    "LastConfirmedNew": 0,
+    "LastDeathNew": 0,
+    "DaysToDouble": 268.9777433123101,
+    "DaysToDoubleDeath": 95.47185646041666,
+    "Last2WeeksConfirmedDelta": 1437,
     "Recovered": null
   },
   "44005": {
@@ -67,11 +67,11 @@
     "Population": 82888,
     "LastConfirmed": 5015,
     "LastDeath": 24,
-    "LastConfirmedNew": 164,
-    "LastDeathNew": 5,
-    "DaysToDouble": null,
-    "DaysToDoubleDeath": null,
-    "Last2WeeksConfirmedDelta": 515,
+    "LastConfirmedNew": 0,
+    "LastDeathNew": 0,
+    "DaysToDouble": 194.57610231811654,
+    "DaysToDoubleDeath": 27.69247610974806,
+    "Last2WeeksConfirmedDelta": 679,
     "Recovered": null
   },
   "44007": {
@@ -88,11 +88,11 @@
     "Population": 626667,
     "LastConfirmed": 80264,
     "LastDeath": 1731,
-    "LastConfirmedNew": 1598,
-    "LastDeathNew": 57,
-    "DaysToDouble": 431008558088192.06,
-    "DaysToDoubleDeath": null,
-    "Last2WeeksConfirmedDelta": 4428,
+    "LastConfirmedNew": 0,
+    "LastDeathNew": 0,
+    "DaysToDouble": 321.6967803576314,
+    "DaysToDoubleDeath": 193.21192618054584,
+    "Last2WeeksConfirmedDelta": 6026,
     "Recovered": null
   },
   "44009": {
@@ -109,11 +109,11 @@
     "Population": 126979,
     "LastConfirmed": 7345,
     "LastDeath": 146,
-    "LastConfirmedNew": 303,
-    "LastDeathNew": 7,
-    "DaysToDouble": null,
-    "DaysToDoubleDeath": null,
-    "Last2WeeksConfirmedDelta": 744,
+    "LastConfirmedNew": 0,
+    "LastDeathNew": 0,
+    "DaysToDouble": 153.56619866519515,
+    "DaysToDoubleDeath": 131.6714772285179,
+    "Last2WeeksConfirmedDelta": 1047,
     "Recovered": null
   },
   "80044": {
@@ -527,7 +527,8 @@
       "02/14/2021": 109120,
       "02/15/2021": 109120,
       "02/16/2021": 109120,
-      "02/17/2021": 111635
+      "02/17/2021": 111635,
+      "02/18/2021": 111635
     },
     "Death": {
       "01/22/2020": 0,
@@ -922,7 +923,8 @@
       "02/14/2021": 2220,
       "02/15/2021": 2220,
       "02/16/2021": 2220,
-      "02/17/2021": 2314
+      "02/17/2021": 2314,
+      "02/18/2021": 2314
     },
     "doses_alloc_total": {
       "12/14/2020": 29000,
@@ -990,7 +992,8 @@
       "02/17/2021": 77800,
       "12/15/2020": 29000,
       "12/16/2020": 29000,
-      "12/17/2020": 29000
+      "12/17/2020": 29000,
+      "02/18/2021": 77800
     },
     "doses_admin_total": {
       "12/14/2020": 0,
@@ -1058,7 +1061,8 @@
       "02/17/2021": 165488,
       "12/15/2020": 0,
       "12/16/2020": 0,
-      "12/17/2020": 0
+      "12/17/2020": 0,
+      "02/18/2021": 165488
     },
     "doses_shipped_total": {
       "12/14/2020": 5000,
@@ -1126,18 +1130,19 @@
       "02/17/2021": 246175,
       "12/15/2020": 5000,
       "12/16/2020": 5000,
-      "12/17/2020": 5000
+      "12/17/2020": 5000,
+      "02/18/2021": 246175
     },
     "doses_alloc_total_Last": 77800,
     "doses_admin_total_Last": 165488,
     "doses_shippied_total_Last": 246175,
     "LastConfirmed": 111635,
-    "LastConfirmedNew": 2515,
+    "LastConfirmedNew": 0,
     "LastDeath": 2314,
-    "LastDeathNew": 94,
-    "DaysToDouble": 431008558088192.06,
-    "DaysToDoubleDeath": null,
-    "Last2WeeksConfirmedDelta": 7074,
+    "LastDeathNew": 0,
+    "DaysToDouble": 283.9134786120933,
+    "DaysToDoubleDeath": 155.99966614306996,
+    "Last2WeeksConfirmedDelta": 9589,
     "beds": 3413,
     "bedsICU": 246,
     "hospitals": 15,
