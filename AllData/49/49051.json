@@ -397,7 +397,8 @@
     "02/15/2021": 4225,
     "02/16/2021": 4235,
     "02/17/2021": 4252,
-    "02/18/2021": 4268
+    "02/18/2021": 4268,
+    "02/19/2021": 4268
   },
   "Death": {
     "01/22/2020": 0,
@@ -793,7 +794,8 @@
     "02/15/2021": 19,
     "02/16/2021": 19,
     "02/17/2021": 19,
-    "02/18/2021": 19
+    "02/18/2021": 19,
+    "02/19/2021": 19
   },
   "beds": 19,
   "bedsICU": 0,
@@ -802,11 +804,11 @@
   "Population": 23530,
   "LastConfirmed": 4268,
   "LastDeath": 19,
-  "LastConfirmedNew": 16,
+  "LastConfirmedNew": 0,
   "LastDeathNew": 0,
-  "DaysToDouble": 313.8397556805183,
-  "DaysToDoubleDeath": 119.65426617518403,
-  "Last2WeeksConfirmedDelta": 153,
+  "DaysToDouble": 281.42695629326676,
+  "DaysToDoubleDeath": null,
+  "Last2WeeksConfirmedDelta": 152,
   "StayHomeOrder": {
     "StartUrl": "https://www.kpcw.org/post/wasatch-county-health-department-fields-questions-about-stay-home-order",
     "StartDate": "2020-04-01T00:00:00Z",

@@ -397,7 +397,8 @@
     "02/15/2021": 6584,
     "02/16/2021": 6586,
     "02/17/2021": 6606,
-    "02/18/2021": 6624
+    "02/18/2021": 6624,
+    "02/19/2021": 6624
   },
   "Death": {
     "01/22/2020": 0,
@@ -793,7 +794,8 @@
     "02/15/2021": 193,
     "02/16/2021": 193,
     "02/17/2021": 193,
-    "02/18/2021": 193
+    "02/18/2021": 193,
+    "02/19/2021": 193
   },
   "beds": 143,
   "bedsICU": 18,
@@ -802,11 +804,11 @@
   "Population": 67810,
   "LastConfirmed": 6624,
   "LastDeath": 193,
-  "LastConfirmedNew": 18,
+  "LastConfirmedNew": 0,
   "LastDeathNew": 0,
-  "DaysToDouble": 200.26101516681484,
-  "DaysToDoubleDeath": 176.3141857229381,
-  "Last2WeeksConfirmedDelta": 333,
+  "DaysToDouble": 221.09866486915038,
+  "DaysToDoubleDeath": 412.9532411114637,
+  "Last2WeeksConfirmedDelta": 325,
   "StayHomeOrder": {
     "StartUrl": "https://www.rutherfordcountync.gov/document_center/Press%20Release%20Stay%20at%20Home%20Order%20FINAL.PDF",
     "StartDate": "2020-03-28T00:00:00Z",
