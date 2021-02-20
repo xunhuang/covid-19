@@ -398,7 +398,8 @@
     "02/16/2021": 6115,
     "02/17/2021": 6148,
     "02/18/2021": 6148,
-    "02/19/2021": 6158
+    "02/19/2021": 6158,
+    "02/20/2021": 6158
   },
   "Death": {
     "01/22/2020": 0,
@@ -795,7 +796,8 @@
     "02/16/2021": 32,
     "02/17/2021": 32,
     "02/18/2021": 32,
-    "02/19/2021": 33
+    "02/19/2021": 33,
+    "02/20/2021": 33
   },
   "beds": 163,
   "bedsICU": 8,
@@ -804,11 +806,11 @@
   "Population": 71115,
   "LastConfirmed": 6158,
   "LastDeath": 33,
-  "LastConfirmedNew": 10,
-  "LastDeathNew": 1,
-  "DaysToDouble": 721.2158000001947,
-  "DaysToDoubleDeath": null,
-  "Last2WeeksConfirmedDelta": 123,
+  "LastConfirmedNew": 0,
+  "LastDeathNew": 0,
+  "DaysToDouble": 522.1727149115712,
+  "DaysToDoubleDeath": 210.2380555850876,
+  "Last2WeeksConfirmedDelta": 133,
   "StayHomeOrder": {
     "StartUrl": "https://www.ksnt.com/health/coronavirus/riley-county-issues-stay-at-home-order/",
     "StartDate": "2020-03-29T00:00:00Z",

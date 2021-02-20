@@ -398,7 +398,8 @@
     "02/16/2021": 1998,
     "02/17/2021": 2000,
     "02/18/2021": 2004,
-    "02/19/2021": 2012
+    "02/19/2021": 2012,
+    "02/20/2021": 2012
   },
   "Death": {
     "01/22/2020": 0,
@@ -795,14 +796,15 @@
     "02/16/2021": 35,
     "02/17/2021": 35,
     "02/18/2021": 35,
-    "02/19/2021": 36
+    "02/19/2021": 36,
+    "02/20/2021": 36
   },
   "Population": 32202,
   "LastConfirmed": 2012,
   "LastDeath": 36,
-  "LastConfirmedNew": 8,
-  "LastDeathNew": 1,
-  "DaysToDouble": 881.4639022225058,
-  "DaysToDoubleDeath": null,
+  "LastConfirmedNew": 0,
+  "LastDeathNew": 0,
+  "DaysToDouble": 539.7103575734945,
+  "DaysToDoubleDeath": 229.6475786989086,
   "Last2WeeksConfirmedDelta": 54
 }
