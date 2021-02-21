@@ -399,7 +399,8 @@
     "02/17/2021": 2729,
     "02/18/2021": 2729,
     "02/19/2021": 2729,
-    "02/20/2021": 2735
+    "02/20/2021": 2735,
+    "02/21/2021": 2735
   },
   "Death": {
     "01/22/2020": 0,
@@ -797,7 +798,8 @@
     "02/17/2021": 46,
     "02/18/2021": 46,
     "02/19/2021": 46,
-    "02/20/2021": 47
+    "02/20/2021": 47,
+    "02/21/2021": 47
   },
   "beds": 45,
   "bedsICU": 0,
@@ -806,11 +808,11 @@
   "Population": 20202,
   "LastConfirmed": 2735,
   "LastDeath": 47,
-  "LastConfirmedNew": 6,
-  "LastDeathNew": 1,
-  "DaysToDouble": 1469.6254621891724,
-  "DaysToDoubleDeath": null,
-  "Last2WeeksConfirmedDelta": 48,
+  "LastConfirmedNew": 0,
+  "LastDeathNew": 0,
+  "DaysToDouble": 980.4680744989514,
+  "DaysToDoubleDeath": 300.814282145848,
+  "Last2WeeksConfirmedDelta": 59,
   "StayHomeOrder": {
     "StartUrl": "http://www.co.jones.tx.us/upload/page/1299/2020%20Home/20200406165837.pdf",
     "StartDate": "2020-04-06T00:00:00Z",
