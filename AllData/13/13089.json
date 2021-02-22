@@ -400,7 +400,8 @@
     "02/18/2021": 55111,
     "02/19/2021": 55306,
     "02/20/2021": 55504,
-    "02/21/2021": 55659
+    "02/21/2021": 55659,
+    "02/22/2021": 55659
   },
   "Death": {
     "01/22/2020": 0,
@@ -799,7 +800,8 @@
     "02/18/2021": 771,
     "02/19/2021": 785,
     "02/20/2021": 790,
-    "02/21/2021": 790
+    "02/21/2021": 790,
+    "02/22/2021": 790
   },
   "beds": 2333,
   "bedsICU": 278,
@@ -808,11 +810,11 @@
   "Population": 691893,
   "LastConfirmed": 55659,
   "LastDeath": 790,
-  "LastConfirmedNew": 155,
+  "LastConfirmedNew": 0,
   "LastDeathNew": 0,
-  "DaysToDouble": 221.93879112002512,
-  "DaysToDoubleDeath": 56.093264981440065,
-  "Last2WeeksConfirmedDelta": 2958,
+  "DaysToDouble": 206.23235130355351,
+  "DaysToDoubleDeath": 62.10717108777224,
+  "Last2WeeksConfirmedDelta": 2858,
   "StayHomeOrder": {
     "StartUrl": "https://www.fox5atlanta.com/news/dekalb-county-issued-shelter-in-place-order-until-further-notice",
     "StartDate": "2020-03-28T00:00:00Z",
