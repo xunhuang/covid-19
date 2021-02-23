@@ -401,7 +401,8 @@
     "02/19/2021": 80131,
     "02/20/2021": 80243,
     "02/21/2021": 80349,
-    "02/22/2021": 80451
+    "02/22/2021": 80451,
+    "02/23/2021": 80451
   },
   "Death": {
     "01/22/2020": 0,
@@ -801,7 +802,8 @@
     "02/19/2021": 823,
     "02/20/2021": 829,
     "02/21/2021": 830,
-    "02/22/2021": 833
+    "02/22/2021": 833,
+    "02/23/2021": 833
   },
   "beds": 4382,
   "bedsICU": 359,
@@ -810,11 +812,11 @@
   "Population": 626681,
   "LastConfirmed": 80451,
   "LastDeath": 833,
-  "LastConfirmedNew": 102,
-  "LastDeathNew": 3,
-  "DaysToDouble": 454.90344033839335,
-  "DaysToDoubleDeath": 169.45238422046452,
-  "Last2WeeksConfirmedDelta": 4114,
+  "LastConfirmedNew": 0,
+  "LastDeathNew": 0,
+  "DaysToDouble": 542.5416508004437,
+  "DaysToDoubleDeath": 175.62881383370916,
+  "Last2WeeksConfirmedDelta": 3986,
   "StayHomeOrder": {
     "StartUrl": "https://www.asafenashville.org/safer-at-home-order/",
     "StartDate": "2020-03-23T00:00:00Z",
