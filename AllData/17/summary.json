@@ -2063,7 +2063,7 @@
     "StateFIPS": "17",
     "Confirmed": null,
     "Death": null,
-    "LastConfirmed": 1,
+    "LastConfirmed": 0,
     "LastDeath": 0,
     "LastConfirmedNew": 0,
     "LastDeathNew": 0,
@@ -2472,7 +2472,7 @@
       "03/27/2020": 3027,
       "02/20/2021": 1172736,
       "02/21/2021": 1174330,
-      "02/22/2021": 1175569
+      "02/22/2021": 1175568
     },
     "Death": {
       "01/22/2020": 0,
@@ -3096,8 +3096,8 @@
     "doses_alloc_total_Last": 736800,
     "doses_admin_total_Last": 2151952,
     "doses_shippied_total_Last": 2702175,
-    "LastConfirmed": 1175569,
-    "LastConfirmedNew": 1239,
+    "LastConfirmed": 1175568,
+    "LastConfirmedNew": 1238,
     "LastDeath": 20303,
     "LastDeathNew": 34,
     "DaysToDouble": 431.76864826328887,
