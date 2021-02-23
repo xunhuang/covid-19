@@ -431,7 +431,7 @@
       "02/20/2021": 3527359,
       "02/21/2021": 3531867,
       "02/22/2021": 3536967,
-      "02/23/2021": 3537182
+      "02/23/2021": 3537965
     },
     "Death": {
       "01/22/2020": 0,
@@ -832,7 +832,7 @@
       "02/20/2021": 49120,
       "02/21/2021": 49345,
       "02/22/2021": 49541,
-      "02/23/2021": 49555
+      "02/23/2021": 49586
     },
     "doses_alloc_total": {
       "01/02/2021": 2226350,
@@ -1011,10 +1011,10 @@
     "doses_alloc_total_Last": 2691675,
     "doses_admin_total_Last": 7437927,
     "doses_shippied_total_Last": 8832770,
-    "LastConfirmed": 3537182,
-    "LastConfirmedNew": 215,
-    "LastDeath": 49555,
-    "LastDeathNew": 14,
+    "LastConfirmed": 3537965,
+    "LastConfirmedNew": 998,
+    "LastDeath": 49586,
+    "LastDeathNew": 45,
     "DaysToDouble": 385.03957915300043,
     "DaysToDoubleDeath": 96.45970587366305,
     "Last2WeeksConfirmedDelta": 118964,
@@ -3161,9 +3161,9 @@
         "icu_covid_patients": 55
       }
     ],
-    "LastConfirmed": 79649,
+    "LastConfirmed": 79796,
     "LastDeath": 1200,
-    "LastConfirmedNew": 0,
+    "LastConfirmedNew": 147,
     "LastDeathNew": 0,
     "DaysToDouble": 413.23883675306297,
     "DaysToDoubleDeath": 51.99069320830342,
@@ -5177,9 +5177,9 @@
         "icu_covid_patients": 2
       }
     ],
-    "LastConfirmed": 3435,
+    "LastConfirmed": 3438,
     "LastDeath": 40,
-    "LastConfirmedNew": 0,
+    "LastConfirmedNew": 3,
     "LastDeathNew": 0,
     "DaysToDouble": 518.8703045170278,
     "DaysToDoubleDeath": 83.72558255760062,
@@ -11220,7 +11220,7 @@
       }
     ],
     "LastConfirmed": 61744,
-    "LastDeath": 654,
+    "LastDeath": 653,
     "LastConfirmedNew": 0,
     "LastDeathNew": 0,
     "DaysToDouble": 266.28551926254056,
@@ -15251,10 +15251,10 @@
         "icu_covid_patients": 62
       }
     ],
-    "LastConfirmed": 94374,
-    "LastDeath": 1367,
-    "LastConfirmedNew": 0,
-    "LastDeathNew": 0,
+    "LastConfirmed": 94584,
+    "LastDeath": 1397,
+    "LastConfirmedNew": 210,
+    "LastDeathNew": 30,
     "DaysToDouble": 325.71695336972925,
     "DaysToDoubleDeath": 199.31563399895487,
     "Last2WeeksConfirmedDelta": 3430,
@@ -15272,7 +15272,7 @@
     "hospitals": 5,
     "bedsAvail": 116,
     "Population": 134623,
-    "ca_county_status": "4",
+    "ca_county_status": "3",
     "hospitalization": [
       {
         "fulldate": "03/29/2020",
@@ -19278,9 +19278,9 @@
       }
     ],
     "LastConfirmed": 26840,
-    "LastDeath": 584,
+    "LastDeath": 586,
     "LastConfirmedNew": 0,
-    "LastDeathNew": 0,
+    "LastDeathNew": 2,
     "DaysToDouble": 1782.1996935328623,
     "DaysToDoubleDeath": 862017116176384.1,
     "Last2WeeksConfirmedDelta": 326,
@@ -27335,9 +27335,9 @@
         "icu_covid_patients": 11
       }
     ],
-    "LastConfirmed": 15298,
+    "LastConfirmed": 15325,
     "LastDeath": 201,
-    "LastConfirmedNew": 0,
+    "LastConfirmedNew": 27,
     "LastDeathNew": 0,
     "DaysToDouble": 305.6771196750634,
     "DaysToDoubleDeath": null,
@@ -27356,7 +27356,7 @@
     "hospitals": 4,
     "bedsAvail": 235,
     "Population": 252409,
-    "ca_county_status": "4",
+    "ca_county_status": "3",
     "hospitalization": [
       {
         "fulldate": "03/29/2020",
@@ -39419,10 +39419,10 @@
         "icu_covid_patients": 4
       }
     ],
-    "LastConfirmed": 8929,
-    "LastDeath": 67,
-    "LastConfirmedNew": 0,
-    "LastDeathNew": 0,
+    "LastConfirmed": 8950,
+    "LastDeath": 68,
+    "LastConfirmedNew": 21,
+    "LastDeathNew": 1,
     "DaysToDouble": 408.51764886275396,
     "DaysToDoubleDeath": 54.73256900398797,
     "Last2WeeksConfirmedDelta": 290,
@@ -41435,9 +41435,9 @@
         "icu_covid_patients": 1
       }
     ],
-    "LastConfirmed": 3899,
+    "LastConfirmed": 3900,
     "LastDeath": 74,
-    "LastConfirmedNew": 0,
+    "LastConfirmedNew": 1,
     "LastDeathNew": 0,
     "DaysToDouble": 132.1476243806992,
     "DaysToDoubleDeath": null,
@@ -49493,9 +49493,9 @@
         "icu_covid_patients": 52
       }
     ],
-    "LastConfirmed": 92428,
+    "LastConfirmed": 92476,
     "LastDeath": 1438,
-    "LastConfirmedNew": 0,
+    "LastConfirmedNew": 48,
     "LastDeathNew": 0,
     "DaysToDouble": 289.94702982427725,
     "DaysToDoubleDeath": 107.47316647446253,
@@ -51509,9 +51509,9 @@
         "icu_covid_patients": 3
       }
     ],
-    "LastConfirmed": 5716,
+    "LastConfirmed": 5723,
     "LastDeath": 57,
-    "LastConfirmedNew": 0,
+    "LastConfirmedNew": 7,
     "LastDeathNew": 0,
     "DaysToDouble": 325.3356302837167,
     "DaysToDoubleDeath": 1724034232352768.2,
@@ -55536,7 +55536,7 @@
       }
     ],
     "LastConfirmed": 257351,
-    "LastDeath": 3190,
+    "LastDeath": 3189,
     "LastConfirmedNew": 0,
     "LastDeathNew": 0,
     "DaysToDouble": 270.2389428914059,
@@ -57551,9 +57551,9 @@
         "icu_covid_patients": 30
       }
     ],
-    "LastConfirmed": 33891,
+    "LastConfirmed": 33947,
     "LastDeath": 394,
-    "LastConfirmedNew": 0,
+    "LastConfirmedNew": 56,
     "LastDeathNew": 0,
     "DaysToDouble": 302.91018902264994,
     "DaysToDoubleDeath": 62.07490765411468,
@@ -61604,7 +61604,7 @@
     "hospitals": 9,
     "bedsAvail": 1028,
     "Population": 718451,
-    "ca_county_status": "4",
+    "ca_county_status": "3",
     "hospitalization": [
       {
         "fulldate": "03/29/2020",
@@ -63593,9 +63593,9 @@
         "icu_covid_patients": 19
       }
     ],
-    "LastConfirmed": 38448,
+    "LastConfirmed": 38542,
     "LastDeath": 502,
-    "LastConfirmedNew": 0,
+    "LastConfirmedNew": 94,
     "LastDeathNew": 0,
     "DaysToDouble": 332.6657177590098,
     "DaysToDoubleDeath": 100.2257491479392,
@@ -69662,7 +69662,7 @@
     "hospitals": 6,
     "bedsAvail": 275,
     "Population": 177223,
-    "ca_county_status": "4",
+    "ca_county_status": "3",
     "hospitalization": [
       {
         "fulldate": "03/29/2020",
@@ -77687,9 +77687,9 @@
         "icu_covid_patients": 12
       }
     ],
-    "LastConfirmed": 27793,
+    "LastConfirmed": 27845,
     "LastDeath": 295,
-    "LastConfirmedNew": 0,
+    "LastConfirmedNew": 52,
     "LastDeathNew": 0,
     "DaysToDouble": 258.94857403573474,
     "DaysToDoubleDeath": 284.3245574560897,
@@ -85745,9 +85745,9 @@
         "icu_covid_patients": 34
       }
     ],
-    "LastConfirmed": 76862,
+    "LastConfirmed": 76947,
     "LastDeath": 794,
-    "LastConfirmedNew": 0,
+    "LastConfirmedNew": 85,
     "LastDeathNew": 0,
     "DaysToDouble": 315.75726239143955,
     "DaysToDoubleDeath": 86.20573184558926,
@@ -85772,7 +85772,7 @@
     "hospitals": 2,
     "bedsAvail": 69,
     "Population": 200849,
-    "ca_county_status": "4",
+    "ca_county_status": "3",
     "hospitalization": [
       {
         "fulldate": "03/29/2020",
@@ -87761,9 +87761,9 @@
         "icu_covid_patients": 6
       }
     ],
-    "LastConfirmed": 12670,
+    "LastConfirmed": 12689,
     "LastDeath": 181,
-    "LastConfirmedNew": 0,
+    "LastConfirmedNew": 19,
     "LastDeathNew": 0,
     "DaysToDouble": 196.65100516861023,
     "DaysToDoubleDeath": 126.84411113697116,
@@ -95833,9 +95833,9 @@
         "icu_covid_patients": 0
       }
     ],
-    "LastConfirmed": 2201,
+    "LastConfirmed": 2207,
     "LastDeath": 23,
-    "LastConfirmedNew": 0,
+    "LastConfirmedNew": 6,
     "LastDeathNew": 0,
     "DaysToDouble": 545.7606087177262,
     "DaysToDoubleDeath": 1724034232352768.2,
@@ -99859,9 +99859,9 @@
         "icu_covid_patients": 0
       }
     ],
-    "LastConfirmed": 3100,
+    "LastConfirmed": 3107,
     "LastDeath": 40,
-    "LastConfirmedNew": 0,
+    "LastConfirmedNew": 7,
     "LastDeathNew": 0,
     "DaysToDouble": 181.91734562628207,
     "DaysToDoubleDeath": 127.76330575775663,
@@ -109936,7 +109936,7 @@
     "hospitals": 1,
     "bedsAvail": 19,
     "Population": 13786,
-    "ca_county_status": "2",
+    "ca_county_status": "3",
     "hospitalization": [
       {
         "fulldate": "03/29/2020",

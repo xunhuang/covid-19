@@ -402,7 +402,7 @@
     "02/20/2021": 12606,
     "02/21/2021": 12639,
     "02/22/2021": 12670,
-    "02/23/2021": 12670
+    "02/23/2021": 12689
   },
   "Death": {
     "01/22/2020": 0,
@@ -810,7 +810,7 @@
   "hospitals": 2,
   "bedsAvail": 69,
   "Population": 200849,
-  "ca_county_status": "4",
+  "ca_county_status": "3",
   "hospitalization": [
     {
       "fulldate": "03/29/2020",
@@ -2799,9 +2799,9 @@
       "icu_covid_patients": 6
     }
   ],
-  "LastConfirmed": 12670,
+  "LastConfirmed": 12689,
   "LastDeath": 181,
-  "LastConfirmedNew": 0,
+  "LastConfirmedNew": 19,
   "LastDeathNew": 0,
   "DaysToDouble": 196.65100516861023,
   "DaysToDoubleDeath": 126.84411113697116,
