@@ -4,7 +4,7 @@ import { trimLastDaysData, getDay2DoubleTimeSeries, getGrowthRateTimeSeries } fr
 import { CountyInfo } from 'covidmodule';
 import { fetchNPRProjectionData } from "./NPRProjection"
 import { fetchTestingDataStates, fetchTestingDataUS } from "./TestingData"
-import { fetchVaccineDataStates } from "./VaccineData"
+import { fetchVaccineDataStates, fetchVaccineDataUS } from "./VaccineData"
 import { fetchPublicCountyData, fetchAllUSData } from "./PublicAllData"
 import { mergeDataSeries, makeDataSeriesFromTotal } from "./graphs/DataSeries";
 import { DataSeries } from './models/DataSeries';
@@ -298,6 +298,11 @@ export class Country extends CovidSummarizable {
     return await fetchTestingDataUS();
   }
 
+  async vaccineDataAsync() {
+    let vaccines = await fetchVaccineDataUS(this.shortName);
+    return vaccines;
+  }
+
   async testingAllAsync() {
     let data = await fetchTestingDataStates();
     return data;
@@ -485,7 +490,7 @@ export class State extends CovidSummarizable {
   }
 
   vaccineAdminSeries() {
-    return DataSeries.fromDateStr("Vaccine Admin", this.covidRaw_.Summary.doses_admin_total);
+    return DataSeries.fromDateStr("Vaccine Administered", this.covidRaw_.Summary.doses_admin_total);
   }
   vaccineShippedSeries() {
     return DataSeries.fromDateStr("Vaccine Shippped", this.covidRaw_.Summary.doses_shipped_total);

@@ -18,3 +18,13 @@ export async function fetchVaccineDataStates(twoLetterStateShortname) {
         });
     return rawData;
 }
+
+export async function fetchVaccineDataUS() {
+    let stateURL = `https://gowatchit.net/data/vaccine/USA.json`;
+    let rawData = superagent
+        .get(stateURL)
+        .then(res => {
+            return addfulldate(res.body);
+        });
+    return rawData;
+}

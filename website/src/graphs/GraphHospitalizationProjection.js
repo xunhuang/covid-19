@@ -112,30 +112,56 @@ const GraphVaccinationState = (props) => {
   return <GraphVaccination {...props} source={props.state} />
 }
 
-const GraphVaccination = (props) => {
+export const GraphVaccinationUSA = (props) => {
   const source = props.source;
-
   const [data, setData] = React.useState(null);
   React.useEffect(() => {
     source.vaccineDataAsync().then(data => setData(data));
   }, [source]);
 
-  if (data) {
-    console.log(data);
-  } else {
+  if (!data) {
     return null;
   }
+  let administered = DataSeries.fromOldDataSourceDataPoints("Vaccines Administered", data, "Administered_Cumulative");
+  let daily = DataSeries.fromOldDataSourceDataPoints("Vaccines Daily", data, "Administered_Daily");
+  return <AdvancedGraph
+    serieses={
+      [
+        {
+          series: administered,
+          color: "blue",
+        },
+        {
+          series: daily,
+          color: "green",
+          rightAxis: true,
+          showMovingAverage: true,
+          covidspecial: true,
+        },
+      ]
+    }
+  />;
+}
+
+const GraphVaccination = (props) => {
+  // const source = props.source;
+  // const [data, setData] = React.useState(null);
+  // React.useEffect(() => {
+  //   source.vaccineDataAsync().then(data => setData(data));
+  // }, [source]);
+
+  // if (!data) {
+  //   return null;
+  // }
 
   let admin = props.source.vaccineAdminSeries();
-  let shipped = props.source.vaccineShippedSeries();
+  // let shipped = props.source.vaccineShippedSeries();
   // let alloc = props.source.vaccineAllocSeries();
-
   // let given =
   // DataSeries.fromOldDataSourceDataPoints("New admin", data, "Doses_Administered");
   // let shipped2 =
   // DataSeries.fromOldDataSourceDataPoints("Doses Distributed", data, "Doses_Distributed");
 
-  console.log(shipped);
 
   return <AdvancedGraph
     serieses={
@@ -144,9 +170,16 @@ const GraphVaccination = (props) => {
           series: admin,
           color: "blue",
         },
+        // {
+        //   series: shipped,
+        //   color: "grey",
+        // },
         {
-          series: shipped,
-          color: "grey",
+          series: admin.change().setLabel("Daily"),
+          color: "#387908",
+          rightAxis: true,
+          covidspecial: true,
+          showMovingAverage: true,
         },
       ]
     }
