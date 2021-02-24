@@ -30,9 +30,9 @@
     "LastDeath": 53,
     "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 437.43524533508,
+    "DaysToDouble": 503.22004481993326,
     "DaysToDoubleDeath": 1724034232352768.2,
-    "Last2WeeksConfirmedDelta": 41,
+    "Last2WeeksConfirmedDelta": 38,
     "Recovered": null
   },
   "15003": {
@@ -49,11 +49,11 @@
     "Population": 953207,
     "LastConfirmed": 22041,
     "LastDeath": 344,
-    "LastConfirmedNew": 27,
+    "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 462.9649331179686,
-    "DaysToDoubleDeath": 349.5309367533786,
-    "Last2WeeksConfirmedDelta": 487,
+    "DaysToDouble": 477.00208075397177,
+    "DaysToDoubleDeath": 475.1001278975783,
+    "Last2WeeksConfirmedDelta": 494,
     "StayHomeOrder": {
       "StartUrl": "https://www.staradvertiser.com/2020/03/22/breaking-news/watch-live-honolulu-mayor-kirk-caldwell-discusses-coronavirus/",
       "StartDate": "2020-03-23T00:00:00Z",
@@ -95,7 +95,7 @@
     "LastDeath": 1,
     "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 441.2272684985952,
+    "DaysToDouble": 441.8337695156977,
     "DaysToDoubleDeath": null,
     "Last2WeeksConfirmedDelta": 2,
     "Recovered": null
@@ -114,11 +114,11 @@
     "Population": 154834,
     "LastConfirmed": 2680,
     "LastDeath": 30,
-    "LastConfirmedNew": 17,
+    "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 112.29685437876796,
-    "DaysToDoubleDeath": 95.4141236235349,
-    "Last2WeeksConfirmedDelta": 196,
+    "DaysToDouble": 96.62924623592298,
+    "DaysToDoubleDeath": 114.49694834824949,
+    "Last2WeeksConfirmedDelta": 206,
     "StayHomeOrder": {
       "StartUrl": "https://www.mauinews.com/news/local-news/2020/03/ige-takes-stay-at-home-mandate-statewide/",
       "StartDate": "2020-03-25T00:00:00Z",
@@ -544,7 +544,8 @@
       "02/20/2021": 27297,
       "02/21/2021": 27361,
       "02/22/2021": 27410,
-      "02/23/2021": 27454
+      "02/23/2021": 27454,
+      "02/24/2021": 27454
     },
     "Death": {
       "01/22/2020": 0,
@@ -945,7 +946,8 @@
       "02/20/2021": 429,
       "02/21/2021": 430,
       "02/22/2021": 430,
-      "02/23/2021": 430
+      "02/23/2021": 430,
+      "02/24/2021": 430
     },
     "doses_alloc_total": {
       "12/15/2020": 81825,
@@ -1018,7 +1020,8 @@
       "02/20/2021": 335250,
       "02/21/2021": 335250,
       "02/22/2021": 335250,
-      "02/23/2021": 422390
+      "02/23/2021": 422390,
+      "02/24/2021": 422390
     },
     "doses_admin_total": {
       "12/15/2020": 0,
@@ -1091,7 +1094,8 @@
       "02/20/2021": 287315,
       "02/21/2021": 287315,
       "02/22/2021": 287315,
-      "02/23/2021": 306432
+      "02/23/2021": 306432,
+      "02/24/2021": 306432
     },
     "doses_shipped_total": {
       "12/15/2020": 0,
@@ -1164,18 +1168,19 @@
       "02/20/2021": 315900,
       "02/21/2021": 315900,
       "02/22/2021": 315900,
-      "02/23/2021": 330900
+      "02/23/2021": 330900,
+      "02/24/2021": 330900
     },
     "doses_alloc_total_Last": 422390,
     "doses_admin_total_Last": 306432,
     "doses_shippied_total_Last": 330900,
     "LastConfirmed": 27454,
-    "LastConfirmedNew": 44,
+    "LastConfirmedNew": 0,
     "LastDeath": 430,
     "LastDeathNew": 0,
-    "DaysToDouble": 357.86761171387803,
-    "DaysToDoubleDeath": 332.0309329096374,
-    "Last2WeeksConfirmedDelta": 726,
+    "DaysToDouble": 349.6781392497431,
+    "DaysToDoubleDeath": 437.43247055053354,
+    "Last2WeeksConfirmedDelta": 740,
     "beds": 3840,
     "bedsICU": 189,
     "hospitals": 29,

@@ -402,7 +402,8 @@
     "02/20/2021": 2043,
     "02/21/2021": 1955,
     "02/22/2021": 1955,
-    "02/23/2021": 1968
+    "02/23/2021": 1968,
+    "02/24/2021": 1968
   },
   "Death": {
     "01/22/2020": 0,
@@ -803,7 +804,8 @@
     "02/20/2021": 50,
     "02/21/2021": 50,
     "02/22/2021": 50,
-    "02/23/2021": 51
+    "02/23/2021": 51,
+    "02/24/2021": 51
   },
   "beds": 115,
   "bedsICU": 8,
@@ -812,11 +814,11 @@
   "Population": 22535,
   "LastConfirmed": 1968,
   "LastDeath": 51,
-  "LastConfirmedNew": 13,
-  "LastDeathNew": 1,
-  "DaysToDouble": 472.34248798922664,
-  "DaysToDoubleDeath": null,
-  "Last2WeeksConfirmedDelta": 75,
+  "LastConfirmedNew": 0,
+  "LastDeathNew": 0,
+  "DaysToDouble": -221.6776378213104,
+  "DaysToDoubleDeath": 326.69269529074495,
+  "Last2WeeksConfirmedDelta": 88,
   "StayHomeOrder": {
     "StartUrl": "https://abc7amarillo.com/news/local/stay-at-home-directive-issued-in-pampa-gray-county",
     "StartDate": "2020-04-02T00:00:00Z",

@@ -402,7 +402,8 @@
     "02/20/2021": 86027,
     "02/21/2021": 86134,
     "02/22/2021": 86235,
-    "02/23/2021": 86383
+    "02/23/2021": 86383,
+    "02/24/2021": 86383
   },
   "Death": {
     "01/22/2020": 0,
@@ -803,7 +804,8 @@
     "02/20/2021": 1450,
     "02/21/2021": 1451,
     "02/22/2021": 1451,
-    "02/23/2021": 1451
+    "02/23/2021": 1451,
+    "02/24/2021": 1451
   },
   "beds": 4052,
   "bedsICU": 196,
@@ -812,11 +814,11 @@
   "Population": 927644,
   "LastConfirmed": 86383,
   "LastDeath": 1451,
-  "LastConfirmedNew": 148,
+  "LastConfirmedNew": 0,
   "LastDeathNew": 0,
-  "DaysToDouble": 761.7159040314135,
-  "DaysToDoubleDeath": 301.06913467190304,
-  "Last2WeeksConfirmedDelta": 3390,
+  "DaysToDouble": 631.3821902652056,
+  "DaysToDoubleDeath": 400.4530076546023,
+  "Last2WeeksConfirmedDelta": 3408,
   "StayHomeOrder": {
     "StartUrl": "https://wreg.com/news/live-shelby-county-health-department-updates-on-coronavirus/",
     "StartDate": "2020-03-24T00:00:00Z",
