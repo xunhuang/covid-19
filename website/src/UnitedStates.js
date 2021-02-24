@@ -4,6 +4,7 @@ import { trimLastDaysData, getDay2DoubleTimeSeries, getGrowthRateTimeSeries } fr
 import { CountyInfo } from 'covidmodule';
 import { fetchNPRProjectionData } from "./NPRProjection"
 import { fetchTestingDataStates, fetchTestingDataUS } from "./TestingData"
+import { fetchVaccineDataStates } from "./VaccineData"
 import { fetchPublicCountyData, fetchAllUSData } from "./PublicAllData"
 import { mergeDataSeries, makeDataSeriesFromTotal } from "./graphs/DataSeries";
 import { DataSeries } from './models/DataSeries';
@@ -510,6 +511,12 @@ export class State extends CovidSummarizable {
     let data = await fetchTestingDataStates();
     return data.filter(d => d.state === this.twoLetterName)
       .sort((a, b) => a.date - b.date);
+  }
+
+  async vaccineDataAsync() {
+    let vaccines = await fetchVaccineDataStates(this.shortName);
+    console.log(vaccines);
+    return vaccines;
   }
 
   async hospitalizationCurrentlyAsync() {

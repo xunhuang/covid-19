@@ -116,7 +116,7 @@ const AtAGlance = (props) => {
       {newdeath}
       <MapUS source={props.source} />
       <GraphAllBedProjectionState state={props.source} />
-      <GraphVaccinationState state={props.source} />
+      <GraphVaccinationState state={props.source} key="state_vaccine" />
     </div >;
   }
 

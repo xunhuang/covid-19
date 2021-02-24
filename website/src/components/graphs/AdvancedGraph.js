@@ -396,15 +396,13 @@ const Chart = (props) => {
 
   function gethRefLines(lines) {
     let result = (lines || []).map((l, idx) => {
-      return <>
-        <ReferenceLine key={`vrefline${idx}`}
-          y={l.value}
-          stroke="#e3e3e3"
-          strokeWidth={1}
-        >
-          <Label value={l.label} position={"insideLeft"} ></Label>
-        </ReferenceLine>
-      </>
+      return <ReferenceLine key={`hrefline${idx}`}
+        y={l.value}
+        stroke="#e3e3e3"
+        strokeWidth={1}
+      >
+        <Label value={l.label} position={"insideLeft"} ></Label>
+      </ReferenceLine>
     }
     );
     return result;

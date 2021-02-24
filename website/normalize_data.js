@@ -1145,6 +1145,7 @@ async function processVaccineData() {
     }
   }
 
+  /*
   const bloomberg_data = require("./vaccine-bloomberg.json");
 
   for (let entry of Object.values(bloomberg_data)) {
@@ -1173,6 +1174,7 @@ async function processVaccineData() {
       }
     }
   }
+  */
 
   // now fix up vaccine data
   for (s in AllData) {
@@ -1210,7 +1212,7 @@ async function main() {
   addMetros();
   processsShelterInPlace();
   addUSRecovery();
-  addStateRecovery();
+  // addStateRecovery();
   processTestData();
 }
 

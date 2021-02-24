@@ -43,16 +43,3 @@ if  [ "$filesize" -ge "1000" ]; then
 else 
     echo "file size $filesize too small"
 fi
-
-curl -s "https://docs.google.com/spreadsheets/u/0/d/e/2PACX-1vR30F8lYP3jG7YOq8es0PBpJIE5yvRVZffOyaqC0GgMBN6yt0Q-NI8pxS7hd1F9dYXnowSC6zpZmW9D/pub?output=csv&gid=1902046093&headers=false" | tail -n +5 | $CSVTOJSON >$temp_file
-filesize=$(wc -c <"$temp_file")
-if  [ "$filesize" -ge "10000" ]; then
-    echo "Updated BNO-$d.json ($filesize) "
-   mv $temp_file ../data/archive/BNO-$d.json
-   git add ../data/archive/BNO-$d.json
-else 
-    echo "file size $filesize too small"
-fi
-
-node refreshvaccine.js
-git add src/data/bloomberg-$d.json

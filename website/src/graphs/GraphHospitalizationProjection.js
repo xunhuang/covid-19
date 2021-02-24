@@ -113,10 +113,29 @@ const GraphVaccinationState = (props) => {
 }
 
 const GraphVaccination = (props) => {
+  const source = props.source;
+
+  const [data, setData] = React.useState(null);
+  React.useEffect(() => {
+    source.vaccineDataAsync().then(data => setData(data));
+  }, [source]);
+
+  if (data) {
+    console.log(data);
+  } else {
+    return null;
+  }
 
   let admin = props.source.vaccineAdminSeries();
   let shipped = props.source.vaccineShippedSeries();
-  let alloc = props.source.vaccineAllocSeries();
+  // let alloc = props.source.vaccineAllocSeries();
+
+  // let given =
+  // DataSeries.fromOldDataSourceDataPoints("New admin", data, "Doses_Administered");
+  // let shipped2 =
+  // DataSeries.fromOldDataSourceDataPoints("Doses Distributed", data, "Doses_Distributed");
+
+  console.log(shipped);
 
   return <AdvancedGraph
     serieses={
@@ -124,10 +143,6 @@ const GraphVaccination = (props) => {
         {
           series: admin,
           color: "blue",
-        },
-        {
-          series: alloc,
-          color: "green",
         },
         {
           series: shipped,
