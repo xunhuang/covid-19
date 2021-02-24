@@ -143,6 +143,43 @@ export const GraphVaccinationUSA = (props) => {
   />;
 }
 
+export const GraphVaccinationCounty = (props) => {
+  const source = props.source;
+  const [data, setData] = React.useState(null);
+  React.useEffect(() => {
+    source.vaccineDataAsync().then(data => setData(data));
+  }, [source]);
+
+  if (!data) {
+    return null;
+  }
+  let administered = DataSeries.fromOldDataSourceDataPoints("Vaccines Administered", data, "doses_administered");
+  let daily = DataSeries.fromOldDataSourceDataPoints("Daily", data, "new_doses_administered");
+  let dailymoving = DataSeries.fromOldDataSourceDataPoints("Daily (7-day)", data, "new_doses_administered_seven_day_average");
+  return <AdvancedGraph
+    serieses={
+      [
+        {
+          series: administered,
+          color: "blue",
+        },
+        {
+          series: daily,
+          color: "green",
+          rightAxis: true,
+          stipple: true,
+        },
+        {
+          series: dailymoving,
+          color: "green",
+          rightAxis: true,
+          covidspecial: true,
+        },
+      ]
+    }
+  />;
+}
+
 const GraphVaccination = (props) => {
   // const source = props.source;
   // const [data, setData] = React.useState(null);

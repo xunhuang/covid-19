@@ -2,7 +2,7 @@ import React from 'react'
 import { Summary } from './Summary'
 import { County, Country, State } from "../UnitedStates";
 import { MapUS } from "../MapUS"
-import { GraphAllBedProjectionState, GraphAllBedProjectionUS, GraphVaccinationState, GraphVaccinationUSA } from "./GraphHospitalizationProjection"
+import { GraphAllBedProjectionState, GraphAllBedProjectionUS, GraphVaccinationState, GraphVaccinationUSA, GraphVaccinationCounty } from "./GraphHospitalizationProjection"
 import { AdvancedGraph } from '../components/graphs/AdvancedGraph'
 import { getRefLines } from "../Util"
 import { GraphCountyHospitalization } from "./GraphCountyHospitalization"
@@ -124,6 +124,9 @@ const AtAGlance = (props) => {
   if (props.source instanceof County) {
     return <div>
       <Summary source={props.source} />
+      {props.source.state().shortName === "CA" &&
+        <GraphVaccinationCounty source={props.source} key="county_vaccine" />
+      }
       {newconfirm}
       {newdeath}
       {props.source.hospitalization() &&
