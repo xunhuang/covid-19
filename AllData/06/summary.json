@@ -834,7 +834,7 @@
       "02/21/2021": 49345,
       "02/22/2021": 49541,
       "02/23/2021": 49888,
-      "02/24/2021": 49888
+      "02/24/2021": 49910
     },
     "doses_alloc_total": {
       "01/02/2021": 0,
@@ -1009,8 +1009,8 @@
     "doses_shippied_total_Last": 9816120,
     "LastConfirmed": 3543361,
     "LastConfirmedNew": 0,
-    "LastDeath": 49888,
-    "LastDeathNew": 0,
+    "LastDeath": 49910,
+    "LastDeathNew": 22,
     "DaysToDouble": 399.7116437797909,
     "DaysToDoubleDeath": 106.3188643222955,
     "Last2WeeksConfirmedDelta": 111252,
@@ -53415,9 +53415,9 @@
       }
     ],
     "LastConfirmed": 285081,
-    "LastDeath": 2651,
+    "LastDeath": 2673,
     "LastConfirmedNew": 0,
-    "LastDeathNew": 0,
+    "LastDeathNew": 22,
     "DaysToDouble": 509.35030574350225,
     "DaysToDoubleDeath": 51.59482702194923,
     "Last2WeeksConfirmedDelta": 6279,
