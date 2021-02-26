@@ -3233,10 +3233,10 @@
     "StateFIPS": "13",
     "Confirmed": null,
     "Death": null,
-    "LastConfirmed": 29217,
-    "LastDeath": 532,
+    "LastConfirmed": 29163,
+    "LastDeath": 536,
     "LastConfirmedNew": 0,
-    "LastDeathNew": 0,
+    "LastDeathNew": 4,
     "DaysToDouble": 2541.6641604288275,
     "DaysToDoubleDeath": 58.67625428520367,
     "Last2WeeksConfirmedDelta": 727,
@@ -3645,7 +3645,7 @@
       "02/22/2021": 983113,
       "02/23/2021": 986884,
       "02/24/2021": 990311,
-      "02/25/2021": 993782
+      "02/25/2021": 993728
     },
     "Death": {
       "01/22/2020": 0,
@@ -4048,7 +4048,7 @@
       "02/22/2021": 16825,
       "02/23/2021": 16916,
       "02/24/2021": 17053,
-      "02/25/2021": 17183
+      "02/25/2021": 17187
     },
     "doses_alloc_total": {
       "12/14/2020": 0,
@@ -4281,10 +4281,10 @@
     "doses_alloc_total_Last": 2484950,
     "doses_admin_total_Last": 1834738,
     "doses_shippied_total_Last": 2243275,
-    "LastConfirmed": 993782,
-    "LastConfirmedNew": 3471,
-    "LastDeath": 17183,
-    "LastDeathNew": 130,
+    "LastConfirmed": 993728,
+    "LastConfirmedNew": 3417,
+    "LastDeath": 17187,
+    "LastDeathNew": 134,
     "DaysToDouble": 248.67739530077827,
     "DaysToDoubleDeath": 119.95654109523477,
     "Last2WeeksConfirmedDelta": 46840,
@@ -4298,13 +4298,13 @@
       "EndDate": "2020-04-27T00:00:00Z",
       "EndUrl": null
     },
-    "totalTests": 994061,
-    "totalTestResults": 7096779,
-    "totalTestPositive": 994061,
+    "totalTests": 997388,
+    "totalTestResults": 7125751,
+    "totalTestPositive": 997388,
     "totalRecovered": null,
-    "hospitalized": 55394,
-    "hospitalizedIncreased": 227,
-    "inIcu": 8999,
+    "hospitalized": 55604,
+    "hospitalizedIncreased": 210,
+    "inIcu": 9036,
     "onVentilator": null
   }
 }
