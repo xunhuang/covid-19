@@ -404,7 +404,8 @@
     "02/22/2021": 95109,
     "02/23/2021": 95323,
     "02/24/2021": 95626,
-    "02/25/2021": 95952
+    "02/25/2021": 95952,
+    "02/26/2021": 95952
   },
   "Death": {
     "01/22/2020": 0,
@@ -807,7 +808,8 @@
     "02/22/2021": 838,
     "02/23/2021": 839,
     "02/24/2021": 853,
-    "02/25/2021": 854
+    "02/25/2021": 854,
+    "02/26/2021": 854
   },
   "beds": 2612,
   "bedsICU": 141,
@@ -816,11 +818,11 @@
   "Population": 919628,
   "LastConfirmed": 95952,
   "LastDeath": 854,
-  "LastConfirmedNew": 326,
-  "LastDeathNew": 1,
-  "DaysToDouble": 250.55117396570634,
-  "DaysToDoubleDeath": 198.95623784628313,
-  "Last2WeeksConfirmedDelta": 4858,
+  "LastConfirmedNew": 0,
+  "LastDeathNew": 0,
+  "DaysToDouble": 248.13778931384056,
+  "DaysToDoubleDeath": 170.61152289981237,
+  "Last2WeeksConfirmedDelta": 4819,
   "StayHomeOrder": {
     "StartUrl": "https://www.charlotteobserver.com/news/coronavirus/article241457221.html",
     "StartDate": "2020-03-26T00:00:00Z",

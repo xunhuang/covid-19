@@ -404,7 +404,8 @@
     "02/22/2021": 8721,
     "02/23/2021": 8745,
     "02/24/2021": 8760,
-    "02/25/2021": 8796
+    "02/25/2021": 8796,
+    "02/26/2021": 8796
   },
   "Death": {
     "01/22/2020": 0,
@@ -807,7 +808,8 @@
     "02/22/2021": 262,
     "02/23/2021": 263,
     "02/24/2021": 263,
-    "02/25/2021": 265
+    "02/25/2021": 265,
+    "02/26/2021": 265
   },
   "beds": 48,
   "bedsICU": 0,
@@ -816,11 +818,11 @@
   "Population": 60968,
   "LastConfirmed": 8796,
   "LastDeath": 265,
-  "LastConfirmedNew": 36,
-  "LastDeathNew": 2,
-  "DaysToDouble": 508.28464663950984,
-  "DaysToDoubleDeath": 104.38224674839354,
-  "Last2WeeksConfirmedDelta": -2,
+  "LastConfirmedNew": 0,
+  "LastDeathNew": 0,
+  "DaysToDouble": 421.13734967412495,
+  "DaysToDoubleDeath": 140.01431555384877,
+  "Last2WeeksConfirmedDelta": -22,
   "StayHomeOrder": {
     "StartUrl": "http://www.co.starr.tx.us/upload/page/6463/docs/CountyWideStayHome.pdf",
     "StartDate": "2020-03-25T00:00:00Z",
