@@ -405,7 +405,8 @@
     "02/23/2021": 1722,
     "02/24/2021": 1723,
     "02/25/2021": 1724,
-    "02/26/2021": 1725
+    "02/26/2021": 1725,
+    "02/27/2021": 1725
   },
   "Death": {
     "01/22/2020": 0,
@@ -809,16 +810,17 @@
     "02/23/2021": 24,
     "02/24/2021": 24,
     "02/25/2021": 24,
-    "02/26/2021": 25
+    "02/26/2021": 25,
+    "02/27/2021": 25
   },
   "Population": 14018,
   "LastConfirmed": 1725,
   "LastDeath": 25,
-  "LastConfirmedNew": 1,
-  "LastDeathNew": 1,
-  "DaysToDouble": 411.17183279677073,
-  "DaysToDoubleDeath": null,
-  "Last2WeeksConfirmedDelta": 80,
+  "LastConfirmedNew": 0,
+  "LastDeathNew": 0,
+  "DaysToDouble": 538.149488038233,
+  "DaysToDoubleDeath": 158.47764817117536,
+  "Last2WeeksConfirmedDelta": 75,
   "StayHomeOrder": {
     "StartUrl": "https://newtools.cira.state.tx.us/upload/page/9865/docs/order_zapatashelterinplace.pdf",
     "StartDate": "2020-04-01T00:00:00Z",
