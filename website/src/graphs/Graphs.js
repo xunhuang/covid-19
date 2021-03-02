@@ -6,6 +6,7 @@ import Badge from '@material-ui/core/Badge';
 import { withStyles } from '@material-ui/core/styles';
 import { withRouter } from 'react-router-dom'
 import { AtAGlance } from './AtAGlance.js'
+import { GraphVaccination } from "./GraphVaccination"
 import { ChildrenAtAGlance } from './ChildrenAtAGlance.js'
 import { CovidCompare } from './CovidCompare.js'
 import { GraphDaysToDoubleOverTime } from './GraphDaysToDoubleOverTime'
@@ -15,7 +16,7 @@ import { maybeMapTabFor } from '../Map';
 import { maybeRecoveryAndDeathTabFor } from './GraphRecoveryAndDeath.js'
 import { maybeTestingTabFor } from './GraphTestingEffort'
 import { maybeDailyTabFor } from './GraphDaily'
-import { Country, State, County } from "../UnitedStates"
+import { Country, State, County, Metro } from "../UnitedStates"
 
 const styles = theme => ({
   content: {
@@ -74,6 +75,17 @@ class UnhookedGraphSection extends React.Component {
       label: "At a glance",
       content: AtAGlance,
     });
+
+    if (!(source instanceof Metro)) {
+      if (((source instanceof County) && (source.state().shortName === "CA")) ||
+        !(source instanceof County)) {
+        tabs.set('vaccination', {
+          label: "Vaccination",
+          content: GraphVaccination,
+          showRibbon: true,
+        });
+      }
+    }
 
     if (!(source instanceof County)) {
       tabs.set('childrenglance', {
