@@ -102,9 +102,9 @@ const AtAGlance = (props) => {
   if (props.source instanceof Country) {
     return <div>
       <Summary source={props.source} />
-      <GraphVaccinationUSA source={props.source} key="USA_vaccine" />
       {newconfirm}
       {newdeath}
+      <GraphVaccinationUSA source={props.source} key="USA_vaccine" />
       <MapUS source={props.source} />
       <GraphAllBedProjectionUS />
     </div >;
@@ -113,9 +113,9 @@ const AtAGlance = (props) => {
   if (props.source instanceof State) {
     return <div>
       <Summary source={props.source} />
-      <GraphVaccinationState state={props.source} key="state_vaccine" />
       {newconfirm}
       {newdeath}
+      <GraphVaccinationState state={props.source} key="state_vaccine" />
       <MapUS source={props.source} />
       <GraphAllBedProjectionState state={props.source} />
     </div >;
@@ -124,11 +124,11 @@ const AtAGlance = (props) => {
   if (props.source instanceof County) {
     return <div>
       <Summary source={props.source} />
+      {newconfirm}
+      {newdeath}
       {props.source.state().shortName === "CA" &&
         <GraphVaccinationCounty source={props.source} key="county_vaccine" />
       }
-      {newconfirm}
-      {newdeath}
       {props.source.hospitalization() &&
         <GraphCountyHospitalization
           hospitalization={props.source.hospitalization()}
