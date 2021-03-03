@@ -409,8 +409,8 @@
     "02/27/2021": 259641,
     "02/28/2021": 260091,
     "03/01/2021": 260625,
-    "03/02/2021": 260625,
-    "03/03/2021": 260625
+    "03/02/2021": 261001,
+    "03/03/2021": 261001
   },
   "Death": {
     "01/22/2020": 0,
@@ -818,8 +818,8 @@
     "02/27/2021": 3271,
     "02/28/2021": 3284,
     "03/01/2021": 3303,
-    "03/02/2021": 3303,
-    "03/03/2021": 3303
+    "03/02/2021": 3317,
+    "03/03/2021": 3317
   },
   "beds": 6657,
   "bedsICU": 540,
@@ -2857,13 +2857,13 @@
       "icu_covid_patients": 156
     }
   ],
-  "LastConfirmed": 260625,
-  "LastDeath": 3303,
+  "LastConfirmed": 261001,
+  "LastDeath": 3317,
   "LastConfirmedNew": 0,
   "LastDeathNew": 0,
-  "DaysToDouble": 463.0772180366912,
-  "DaysToDoubleDeath": 192.94299009067433,
-  "Last2WeeksConfirmedDelta": 7682,
+  "DaysToDouble": 419.7608717884109,
+  "DaysToDoubleDeath": 171.33061792362636,
+  "Last2WeeksConfirmedDelta": 8058,
   "StayHomeOrder": {
     "StartUrl": "https://www.sandiegocounty.gov/content/dam/sdc/hhsa/programs/phs/Epidemiology/HealthOfficerOrderCOVID19.pdf",
     "StartDate": "2020-03-29T00:00:00Z",
