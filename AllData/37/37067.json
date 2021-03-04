@@ -410,7 +410,8 @@
     "02/28/2021": 31739,
     "03/01/2021": 31866,
     "03/02/2021": 31913,
-    "03/03/2021": 31981
+    "03/03/2021": 31981,
+    "03/04/2021": 31981
   },
   "Death": {
     "01/22/2020": 0,
@@ -819,7 +820,8 @@
     "02/28/2021": 345,
     "03/01/2021": 345,
     "03/02/2021": 345,
-    "03/03/2021": 345
+    "03/03/2021": 345,
+    "03/04/2021": 345
   },
   "beds": 2160,
   "bedsICU": 180,
@@ -828,11 +830,11 @@
   "Population": 350670,
   "LastConfirmed": 31981,
   "LastDeath": 345,
-  "LastConfirmedNew": 68,
+  "LastConfirmedNew": 0,
   "LastDeathNew": 0,
-  "DaysToDouble": 280.48854378040414,
-  "DaysToDoubleDeath": 443.1442270418998,
-  "Last2WeeksConfirmedDelta": 1374,
+  "DaysToDouble": 320.85887518555353,
+  "DaysToDoubleDeath": null,
+  "Last2WeeksConfirmedDelta": 1364,
   "StayHomeOrder": {
     "StartUrl": "https://www.cityofws.org/DocumentCenter/View/13660/Mayor-Stay-At-Home-Order-for-COVID-19-PDF?bidId=",
     "StartDate": "2020-03-27T00:00:00Z",

@@ -410,7 +410,8 @@
     "02/28/2021": 1495,
     "03/01/2021": 1495,
     "03/02/2021": 1495,
-    "03/03/2021": 1496
+    "03/03/2021": 1496,
+    "03/04/2021": 1496
   },
   "Death": {
     "01/22/2020": 0,
@@ -819,7 +820,8 @@
     "02/28/2021": 50,
     "03/01/2021": 50,
     "03/02/2021": 50,
-    "03/03/2021": 50
+    "03/03/2021": 50,
+    "03/04/2021": 50
   },
   "beds": 86,
   "bedsICU": 5,
@@ -828,11 +830,11 @@
   "Population": 15216,
   "LastConfirmed": 1496,
   "LastDeath": 50,
-  "LastConfirmedNew": 1,
+  "LastConfirmedNew": 0,
   "LastDeathNew": 0,
-  "DaysToDouble": 1610.3343916904073,
+  "DaysToDouble": 1610.6934807531954,
   "DaysToDoubleDeath": null,
-  "Last2WeeksConfirmedDelta": 12,
+  "Last2WeeksConfirmedDelta": 13,
   "StayHomeOrder": {
     "StartUrl": "https://newtools.cira.state.tx.us/upload/page/0526/2020/Emergency%20Declaration%204.1.2020.pdf",
     "StartDate": "2020-04-02T00:00:00Z",
