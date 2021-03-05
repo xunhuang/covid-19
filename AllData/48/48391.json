@@ -411,7 +411,8 @@
     "03/01/2021": 618,
     "03/02/2021": 617,
     "03/03/2021": 622,
-    "03/04/2021": 623
+    "03/04/2021": 623,
+    "03/05/2021": 623
   },
   "Death": {
     "01/22/2020": 0,
@@ -821,7 +822,8 @@
     "03/01/2021": 17,
     "03/02/2021": 17,
     "03/03/2021": 17,
-    "03/04/2021": 18
+    "03/04/2021": 18,
+    "03/05/2021": 18
   },
   "beds": 20,
   "bedsICU": 0,
@@ -830,11 +832,11 @@
   "Population": 7383,
   "LastConfirmed": 623,
   "LastDeath": 18,
-  "LastConfirmedNew": 1,
-  "LastDeathNew": 1,
-  "DaysToDouble": 192.4035654831872,
-  "DaysToDoubleDeath": null,
-  "Last2WeeksConfirmedDelta": 25,
+  "LastConfirmedNew": 0,
+  "LastDeathNew": 0,
+  "DaysToDouble": 206.34014306322473,
+  "DaysToDoubleDeath": 113.18322624104488,
+  "Last2WeeksConfirmedDelta": 22,
   "StayHomeOrder": {
     "StartUrl": "https://newtools.cira.state.tx.us/upload/page/1085/2020/ORDER%20040120.pdf",
     "StartDate": "2020-04-01T00:00:00Z",
