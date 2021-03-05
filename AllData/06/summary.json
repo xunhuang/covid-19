@@ -440,7 +440,7 @@
       "03/01/2021": 3573570,
       "03/02/2021": 3577987,
       "03/03/2021": 3582341,
-      "03/04/2021": 3583325
+      "03/04/2021": 3583491
     },
     "Death": {
       "01/22/2020": 0,
@@ -850,7 +850,7 @@
       "03/01/2021": 52491,
       "03/02/2021": 52798,
       "03/03/2021": 53083,
-      "03/04/2021": 53204
+      "03/04/2021": 53214
     },
     "doses_alloc_total": {
       "01/02/2021": 0,
@@ -1047,10 +1047,10 @@
     "doses_alloc_total_Last": 1762900,
     "doses_admin_total_Last": 8003210,
     "doses_shippied_total_Last": 10545410,
-    "LastConfirmed": 3583325,
-    "LastConfirmedNew": 984,
-    "LastDeath": 53204,
-    "LastDeathNew": 121,
+    "LastConfirmed": 3583491,
+    "LastConfirmedNew": 1150,
+    "LastDeath": 53214,
+    "LastDeathNew": 131,
     "DaysToDouble": 531.3113958574766,
     "DaysToDoubleDeath": 133.25382019902955,
     "Last2WeeksConfirmedDelta": 82449,
@@ -1064,13 +1064,13 @@
       "EndDate": null,
       "EndUrl": null
     },
-    "totalTests": 3484963,
-    "totalTestResults": 49028048,
-    "totalTestPositive": 3484963,
+    "totalTests": 3488467,
+    "totalTestResults": 49147685,
+    "totalTestPositive": 3488467,
     "totalRecovered": null,
-    "hospitalized": 5110,
+    "hospitalized": 4967,
     "hospitalizedIncreased": 0,
-    "inIcu": 1403,
+    "inIcu": 1327,
     "onVentilator": null
   },
   "06000": {
@@ -3144,10 +3144,10 @@
         "icu_covid_patients": 33
       }
     ],
-    "LastConfirmed": 80972,
-    "LastDeath": 1271,
-    "LastConfirmedNew": 22,
-    "LastDeathNew": 0,
+    "LastConfirmed": 81086,
+    "LastDeath": 1281,
+    "LastConfirmedNew": 136,
+    "LastDeathNew": 10,
     "DaysToDouble": 385.49756202003385,
     "DaysToDoubleDeath": 163.54164379444063,
     "Last2WeeksConfirmedDelta": 2067,
@@ -46578,9 +46578,9 @@
         "icu_covid_patients": 17
       }
     ],
-    "LastConfirmed": 19911,
+    "LastConfirmed": 19963,
     "LastDeath": 232,
-    "LastConfirmedNew": 0,
+    "LastConfirmedNew": 52,
     "LastDeathNew": 0,
     "DaysToDouble": 413.5090349517081,
     "DaysToDoubleDeath": 1497.657679338876,
