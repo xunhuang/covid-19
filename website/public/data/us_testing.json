@@ -1,5 +1,32 @@
 [
   {
+    "date": 20210304,
+    "states": 56,
+    "positive": 28585852,
+    "negative": 89475063,
+    "pending": 12405,
+    "hospitalizedCurrently": 44172,
+    "hospitalizedCumulative": 874603,
+    "inIcuCurrently": 8970,
+    "inIcuCumulative": 45293,
+    "onVentilatorCurrently": 2973,
+    "onVentilatorCumulative": 4267,
+    "dateChecked": "2021-03-04T24:00:00Z",
+    "death": 510408,
+    "hospitalized": 874603,
+    "totalTestResults": 359143708,
+    "lastModified": "2021-03-04T24:00:00Z",
+    "recovered": null,
+    "total": 0,
+    "posNeg": 0,
+    "deathIncrease": 1743,
+    "hospitalizedIncrease": 1530,
+    "negativeIncrease": 259926,
+    "positiveIncrease": 65487,
+    "totalTestResultsIncrease": 1595613,
+    "hash": "b13018c240bf7f7815b0d51bb8ae498f832d4bd0"
+  },
+  {
     "date": 20210303,
     "states": 56,
     "positive": 28520365,
@@ -9496,7 +9523,7 @@
     "recovered": null,
     "total": 0,
     "posNeg": 0,
-    "deathIncrease": 24,
+    "deathIncrease": 22,
     "hospitalizedIncrease": 33,
     "negativeIncrease": 6263,
     "positiveIncrease": 2088,
@@ -9516,19 +9543,19 @@
     "onVentilatorCurrently": null,
     "onVentilatorCumulative": null,
     "dateChecked": "2020-03-16T24:00:00Z",
-    "death": 100,
+    "death": 102,
     "hospitalized": 43,
     "totalTestResults": 86967,
     "lastModified": "2020-03-16T24:00:00Z",
     "recovered": null,
     "total": 0,
     "posNeg": 0,
-    "deathIncrease": 21,
+    "deathIncrease": 22,
     "hospitalizedIncrease": 6,
     "negativeIncrease": 11571,
     "positiveIncrease": 1715,
     "totalTestResultsIncrease": 24287,
-    "hash": "7484b823d6e53f3549724fb0d7039e1b7abaa82f"
+    "hash": "6ba5b0c209c4a84de0735f7942d6d99b3ab7efc7"
   },
   {
     "date": 20200315,
@@ -9543,7 +9570,7 @@
     "onVentilatorCurrently": null,
     "onVentilatorCumulative": null,
     "dateChecked": "2020-03-15T24:00:00Z",
-    "death": 79,
+    "death": 80,
     "hospitalized": 37,
     "totalTestResults": 62680,
     "lastModified": "2020-03-15T24:00:00Z",
@@ -9555,7 +9582,7 @@
     "negativeIncrease": 2583,
     "positiveIncrease": 1289,
     "totalTestResultsIncrease": 10578,
-    "hash": "b006a5f20fb28b7eef65ed0d65ab868eb7472af7"
+    "hash": "4b32555affaac7c3570de677a431306d9a1ffd8c"
   },
   {
     "date": 20200314,
@@ -9570,7 +9597,7 @@
     "onVentilatorCurrently": null,
     "onVentilatorCumulative": null,
     "dateChecked": "2020-03-14T24:00:00Z",
-    "death": 64,
+    "death": 65,
     "hospitalized": 27,
     "totalTestResults": 52102,
     "lastModified": "2020-03-14T24:00:00Z",
@@ -9582,7 +9609,7 @@
     "negativeIncrease": 1697,
     "positiveIncrease": 1025,
     "totalTestResultsIncrease": 10503,
-    "hash": "5775acf5d9caf91fec06101b4362813e70e3391e"
+    "hash": "75b1387e8f492525b7dfb269ffb8cf2c9a31fd1c"
   },
   {
     "date": 20200313,
@@ -9597,7 +9624,7 @@
     "onVentilatorCurrently": null,
     "onVentilatorCumulative": null,
     "dateChecked": "2020-03-13T24:00:00Z",
-    "death": 56,
+    "death": 57,
     "hospitalized": 23,
     "totalTestResults": 41599,
     "lastModified": "2020-03-13T24:00:00Z",
@@ -9609,7 +9636,7 @@
     "negativeIncrease": 1178,
     "positiveIncrease": 843,
     "totalTestResultsIncrease": 10160,
-    "hash": "1c916819a1a67cfba322abbdff8ee28fc374485d"
+    "hash": "c6c943e17c890aea7b32948f239fdf8fd669acea"
   },
   {
     "date": 20200312,
@@ -9624,19 +9651,19 @@
     "onVentilatorCurrently": null,
     "onVentilatorCumulative": null,
     "dateChecked": "2020-03-12T24:00:00Z",
-    "death": 51,
+    "death": 52,
     "hospitalized": 17,
     "totalTestResults": 31439,
     "lastModified": "2020-03-12T24:00:00Z",
     "recovered": null,
     "total": 0,
     "posNeg": 0,
-    "deathIncrease": 8,
+    "deathIncrease": 9,
     "hospitalizedIncrease": 5,
     "negativeIncrease": 1022,
     "positiveIncrease": 683,
     "totalTestResultsIncrease": 6965,
-    "hash": "a93eeef7654b11df27dc798a9fbbf60b06bed38e"
+    "hash": "1a6354e15e540564fefbd36dcc6a7c8cffa70163"
   },
   {
     "date": 20200311,
