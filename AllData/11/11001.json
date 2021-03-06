@@ -412,7 +412,8 @@
     "03/02/2021": 40767,
     "03/03/2021": 40818,
     "03/04/2021": 41014,
-    "03/05/2021": 41014
+    "03/05/2021": 41014,
+    "03/06/2021": 41122
   },
   "Death": {
     "01/22/2020": 0,
@@ -823,20 +824,21 @@
     "03/02/2021": 1019,
     "03/03/2021": 1023,
     "03/04/2021": 1024,
-    "03/05/2021": 1024
+    "03/05/2021": 1024,
+    "03/06/2021": 1027
   },
   "beds": 4143,
   "bedsICU": 237,
   "hospitals": 14,
   "bedsAvail": 1037,
   "Population": 601723,
-  "LastConfirmed": 41014,
-  "LastDeath": 1024,
-  "LastConfirmedNew": 0,
-  "LastDeathNew": 0,
-  "DaysToDouble": 259.6038579137752,
-  "DaysToDoubleDeath": 270.2580116131246,
-  "Last2WeeksConfirmedDelta": 1834,
+  "LastConfirmed": 41122,
+  "LastDeath": 1027,
+  "LastConfirmedNew": 108,
+  "LastDeathNew": 3,
+  "DaysToDouble": 307.37179525512863,
+  "DaysToDoubleDeath": 329.31323051807544,
+  "Last2WeeksConfirmedDelta": 1713,
   "StayHomeOrder": {
     "StartUrl": "https://apnews.com/5abcb144b6d0f106436e67c7930a5243",
     "StartDate": "2020-04-01T00:00:00Z",

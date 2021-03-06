@@ -412,7 +412,8 @@
     "03/02/2021": 138909,
     "03/03/2021": 139170,
     "03/04/2021": 139170,
-    "03/05/2021": 139170
+    "03/05/2021": 139170,
+    "03/06/2021": 139590
   },
   "Death": {
     "01/22/2020": 0,
@@ -823,20 +824,21 @@
     "03/02/2021": 768,
     "03/03/2021": 773,
     "03/04/2021": 773,
-    "03/05/2021": 773
+    "03/05/2021": 773,
+    "03/06/2021": 776
   },
   "beds": 3369,
   "bedsICU": 230,
   "hospitals": 20,
   "bedsAvail": 1312,
   "Population": 1029655,
-  "LastConfirmed": 139170,
-  "LastDeath": 773,
-  "LastConfirmedNew": 0,
-  "LastDeathNew": 0,
-  "DaysToDouble": 625.683350069502,
-  "DaysToDoubleDeath": 172.5425129015155,
-  "Last2WeeksConfirmedDelta": 3172,
+  "LastConfirmed": 139590,
+  "LastDeath": 776,
+  "LastConfirmedNew": 420,
+  "LastDeathNew": 3,
+  "DaysToDouble": 807.7351887316183,
+  "DaysToDoubleDeath": 236.46528161322067,
+  "Last2WeeksConfirmedDelta": 2832,
   "StayHomeOrder": {
     "StartUrl": "https://www.ksl.com/article/46736005/salt-lake-county-issues-public-health-order",
     "StartDate": "2020-03-30T00:00:00Z",
