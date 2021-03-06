@@ -1115,7 +1115,7 @@ async function processVaccineData() {
     return parseInt(n);
   }
 
-  const vaccineDataCSV = '../vaccine-module/data_tables/vaccine_data/raw_data/vaccine_data_us_state_timeline.csv';
+  const vaccineDataCSV = '../vaccine-module/data_tables/vaccine_data/us_data/time_series/vaccine_data_us_timeline.csv';
   const json = await csv().fromFile(vaccineDataCSV);
 
   for (let entry of json) {
@@ -1169,7 +1169,7 @@ async function main() {
   await processAllJHUGithub();
   processAllJHU();
 
-  await processVaccineData();
+  // await processVaccineData();
   addCACountyStatus();
   await addCountyHospitalization();
   fillholes();
