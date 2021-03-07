@@ -413,7 +413,8 @@
     "03/03/2021": 22091,
     "03/04/2021": 22119,
     "03/05/2021": 22150,
-    "03/06/2021": 22150
+    "03/06/2021": 22150,
+    "03/07/2021": 22175
   },
   "Death": {
     "01/22/2020": 0,
@@ -825,7 +826,8 @@
     "03/03/2021": 220,
     "03/04/2021": 227,
     "03/05/2021": 227,
-    "03/06/2021": 227
+    "03/06/2021": 227,
+    "03/07/2021": 227
   },
   "beds": 173,
   "bedsICU": 22,
@@ -2887,13 +2889,13 @@
       "icu_covid_patients": 5
     }
   ],
-  "LastConfirmed": 22150,
+  "LastConfirmed": 22175,
   "LastDeath": 227,
-  "LastConfirmedNew": 0,
+  "LastConfirmedNew": 25,
   "LastDeathNew": 0,
-  "DaysToDouble": 458.10588216219304,
-  "DaysToDoubleDeath": 95.94929077680902,
-  "Last2WeeksConfirmedDelta": 454,
+  "DaysToDouble": 571.7712136980771,
+  "DaysToDoubleDeath": 90.13103508794353,
+  "Last2WeeksConfirmedDelta": 353,
   "StayHomeOrder": {
     "StartUrl": "https://hanfordsentinel.com/news/local/kings-county-board-of-supervisors-issues-shelter-in-place-order/article_f5045f69-159b-571f-97f7-81e6d750146f.html",
     "StartDate": "2020-03-31T00:00:00Z",
