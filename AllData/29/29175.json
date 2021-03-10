@@ -416,7 +416,8 @@
     "03/06/2021": 1821,
     "03/07/2021": 1821,
     "03/08/2021": 1823,
-    "03/09/2021": 1825
+    "03/09/2021": 1825,
+    "03/10/2021": 1825
   },
   "Death": {
     "01/22/2020": 0,
@@ -831,7 +832,8 @@
     "03/06/2021": 30,
     "03/07/2021": 30,
     "03/08/2021": 30,
-    "03/09/2021": 30
+    "03/09/2021": 30,
+    "03/10/2021": 30
   },
   "beds": 99,
   "bedsICU": 8,
@@ -840,11 +842,11 @@
   "Population": 25414,
   "LastConfirmed": 1825,
   "LastDeath": 30,
-  "LastConfirmedNew": 2,
+  "LastConfirmedNew": 0,
   "LastDeathNew": 0,
-  "DaysToDouble": 750.743166862294,
-  "DaysToDoubleDeath": 190.8282472470698,
-  "Last2WeeksConfirmedDelta": 17,
+  "DaysToDouble": 802.7185828194524,
+  "DaysToDoubleDeath": null,
+  "Last2WeeksConfirmedDelta": 18,
   "StayHomeOrder": {
     "StartUrl": "https://abc17news.com/news/coronavirus/2020/03/24/tuesday-updates-boone-county-recorders-office-adjusts-to-stay-at-home-order/",
     "StartDate": "2020-03-25T00:00:00Z",
