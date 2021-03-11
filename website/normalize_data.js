@@ -3,7 +3,6 @@ const moment = require("moment");
 const states = require('us-state-codes');
 const fs = require('fs');
 const CountyList = require("./src/data/county_gps_original.json");
-const NYC_STARTER = require("../data/archive/NYC-BOROS-04-03-2020.json")
 const ConfirmedData = require("./src/data/covid_confirmed_usafacts.json");
 const DeathData = require("./src/data/covid_death_usafacts.json");
 const { linearRegression } = require('simple-statistics');
@@ -20,6 +19,7 @@ const TestingStates = require("./public/data/state_testing.json");
 const TestingUSA = require("./public/data/us_testing.json");
 
 const CACountyStatus = require("./src/data/CA_county_status.json");
+const { ContactSupportOutlined } = require('@material-ui/icons');
 
 let AllData = {};
 function pad(n) { return n < 10 ? '0' + n : n }
@@ -965,18 +965,6 @@ function processBNO(dataset, date) {
   }
 }
 
-function addStateRecovery() {
-  for (let d = moment("04/02/2020", "MM/DD/YYYY"); d.isBefore(moment()); d = d.add(1, "days")) {
-    let file = `../data/archive/BNO-${d.format("MM-DD-YYYY")}.json`;
-    if (!fs.existsSync(file)) {
-      continue;
-    }
-    let contents = fs.readFileSync(file);
-    let data = JSON.parse(contents);
-    console.log("Processing BNO " + d.format("MM/DD/YYYY"));
-    processBNO(data, d.format("MM/DD/YYYY"));
-  }
-}
 
 function extractTestData(entry) {
 
@@ -1103,7 +1091,6 @@ async function processVaccineData() {
       if (moment(k, "MM/DD/YYYY").isAfter(moment("12/10/2020", "MM/DD/YYYY"))) {
         final[k] = v[k];
       }
-
     }
     return final;
   }
@@ -1118,42 +1105,41 @@ async function processVaccineData() {
   const vaccineDataCSV = '../vaccine-module/data_tables/vaccine_data/us_data/time_series/vaccine_data_us_timeline.csv';
   const json = await csv().fromFile(vaccineDataCSV);
 
+  console.log("start ....");
+
   for (let entry of json) {
-    let state_fips = CountyInfo.getFipsFromStateShortName(entry.stabbr);
+    let state_fips = CountyInfo.getFipsFromStateName(entry.Province_State);
     let stateNode = getStateNode(state_fips);
-    let date = entry.date;
-    if (date.length == 8) {
-      date = date + "20"; // date like 12/17/20
-    }
     if (stateNode) {
-      let Summary = stateNode.Summary;
-      let doses_admin_total = Summary["doses_admin_total"] ? Summary["doses_admin_total"] : {};
-      doses_admin_total[date] = properNumber(entry.doses_admin_total);
+      let date = moment(entry.Date, "YYYY-MM-DD").format("MM/DD/YYYY");
+      if (stateNode) {
+        let Summary = stateNode.Summary;
+        let doses_admin_total = Summary["doses_admin_total"] ? Summary["doses_admin_total"] : {};
+        doses_admin_total[date] = properNumber(entry.Doses_admin);
 
-      let doses_alloc_total = Summary["doses_alloc_total"] ? Summary["doses_alloc_total"] : {};
-      doses_alloc_total[date] = properNumber(entry.doses_alloc_total);
+        let doses_alloc_total = Summary["doses_alloc_total"] ? Summary["doses_alloc_total"] : {};
+        doses_alloc_total[date] = properNumber(entry.Doses_alloc);
 
-      let doses_shipped_total = Summary["doses_shipped_total"] ? Summary["doses_shipped_total"] : {};
-      doses_shipped_total[date] = properNumber(entry.doses_shipped_total);
+        let doses_shipped_total = Summary["doses_shipped_total"] ? Summary["doses_shipped_total"] : {};
+        doses_shipped_total[date] = properNumber(entry.Doses_shipped);
 
-      stateNode.Summary.doses_alloc_total = doses_alloc_total;
-      stateNode.Summary.doses_admin_total = doses_admin_total;
-      stateNode.Summary.doses_shipped_total = doses_shipped_total;
+        stateNode.Summary.doses_alloc_total = doses_alloc_total;
+        stateNode.Summary.doses_admin_total = doses_admin_total;
+        stateNode.Summary.doses_shipped_total = doses_shipped_total;
 
-      AllData[state_fips] = stateNode;
+        AllData[state_fips] = stateNode;
+      }
     }
   }
 
+  console.log("fix up vaccination");
   // now fix up vaccine data
   for (s in AllData) {
     state = AllData[s];
     if (state.Summary && state.Summary.doses_admin_total) {
-
-
       state.Summary.doses_alloc_total = fillvaccineholes(state.Summary.doses_alloc_total);
       state.Summary.doses_admin_total = fillvaccineholes(state.Summary.doses_admin_total);
       state.Summary.doses_shipped_total = fillvaccineholes(state.Summary.doses_shipped_total);
-
       state.Summary.doses_alloc_total_Last = getValueFromLastDate(state.Summary.doses_alloc_total).num;
       state.Summary.doses_admin_total_Last = getValueFromLastDate(state.Summary.doses_admin_total).num;
       state.Summary.doses_shippied_total_Last = getValueFromLastDate(state.Summary.doses_shipped_total).num;
@@ -1162,6 +1148,8 @@ async function processVaccineData() {
   delete AllData["64"];
   delete AllData["68"];
   delete AllData["70"];
+
+  console.log("done with vaccination ....");
 }
 
 async function main() {
@@ -1169,7 +1157,7 @@ async function main() {
   await processAllJHUGithub();
   processAllJHU();
 
-  // await processVaccineData();
+  await processVaccineData();
   addCACountyStatus();
   await addCountyHospitalization();
   fillholes();
@@ -1179,7 +1167,6 @@ async function main() {
   addMetros();
   processsShelterInPlace();
   addUSRecovery();
-  // addStateRecovery();
   processTestData();
 }
 
@@ -1187,4 +1174,5 @@ main().then(() => {
   const contentPretty = JSON.stringify(AllData, null, 2);
   // console.log(contentPretty);
   fs.writeFileSync("./src/data/AllData.json", contentPretty);
+  console.log("done");
 })
