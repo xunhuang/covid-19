@@ -1,11 +1,9 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-// import { withStyles } from '@material-ui/core/styles';
 import { Paper } from '@material-ui/core';
 import { County } from '../UnitedStates';
 import { myShortNumber } from '../Util';
 import { useHistory } from 'react-router-dom'
-// import Badge from '@material-ui/core/Badge';
 
 const useStyles = makeStyles(theme => ({
     container: {
@@ -47,33 +45,6 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-/*
-const ClickRibbonBadge = withStyles({
-    badge: {
-        display: 'flex',
-        flexGrow: 1,
-        borderRadius: '0px',
-        fontSize: '0.3rem',
-        transform: 'rotate(25deg)',
-        height: '8px',
-        minWidth: '10px',
-        left: '-15px',
-        bottom: '8px',
-        '&::before': {
-            content: "''",
-            display: 'block',
-            border: '4px solid #f00',
-            width: '-2px',
-        },
-        '&::after': {
-            content: "''",
-            display: 'block',
-            border: '4px solid #f00',
-        },
-    }
-})(Badge);
-*/
-
 export const Summary = (props) => {
     const classes = useStyles();
     const history = useHistory();
@@ -100,7 +71,6 @@ export const Summary = (props) => {
 
     const pop = (label, total, change, target, detailed) =>
         <Paper className={classes.aspect} onClick={() => { jumpTo(target, detailed) }}>
-            {/* <ClickRibbonBadge anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }} badgeContent='Click' color="error"> */}
             <div className={classes.innerDiv}>
                 <div className={classes.change}>
                     {change ? change : "-"}
@@ -112,7 +82,6 @@ export const Summary = (props) => {
                     {label}
                 </div>
             </div>
-            {/* </ClickRibbonBadge> */}
         </Paper>;
     return (
         <div className={classes.container}>
