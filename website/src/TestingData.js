@@ -4,6 +4,7 @@ var cachedStates;
 var cachedUS;
 
 const testingUSURL = "https://gowatchit.net/data/testing/USA.json";
+const testingUSStatesLastURL = "https://gowatchit.net/data/testing/states-last.json";
 
 function addfulldate(sourceData) {
   let data = sourceData.map(t => {
@@ -41,6 +42,18 @@ async function fetchTestingDataUS() {
   }
   cachedUS = superagent
     .get(testingUSURL)
+    .then(res => {
+      return addfulldate(res.body);
+    });
+  return cachedUS;
+}
+
+export async function fetchTestingDataStatesTable() {
+  if (cachedUS) {
+    return cachedUS;
+  }
+  cachedUS = superagent
+    .get(testingUSStatesLastURL)
     .then(res => {
       return addfulldate(res.body);
     });

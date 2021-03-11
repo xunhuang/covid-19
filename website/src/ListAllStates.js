@@ -235,7 +235,7 @@ function prepareStatesTestingDataForDisplay(list) {
     newrow.negativeNumber = row.negative ?? 0;
     newrow.negativeRate = row.negative / totalTested * 100;
     newrow.pending = row.pending ?? "-";
-    newrow.total = row.total;
+    newrow.total = totalTested;
     newrow.testCoverage = row.testCoverage;
     return newrow;
   });
@@ -250,7 +250,7 @@ const AllStateListTesting = (props) => {
   const country = useContext(CountryContext);
   const [sourceData, setSourceData] = React.useState(null);
   React.useEffect(() => {
-    country.testingAllAsync()
+    country.testingStatesTableAsync()
       .then(data => setSourceData(data));
   }, [country])
   if (!sourceData || sourceData.length === 0) {
@@ -268,8 +268,14 @@ const AllStateListTesting = (props) => {
       // have to do this other sort doesn't work
       record.pending = Number.NEGATIVE_INFINITY;
     }
+    console.log(record.fips);
     const stateObject = country.stateForId(record.fips);
-    record.testCoverage = record.total / stateObject.population();
+    if (stateObject) {
+      console.log(record.total);
+      console.log(stateObject.population())
+      let totalTested = record.positive + record.negative;
+      record.testCoverage = totalTested / stateObject.population();
+    }
     states_data[state] = record;
   }
 
@@ -307,6 +313,7 @@ const AllStateListTesting = (props) => {
         {
           stableSort(extendlist, getComparator(order, orderBy))
             .map(row => {
+              console.log(row);
               return <TableRow key={row.state}>
                 <TableCell component="th" scope="row">
                   <MaterialLink component={RouterLink} to={reverse(routes.state, { state: row.state })}>

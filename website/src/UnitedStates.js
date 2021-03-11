@@ -3,7 +3,7 @@ import { reverse } from 'named-urls';
 import { trimLastDaysData, getDay2DoubleTimeSeries, getGrowthRateTimeSeries } from "./CovidAnalysis";
 import { CountyInfo } from 'covidmodule';
 import { fetchNPRProjectionData } from "./NPRProjection"
-import { fetchTestingDataStates, fetchTestingDataUS } from "./TestingData"
+import { fetchTestingDataStates, fetchTestingDataUS, fetchTestingDataStatesTable } from "./TestingData"
 import { fetchHospitalizationDataStates, fetchHospitalizationDataUS } from "./HospitalizationData"
 import { fetchVaccineDataStates, fetchVaccineDataUS, fetchVaccineDataCounty } from "./VaccineData"
 import { fetchPublicCountyData, fetchAllUSData } from "./PublicAllData"
@@ -320,8 +320,8 @@ export class Country extends CovidSummarizable {
     return vaccines;
   }
 
-  async testingAllAsync() {
-    let data = await fetchTestingDataStates();
+  async testingStatesTableAsync() {
+    let data = await fetchTestingDataStatesTable();
     return data;
   }
 
