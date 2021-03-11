@@ -417,7 +417,8 @@
     "03/07/2021": 4284,
     "03/08/2021": 4296,
     "03/09/2021": 4313,
-    "03/10/2021": 4326
+    "03/10/2021": 4326,
+    "03/11/2021": 4326
   },
   "Death": {
     "01/22/2020": 0,
@@ -833,7 +834,8 @@
     "03/07/2021": 60,
     "03/08/2021": 60,
     "03/09/2021": 60,
-    "03/10/2021": 60
+    "03/10/2021": 60,
+    "03/11/2021": 60
   },
   "beds": 71,
   "bedsICU": 12,
@@ -842,11 +844,11 @@
   "Population": 42750,
   "LastConfirmed": 4326,
   "LastDeath": 60,
-  "LastConfirmedNew": 13,
+  "LastConfirmedNew": 0,
   "LastDeathNew": 0,
-  "DaysToDouble": 259.2992471396153,
-  "DaysToDoubleDeath": 384.91867335281125,
-  "Last2WeeksConfirmedDelta": 193,
+  "DaysToDouble": 267.7134050928871,
+  "DaysToDoubleDeath": 1724034232352768.2,
+  "Last2WeeksConfirmedDelta": 198,
   "StayHomeOrder": {
     "StartUrl": "https://www.dailytrib.com/2020/03/25/burnet-county-issues-shelter-in-place-order/",
     "StartDate": "2020-03-25T00:00:00Z",

@@ -29,11 +29,11 @@
     "Population": 162310,
     "LastConfirmed": 14710,
     "LastDeath": 309,
-    "LastConfirmedNew": 32,
-    "LastDeathNew": 1,
-    "DaysToDouble": 293.8874730834438,
-    "DaysToDoubleDeath": 130.36795144693104,
-    "Last2WeeksConfirmedDelta": 542,
+    "LastConfirmedNew": 0,
+    "LastDeathNew": 0,
+    "DaysToDouble": 320.8778111394845,
+    "DaysToDoubleDeath": 134.1828783772939,
+    "Last2WeeksConfirmedDelta": 563,
     "Recovered": null
   },
   "10003": {
@@ -50,11 +50,11 @@
     "Population": 538479,
     "LastConfirmed": 50991,
     "LastDeath": 737,
-    "LastConfirmedNew": 147,
-    "LastDeathNew": 5,
-    "DaysToDouble": 231.7157204106956,
-    "DaysToDoubleDeath": 107.4372755616932,
-    "Last2WeeksConfirmedDelta": 2448,
+    "LastConfirmedNew": 0,
+    "LastDeathNew": 0,
+    "DaysToDouble": 243.74701199754634,
+    "DaysToDoubleDeath": 111.40491253037851,
+    "Last2WeeksConfirmedDelta": 2498,
     "Recovered": null
   },
   "10005": {
@@ -71,11 +71,11 @@
     "Population": 197145,
     "LastConfirmed": 22993,
     "LastDeath": 446,
-    "LastConfirmedNew": 31,
-    "LastDeathNew": 4,
-    "DaysToDouble": 495.48703949744134,
-    "DaysToDoubleDeath": 258.04961302582507,
-    "Last2WeeksConfirmedDelta": 594,
+    "LastConfirmedNew": 0,
+    "LastDeathNew": 0,
+    "DaysToDouble": 515.6159134158218,
+    "DaysToDoubleDeath": 198.7812908016254,
+    "Last2WeeksConfirmedDelta": 595,
     "Recovered": null
   },
   "80010": {
@@ -510,7 +510,8 @@
       "04/07/2020": 928,
       "04/08/2020": 1116,
       "04/09/2020": 1209,
-      "04/12/2020": 1625
+      "04/12/2020": 1625,
+      "03/11/2021": 88694
     },
     "Death": {
       "01/22/2020": 0,
@@ -926,15 +927,16 @@
       "04/07/2020": 18,
       "04/08/2020": 19,
       "04/09/2020": 31,
-      "04/12/2020": 44
+      "04/12/2020": 44,
+      "03/11/2021": 1492
     },
     "LastConfirmed": 88694,
-    "LastConfirmedNew": 210,
+    "LastConfirmedNew": 0,
     "LastDeath": 1492,
-    "LastDeathNew": 10,
-    "DaysToDouble": 280.41936905651136,
-    "DaysToDoubleDeath": 136.29213178287586,
-    "Last2WeeksConfirmedDelta": 3584,
+    "LastDeathNew": 0,
+    "DaysToDouble": 296.162252466263,
+    "DaysToDoubleDeath": 133.74650155938548,
+    "Last2WeeksConfirmedDelta": 3656,
     "beds": 3034,
     "bedsICU": 140,
     "hospitals": 16,
