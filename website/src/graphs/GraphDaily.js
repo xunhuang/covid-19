@@ -10,7 +10,7 @@ const GraphDaily = (props) => {
   React.useEffect(() => {
     props.source.confirmDataSeriesAsync().then(data => setConfimedSeries(data));
     props.source.deathDataSeriesAsync().then(data => setDeathSeries(data));
-    if (props.source.testingAsync) {
+    if (props.source.hospitalizationCurrentlyAsync) {
       props.source.hospitalizationCurrentlyAsync().then(data => setHospitalizationCurrentSeries(data));
     }
   }, [props.source])
@@ -22,6 +22,8 @@ const GraphDaily = (props) => {
   ) {
     return <div> Loading</div>;
   }
+
+  console.log(hosptializationCurrentlySeries);
 
   // end of init
   const vKeyRefLines = getRefLines(props.source);
@@ -48,7 +50,7 @@ const GraphDaily = (props) => {
         showMovingAverage: true,
       },
     ]
-  if (props.source.testingAsync) {
+  if (props.source.hospitalizationCurrentlyAsync) {
     series.push(
       {
         series: hosptializationCurrentlySeries.setLabel("Hospitalized (left axis)"),

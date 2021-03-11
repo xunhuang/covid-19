@@ -19,7 +19,7 @@ const GraphHospitalization = (props) => {
   const source = props.source
   const [data, setData] = React.useState(null);
   React.useEffect(() => {
-    source.testingAsync().then(data => setData(data));
+    source.hospitalizationAsync().then(data => setData(data));
   }, [source]);
 
   if (!data || data.length === 0) {
@@ -31,7 +31,6 @@ const GraphHospitalization = (props) => {
     DataSeries.fromOldDataSourceDataPoints("In ICU", data, "inIcuCurrently");
   let onVentilatorCurrently =
     DataSeries.fromOldDataSourceDataPoints("On Ventilator", data, "onVentilatorCurrently")
-
   let icu_capacity = source.hospitals().bedsICU;
 
   let hrefs = icu_capacity ? [

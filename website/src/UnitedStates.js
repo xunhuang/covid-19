@@ -4,6 +4,7 @@ import { trimLastDaysData, getDay2DoubleTimeSeries, getGrowthRateTimeSeries } fr
 import { CountyInfo } from 'covidmodule';
 import { fetchNPRProjectionData } from "./NPRProjection"
 import { fetchTestingDataStates, fetchTestingDataUS } from "./TestingData"
+import { fetchHospitalizationDataStates, fetchHospitalizationDataUS } from "./HospitalizationData"
 import { fetchVaccineDataStates, fetchVaccineDataUS, fetchVaccineDataCounty } from "./VaccineData"
 import { fetchPublicCountyData, fetchAllUSData } from "./PublicAllData"
 import { mergeDataSeries, makeDataSeriesFromTotal } from "./graphs/DataSeries";
@@ -298,6 +299,22 @@ export class Country extends CovidSummarizable {
     return await fetchTestingDataUS();
   }
 
+  async hospitalizationAsync() {
+    let data = await fetchHospitalizationDataUS()
+    return data.sort((a, b) => a.date - b.date);
+  }
+
+  async hospitalizationCurrentlyAsync() {
+    let data = await this.hospitalizationAsync();
+    console.log(data);
+    return DataSeries
+      .fromOldDataSourceDataPoints(
+        "Hospitalized Currently",
+        data,
+        "hospitalizedCurrently"
+      );
+  }
+
   async vaccineDataAsync() {
     let vaccines = await fetchVaccineDataUS(this.shortName);
     return vaccines;
@@ -306,16 +323,6 @@ export class Country extends CovidSummarizable {
   async testingAllAsync() {
     let data = await fetchTestingDataStates();
     return data;
-  }
-
-  async hospitalizationCurrentlyAsync() {
-    const data = await fetchTestingDataUS();
-    return DataSeries
-      .fromOldDataSourceDataPoints(
-        "Hospitalized Currently",
-        data,
-        "hospitalizedCurrently"
-      );
   }
 
   async daysToDoubleTimeSeries() {
@@ -513,9 +520,13 @@ export class State extends CovidSummarizable {
   }
 
   async testingAsync() {
-    let data = await fetchTestingDataStates();
-    return data.filter(d => d.state === this.twoLetterName)
-      .sort((a, b) => a.date - b.date);
+    let data = await fetchTestingDataStates(this.twoLetterName);
+    return data.sort((a, b) => a.date - b.date);
+  }
+
+  async hospitalizationAsync() {
+    let data = await fetchHospitalizationDataStates(this.twoLetterName);
+    return data.sort((a, b) => a.date - b.date);
   }
 
   async vaccineDataAsync() {
@@ -524,7 +535,7 @@ export class State extends CovidSummarizable {
   }
 
   async hospitalizationCurrentlyAsync() {
-    const data = await this.testingAsync();
+    let data = await this.hospitalizationAsync();
     return DataSeries
       .fromOldDataSourceDataPoints(
         "Hospitalized Currently",

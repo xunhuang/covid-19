@@ -3,8 +3,7 @@ const superagent = require("superagent");
 var cachedStates;
 var cachedUS;
 
-const testingStatesURL = "/data/state_testing.json";
-const testingUSURL = "/data/us_testing.json";
+const testingUSURL = "https://gowatchit.net/data/testing/USA.json";
 
 function addfulldate(sourceData) {
   let data = sourceData.map(t => {
@@ -24,12 +23,12 @@ function addfulldate(sourceData) {
   return data;
 }
 
-async function fetchTestingDataStates() {
-  if (cachedStates) {
-    return cachedStates;
-  }
+async function fetchTestingDataStates(stateShortName) {
+  // if (cachedStates) {
+  // return cachedStates;
+  // }
   cachedStates = superagent
-    .get(testingStatesURL)
+    .get(`https://gowatchit.net/data/testing/${stateShortName}.json`)
     .then(res => {
       return addfulldate(res.body);
     });
