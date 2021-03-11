@@ -223,7 +223,7 @@ export class Country extends CovidSummarizable {
 
   testData() {
     return {
-      totalTests: this.covidRaw_.Summary.totalTests,
+      totalTests: this.covidRaw_.Summary.totalTestResults,
       totalTestPositive: this.covidRaw_.Summary.totalTestPositive,
       hospitalized: this.covidRaw_.Summary.hospitalized,
       hospitalizedIncreased: this.covidRaw_.Summary.hospitalizedIncreased,

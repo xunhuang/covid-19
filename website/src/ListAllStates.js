@@ -268,11 +268,8 @@ const AllStateListTesting = (props) => {
       // have to do this other sort doesn't work
       record.pending = Number.NEGATIVE_INFINITY;
     }
-    console.log(record.fips);
     const stateObject = country.stateForId(record.fips);
     if (stateObject) {
-      console.log(record.total);
-      console.log(stateObject.population())
       let totalTested = record.positive + record.negative;
       record.testCoverage = totalTested / stateObject.population();
     }
@@ -313,7 +310,6 @@ const AllStateListTesting = (props) => {
         {
           stableSort(extendlist, getComparator(order, orderBy))
             .map(row => {
-              console.log(row);
               return <TableRow key={row.state}>
                 <TableCell component="th" scope="row">
                   <MaterialLink component={RouterLink} to={reverse(routes.state, { state: row.state })}>
