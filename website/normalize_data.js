@@ -1110,25 +1110,23 @@ async function processVaccineData() {
   for (let entry of json) {
     let state_fips = CountyInfo.getFipsFromStateName(entry.Province_State);
     let stateNode = getStateNode(state_fips);
-    if (stateNode) {
+    if (stateNode && entry.Vaccine_Type === "All") {
       let date = moment(entry.Date, "YYYY-MM-DD").format("MM/DD/YYYY");
-      if (stateNode) {
-        let Summary = stateNode.Summary;
-        let doses_admin_total = Summary["doses_admin_total"] ? Summary["doses_admin_total"] : {};
-        doses_admin_total[date] = properNumber(entry.Doses_admin);
+      let Summary = stateNode.Summary;
+      let doses_admin_total = Summary["doses_admin_total"] ? Summary["doses_admin_total"] : {};
+      doses_admin_total[date] = properNumber(entry.Doses_admin);
 
-        let doses_alloc_total = Summary["doses_alloc_total"] ? Summary["doses_alloc_total"] : {};
-        doses_alloc_total[date] = properNumber(entry.Doses_alloc);
+      let doses_alloc_total = Summary["doses_alloc_total"] ? Summary["doses_alloc_total"] : {};
+      doses_alloc_total[date] = properNumber(entry.Doses_alloc);
 
-        let doses_shipped_total = Summary["doses_shipped_total"] ? Summary["doses_shipped_total"] : {};
-        doses_shipped_total[date] = properNumber(entry.Doses_shipped);
+      let doses_shipped_total = Summary["doses_shipped_total"] ? Summary["doses_shipped_total"] : {};
+      doses_shipped_total[date] = properNumber(entry.Doses_shipped);
 
-        stateNode.Summary.doses_alloc_total = doses_alloc_total;
-        stateNode.Summary.doses_admin_total = doses_admin_total;
-        stateNode.Summary.doses_shipped_total = doses_shipped_total;
+      stateNode.Summary.doses_alloc_total = doses_alloc_total;
+      stateNode.Summary.doses_admin_total = doses_admin_total;
+      stateNode.Summary.doses_shipped_total = doses_shipped_total;
 
-        AllData[state_fips] = stateNode;
-      }
+      AllData[state_fips] = stateNode;
     }
   }
 
