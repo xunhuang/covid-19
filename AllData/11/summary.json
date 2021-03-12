@@ -13,11 +13,11 @@
     "Population": 601723,
     "LastConfirmed": 42128,
     "LastDeath": 1038,
-    "LastConfirmedNew": 122,
-    "LastDeathNew": 1,
-    "DaysToDouble": 165.81606086700975,
-    "DaysToDoubleDeath": 322.71966188861444,
-    "Last2WeeksConfirmedDelta": 2162,
+    "LastConfirmedNew": 0,
+    "LastDeathNew": 0,
+    "DaysToDouble": 162.4101751198508,
+    "DaysToDoubleDeath": 378.20682978957143,
+    "Last2WeeksConfirmedDelta": 2185,
     "StayHomeOrder": {
       "StartUrl": "https://apnews.com/5abcb144b6d0f106436e67c7930a5243",
       "StartDate": "2020-04-01T00:00:00Z",
@@ -459,7 +459,8 @@
       "03/08/2021": 41579,
       "03/09/2021": 41910,
       "03/10/2021": 42006,
-      "03/11/2021": 42128
+      "03/11/2021": 42128,
+      "03/12/2021": 42128
     },
     "Death": {
       "01/22/2020": 0,
@@ -876,7 +877,8 @@
       "03/08/2021": 1035,
       "03/09/2021": 1036,
       "03/10/2021": 1037,
-      "03/11/2021": 1038
+      "03/11/2021": 1038,
+      "03/12/2021": 1038
     },
     "doses_alloc_total": {
       "12/11/2020": 6825,
@@ -970,7 +972,7 @@
       "03/09/2021": 166950,
       "03/10/2021": 166950,
       "03/11/2021": 166950,
-      "03/12/2021": 0
+      "03/12/2021": 166950
     },
     "doses_admin_total": {
       "12/11/2020": 0,
@@ -1160,16 +1162,16 @@
       "03/11/2021": 358485,
       "03/12/2021": 373225
     },
-    "doses_alloc_total_Last": 0,
+    "doses_alloc_total_Last": 166950,
     "doses_admin_total_Last": 244060,
     "doses_shippied_total_Last": 373225,
     "LastConfirmed": 42128,
-    "LastConfirmedNew": 122,
+    "LastConfirmedNew": 0,
     "LastDeath": 1038,
-    "LastDeathNew": 1,
-    "DaysToDouble": 165.81606086700975,
-    "DaysToDoubleDeath": 322.71966188861444,
-    "Last2WeeksConfirmedDelta": 2162,
+    "LastDeathNew": 0,
+    "DaysToDouble": 162.4101751198508,
+    "DaysToDoubleDeath": 378.20682978957143,
+    "Last2WeeksConfirmedDelta": 2185,
     "beds": 4143,
     "bedsICU": 237,
     "hospitals": 14,
