@@ -419,7 +419,8 @@
     "03/09/2021": 3139,
     "03/10/2021": 3151,
     "03/11/2021": 3151,
-    "03/12/2021": 3158
+    "03/12/2021": 3158,
+    "03/13/2021": 3158
   },
   "Death": {
     "01/22/2020": 0,
@@ -837,7 +838,8 @@
     "03/09/2021": 83,
     "03/10/2021": 83,
     "03/11/2021": 83,
-    "03/12/2021": 82
+    "03/12/2021": 82,
+    "03/13/2021": 82
   },
   "beds": 95,
   "bedsICU": 7,
@@ -846,11 +848,11 @@
   "Population": 29180,
   "LastConfirmed": 3158,
   "LastDeath": 82,
-  "LastConfirmedNew": 7,
+  "LastConfirmedNew": 0,
   "LastDeathNew": 0,
-  "DaysToDouble": 635.134039331886,
-  "DaysToDoubleDeath": null,
-  "Last2WeeksConfirmedDelta": 53,
+  "DaysToDouble": 496.15568654544853,
+  "DaysToDoubleDeath": -533.7167942461866,
+  "Last2WeeksConfirmedDelta": 60,
   "StayHomeOrder": {
     "StartUrl": "https://www.ksn.com/top-stories/saline-county-and-reno-county-both-issuing-stay-at-home-order-starting-monday/",
     "StartDate": "2020-03-27T00:00:00Z",

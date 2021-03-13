@@ -419,7 +419,8 @@
     "03/09/2021": 5999,
     "03/10/2021": 6011,
     "03/11/2021": 6011,
-    "03/12/2021": 6030
+    "03/12/2021": 6030,
+    "03/13/2021": 6030
   },
   "Death": {
     "01/22/2020": 0,
@@ -837,7 +838,8 @@
     "03/09/2021": 133,
     "03/10/2021": 133,
     "03/11/2021": 133,
-    "03/12/2021": 131
+    "03/12/2021": 131,
+    "03/13/2021": 131
   },
   "beds": 392,
   "bedsICU": 18,
@@ -846,11 +848,11 @@
   "Population": 55606,
   "LastConfirmed": 6030,
   "LastDeath": 131,
-  "LastConfirmedNew": 19,
+  "LastConfirmedNew": 0,
   "LastDeathNew": 0,
-  "DaysToDouble": 1213.335158905033,
-  "DaysToDoubleDeath": null,
-  "Last2WeeksConfirmedDelta": 68,
+  "DaysToDouble": 733.4611292358167,
+  "DaysToDoubleDeath": -426.97049469891203,
+  "Last2WeeksConfirmedDelta": 87,
   "StayHomeOrder": {
     "StartUrl": "https://www.ksal.com/stay-at-home-order-issued-for-saline-county/",
     "StartDate": "2020-03-30T00:00:00Z",
