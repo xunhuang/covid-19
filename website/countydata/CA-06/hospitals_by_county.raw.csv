@@ -82,7 +82,7 @@
   
   <link rel="stylesheet" href="/css/layout3.css" />
 
-  <link rel="stylesheet" href=/css/theme_config.css?:version:2021-03-12T20:20:24.94 />
+  <link rel="stylesheet" href=/css/theme_config.css?:version:2021-03-18T23:27:59.04 />
 
   <link rel="stylesheet" href="/css/layout3.css"/>
 
@@ -101,7 +101,7 @@
       
     <style>
         .cd-hero {
-background: #000000 !important;
+  background: #000000 !important;
 }
 
 .logo {
@@ -109,46 +109,59 @@ background: #000000 !important;
   max-width: 360px;
   max-height: 100px;
 }
+
 .header-image .logo img {
   max-width: 360px;
   max-height: 100px;
 }
+
 .pull-left.header-image {
   margin-bottom: 6px;
 }
+
 .masthead .nav-collapse {
   padding-top: 5px;
 }
-.masonry-brick.media-item .media-image, .media-item.item-height .media-image {
+
+.masonry-brick.media-item .media-image,
+.media-item.item-height .media-image {
   height: 100px;
 }
+
 .media-item:hover,
 .media-item:focus,
 .browse-group:hover,
 .browse-group:focus {
   background-color: #c2e5ff;
 }
+
 .main-browse,
 .main-updates li.dataset-item {
   background-color: #eff2f5;
 }
+
 .main-updates li.dataset-item .dataset-heading {
   max-height: 50px;
 }
+
 a[data-format="esri rest"] {
   display: none;
 }
+
 a:-webkit-any-link:focus {
   transition: none;
   outline: 2px solid #0095ff;
   outline-offset: 2px;
 }
+
 .btn {
   border-radius: 3px;
 }
+
 .ckanext-datapreview>iframe {
-  min-height:500px;
+  min-height: 500px;
 }
+
 @media (max-width: 767px) {
   .header-image .logo img {
     max-width: 295px;
@@ -166,29 +179,39 @@ a:-webkit-any-link:focus {
   -webkit-box-orient: unset;
 }
 
+
 /* A11y Fixes */
+
 .masthead {
-    background: #005e8a;
+  background: #005e8a;
 }
-.masthead .nav > .active > a, .masthead .nav > li > a:hover, .masthead .nav > .active > a:hover {
-color: #ffffff;
+
+.masthead .nav>.active>a,
+.masthead .nav>li>a:hover,
+.masthead .nav>.active>a:hover {
+  color: #ffffff;
 }
+
 .supporting-text {
   font-weight: 500;
   font-size: 1.75em;
 }
+
 .hero-text-heading.heading {
   font-size: 2.75em;
 }
+
 .hero-text-description.secondary-heading {
   font-size: 1em;
   line-height: 1.5em;
 }
+
 .hero-text-description.secondary-heading p:first-child strong {
   font-size: 1em;
   line-height: 1.5em;
 }
-@media (min-width: 768px){
+
+@media (min-width: 768px) {
   .hero-text-heading.heading {
     font-size: 2em;
   }
@@ -201,462 +224,594 @@ color: #ffffff;
     line-height: 1.5em;
   }
 }
-@media (min-width: 1366px){
+
+@media (min-width: 1366px) {
   .hero-text-heading.heading {
     font-size: 3em;
   }
   .hero-text-description.secondary-heading p:first-child strong {
     font-size: 1.2em;
-line-height: 1.5em;
+    line-height: 1.5em;
   }
 }
+
 body {
-    line-height: 1.5em;
+  line-height: 1.5em;
 }
-h1, h2, h3, h4, h5, h6 {
-    line-height: 1.5em;
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  line-height: 1.5em;
 }
+
 h1 {
-    font-size: 1.75em;
-  }
-  
-  h2 {
-    font-size: 1.25em;
-  }
-  
-  h3 {
-    font-size: 1.125em;
-  }
-  
-  h4 {
-    font-size: 1em;
-  }
-  
-  h5 {
-    font-size: .75em;
-  }
-  
-  h2.module-heading {
-    font-size: .75em !important;
-  }
+  font-size: 1.75em;
+}
 
-  .hero h1,.hero h2, .hero h3, .hero h4, .hero h5, .hero h6 {
-    font-size: 3.75em;
-  }
+h2 {
+  font-size: 1.25em;
+}
 
-  label {
-    font-size: .9em;
-  }
+h3 {
+  font-size: 1.125em;
+}
 
-  .carousel-controls {
-    line-height: 1.5em;
-    font-size: 1.5em;
-  }
+h4 {
+  font-size: 1em;
+}
 
-  .dataset-heading {
-    font-size: 1em;
-    color: #333333 !important;
-  }
+h5 {
+  font-size: .75em;
+}
 
-  .context-info h1.heading {
-    font-size: 1em !important;
-  }
+h2.module-heading {
+  font-size: .75em !important;
+}
 
-  .feedback-count {
-    font-size: 3em;
-    line-height: 1.5em;
-  }
+.hero h1,
+.hero h2,
+.hero h3,
+.hero h4,
+.hero h5,
+.hero h6 {
+  font-size: 3.75em;
+}
 
-  .hero-text-heading {
-    font-size: 2.25em;
-  }
+label {
+  font-size: .9em;
+}
 
-  .hero p {
-    font-size: 2em;
-    line-height: 1.5em;
-  }
+.carousel-controls {
+  line-height: 1.5em;
+  font-size: 1.5em;
+}
 
-  .hero-text-description {
-    font-size: 1em;
-  }
+.dataset-heading {
+  font-size: 1em;
+  color: #333333 !important;
+}
 
-  .search-form .search-input.search-giant button i {
-    font-size: 1em;
-  }
+.context-info h1.heading {
+  font-size: 1em !important;
+}
 
-  .homepage .module-search .module-content .heading {
-    font-size: 1.75em;
-  }
+.feedback-count {
+  font-size: 3em;
+  line-height: 1.5em;
+}
 
-  .browse-group-title {
-    font-size: 1em;
-  }
+.hero-text-heading {
+  font-size: 2.25em;
+}
 
-  .site-footer .fa {
-    font-size: 2em;
-  }
+.hero p {
+  font-size: 2em;
+  line-height: 1.5em;
+}
+
+.hero-text-description {
+  font-size: 1em;
+}
+
+.homepage .module-search .module-content .heading {
+  font-size: 1.75em;
+}
+
+.browse-group-title {
+  font-size: 1em;
+}
+
+.site-footer .fa {
+  font-size: 2em;
+}
+
 .search-form h2 {
-    font-size: 1.5em;
+  font-size: 1.5em;
 }
+
 body {
-    font-size: 1em;
-    line-height: 1.5em;
+  font-size: 1em;
+  line-height: 1.5em;
 }
+
 .lead {
-    font-size: 1.5em;
+  font-size: 1.5em;
 }
+
 blockquote p {
-    margin-bottom: 0;
-    font-size: 1.125em;
-    font-weight: 300;
-    line-height: 1.5em;
+  margin-bottom: 0;
+  font-size: 1.125em;
+  font-weight: 300;
+  line-height: 1.5em;
 }
-code,pre {
-    padding: 0 3px 2px;
-    font-family: Monaco,Menlo,Consolas,"Courier New",monospace;
-    font-size: 12px;
-}
+
+code,
 pre {
-    font-size: 1em;
-    line-height: 1.5em;
+  padding: 0 3px 2px;
+  font-family: Monaco, Menlo, Consolas, "Courier New", monospace;
+  font-size: 12px;
 }
+
+pre {
+  font-size: 1em;
+  line-height: 1.5em;
+}
+
 legend {
-    font-size: 1.5em;
-    line-height: 2em;
+  font-size: 1.5em;
+  line-height: 2em;
 }
+
 legend small {
-    font-size: 1em;
+  font-size: 1em;
 }
-label,input,button,select,textarea {
-    font-size: 1em;
-    line-height: 1.5em;
+
+label,
+input,
+button,
+select,
+textarea {
+  font-size: 1em;
+  line-height: 1.5em;
 }
-select,textarea,input[type="text"],input[type="password"],input[type="datetime"],input[type="datetime-local"],input[type="date"],input[type="month"],input[type="time"],input[type="week"],input[type="number"],input[type="email"],input[type="url"],input[type="search"],input[type="tel"],input[type="color"],.uneditable-input {
-    font-size: 1em;
-    line-height: 1.5em;
+
+select,
+textarea,
+input[type="text"],
+input[type="password"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="date"],
+input[type="month"],
+input[type="time"],
+input[type="week"],
+input[type="number"],
+input[type="email"],
+input[type="url"],
+input[type="search"],
+input[type="tel"],
+input[type="color"],
+.uneditable-input {
+  font-size: 1em;
+  line-height: 1.5em;
 }
-.input-append .add-on,.input-prepend .add-on {
-    font-size: 1em;
-    line-height: 1.5em;
+
+.input-append .add-on,
+.input-prepend .add-on {
+  font-size: 1em;
+  line-height: 1.5em;
 }
+
 .close {
-    font-size: 1.5em;
-    line-height: 1.5em;
+  font-size: 1.5em;
+  line-height: 1.5em;
 }
+
 .btn {
-    font-size: 1em;
-    line-height: 1.5em;
+  font-size: 1em;
+  line-height: 1.5em;
 }
+
 .btn-large {
-    font-size: 1.25em;
+  font-size: 1.25em;
 }
+
 .btn-mini {
-    font-size: .75em;
+  font-size: .75em;
 }
+
 .nav-header {
-    font-size: .8em;
-    line-height: 1.25em;
+  font-size: .8em;
+  line-height: 1.25em;
 }
+
 .navbar .brand {
-    font-size: 1.5em;
+  font-size: 1.5em;
 }
+
 .navbar-search .search-query {
-    font-size: 1em;
+  font-size: 1em;
 }
+
 .tooltip {
-    font-size: .8em;
-    line-height: 1.25em;
+  font-size: .8em;
+  line-height: 1.25em;
 }
-.label,.badge {
-    font-size: 1em;
-    line-height: 1.5em;
+
+.label,
+.badge {
+  font-size: 1em;
+  line-height: 1.5em;
 }
+
 .progress .bar {
-    font-size: 1em;
+  font-size: 1em;
 }
 
 .carousel-control {
-    font-size: 4.25em;
+  font-size: 4.25em;
 }
+
 .hero-unit {
-    font-size: 1.25em;
+  font-size: 1.25em;
 }
+
 .hero-unit h1 {
-    font-size: 4.25em;
+  font-size: 4.25em;
 }
+
 .popover-title {
-    font-size: 1em;
+  font-size: 1em;
 }
+
 .simple-item {
-    font-size: 1em;
+  font-size: 1em;
 }
+
 .simple-list>li {
-    font-size: 1em;
+  font-size: 1em;
 }
+
 .module-heading {
-    font-size: 1em;
-    line-height: 1.5em;
+  font-size: 1em;
+  line-height: 1.5em;
 }
+
 .group .content h3 {
-    font-size: 1em;
-    line-height: 1.25em;
+  font-size: 1em;
+  line-height: 1.25em;
 }
+
 .banner {
-    font-size: .8em;
+  font-size: .8em;
 }
+
 .media-heading {
-    font-size: 1.25em;
-    line-height: 1.5em;
+  font-size: 1.25em;
+  line-height: 1.5em;
 }
+
 .media-overlay .media-heading {
-    font-size: 1.25em;
+  font-size: 1.25em;
 }
+
 li {
-line-height: 1.5em;
+  line-height: 1.5em;
 }
-.nav-simple>li,.nav-aside>li {
-    font-size: .8em;
+
+.nav-simple>li,
+.nav-aside>li {
+  font-size: .8em;
 }
-.nav-item>a,.nav-aside li a {
-    font-size: 1.2em;
-    line-height: 1.5em;
+
+.nav-item>a,
+.nav-aside li a {
+  font-size: 1.2em;
+  line-height: 1.5em;
 }
-.control-large input,.control-large .control-label {
-    font-size: 1.125em;
-    line-height: 1.5em;
+
+.control-large input,
+.control-large .control-label {
+  font-size: 1.125em;
+  line-height: 1.5em;
 }
+
 .form-actions .action-info.small {
-    font-size: 1em;
-    line-height: 1.5em;
+  font-size: 1em;
+  line-height: 1.5em;
 }
+
 .form-horizontal .info-block {
-    line-height: 1.5em;
+  line-height: 1.5em;
 }
-.info-block .icon-large,.info-inline .icon-large {
-    font-size: 1.5em;
+
+.info-block .icon-large,
+.info-inline .icon-large {
+  font-size: 1.5em;
 }
+
 .editor .editor-info-block {
-    font-size: .8em;
+  font-size: .8em;
 }
+
 .slug-preview {
-    font-size: 1em;
+  font-size: 1em;
 }
+
 .dataset-heading {
-    font-size: 1.125em;
-    line-height: 1.5em;
+  font-size: 1.125em;
+  line-height: 1.5em;
 }
+
 .resource-item .heading {
-    font-size: 1.125em;
+  font-size: 1.125em;
 }
+
 .resource-item .description {
-    font-size: 1em;
+  font-size: 1em;
 }
+
 .view-list li a .icon i {
-    font-size: 2em;
-    line-height: 2.8em;
+  font-size: 2em;
+  line-height: 2.8em;
 }
 
 .view-list li a h3 {
-    font-size: 1.125em;
+  font-size: 1.125em;
 }
+
 .search-form .search-input.search-giant input {
-    font-size: 1.125em;
+  font-size: 1.125em;
 }
 
-
+.search-form .search-input.search-giant button {
+  margin-top: -22px;
+  height: 43px;
+}
 
 .search-form .search-input.search-giant button i {
-    font-size: 2em;
+  font-size: 1.5em;
 }
 
-.search-form .control-order-by label,.search-form .control-order-by select {
-    display: inline
+.search-form .control-order-by label,
+.search-form .control-order-by select {
+  display: inline
 }
 
 .search-form h2 {
-    font-size: 1.75em;
-    line-height: 1.5em;
+  font-size: 1.75em;
+  line-height: 1.5em;
 }
+
 .search-form h2 {
-    font-size: 1.75em;
-    line-height: 1.5em;
+  font-size: 1.75em;
+  line-height: 1.5em;
 }
+
 .search-form .filter-list .extra {
-    font-size: 1.125em;
-}
-.tertiary .control-order-by select {
-    font-size: .8em;
-}
-.toolbar .breadcrumb {
-    font-size: 1.125em;
+  font-size: 1.125em;
 }
 
-[class^="icon-"],[class*=" icon-"] {
-    font-size: 1em;
-    line-height: 1.5em;
+.tertiary .control-order-by select {
+  font-size: .8em;
+}
+
+.toolbar .breadcrumb {
+  font-size: 1.125em;
+}
+
+[class^="icon-"],
+[class*=" icon-"] {
+  font-size: 1em;
+  line-height: 1.5em;
 }
 
 .breadcrumb .home .icon-home {
-    font-size: 1.75em;
+  font-size: 1.75em;
 }
 
-.info-block-small [class^="icon-"],.info-block-small [class*=" icon-"] {
-    font-size: 1em;
+.info-block-small [class^="icon-"],
+.info-block-small [class*=" icon-"] {
+  font-size: 1em;
 }
+
 .context-info h1.heading {
-    font-size: 1.25em;
-    line-height: 1.5em;
+  font-size: 1.25em;
+  line-height: 1.5em;
 }
 
 .context-info .nums dl dt {
-    font-size: 1em;
+  font-size: 1em;
 }
 
 .context-info .nums dl dd {
-    font-size: 2.5em;
-    line-height: 2.75em;
-}
-.homepage .module-search .module-content .heading {
-    font-size: 1.75em;
-    line-height: 2.8em;
-}
-.homepage .module-search .tags h3 {
-    font-size: 1em;
-    line-height: 1.5em;
-}
-.homepage .stats ul li a b {
-    display: block;
-    font-size: 1.75em;
-    line-height: 1.5em;
-}
-.account-masthead .account ul li a {
-    font-size: 1em !important;
-    line-height: 2em !important;
-    color: #ffffff !important;
-}
-.account-masthead .account .notifications a span.badge {
-    font-size: 1em;
-}
-.masthead hgroup h1,.masthead hgroup h2 {
-    font-size: 2.125em;
-}
-.masthead hgroup h2 {
-    font-size: 1em;
-    line-height: 1.5em;
+  font-size: 2.5em;
+  line-height: 2.75em;
 }
 
-.site-footer hgroup h1,.site-footer hgroup h2 {
-    font-size: 2em;
-    line-height: 2.5em;
+.homepage .module-search .module-content .heading {
+  font-size: 1.75em;
+  line-height: 2.8em;
+}
+
+.homepage .module-search .tags h3 {
+  font-size: 1em;
+  line-height: 1.5em;
+}
+
+.homepage .stats ul li a b {
+  display: block;
+  font-size: 1.75em;
+  line-height: 1.5em;
+}
+
+.account-masthead .account ul li a {
+  font-size: 1em !important;
+  line-height: 2em !important;
+  color: #ffffff !important;
+}
+
+.account-masthead .account .notifications a span.badge {
+  font-size: 1em;
+}
+
+.masthead hgroup h1,
+.masthead hgroup h2 {
+  font-size: 2.125em;
+}
+
+.masthead hgroup h2 {
+  font-size: 1em;
+  line-height: 1.5em;
+}
+
+.site-footer hgroup h1,
+.site-footer hgroup h2 {
+  font-size: 2em;
+  line-height: 2.5em;
 }
 
 .site-footer hgroup h2 {
-    font-size: 1em;
-    line-height: 1.5em;
+  font-size: 1em;
+  line-height: 1.5em;
 }
+
 .activity .item p {
-    font-size: 1em;
-    line-height: 1.5em;
+  font-size: 1em;
+  line-height: 1.5em;
 }
 
 .activity .item .date {
-    font-size: 1em;
-}
-.popover .popover-content {
-    font-size: 1em;
-    line-height: 1.5em;
-}
-.popover-followee .popover-header input {
-    font-size: 1em;
-}
-.dashboard-me strong {
-    font-size: 1.125em;
+  font-size: 1em;
 }
 
-.slick-prev:before, .slick-next:before {
-    font-size: 1.75rem;
+.popover .popover-content {
+  font-size: 1em;
+  line-height: 1.5em;
 }
-.slick-prev:before, .slick-next:before {
-    font-size: 1.75rem;
+
+.popover-followee .popover-header input {
+  font-size: 1em;
 }
+
+.dashboard-me strong {
+  font-size: 1.125em;
+}
+
+.slick-prev:before,
+.slick-next:before {
+  font-size: 1.75rem;
+}
+
+.slick-prev:before,
+.slick-next:before {
+  font-size: 1.75rem;
+}
+
 .slick-prev {
-    left: -30px;
+  left: -30px;
 }
-.slick-prev:focus, .slick-next:focus {
-    outline: solid 2px #2ea3f2;
+
+.slick-prev:focus,
+.slick-next:focus {
+  outline: solid 2px #2ea3f2;
 }
+
 .masthead .navigation .nav-pills {
-    margin-bottom: 0;
-    font-size: .9em;
-    line-height: 1.5em;
+  margin-bottom: 0;
+  font-size: .9em;
+  line-height: 1.5em;
 }
-.navbar .nav > li {
-    line-height: 1.5em;
+
+.navbar .nav>li {
+  line-height: 1.5em;
 }
-.navbar .nav > li > a {
-    line-height: 1.5em;
+
+.navbar .nav>li>a {
+  line-height: 1.5em;
 }
-.nav-tabs > li > a {
-line-height: 1.5em;
+
+.nav-tabs>li>a {
+  line-height: 1.5em;
 }
+
 .module .pagination li a {
-line-height: 1.5em;
+  line-height: 1.5em;
 }
-.pagination ul > li > a, .pagination ul > li > span {
-line-height: 1.5em;
+
+.pagination ul>li>a,
+.pagination ul>li>span {
+  line-height: 1.5em;
 }
+
 .context-info .nums dl dt {
-    display: block;
-    font-size: 1em;
-line-height: 1.5em;
+  display: block;
+  font-size: 1em;
+  line-height: 1.5em;
 }
+
 .context-info .nums dl dd {
-    font-size: 2em;
-    line-height: 2.5em;
+  font-size: 2em;
+  line-height: 2.5em;
 }
+
 .empty {
-    font-style: normal;
+  font-style: normal;
 }
+
 .form-actions .control-required-message {
-line-height: 1.5em;
+  line-height: 1.5em;
 }
+
 .slick-showcase .media-item h3 {
-    overflow: auto;
-    font-size: 100%;
+  overflow: auto;
+  font-size: 100%;
 }
-#organization-search-form + .media-grid h3, #group-search-form + .media-grid h3 {
-    font-size: 90%;
-    overflow: auto;
-    padding: 8px;
+
+#organization-search-form+.media-grid h3,
+#group-search-form+.media-grid h3 {
+  font-size: 90%;
+  overflow: auto;
+  padding: 8px;
 }
+
 .media-view>span {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border: 0;
-    display: block;
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+  display: block;
 }
+
 .media-item {
-overflow: auto;
+  overflow: auto;
 }
+
 .dataset-heading a {
-    color: #333333 !important;
+  color: #333333 !important;
 }
+
 .dataset-heading a:hover {
-    color: #00499c;
+  color: #00499c;
 }
+
 .browse-group-title {
-    font-size: 1em;
-    font-weight: bolder;
-    color: #333333 !important;
+  font-size: 1em;
+  font-weight: bolder;
+  color: #333333 !important;
 }
+
 #field-sitewide-search:focus {
-outline: solid 2px #2ea3f2;
+  outline: solid 2px #2ea3f2;
 }
       </style>
     
@@ -873,7 +1028,7 @@ outline: solid 2px #2ea3f2;
   
   <link rel="stylesheet" href="/css/layout3.css" />
 
-  <link rel="stylesheet" href=/css/theme_config.css?:version:2021-03-12T20:20:24.94 />
+  <link rel="stylesheet" href=/css/theme_config.css?:version:2021-03-18T23:27:59.04 />
 
   <link rel="stylesheet" href="/css/layout3.css"/>
 
@@ -892,7 +1047,7 @@ outline: solid 2px #2ea3f2;
       
     <style>
         .cd-hero {
-background: #000000 !important;
+  background: #000000 !important;
 }
 
 .logo {
@@ -900,46 +1055,59 @@ background: #000000 !important;
   max-width: 360px;
   max-height: 100px;
 }
+
 .header-image .logo img {
   max-width: 360px;
   max-height: 100px;
 }
+
 .pull-left.header-image {
   margin-bottom: 6px;
 }
+
 .masthead .nav-collapse {
   padding-top: 5px;
 }
-.masonry-brick.media-item .media-image, .media-item.item-height .media-image {
+
+.masonry-brick.media-item .media-image,
+.media-item.item-height .media-image {
   height: 100px;
 }
+
 .media-item:hover,
 .media-item:focus,
 .browse-group:hover,
 .browse-group:focus {
   background-color: #c2e5ff;
 }
+
 .main-browse,
 .main-updates li.dataset-item {
   background-color: #eff2f5;
 }
+
 .main-updates li.dataset-item .dataset-heading {
   max-height: 50px;
 }
+
 a[data-format="esri rest"] {
   display: none;
 }
+
 a:-webkit-any-link:focus {
   transition: none;
   outline: 2px solid #0095ff;
   outline-offset: 2px;
 }
+
 .btn {
   border-radius: 3px;
 }
+
 .ckanext-datapreview>iframe {
-  min-height:500px;
+  min-height: 500px;
 }
+
 @media (max-width: 767px) {
   .header-image .logo img {
     max-width: 295px;
@@ -957,29 +1125,39 @@ a:-webkit-any-link:focus {
   -webkit-box-orient: unset;
 }
 
+
 /* A11y Fixes */
+
 .masthead {
-    background: #005e8a;
+  background: #005e8a;
 }
-.masthead .nav > .active > a, .masthead .nav > li > a:hover, .masthead .nav > .active > a:hover {
-color: #ffffff;
+
+.masthead .nav>.active>a,
+.masthead .nav>li>a:hover,
+.masthead .nav>.active>a:hover {
+  color: #ffffff;
 }
+
 .supporting-text {
   font-weight: 500;
   font-size: 1.75em;
 }
+
 .hero-text-heading.heading {
   font-size: 2.75em;
 }
+
 .hero-text-description.secondary-heading {
   font-size: 1em;
   line-height: 1.5em;
 }
+
 .hero-text-description.secondary-heading p:first-child strong {
   font-size: 1em;
   line-height: 1.5em;
 }
-@media (min-width: 768px){
+
+@media (min-width: 768px) {
   .hero-text-heading.heading {
     font-size: 2em;
   }
@@ -992,462 +1170,594 @@ color: #ffffff;
     line-height: 1.5em;
   }
 }
-@media (min-width: 1366px){
+
+@media (min-width: 1366px) {
   .hero-text-heading.heading {
     font-size: 3em;
   }
   .hero-text-description.secondary-heading p:first-child strong {
     font-size: 1.2em;
-line-height: 1.5em;
+    line-height: 1.5em;
   }
 }
+
 body {
-    line-height: 1.5em;
+  line-height: 1.5em;
 }
-h1, h2, h3, h4, h5, h6 {
-    line-height: 1.5em;
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  line-height: 1.5em;
 }
+
 h1 {
-    font-size: 1.75em;
-  }
-  
-  h2 {
-    font-size: 1.25em;
-  }
-  
-  h3 {
-    font-size: 1.125em;
-  }
-  
-  h4 {
-    font-size: 1em;
-  }
-  
-  h5 {
-    font-size: .75em;
-  }
-  
-  h2.module-heading {
-    font-size: .75em !important;
-  }
+  font-size: 1.75em;
+}
 
-  .hero h1,.hero h2, .hero h3, .hero h4, .hero h5, .hero h6 {
-    font-size: 3.75em;
-  }
+h2 {
+  font-size: 1.25em;
+}
 
-  label {
-    font-size: .9em;
-  }
+h3 {
+  font-size: 1.125em;
+}
 
-  .carousel-controls {
-    line-height: 1.5em;
-    font-size: 1.5em;
-  }
+h4 {
+  font-size: 1em;
+}
 
-  .dataset-heading {
-    font-size: 1em;
-    color: #333333 !important;
-  }
+h5 {
+  font-size: .75em;
+}
 
-  .context-info h1.heading {
-    font-size: 1em !important;
-  }
+h2.module-heading {
+  font-size: .75em !important;
+}
 
-  .feedback-count {
-    font-size: 3em;
-    line-height: 1.5em;
-  }
+.hero h1,
+.hero h2,
+.hero h3,
+.hero h4,
+.hero h5,
+.hero h6 {
+  font-size: 3.75em;
+}
 
-  .hero-text-heading {
-    font-size: 2.25em;
-  }
+label {
+  font-size: .9em;
+}
 
-  .hero p {
-    font-size: 2em;
-    line-height: 1.5em;
-  }
+.carousel-controls {
+  line-height: 1.5em;
+  font-size: 1.5em;
+}
 
-  .hero-text-description {
-    font-size: 1em;
-  }
+.dataset-heading {
+  font-size: 1em;
+  color: #333333 !important;
+}
 
-  .search-form .search-input.search-giant button i {
-    font-size: 1em;
-  }
+.context-info h1.heading {
+  font-size: 1em !important;
+}
 
-  .homepage .module-search .module-content .heading {
-    font-size: 1.75em;
-  }
+.feedback-count {
+  font-size: 3em;
+  line-height: 1.5em;
+}
 
-  .browse-group-title {
-    font-size: 1em;
-  }
+.hero-text-heading {
+  font-size: 2.25em;
+}
 
-  .site-footer .fa {
-    font-size: 2em;
-  }
+.hero p {
+  font-size: 2em;
+  line-height: 1.5em;
+}
+
+.hero-text-description {
+  font-size: 1em;
+}
+
+.homepage .module-search .module-content .heading {
+  font-size: 1.75em;
+}
+
+.browse-group-title {
+  font-size: 1em;
+}
+
+.site-footer .fa {
+  font-size: 2em;
+}
+
 .search-form h2 {
-    font-size: 1.5em;
+  font-size: 1.5em;
 }
+
 body {
-    font-size: 1em;
-    line-height: 1.5em;
+  font-size: 1em;
+  line-height: 1.5em;
 }
+
 .lead {
-    font-size: 1.5em;
+  font-size: 1.5em;
 }
+
 blockquote p {
-    margin-bottom: 0;
-    font-size: 1.125em;
-    font-weight: 300;
-    line-height: 1.5em;
+  margin-bottom: 0;
+  font-size: 1.125em;
+  font-weight: 300;
+  line-height: 1.5em;
 }
-code,pre {
-    padding: 0 3px 2px;
-    font-family: Monaco,Menlo,Consolas,"Courier New",monospace;
-    font-size: 12px;
-}
+
+code,
 pre {
-    font-size: 1em;
-    line-height: 1.5em;
+  padding: 0 3px 2px;
+  font-family: Monaco, Menlo, Consolas, "Courier New", monospace;
+  font-size: 12px;
 }
+
+pre {
+  font-size: 1em;
+  line-height: 1.5em;
+}
+
 legend {
-    font-size: 1.5em;
-    line-height: 2em;
+  font-size: 1.5em;
+  line-height: 2em;
 }
+
 legend small {
-    font-size: 1em;
+  font-size: 1em;
 }
-label,input,button,select,textarea {
-    font-size: 1em;
-    line-height: 1.5em;
+
+label,
+input,
+button,
+select,
+textarea {
+  font-size: 1em;
+  line-height: 1.5em;
 }
-select,textarea,input[type="text"],input[type="password"],input[type="datetime"],input[type="datetime-local"],input[type="date"],input[type="month"],input[type="time"],input[type="week"],input[type="number"],input[type="email"],input[type="url"],input[type="search"],input[type="tel"],input[type="color"],.uneditable-input {
-    font-size: 1em;
-    line-height: 1.5em;
+
+select,
+textarea,
+input[type="text"],
+input[type="password"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="date"],
+input[type="month"],
+input[type="time"],
+input[type="week"],
+input[type="number"],
+input[type="email"],
+input[type="url"],
+input[type="search"],
+input[type="tel"],
+input[type="color"],
+.uneditable-input {
+  font-size: 1em;
+  line-height: 1.5em;
 }
-.input-append .add-on,.input-prepend .add-on {
-    font-size: 1em;
-    line-height: 1.5em;
+
+.input-append .add-on,
+.input-prepend .add-on {
+  font-size: 1em;
+  line-height: 1.5em;
 }
+
 .close {
-    font-size: 1.5em;
-    line-height: 1.5em;
+  font-size: 1.5em;
+  line-height: 1.5em;
 }
+
 .btn {
-    font-size: 1em;
-    line-height: 1.5em;
+  font-size: 1em;
+  line-height: 1.5em;
 }
+
 .btn-large {
-    font-size: 1.25em;
+  font-size: 1.25em;
 }
+
 .btn-mini {
-    font-size: .75em;
+  font-size: .75em;
 }
+
 .nav-header {
-    font-size: .8em;
-    line-height: 1.25em;
+  font-size: .8em;
+  line-height: 1.25em;
 }
+
 .navbar .brand {
-    font-size: 1.5em;
+  font-size: 1.5em;
 }
+
 .navbar-search .search-query {
-    font-size: 1em;
+  font-size: 1em;
 }
+
 .tooltip {
-    font-size: .8em;
-    line-height: 1.25em;
+  font-size: .8em;
+  line-height: 1.25em;
 }
-.label,.badge {
-    font-size: 1em;
-    line-height: 1.5em;
+
+.label,
+.badge {
+  font-size: 1em;
+  line-height: 1.5em;
 }
+
 .progress .bar {
-    font-size: 1em;
+  font-size: 1em;
 }
 
 .carousel-control {
-    font-size: 4.25em;
+  font-size: 4.25em;
 }
+
 .hero-unit {
-    font-size: 1.25em;
+  font-size: 1.25em;
 }
+
 .hero-unit h1 {
-    font-size: 4.25em;
+  font-size: 4.25em;
 }
+
 .popover-title {
-    font-size: 1em;
+  font-size: 1em;
 }
+
 .simple-item {
-    font-size: 1em;
+  font-size: 1em;
 }
+
 .simple-list>li {
-    font-size: 1em;
+  font-size: 1em;
 }
+
 .module-heading {
-    font-size: 1em;
-    line-height: 1.5em;
+  font-size: 1em;
+  line-height: 1.5em;
 }
+
 .group .content h3 {
-    font-size: 1em;
-    line-height: 1.25em;
+  font-size: 1em;
+  line-height: 1.25em;
 }
+
 .banner {
-    font-size: .8em;
+  font-size: .8em;
 }
+
 .media-heading {
-    font-size: 1.25em;
-    line-height: 1.5em;
+  font-size: 1.25em;
+  line-height: 1.5em;
 }
+
 .media-overlay .media-heading {
-    font-size: 1.25em;
+  font-size: 1.25em;
 }
+
 li {
-line-height: 1.5em;
+  line-height: 1.5em;
 }
-.nav-simple>li,.nav-aside>li {
-    font-size: .8em;
+
+.nav-simple>li,
+.nav-aside>li {
+  font-size: .8em;
 }
-.nav-item>a,.nav-aside li a {
-    font-size: 1.2em;
-    line-height: 1.5em;
+
+.nav-item>a,
+.nav-aside li a {
+  font-size: 1.2em;
+  line-height: 1.5em;
 }
-.control-large input,.control-large .control-label {
-    font-size: 1.125em;
-    line-height: 1.5em;
+
+.control-large input,
+.control-large .control-label {
+  font-size: 1.125em;
+  line-height: 1.5em;
 }
+
 .form-actions .action-info.small {
-    font-size: 1em;
-    line-height: 1.5em;
+  font-size: 1em;
+  line-height: 1.5em;
 }
+
 .form-horizontal .info-block {
-    line-height: 1.5em;
+  line-height: 1.5em;
 }
-.info-block .icon-large,.info-inline .icon-large {
-    font-size: 1.5em;
+
+.info-block .icon-large,
+.info-inline .icon-large {
+  font-size: 1.5em;
 }
+
 .editor .editor-info-block {
-    font-size: .8em;
+  font-size: .8em;
 }
+
 .slug-preview {
-    font-size: 1em;
+  font-size: 1em;
 }
+
 .dataset-heading {
-    font-size: 1.125em;
-    line-height: 1.5em;
+  font-size: 1.125em;
+  line-height: 1.5em;
 }
+
 .resource-item .heading {
-    font-size: 1.125em;
+  font-size: 1.125em;
 }
+
 .resource-item .description {
-    font-size: 1em;
+  font-size: 1em;
 }
+
 .view-list li a .icon i {
-    font-size: 2em;
-    line-height: 2.8em;
+  font-size: 2em;
+  line-height: 2.8em;
 }
 
 .view-list li a h3 {
-    font-size: 1.125em;
+  font-size: 1.125em;
 }
+
 .search-form .search-input.search-giant input {
-    font-size: 1.125em;
+  font-size: 1.125em;
 }
 
-
+.search-form .search-input.search-giant button {
+  margin-top: -22px;
+  height: 43px;
+}
 
 .search-form .search-input.search-giant button i {
-    font-size: 2em;
+  font-size: 1.5em;
 }
 
-.search-form .control-order-by label,.search-form .control-order-by select {
-    display: inline
+.search-form .control-order-by label,
+.search-form .control-order-by select {
+  display: inline
 }
 
 .search-form h2 {
-    font-size: 1.75em;
-    line-height: 1.5em;
+  font-size: 1.75em;
+  line-height: 1.5em;
 }
+
 .search-form h2 {
-    font-size: 1.75em;
-    line-height: 1.5em;
+  font-size: 1.75em;
+  line-height: 1.5em;
 }
+
 .search-form .filter-list .extra {
-    font-size: 1.125em;
-}
-.tertiary .control-order-by select {
-    font-size: .8em;
-}
-.toolbar .breadcrumb {
-    font-size: 1.125em;
+  font-size: 1.125em;
 }
 
-[class^="icon-"],[class*=" icon-"] {
-    font-size: 1em;
-    line-height: 1.5em;
+.tertiary .control-order-by select {
+  font-size: .8em;
+}
+
+.toolbar .breadcrumb {
+  font-size: 1.125em;
+}
+
+[class^="icon-"],
+[class*=" icon-"] {
+  font-size: 1em;
+  line-height: 1.5em;
 }
 
 .breadcrumb .home .icon-home {
-    font-size: 1.75em;
+  font-size: 1.75em;
 }
 
-.info-block-small [class^="icon-"],.info-block-small [class*=" icon-"] {
-    font-size: 1em;
+.info-block-small [class^="icon-"],
+.info-block-small [class*=" icon-"] {
+  font-size: 1em;
 }
+
 .context-info h1.heading {
-    font-size: 1.25em;
-    line-height: 1.5em;
+  font-size: 1.25em;
+  line-height: 1.5em;
 }
 
 .context-info .nums dl dt {
-    font-size: 1em;
+  font-size: 1em;
 }
 
 .context-info .nums dl dd {
-    font-size: 2.5em;
-    line-height: 2.75em;
-}
-.homepage .module-search .module-content .heading {
-    font-size: 1.75em;
-    line-height: 2.8em;
-}
-.homepage .module-search .tags h3 {
-    font-size: 1em;
-    line-height: 1.5em;
-}
-.homepage .stats ul li a b {
-    display: block;
-    font-size: 1.75em;
-    line-height: 1.5em;
-}
-.account-masthead .account ul li a {
-    font-size: 1em !important;
-    line-height: 2em !important;
-    color: #ffffff !important;
-}
-.account-masthead .account .notifications a span.badge {
-    font-size: 1em;
-}
-.masthead hgroup h1,.masthead hgroup h2 {
-    font-size: 2.125em;
-}
-.masthead hgroup h2 {
-    font-size: 1em;
-    line-height: 1.5em;
+  font-size: 2.5em;
+  line-height: 2.75em;
 }
 
-.site-footer hgroup h1,.site-footer hgroup h2 {
-    font-size: 2em;
-    line-height: 2.5em;
+.homepage .module-search .module-content .heading {
+  font-size: 1.75em;
+  line-height: 2.8em;
+}
+
+.homepage .module-search .tags h3 {
+  font-size: 1em;
+  line-height: 1.5em;
+}
+
+.homepage .stats ul li a b {
+  display: block;
+  font-size: 1.75em;
+  line-height: 1.5em;
+}
+
+.account-masthead .account ul li a {
+  font-size: 1em !important;
+  line-height: 2em !important;
+  color: #ffffff !important;
+}
+
+.account-masthead .account .notifications a span.badge {
+  font-size: 1em;
+}
+
+.masthead hgroup h1,
+.masthead hgroup h2 {
+  font-size: 2.125em;
+}
+
+.masthead hgroup h2 {
+  font-size: 1em;
+  line-height: 1.5em;
+}
+
+.site-footer hgroup h1,
+.site-footer hgroup h2 {
+  font-size: 2em;
+  line-height: 2.5em;
 }
 
 .site-footer hgroup h2 {
-    font-size: 1em;
-    line-height: 1.5em;
+  font-size: 1em;
+  line-height: 1.5em;
 }
+
 .activity .item p {
-    font-size: 1em;
-    line-height: 1.5em;
+  font-size: 1em;
+  line-height: 1.5em;
 }
 
 .activity .item .date {
-    font-size: 1em;
-}
-.popover .popover-content {
-    font-size: 1em;
-    line-height: 1.5em;
-}
-.popover-followee .popover-header input {
-    font-size: 1em;
-}
-.dashboard-me strong {
-    font-size: 1.125em;
+  font-size: 1em;
 }
 
-.slick-prev:before, .slick-next:before {
-    font-size: 1.75rem;
+.popover .popover-content {
+  font-size: 1em;
+  line-height: 1.5em;
 }
-.slick-prev:before, .slick-next:before {
-    font-size: 1.75rem;
+
+.popover-followee .popover-header input {
+  font-size: 1em;
 }
+
+.dashboard-me strong {
+  font-size: 1.125em;
+}
+
+.slick-prev:before,
+.slick-next:before {
+  font-size: 1.75rem;
+}
+
+.slick-prev:before,
+.slick-next:before {
+  font-size: 1.75rem;
+}
+
 .slick-prev {
-    left: -30px;
+  left: -30px;
 }
-.slick-prev:focus, .slick-next:focus {
-    outline: solid 2px #2ea3f2;
+
+.slick-prev:focus,
+.slick-next:focus {
+  outline: solid 2px #2ea3f2;
 }
+
 .masthead .navigation .nav-pills {
-    margin-bottom: 0;
-    font-size: .9em;
-    line-height: 1.5em;
+  margin-bottom: 0;
+  font-size: .9em;
+  line-height: 1.5em;
 }
-.navbar .nav > li {
-    line-height: 1.5em;
+
+.navbar .nav>li {
+  line-height: 1.5em;
 }
-.navbar .nav > li > a {
-    line-height: 1.5em;
+
+.navbar .nav>li>a {
+  line-height: 1.5em;
 }
-.nav-tabs > li > a {
-line-height: 1.5em;
+
+.nav-tabs>li>a {
+  line-height: 1.5em;
 }
+
 .module .pagination li a {
-line-height: 1.5em;
+  line-height: 1.5em;
 }
-.pagination ul > li > a, .pagination ul > li > span {
-line-height: 1.5em;
+
+.pagination ul>li>a,
+.pagination ul>li>span {
+  line-height: 1.5em;
 }
+
 .context-info .nums dl dt {
-    display: block;
-    font-size: 1em;
-line-height: 1.5em;
+  display: block;
+  font-size: 1em;
+  line-height: 1.5em;
 }
+
 .context-info .nums dl dd {
-    font-size: 2em;
-    line-height: 2.5em;
+  font-size: 2em;
+  line-height: 2.5em;
 }
+
 .empty {
-    font-style: normal;
+  font-style: normal;
 }
+
 .form-actions .control-required-message {
-line-height: 1.5em;
+  line-height: 1.5em;
 }
+
 .slick-showcase .media-item h3 {
-    overflow: auto;
-    font-size: 100%;
+  overflow: auto;
+  font-size: 100%;
 }
-#organization-search-form + .media-grid h3, #group-search-form + .media-grid h3 {
-    font-size: 90%;
-    overflow: auto;
-    padding: 8px;
+
+#organization-search-form+.media-grid h3,
+#group-search-form+.media-grid h3 {
+  font-size: 90%;
+  overflow: auto;
+  padding: 8px;
 }
+
 .media-view>span {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border: 0;
-    display: block;
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+  display: block;
 }
+
 .media-item {
-overflow: auto;
+  overflow: auto;
 }
+
 .dataset-heading a {
-    color: #333333 !important;
+  color: #333333 !important;
 }
+
 .dataset-heading a:hover {
-    color: #00499c;
+  color: #00499c;
 }
+
 .browse-group-title {
-    font-size: 1em;
-    font-weight: bolder;
-    color: #333333 !important;
+  font-size: 1em;
+  font-weight: bolder;
+  color: #333333 !important;
 }
+
 #field-sitewide-search:focus {
-outline: solid 2px #2ea3f2;
+  outline: solid 2px #2ea3f2;
 }
       </style>
     
