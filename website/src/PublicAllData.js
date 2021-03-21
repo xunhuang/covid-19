@@ -8,6 +8,14 @@ async function fetchPublicCountyData(state_short, county_fips) {
     });
 }
 
+async function fetchPublicCountyDataNew(county_fips) {
+  return superagent
+    .get(`https://gowatchit.net/data/county/${county_fips}.json`)
+    .then(res => {
+      return res.body;
+    });
+}
+
 var request = require('request'), zlib = require('zlib');
 
 function streamToString(stream) {
@@ -43,6 +51,7 @@ async function fetchWorldData() {
 
 export {
   fetchPublicCountyData,
+  fetchPublicCountyDataNew,
   fetchAllUSData,
   fetchWorldData
 }

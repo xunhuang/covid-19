@@ -6,7 +6,7 @@ import { fetchNPRProjectionData } from "./NPRProjection"
 import { fetchTestingDataStates, fetchTestingDataUS, fetchTestingDataStatesTable } from "./TestingData"
 import { fetchHospitalizationDataStates, fetchHospitalizationDataUS } from "./HospitalizationData"
 import { fetchVaccineDataStates, fetchVaccineDataUS, fetchVaccineDataCounty } from "./VaccineData"
-import { fetchPublicCountyData, fetchAllUSData } from "./PublicAllData"
+import { fetchPublicCountyData, fetchAllUSData, fetchPublicCountyDataNew } from "./PublicAllData"
 import { mergeDataSeries, makeDataSeriesFromTotal } from "./graphs/DataSeries";
 import { DataSeries } from './models/DataSeries';
 
@@ -854,6 +854,10 @@ export class County extends CovidSummarizable {
     if (serverdata) {
       this.covidRaw_ = serverdata;
     }
+  }
+
+  async fetchNewCountyInfo() {
+    return await fetchPublicCountyDataNew(this.fips(), this.id);
   }
 
   async dataPointsAsync() {

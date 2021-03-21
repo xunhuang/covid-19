@@ -13,6 +13,22 @@ import { Link } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
 const CA_statusMap = {
+  "high": {
+    text: "Widespread",
+    color: "purple",
+  },
+  "substantial": {
+    text: "Substantial",
+    color: "red",
+  },
+  "moderate": {
+    text: "Moderate",
+    color: "orange",
+  },
+  "low": {
+    text: "Minimal",
+    color: "orange",
+  },
   "4": {
     text: "Widespread",
     color: "purple",
@@ -27,37 +43,49 @@ const CA_statusMap = {
   },
   "1": {
     text: "Minimal",
-    color: "orange",
+    color: "yellow",
   },
 }
 
 const useStyles = makeStyles(theme => ({
   CA: {
-    margin: 2,
+    margin: 4,
   },
 }));
 
-const CountySpecific = (props) => {
+const CountySpecificNew = (props) => {
   const classes = useStyles();
-  if (props.source.state().fips() === "06") {
-    let level = CA_statusMap[props.source.ca_county_status];
-    if (level) {
-      const textStyle = {
-        color: level.color,
-        fontSize: 'x-large',
-      }
-      return <div className={classes.CA}>
-        <Link target="_blank" href={"https://covid19.ca.gov/safer-economy/"} className={props.className}>
-          California County Status
-    </Link>
-        :
-        <span style={textStyle}>
-          {level.text}
-        </span>
-      </div>;
-    }
+
+  const [countyData, setCountyData] = React.useState(null);
+  React.useEffect(() => {
+    props.source.fetchNewCountyInfo().then(data => setCountyData(data[0]));
+  }, [props.source])
+
+  if (!countyData) {
+    return <div> Loading</div>;
   }
-  return null;
+
+  let level = CA_statusMap[countyData.community] || {
+    text: "Unknown",
+    color: "blue",
+  };
+  const textStyle = {
+    color: level && level.color,
+    fontSize: 'x-large',
+  }
+  return <div className={classes.CA}>
+    Level:<span style={textStyle}> {level.text}. </span>
+    {countyData.school}
+    {countyData.healthwebsites &&
+      countyData.healthwebsites.map(site =>
+        <span className={classes.CA} >
+          <Link target="_blank" href={site} className={props.className}>
+            {site}
+          </Link>
+        </span>
+      )
+    }
+  </div>;
 };
 
 const PageCounty = withHeader((props) => {
@@ -79,7 +107,7 @@ const PageCounty = withHeader((props) => {
           + `confirmed cases, new cases & death curves.`}
       />
       <USInfoTopWidget source={county} />
-      <CountySpecific source={county} />
+      <CountySpecificNew source={county} />
       <GraphSection source={county} />
       <BonusDashboards county={county} />
       <MyTabs
