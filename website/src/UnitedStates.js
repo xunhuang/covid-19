@@ -6,7 +6,7 @@ import { fetchNPRProjectionData } from "./NPRProjection"
 import { fetchTestingDataStates, fetchTestingDataUS, fetchTestingDataStatesTable } from "./TestingData"
 import { fetchHospitalizationDataStates, fetchHospitalizationDataUS } from "./HospitalizationData"
 import { fetchVaccineDataStates, fetchVaccineDataUS, fetchVaccineDataCounty } from "./VaccineData"
-import { fetchPublicCountyData, fetchAllUSData, fetchPublicCountyDataNew } from "./PublicAllData"
+import { fetchAllUSData, fetchPublicCountyDataNew, fetchPublicCountyDataNewTimeSeries } from "./PublicAllData"
 import { mergeDataSeries, makeDataSeriesFromTotal } from "./graphs/DataSeries";
 import { DataSeries } from './models/DataSeries';
 
@@ -850,9 +850,16 @@ export class County extends CovidSummarizable {
   }
 
   async _fetchServerData() {
-    let serverdata = await fetchPublicCountyData(this.state().fips(), this.id);
+    let serverdata = await fetchPublicCountyDataNewTimeSeries(this.id);
     if (serverdata) {
-      this.covidRaw_ = serverdata;
+      this.covidRaw_.Confirmed = serverdata.reduce((m, b) => {
+        m[moment(b.date, "YYYY-MM-DD").format("MM/DD/YYYY")] = b.cases;
+        return m;
+      }, {});
+      this.covidRaw_.Death = serverdata.reduce((m, b) => {
+        m[moment(b.date, "YYYY-MM-DD").format("MM/DD/YYYY")] = b.deaths;
+        return m;
+      }, {});
     }
   }
 
@@ -866,9 +873,11 @@ export class County extends CovidSummarizable {
     }
     return datesToDataPoints(this.covidRaw_);
   }
+
   dataPoints() {
     return datesToDataPoints(this.covidRaw_.Summary);
   }
+
   async confirmDataSeriesAsync() {
     const data = await this.dataPointsAsync();
     return DataSeries

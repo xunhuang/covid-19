@@ -1,0 +1,17 @@
+[
+    {
+        "name": "fips",
+        "type": "STRING",
+        "mode": "NULLABLE"
+    },
+    {
+        "name": "name",
+        "type": "STRING",
+        "mode": "NULLABLE"
+    },
+    {
+        "name": "websites",
+        "type": "STRING",
+        "mode": "REPEATED"
+    }
+]
