@@ -42,7 +42,8 @@ jobs:
     - run: cd website; npm run data; cd ..
     - run: cd website; npm run build --if-present; cd ..
     #- run: cd website; echo "covid19news.today" > build/CNAME; cd ..
-    - run: cd website; echo "covid-19.direct" > build/CNAME; cd ..
+    #- run: cd website; echo "covid-19.direct" > build/CNAME; cd ..
+    - run: cd website; echo "coviddatausa.com" > build/CNAME; cd ..
     - name: Setup new git
       run: cd website; git init; git remote add origin git@github.com:xunhuang/my-app.git; cd ..
     - run: rm -rf website/public/AllData/AllData.json.gz
