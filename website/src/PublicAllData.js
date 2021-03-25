@@ -8,19 +8,28 @@ async function fetchPublicCountyData(state_short, county_fips) {
     });
 }
 
+
+
+
 async function fetchPublicCountyDataNew(county_fips) {
   return superagent
-    .get(`https://gowatchit.net/data/county/${county_fips}.json`)
+    // .get(`https://gowatchit.net/data/county/${county_fips}.json`)
+    .get(`https://raw.githubusercontent.com/xunhuang/random/gh-pages/data/county/${county_fips}.json`)
     .then(res => {
-      return res.body;
+      // console.log(res.text);
+      // console.log(res.body);
+      return JSON.parse(res.text);
+      // return res.body;
     });
 }
 
 async function fetchPublicCountyDataNewTimeSeries(county_fips) {
   return superagent
-    .get(`https://gowatchit.net/data/county-details/${county_fips}.json`)
+    // .get(`https://gowatchit.net/data/county-details/${county_fips}.json`)
+    .get(`https://raw.githubusercontent.com/xunhuang/random/gh-pages/data/county-details/${county_fips}.json`)
     .then(res => {
-      return res.body;
+      return JSON.parse(res.text);
+      // return res.body;
     });
 }
 
