@@ -46,7 +46,10 @@ jobs:
     # - run: cd website; echo "coviddatausa.com" > build/CNAME; cd ..
     - name: Setup new git
       run: cd website; git init; git remote add origin git@github.com:xunhuang/my-app.git; cd ..
+    - run: df -kH
     - run: rm -rf website/public/AllData/AllData.json.gz
+    - run: rm -rf data COVID-19 vaccine-module
+    - run: df -kH
     # - name: Deploy
       # run: cd website node node_modules/gh-pages/bin/gh-pages.js -d build
 

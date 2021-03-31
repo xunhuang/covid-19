@@ -65,6 +65,7 @@ const CountySpecificNew = (props) => {
     return <div> Loading</div>;
   }
 
+  console.log(countyData);
   let level = CA_statusMap[countyData.community] || {
     text: "Unknown",
     color: "blue",

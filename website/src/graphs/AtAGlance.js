@@ -23,6 +23,8 @@ const DailyConfirmedNew = (props) => {
 
   const vKeyRefLines = getRefLines(props.source);
 
+  console.log(dataSeries);
+
   return <AdvancedGraph
     serieses={
       [
