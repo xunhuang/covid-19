@@ -70,7 +70,7 @@
   
   <link rel="stylesheet" href="/css/layout3.css" />
 
-  <link rel="stylesheet" href=/css/theme_config.css?:version:2021-04-30T20:03:34.58 />
+  <link rel="stylesheet" href=/css/theme_config.css?:version:2021-04-30T20:13:56.61 />
 
   <link rel="stylesheet" href="/css/layout3.css"/>
 
@@ -120,14 +120,6 @@
   height: 100px;
 }
 
-.media-item:hover,
-.media-item:focus,
-.browse-group:hover,
-.browse-group:focus {
-  background-color: #c2e5ff;
-}
-
-.main-browse,
 .main-updates li.dataset-item {
   background-color: #eff2f5;
 }
@@ -225,10 +217,6 @@ a:-webkit-any-link:focus {
     font-size: 1.2em;
     line-height: 1.5em;
   }
-}
-
-body {
-  line-height: 1.5em;
 }
 
 h1,
@@ -1012,7 +1000,7 @@ p a {
   
   <link rel="stylesheet" href="/css/layout3.css" />
 
-  <link rel="stylesheet" href=/css/theme_config.css?:version:2021-04-30T20:03:34.58 />
+  <link rel="stylesheet" href=/css/theme_config.css?:version:2021-04-30T20:13:56.61 />
 
   <link rel="stylesheet" href="/css/layout3.css"/>
 
@@ -1062,14 +1050,6 @@ p a {
   height: 100px;
 }
 
-.media-item:hover,
-.media-item:focus,
-.browse-group:hover,
-.browse-group:focus {
-  background-color: #c2e5ff;
-}
-
-.main-browse,
 .main-updates li.dataset-item {
   background-color: #eff2f5;
 }
@@ -1167,10 +1147,6 @@ a:-webkit-any-link:focus {
     font-size: 1.2em;
     line-height: 1.5em;
   }
-}
-
-body {
-  line-height: 1.5em;
 }
 
 h1,
