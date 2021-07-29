@@ -330,6 +330,13 @@ function processJHUDataPoint(c, date) {
     return;
   }
 
+  if (county_fips === '06001' && datekey === "07/22/2021") {
+    county.Confirmed[datekey] = 93736; // errata
+    // county.Death[datekey] = b.Deaths;
+    console.log("correct errata for Alameda 07/22/20201")
+    return;
+  }
+
   // if data already exist (perhaps from github), don't override it.
   if (county.Confirmed[datekey]) {
     return;
