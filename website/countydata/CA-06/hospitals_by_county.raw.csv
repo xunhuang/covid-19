@@ -70,7 +70,7 @@
   
   <link rel="stylesheet" href="/css/layout3.css" />
 
-  <link rel="stylesheet" href=/css/theme_config.css?:version:2021-04-30T20:13:56.61 />
+  <link rel="stylesheet" href=/css/theme_config.css?:version:2021-08-03T15:22:17.08 />
 
   <link rel="stylesheet" href="/css/layout3.css"/>
 
@@ -129,7 +129,7 @@
   max-height: 50px;
 }
 
-a[data-format="esri rest"] {
+a[data-format="esri rest"], a[data-format="arcgis geoservices rest api"] {
   display: none;
 }
 
@@ -1001,7 +1001,7 @@ p a {
   
   <link rel="stylesheet" href="/css/layout3.css" />
 
-  <link rel="stylesheet" href=/css/theme_config.css?:version:2021-04-30T20:13:56.61 />
+  <link rel="stylesheet" href=/css/theme_config.css?:version:2021-08-03T15:22:17.08 />
 
   <link rel="stylesheet" href="/css/layout3.css"/>
 
@@ -1060,7 +1060,7 @@ p a {
   max-height: 50px;
 }
 
-a[data-format="esri rest"] {
+a[data-format="esri rest"], a[data-format="arcgis geoservices rest api"] {
   display: none;
 }
 
