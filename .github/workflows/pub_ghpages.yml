@@ -5,14 +5,13 @@ name: Publish To GH Pages
 
 on:
   push:
-    branches: [ master ]
+    branches: [master]
   schedule:
-  - cron: "*/20 * * * *"
+    - cron: "*/20 * * * *"
   workflow_dispatch:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     strategy:
@@ -20,43 +19,43 @@ jobs:
         node-version: [14.x]
 
     steps:
-    - uses: actions/checkout@v2
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.node-version }}
-    - name: Setup timezone
-      uses: zcong1993/setup-timezone@master
-      with:
-        timezone: America/Los_Angeles
-    - name: firebaseConfig
-      env:
-        FIREBASE_CONFIG: ${{ secrets.FIREBASE_CONFIG }}
-      run: cd website; echo "${FIREBASE_CONFIG}" > src/firebaseConfig.json;  cd ..
-    - run: git submodule init ;  git submodule update 
-    - run: pushd ./COVID-19/ ; git checkout master; git pull; popd
-    - run: pushd  ./coronavirus-data/ ;  git checkout master; git pull; popd
-    - run: pushd  ./vaccine-module/ ;  git checkout master; git pull; popd
-    - run: npmv=$(echo $(npm -v) | head -c 1); if [ "$npmv" -lt "6" ]; then npm i -g npm; else echo "Node.js Docker Team finally decided to include npm v6+ in latest image; you can remove this script now"; fi
-    - run: cd website; npm ci  ; cd ..
-    - run: cd website; npm run data; cd ..
-    - run: cd website; npm run build --if-present; cd ..
-    #- run: cd website; echo "covid19news.today" > build/CNAME; cd ..
-    - run: cd website; echo "covid-19.direct" > build/CNAME; cd ..
-    # - run: cd website; echo "coviddatausa.com" > build/CNAME; cd ..
-    - name: Setup new git
-      run: cd website; git init; git remote add origin git@github.com:xunhuang/my-app.git; cd ..
-    - run: df -kH
-    - run: rm -rf website/public/AllData/AllData.json.gz
-    - run: rm -rf data COVID-19 vaccine-module
-    - run: df -kH
-    # - name: Deploy
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Setup timezone
+        uses: zcong1993/setup-timezone@master
+        with:
+          timezone: America/Los_Angeles
+      - name: firebaseConfig
+        env:
+          FIREBASE_CONFIG: ${{ secrets.FIREBASE_CONFIG }}
+        run: cd website; echo "${FIREBASE_CONFIG}" > src/firebaseConfig.json;  cd ..
+      - run: git submodule init ;  git submodule update
+      - run: pushd ./COVID-19/ ; git checkout master; git pull; popd
+      - run: pushd  ./coronavirus-data/ ;  git checkout master; git pull; popd
+      - run: pushd  ./vaccine-module/ ;  git checkout master; git pull; popd
+      - run: npmv=$(echo $(npm -v) | head -c 1); if [ "$npmv" -lt "6" ]; then npm i -g npm; else echo "Node.js Docker Team finally decided to include npm v6+ in latest image; you can remove this script now"; fi
+      - run: cd website; npm ci  ; cd ..
+      - run: cd website; npm run data; cd ..
+      - run: cd website; npm run build --if-present; cd ..
+      #- run: cd website; echo "covid19news.today" > build/CNAME; cd ..
+      - run: cd website; echo "covid-19.direct" > build/CNAME; cd ..
+      # - run: cd website; echo "coviddatausa.com" > build/CNAME; cd ..
+      - name: Setup new git
+        run: cd website; git init; git remote add origin git@github.com:xunhuang/my-app.git; cd ..
+      - run: df -kH
+      - run: rm -rf website/public/AllData/AllData.json.gz
+      - run: rm -rf data COVID-19 vaccine-module
+      - run: df -kH
+      # - name: Deploy
       # run: cd website node node_modules/gh-pages/bin/gh-pages.js -d build
 
-    - name: Deploy 
-      uses: JamesIves/github-pages-deploy-action@3.7.1
-      with:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        BRANCH: gh-pages # The branch the action should deploy to.
-        FOLDER: website/build # The folder the action should deploy.
-        CLEAN: true # Automatically remove deleted files from the deploy branch
+      - name: Deploy
+        uses: JamesIves/github-pages-deploy-action@3.7.1
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH: gh-pages-new # The branch the action should deploy to.
+          FOLDER: website/build # The folder the action should deploy.
+          CLEAN: true # Automatically remove deleted files from the deploy branch
