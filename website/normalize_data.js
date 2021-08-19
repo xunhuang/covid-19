@@ -829,7 +829,7 @@ function getDoubleDays(data, fips) {
 }
 
 function processAllJHU() {
-  for (let d = moment("05/15/2021", "MM/DD/YYYY"); d.isBefore(moment()); d = d.add(1, "days")) {
+  for (let d = moment("08/01/2021", "MM/DD/YYYY"); d.isBefore(moment()); d = d.add(1, "days")) {
     let file = `../data/archive/JHU-${d.format("MM-DD-YYYY")}.json`;
     if (fs.existsSync(file)) {
       let contents = fs.readFileSync(file);
