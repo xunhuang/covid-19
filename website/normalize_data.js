@@ -936,6 +936,11 @@ async function processAllJHUGithubInner(json, mytype) {
           return;
         }
       }
+      //errata
+      if (county_fips === '06001' && mytype == "Confirmed") {
+        data["02/05/2021"] = 75511; 
+        data["07/22/2021"] = 93736; 
+      }
       county[mytype] = data;
     }
   }
