@@ -582,7 +582,8 @@
     "08/19/2021": 8283,
     "08/20/2021": 8295,
     "08/21/2021": 8317,
-    "08/22/2021": 8330
+    "08/22/2021": 8330,
+    "08/23/2021": 8330
   },
   "Death": {
     "01/22/2020": 0,
@@ -1163,7 +1164,8 @@
     "08/19/2021": 219,
     "08/20/2021": 219,
     "08/21/2021": 219,
-    "08/22/2021": 219
+    "08/22/2021": 219,
+    "08/23/2021": 219
   },
   "beds": 185,
   "bedsICU": 6,
@@ -1172,11 +1174,11 @@
   "Population": 77742,
   "LastConfirmed": 8330,
   "LastDeath": 219,
-  "LastConfirmedNew": 13,
+  "LastConfirmedNew": 0,
   "LastDeathNew": 0,
-  "DaysToDouble": 387.7258362567053,
+  "DaysToDouble": 339.06977033019723,
   "DaysToDoubleDeath": -862017116176384.1,
-  "Last2WeeksConfirmedDelta": 152,
+  "Last2WeeksConfirmedDelta": 159,
   "StayHomeOrder": {
     "StartUrl": "https://www.governor.pa.gov/newsroom/gov-wolf-sec-of-health-extend-stay-at-home-orders-to-seven-additional-counties-33-counties-now-ordered-to-stay-home/",
     "StartDate": "2020-03-31T00:00:00Z",
