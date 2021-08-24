@@ -583,7 +583,8 @@
     "08/20/2021": 34558,
     "08/21/2021": 35485,
     "08/22/2021": 35485,
-    "08/23/2021": 35485
+    "08/23/2021": 35485,
+    "08/24/2021": 35648
   },
   "Death": {
     "01/22/2020": 0,
@@ -1165,7 +1166,8 @@
     "08/20/2021": 492,
     "08/21/2021": 499,
     "08/22/2021": 499,
-    "08/23/2021": 499
+    "08/23/2021": 499,
+    "08/24/2021": 499
   },
   "beds": 242,
   "bedsICU": 24,
@@ -1173,12 +1175,12 @@
   "bedsAvail": 94,
   "Population": 255793,
   "ca_county_status": "2",
-  "LastConfirmed": 35485,
+  "LastConfirmed": 35648,
   "LastDeath": 499,
-  "LastConfirmedNew": 0,
+  "LastConfirmedNew": 163,
   "LastDeathNew": 0,
-  "DaysToDouble": 146.63685537092044,
-  "DaysToDoubleDeath": 274.75897262434984,
+  "DaysToDouble": 122.19737947569774,
+  "DaysToDoubleDeath": 228.96581052032803,
   "Last2WeeksConfirmedDelta": 1724,
   "StayHomeOrder": {
     "StartUrl": "https://www.co.merced.ca.us/DocumentCenter/View/23837/Health-Officer-Order-3-20-20",
