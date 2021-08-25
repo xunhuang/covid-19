@@ -584,7 +584,8 @@
     "08/21/2021": 13527,
     "08/22/2021": 13527,
     "08/23/2021": 13748,
-    "08/24/2021": 13944
+    "08/24/2021": 13944,
+    "08/25/2021": 13944
   },
   "Death": {
     "01/22/2020": 0,
@@ -1167,7 +1168,8 @@
     "08/21/2021": 248,
     "08/22/2021": 248,
     "08/23/2021": 248,
-    "08/24/2021": 248
+    "08/24/2021": 248,
+    "08/25/2021": 248
   },
   "beds": 514,
   "bedsICU": 42,
@@ -1176,11 +1178,11 @@
   "Population": 96317,
   "LastConfirmed": 13944,
   "LastDeath": 248,
-  "LastConfirmedNew": 196,
+  "LastConfirmedNew": 0,
   "LastDeathNew": 0,
-  "DaysToDouble": 129.56978807210686,
-  "DaysToDoubleDeath": 1601.1678088539575,
-  "Last2WeeksConfirmedDelta": 1152,
+  "DaysToDouble": 119.01012878603606,
+  "DaysToDoubleDeath": null,
+  "Last2WeeksConfirmedDelta": 1223,
   "StayHomeOrder": {
     "StartUrl": "https://coosavalleynews.com/2020/03/floyd-county-commissioners-issue-stricter-shelter-in-place-order/",
     "StartDate": "2020-03-25T00:00:00Z",
