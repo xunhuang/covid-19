@@ -584,7 +584,8 @@
       "08/23/2021": 5638,
       "08/24/2021": 5684,
       "08/25/2021": 5707,
-      "08/26/2021": 5760
+      "08/26/2021": 5760,
+      "08/27/2021": 5760
     },
     "Death": {
       "01/22/2020": 0,
@@ -1169,7 +1170,8 @@
       "08/23/2021": 49,
       "08/24/2021": 51,
       "08/25/2021": 51,
-      "08/26/2021": 53
+      "08/26/2021": 53,
+      "08/27/2021": 53
     },
     "doses_alloc_total": {
       "12/11/2020": 0,
@@ -1430,7 +1432,8 @@
       "08/23/2021": 20625,
       "08/24/2021": 20625,
       "08/25/2021": 20625,
-      "08/26/2021": 20625
+      "08/26/2021": 20625,
+      "08/27/2021": 20625
     },
     "doses_admin_total": {
       "12/11/2020": 0,
@@ -1691,7 +1694,8 @@
       "08/23/2021": 92325,
       "08/24/2021": 92892,
       "08/25/2021": 93312,
-      "08/26/2021": 93763
+      "08/26/2021": 93763,
+      "08/27/2021": 93763
     },
     "doses_shipped_total": {
       "12/11/2020": 0,
@@ -1952,18 +1956,19 @@
       "08/23/2021": 99240,
       "08/24/2021": 99660,
       "08/25/2021": 99660,
-      "08/26/2021": 99860
+      "08/26/2021": 99860,
+      "08/27/2021": 99860
     },
     "doses_alloc_total_Last": 20625,
     "doses_admin_total_Last": 93763,
     "doses_shippied_total_Last": 99860,
     "LastConfirmed": 5760,
-    "LastConfirmedNew": 53,
+    "LastConfirmedNew": 0,
     "LastDeath": 53,
-    "LastDeathNew": 2,
-    "DaysToDouble": 97.24374223007558,
-    "DaysToDoubleDeath": 23.57248871580635,
-    "Last2WeeksConfirmedDelta": 747,
+    "LastDeathNew": 0,
+    "DaysToDouble": 122.6482211467932,
+    "DaysToDoubleDeath": 20.784106475559096,
+    "Last2WeeksConfirmedDelta": 667,
     "StayHomeOrder": {
       "StartUrl": "https://www.vi.gov/wp-content/uploads/2020/03/2020-03.23-12-54pm-Order-Suppl-Exec-Order-re-Restrictions-to-Movement-Gatherings-Operations-of-Business-Govt.-and-Schools-fully-signed.pdf",
       "StartDate": "2020-03-25T00:00:00Z",

@@ -586,7 +586,8 @@
     "08/23/2021": 47821,
     "08/24/2021": 47935,
     "08/25/2021": 48050,
-    "08/26/2021": 48153
+    "08/26/2021": 48153,
+    "08/27/2021": 48153
   },
   "Death": {
     "01/22/2020": 0,
@@ -1171,7 +1172,8 @@
     "08/23/2021": 594,
     "08/24/2021": 594,
     "08/25/2021": 594,
-    "08/26/2021": 594
+    "08/26/2021": 594,
+    "08/27/2021": 594
   },
   "beds": 2431,
   "bedsICU": 110,
@@ -1181,11 +1183,11 @@
   "ca_county_status": "1",
   "LastConfirmed": 48153,
   "LastDeath": 594,
-  "LastConfirmedNew": 103,
+  "LastConfirmedNew": 0,
   "LastDeathNew": 0,
-  "DaysToDouble": 253.22895271059951,
-  "DaysToDoubleDeath": 1918.1674794074172,
-  "Last2WeeksConfirmedDelta": 2010,
+  "DaysToDouble": 273.3177333087424,
+  "DaysToDoubleDeath": null,
+  "Last2WeeksConfirmedDelta": 1969,
   "StayHomeOrder": {
     "StartUrl": "https://www.sfchronicle.com/bayarea/article/Bay-Area-coronavirus-decision-Behind-the-scenes-15148425.php",
     "StartDate": "2020-03-17T00:00:00Z",
