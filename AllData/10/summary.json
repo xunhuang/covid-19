@@ -29,11 +29,11 @@
     "Population": 162310,
     "LastConfirmed": 20459,
     "LastDeath": 389,
-    "LastConfirmedNew": 119,
-    "LastDeathNew": 1,
-    "DaysToDouble": 187.4746137451812,
-    "DaysToDoubleDeath": 1253.4404558805938,
-    "Last2WeeksConfirmedDelta": 1249,
+    "LastConfirmedNew": 0,
+    "LastDeathNew": 0,
+    "DaysToDouble": 160.33693201413823,
+    "DaysToDoubleDeath": 836.3445557272101,
+    "Last2WeeksConfirmedDelta": 1308,
     "Recovered": null
   },
   "10003": {
@@ -50,11 +50,11 @@
     "Population": 538479,
     "LastConfirmed": 69507,
     "LastDeath": 932,
-    "LastConfirmedNew": 147,
-    "LastDeathNew": 1,
-    "DaysToDouble": 297.866983585357,
-    "DaysToDoubleDeath": 252.5694884347866,
-    "Last2WeeksConfirmedDelta": 2370,
+    "LastConfirmedNew": 0,
+    "LastDeathNew": 0,
+    "DaysToDouble": 275.3439256133806,
+    "DaysToDoubleDeath": 236.16958778515541,
+    "Last2WeeksConfirmedDelta": 2387,
     "Recovered": null
   },
   "10005": {
@@ -71,11 +71,11 @@
     "Population": 197145,
     "LastConfirmed": 28724,
     "LastDeath": 556,
-    "LastConfirmedNew": 115,
+    "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 202.90475017065552,
-    "DaysToDoubleDeath": 289.63686482025815,
-    "Last2WeeksConfirmedDelta": 1339,
+    "DaysToDouble": 189.64687894769395,
+    "DaysToDoubleDeath": 261.49823908561257,
+    "Last2WeeksConfirmedDelta": 1375,
     "Recovered": null
   },
   "80010": {
@@ -681,7 +681,8 @@
       "07/28/2021": 110785,
       "07/29/2021": 110900,
       "07/30/2021": 111046,
-      "07/31/2021": 111178
+      "07/31/2021": 111178,
+      "08/29/2021": 118690
     },
     "Death": {
       "01/22/2020": 0,
@@ -1268,7 +1269,8 @@
       "07/28/2021": 1698,
       "07/29/2021": 1700,
       "07/30/2021": 1830,
-      "07/31/2021": 1833
+      "07/31/2021": 1833,
+      "08/29/2021": 1877
     },
     "doses_alloc_total": {
       "12/11/2020": 0,
@@ -1531,7 +1533,8 @@
       "08/25/2021": 56275,
       "08/26/2021": 56275,
       "08/27/2021": 56275,
-      "08/28/2021": 56275
+      "08/28/2021": 56275,
+      "08/29/2021": 56275
     },
     "doses_admin_total": {
       "12/11/2020": 0,
@@ -1794,7 +1797,8 @@
       "08/25/2021": 1137714,
       "08/26/2021": 1140472,
       "08/27/2021": 1143157,
-      "08/28/2021": 1145983
+      "08/28/2021": 1145983,
+      "08/29/2021": 1145983
     },
     "doses_shipped_total": {
       "12/11/2020": 0,
@@ -2057,18 +2061,19 @@
       "08/25/2021": 1422655,
       "08/26/2021": 1437555,
       "08/27/2021": 1451735,
-      "08/28/2021": 1453205
+      "08/28/2021": 1453205,
+      "08/29/2021": 1453205
     },
     "doses_alloc_total_Last": 56275,
     "doses_admin_total_Last": 1145983,
     "doses_shippied_total_Last": 1453205,
     "LastConfirmed": 118690,
-    "LastConfirmedNew": 381,
+    "LastConfirmedNew": 0,
     "LastDeath": 1877,
-    "LastDeathNew": 2,
-    "DaysToDouble": 245.37778370947325,
-    "DaysToDoubleDeath": 317.274118666643,
-    "Last2WeeksConfirmedDelta": 4958,
+    "LastDeathNew": 0,
+    "DaysToDouble": 223.44119691828163,
+    "DaysToDoubleDeath": 287.2751231183098,
+    "Last2WeeksConfirmedDelta": 5070,
     "beds": 3034,
     "bedsICU": 140,
     "hospitals": 16,
