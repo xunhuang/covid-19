@@ -591,7 +591,8 @@
     "08/28/2021": 5007,
     "08/29/2021": 5007,
     "08/30/2021": 5007,
-    "08/31/2021": 5093
+    "08/31/2021": 5093,
+    "09/01/2021": 5093
   },
   "Death": {
     "01/22/2020": 0,
@@ -1181,7 +1182,8 @@
     "08/28/2021": 73,
     "08/29/2021": 73,
     "08/30/2021": 73,
-    "08/31/2021": 73
+    "08/31/2021": 73,
+    "09/01/2021": 73
   },
   "beds": 98,
   "bedsICU": 5,
@@ -1190,11 +1192,11 @@
   "Population": 37890,
   "LastConfirmed": 5093,
   "LastDeath": 73,
-  "LastConfirmedNew": 86,
+  "LastConfirmedNew": 0,
   "LastDeathNew": 0,
-  "DaysToDouble": 220.67009071477818,
-  "DaysToDoubleDeath": 469.02215602290926,
-  "Last2WeeksConfirmedDelta": 273,
+  "DaysToDouble": 177.78790313397403,
+  "DaysToDoubleDeath": null,
+  "Last2WeeksConfirmedDelta": 359,
   "StayHomeOrder": {
     "StartUrl": "https://www.yourstephenvilletx.com/news/20200327/officials-order-shelter-in-place-ordinance-for-county",
     "StartDate": "2020-03-25T00:00:00Z",
