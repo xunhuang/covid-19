@@ -593,7 +593,8 @@
     "08/30/2021": 6089,
     "08/31/2021": 6116,
     "09/01/2021": 6157,
-    "09/02/2021": 6237
+    "09/02/2021": 6237,
+    "09/03/2021": 6237
   },
   "Death": {
     "01/22/2020": 0,
@@ -1185,7 +1186,8 @@
     "08/30/2021": 182,
     "08/31/2021": 182,
     "09/01/2021": 182,
-    "09/02/2021": 182
+    "09/02/2021": 182,
+    "09/03/2021": 182
   },
   "beds": 392,
   "bedsICU": 27,
@@ -1194,11 +1196,11 @@
   "Population": 64524,
   "LastConfirmed": 6237,
   "LastDeath": 182,
-  "LastConfirmedNew": 80,
+  "LastConfirmedNew": 0,
   "LastDeathNew": 0,
-  "DaysToDouble": 151.1297702712866,
-  "DaysToDoubleDeath": 1174.188353533975,
-  "Last2WeeksConfirmedDelta": 422,
+  "DaysToDouble": 132.5672329140931,
+  "DaysToDoubleDeath": null,
+  "Last2WeeksConfirmedDelta": 480,
   "StayHomeOrder": {
     "StartUrl": "https://www.ktre.com/2020/03/29/nacogdoches-county-judge-issues-stay-at-home-order/",
     "StartDate": "2020-03-30T00:00:00Z",

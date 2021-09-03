@@ -593,7 +593,8 @@
     "08/30/2021": 1142,
     "08/31/2021": 1142,
     "09/01/2021": 1154,
-    "09/02/2021": 1159
+    "09/02/2021": 1159,
+    "09/03/2021": 1159
   },
   "Death": {
     "01/22/2020": 0,
@@ -1185,7 +1186,8 @@
     "08/30/2021": 32,
     "08/31/2021": 32,
     "09/01/2021": 32,
-    "09/02/2021": 33
+    "09/02/2021": 33,
+    "09/03/2021": 33
   },
   "beds": 17,
   "bedsICU": 0,
@@ -1194,11 +1196,11 @@
   "Population": 8062,
   "LastConfirmed": 1159,
   "LastDeath": 33,
-  "LastConfirmedNew": 5,
-  "LastDeathNew": 1,
-  "DaysToDouble": 364.1390542863126,
-  "DaysToDoubleDeath": null,
-  "Last2WeeksConfirmedDelta": 34,
+  "LastConfirmedNew": 0,
+  "LastDeathNew": 0,
+  "DaysToDouble": 247.55520905789479,
+  "DaysToDoubleDeath": 210.2380555850876,
+  "Last2WeeksConfirmedDelta": 37,
   "StayHomeOrder": {
     "StartUrl": "https://www.kcbd.com/2020/03/24/castro-county-issues-shelter-place-order/",
     "StartDate": "2020-03-24T00:00:00Z",

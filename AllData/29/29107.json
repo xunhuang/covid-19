@@ -593,7 +593,8 @@
     "08/30/2021": 4088,
     "08/31/2021": 4098,
     "09/01/2021": 4115,
-    "09/02/2021": 4133
+    "09/02/2021": 4133,
+    "09/03/2021": 4133
   },
   "Death": {
     "01/22/2020": 0,
@@ -1185,7 +1186,8 @@
     "08/30/2021": 62,
     "08/31/2021": 62,
     "09/01/2021": 62,
-    "09/02/2021": 63
+    "09/02/2021": 63,
+    "09/03/2021": 63
   },
   "beds": 32,
   "bedsICU": 2,
@@ -1194,11 +1196,11 @@
   "Population": 33381,
   "LastConfirmed": 4133,
   "LastDeath": 63,
-  "LastConfirmedNew": 18,
-  "LastDeathNew": 1,
-  "DaysToDouble": 191.22012558763302,
-  "DaysToDoubleDeath": null,
-  "Last2WeeksConfirmedDelta": 252,
+  "LastConfirmedNew": 0,
+  "LastDeathNew": 0,
+  "DaysToDouble": 205.0508940273261,
+  "DaysToDoubleDeath": 404.32722934777826,
+  "Last2WeeksConfirmedDelta": 255,
   "StayHomeOrder": {
     "StartUrl": "http://www.lafayettecountymo.com/Uploads/lc_admin/Signed%20COVID-19%20Stay%20At%20Home%20ordinance.pdf",
     "StartDate": "2020-03-31T00:00:00Z",

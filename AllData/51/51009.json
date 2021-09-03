@@ -593,7 +593,8 @@
     "08/30/2021": 3424,
     "08/31/2021": 3458,
     "09/01/2021": 3478,
-    "09/02/2021": 3526
+    "09/02/2021": 3526,
+    "09/03/2021": 3526
   },
   "Death": {
     "01/22/2020": 0,
@@ -1185,14 +1186,15 @@
     "08/30/2021": 41,
     "08/31/2021": 41,
     "09/01/2021": 41,
-    "09/02/2021": 41
+    "09/02/2021": 41,
+    "09/03/2021": 41
   },
   "Population": 32353,
   "LastConfirmed": 3526,
   "LastDeath": 41,
-  "LastConfirmedNew": 48,
+  "LastConfirmedNew": 0,
   "LastDeathNew": 0,
-  "DaysToDouble": 97.6629744058341,
+  "DaysToDouble": 80.04945679137867,
   "DaysToDoubleDeath": -862017116176384.1,
-  "Last2WeeksConfirmedDelta": 289
+  "Last2WeeksConfirmedDelta": 319
 }

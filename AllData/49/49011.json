@@ -593,7 +593,8 @@
     "08/30/2021": 44916,
     "08/31/2021": 45026,
     "09/01/2021": 45206,
-    "09/02/2021": 45394
+    "09/02/2021": 45394,
+    "09/03/2021": 45394
   },
   "Death": {
     "01/22/2020": 0,
@@ -1185,7 +1186,8 @@
     "08/30/2021": 212,
     "08/31/2021": 211,
     "09/01/2021": 212,
-    "09/02/2021": 212
+    "09/02/2021": 212,
+    "09/03/2021": 212
   },
   "beds": 433,
   "bedsICU": 22,
@@ -1194,11 +1196,11 @@
   "Population": 306479,
   "LastConfirmed": 45394,
   "LastDeath": 212,
-  "LastConfirmedNew": 188,
+  "LastConfirmedNew": 0,
   "LastDeathNew": 0,
-  "DaysToDouble": 242.29159765150243,
-  "DaysToDoubleDeath": 4104.809956240777,
-  "Last2WeeksConfirmedDelta": 1954,
+  "DaysToDouble": 205.85311119863883,
+  "DaysToDoubleDeath": -4104.809956260324,
+  "Last2WeeksConfirmedDelta": 1998,
   "StayHomeOrder": {
     "StartUrl": "https://www.sltrib.com/news/2020/04/01/davis-county-issues/",
     "StartDate": "2020-04-01T00:00:00Z",
