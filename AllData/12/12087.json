@@ -594,7 +594,8 @@
     "08/31/2021": 9519,
     "09/01/2021": 9519,
     "09/02/2021": 9519,
-    "09/03/2021": 9859
+    "09/03/2021": 9859,
+    "09/04/2021": 9859
   },
   "Death": {
     "01/22/2020": 0,
@@ -1187,7 +1188,8 @@
     "08/31/2021": 52,
     "09/01/2021": 52,
     "09/02/2021": 52,
-    "09/03/2021": 52
+    "09/03/2021": 52,
+    "09/04/2021": 52
   },
   "beds": 148,
   "bedsICU": 14,
@@ -1196,11 +1198,11 @@
   "Population": 73090,
   "LastConfirmed": 9859,
   "LastDeath": 52,
-  "LastConfirmedNew": 340,
+  "LastConfirmedNew": 0,
   "LastDeathNew": 0,
-  "DaysToDouble": null,
+  "DaysToDouble": 184.3392026563265,
   "DaysToDoubleDeath": 1724034232352768.2,
-  "Last2WeeksConfirmedDelta": 863,
+  "Last2WeeksConfirmedDelta": 1203,
   "StayHomeOrder": {
     "StartUrl": "https://www.nbc-2.com/story/41952608/stay-safer-at-home-order-issued-for-southeast-florida-counties",
     "StartDate": "2020-03-30T00:00:00Z",

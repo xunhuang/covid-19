@@ -594,7 +594,8 @@
     "08/31/2021": 3547,
     "09/01/2021": 3585,
     "09/02/2021": 3633,
-    "09/03/2021": 3651
+    "09/03/2021": 3651,
+    "09/04/2021": 3651
   },
   "Death": {
     "01/22/2020": 0,
@@ -1187,7 +1188,8 @@
     "08/31/2021": 115,
     "09/01/2021": 116,
     "09/02/2021": 116,
-    "09/03/2021": 116
+    "09/03/2021": 116,
+    "09/04/2021": 116
   },
   "beds": 48,
   "bedsICU": 0,
@@ -1196,11 +1198,11 @@
   "Population": 22935,
   "LastConfirmed": 3651,
   "LastDeath": 116,
-  "LastConfirmedNew": 18,
+  "LastConfirmedNew": 0,
   "LastDeathNew": 0,
-  "DaysToDouble": 169.64869995233138,
-  "DaysToDoubleDeath": 448.3247957776565,
-  "Last2WeeksConfirmedDelta": 222,
+  "DaysToDouble": 133.6038014327853,
+  "DaysToDoubleDeath": 373.6039964811376,
+  "Last2WeeksConfirmedDelta": 228,
   "StayHomeOrder": {
     "StartUrl": "http://www.co.hockley.tx.us/upload/page/4402/2020/20200406133102039.pdf",
     "StartDate": "2020-03-31T00:00:00Z",

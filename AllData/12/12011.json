@@ -594,7 +594,8 @@
     "08/31/2021": 323839,
     "09/01/2021": 323839,
     "09/02/2021": 323839,
-    "09/03/2021": 332684
+    "09/03/2021": 332684,
+    "09/04/2021": 332684
   },
   "Death": {
     "01/22/2020": 0,
@@ -1187,7 +1188,8 @@
     "08/31/2021": 3079,
     "09/01/2021": 3079,
     "09/02/2021": 3079,
-    "09/03/2021": 3079
+    "09/03/2021": 3079,
+    "09/04/2021": 3079
   },
   "beds": 5721,
   "bedsICU": 525,
@@ -1196,11 +1198,11 @@
   "Population": 1748066,
   "LastConfirmed": 332684,
   "LastDeath": 3079,
-  "LastConfirmedNew": 8845,
+  "LastConfirmedNew": 0,
   "LastDeathNew": 0,
-  "DaysToDouble": null,
+  "DaysToDouble": 240.0811551706654,
   "DaysToDoubleDeath": 862017116176384.1,
-  "Last2WeeksConfirmedDelta": 25191,
+  "Last2WeeksConfirmedDelta": 34036,
   "StayHomeOrder": {
     "StartUrl": "https://www.sun-sentinel.com/coronavirus/fl-ne-coronavirus-broward-county-stay-home-order-20200326-kdtc4h7qlrbixh5oxjfws7jdpi-story.html",
     "StartDate": "2020-03-27T00:00:00Z",

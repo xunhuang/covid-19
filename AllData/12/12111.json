@@ -594,7 +594,8 @@
     "08/31/2021": 40394,
     "09/01/2021": 40394,
     "09/02/2021": 40394,
-    "09/03/2021": 42587
+    "09/03/2021": 42587,
+    "09/04/2021": 42587
   },
   "Death": {
     "01/22/2020": 0,
@@ -1187,7 +1188,8 @@
     "08/31/2021": 657,
     "09/01/2021": 657,
     "09/02/2021": 657,
-    "09/03/2021": 657
+    "09/03/2021": 657,
+    "09/04/2021": 657
   },
   "beds": 861,
   "bedsICU": 54,
@@ -1196,11 +1198,11 @@
   "Population": 277789,
   "LastConfirmed": 42587,
   "LastDeath": 657,
-  "LastConfirmedNew": 2193,
+  "LastConfirmedNew": 0,
   "LastDeathNew": 0,
-  "DaysToDouble": null,
+  "DaysToDouble": 122.36892265345844,
   "DaysToDoubleDeath": null,
-  "Last2WeeksConfirmedDelta": 4513,
+  "Last2WeeksConfirmedDelta": 6706,
   "StayHomeOrder": {
     "StartUrl": "https://floridapolitics.com/archives/326214-st-lucie-safer-at-home-order",
     "StartDate": "2020-04-04T00:00:00Z",

@@ -594,7 +594,8 @@
     "08/31/2021": 206934,
     "09/01/2021": 206934,
     "09/02/2021": 206934,
-    "09/03/2021": 216734
+    "09/03/2021": 216734,
+    "09/04/2021": 216734
   },
   "Death": {
     "01/22/2020": 0,
@@ -1187,7 +1188,8 @@
     "08/31/2021": 1832,
     "09/01/2021": 1832,
     "09/02/2021": 1832,
-    "09/03/2021": 1832
+    "09/03/2021": 1832,
+    "09/04/2021": 1832
   },
   "beds": 4021,
   "bedsICU": 411,
@@ -1196,11 +1198,11 @@
   "Population": 1229226,
   "LastConfirmed": 216734,
   "LastDeath": 1832,
-  "LastConfirmedNew": 9800,
+  "LastConfirmedNew": 0,
   "LastDeathNew": 0,
-  "DaysToDouble": null,
+  "DaysToDouble": 139.81518876909823,
   "DaysToDoubleDeath": null,
-  "Last2WeeksConfirmedDelta": 23150,
+  "Last2WeeksConfirmedDelta": 32950,
   "StayHomeOrder": {
     "StartUrl": "https://www.tampabay.com/news/health/2020/03/26/hillsborough-agrees-to-keep-residents-home-in-coronavirus-times/",
     "StartDate": "2020-03-27T00:00:00Z",
