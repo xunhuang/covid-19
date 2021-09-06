@@ -596,7 +596,8 @@
     "09/02/2021": 50590,
     "09/03/2021": 50760,
     "09/04/2021": 50890,
-    "09/05/2021": 50985
+    "09/05/2021": 50985,
+    "09/06/2021": 50985
   },
   "Death": {
     "01/22/2020": 0,
@@ -1191,7 +1192,8 @@
     "09/02/2021": 508,
     "09/03/2021": 511,
     "09/04/2021": 511,
-    "09/05/2021": 511
+    "09/05/2021": 511,
+    "09/06/2021": 511
   },
   "beds": 874,
   "bedsICU": 39,
@@ -1200,11 +1202,11 @@
   "Population": 360485,
   "LastConfirmed": 50985,
   "LastDeath": 511,
-  "LastConfirmedNew": 95,
+  "LastConfirmedNew": 0,
   "LastDeathNew": 0,
-  "DaysToDouble": 256.8186685113883,
-  "DaysToDoubleDeath": 178.371237142556,
-  "Last2WeeksConfirmedDelta": 1949,
+  "DaysToDouble": 255.653665391814,
+  "DaysToDoubleDeath": 233.976825518136,
+  "Last2WeeksConfirmedDelta": 1907,
   "StayHomeOrder": {
     "StartUrl": "https://fox2now.com/news/missouri/st-charles-county-issues-stay-at-home-order-taking-effect-tuesday/",
     "StartDate": "2020-03-24T00:00:00Z",
