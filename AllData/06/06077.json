@@ -599,7 +599,8 @@
     "09/05/2021": 88846,
     "09/06/2021": 89121,
     "09/07/2021": 89293,
-    "09/08/2021": 89468
+    "09/08/2021": 89468,
+    "09/09/2021": 89468
   },
   "Death": {
     "01/22/2020": 0,
@@ -1197,7 +1198,8 @@
     "09/05/2021": 1548,
     "09/06/2021": 1548,
     "09/07/2021": 1548,
-    "09/08/2021": 1548
+    "09/08/2021": 1548,
+    "09/09/2021": 1548
   },
   "beds": 1267,
   "bedsICU": 110,
@@ -1207,11 +1209,11 @@
   "ca_county_status": "2",
   "LastConfirmed": 89468,
   "LastDeath": 1548,
-  "LastConfirmedNew": 175,
+  "LastConfirmedNew": 0,
   "LastDeathNew": 0,
-  "DaysToDouble": 179.8187426231876,
+  "DaysToDouble": 197.3604048181188,
   "DaysToDoubleDeath": 624.2931639522415,
-  "Last2WeeksConfirmedDelta": 6172,
+  "Last2WeeksConfirmedDelta": 6002,
   "StayHomeOrder": {
     "StartUrl": "https://www.sjgov.org/covid19/Press_Release_New_Order_by_PHO_and_DirEmergSvc_3-26-2020.pdf",
     "StartDate": "2020-03-21T00:00:00Z",
