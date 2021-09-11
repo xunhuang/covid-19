@@ -601,7 +601,8 @@
     "09/07/2021": 903,
     "09/08/2021": 931,
     "09/09/2021": 931,
-    "09/10/2021": 964
+    "09/10/2021": 964,
+    "09/11/2021": 964
   },
   "Death": {
     "01/22/2020": 0,
@@ -1201,7 +1202,8 @@
     "09/07/2021": 24,
     "09/08/2021": 24,
     "09/09/2021": 24,
-    "09/10/2021": 25
+    "09/10/2021": 25,
+    "09/11/2021": 25
   },
   "beds": 25,
   "bedsICU": 0,
@@ -1210,11 +1212,11 @@
   "Population": 8601,
   "LastConfirmed": 964,
   "LastDeath": 25,
-  "LastConfirmedNew": 33,
-  "LastDeathNew": 1,
-  "DaysToDouble": 127.11331539431207,
-  "DaysToDoubleDeath": null,
-  "Last2WeeksConfirmedDelta": 80,
+  "LastConfirmedNew": 0,
+  "LastDeathNew": 0,
+  "DaysToDouble": 67.4557355163015,
+  "DaysToDoubleDeath": 158.47764817117536,
+  "Last2WeeksConfirmedDelta": 113,
   "StayHomeOrder": {
     "StartUrl": "https://www.wibw.com/content/news/Coffey-Co-issues-Stay-at-Home-Order-569093251.html",
     "StartDate": "2020-03-26T00:00:00Z",
