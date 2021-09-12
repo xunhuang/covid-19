@@ -602,7 +602,8 @@
     "09/08/2021": 1008,
     "09/09/2021": 1016,
     "09/10/2021": 1019,
-    "09/11/2021": 1021
+    "09/11/2021": 1021,
+    "09/12/2021": 1021
   },
   "Death": {
     "01/22/2020": 0,
@@ -1203,7 +1204,8 @@
     "09/08/2021": 20,
     "09/09/2021": 21,
     "09/10/2021": 21,
-    "09/11/2021": 21
+    "09/11/2021": 21,
+    "09/12/2021": 21
   },
   "beds": 20,
   "bedsICU": 0,
@@ -1212,11 +1214,11 @@
   "Population": 7854,
   "LastConfirmed": 1021,
   "LastDeath": 21,
-  "LastConfirmedNew": 2,
+  "LastConfirmedNew": 0,
   "LastDeathNew": 0,
-  "DaysToDouble": 189.9346843819087,
-  "DaysToDoubleDeath": 79.55751486418032,
-  "Last2WeeksConfirmedDelta": 61,
+  "DaysToDouble": 159.25595165944353,
+  "DaysToDoubleDeath": 66.29792905348717,
+  "Last2WeeksConfirmedDelta": 62,
   "StayHomeOrder": {
     "StartUrl": "http://www.co.swisher.tx.us/upload/page/7275/SHELTER%20IN%20PLACE%20ORDER.pdf",
     "StartDate": "2020-04-06T00:00:00Z",

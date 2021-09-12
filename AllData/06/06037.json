@@ -602,7 +602,8 @@
     "09/08/2021": 1423620,
     "09/09/2021": 1423620,
     "09/10/2021": 1427817,
-    "09/11/2021": 1427817
+    "09/11/2021": 1427817,
+    "09/12/2021": 1427817
   },
   "Death": {
     "01/22/2020": 0,
@@ -1203,7 +1204,8 @@
     "09/08/2021": 25514,
     "09/09/2021": 25533,
     "09/10/2021": 25611,
-    "09/11/2021": 25630
+    "09/11/2021": 25630,
+    "09/12/2021": 25630
   },
   "beds": 23659,
   "bedsICU": 2004,
@@ -1214,10 +1216,10 @@
   "LastConfirmed": 1427817,
   "LastDeath": 25630,
   "LastConfirmedNew": 0,
-  "LastDeathNew": 19,
-  "DaysToDouble": 614.2538189615486,
-  "DaysToDoubleDeath": 670.9743709645703,
-  "Last2WeeksConfirmedDelta": 33185,
+  "LastDeathNew": 0,
+  "DaysToDouble": 644.3758883826313,
+  "DaysToDoubleDeath": 565.8090635502496,
+  "Last2WeeksConfirmedDelta": 30337,
   "StayHomeOrder": {
     "StartUrl": "http://publichealth.lacounty.gov/media/Coronavirus/FAQ-SaferatHomeOrder.pdf",
     "StartDate": "2020-03-21T00:00:00Z",

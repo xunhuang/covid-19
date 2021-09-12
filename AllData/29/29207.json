@@ -602,7 +602,8 @@
     "09/08/2021": 3672,
     "09/09/2021": 3684,
     "09/10/2021": 3712,
-    "09/11/2021": 3729
+    "09/11/2021": 3729,
+    "09/12/2021": 3729
   },
   "Death": {
     "01/22/2020": 0,
@@ -1203,7 +1204,8 @@
     "09/08/2021": 57,
     "09/09/2021": 57,
     "09/10/2021": 57,
-    "09/11/2021": 57
+    "09/11/2021": 57,
+    "09/12/2021": 57
   },
   "beds": 48,
   "bedsICU": 4,
@@ -1212,11 +1214,11 @@
   "Population": 29968,
   "LastConfirmed": 3729,
   "LastDeath": 57,
-  "LastConfirmedNew": 17,
+  "LastConfirmedNew": 0,
   "LastDeathNew": 0,
-  "DaysToDouble": 189.75880950283147,
-  "DaysToDoubleDeath": 182.75503558343937,
-  "Last2WeeksConfirmedDelta": 296,
+  "DaysToDouble": 159.06116059442985,
+  "DaysToDoubleDeath": 182.75503558345875,
+  "Last2WeeksConfirmedDelta": 288,
   "StayHomeOrder": {
     "StartUrl": "https://www.facebook.com/permalink.php?story_fbid=2642483482744175&id=1520203968305471",
     "StartDate": "2020-04-03T00:00:00Z",

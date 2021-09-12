@@ -602,7 +602,8 @@
     "09/08/2021": 3262,
     "09/09/2021": 3274,
     "09/10/2021": 3287,
-    "09/11/2021": 3294
+    "09/11/2021": 3294,
+    "09/12/2021": 3294
   },
   "Death": {
     "01/22/2020": 0,
@@ -1203,7 +1204,8 @@
     "09/08/2021": 47,
     "09/09/2021": 47,
     "09/10/2021": 47,
-    "09/11/2021": 47
+    "09/11/2021": 47,
+    "09/12/2021": 47
   },
   "beds": 35,
   "bedsICU": 0,
@@ -1212,11 +1214,11 @@
   "Population": 24696,
   "LastConfirmed": 3294,
   "LastDeath": 47,
-  "LastConfirmedNew": 7,
+  "LastConfirmedNew": 0,
   "LastDeathNew": 0,
-  "DaysToDouble": 275.10440862025587,
+  "DaysToDouble": 250.66513949616234,
   "DaysToDoubleDeath": 74.38607602288127,
-  "Last2WeeksConfirmedDelta": 139,
+  "Last2WeeksConfirmedDelta": 131,
   "StayHomeOrder": {
     "StartUrl": "https://www.ksdk.com/article/news/health/coronavirus/crawford-county-coronavirus-shelter-in-place-order/63-2918bfc8-2884-4055-8370-749a97ed98c9",
     "StartDate": "2020-04-01T00:00:00Z",
