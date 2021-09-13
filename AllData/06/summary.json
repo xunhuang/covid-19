@@ -633,7 +633,8 @@
       "07/28/2021": 3935558,
       "07/29/2021": 3944903,
       "07/30/2021": 3956258,
-      "07/31/2021": 3961145
+      "07/31/2021": 3961145,
+      "09/13/2021": 4472681
     },
     "Death": {
       "01/22/2020": 0,
@@ -1235,7 +1236,8 @@
       "07/28/2021": 64341,
       "07/29/2021": 64386,
       "07/30/2021": 64423,
-      "07/31/2021": 64425
+      "07/31/2021": 64425,
+      "09/13/2021": 67100
     },
     "doses_alloc_total": {
       "12/11/2020": 0,
@@ -2075,12 +2077,12 @@
     "doses_admin_total_Last": 49084830,
     "doses_shippied_total_Last": 56591755,
     "LastConfirmed": 4472681,
-    "LastConfirmedNew": 4164,
+    "LastConfirmedNew": 0,
     "LastDeath": 67100,
-    "LastDeathNew": 42,
-    "DaysToDouble": 351.5830269529458,
-    "DaysToDoubleDeath": 434.55345937822733,
-    "Last2WeeksConfirmedDelta": 159486,
+    "LastDeathNew": 0,
+    "DaysToDouble": 373.4963338013244,
+    "DaysToDoubleDeath": 407.17018385302185,
+    "Last2WeeksConfirmedDelta": 154221,
     "beds": 85161,
     "bedsICU": 6925,
     "hospitals": 466,
@@ -2135,7 +2137,7 @@
     "LastDeathNew": 0,
     "DaysToDouble": 305.9453460960459,
     "DaysToDoubleDeath": 853.6972903440367,
-    "Last2WeeksConfirmedDelta": 5189,
+    "Last2WeeksConfirmedDelta": 4301,
     "StayHomeOrder": {
       "StartUrl": "https://www.sfchronicle.com/bayarea/article/Bay-Area-coronavirus-decision-Behind-the-scenes-15148425.php",
       "StartDate": "2020-03-17T00:00:00Z",
@@ -2163,7 +2165,7 @@
     "LastDeathNew": 0,
     "DaysToDouble": 249.04483631908252,
     "DaysToDoubleDeath": 58.74863662924759,
-    "Last2WeeksConfirmedDelta": 264,
+    "Last2WeeksConfirmedDelta": 270,
     "StayHomeOrder": {
       "StartUrl": "https://www.amadorgov.org/home/showdocument?id=34891",
       "StartDate": "2020-03-20T00:00:00Z",
@@ -2191,7 +2193,7 @@
     "LastDeathNew": 0,
     "DaysToDouble": 112.97823948423635,
     "DaysToDoubleDeath": 213.24156602965004,
-    "Last2WeeksConfirmedDelta": 1650,
+    "Last2WeeksConfirmedDelta": 1817,
     "Recovered": null
   },
   "06009": {
@@ -2213,7 +2215,7 @@
     "LastDeathNew": 0,
     "DaysToDouble": 137.98263505742946,
     "DaysToDoubleDeath": 124.20186570177658,
-    "Last2WeeksConfirmedDelta": 310,
+    "Last2WeeksConfirmedDelta": 305,
     "StayHomeOrder": {
       "StartUrl": "https://www.mymotherlode.com/news/local/1033803/calaveras-county-issues-local-stay-at-home-order.html",
       "StartDate": "2020-03-27T00:00:00Z",
@@ -2241,7 +2243,7 @@
     "LastDeathNew": 0,
     "DaysToDouble": 278.92134366984595,
     "DaysToDoubleDeath": 202.75919229149832,
-    "Last2WeeksConfirmedDelta": 5287,
+    "Last2WeeksConfirmedDelta": 4971,
     "StayHomeOrder": {
       "StartUrl": "https://www.sfchronicle.com/bayarea/article/Bay-Area-coronavirus-decision-Behind-the-scenes-15148425.php",
       "StartDate": "2020-03-17T00:00:00Z",
@@ -2269,7 +2271,7 @@
     "LastDeathNew": 0,
     "DaysToDouble": 230.14805688954533,
     "DaysToDoubleDeath": -1724034232352768.2,
-    "Last2WeeksConfirmedDelta": 1040,
+    "Last2WeeksConfirmedDelta": 1106,
     "StayHomeOrder": {
       "StartUrl": "https://www.edcgov.us/County%20Press%20Releases/Pages/County-Issues-Shelter-in-Place-Directive.aspx",
       "StartDate": "2020-03-20T00:00:00Z",
@@ -2297,7 +2299,7 @@
     "LastDeathNew": 7,
     "DaysToDouble": 193.0125956972967,
     "DaysToDoubleDeath": 462.6832647762031,
-    "Last2WeeksConfirmedDelta": 7805,
+    "Last2WeeksConfirmedDelta": 7743,
     "Recovered": null
   },
   "06023": {
@@ -2347,7 +2349,7 @@
     "LastDeathNew": 0,
     "DaysToDouble": 716.7493492586343,
     "DaysToDoubleDeath": null,
-    "Last2WeeksConfirmedDelta": 595,
+    "Last2WeeksConfirmedDelta": 559,
     "StayHomeOrder": {
       "StartUrl": "https://kyma.com/news/2020/03/31/imperial-county-issues-expanded-stay-at-home-order/",
       "StartDate": "2020-04-01T00:00:00Z",
@@ -2425,7 +2427,7 @@
     "LastDeathNew": 0,
     "DaysToDouble": 644.3758883826313,
     "DaysToDoubleDeath": 565.8090635502496,
-    "Last2WeeksConfirmedDelta": 30337,
+    "Last2WeeksConfirmedDelta": 26980,
     "StayHomeOrder": {
       "StartUrl": "http://publichealth.lacounty.gov/media/Coronavirus/FAQ-SaferatHomeOrder.pdf",
       "StartDate": "2020-03-21T00:00:00Z",
@@ -2453,7 +2455,7 @@
     "LastDeathNew": 0,
     "DaysToDouble": 199.57853542257317,
     "DaysToDoubleDeath": 244.53719079173555,
-    "Last2WeeksConfirmedDelta": 1127,
+    "Last2WeeksConfirmedDelta": 1172,
     "Recovered": null
   },
   "06041": {
@@ -2475,7 +2477,7 @@
     "LastDeathNew": 0,
     "DaysToDouble": 791.9792456632086,
     "DaysToDoubleDeath": 862017116176384.1,
-    "Last2WeeksConfirmedDelta": 258,
+    "Last2WeeksConfirmedDelta": 263,
     "StayHomeOrder": {
       "StartUrl": "https://www.sfchronicle.com/bayarea/article/Bay-Area-coronavirus-decision-Behind-the-scenes-15148425.php",
       "StartDate": "2020-03-17T00:00:00Z",
@@ -2609,7 +2611,7 @@
     "LastDeathNew": 0,
     "DaysToDouble": 276.94580890040004,
     "DaysToDoubleDeath": 1724034232352768.2,
-    "Last2WeeksConfirmedDelta": 461,
+    "Last2WeeksConfirmedDelta": 504,
     "StayHomeOrder": {
       "StartUrl": "https://www.countyofnapa.org/DocumentCenter/View/17136/Shelter-at-Home-FAQ_ENG-04222020-PDF?bidId=",
       "StartDate": "2020-03-20T00:00:00Z",
@@ -2637,7 +2639,7 @@
     "LastDeathNew": 0,
     "DaysToDouble": 139.72366586836472,
     "DaysToDoubleDeath": -1724034232352768.2,
-    "Last2WeeksConfirmedDelta": 846,
+    "Last2WeeksConfirmedDelta": 798,
     "StayHomeOrder": {
       "StartUrl": "https://www.mynevadacounty.com/DocumentCenter/View/33812/Nevada-County-FAQs-on-Stay-at-Home-Order",
       "StartDate": "2020-04-15T00:00:00Z",
@@ -2687,7 +2689,7 @@
     "LastDeathNew": 1,
     "DaysToDouble": 147.77373136747096,
     "DaysToDoubleDeath": 235.54069831415364,
-    "Last2WeeksConfirmedDelta": 3316,
+    "Last2WeeksConfirmedDelta": 3257,
     "StayHomeOrder": {
       "StartUrl": "https://www.placer.ca.gov/DocumentCenter/View/43269/PlacerCounty-COVID-19-Directive",
       "StartDate": "2020-03-20T00:00:00Z",
@@ -2743,7 +2745,7 @@
     "LastDeathNew": 0,
     "DaysToDouble": 247.18645889708537,
     "DaysToDoubleDeath": 125.77988068449636,
-    "Last2WeeksConfirmedDelta": 12233,
+    "Last2WeeksConfirmedDelta": 11636,
     "StayHomeOrder": {
       "StartUrl": "https://www.capradio.org/articles/2020/04/07/sacramento-county-extends-stay-at-home-order-to-may-1-adds-new-restrictions",
       "StartDate": "2020-03-19T00:00:00Z",
@@ -2821,7 +2823,7 @@
     "LastDeathNew": 0,
     "DaysToDouble": 299.7782962657068,
     "DaysToDoubleDeath": 591.1023714976939,
-    "Last2WeeksConfirmedDelta": 14194,
+    "Last2WeeksConfirmedDelta": 13729,
     "StayHomeOrder": {
       "StartUrl": "https://www.sandiegocounty.gov/content/dam/sdc/hhsa/programs/phs/Epidemiology/HealthOfficerOrderCOVID19.pdf",
       "StartDate": "2020-03-29T00:00:00Z",
@@ -2849,7 +2851,7 @@
     "LastDeathNew": 1,
     "DaysToDouble": 356.67475011991075,
     "DaysToDoubleDeath": 256.9710936548078,
-    "Last2WeeksConfirmedDelta": 2230,
+    "Last2WeeksConfirmedDelta": 2204,
     "Recovered": null
   },
   "06077": {
@@ -2871,7 +2873,7 @@
     "LastDeathNew": 8,
     "DaysToDouble": 292.96925210268085,
     "DaysToDoubleDeath": 229.27734278393757,
-    "Last2WeeksConfirmedDelta": 5779,
+    "Last2WeeksConfirmedDelta": 5533,
     "StayHomeOrder": {
       "StartUrl": "https://www.sjgov.org/covid19/Press_Release_New_Order_by_PHO_and_DirEmergSvc_3-26-2020.pdf",
       "StartDate": "2020-03-21T00:00:00Z",
@@ -2899,7 +2901,7 @@
     "LastDeathNew": 0,
     "DaysToDouble": 213.72190285313036,
     "DaysToDoubleDeath": 78.51445785697639,
-    "Last2WeeksConfirmedDelta": 1389,
+    "Last2WeeksConfirmedDelta": 1514,
     "StayHomeOrder": {
       "StartUrl": "https://www.emergencyslo.org/en/shelter-at-home-order.aspx",
       "StartDate": "2020-03-19T00:00:00Z",
@@ -2927,7 +2929,7 @@
     "LastDeathNew": 0,
     "DaysToDouble": 395.9294969196377,
     "DaysToDoubleDeath": 648.5533675160465,
-    "Last2WeeksConfirmedDelta": 1988,
+    "Last2WeeksConfirmedDelta": 1917,
     "StayHomeOrder": {
       "StartUrl": "https://www.sfchronicle.com/bayarea/article/Bay-Area-coronavirus-decision-Behind-the-scenes-15148425.php",
       "StartDate": "2020-03-17T00:00:00Z",
@@ -2955,7 +2957,7 @@
     "LastDeathNew": 2,
     "DaysToDouble": 265.5786442359563,
     "DaysToDoubleDeath": 792.9000711885888,
-    "Last2WeeksConfirmedDelta": 1530,
+    "Last2WeeksConfirmedDelta": 1660,
     "Recovered": null
   },
   "06085": {
@@ -3005,7 +3007,7 @@
     "LastDeathNew": 0,
     "DaysToDouble": 338.9231994901392,
     "DaysToDoubleDeath": null,
-    "Last2WeeksConfirmedDelta": 690,
+    "Last2WeeksConfirmedDelta": 702,
     "StayHomeOrder": {
       "StartUrl": "https://www.politico.com/states/california/story/2020/03/17/bay-area-shelter-in-place-approach-gains-steam-in-northern-california-9421981",
       "StartDate": "2020-03-17T00:00:00Z",
@@ -3105,7 +3107,7 @@
     "LastDeathNew": 0,
     "DaysToDouble": 206.6688318130907,
     "DaysToDoubleDeath": 395.16870279160196,
-    "Last2WeeksConfirmedDelta": 2188,
+    "Last2WeeksConfirmedDelta": 2022,
     "StayHomeOrder": {
       "StartUrl": "http://sonomacounty.ca.gov/CAO/Press-Releases/Health-Officer-Orders-County-Residents-Shelter-in-Place/",
       "StartDate": "2020-03-18T00:00:00Z",
@@ -3161,7 +3163,7 @@
     "LastDeathNew": 0,
     "DaysToDouble": 162.89586504874896,
     "DaysToDoubleDeath": 70.28896960395798,
-    "Last2WeeksConfirmedDelta": 704,
+    "Last2WeeksConfirmedDelta": 774,
     "StayHomeOrder": {
       "StartUrl": "https://www.actionnewsnow.com/content/news/Yuba-Sutter-Health-Officer-issues-new-restrictions-on-stay-at-home-order-569420231.html",
       "StartDate": "2020-03-18T00:00:00Z",
@@ -3189,7 +3191,7 @@
     "LastDeathNew": 6,
     "DaysToDouble": 210.29153135744602,
     "DaysToDoubleDeath": 436.83222120532116,
-    "Last2WeeksConfirmedDelta": 3773,
+    "Last2WeeksConfirmedDelta": 3878,
     "Recovered": null
   },
   "06111": {
@@ -3211,7 +3213,7 @@
     "LastDeathNew": 3,
     "DaysToDouble": 291.58383892113653,
     "DaysToDoubleDeath": 332.6684642342362,
-    "Last2WeeksConfirmedDelta": 2279,
+    "Last2WeeksConfirmedDelta": 2462,
     "StayHomeOrder": {
       "StartUrl": "https://www.vcstar.com/story/news/2020/03/17/cornavirus-california-ventura-county-business-closures-covid-19/5074822002/",
       "StartDate": "2020-03-17T00:00:00Z",
@@ -3239,7 +3241,7 @@
     "LastDeathNew": 0,
     "DaysToDouble": 248.7643334278778,
     "DaysToDoubleDeath": 191.65064584918696,
-    "Last2WeeksConfirmedDelta": 1065,
+    "Last2WeeksConfirmedDelta": 1101,
     "StayHomeOrder": {
       "StartUrl": "https://www.sacbee.com/news/coronavirus/article241307681.html",
       "StartDate": "2020-03-19T00:00:00Z",
@@ -3291,7 +3293,7 @@
     "LastDeathNew": 0,
     "DaysToDouble": 205.9247923321774,
     "DaysToDoubleDeath": null,
-    "Last2WeeksConfirmedDelta": 5,
+    "Last2WeeksConfirmedDelta": 6,
     "Recovered": null
   },
   "06011": {
@@ -3337,7 +3339,7 @@
     "LastDeathNew": 0,
     "DaysToDouble": 107.43808291030136,
     "DaysToDoubleDeath": 34.25103009551844,
-    "Last2WeeksConfirmedDelta": 446,
+    "Last2WeeksConfirmedDelta": 379,
     "Recovered": null
   },
   "06021": {
@@ -3359,7 +3361,7 @@
     "LastDeathNew": 0,
     "DaysToDouble": 134.2615063510865,
     "DaysToDoubleDeath": null,
-    "Last2WeeksConfirmedDelta": 237,
+    "Last2WeeksConfirmedDelta": 253,
     "Recovered": null
   },
   "06031": {
@@ -3381,7 +3383,7 @@
     "LastDeathNew": 1,
     "DaysToDouble": 214.53846299267173,
     "DaysToDoubleDeath": 134.22056359839027,
-    "Last2WeeksConfirmedDelta": 1442,
+    "Last2WeeksConfirmedDelta": 1600,
     "StayHomeOrder": {
       "StartUrl": "https://hanfordsentinel.com/news/local/kings-county-board-of-supervisors-issues-shelter-in-place-order/article_f5045f69-159b-571f-97f7-81e6d750146f.html",
       "StartDate": "2020-03-31T00:00:00Z",
@@ -3409,7 +3411,7 @@
     "LastDeathNew": 3,
     "DaysToDouble": 118.91988740357897,
     "DaysToDoubleDeath": 253.91948325786916,
-    "Last2WeeksConfirmedDelta": 517,
+    "Last2WeeksConfirmedDelta": 533,
     "StayHomeOrder": {
       "StartUrl": "http://health.co.lake.ca.us/Assets/Departments/Health/Public+Health+Division/COVID-19/OrderC20.3.pdf",
       "StartDate": "2020-03-19T00:00:00Z",
@@ -3543,7 +3545,7 @@
     "LastDeathNew": 2,
     "DaysToDouble": null,
     "DaysToDoubleDeath": 121.68860331690584,
-    "Last2WeeksConfirmedDelta": 356,
+    "Last2WeeksConfirmedDelta": 279,
     "Recovered": null
   },
   "06105": {
@@ -3587,7 +3589,7 @@
     "LastDeathNew": 0,
     "DaysToDouble": 459.88682893897504,
     "DaysToDoubleDeath": null,
-    "Last2WeeksConfirmedDelta": 239,
+    "Last2WeeksConfirmedDelta": 276,
     "Recovered": null
   }
 }
