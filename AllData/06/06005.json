@@ -605,7 +605,8 @@
     "09/11/2021": 4706,
     "09/12/2021": 4728,
     "09/13/2021": 4752,
-    "09/14/2021": 4761
+    "09/14/2021": 4761,
+    "09/15/2021": 4761
   },
   "Death": {
     "01/22/2020": 0,
@@ -1209,7 +1210,8 @@
     "09/11/2021": 56,
     "09/12/2021": 56,
     "09/13/2021": 56,
-    "09/14/2021": 56
+    "09/14/2021": 56,
+    "09/15/2021": 56
   },
   "beds": 52,
   "bedsICU": 6,
@@ -1219,11 +1221,11 @@
   "ca_county_status": "1",
   "LastConfirmed": 4761,
   "LastDeath": 56,
-  "LastConfirmedNew": 9,
+  "LastConfirmedNew": 0,
   "LastDeathNew": 0,
-  "DaysToDouble": 215.67531913834367,
-  "DaysToDoubleDeath": 70.49836395509855,
-  "Last2WeeksConfirmedDelta": 268,
+  "DaysToDouble": 232.50933131050897,
+  "DaysToDoubleDeath": 117.4972732585072,
+  "Last2WeeksConfirmedDelta": 260,
   "StayHomeOrder": {
     "StartUrl": "https://www.amadorgov.org/home/showdocument?id=34891",
     "StartDate": "2020-03-20T00:00:00Z",

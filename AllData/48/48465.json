@@ -605,7 +605,8 @@
     "09/11/2021": 9908,
     "09/12/2021": 9908,
     "09/13/2021": 9908,
-    "09/14/2021": 10036
+    "09/14/2021": 10036,
+    "09/15/2021": 10036
   },
   "Death": {
     "01/22/2020": 0,
@@ -1209,7 +1210,8 @@
     "09/11/2021": 228,
     "09/12/2021": 228,
     "09/13/2021": 228,
-    "09/14/2021": 228
+    "09/14/2021": 228,
+    "09/15/2021": 228
   },
   "beds": 93,
   "bedsICU": 7,
@@ -1218,11 +1220,11 @@
   "Population": 48879,
   "LastConfirmed": 10036,
   "LastDeath": 228,
-  "LastConfirmedNew": 128,
+  "LastConfirmedNew": 0,
   "LastDeathNew": 0,
-  "DaysToDouble": 244.9119982190664,
-  "DaysToDoubleDeath": 440.56149800470484,
-  "Last2WeeksConfirmedDelta": 608,
+  "DaysToDouble": 185.64177225412823,
+  "DaysToDoubleDeath": 734.2691633409246,
+  "Last2WeeksConfirmedDelta": 606,
   "StayHomeOrder": {
     "StartUrl": "https://valverdecounty.texas.gov/DocumentCenter/View/3463/Shelter-In-Place-Order",
     "StartDate": "2020-03-23T00:00:00Z",
