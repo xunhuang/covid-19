@@ -606,7 +606,8 @@
     "09/12/2021": 337921,
     "09/13/2021": 337921,
     "09/14/2021": 337921,
-    "09/15/2021": 338534
+    "09/15/2021": 338534,
+    "09/16/2021": 338534
   },
   "Death": {
     "01/22/2020": 0,
@@ -1211,7 +1212,8 @@
     "09/12/2021": 4749,
     "09/13/2021": 4749,
     "09/14/2021": 4749,
-    "09/15/2021": 4749
+    "09/15/2021": 4749,
+    "09/16/2021": 4749
   },
   "beds": 3587,
   "bedsICU": 365,
@@ -1221,11 +1223,11 @@
   "ca_county_status": "1",
   "LastConfirmed": 338534,
   "LastDeath": 4749,
-  "LastConfirmedNew": 613,
+  "LastConfirmedNew": 0,
   "LastDeathNew": 0,
-  "DaysToDouble": null,
+  "DaysToDouble": 3569.5260835015665,
   "DaysToDoubleDeath": -862017116176384.1,
-  "Last2WeeksConfirmedDelta": 3075,
+  "Last2WeeksConfirmedDelta": 3688,
   "StayHomeOrder": {
     "StartUrl": "https://rivcoph.org/Portals/0/Documents/CoronaVirus/April/4.4.20_HO_order_face_coverings.pdf",
     "StartDate": "2020-04-04T00:00:00Z",
