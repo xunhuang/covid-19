@@ -611,7 +611,8 @@
     "09/17/2021": 28136,
     "09/18/2021": 28194,
     "09/19/2021": 28273,
-    "09/20/2021": 28300
+    "09/20/2021": 28300,
+    "09/21/2021": 28300
   },
   "Death": {
     "01/22/2020": 0,
@@ -1221,7 +1222,8 @@
     "09/17/2021": 310,
     "09/18/2021": 311,
     "09/19/2021": 313,
-    "09/20/2021": 313
+    "09/20/2021": 313,
+    "09/21/2021": 313
   },
   "beds": 1701,
   "bedsICU": 54,
@@ -1231,11 +1233,11 @@
   "ca_county_status": "1",
   "LastConfirmed": 28300,
   "LastDeath": 313,
-  "LastConfirmedNew": 27,
+  "LastConfirmedNew": 0,
   "LastDeathNew": 0,
-  "DaysToDouble": 267.0595314296183,
-  "DaysToDoubleDeath": 84.80927487269226,
-  "Last2WeeksConfirmedDelta": 1200,
+  "DaysToDouble": 261.5466219614342,
+  "DaysToDoubleDeath": 96.16505317160788,
+  "Last2WeeksConfirmedDelta": 1149,
   "StayHomeOrder": {
     "StartUrl": "https://www.emergencyslo.org/en/shelter-at-home-order.aspx",
     "StartDate": "2020-03-19T00:00:00Z",
