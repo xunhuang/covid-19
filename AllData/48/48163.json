@@ -614,7 +614,8 @@
     "09/20/2021": 3614,
     "09/21/2021": 3617,
     "09/22/2021": 3642,
-    "09/23/2021": 3649
+    "09/23/2021": 3649,
+    "09/24/2021": 3649
   },
   "Death": {
     "01/22/2020": 0,
@@ -1227,7 +1228,8 @@
     "09/20/2021": 64,
     "09/21/2021": 64,
     "09/22/2021": 65,
-    "09/23/2021": 65
+    "09/23/2021": 65,
+    "09/24/2021": 65
   },
   "beds": 22,
   "bedsICU": 0,
@@ -1236,11 +1238,11 @@
   "Population": 17217,
   "LastConfirmed": 3649,
   "LastDeath": 65,
-  "LastConfirmedNew": 7,
+  "LastConfirmedNew": 0,
   "LastDeathNew": 0,
-  "DaysToDouble": 417.96739135835077,
-  "DaysToDoubleDeath": 417.26624419915584,
-  "Last2WeeksConfirmedDelta": 179,
+  "DaysToDouble": 290.53690718073165,
+  "DaysToDoubleDeath": 250.35974651946924,
+  "Last2WeeksConfirmedDelta": 146,
   "StayHomeOrder": {
     "StartUrl": "http://www.co.frio.tx.us/upload/page/1949/SHELTER%20IN%20PLACE%20ORDER.pdf",
     "StartDate": "2020-03-30T00:00:00Z",
