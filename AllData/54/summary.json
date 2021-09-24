@@ -95,10 +95,10 @@
     "hospitals": 1,
     "bedsAvail": 23,
     "Population": 14523,
-    "LastConfirmed": 1727,
-    "LastDeath": 10,
-    "LastConfirmedNew": 0,
-    "LastDeathNew": 0,
+    "LastConfirmed": 1750,
+    "LastDeath": 11,
+    "LastConfirmedNew": 23,
+    "LastDeathNew": 1,
     "DaysToDouble": 44.58546305854206,
     "DaysToDoubleDeath": null,
     "Last2WeeksConfirmedDelta": 363,
@@ -1078,10 +1078,10 @@
     "Confirmed": null,
     "Death": null,
     "Population": 5717,
-    "LastConfirmed": 683,
-    "LastDeath": 8,
-    "LastConfirmedNew": 0,
-    "LastDeathNew": 0,
+    "LastConfirmed": 685,
+    "LastDeath": 9,
+    "LastConfirmedNew": 2,
+    "LastDeathNew": 1,
     "DaysToDouble": 63.725227815342805,
     "DaysToDoubleDeath": null,
     "Last2WeeksConfirmedDelta": 108,
@@ -1754,7 +1754,7 @@
       "09/20/2021": 224435,
       "09/21/2021": 225772,
       "09/22/2021": 227506,
-      "09/23/2021": 228958
+      "09/23/2021": 228983
     },
     "Death": {
       "01/22/2020": 0,
@@ -2367,7 +2367,7 @@
       "09/20/2021": 3424,
       "09/21/2021": 3441,
       "09/22/2021": 3467,
-      "09/23/2021": 3490
+      "09/23/2021": 3492
     },
     "doses_alloc_total": {
       "12/11/2020": 92600,
@@ -2945,7 +2945,7 @@
       "09/20/2021": 1730704,
       "09/21/2021": 1733161,
       "09/22/2021": 1733793,
-      "09/23/2021": 1733793
+      "09/23/2021": 1736255
     },
     "doses_shipped_total": {
       "12/11/2020": 10000,
@@ -3234,15 +3234,15 @@
       "09/20/2021": 2947735,
       "09/21/2021": 2948155,
       "09/22/2021": 2949425,
-      "09/23/2021": 2949425
+      "09/23/2021": 2960735
     },
     "doses_alloc_total_Last": 520535,
-    "doses_admin_total_Last": 1733793,
-    "doses_shippied_total_Last": 2949425,
-    "LastConfirmed": 228958,
-    "LastConfirmedNew": 1452,
-    "LastDeath": 3490,
-    "LastDeathNew": 23,
+    "doses_admin_total_Last": 1736255,
+    "doses_shippied_total_Last": 2960735,
+    "LastConfirmed": 228983,
+    "LastConfirmedNew": 1477,
+    "LastDeath": 3492,
+    "LastDeathNew": 25,
     "DaysToDouble": 92.33141665368032,
     "DaysToDoubleDeath": 100.09236701188148,
     "Last2WeeksConfirmedDelta": 27198,
