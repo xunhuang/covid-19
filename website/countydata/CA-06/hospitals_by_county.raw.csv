@@ -66,7 +66,7 @@
   
   <link rel="stylesheet" href="/css/layout3.css" />
 
-  <link rel="stylesheet" href=/css/theme_config.css?:version:2021-09-24T17:00:10.00 />
+  <link rel="stylesheet" href=/css/theme_config.css?:version:2021-09-24T18:35:35.46 />
 
   <link rel="stylesheet" href="/css/layout3.css"/>
 
@@ -762,6 +762,11 @@ li {
 
 #field-sitewide-search:focus {
   outline: solid 2px #2ea3f2;
+}
+
+input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input {
+    font-size: 14px;
+    line-height: 1.5;
 }
 
 p a {
@@ -966,7 +971,7 @@ p a {
   
   <link rel="stylesheet" href="/css/layout3.css" />
 
-  <link rel="stylesheet" href=/css/theme_config.css?:version:2021-09-24T17:00:10.00 />
+  <link rel="stylesheet" href=/css/theme_config.css?:version:2021-09-24T18:35:35.46 />
 
   <link rel="stylesheet" href="/css/layout3.css"/>
 
@@ -1662,6 +1667,11 @@ li {
 
 #field-sitewide-search:focus {
   outline: solid 2px #2ea3f2;
+}
+
+input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input {
+    font-size: 14px;
+    line-height: 1.5;
 }
 
 p a {
