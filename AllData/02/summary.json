@@ -648,7 +648,8 @@
       "07/28/2021": 74579,
       "07/29/2021": 74579,
       "07/30/2021": 75154,
-      "07/31/2021": 75154
+      "07/31/2021": 75154,
+      "09/28/2021": 111228
     },
     "Death": {
       "01/22/2020": 0,
@@ -1265,7 +1266,8 @@
       "07/28/2021": 386,
       "07/29/2021": 386,
       "07/30/2021": 389,
-      "07/31/2021": 389
+      "07/31/2021": 389,
+      "09/28/2021": 553
     },
     "doses_alloc_total": {
       "12/11/2020": 0,
@@ -2150,12 +2152,12 @@
     "doses_admin_total_Last": 786285,
     "doses_shippied_total_Last": 1044305,
     "LastConfirmed": 111228,
-    "LastConfirmedNew": 4002,
+    "LastConfirmedNew": 0,
     "LastDeath": 553,
-    "LastDeathNew": 21,
-    "DaysToDouble": 74.80887729791084,
-    "DaysToDoubleDeath": 29.730600685443964,
-    "Last2WeeksConfirmedDelta": 12439,
+    "LastDeathNew": 0,
+    "DaysToDouble": 62.9540159334505,
+    "DaysToDoubleDeath": 27.235790272252885,
+    "Last2WeeksConfirmedDelta": 16441,
     "beds": 1760,
     "bedsICU": 106,
     "hospitals": 28,
@@ -2193,7 +2195,7 @@
     "LastDeathNew": 9,
     "DaysToDouble": 95.27338880369145,
     "DaysToDoubleDeath": 57.484267736702336,
-    "Last2WeeksConfirmedDelta": 5015,
+    "Last2WeeksConfirmedDelta": 6414,
     "StayHomeOrder": {
       "StartUrl": "https://www.ktuu.com/content/news/Hunker-Down-order-goes-into-effect-at-10-pm-for-Anchorage-municipality-569015821.html",
       "StartDate": "2020-03-22T00:00:00Z",
@@ -2220,7 +2222,7 @@
     "LastDeathNew": 2,
     "DaysToDouble": 50.1446442925794,
     "DaysToDoubleDeath": 16.561914426141975,
-    "Last2WeeksConfirmedDelta": 1813,
+    "Last2WeeksConfirmedDelta": 2483,
     "Recovered": null
   },
   "02110": {
@@ -2241,7 +2243,7 @@
     "LastDeathNew": 0,
     "DaysToDouble": 64.90578454075252,
     "DaysToDoubleDeath": null,
-    "Last2WeeksConfirmedDelta": 475,
+    "Last2WeeksConfirmedDelta": 588,
     "Recovered": null
   },
   "02122": {
@@ -2262,7 +2264,7 @@
     "LastDeathNew": 3,
     "DaysToDouble": 64.78514952841586,
     "DaysToDoubleDeath": 25.641161857698744,
-    "Last2WeeksConfirmedDelta": 890,
+    "Last2WeeksConfirmedDelta": 1161,
     "Recovered": null
   },
   "02130": {
@@ -2283,7 +2285,7 @@
     "LastDeathNew": 1,
     "DaysToDouble": 208.7672679317576,
     "DaysToDoubleDeath": null,
-    "Last2WeeksConfirmedDelta": 113,
+    "Last2WeeksConfirmedDelta": 137,
     "Recovered": null
   },
   "02170": {
@@ -2304,7 +2306,7 @@
     "LastDeathNew": 4,
     "DaysToDouble": 60.235348222289325,
     "DaysToDoubleDeath": 21.573187042007913,
-    "Last2WeeksConfirmedDelta": 1989,
+    "Last2WeeksConfirmedDelta": 2911,
     "Recovered": null
   },
   "02013": {
@@ -2338,7 +2340,7 @@
     "LastDeathNew": 0,
     "DaysToDouble": 155.22714310989306,
     "DaysToDoubleDeath": null,
-    "Last2WeeksConfirmedDelta": 36,
+    "Last2WeeksConfirmedDelta": 47,
     "Recovered": null
   },
   "02050": {
@@ -2359,7 +2361,7 @@
     "LastDeathNew": 0,
     "DaysToDouble": 141.5772469559522,
     "DaysToDoubleDeath": 38.79376859923085,
-    "Last2WeeksConfirmedDelta": 343,
+    "Last2WeeksConfirmedDelta": 385,
     "Recovered": null
   },
   "02060": {
@@ -2393,7 +2395,7 @@
     "LastDeathNew": 0,
     "DaysToDouble": 34.76079481069859,
     "DaysToDoubleDeath": null,
-    "Last2WeeksConfirmedDelta": 54,
+    "Last2WeeksConfirmedDelta": 85,
     "Recovered": null
   },
   "02063": {
@@ -2409,7 +2411,7 @@
     "LastDeathNew": 0,
     "DaysToDouble": 70.02802751886712,
     "DaysToDoubleDeath": null,
-    "Last2WeeksConfirmedDelta": 70,
+    "Last2WeeksConfirmedDelta": 122,
     "Recovered": null
   },
   "02066": {
@@ -2425,7 +2427,7 @@
     "LastDeathNew": 0,
     "DaysToDouble": 67.53932938348846,
     "DaysToDoubleDeath": null,
-    "Last2WeeksConfirmedDelta": 48,
+    "Last2WeeksConfirmedDelta": 65,
     "Recovered": null
   },
   "02068": {
@@ -2442,7 +2444,7 @@
     "LastDeathNew": 0,
     "DaysToDouble": 76.98629362401111,
     "DaysToDoubleDeath": null,
-    "Last2WeeksConfirmedDelta": 29,
+    "Last2WeeksConfirmedDelta": 35,
     "Recovered": null
   },
   "02070": {
@@ -2463,7 +2465,7 @@
     "LastDeathNew": 0,
     "DaysToDouble": 41.1646397906831,
     "DaysToDoubleDeath": null,
-    "Last2WeeksConfirmedDelta": 101,
+    "Last2WeeksConfirmedDelta": 129,
     "Recovered": null
   },
   "02100": {
@@ -2480,7 +2482,7 @@
     "LastDeathNew": 0,
     "DaysToDouble": 17.89949765108559,
     "DaysToDoubleDeath": null,
-    "Last2WeeksConfirmedDelta": 55,
+    "Last2WeeksConfirmedDelta": 60,
     "StayHomeOrder": {
       "StartUrl": "https://khns.org/haines-borough-implements-shelter-in-place-order",
       "StartDate": "2020-03-25T00:00:00Z",
@@ -2524,7 +2526,7 @@
     "LastDeathNew": 1,
     "DaysToDouble": 57.41610475696662,
     "DaysToDoubleDeath": null,
-    "Last2WeeksConfirmedDelta": 215,
+    "Last2WeeksConfirmedDelta": 311,
     "Recovered": null
   },
   "02158": {
@@ -2540,7 +2542,7 @@
     "LastDeathNew": 0,
     "DaysToDouble": 155.73669878545067,
     "DaysToDoubleDeath": null,
-    "Last2WeeksConfirmedDelta": 102,
+    "Last2WeeksConfirmedDelta": 111,
     "Recovered": null
   },
   "02180": {
@@ -2561,7 +2563,7 @@
     "LastDeathNew": 0,
     "DaysToDouble": 103.3876506331667,
     "DaysToDoubleDeath": null,
-    "Last2WeeksConfirmedDelta": 74,
+    "Last2WeeksConfirmedDelta": 113,
     "Recovered": null
   },
   "02185": {
@@ -2582,7 +2584,7 @@
     "LastDeathNew": 1,
     "DaysToDouble": 46.38655454838275,
     "DaysToDoubleDeath": null,
-    "Last2WeeksConfirmedDelta": 521,
+    "Last2WeeksConfirmedDelta": 611,
     "Recovered": null
   },
   "02188": {
@@ -2603,7 +2605,7 @@
     "LastDeathNew": 0,
     "DaysToDouble": 36.62357740599606,
     "DaysToDoubleDeath": null,
-    "Last2WeeksConfirmedDelta": 169,
+    "Last2WeeksConfirmedDelta": 269,
     "Recovered": null
   },
   "02195": {
@@ -2624,7 +2626,7 @@
     "LastDeathNew": 0,
     "DaysToDouble": -862017116176384.1,
     "DaysToDoubleDeath": null,
-    "Last2WeeksConfirmedDelta": 3,
+    "Last2WeeksConfirmedDelta": 4,
     "Recovered": null
   },
   "02198": {
@@ -2641,7 +2643,7 @@
     "LastDeathNew": 0,
     "DaysToDouble": 56.913783875298066,
     "DaysToDoubleDeath": null,
-    "Last2WeeksConfirmedDelta": 69,
+    "Last2WeeksConfirmedDelta": 77,
     "Recovered": null
   },
   "02220": {
@@ -2662,7 +2664,7 @@
     "LastDeathNew": 0,
     "DaysToDouble": 132.51268897644795,
     "DaysToDoubleDeath": null,
-    "Last2WeeksConfirmedDelta": 66,
+    "Last2WeeksConfirmedDelta": 76,
     "Recovered": null
   },
   "02230": {
@@ -2679,7 +2681,7 @@
     "LastDeathNew": 0,
     "DaysToDouble": 397.8577153978291,
     "DaysToDoubleDeath": null,
-    "Last2WeeksConfirmedDelta": 6,
+    "Last2WeeksConfirmedDelta": 10,
     "StayHomeOrder": {
       "StartUrl": "https://khns.org/haines-borough-implements-shelter-in-place-order",
       "StartDate": "2020-03-25T00:00:00Z",
@@ -2702,7 +2704,7 @@
     "LastDeathNew": 0,
     "DaysToDouble": 103.1035790404927,
     "DaysToDoubleDeath": null,
-    "Last2WeeksConfirmedDelta": 101,
+    "Last2WeeksConfirmedDelta": 119,
     "Recovered": null
   },
   "02261": {
@@ -2761,7 +2763,7 @@
     "LastDeathNew": 0,
     "DaysToDouble": 32.19623726942606,
     "DaysToDoubleDeath": null,
-    "Last2WeeksConfirmedDelta": 20,
+    "Last2WeeksConfirmedDelta": 32,
     "Recovered": null
   },
   "02290": {
@@ -2778,7 +2780,7 @@
     "LastDeathNew": 0,
     "DaysToDouble": 83.66882515976563,
     "DaysToDoubleDeath": null,
-    "Last2WeeksConfirmedDelta": 54,
+    "Last2WeeksConfirmedDelta": 78,
     "Recovered": null
   }
 }
