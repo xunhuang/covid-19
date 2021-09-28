@@ -29,11 +29,11 @@
     "Population": 162310,
     "LastConfirmed": 23393,
     "LastDeath": 405,
-    "LastConfirmedNew": 87,
+    "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 145.85056264827756,
-    "DaysToDoubleDeath": 216.6744019688249,
-    "Last2WeeksConfirmedDelta": 1520,
+    "DaysToDouble": 141.40882607428998,
+    "DaysToDoubleDeath": 312.4667307104497,
+    "Last2WeeksConfirmedDelta": 1511,
     "Recovered": null
   },
   "10003": {
@@ -50,11 +50,11 @@
     "Population": 538479,
     "LastConfirmed": 75822,
     "LastDeath": 959,
-    "LastConfirmedNew": 200,
+    "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 227.8086351846155,
-    "DaysToDoubleDeath": 452.33657126897833,
-    "Last2WeeksConfirmedDelta": 3355,
+    "DaysToDouble": 216.69230468734568,
+    "DaysToDoubleDeath": 562.0579487967982,
+    "Last2WeeksConfirmedDelta": 3246,
     "Recovered": null
   },
   "10005": {
@@ -71,11 +71,11 @@
     "Population": 197145,
     "LastConfirmed": 32333,
     "LastDeath": 578,
-    "LastConfirmedNew": 134,
+    "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 157.58620863779745,
-    "DaysToDoubleDeath": 348.5254118891706,
-    "Last2WeeksConfirmedDelta": 1919,
+    "DaysToDouble": 150.7702374048215,
+    "DaysToDoubleDeath": 860.903455876271,
+    "Last2WeeksConfirmedDelta": 1927,
     "Recovered": null
   },
   "80010": {
@@ -1623,7 +1623,8 @@
       "09/24/2021": 56275,
       "09/25/2021": 56275,
       "09/26/2021": 56275,
-      "09/27/2021": 56275
+      "09/27/2021": 56275,
+      "09/28/2021": 56275
     },
     "doses_admin_total": {
       "12/11/2020": 0,
@@ -1916,7 +1917,8 @@
       "09/24/2021": 1192360,
       "09/25/2021": 1192421,
       "09/26/2021": 1192544,
-      "09/27/2021": 1192563
+      "09/27/2021": 1192563,
+      "09/28/2021": 1192563
     },
     "doses_shipped_total": {
       "12/11/2020": 0,
@@ -2209,7 +2211,8 @@
       "09/24/2021": 1555525,
       "09/25/2021": 1556085,
       "09/26/2021": 1556085,
-      "09/27/2021": 1556085
+      "09/27/2021": 1556085,
+      "09/28/2021": 1556085
     },
     "doses_alloc_total_Last": 56275,
     "doses_admin_total_Last": 1192563,

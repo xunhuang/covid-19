@@ -618,7 +618,8 @@
     "09/24/2021": 13372,
     "09/25/2021": 13426,
     "09/26/2021": 13455,
-    "09/27/2021": 13477
+    "09/27/2021": 13477,
+    "09/28/2021": 13477
   },
   "Death": {
     "01/22/2020": 0,
@@ -1235,7 +1236,8 @@
     "09/24/2021": 146,
     "09/25/2021": 146,
     "09/26/2021": 146,
-    "09/27/2021": 146
+    "09/27/2021": 146,
+    "09/28/2021": 146
   },
   "beds": 106,
   "bedsICU": 9,
@@ -1244,11 +1246,11 @@
   "Population": 99478,
   "LastConfirmed": 13477,
   "LastDeath": 146,
-  "LastConfirmedNew": 22,
+  "LastConfirmedNew": 0,
   "LastDeathNew": 0,
-  "DaysToDouble": 229.07945209979266,
-  "DaysToDoubleDeath": 185.65223876895504,
-  "Last2WeeksConfirmedDelta": 598,
+  "DaysToDouble": 234.55848649852015,
+  "DaysToDoubleDeath": null,
+  "Last2WeeksConfirmedDelta": 581,
   "StayHomeOrder": {
     "StartUrl": "https://fox4kc.com/tracking-coronavirus/these-counties-in-and-around-the-kc-metro-have-stay-at-home-orders/",
     "StartDate": "2020-03-24T00:00:00Z",
