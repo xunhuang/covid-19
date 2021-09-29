@@ -619,7 +619,8 @@
     "09/25/2021": 21225,
     "09/26/2021": 21225,
     "09/27/2021": 21347,
-    "09/28/2021": 21391
+    "09/28/2021": 21391,
+    "09/29/2021": 21391
   },
   "Death": {
     "01/22/2020": 0,
@@ -1237,7 +1238,8 @@
     "09/25/2021": 263,
     "09/26/2021": 263,
     "09/27/2021": 262,
-    "09/28/2021": 262
+    "09/28/2021": 262,
+    "09/29/2021": 262
   },
   "beds": 108,
   "bedsICU": 8,
@@ -1246,11 +1248,11 @@
   "Population": 132403,
   "LastConfirmed": 21391,
   "LastDeath": 262,
-  "LastConfirmedNew": 44,
+  "LastConfirmedNew": 0,
   "LastDeathNew": 0,
-  "DaysToDouble": 365.66448705530416,
-  "DaysToDoubleDeath": 422.11837054077984,
-  "Last2WeeksConfirmedDelta": 1130,
+  "DaysToDouble": 360.63269230685415,
+  "DaysToDoubleDeath": null,
+  "Last2WeeksConfirmedDelta": 873,
   "StayHomeOrder": {
     "StartUrl": "https://douglascountysentinel.com/news/10770/douglas-under-shelter-in-place-order-beginning-thursday-at-noon/",
     "StartDate": "2020-03-26T00:00:00Z",
