@@ -620,7 +620,8 @@
     "09/26/2021": 3714,
     "09/27/2021": 3744,
     "09/28/2021": 3762,
-    "09/29/2021": 3784
+    "09/29/2021": 3784,
+    "09/30/2021": 3784
   },
   "Death": {
     "01/22/2020": 0,
@@ -1239,7 +1240,8 @@
     "09/26/2021": 32,
     "09/27/2021": 32,
     "09/28/2021": 32,
-    "09/29/2021": 32
+    "09/29/2021": 32,
+    "09/30/2021": 32
   },
   "beds": 25,
   "bedsICU": 6,
@@ -1248,11 +1250,11 @@
   "Population": 21381,
   "LastConfirmed": 3784,
   "LastDeath": 32,
-  "LastConfirmedNew": 22,
+  "LastConfirmedNew": 0,
   "LastDeathNew": 0,
-  "DaysToDouble": 322.00030116909574,
+  "DaysToDouble": 216.26045853796117,
   "DaysToDoubleDeath": null,
-  "Last2WeeksConfirmedDelta": 205,
+  "Last2WeeksConfirmedDelta": 170,
   "StayHomeOrder": {
     "StartUrl": "https://www.victoriaadvocate.com/covid-19/update-calhoun-county-issues-stay-at-home-order/article_f4d5d9a2-75cf-11ea-a90a-97167ae8c097.html",
     "StartDate": "2020-04-03T00:00:00Z",
