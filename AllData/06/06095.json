@@ -621,7 +621,8 @@
     "09/27/2021": 44658,
     "09/28/2021": 44703,
     "09/29/2021": 44773,
-    "09/30/2021": 44864
+    "09/30/2021": 44864,
+    "10/01/2021": 44864
   },
   "Death": {
     "01/22/2020": 0,
@@ -1241,7 +1242,8 @@
     "09/27/2021": 314,
     "09/28/2021": 314,
     "09/29/2021": 316,
-    "09/30/2021": 321
+    "09/30/2021": 321,
+    "10/01/2021": 321
   },
   "beds": 1067,
   "bedsICU": 92,
@@ -1251,11 +1253,11 @@
   "ca_county_status": "2",
   "LastConfirmed": 44864,
   "LastDeath": 321,
-  "LastConfirmedNew": 91,
-  "LastDeathNew": 5,
-  "DaysToDouble": 478.3144522828675,
-  "DaysToDoubleDeath": 338.20028492569156,
-  "Last2WeeksConfirmedDelta": 1095,
+  "LastConfirmedNew": 0,
+  "LastDeathNew": 0,
+  "DaysToDouble": 385.9528886246121,
+  "DaysToDoubleDeath": 165.62422636704156,
+  "Last2WeeksConfirmedDelta": 1100,
   "StayHomeOrder": {
     "StartUrl": null,
     "StartDate": "2020-03-18T00:00:00Z",

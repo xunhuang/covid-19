@@ -621,7 +621,8 @@
     "09/27/2021": 8682,
     "09/28/2021": 8746,
     "09/29/2021": 8767,
-    "09/30/2021": 8798
+    "09/30/2021": 8798,
+    "10/01/2021": 8798
   },
   "Death": {
     "01/22/2020": 0,
@@ -1241,7 +1242,8 @@
     "09/27/2021": 149,
     "09/28/2021": 150,
     "09/29/2021": 155,
-    "09/30/2021": 155
+    "09/30/2021": 155,
+    "10/01/2021": 155
   },
   "beds": 149,
   "bedsICU": 42,
@@ -1250,11 +1252,11 @@
   "Population": 65631,
   "LastConfirmed": 8798,
   "LastDeath": 155,
-  "LastConfirmedNew": 31,
+  "LastConfirmedNew": 0,
   "LastDeathNew": 0,
-  "DaysToDouble": 274.00872615935936,
-  "DaysToDoubleDeath": 147.23823571404174,
-  "Last2WeeksConfirmedDelta": 578,
+  "DaysToDouble": 247.49234763938534,
+  "DaysToDoubleDeath": 95.09913596201137,
+  "Last2WeeksConfirmedDelta": 539,
   "StayHomeOrder": {
     "StartUrl": "http://www.co.harrison.tx.us/county%20judge/COVID-19/AmendedDeclaration2020-03-31.pdf",
     "StartDate": "2020-03-31T00:00:00Z",

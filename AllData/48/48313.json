@@ -621,7 +621,8 @@
     "09/27/2021": 2394,
     "09/28/2021": 2396,
     "09/29/2021": 2400,
-    "09/30/2021": 2406
+    "09/30/2021": 2406,
+    "10/01/2021": 2406
   },
   "Death": {
     "01/22/2020": 0,
@@ -1241,7 +1242,8 @@
     "09/27/2021": 40,
     "09/28/2021": 40,
     "09/29/2021": 42,
-    "09/30/2021": 42
+    "09/30/2021": 42,
+    "10/01/2021": 42
   },
   "beds": 25,
   "bedsICU": 0,
@@ -1250,11 +1252,11 @@
   "Population": 13664,
   "LastConfirmed": 2406,
   "LastDeath": 42,
-  "LastConfirmedNew": 6,
+  "LastConfirmedNew": 0,
   "LastDeathNew": 0,
-  "DaysToDouble": 463.7275971954424,
-  "DaysToDoubleDeath": 132.59585810697942,
-  "Last2WeeksConfirmedDelta": 51,
+  "DaysToDouble": 400.34430961984157,
+  "DaysToDoubleDeath": 79.55751486418399,
+  "Last2WeeksConfirmedDelta": 54,
   "StayHomeOrder": {
     "StartUrl": "http://www.co.madison.tx.us/upload/page/8213/Final%20Order%20No%202.pdf",
     "StartDate": "2020-03-30T00:00:00Z",

@@ -621,7 +621,8 @@
     "09/27/2021": 6380,
     "09/28/2021": 6388,
     "09/29/2021": 6400,
-    "09/30/2021": 6421
+    "09/30/2021": 6421,
+    "10/01/2021": 6421
   },
   "Death": {
     "01/22/2020": 0,
@@ -1241,7 +1242,8 @@
     "09/27/2021": 17,
     "09/28/2021": 17,
     "09/29/2021": 17,
-    "09/30/2021": 18
+    "09/30/2021": 18,
+    "10/01/2021": 18
   },
   "beds": 38,
   "bedsICU": 4,
@@ -1250,11 +1252,11 @@
   "Population": 36324,
   "LastConfirmed": 6421,
   "LastDeath": 18,
-  "LastConfirmedNew": 21,
-  "LastDeathNew": 1,
-  "DaysToDouble": 594.9175853949781,
-  "DaysToDoubleDeath": null,
-  "Last2WeeksConfirmedDelta": 148,
+  "LastConfirmedNew": 0,
+  "LastDeathNew": 0,
+  "DaysToDouble": 454.10764213159746,
+  "DaysToDoubleDeath": 113.18322624104488,
+  "Last2WeeksConfirmedDelta": 151,
   "StayHomeOrder": {
     "StartUrl": "https://www.kpcw.org/post/summit-county-issues-stay-home-order-residents",
     "StartDate": "2020-03-27T00:00:00Z",
