@@ -622,7 +622,8 @@
     "09/28/2021": 223253,
     "09/29/2021": 223253,
     "09/30/2021": 223253,
-    "10/01/2021": 225612
+    "10/01/2021": 225612,
+    "10/02/2021": 225612
   },
   "Death": {
     "01/22/2020": 0,
@@ -1243,7 +1244,8 @@
     "09/28/2021": 1310,
     "09/29/2021": 1310,
     "09/30/2021": 1310,
-    "10/01/2021": 1310
+    "10/01/2021": 1310,
+    "10/02/2021": 1310
   },
   "beds": 4387,
   "bedsICU": 334,
@@ -1252,11 +1254,11 @@
   "Population": 1145956,
   "LastConfirmed": 225612,
   "LastDeath": 1310,
-  "LastConfirmedNew": 2359,
+  "LastConfirmedNew": 0,
   "LastDeathNew": 0,
-  "DaysToDouble": null,
+  "DaysToDouble": 615.4829766779488,
   "DaysToDoubleDeath": null,
-  "Last2WeeksConfirmedDelta": 7904,
+  "Last2WeeksConfirmedDelta": 10263,
   "StayHomeOrder": {
     "StartUrl": "https://www.orlandosentinel.com/coronavirus/os-ne-coronavirus-orange-stay-at-home-order-20200324-2nfuihnaujc6xifbgsyiedffpe-story.html",
     "StartDate": "2020-03-26T00:00:00Z",

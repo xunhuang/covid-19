@@ -622,7 +622,8 @@
     "09/28/2021": 6845,
     "09/29/2021": 6871,
     "09/30/2021": 6902,
-    "10/01/2021": 6921
+    "10/01/2021": 6921,
+    "10/02/2021": 6921
   },
   "Death": {
     "01/22/2020": 0,
@@ -1243,7 +1244,8 @@
     "09/28/2021": 110,
     "09/29/2021": 110,
     "09/30/2021": 110,
-    "10/01/2021": 110
+    "10/01/2021": 110,
+    "10/02/2021": 110
   },
   "beds": 144,
   "bedsICU": 12,
@@ -1252,11 +1254,11 @@
   "Population": 39191,
   "LastConfirmed": 6921,
   "LastDeath": 110,
-  "LastConfirmedNew": 19,
+  "LastConfirmedNew": 0,
   "LastDeathNew": 0,
-  "DaysToDouble": 329.9721952442543,
-  "DaysToDoubleDeath": 116.9803872324269,
-  "Last2WeeksConfirmedDelta": 408,
+  "DaysToDouble": 261.2716813666371,
+  "DaysToDoubleDeath": 116.9803872324428,
+  "Last2WeeksConfirmedDelta": 368,
   "StayHomeOrder": {
     "StartUrl": "https://www.scottcountymo.com/cmsAdmin/uploads/order.pdf",
     "StartDate": "2020-04-04T00:00:00Z",

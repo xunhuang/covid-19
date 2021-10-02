@@ -28,11 +28,11 @@
     "Population": 185079,
     "LastConfirmed": 10097,
     "LastDeath": 91,
-    "LastConfirmedNew": 91,
-    "LastDeathNew": 1,
-    "DaysToDouble": 165.61399154118357,
-    "DaysToDoubleDeath": 64.68971622884997,
-    "Last2WeeksConfirmedDelta": 895,
+    "LastConfirmedNew": 0,
+    "LastDeathNew": 0,
+    "DaysToDouble": 155.5071990537284,
+    "DaysToDoubleDeath": 54.81863651591251,
+    "Last2WeeksConfirmedDelta": 890,
     "Recovered": null
   },
   "15003": {
@@ -49,11 +49,11 @@
     "Population": 953207,
     "LastConfirmed": 55310,
     "LastDeath": 598,
-    "LastConfirmedNew": 212,
-    "LastDeathNew": 6,
-    "DaysToDouble": 191.0705295831765,
-    "DaysToDoubleDeath": 97.36573654883765,
-    "Last2WeeksConfirmedDelta": 3873,
+    "LastConfirmedNew": 0,
+    "LastDeathNew": 0,
+    "DaysToDouble": 200.85547328258653,
+    "DaysToDoubleDeath": 77.28573842846977,
+    "Last2WeeksConfirmedDelta": 3697,
     "StayHomeOrder": {
       "StartUrl": "https://www.staradvertiser.com/2020/03/22/breaking-news/watch-live-honolulu-mayor-kirk-caldwell-discusses-coronavirus/",
       "StartDate": "2020-03-23T00:00:00Z",
@@ -93,11 +93,11 @@
     "Population": 67091,
     "LastConfirmed": 2268,
     "LastDeath": 8,
-    "LastConfirmedNew": 13,
+    "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 72.76234521406488,
+    "DaysToDouble": 82.39702493338476,
     "DaysToDoubleDeath": null,
-    "Last2WeeksConfirmedDelta": 426,
+    "Last2WeeksConfirmedDelta": 401,
     "Recovered": null
   },
   "15009": {
@@ -114,11 +114,11 @@
     "Population": 154834,
     "LastConfirmed": 9468,
     "LastDeath": 87,
-    "LastConfirmedNew": 43,
+    "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 258.74627367650544,
-    "DaysToDoubleDeath": 166.90231828008194,
-    "Last2WeeksConfirmedDelta": 599,
+    "DaysToDouble": 256.84333730895315,
+    "DaysToDoubleDeath": 139.08526523339262,
+    "Last2WeeksConfirmedDelta": 585,
     "StayHomeOrder": {
       "StartUrl": "https://www.mauinews.com/news/local-news/2020/03/ige-takes-stay-at-home-mandate-statewide/",
       "StartDate": "2020-03-25T00:00:00Z",
@@ -136,11 +136,11 @@
     "Death": null,
     "LastConfirmed": 2429,
     "LastDeath": 5,
-    "LastConfirmedNew": 7,
+    "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 209.65506641005814,
+    "DaysToDouble": 222.468305470011,
     "DaysToDoubleDeath": null,
-    "Last2WeeksConfirmedDelta": 145,
+    "Last2WeeksConfirmedDelta": 143,
     "Recovered": null
   },
   "Summary": {
@@ -1684,7 +1684,8 @@
       "09/28/2021": 1315360,
       "09/29/2021": 1315360,
       "09/30/2021": 1315360,
-      "10/01/2021": 1315360
+      "10/01/2021": 1315360,
+      "10/02/2021": 1315360
     },
     "doses_admin_total": {
       "12/11/2020": 0,
@@ -1981,7 +1982,8 @@
       "09/28/2021": 2000996,
       "09/29/2021": 2004407,
       "09/30/2021": 2007072,
-      "10/01/2021": 2012454
+      "10/01/2021": 2012454,
+      "10/02/2021": 2012454
     },
     "doses_shipped_total": {
       "12/11/2020": 0,
@@ -2278,7 +2280,8 @@
       "09/28/2021": 2310730,
       "09/29/2021": 2320490,
       "09/30/2021": 2320490,
-      "10/01/2021": 2332190
+      "10/01/2021": 2332190,
+      "10/02/2021": 2332190
     },
     "doses_alloc_total_Last": 1315360,
     "doses_admin_total_Last": 2012454,

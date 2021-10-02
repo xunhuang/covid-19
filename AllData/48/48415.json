@@ -622,7 +622,8 @@
     "09/28/2021": 3123,
     "09/29/2021": 3129,
     "09/30/2021": 3128,
-    "10/01/2021": 3132
+    "10/01/2021": 3132,
+    "10/02/2021": 3132
   },
   "Death": {
     "01/22/2020": 0,
@@ -1243,7 +1244,8 @@
     "09/28/2021": 80,
     "09/29/2021": 80,
     "09/30/2021": 80,
-    "10/01/2021": 80
+    "10/01/2021": 80,
+    "10/02/2021": 80
   },
   "beds": 25,
   "bedsICU": 0,
@@ -1252,11 +1254,11 @@
   "Population": 16921,
   "LastConfirmed": 3132,
   "LastDeath": 80,
-  "LastConfirmedNew": 4,
+  "LastConfirmedNew": 0,
   "LastDeathNew": 0,
-  "DaysToDouble": 565.461294018932,
-  "DaysToDoubleDeath": 55.76879395903411,
-  "Last2WeeksConfirmedDelta": 89,
+  "DaysToDouble": 787.1002660839301,
+  "DaysToDoubleDeath": 71.99686152828346,
+  "Last2WeeksConfirmedDelta": 79,
   "StayHomeOrder": {
     "StartUrl": "http://www.co.scurry.tx.us/upload/page/7080/Stay%20Home%20Order%20Signed.pdf",
     "StartDate": "2020-03-27T00:00:00Z",
