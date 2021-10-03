@@ -623,7 +623,8 @@
     "09/29/2021": 6724,
     "09/30/2021": 6724,
     "10/01/2021": 6724,
-    "10/02/2021": 6833
+    "10/02/2021": 6833,
+    "10/03/2021": 6833
   },
   "Death": {
     "01/22/2020": 0,
@@ -1245,7 +1246,8 @@
     "09/29/2021": 158,
     "09/30/2021": 158,
     "10/01/2021": 158,
-    "10/02/2021": 158
+    "10/02/2021": 158,
+    "10/03/2021": 158
   },
   "beds": 188,
   "bedsICU": 12,
@@ -1254,11 +1256,11 @@
   "Population": 38106,
   "LastConfirmed": 6833,
   "LastDeath": 158,
-  "LastConfirmedNew": 109,
+  "LastConfirmedNew": 0,
   "LastDeathNew": 0,
-  "DaysToDouble": null,
-  "DaysToDoubleDeath": 168.73766293169362,
-  "Last2WeeksConfirmedDelta": 486,
+  "DaysToDouble": 402.30921630622345,
+  "DaysToDoubleDeath": 178.73073164965223,
+  "Last2WeeksConfirmedDelta": 595,
   "StayHomeOrder": {
     "StartUrl": "https://www.bigcountryhomepage.com/news/brown-co-issues-limited-stay-at-home-order/",
     "StartDate": "2020-03-27T00:00:00Z",
