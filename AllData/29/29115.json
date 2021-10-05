@@ -625,7 +625,8 @@
     "10/01/2021": 1796,
     "10/02/2021": 1798,
     "10/03/2021": 1798,
-    "10/04/2021": 1801
+    "10/04/2021": 1801,
+    "10/05/2021": 1801
   },
   "Death": {
     "01/22/2020": 0,
@@ -1249,7 +1250,8 @@
     "10/01/2021": 25,
     "10/02/2021": 25,
     "10/03/2021": 25,
-    "10/04/2021": 25
+    "10/04/2021": 25,
+    "10/05/2021": 25
   },
   "beds": 54,
   "bedsICU": 0,
@@ -1258,11 +1260,11 @@
   "Population": 12761,
   "LastConfirmed": 1801,
   "LastDeath": 25,
-  "LastConfirmedNew": 3,
+  "LastConfirmedNew": 0,
   "LastDeathNew": 0,
-  "DaysToDouble": 809.5497743973807,
-  "DaysToDoubleDeath": 158.4776481711608,
-  "Last2WeeksConfirmedDelta": 20,
+  "DaysToDouble": 968.5175766423636,
+  "DaysToDoubleDeath": null,
+  "Last2WeeksConfirmedDelta": 22,
   "StayHomeOrder": {
     "StartUrl": "https://www.chillicothenews.com/news/20200401/updated-linn-county-placed-on-stay-at-home-order",
     "StartDate": "2020-04-03T00:00:00Z",
