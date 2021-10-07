@@ -627,7 +627,8 @@
     "10/03/2021": 50208,
     "10/04/2021": 50293,
     "10/05/2021": 50302,
-    "10/06/2021": 50331
+    "10/06/2021": 50331,
+    "10/07/2021": 50331
   },
   "Death": {
     "01/22/2020": 0,
@@ -1253,7 +1254,8 @@
     "10/03/2021": 571,
     "10/04/2021": 571,
     "10/05/2021": 571,
-    "10/06/2021": 573
+    "10/06/2021": 573,
+    "10/07/2021": 573
   },
   "beds": 747,
   "bedsICU": 47,
@@ -1263,11 +1265,11 @@
   "ca_county_status": "1",
   "LastConfirmed": 50331,
   "LastDeath": 573,
-  "LastConfirmedNew": 29,
-  "LastDeathNew": 2,
-  "DaysToDouble": 719.2489420969537,
-  "DaysToDoubleDeath": null,
-  "Last2WeeksConfirmedDelta": 717,
+  "LastConfirmedNew": 0,
+  "LastDeathNew": 0,
+  "DaysToDouble": 1245.5059588827376,
+  "DaysToDoubleDeath": 1850.2389889543533,
+  "Last2WeeksConfirmedDelta": 669,
   "StayHomeOrder": {
     "StartUrl": "https://twitter.com/MontereyCoOES/status/1240035770959708160",
     "StartDate": "2020-03-18T00:00:00Z",
