@@ -28,11 +28,11 @@
     "Population": 185079,
     "LastConfirmed": 10498,
     "LastDeath": 105,
-    "LastConfirmedNew": 6,
+    "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 179.25877359486935,
-    "DaysToDoubleDeath": 36.502614621435,
-    "Last2WeeksConfirmedDelta": 635,
+    "DaysToDouble": 209.7545280507752,
+    "DaysToDoubleDeath": 46.67794083661076,
+    "Last2WeeksConfirmedDelta": 609,
     "Recovered": null
   },
   "15003": {
@@ -49,11 +49,11 @@
     "Population": 953207,
     "LastConfirmed": 56553,
     "LastDeath": 635,
-    "LastConfirmedNew": 36,
+    "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 322.3742094716549,
-    "DaysToDoubleDeath": 134.87018192225955,
-    "Last2WeeksConfirmedDelta": 2138,
+    "DaysToDouble": 365.07871818499825,
+    "DaysToDoubleDeath": 182.00886190629168,
+    "Last2WeeksConfirmedDelta": 2012,
     "StayHomeOrder": {
       "StartUrl": "https://www.staradvertiser.com/2020/03/22/breaking-news/watch-live-honolulu-mayor-kirk-caldwell-discusses-coronavirus/",
       "StartDate": "2020-03-23T00:00:00Z",
@@ -93,11 +93,11 @@
     "Population": 67091,
     "LastConfirmed": 2431,
     "LastDeath": 8,
-    "LastConfirmedNew": 4,
+    "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 105.23843227565303,
+    "DaysToDouble": 115.19513172137361,
     "DaysToDoubleDeath": null,
-    "Last2WeeksConfirmedDelta": 245,
+    "Last2WeeksConfirmedDelta": 216,
     "Recovered": null
   },
   "15009": {
@@ -114,11 +114,11 @@
     "Population": 154834,
     "LastConfirmed": 9660,
     "LastDeath": 92,
-    "LastConfirmedNew": 3,
+    "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 342.5871593231069,
-    "DaysToDoubleDeath": 109.69109424840967,
-    "Last2WeeksConfirmedDelta": 317,
+    "DaysToDouble": 412.0106176666089,
+    "DaysToDoubleDeath": 97.57078349845442,
+    "Last2WeeksConfirmedDelta": 299,
     "StayHomeOrder": {
       "StartUrl": "https://www.mauinews.com/news/local-news/2020/03/ige-takes-stay-at-home-mandate-statewide/",
       "StartDate": "2020-03-25T00:00:00Z",
@@ -138,9 +138,9 @@
     "LastDeath": 5,
     "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 139.42713642689574,
+    "DaysToDouble": 159.65268276018278,
     "DaysToDoubleDeath": null,
-    "Last2WeeksConfirmedDelta": 130,
+    "Last2WeeksConfirmedDelta": 123,
     "Recovered": null
   },
   "Summary": {
@@ -775,7 +775,8 @@
       "10/09/2021": 81283,
       "10/10/2021": 81501,
       "10/11/2021": 81614,
-      "10/12/2021": 81663
+      "10/12/2021": 81663,
+      "10/13/2021": 81663
     },
     "Death": {
       "01/22/2020": 0,
@@ -1407,7 +1408,8 @@
       "10/09/2021": 837,
       "10/10/2021": 841,
       "10/11/2021": 845,
-      "10/12/2021": 845
+      "10/12/2021": 845,
+      "10/13/2021": 845
     },
     "doses_alloc_total": {
       "12/11/2020": 0,
@@ -1715,7 +1717,8 @@
       "10/09/2021": 1315360,
       "10/10/2021": 1315360,
       "10/11/2021": 1315360,
-      "10/12/2021": 1315360
+      "10/12/2021": 1315360,
+      "10/13/2021": 1315360
     },
     "doses_admin_total": {
       "12/11/2020": 0,
@@ -2023,7 +2026,8 @@
       "10/09/2021": 2065666,
       "10/10/2021": 2065666,
       "10/11/2021": 2080371,
-      "10/12/2021": 2082001
+      "10/12/2021": 2082001,
+      "10/13/2021": 2082001
     },
     "doses_shipped_total": {
       "12/11/2020": 0,
@@ -2331,18 +2335,19 @@
       "10/09/2021": 2397220,
       "10/10/2021": 2397220,
       "10/11/2021": 2397220,
-      "10/12/2021": 2397220
+      "10/12/2021": 2397220,
+      "10/13/2021": 2397220
     },
     "doses_alloc_total_Last": 1315360,
     "doses_admin_total_Last": 2082001,
     "doses_shippied_total_Last": 2397220,
     "LastConfirmed": 81663,
-    "LastConfirmedNew": 49,
+    "LastConfirmedNew": 0,
     "LastDeath": 845,
     "LastDeathNew": 0,
-    "DaysToDouble": 269.5059769697234,
-    "DaysToDoubleDeath": 101.13997882131609,
-    "Last2WeeksConfirmedDelta": 3465,
+    "DaysToDouble": 308.1146735075718,
+    "DaysToDoubleDeath": 127.29591881093084,
+    "Last2WeeksConfirmedDelta": 3259,
     "beds": 3840,
     "bedsICU": 189,
     "hospitals": 29,
