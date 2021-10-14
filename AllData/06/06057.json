@@ -634,7 +634,8 @@
     "10/10/2021": 8901,
     "10/11/2021": 8977,
     "10/12/2021": 9004,
-    "10/13/2021": 9008
+    "10/13/2021": 9008,
+    "10/14/2021": 9008
   },
   "Death": {
     "01/22/2020": 0,
@@ -1267,7 +1268,8 @@
     "10/10/2021": 90,
     "10/11/2021": 90,
     "10/12/2021": 90,
-    "10/13/2021": 89
+    "10/13/2021": 89,
+    "10/14/2021": 89
   },
   "beds": 139,
   "bedsICU": 10,
@@ -1277,11 +1279,11 @@
   "ca_county_status": "2",
   "LastConfirmed": 9008,
   "LastDeath": 89,
-  "LastConfirmedNew": 4,
+  "LastConfirmedNew": 0,
   "LastDeathNew": 0,
-  "DaysToDouble": 274.6852306902114,
-  "DaysToDoubleDeath": null,
-  "Last2WeeksConfirmedDelta": 365,
+  "DaysToDouble": 249.37346099590937,
+  "DaysToDoubleDeath": -579.0029211522444,
+  "Last2WeeksConfirmedDelta": 346,
   "StayHomeOrder": {
     "StartUrl": "https://www.mynevadacounty.com/DocumentCenter/View/33812/Nevada-County-FAQs-on-Stay-at-Home-Order",
     "StartDate": "2020-04-15T00:00:00Z",

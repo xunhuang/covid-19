@@ -13,11 +13,11 @@
     "Population": 601723,
     "LastConfirmed": 62750,
     "LastDeath": 1183,
-    "LastConfirmedNew": 48,
-    "LastDeathNew": 1,
-    "DaysToDouble": 317.23747816626656,
-    "DaysToDoubleDeath": 2865.4264700725257,
-    "Last2WeeksConfirmedDelta": 1930,
+    "LastConfirmedNew": 0,
+    "LastDeathNew": 0,
+    "DaysToDouble": 428.5297866090972,
+    "DaysToDoubleDeath": 3823.398935755158,
+    "Last2WeeksConfirmedDelta": 1852,
     "StayHomeOrder": {
       "StartUrl": "https://apnews.com/5abcb144b6d0f106436e67c7930a5243",
       "StartDate": "2020-04-01T00:00:00Z",
@@ -675,7 +675,8 @@
       "10/10/2021": 62702,
       "10/11/2021": 62702,
       "10/12/2021": 62702,
-      "10/13/2021": 62750
+      "10/13/2021": 62750,
+      "10/14/2021": 62750
     },
     "Death": {
       "01/22/2020": 0,
@@ -1308,7 +1309,8 @@
       "10/10/2021": 1182,
       "10/11/2021": 1182,
       "10/12/2021": 1182,
-      "10/13/2021": 1183
+      "10/13/2021": 1183,
+      "10/14/2021": 1183
     },
     "doses_alloc_total": {
       "12/11/2020": 6825,
@@ -1617,7 +1619,8 @@
       "10/10/2021": 166950,
       "10/11/2021": 166950,
       "10/12/2021": 166950,
-      "10/13/2021": 166950
+      "10/13/2021": 166950,
+      "10/14/2021": 166950
     },
     "doses_admin_total": {
       "12/11/2020": 0,
@@ -1926,7 +1929,8 @@
       "10/10/2021": 1152469,
       "10/11/2021": 1152469,
       "10/12/2021": 1152469,
-      "10/13/2021": 1152469
+      "10/13/2021": 1152469,
+      "10/14/2021": 1152469
     },
     "doses_shipped_total": {
       "12/11/2020": 0,
@@ -2235,18 +2239,19 @@
       "10/10/2021": 1242045,
       "10/11/2021": 1242045,
       "10/12/2021": 1244585,
-      "10/13/2021": 1246235
+      "10/13/2021": 1246235,
+      "10/14/2021": 1246235
     },
     "doses_alloc_total_Last": 166950,
     "doses_admin_total_Last": 1152469,
     "doses_shippied_total_Last": 1246235,
     "LastConfirmed": 62750,
-    "LastConfirmedNew": 48,
+    "LastConfirmedNew": 0,
     "LastDeath": 1183,
-    "LastDeathNew": 1,
-    "DaysToDouble": 317.23747816626656,
-    "DaysToDoubleDeath": 2865.4264700725257,
-    "Last2WeeksConfirmedDelta": 1930,
+    "LastDeathNew": 0,
+    "DaysToDouble": 428.5297866090972,
+    "DaysToDoubleDeath": 3823.398935755158,
+    "Last2WeeksConfirmedDelta": 1852,
     "beds": 4143,
     "bedsICU": 237,
     "hospitals": 14,

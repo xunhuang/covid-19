@@ -634,7 +634,8 @@
     "10/10/2021": 22799,
     "10/11/2021": 22828,
     "10/12/2021": 22938,
-    "10/13/2021": 22967
+    "10/13/2021": 22967,
+    "10/14/2021": 22967
   },
   "Death": {
     "01/22/2020": 0,
@@ -1267,7 +1268,8 @@
     "10/10/2021": 540,
     "10/11/2021": 540,
     "10/12/2021": 540,
-    "10/13/2021": 541
+    "10/13/2021": 541,
+    "10/14/2021": 541
   },
   "beds": 947,
   "bedsICU": 51,
@@ -1276,11 +1278,11 @@
   "Population": 121073,
   "LastConfirmed": 22967,
   "LastDeath": 541,
-  "LastConfirmedNew": 29,
-  "LastDeathNew": 1,
-  "DaysToDouble": 528.4542613927625,
-  "DaysToDoubleDeath": null,
-  "Last2WeeksConfirmedDelta": 646,
+  "LastConfirmedNew": 0,
+  "LastDeathNew": 0,
+  "DaysToDouble": 464.5805046553554,
+  "DaysToDoubleDeath": 3496.6954794231387,
+  "Last2WeeksConfirmedDelta": 578,
   "StayHomeOrder": {
     "StartUrl": "https://abc7amarillo.com/news/local/potter-county-issues-companion-stay-at-home-order",
     "StartDate": "2020-03-30T00:00:00Z",
