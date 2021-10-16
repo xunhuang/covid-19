@@ -636,7 +636,8 @@
     "10/12/2021": 36835,
     "10/13/2021": 37010,
     "10/14/2021": 37237,
-    "10/15/2021": 37381
+    "10/15/2021": 37381,
+    "10/16/2021": 37381
   },
   "Death": {
     "01/22/2020": 0,
@@ -1271,7 +1272,8 @@
     "10/12/2021": 290,
     "10/13/2021": 291,
     "10/14/2021": 291,
-    "10/15/2021": 292
+    "10/15/2021": 292,
+    "10/16/2021": 292
   },
   "beds": 729,
   "bedsICU": 43,
@@ -1280,11 +1282,11 @@
   "Population": 299630,
   "LastConfirmed": 37381,
   "LastDeath": 292,
-  "LastConfirmedNew": 144,
-  "LastDeathNew": 1,
-  "DaysToDouble": 153.19702562642146,
-  "DaysToDoubleDeath": 243.80847400197868,
-  "Last2WeeksConfirmedDelta": 2132,
+  "LastConfirmedNew": 0,
+  "LastDeathNew": 0,
+  "DaysToDouble": 133.83273674706703,
+  "DaysToDoubleDeath": 215.98260385443987,
+  "Last2WeeksConfirmedDelta": 2111,
   "StayHomeOrder": {
     "StartUrl": "https://www.larimer.org/health/stay-at-home-order",
     "StartDate": "2020-03-26T00:00:00Z",

@@ -636,7 +636,8 @@
     "10/12/2021": 50869,
     "10/13/2021": 50869,
     "10/14/2021": 50869,
-    "10/15/2021": 51157
+    "10/15/2021": 51157,
+    "10/16/2021": 51157
   },
   "Death": {
     "01/22/2020": 0,
@@ -1271,7 +1272,8 @@
     "10/12/2021": 332,
     "10/13/2021": 332,
     "10/14/2021": 332,
-    "10/15/2021": 332
+    "10/15/2021": 332,
+    "10/16/2021": 332
   },
   "beds": 1208,
   "bedsICU": 50,
@@ -1280,11 +1282,11 @@
   "Population": 275487,
   "LastConfirmed": 51157,
   "LastDeath": 332,
-  "LastConfirmedNew": 288,
+  "LastConfirmedNew": 0,
   "LastDeathNew": 0,
-  "DaysToDouble": null,
+  "DaysToDouble": 1145.907233458637,
   "DaysToDoubleDeath": null,
-  "Last2WeeksConfirmedDelta": 838,
+  "Last2WeeksConfirmedDelta": 1126,
   "StayHomeOrder": {
     "StartUrl": "https://www.wtxl.com/news/local-news/leon-county-enacts-stay-at-home-order-amid-coronavirus-pandemic",
     "StartDate": "2020-03-25T00:00:00Z",

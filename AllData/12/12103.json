@@ -636,7 +636,8 @@
     "10/12/2021": 134669,
     "10/13/2021": 134669,
     "10/14/2021": 134669,
-    "10/15/2021": 135454
+    "10/15/2021": 135454,
+    "10/16/2021": 135454
   },
   "Death": {
     "01/22/2020": 0,
@@ -1271,7 +1272,8 @@
     "10/12/2021": 1671,
     "10/13/2021": 1671,
     "10/14/2021": 1671,
-    "10/15/2021": 1671
+    "10/15/2021": 1671,
+    "10/16/2021": 1671
   },
   "beds": 3858,
   "bedsICU": 276,
@@ -1280,11 +1282,11 @@
   "Population": 916542,
   "LastConfirmed": 135454,
   "LastDeath": 1671,
-  "LastConfirmedNew": 785,
+  "LastConfirmedNew": 0,
   "LastDeathNew": 0,
-  "DaysToDouble": null,
+  "DaysToDouble": 1113.0711519055317,
   "DaysToDoubleDeath": null,
-  "Last2WeeksConfirmedDelta": 2630,
+  "Last2WeeksConfirmedDelta": 3415,
   "StayHomeOrder": {
     "StartUrl": "https://www.tampabay.com/news/health/2020/03/25/your-questions-on-pinellas-countys-stay-at-home-order-answered/",
     "StartDate": "2020-03-26T00:00:00Z",
