@@ -637,7 +637,8 @@
     "10/13/2021": 1100,
     "10/14/2021": 1100,
     "10/15/2021": 1100,
-    "10/16/2021": 1102
+    "10/16/2021": 1102,
+    "10/17/2021": 1102
   },
   "Death": {
     "01/22/2020": 0,
@@ -1273,7 +1274,8 @@
     "10/13/2021": 17,
     "10/14/2021": 17,
     "10/15/2021": 17,
-    "10/16/2021": 17
+    "10/16/2021": 17,
+    "10/17/2021": 17
   },
   "beds": 19,
   "bedsICU": 0,
@@ -1282,11 +1284,11 @@
   "Population": 8957,
   "LastConfirmed": 1102,
   "LastDeath": 17,
-  "LastConfirmedNew": 2,
+  "LastConfirmedNew": 0,
   "LastDeathNew": 0,
-  "DaysToDouble": null,
+  "DaysToDouble": 3561.389234388084,
   "DaysToDoubleDeath": null,
-  "Last2WeeksConfirmedDelta": 12,
+  "Last2WeeksConfirmedDelta": 13,
   "StayHomeOrder": {
     "StartUrl": "https://www.facebook.com/HCHDBethanyMO/posts/3139790686088205",
     "StartDate": "2020-03-30T00:00:00Z",
