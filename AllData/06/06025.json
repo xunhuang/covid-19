@@ -641,7 +641,8 @@
     "10/17/2021": 35642,
     "10/18/2021": 35794,
     "10/19/2021": 35832,
-    "10/20/2021": 35906
+    "10/20/2021": 35906,
+    "10/21/2021": 35906
   },
   "Death": {
     "01/22/2020": 0,
@@ -1281,7 +1282,8 @@
     "10/17/2021": 764,
     "10/18/2021": 764,
     "10/19/2021": 764,
-    "10/20/2021": 764
+    "10/20/2021": 764,
+    "10/21/2021": 764
   },
   "beds": 268,
   "bedsICU": 28,
@@ -1291,11 +1293,11 @@
   "ca_county_status": "2",
   "LastConfirmed": 35906,
   "LastDeath": 764,
-  "LastConfirmedNew": 74,
+  "LastConfirmedNew": 0,
   "LastDeathNew": 0,
-  "DaysToDouble": 497.039828216663,
-  "DaysToDoubleDeath": 2468.0646477707896,
-  "Last2WeeksConfirmedDelta": 791,
+  "DaysToDouble": 469.6610865430233,
+  "DaysToDoubleDeath": null,
+  "Last2WeeksConfirmedDelta": 843,
   "StayHomeOrder": {
     "StartUrl": "https://kyma.com/news/2020/03/31/imperial-county-issues-expanded-stay-at-home-order/",
     "StartDate": "2020-04-01T00:00:00Z",
