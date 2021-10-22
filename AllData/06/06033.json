@@ -642,7 +642,8 @@
     "10/18/2021": 6565,
     "10/19/2021": 6583,
     "10/20/2021": 6593,
-    "10/21/2021": 6605
+    "10/21/2021": 6605,
+    "10/22/2021": 6605
   },
   "Death": {
     "01/22/2020": 0,
@@ -1283,7 +1284,8 @@
     "10/18/2021": 104,
     "10/19/2021": 104,
     "10/20/2021": 104,
-    "10/21/2021": 104
+    "10/21/2021": 104,
+    "10/22/2021": 104
   },
   "beds": 62,
   "bedsICU": 8,
@@ -1293,11 +1295,11 @@
   "ca_county_status": "2",
   "LastConfirmed": 6605,
   "LastDeath": 104,
-  "LastConfirmedNew": 12,
+  "LastConfirmedNew": 0,
   "LastDeathNew": 0,
-  "DaysToDouble": 256.58662535175745,
+  "DaysToDouble": 232.0452681917295,
   "DaysToDoubleDeath": 1724034232352768.2,
-  "Last2WeeksConfirmedDelta": 235,
+  "Last2WeeksConfirmedDelta": 231,
   "StayHomeOrder": {
     "StartUrl": "http://health.co.lake.ca.us/Assets/Departments/Health/Public+Health+Division/COVID-19/OrderC20.3.pdf",
     "StartDate": "2020-03-19T00:00:00Z",
