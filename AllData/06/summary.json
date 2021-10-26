@@ -676,7 +676,8 @@
       "07/28/2021": 3999662,
       "07/29/2021": 4010361,
       "07/30/2021": 4016244,
-      "07/31/2021": 4020617
+      "07/31/2021": 4020617,
+      "10/26/2021": 4855491
     },
     "Death": {
       "01/22/2020": 0,
@@ -1321,7 +1322,8 @@
       "07/28/2021": 63951,
       "07/29/2021": 63996,
       "07/30/2021": 64010,
-      "07/31/2021": 64010
+      "07/31/2021": 64010,
+      "10/26/2021": 71443
     },
     "doses_alloc_total": {
       "12/11/2020": 0,
@@ -2290,12 +2292,12 @@
     "doses_admin_total_Last": 53283990,
     "doses_shippied_total_Last": 61500045,
     "LastConfirmed": 4855491,
-    "LastConfirmedNew": 3400,
+    "LastConfirmedNew": 0,
     "LastDeath": 71443,
-    "LastDeathNew": 93,
-    "DaysToDouble": 702.8623165429215,
-    "DaysToDoubleDeath": 355.39838428215455,
-    "Last2WeeksConfirmedDelta": 78919,
+    "LastDeathNew": 0,
+    "DaysToDouble": 801.045252935187,
+    "DaysToDoubleDeath": 556.5396244614208,
+    "Last2WeeksConfirmedDelta": 81158,
     "beds": 85161,
     "bedsICU": 6925,
     "hospitals": 466,
@@ -2618,7 +2620,7 @@
     "LastDeathNew": 4,
     "DaysToDouble": 387.2404827915236,
     "DaysToDoubleDeath": 176.99170213706194,
-    "Last2WeeksConfirmedDelta": 4458,
+    "Last2WeeksConfirmedDelta": 5404,
     "Recovered": null
   },
   "06037": {
@@ -2640,7 +2642,7 @@
     "LastDeathNew": 3,
     "DaysToDouble": 841.3966080474028,
     "DaysToDoubleDeath": 918.258792750727,
-    "Last2WeeksConfirmedDelta": 15315,
+    "Last2WeeksConfirmedDelta": 14940,
     "StayHomeOrder": {
       "StartUrl": "http://publichealth.lacounty.gov/media/Coronavirus/FAQ-SaferatHomeOrder.pdf",
       "StartDate": "2020-03-21T00:00:00Z",
@@ -2880,7 +2882,7 @@
     "LastDeathNew": 16,
     "DaysToDouble": 1372.2255154788681,
     "DaysToDoubleDeath": 572.5516710654001,
-    "Last2WeeksConfirmedDelta": 3141,
+    "Last2WeeksConfirmedDelta": 3976,
     "Recovered": null
   },
   "06061": {
@@ -3036,7 +3038,7 @@
     "LastDeathNew": 13,
     "DaysToDouble": 506.3418802243836,
     "DaysToDoubleDeath": 1110.3791549936147,
-    "Last2WeeksConfirmedDelta": 6940,
+    "Last2WeeksConfirmedDelta": 7228,
     "StayHomeOrder": {
       "StartUrl": "https://www.sandiegocounty.gov/content/dam/sdc/hhsa/programs/phs/Epidemiology/HealthOfficerOrderCOVID19.pdf",
       "StartDate": "2020-03-29T00:00:00Z",
@@ -3348,7 +3350,7 @@
     "LastDeathNew": 3,
     "DaysToDouble": 477.16382539477405,
     "DaysToDoubleDeath": 40.23392222471638,
-    "Last2WeeksConfirmedDelta": 2289,
+    "Last2WeeksConfirmedDelta": 2728,
     "StayHomeOrder": {
       "StartUrl": "http://www.schsa.org/PublicHealth/pages/corona-virus/pdf/health-order-mar-31.pdf",
       "StartDate": "2020-04-02T00:00:00Z",
@@ -3652,7 +3654,7 @@
     "LastDeathNew": 1,
     "DaysToDouble": 924.1616605479121,
     "DaysToDoubleDeath": 180.48856928751508,
-    "Last2WeeksConfirmedDelta": 225,
+    "Last2WeeksConfirmedDelta": 300,
     "Recovered": null
   },
   "06043": {
@@ -3674,7 +3676,7 @@
     "LastDeathNew": 1,
     "DaysToDouble": 189.23154694828713,
     "DaysToDoubleDeath": 50.120250442644426,
-    "Last2WeeksConfirmedDelta": 146,
+    "Last2WeeksConfirmedDelta": 177,
     "Recovered": null
   },
   "06049": {
