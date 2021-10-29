@@ -649,7 +649,8 @@
     "10/25/2021": 17519,
     "10/26/2021": 17562,
     "10/27/2021": 17577,
-    "10/28/2021": 17600
+    "10/28/2021": 17600,
+    "10/29/2021": 17600
   },
   "Death": {
     "01/22/2020": 0,
@@ -1297,7 +1298,8 @@
     "10/25/2021": 218,
     "10/26/2021": 218,
     "10/27/2021": 218,
-    "10/28/2021": 218
+    "10/28/2021": 218,
+    "10/29/2021": 218
   },
   "beds": 181,
   "bedsICU": 20,
@@ -1306,11 +1308,11 @@
   "Population": 78337,
   "LastConfirmed": 17600,
   "LastDeath": 218,
-  "LastConfirmedNew": 23,
+  "LastConfirmedNew": 0,
   "LastDeathNew": 0,
-  "DaysToDouble": 685.5854263840556,
-  "DaysToDoubleDeath": 701.9220760216916,
-  "Last2WeeksConfirmedDelta": 571,
+  "DaysToDouble": 675.5700253303529,
+  "DaysToDoubleDeath": null,
+  "Last2WeeksConfirmedDelta": 392,
   "StayHomeOrder": {
     "StartUrl": "https://www.nbcdfw.com/news/coronavirus/rockwall-county-orders-shelter-in-place-order-until-mid-april/2338062/",
     "StartDate": "2020-03-24T00:00:00Z",

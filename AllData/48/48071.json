@@ -649,7 +649,8 @@
     "10/25/2021": 8755,
     "10/26/2021": 8755,
     "10/27/2021": 8755,
-    "10/28/2021": 8794
+    "10/28/2021": 8794,
+    "10/29/2021": 8794
   },
   "Death": {
     "01/22/2020": 0,
@@ -1297,7 +1298,8 @@
     "10/25/2021": 56,
     "10/26/2021": 56,
     "10/27/2021": 56,
-    "10/28/2021": 56
+    "10/28/2021": 56,
+    "10/29/2021": 56
   },
   "beds": 14,
   "bedsICU": 0,
@@ -1306,11 +1308,11 @@
   "Population": 35096,
   "LastConfirmed": 8794,
   "LastDeath": 56,
-  "LastConfirmedNew": 39,
+  "LastConfirmedNew": 0,
   "LastDeathNew": 0,
-  "DaysToDouble": null,
+  "DaysToDouble": 1455.5237422859561,
   "DaysToDoubleDeath": null,
-  "Last2WeeksConfirmedDelta": 128,
+  "Last2WeeksConfirmedDelta": 167,
   "StayHomeOrder": {
     "StartUrl": "https://www.khou.com/article/news/health/coronavirus/coronavirus-texas-counties-stay-at-home-orders/285-c4b0f79b-90ec-48c1-bb84-bf4b9d7cc0d4",
     "StartDate": "2020-03-24T00:00:00Z",

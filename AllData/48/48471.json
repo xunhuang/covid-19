@@ -649,7 +649,8 @@
     "10/25/2021": 11616,
     "10/26/2021": 11627,
     "10/27/2021": 11631,
-    "10/28/2021": 11643
+    "10/28/2021": 11643,
+    "10/29/2021": 11643
   },
   "Death": {
     "01/22/2020": 0,
@@ -1297,7 +1298,8 @@
     "10/25/2021": 177,
     "10/26/2021": 177,
     "10/27/2021": 177,
-    "10/28/2021": 180
+    "10/28/2021": 180,
+    "10/29/2021": 180
   },
   "beds": 123,
   "bedsICU": 6,
@@ -1306,11 +1308,11 @@
   "Population": 67861,
   "LastConfirmed": 11643,
   "LastDeath": 180,
-  "LastConfirmedNew": 12,
-  "LastDeathNew": 3,
-  "DaysToDouble": 1318.057865909531,
-  "DaysToDoubleDeath": null,
-  "Last2WeeksConfirmedDelta": -53,
+  "LastConfirmedNew": 0,
+  "LastDeathNew": 0,
+  "DaysToDouble": 1162.5472919488104,
+  "DaysToDoubleDeath": 384.91867335298315,
+  "Last2WeeksConfirmedDelta": -87,
   "StayHomeOrder": {
     "StartUrl": "https://www.co.walker.tx.us/egov/documents/1586459536_69055.pdf",
     "StartDate": "2020-04-09T00:00:00Z",

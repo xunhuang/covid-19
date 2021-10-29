@@ -649,7 +649,8 @@
     "10/25/2021": 2142,
     "10/26/2021": 2217,
     "10/27/2021": 2234,
-    "10/28/2021": 2272
+    "10/28/2021": 2272,
+    "10/29/2021": 2272
   },
   "Death": {
     "01/22/2020": 0,
@@ -1297,7 +1298,8 @@
     "10/25/2021": 41,
     "10/26/2021": 41,
     "10/27/2021": 41,
-    "10/28/2021": 41
+    "10/28/2021": 41,
+    "10/29/2021": 41
   },
   "beds": 29,
   "bedsICU": 4,
@@ -1307,11 +1309,11 @@
   "ca_county_status": "1",
   "LastConfirmed": 2272,
   "LastDeath": 41,
-  "LastConfirmedNew": 38,
+  "LastConfirmedNew": 0,
   "LastDeathNew": 0,
-  "DaysToDouble": 81.29882972210076,
-  "DaysToDoubleDeath": 261.9963222421926,
-  "Last2WeeksConfirmedDelta": 343,
+  "DaysToDouble": 65.72696421450718,
+  "DaysToDoubleDeath": -862017116176384.1,
+  "Last2WeeksConfirmedDelta": 354,
   "StayHomeOrder": {
     "StartUrl": "https://www.inyocounty.us/sites/default/files/2020-03/ORDER_3.20.20.pdf",
     "StartDate": "2020-03-20T00:00:00Z",

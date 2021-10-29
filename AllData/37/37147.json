@@ -649,7 +649,8 @@
     "10/25/2021": 29521,
     "10/26/2021": 29550,
     "10/27/2021": 29609,
-    "10/28/2021": 29672
+    "10/28/2021": 29672,
+    "10/29/2021": 29672
   },
   "Death": {
     "01/22/2020": 0,
@@ -1297,7 +1298,8 @@
     "10/25/2021": 142,
     "10/26/2021": 143,
     "10/27/2021": 143,
-    "10/28/2021": 143
+    "10/28/2021": 143,
+    "10/29/2021": 143
   },
   "beds": 1023,
   "bedsICU": 71,
@@ -1306,11 +1308,11 @@
   "Population": 168148,
   "LastConfirmed": 29672,
   "LastDeath": 143,
-  "LastConfirmedNew": 63,
+  "LastConfirmedNew": 0,
   "LastDeathNew": 0,
-  "DaysToDouble": 612.9582295868138,
-  "DaysToDoubleDeath": 553.1291801237269,
-  "Last2WeeksConfirmedDelta": 573,
+  "DaysToDouble": 523.185985018292,
+  "DaysToDoubleDeath": 460.940983436439,
+  "Last2WeeksConfirmedDelta": 575,
   "StayHomeOrder": {
     "StartUrl": "https://carolinapublicpress.org/30096/nc-local-governments-enact-piecemeal-stay-at-home-orders/",
     "StartDate": "2020-03-25T00:00:00Z",
