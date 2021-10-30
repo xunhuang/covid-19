@@ -650,7 +650,8 @@
     "10/26/2021": 39676,
     "10/27/2021": 39676,
     "10/28/2021": 39676,
-    "10/29/2021": 39856
+    "10/29/2021": 39856,
+    "10/30/2021": 39856
   },
   "Death": {
     "01/22/2020": 0,
@@ -1299,7 +1300,8 @@
     "10/26/2021": 285,
     "10/27/2021": 285,
     "10/28/2021": 285,
-    "10/29/2021": 285
+    "10/29/2021": 285,
+    "10/30/2021": 285
   },
   "beds": 1899,
   "bedsICU": 66,
@@ -1308,11 +1310,11 @@
   "Population": 247336,
   "LastConfirmed": 39856,
   "LastDeath": 285,
-  "LastConfirmedNew": 180,
+  "LastConfirmedNew": 0,
   "LastDeathNew": 0,
-  "DaysToDouble": null,
+  "DaysToDouble": 1429.2259706311202,
   "DaysToDoubleDeath": 862017116176384.1,
-  "Last2WeeksConfirmedDelta": 502,
+  "Last2WeeksConfirmedDelta": 682,
   "StayHomeOrder": {
     "StartUrl": "http://www.cityofgainesville.org/Portals/0/cmo/2020-03-23-StayAtHomeOrder.pdf",
     "StartDate": "2020-03-24T00:00:00Z",
