@@ -28,11 +28,11 @@
     "Population": 185079,
     "LastConfirmed": 11097,
     "LastDeath": 118,
-    "LastConfirmedNew": 33,
-    "LastDeathNew": 1,
-    "DaysToDouble": 253.84699037916027,
-    "DaysToDoubleDeath": 123.07610420147785,
-    "Last2WeeksConfirmedDelta": 457,
+    "LastConfirmedNew": 0,
+    "LastDeathNew": 0,
+    "DaysToDouble": 242.93563431406812,
+    "DaysToDoubleDeath": 79.57168223900085,
+    "Last2WeeksConfirmedDelta": 452,
     "Recovered": null
   },
   "15003": {
@@ -49,11 +49,11 @@
     "Population": 953207,
     "LastConfirmed": 57908,
     "LastDeath": 687,
-    "LastConfirmedNew": 56,
-    "LastDeathNew": 8,
-    "DaysToDouble": 621.6138735413178,
-    "DaysToDoubleDeath": 277.765692769093,
-    "Last2WeeksConfirmedDelta": 1052,
+    "LastConfirmedNew": 0,
+    "LastDeathNew": 0,
+    "DaysToDouble": 584.8424255952746,
+    "DaysToDoubleDeath": 154.3435970846737,
+    "Last2WeeksConfirmedDelta": 1036,
     "StayHomeOrder": {
       "StartUrl": "https://www.staradvertiser.com/2020/03/22/breaking-news/watch-live-honolulu-mayor-kirk-caldwell-discusses-coronavirus/",
       "StartDate": "2020-03-23T00:00:00Z",
@@ -93,11 +93,11 @@
     "Population": 67091,
     "LastConfirmed": 2648,
     "LastDeath": 9,
-    "LastConfirmedNew": 14,
+    "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 103.94430388384002,
+    "DaysToDouble": 99.52095499473535,
     "DaysToDoubleDeath": null,
-    "Last2WeeksConfirmedDelta": 179,
+    "Last2WeeksConfirmedDelta": 183,
     "Recovered": null
   },
   "15009": {
@@ -114,11 +114,11 @@
     "Population": 154834,
     "LastConfirmed": 9933,
     "LastDeath": 94,
-    "LastConfirmedNew": 22,
+    "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 483.6963939112847,
+    "DaysToDouble": 410.68853201760265,
     "DaysToDoubleDeath": 574678077450922.6,
-    "Last2WeeksConfirmedDelta": 211,
+    "Last2WeeksConfirmedDelta": 218,
     "StayHomeOrder": {
       "StartUrl": "https://www.mauinews.com/news/local-news/2020/03/ige-takes-stay-at-home-mandate-statewide/",
       "StartDate": "2020-03-25T00:00:00Z",
@@ -136,11 +136,11 @@
     "Death": null,
     "LastConfirmed": 2709,
     "LastDeath": 8,
-    "LastConfirmedNew": 27,
-    "LastDeathNew": 1,
-    "DaysToDouble": 208.7154571696774,
+    "LastConfirmedNew": 0,
+    "LastDeathNew": 0,
+    "DaysToDouble": 174.57786819817713,
     "DaysToDoubleDeath": null,
-    "Last2WeeksConfirmedDelta": 134,
+    "Last2WeeksConfirmedDelta": 156,
     "Recovered": null
   },
   "Summary": {
@@ -1774,7 +1774,8 @@
       "10/28/2021": 1315360,
       "10/29/2021": 1315360,
       "10/30/2021": 1315360,
-      "10/31/2021": 1315360
+      "10/31/2021": 1315360,
+      "11/01/2021": 1315360
     },
     "doses_admin_total": {
       "12/11/2020": 0,
@@ -2101,7 +2102,8 @@
       "10/28/2021": 2156765,
       "10/29/2021": 2156765,
       "10/30/2021": 2156765,
-      "10/31/2021": 2156765
+      "10/31/2021": 2156765,
+      "11/01/2021": 2156765
     },
     "doses_shipped_total": {
       "12/11/2020": 0,
@@ -2428,7 +2430,8 @@
       "10/28/2021": 2397220,
       "10/29/2021": 2397220,
       "10/30/2021": 2397220,
-      "10/31/2021": 2397220
+      "10/31/2021": 2397220,
+      "11/01/2021": 2397220
     },
     "doses_alloc_total_Last": 1315360,
     "doses_admin_total_Last": 2156765,
