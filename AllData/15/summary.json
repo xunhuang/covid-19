@@ -28,11 +28,11 @@
     "Population": 185079,
     "LastConfirmed": 11109,
     "LastDeath": 118,
-    "LastConfirmedNew": 12,
+    "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 242.93563431406812,
-    "DaysToDoubleDeath": 79.57168223900085,
-    "Last2WeeksConfirmedDelta": 452,
+    "DaysToDouble": 249.96188296976968,
+    "DaysToDoubleDeath": 69.8292129375004,
+    "Last2WeeksConfirmedDelta": 425,
     "Recovered": null
   },
   "15003": {
@@ -49,11 +49,11 @@
     "Population": 953207,
     "LastConfirmed": 57942,
     "LastDeath": 687,
-    "LastConfirmedNew": 34,
+    "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 584.8424255952746,
-    "DaysToDoubleDeath": 154.3435970846737,
-    "Last2WeeksConfirmedDelta": 1036,
+    "DaysToDouble": 602.0093777975103,
+    "DaysToDoubleDeath": 126.37633954030414,
+    "Last2WeeksConfirmedDelta": 994,
     "StayHomeOrder": {
       "StartUrl": "https://www.staradvertiser.com/2020/03/22/breaking-news/watch-live-honolulu-mayor-kirk-caldwell-discusses-coronavirus/",
       "StartDate": "2020-03-23T00:00:00Z",
@@ -93,11 +93,11 @@
     "Population": 67091,
     "LastConfirmed": 2657,
     "LastDeath": 9,
-    "LastConfirmedNew": 9,
+    "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 99.52095499473535,
+    "DaysToDouble": 107.27903198660498,
     "DaysToDoubleDeath": null,
-    "Last2WeeksConfirmedDelta": 183,
+    "Last2WeeksConfirmedDelta": 181,
     "Recovered": null
   },
   "15009": {
@@ -114,9 +114,9 @@
     "Population": 154834,
     "LastConfirmed": 9942,
     "LastDeath": 94,
-    "LastConfirmedNew": 9,
+    "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 410.68853201760265,
+    "DaysToDouble": 387.8581619902174,
     "DaysToDoubleDeath": 574678077450922.6,
     "Last2WeeksConfirmedDelta": 218,
     "StayHomeOrder": {
@@ -136,11 +136,11 @@
     "Death": null,
     "LastConfirmed": 2714,
     "LastDeath": 8,
-    "LastConfirmedNew": 5,
+    "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 174.57786819817713,
+    "DaysToDouble": 157.62641880417385,
     "DaysToDoubleDeath": null,
-    "Last2WeeksConfirmedDelta": 156,
+    "Last2WeeksConfirmedDelta": 152,
     "Recovered": null
   },
   "Summary": {
@@ -1777,7 +1777,8 @@
       "10/29/2021": 1315360,
       "10/30/2021": 1315360,
       "10/31/2021": 1315360,
-      "11/01/2021": 1315360
+      "11/01/2021": 1315360,
+      "11/02/2021": 1315360
     },
     "doses_admin_total": {
       "12/11/2020": 0,
@@ -2105,7 +2106,8 @@
       "10/29/2021": 2156765,
       "10/30/2021": 2176537,
       "10/31/2021": 2176537,
-      "11/01/2021": 2195747
+      "11/01/2021": 2195747,
+      "11/02/2021": 2195747
     },
     "doses_shipped_total": {
       "12/11/2020": 0,
@@ -2433,7 +2435,8 @@
       "10/29/2021": 2397220,
       "10/30/2021": 2397220,
       "10/31/2021": 2397220,
-      "11/01/2021": 2397220
+      "11/01/2021": 2397220,
+      "11/02/2021": 2397220
     },
     "doses_alloc_total_Last": 1315360,
     "doses_admin_total_Last": 2195747,

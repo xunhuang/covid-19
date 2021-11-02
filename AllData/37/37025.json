@@ -653,7 +653,8 @@
     "10/29/2021": 32853,
     "10/30/2021": 32853,
     "10/31/2021": 32853,
-    "11/01/2021": 32962
+    "11/01/2021": 32962,
+    "11/02/2021": 32962
   },
   "Death": {
     "01/22/2020": 0,
@@ -1305,7 +1306,8 @@
     "10/29/2021": 338,
     "10/30/2021": 338,
     "10/31/2021": 338,
-    "11/01/2021": 339
+    "11/01/2021": 339,
+    "11/02/2021": 339
   },
   "beds": 457,
   "bedsICU": 15,
@@ -1314,11 +1316,11 @@
   "Population": 178011,
   "LastConfirmed": 32962,
   "LastDeath": 339,
-  "LastConfirmedNew": 109,
-  "LastDeathNew": 1,
-  "DaysToDouble": 764.7074111644519,
-  "DaysToDoubleDeath": 191.2892759741728,
-  "Last2WeeksConfirmedDelta": 590,
+  "LastConfirmedNew": 0,
+  "LastDeathNew": 0,
+  "DaysToDouble": 660.326828805568,
+  "DaysToDoubleDeath": 217.17036034077813,
+  "Last2WeeksConfirmedDelta": 699,
   "StayHomeOrder": {
     "StartUrl": "https://www.cabarruscounty.us/resources/emergency-stay-home-proclamation",
     "StartDate": "2020-03-26T00:00:00Z",
