@@ -134,7 +134,7 @@
     "LastDeathNew": 2,
     "DaysToDouble": 253.4068793714846,
     "DaysToDoubleDeath": 215.20224541705977,
-    "Last2WeeksConfirmedDelta": 2757,
+    "Last2WeeksConfirmedDelta": 2535,
     "StayHomeOrder": {
       "StartUrl": "https://www.sltrib.com/news/2020/04/01/davis-county-issues/",
       "StartDate": "2020-04-01T00:00:00Z",
@@ -376,7 +376,7 @@
     "LastDeathNew": 3,
     "DaysToDouble": 312.1048795945171,
     "DaysToDoubleDeath": 238.57333144844623,
-    "Last2WeeksConfirmedDelta": 7717,
+    "Last2WeeksConfirmedDelta": 7161,
     "StayHomeOrder": {
       "StartUrl": "https://www.ksl.com/article/46736005/salt-lake-county-issues-public-health-order",
       "StartDate": "2020-03-30T00:00:00Z",
@@ -403,7 +403,7 @@
     "LastDeathNew": 0,
     "DaysToDouble": 243.89847613648539,
     "DaysToDoubleDeath": -862017116176384.1,
-    "Last2WeeksConfirmedDelta": 127,
+    "Last2WeeksConfirmedDelta": 124,
     "Recovered": null
   },
   "49039": {
@@ -466,7 +466,7 @@
     "LastDeathNew": 0,
     "DaysToDouble": 287.8948686879838,
     "DaysToDoubleDeath": -1724034232352768.2,
-    "Last2WeeksConfirmedDelta": 249,
+    "Last2WeeksConfirmedDelta": 241,
     "StayHomeOrder": {
       "StartUrl": "https://www.kpcw.org/post/summit-county-issues-stay-home-order-residents",
       "StartDate": "2020-03-27T00:00:00Z",
@@ -493,7 +493,7 @@
     "LastDeathNew": 0,
     "DaysToDouble": 183.32557807468638,
     "DaysToDoubleDeath": 213.4729938099776,
-    "Last2WeeksConfirmedDelta": 876,
+    "Last2WeeksConfirmedDelta": 808,
     "Recovered": null
   },
   "49047": {
@@ -535,7 +535,7 @@
     "LastDeathNew": 0,
     "DaysToDouble": 390.5720850718868,
     "DaysToDoubleDeath": 239.13626213070413,
-    "Last2WeeksConfirmedDelta": 4309,
+    "Last2WeeksConfirmedDelta": 3945,
     "Recovered": null
   },
   "49051": {
@@ -621,7 +621,7 @@
     "LastDeathNew": 3,
     "DaysToDouble": 243.0340163152716,
     "DaysToDoubleDeath": 188.46893485300185,
-    "Last2WeeksConfirmedDelta": 2539,
+    "Last2WeeksConfirmedDelta": 2398,
     "Recovered": null
   },
   "49984": {
@@ -637,7 +637,7 @@
     "LastDeathNew": 0,
     "DaysToDouble": 219.9856408409782,
     "DaysToDoubleDeath": 139.80022745960238,
-    "Last2WeeksConfirmedDelta": 429,
+    "Last2WeeksConfirmedDelta": 402,
     "Recovered": null
   },
   "49985": {
@@ -653,7 +653,7 @@
     "LastDeathNew": 0,
     "DaysToDouble": 265.2521813940146,
     "DaysToDoubleDeath": 95.55886735173489,
-    "Last2WeeksConfirmedDelta": 1751,
+    "Last2WeeksConfirmedDelta": 1530,
     "Recovered": null
   },
   "49986": {
@@ -669,7 +669,7 @@
     "LastDeathNew": 0,
     "DaysToDouble": 239.27295731176244,
     "DaysToDoubleDeath": 708.391495084775,
-    "Last2WeeksConfirmedDelta": 641,
+    "Last2WeeksConfirmedDelta": 587,
     "Recovered": null
   },
   "49987": {
@@ -685,7 +685,7 @@
     "LastDeathNew": 1,
     "DaysToDouble": 136.0196572890537,
     "DaysToDoubleDeath": 287.87501365270595,
-    "Last2WeeksConfirmedDelta": 654,
+    "Last2WeeksConfirmedDelta": 659,
     "Recovered": null
   },
   "49989": {
@@ -701,7 +701,7 @@
     "LastDeathNew": 2,
     "DaysToDouble": 328.732858819668,
     "DaysToDoubleDeath": 130.00810042064407,
-    "Last2WeeksConfirmedDelta": 1573,
+    "Last2WeeksConfirmedDelta": 1444,
     "Recovered": null
   },
   "80049": {
@@ -1373,7 +1373,8 @@
       "07/28/2021": 429115,
       "07/29/2021": 430217,
       "07/30/2021": 431412,
-      "07/31/2021": 431412
+      "07/31/2021": 431412,
+      "11/03/2021": 552793
     },
     "Death": {
       "01/22/2020": 0,
@@ -2026,7 +2027,8 @@
       "07/28/2021": 2447,
       "07/29/2021": 2450,
       "07/30/2021": 2451,
-      "07/31/2021": 2451
+      "07/31/2021": 2451,
+      "11/03/2021": 3247
     },
     "doses_alloc_total": {
       "12/11/2020": 154400,
@@ -3019,12 +3021,12 @@
     "doses_admin_total_Last": 3771087,
     "doses_shippied_total_Last": 4500346,
     "LastConfirmed": 552793,
-    "LastConfirmedNew": 1249,
+    "LastConfirmedNew": 0,
     "LastDeath": 3247,
-    "LastDeathNew": 11,
-    "DaysToDouble": 297.55380532134825,
-    "DaysToDoubleDeath": 202.72705180889562,
-    "Last2WeeksConfirmedDelta": 23829,
+    "LastDeathNew": 0,
+    "DaysToDouble": 311.7779671699896,
+    "DaysToDoubleDeath": 211.3895517281945,
+    "Last2WeeksConfirmedDelta": 22041,
     "beds": 6834,
     "bedsICU": 513,
     "hospitals": 62,
