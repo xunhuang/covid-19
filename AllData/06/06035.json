@@ -654,7 +654,8 @@
     "10/30/2021": 7671,
     "10/31/2021": 7671,
     "11/01/2021": 7671,
-    "11/02/2021": 7715
+    "11/02/2021": 7715,
+    "11/03/2021": 7715
   },
   "Death": {
     "01/22/2020": 0,
@@ -1307,7 +1308,8 @@
     "10/30/2021": 49,
     "10/31/2021": 49,
     "11/01/2021": 49,
-    "11/02/2021": 50
+    "11/02/2021": 50,
+    "11/03/2021": 50
   },
   "beds": 38,
   "bedsICU": 0,
@@ -1317,9 +1319,9 @@
   "ca_county_status": "1",
   "LastConfirmed": 7715,
   "LastDeath": 50,
-  "LastConfirmedNew": 44,
-  "LastDeathNew": 1,
-  "DaysToDouble": 971.0000018440828,
-  "DaysToDoubleDeath": null,
+  "LastConfirmedNew": 0,
+  "LastDeathNew": 0,
+  "DaysToDouble": 764.6256438264791,
+  "DaysToDoubleDeath": 320.22310592087405,
   "Last2WeeksConfirmedDelta": 216
 }
