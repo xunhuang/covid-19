@@ -655,7 +655,8 @@
     "10/31/2021": 12971,
     "11/01/2021": 13014,
     "11/02/2021": 13024,
-    "11/03/2021": 13038
+    "11/03/2021": 13038,
+    "11/04/2021": 13038
   },
   "Death": {
     "01/22/2020": 0,
@@ -1309,7 +1310,8 @@
     "10/31/2021": 101,
     "11/01/2021": 101,
     "11/02/2021": 101,
-    "11/03/2021": 104
+    "11/03/2021": 104,
+    "11/04/2021": 104
   },
   "beds": 408,
   "bedsICU": 48,
@@ -1319,11 +1321,11 @@
   "ca_county_status": "1",
   "LastConfirmed": 13038,
   "LastDeath": 104,
-  "LastConfirmedNew": 14,
-  "LastDeathNew": 3,
-  "DaysToDouble": 846.0315736427165,
-  "DaysToDoubleDeath": null,
-  "Last2WeeksConfirmedDelta": 169,
+  "LastConfirmedNew": 0,
+  "LastDeathNew": 0,
+  "DaysToDouble": 680.0159228377728,
+  "DaysToDoubleDeath": 221.02115438377336,
+  "Last2WeeksConfirmedDelta": 174,
   "StayHomeOrder": {
     "StartUrl": "https://www.countyofnapa.org/DocumentCenter/View/17136/Shelter-at-Home-FAQ_ENG-04222020-PDF?bidId=",
     "StartDate": "2020-03-20T00:00:00Z",

@@ -655,7 +655,8 @@
     "10/31/2021": 2003,
     "11/01/2021": 2009,
     "11/02/2021": 2009,
-    "11/03/2021": 2031
+    "11/03/2021": 2031,
+    "11/04/2021": 2031
   },
   "Death": {
     "01/22/2020": 0,
@@ -1309,16 +1310,17 @@
     "10/31/2021": 37,
     "11/01/2021": 37,
     "11/02/2021": 37,
-    "11/03/2021": 38
+    "11/03/2021": 38,
+    "11/04/2021": 38
   },
   "Population": 16295,
   "LastConfirmed": 2031,
   "LastDeath": 38,
-  "LastConfirmedNew": 22,
-  "LastDeathNew": 1,
-  "DaysToDouble": 431.2886677814449,
-  "DaysToDoubleDeath": null,
-  "Last2WeeksConfirmedDelta": 56,
+  "LastConfirmedNew": 0,
+  "LastDeathNew": 0,
+  "DaysToDouble": 282.72409046579475,
+  "DaysToDoubleDeath": 242.58713612843866,
+  "Last2WeeksConfirmedDelta": 78,
   "StayHomeOrder": {
     "StartUrl": "https://www.ksnt.com/health/coronavirus/osage-county-issues-stay-at-home-order-over-coronavirus/",
     "StartDate": "2020-03-28T00:00:00Z",
