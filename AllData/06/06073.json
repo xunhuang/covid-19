@@ -656,7 +656,8 @@
     "11/01/2021": 393068,
     "11/02/2021": 393508,
     "11/03/2021": 393905,
-    "11/04/2021": 394591
+    "11/04/2021": 394591,
+    "11/05/2021": 394591
   },
   "Death": {
     "01/22/2020": 0,
@@ -1311,7 +1312,8 @@
     "11/01/2021": 4218,
     "11/02/2021": 4232,
     "11/03/2021": 4232,
-    "11/04/2021": 4241
+    "11/04/2021": 4241,
+    "11/05/2021": 4241
   },
   "beds": 6657,
   "bedsICU": 540,
@@ -1321,10 +1323,10 @@
   "ca_county_status": "1",
   "LastConfirmed": 394591,
   "LastDeath": 4241,
-  "LastConfirmedNew": 686,
-  "LastDeathNew": 9,
-  "DaysToDouble": 587.0325282818344,
-  "DaysToDoubleDeath": 694.1340403267517,
+  "LastConfirmedNew": 0,
+  "LastDeathNew": 0,
+  "DaysToDouble": 468.7765165326777,
+  "DaysToDoubleDeath": 581.5784716943658,
   "Last2WeeksConfirmedDelta": 7537,
   "StayHomeOrder": {
     "StartUrl": "https://www.sandiegocounty.gov/content/dam/sdc/hhsa/programs/phs/Epidemiology/HealthOfficerOrderCOVID19.pdf",
