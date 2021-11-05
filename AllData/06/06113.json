@@ -657,7 +657,7 @@
     "11/02/2021": 20849,
     "11/03/2021": 20877,
     "11/04/2021": 20920,
-    "11/05/2021": 20920
+    "11/05/2021": 20989
   },
   "Death": {
     "01/22/2020": 0,
@@ -1313,7 +1313,7 @@
     "11/02/2021": 250,
     "11/03/2021": 250,
     "11/04/2021": 250,
-    "11/05/2021": 250
+    "11/05/2021": 255
   },
   "beds": 125,
   "bedsICU": 14,
@@ -1321,10 +1321,10 @@
   "bedsAvail": 69,
   "Population": 200849,
   "ca_county_status": "1",
-  "LastConfirmed": 20920,
-  "LastDeath": 250,
-  "LastConfirmedNew": 0,
-  "LastDeathNew": 0,
+  "LastConfirmed": 20989,
+  "LastDeath": 255,
+  "LastConfirmedNew": 69,
+  "LastDeathNew": 5,
   "DaysToDouble": 364.0702760821794,
   "DaysToDoubleDeath": 862017116176384.1,
   "Last2WeeksConfirmedDelta": 645,
