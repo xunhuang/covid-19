@@ -660,7 +660,8 @@
     "11/05/2021": 12096,
     "11/06/2021": 12096,
     "11/07/2021": 12096,
-    "11/08/2021": 12107
+    "11/08/2021": 12107,
+    "11/09/2021": 12107
   },
   "Death": {
     "01/22/2020": 0,
@@ -1319,7 +1320,8 @@
     "11/05/2021": 323,
     "11/06/2021": 323,
     "11/07/2021": 323,
-    "11/08/2021": 323
+    "11/08/2021": 323,
+    "11/09/2021": 323
   },
   "beds": 907,
   "bedsICU": 39,
@@ -1328,11 +1330,11 @@
   "Population": 80261,
   "LastConfirmed": 12107,
   "LastDeath": 323,
-  "LastConfirmedNew": 11,
+  "LastConfirmedNew": 0,
   "LastDeathNew": 0,
-  "DaysToDouble": 1126.9907929073254,
-  "DaysToDoubleDeath": 1041.565814775139,
-  "Last2WeeksConfirmedDelta": 105,
+  "DaysToDouble": 1247.632438039117,
+  "DaysToDoubleDeath": null,
+  "Last2WeeksConfirmedDelta": 116,
   "StayHomeOrder": {
     "StartUrl": "https://www.wjtv.com/health/coronavirus/gov-reeves-issues-shelter-in-place-order-for-lauderdale-county/",
     "StartDate": "2020-03-31T00:00:00Z",

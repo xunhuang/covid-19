@@ -660,7 +660,8 @@
     "11/05/2021": 5553,
     "11/06/2021": 5553,
     "11/07/2021": 5553,
-    "11/08/2021": 5586
+    "11/08/2021": 5586,
+    "11/09/2021": 5586
   },
   "Death": {
     "01/22/2020": 0,
@@ -1319,7 +1320,8 @@
     "11/05/2021": 93,
     "11/06/2021": 93,
     "11/07/2021": 93,
-    "11/08/2021": 93
+    "11/08/2021": 93,
+    "11/09/2021": 93
   },
   "beds": 25,
   "bedsICU": 6,
@@ -1328,11 +1330,11 @@
   "Population": 33690,
   "LastConfirmed": 5586,
   "LastDeath": 93,
-  "LastConfirmedNew": 33,
+  "LastConfirmedNew": 0,
   "LastDeathNew": 0,
-  "DaysToDouble": 310.69167039484057,
-  "DaysToDoubleDeath": 299.20561878673647,
-  "Last2WeeksConfirmedDelta": 127,
+  "DaysToDouble": 284.3387860314083,
+  "DaysToDoubleDeath": 299.2056187866845,
+  "Last2WeeksConfirmedDelta": 160,
   "StayHomeOrder": {
     "StartUrl": "https://www.wibw.com/content/news/Lyon-Co-issues-Stay-at-Home-Order-569092501.html",
     "StartDate": "2020-03-26T00:00:00Z",
