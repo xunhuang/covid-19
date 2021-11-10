@@ -11,9 +11,9 @@
     "hospitals": 14,
     "bedsAvail": 1037,
     "Population": 601723,
-    "LastConfirmed": 65094,
+    "LastConfirmed": 65159,
     "LastDeath": 1193,
-    "LastConfirmedNew": 0,
+    "LastConfirmedNew": 65,
     "LastDeathNew": 0,
     "DaysToDouble": 582.7607618749573,
     "DaysToDoubleDeath": null,
@@ -703,7 +703,7 @@
       "11/07/2021": 64799,
       "11/08/2021": 65050,
       "11/09/2021": 65094,
-      "11/10/2021": 65094
+      "11/10/2021": 65159
     },
     "Death": {
       "01/22/2020": 0,
@@ -2380,8 +2380,8 @@
     "doses_alloc_total_Last": 166950,
     "doses_admin_total_Last": 1232359,
     "doses_shippied_total_Last": 1354955,
-    "LastConfirmed": 65094,
-    "LastConfirmedNew": 0,
+    "LastConfirmed": 65159,
+    "LastConfirmedNew": 65,
     "LastDeath": 1193,
     "LastDeathNew": 0,
     "DaysToDouble": 582.7607618749573,
