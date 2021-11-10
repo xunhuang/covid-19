@@ -661,7 +661,8 @@
     "11/06/2021": 1098,
     "11/07/2021": 1098,
     "11/08/2021": 1099,
-    "11/09/2021": 1101
+    "11/09/2021": 1101,
+    "11/10/2021": 1101
   },
   "Death": {
     "01/22/2020": 0,
@@ -1321,7 +1322,8 @@
     "11/06/2021": 22,
     "11/07/2021": 22,
     "11/08/2021": 22,
-    "11/09/2021": 22
+    "11/09/2021": 22,
+    "11/10/2021": 22
   },
   "beds": 25,
   "bedsICU": 3,
@@ -1330,11 +1332,11 @@
   "Population": 9232,
   "LastConfirmed": 1101,
   "LastDeath": 22,
-  "LastConfirmedNew": 2,
+  "LastConfirmedNew": 0,
   "LastDeathNew": 0,
-  "DaysToDouble": 2367.430759073452,
+  "DaysToDouble": 1254.307247543856,
   "DaysToDoubleDeath": 862017116176384.1,
-  "Last2WeeksConfirmedDelta": 9,
+  "Last2WeeksConfirmedDelta": 11,
   "StayHomeOrder": {
     "StartUrl": "http://www.brewstercountytx.com/wp-content/uploads/2020/03/Press-Release-Order-of-Brewster-County-Judge-for-Shelter-in-Place-March-31-2020.pdf",
     "StartDate": "2020-03-31T00:00:00Z",

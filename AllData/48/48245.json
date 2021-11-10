@@ -661,7 +661,8 @@
     "11/06/2021": 31761,
     "11/07/2021": 31761,
     "11/08/2021": 31761,
-    "11/09/2021": 32453
+    "11/09/2021": 32453,
+    "11/10/2021": 32453
   },
   "Death": {
     "01/22/2020": 0,
@@ -1321,7 +1322,8 @@
     "11/06/2021": 708,
     "11/07/2021": 708,
     "11/08/2021": 708,
-    "11/09/2021": 708
+    "11/09/2021": 708,
+    "11/10/2021": 708
   },
   "beds": 1204,
   "bedsICU": 88,
@@ -1330,11 +1332,11 @@
   "Population": 252273,
   "LastConfirmed": 32453,
   "LastDeath": 708,
-  "LastConfirmedNew": 692,
+  "LastConfirmedNew": 0,
   "LastDeathNew": 0,
-  "DaysToDouble": 2306.906934884406,
-  "DaysToDoubleDeath": 402.49790002486037,
-  "Last2WeeksConfirmedDelta": 168,
+  "DaysToDouble": 278.69873969789745,
+  "DaysToDoubleDeath": 507.04431689220036,
+  "Last2WeeksConfirmedDelta": 860,
   "StayHomeOrder": {
     "StartUrl": "https://co.jefferson.tx.us/Documents/Coronavirus%20Docs/SEVENTH%20AMENDED%20EMERGENCY%20ORDER.pdf",
     "StartDate": "2020-03-27T00:00:00Z",
