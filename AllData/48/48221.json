@@ -663,7 +663,8 @@
     "11/08/2021": 9768,
     "11/09/2021": 9785,
     "11/10/2021": 9785,
-    "11/11/2021": 9812
+    "11/11/2021": 9812,
+    "11/12/2021": 9812
   },
   "Death": {
     "01/22/2020": 0,
@@ -1325,7 +1326,8 @@
     "11/08/2021": 204,
     "11/09/2021": 204,
     "11/10/2021": 204,
-    "11/11/2021": 204
+    "11/11/2021": 204,
+    "11/12/2021": 204
   },
   "beds": 73,
   "bedsICU": 12,
@@ -1334,11 +1336,11 @@
   "Population": 51182,
   "LastConfirmed": 9812,
   "LastDeath": 204,
-  "LastConfirmedNew": 27,
+  "LastConfirmedNew": 0,
   "LastDeathNew": 0,
-  "DaysToDouble": 1493.3890064507461,
-  "DaysToDoubleDeath": 328.3180587718688,
-  "Last2WeeksConfirmedDelta": 126,
+  "DaysToDouble": 944.7523001836049,
+  "DaysToDoubleDeath": 393.9816705261525,
+  "Last2WeeksConfirmedDelta": 148,
   "StayHomeOrder": {
     "StartUrl": "https://www.hcnews.com/mailchimp-morning-update-news/county-city-issue-shelter-place-order",
     "StartDate": "2020-03-25T00:00:00Z",
