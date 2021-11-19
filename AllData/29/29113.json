@@ -670,7 +670,8 @@
     "11/15/2021": 9606,
     "11/16/2021": 9618,
     "11/17/2021": 9641,
-    "11/18/2021": 9860
+    "11/18/2021": 9860,
+    "11/19/2021": 9860
   },
   "Death": {
     "01/22/2020": 0,
@@ -1339,7 +1340,8 @@
     "11/15/2021": 73,
     "11/16/2021": 73,
     "11/17/2021": 73,
-    "11/18/2021": 73
+    "11/18/2021": 73,
+    "11/19/2021": 73
   },
   "beds": 25,
   "bedsICU": 4,
@@ -1348,11 +1350,11 @@
   "Population": 52566,
   "LastConfirmed": 9860,
   "LastDeath": 73,
-  "LastConfirmedNew": 219,
+  "LastConfirmedNew": 0,
   "LastDeathNew": 0,
-  "DaysToDouble": 349.50038823648686,
+  "DaysToDouble": 178.165506211076,
   "DaysToDoubleDeath": null,
-  "Last2WeeksConfirmedDelta": 272,
+  "Last2WeeksConfirmedDelta": 471,
   "StayHomeOrder": {
     "StartUrl": "https://www.lincolnnewsnow.com/news/coronavirus_news/health-department-issues-stay-at-home-order-for-lincoln-county/article_13b3aa48-713e-11ea-ae1a-6301609f7eab.html",
     "StartDate": "2020-03-29T00:00:00Z",
