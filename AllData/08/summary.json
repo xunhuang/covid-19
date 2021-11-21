@@ -702,7 +702,8 @@
       "07/29/2021": 573825,
       "07/30/2021": 575000,
       "07/31/2021": 575000,
-      "11/09/2021": 771061
+      "11/09/2021": 771061,
+      "11/21/2021": 804632
     },
     "Death": {
       "01/22/2020": 0,
@@ -1373,7 +1374,8 @@
       "07/29/2021": 6935,
       "07/30/2021": 6945,
       "07/31/2021": 6945,
-      "11/09/2021": 8520
+      "11/09/2021": 8520,
+      "11/21/2021": 8878
     },
     "doses_alloc_total": {
       "12/11/2020": 142400,
@@ -1720,7 +1722,8 @@
       "11/17/2021": 991075,
       "11/18/2021": 991075,
       "11/19/2021": 991075,
-      "11/20/2021": 991075
+      "11/20/2021": 991075,
+      "11/21/2021": 991075
     },
     "doses_admin_total": {
       "12/11/2020": 0,
@@ -2067,7 +2070,8 @@
       "11/17/2021": 8323575,
       "11/18/2021": 8361031,
       "11/19/2021": 8401405,
-      "11/20/2021": 8401405
+      "11/20/2021": 8401405,
+      "11/21/2021": 8401405
     },
     "doses_shipped_total": {
       "12/11/2020": 0,
@@ -2414,7 +2418,8 @@
       "11/17/2021": 9753095,
       "11/18/2021": 9802245,
       "11/19/2021": 9886505,
-      "11/20/2021": 9948285
+      "11/20/2021": 9948285,
+      "11/21/2021": 9948285
     },
     "doses_alloc_total_Last": 991075,
     "doses_admin_total_Last": 8401405,
@@ -2423,9 +2428,9 @@
     "LastConfirmedNew": 0,
     "LastDeath": 8878,
     "LastDeathNew": 0,
-    "DaysToDouble": 135.61855856872916,
-    "DaysToDoubleDeath": 132.1184541437788,
-    "Last2WeeksConfirmedDelta": 47583,
+    "DaysToDouble": 143.51229882437482,
+    "DaysToDoubleDeath": 141.1449542536065,
+    "Last2WeeksConfirmedDelta": 44275,
     "beds": 12955,
     "bedsICU": 962,
     "hospitals": 113,
@@ -2461,9 +2466,9 @@
     "LastDeath": 898,
     "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 147.36713690437267,
-    "DaysToDoubleDeath": 165.5523244440247,
-    "Last2WeeksConfirmedDelta": 4317,
+    "DaysToDouble": 157.9980014717957,
+    "DaysToDoubleDeath": 189.6095536037973,
+    "Last2WeeksConfirmedDelta": 4067,
     "StayHomeOrder": {
       "StartUrl": "https://www.thedenverchannel.com/news/coronavirus/new-stay-at-home-orders-for-five-front-range-counties-announced",
       "StartDate": "2020-03-26T00:00:00Z",
@@ -2488,9 +2493,9 @@
     "LastDeath": 890,
     "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 142.1839510675981,
-    "DaysToDoubleDeath": 295.6469321058663,
-    "Last2WeeksConfirmedDelta": 4681,
+    "DaysToDouble": 151.29441726202487,
+    "DaysToDoubleDeath": 312.17150757613274,
+    "Last2WeeksConfirmedDelta": 4360,
     "StayHomeOrder": {
       "StartUrl": "https://www.thedenverchannel.com/news/coronavirus/new-stay-at-home-orders-for-five-front-range-counties-announced",
       "StartDate": "2020-03-26T00:00:00Z",
@@ -2515,9 +2520,9 @@
     "LastDeath": 272,
     "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 148.50073348897283,
-    "DaysToDoubleDeath": 193.6899221153069,
-    "Last2WeeksConfirmedDelta": 1913,
+    "DaysToDouble": 157.2126904710557,
+    "DaysToDoubleDeath": 209.43148596967018,
+    "Last2WeeksConfirmedDelta": 1767,
     "StayHomeOrder": {
       "StartUrl": "https://www.thedenverchannel.com/news/coronavirus/new-stay-at-home-orders-for-five-front-range-counties-announced",
       "StartDate": "2020-03-26T00:00:00Z",
@@ -2542,9 +2547,9 @@
     "LastDeath": 84,
     "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 119.60134671454107,
+    "DaysToDouble": 137.60822189855298,
     "DaysToDoubleDeath": 1724034232352768.2,
-    "Last2WeeksConfirmedDelta": 479,
+    "Last2WeeksConfirmedDelta": 441,
     "StayHomeOrder": {
       "StartUrl": "https://www.thedenverchannel.com/news/coronavirus/new-stay-at-home-orders-for-five-front-range-counties-announced",
       "StartDate": "2020-03-26T00:00:00Z",
@@ -2569,9 +2574,9 @@
     "LastDeath": 34,
     "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 92.75644726658146,
-    "DaysToDoubleDeath": 130.02475471775492,
-    "Last2WeeksConfirmedDelta": 234,
+    "DaysToDouble": 102.71261353862273,
+    "DaysToDoubleDeath": 108.35396226479985,
+    "Last2WeeksConfirmedDelta": 221,
     "Recovered": null
   },
   "08019": {
@@ -2586,9 +2591,9 @@
     "LastDeath": 6,
     "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 84.17501775597066,
+    "DaysToDouble": 88.14398922240957,
     "DaysToDoubleDeath": null,
-    "Last2WeeksConfirmedDelta": 63,
+    "Last2WeeksConfirmedDelta": 58,
     "Recovered": null
   },
   "08025": {
@@ -2603,9 +2608,9 @@
     "LastDeath": 25,
     "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 592.8402646602906,
-    "DaysToDoubleDeath": 79.2388240855804,
-    "Last2WeeksConfirmedDelta": 47,
+    "DaysToDouble": 608.4539589210395,
+    "DaysToDoubleDeath": 95.08658890269997,
+    "Last2WeeksConfirmedDelta": 46,
     "Recovered": null
   },
   "08029": {
@@ -2624,9 +2629,9 @@
     "LastDeath": 95,
     "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 119.82231421840305,
-    "DaysToDoubleDeath": 305.67505414811535,
-    "Last2WeeksConfirmedDelta": 289,
+    "DaysToDouble": 130.67457502657547,
+    "DaysToDoubleDeath": 366.8100649776994,
+    "Last2WeeksConfirmedDelta": 259,
     "Recovered": null
   },
   "08031": {
@@ -2645,9 +2650,9 @@
     "LastDeath": 983,
     "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 145.40136247982247,
-    "DaysToDoubleDeath": 332.47025710221754,
-    "Last2WeeksConfirmedDelta": 5129,
+    "DaysToDouble": 147.10424593695006,
+    "DaysToDoubleDeath": 327.10183802223844,
+    "Last2WeeksConfirmedDelta": 4806,
     "StayHomeOrder": {
       "StartUrl": "https://www.thedenverchannel.com/news/coronavirus/new-stay-at-home-orders-for-five-front-range-counties-announced",
       "StartDate": "2020-03-24T00:00:00Z",
@@ -2672,9 +2677,9 @@
     "LastDeath": 315,
     "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 133.5967983714915,
-    "DaysToDoubleDeath": 242.59633760863278,
-    "Last2WeeksConfirmedDelta": 2546,
+    "DaysToDouble": 140.09704397663023,
+    "DaysToDoubleDeath": 404.3272293476834,
+    "Last2WeeksConfirmedDelta": 2386,
     "StayHomeOrder": {
       "StartUrl": "https://www.thedenverchannel.com/news/coronavirus/new-stay-at-home-orders-for-five-front-range-counties-announced",
       "StartDate": "2020-03-26T00:00:00Z",
@@ -2699,9 +2704,9 @@
     "LastDeath": 32,
     "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 183.20792557611384,
+    "DaysToDouble": 194.5686020732687,
     "DaysToDoubleDeath": null,
-    "Last2WeeksConfirmedDelta": 455,
+    "Last2WeeksConfirmedDelta": 431,
     "Recovered": null
   },
   "08039": {
@@ -2716,9 +2721,9 @@
     "LastDeath": 26,
     "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 199.3349138067434,
-    "DaysToDoubleDeath": 29.756453878443555,
-    "Last2WeeksConfirmedDelta": 115,
+    "DaysToDouble": 216.53228757919385,
+    "DaysToDoubleDeath": 39.978076516775396,
+    "Last2WeeksConfirmedDelta": 111,
     "Recovered": null
   },
   "08041": {
@@ -2737,9 +2742,9 @@
     "LastDeath": 1216,
     "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 144.58802828124408,
-    "DaysToDoubleDeath": 132.70415685876262,
-    "Last2WeeksConfirmedDelta": 6320,
+    "DaysToDouble": 154.64919138307135,
+    "DaysToDoubleDeath": 142.87291441945976,
+    "Last2WeeksConfirmedDelta": 5881,
     "Recovered": null
   },
   "08043": {
@@ -2758,9 +2763,9 @@
     "LastDeath": 118,
     "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 118.04126152769506,
-    "DaysToDoubleDeath": 48.375947752514975,
-    "Last2WeeksConfirmedDelta": 729,
+    "DaysToDouble": 125.43645650651129,
+    "DaysToDoubleDeath": 40.56160223284285,
+    "Last2WeeksConfirmedDelta": 678,
     "Recovered": null
   },
   "08045": {
@@ -2779,9 +2784,9 @@
     "LastDeath": 68,
     "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 196.17267961919103,
-    "DaysToDoubleDeath": 86.02807546087949,
-    "Last2WeeksConfirmedDelta": 346,
+    "DaysToDouble": 207.6213679041763,
+    "DaysToDoubleDeath": 143.38012576812295,
+    "Last2WeeksConfirmedDelta": 327,
     "Recovered": null
   },
   "08049": {
@@ -2800,9 +2805,9 @@
     "LastDeath": 16,
     "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 190.47711639533185,
+    "DaysToDouble": 201.42025762023948,
     "DaysToDoubleDeath": null,
-    "Last2WeeksConfirmedDelta": 81,
+    "Last2WeeksConfirmedDelta": 74,
     "Recovered": null
   },
   "08051": {
@@ -2821,9 +2826,9 @@
     "LastDeath": 12,
     "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 166.00839498685232,
+    "DaysToDouble": 168.55111545035032,
     "DaysToDoubleDeath": null,
-    "Last2WeeksConfirmedDelta": 81,
+    "Last2WeeksConfirmedDelta": 76,
     "Recovered": null
   },
   "08053": {
@@ -2838,9 +2843,9 @@
     "LastDeath": 0,
     "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 1251.7987325971644,
+    "DaysToDouble": 1724034232352768.2,
     "DaysToDoubleDeath": null,
-    "Last2WeeksConfirmedDelta": 4,
+    "Last2WeeksConfirmedDelta": 3,
     "Recovered": null
   },
   "08055": {
@@ -2859,9 +2864,9 @@
     "LastDeath": 21,
     "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 75.07325030155889,
-    "DaysToDoubleDeath": 79.55751486418767,
-    "Last2WeeksConfirmedDelta": 76,
+    "DaysToDouble": 68.34700585462416,
+    "DaysToDoubleDeath": 132.59585810696922,
+    "Last2WeeksConfirmedDelta": 69,
     "Recovered": null
   },
   "08059": {
@@ -2880,9 +2885,9 @@
     "LastDeath": 972,
     "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 111.46031826524013,
-    "DaysToDoubleDeath": 219.61788815970746,
-    "Last2WeeksConfirmedDelta": 4788,
+    "DaysToDouble": 118.98738627162668,
+    "DaysToDoubleDeath": 210.0841517649812,
+    "Last2WeeksConfirmedDelta": 4426,
     "StayHomeOrder": {
       "StartUrl": "https://www.thedenverchannel.com/news/coronavirus/new-stay-at-home-orders-for-five-front-range-counties-announced",
       "StartDate": "2020-03-26T00:00:00Z",
@@ -2907,9 +2912,9 @@
     "LastDeath": 58,
     "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 98.22186599889528,
-    "DaysToDoubleDeath": 64.42161796841532,
-    "Last2WeeksConfirmedDelta": 592,
+    "DaysToDouble": 109.09733373753686,
+    "DaysToDoubleDeath": 68.59426531400648,
+    "Last2WeeksConfirmedDelta": 556,
     "Recovered": null
   },
   "08069": {
@@ -2928,9 +2933,9 @@
     "LastDeath": 353,
     "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 125.85856942935173,
-    "DaysToDoubleDeath": 76.76881642079525,
-    "Last2WeeksConfirmedDelta": 2866,
+    "DaysToDouble": 133.54788459255138,
+    "DaysToDoubleDeath": 84.88983986341896,
+    "Last2WeeksConfirmedDelta": 2654,
     "StayHomeOrder": {
       "StartUrl": "https://www.larimer.org/health/stay-at-home-order",
       "StartDate": "2020-03-26T00:00:00Z",
@@ -2955,9 +2960,9 @@
     "LastDeath": 89,
     "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 303.4937218411822,
-    "DaysToDoubleDeath": 155.17812926046022,
-    "Last2WeeksConfirmedDelta": 156,
+    "DaysToDouble": 317.8820428535605,
+    "DaysToDoubleDeath": 142.32009456318306,
+    "Last2WeeksConfirmedDelta": 143,
     "Recovered": null
   },
   "08077": {
@@ -2976,9 +2981,9 @@
     "LastDeath": 375,
     "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 116.11350995863334,
-    "DaysToDoubleDeath": 100.08926082396948,
-    "Last2WeeksConfirmedDelta": 2013,
+    "DaysToDouble": 119.31559628366085,
+    "DaysToDoubleDeath": 97.7867626343438,
+    "Last2WeeksConfirmedDelta": 1855,
     "Recovered": null
   },
   "08085": {
@@ -2997,9 +3002,9 @@
     "LastDeath": 104,
     "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 108.29735284106387,
-    "DaysToDoubleDeath": 42.773736608735454,
-    "Last2WeeksConfirmedDelta": 530,
+    "DaysToDouble": 121.18648714116365,
+    "DaysToDoubleDeath": 48.491067373814204,
+    "Last2WeeksConfirmedDelta": 488,
     "Recovered": null
   },
   "08087": {
@@ -3018,9 +3023,9 @@
     "LastDeath": 104,
     "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 111.84211408500524,
-    "DaysToDoubleDeath": 124.32489243535146,
-    "Last2WeeksConfirmedDelta": 256,
+    "DaysToDouble": 119.6795575706806,
+    "DaysToDoubleDeath": 132.87281218904968,
+    "Last2WeeksConfirmedDelta": 239,
     "Recovered": null
   },
   "08089": {
@@ -3039,9 +3044,9 @@
     "LastDeath": 90,
     "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 79.83329033579297,
-    "DaysToDoubleDeath": 89.74238462404855,
-    "Last2WeeksConfirmedDelta": 305,
+    "DaysToDouble": 85.08684553788643,
+    "DaysToDoubleDeath": 107.0303741169256,
+    "Last2WeeksConfirmedDelta": 279,
     "Recovered": null
   },
   "08093": {
@@ -3056,9 +3061,9 @@
     "LastDeath": 11,
     "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 104.84579062370297,
+    "DaysToDouble": 112.01209123057868,
     "DaysToDoubleDeath": null,
-    "Last2WeeksConfirmedDelta": 120,
+    "Last2WeeksConfirmedDelta": 116,
     "Recovered": null
   },
   "08097": {
@@ -3077,9 +3082,9 @@
     "LastDeath": 6,
     "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 204.22053360786992,
+    "DaysToDouble": 215.72371505180806,
     "DaysToDoubleDeath": null,
-    "Last2WeeksConfirmedDelta": 100,
+    "Last2WeeksConfirmedDelta": 96,
     "StayHomeOrder": {
       "StartUrl": "https://www.thedenverchannel.com/news/coronavirus/new-stay-at-home-orders-for-five-front-range-counties-announced",
       "StartDate": "2020-03-23T00:00:00Z",
@@ -3104,9 +3109,9 @@
     "LastDeath": 553,
     "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 125.44850192851777,
-    "DaysToDoubleDeath": 71.59783026007237,
-    "Last2WeeksConfirmedDelta": 2058,
+    "DaysToDouble": 137.22546267300365,
+    "DaysToDoubleDeath": 81.36535289593238,
+    "Last2WeeksConfirmedDelta": 1877,
     "Recovered": null
   },
   "08107": {
@@ -3125,9 +3130,9 @@
     "LastDeath": 23,
     "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 152.09420042908724,
+    "DaysToDouble": 175.3356183425204,
     "DaysToDoubleDeath": 1724034232352768.2,
-    "Last2WeeksConfirmedDelta": 247,
+    "Last2WeeksConfirmedDelta": 232,
     "Recovered": null
   },
   "08113": {
@@ -3142,9 +3147,9 @@
     "LastDeath": 5,
     "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 142.41791537580067,
+    "DaysToDouble": 145.45952549244586,
     "DaysToDoubleDeath": null,
-    "Last2WeeksConfirmedDelta": 56,
+    "Last2WeeksConfirmedDelta": 52,
     "StayHomeOrder": {
       "StartUrl": "https://www.thedenverchannel.com/news/coronavirus/new-stay-at-home-orders-for-five-front-range-counties-announced",
       "StartDate": "2020-03-19T00:00:00Z",
@@ -3169,9 +3174,9 @@
     "LastDeath": 11,
     "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 137.34860656001018,
-    "DaysToDoubleDeath": 111.52634130817108,
-    "Last2WeeksConfirmedDelta": 299,
+    "DaysToDouble": 137.48825710811735,
+    "DaysToDoubleDeath": 223.05268261631332,
+    "Last2WeeksConfirmedDelta": 280,
     "Recovered": null
   },
   "08119": {
@@ -3190,9 +3195,9 @@
     "LastDeath": 39,
     "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 130.9395892468399,
-    "DaysToDoubleDeath": 124.52844163900724,
-    "Last2WeeksConfirmedDelta": 196,
+    "DaysToDouble": 137.20744645056612,
+    "DaysToDoubleDeath": 149.43412996680004,
+    "Last2WeeksConfirmedDelta": 182,
     "Recovered": null
   },
   "08123": {
@@ -3211,9 +3216,9 @@
     "LastDeath": 510,
     "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 142.6539808272587,
-    "DaysToDoubleDeath": 81.3354344051217,
-    "Last2WeeksConfirmedDelta": 2944,
+    "DaysToDouble": 150.95499385725847,
+    "DaysToDoubleDeath": 88.24641587603708,
+    "Last2WeeksConfirmedDelta": 2737,
     "Recovered": null
   },
   "08125": {
@@ -3232,9 +3237,9 @@
     "LastDeath": 18,
     "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 157.94832653933724,
+    "DaysToDouble": 172.9328262946747,
     "DaysToDoubleDeath": -1724034232352768.2,
-    "Last2WeeksConfirmedDelta": 69,
+    "Last2WeeksConfirmedDelta": 61,
     "Recovered": null
   },
   "08003": {
@@ -3253,9 +3258,9 @@
     "LastDeath": 47,
     "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 99.121829005839,
-    "DaysToDoubleDeath": 98.82335086962975,
-    "Last2WeeksConfirmedDelta": 228,
+    "DaysToDouble": 105.57401048806912,
+    "DaysToDoubleDeath": 89.26329122745136,
+    "Last2WeeksConfirmedDelta": 209,
     "Recovered": null
   },
   "08007": {
@@ -3274,9 +3279,9 @@
     "LastDeath": 7,
     "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 82.9990616777928,
+    "DaysToDouble": 84.9457287711624,
     "DaysToDoubleDeath": null,
-    "Last2WeeksConfirmedDelta": 195,
+    "Last2WeeksConfirmedDelta": 183,
     "Recovered": null
   },
   "08009": {
@@ -3295,9 +3300,9 @@
     "LastDeath": 5,
     "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 104.24067714392777,
+    "DaysToDouble": 112.3966733255091,
     "DaysToDoubleDeath": null,
-    "Last2WeeksConfirmedDelta": 50,
+    "Last2WeeksConfirmedDelta": 42,
     "Recovered": null
   },
   "08011": {
@@ -3312,9 +3317,9 @@
     "LastDeath": 31,
     "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 155.4291321068016,
-    "DaysToDoubleDeath": 52.99193495497235,
-    "Last2WeeksConfirmedDelta": 76,
+    "DaysToDouble": 153.71897224262335,
+    "DaysToDoubleDeath": 73.05795478965959,
+    "Last2WeeksConfirmedDelta": 72,
     "Recovered": null
   },
   "08017": {
@@ -3333,9 +3338,9 @@
     "LastDeath": 7,
     "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 53.778928439985634,
+    "DaysToDouble": 49.05982989274756,
     "DaysToDoubleDeath": null,
-    "Last2WeeksConfirmedDelta": 35,
+    "Last2WeeksConfirmedDelta": 34,
     "Recovered": null
   },
   "08021": {
@@ -3354,9 +3359,9 @@
     "LastDeath": 41,
     "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 201.2295388221475,
-    "DaysToDoubleDeath": 47.814439431817945,
-    "Last2WeeksConfirmedDelta": 55,
+    "DaysToDouble": 222.72132594105736,
+    "DaysToDoubleDeath": 45.14146873072287,
+    "Last2WeeksConfirmedDelta": 50,
     "Recovered": null
   },
   "08023": {
@@ -3371,9 +3376,9 @@
     "LastDeath": 13,
     "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 170.3135691062583,
-    "DaysToDoubleDeath": 40.41201174510628,
-    "Last2WeeksConfirmedDelta": 25,
+    "DaysToDouble": 210.98162548075496,
+    "DaysToDoubleDeath": 48.494414094126846,
+    "Last2WeeksConfirmedDelta": 19,
     "Recovered": null
   },
   "08027": {
@@ -3388,7 +3393,7 @@
     "LastDeath": 10,
     "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 83.4666721621942,
+    "DaysToDouble": 111.98260081393458,
     "DaysToDoubleDeath": null,
     "Last2WeeksConfirmedDelta": 44,
     "Recovered": null
@@ -3405,9 +3410,9 @@
     "LastDeath": 5,
     "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 107.40690673147728,
+    "DaysToDouble": 130.82079873558834,
     "DaysToDoubleDeath": null,
-    "Last2WeeksConfirmedDelta": 14,
+    "Last2WeeksConfirmedDelta": 11,
     "Recovered": null
   },
   "08047": {
@@ -3422,9 +3427,9 @@
     "LastDeath": 3,
     "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 86.50749267133749,
+    "DaysToDouble": 109.97043660030563,
     "DaysToDoubleDeath": null,
-    "Last2WeeksConfirmedDelta": 47,
+    "Last2WeeksConfirmedDelta": 40,
     "Recovered": null
   },
   "08057": {
@@ -3439,7 +3444,7 @@
     "LastDeath": 0,
     "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 227.06948686444025,
+    "DaysToDouble": 252.6593478324803,
     "DaysToDoubleDeath": null,
     "Last2WeeksConfirmedDelta": 3,
     "Recovered": null
@@ -3460,7 +3465,7 @@
     "LastDeath": 4,
     "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 116.82541773348966,
+    "DaysToDouble": 126.10552481792607,
     "DaysToDoubleDeath": null,
     "Last2WeeksConfirmedDelta": 20,
     "Recovered": null
@@ -3481,9 +3486,9 @@
     "LastDeath": 20,
     "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 102.10520553725286,
+    "DaysToDouble": 107.64757867107491,
     "DaysToDoubleDeath": 862017116176384.1,
-    "Last2WeeksConfirmedDelta": 80,
+    "Last2WeeksConfirmedDelta": 74,
     "Recovered": null
   },
   "08065": {
@@ -3502,9 +3507,9 @@
     "LastDeath": 1,
     "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 172.93114013031797,
+    "DaysToDouble": 156.44610192727887,
     "DaysToDoubleDeath": null,
-    "Last2WeeksConfirmedDelta": 40,
+    "Last2WeeksConfirmedDelta": 37,
     "Recovered": null
   },
   "08071": {
@@ -3523,9 +3528,9 @@
     "LastDeath": 27,
     "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 82.00156893992335,
-    "DaysToDoubleDeath": 35.016495911413394,
-    "Last2WeeksConfirmedDelta": 176,
+    "DaysToDouble": 88.29044648614355,
+    "DaysToDoubleDeath": 29.012470684844363,
+    "Last2WeeksConfirmedDelta": 171,
     "Recovered": null
   },
   "08073": {
@@ -3544,9 +3549,9 @@
     "LastDeath": 8,
     "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 378.15815864208986,
+    "DaysToDouble": 450.0706938177896,
     "DaysToDoubleDeath": null,
-    "Last2WeeksConfirmedDelta": 16,
+    "Last2WeeksConfirmedDelta": 18,
     "Recovered": null
   },
   "08079": {
@@ -3561,7 +3566,7 @@
     "LastDeath": 1,
     "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 112.25739814670945,
+    "DaysToDouble": 104.4154476118529,
     "DaysToDoubleDeath": null,
     "Last2WeeksConfirmedDelta": 15,
     "Recovered": null
@@ -3582,9 +3587,9 @@
     "LastDeath": 47,
     "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 230.28645016945146,
-    "DaysToDoubleDeath": 180.48856928751508,
-    "Last2WeeksConfirmedDelta": 103,
+    "DaysToDouble": 241.5486380727849,
+    "DaysToDoubleDeath": 150.407141072924,
+    "Last2WeeksConfirmedDelta": 99,
     "Recovered": null
   },
   "08083": {
@@ -3603,9 +3608,9 @@
     "LastDeath": 44,
     "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 131.73087310642296,
-    "DaysToDoubleDeath": 51.45512443273087,
-    "Last2WeeksConfirmedDelta": 299,
+    "DaysToDouble": 128.8114515421129,
+    "DaysToDoubleDeath": 48.56791720404752,
+    "Last2WeeksConfirmedDelta": 273,
     "Recovered": null
   },
   "08091": {
@@ -3620,9 +3625,9 @@
     "LastDeath": 6,
     "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 152.14034117426436,
+    "DaysToDouble": 157.49727713990285,
     "DaysToDoubleDeath": null,
-    "Last2WeeksConfirmedDelta": 27,
+    "Last2WeeksConfirmedDelta": 25,
     "Recovered": null
   },
   "08095": {
@@ -3641,9 +3646,9 @@
     "LastDeath": 15,
     "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 122.79294839026221,
+    "DaysToDouble": 119.1973677607306,
     "DaysToDoubleDeath": null,
-    "Last2WeeksConfirmedDelta": 33,
+    "Last2WeeksConfirmedDelta": 31,
     "Recovered": null
   },
   "08099": {
@@ -3662,9 +3667,9 @@
     "LastDeath": 33,
     "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 178.40719686871483,
-    "DaysToDoubleDeath": 126.14283335104642,
-    "Last2WeeksConfirmedDelta": 112,
+    "DaysToDouble": 182.43701639088897,
+    "DaysToDoubleDeath": 210.2380555850876,
+    "Last2WeeksConfirmedDelta": 101,
     "Recovered": null
   },
   "08103": {
@@ -3683,9 +3688,9 @@
     "LastDeath": 9,
     "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 96.83696153906058,
+    "DaysToDouble": 105.7261577052097,
     "DaysToDoubleDeath": null,
-    "Last2WeeksConfirmedDelta": 96,
+    "Last2WeeksConfirmedDelta": 92,
     "Recovered": null
   },
   "08105": {
@@ -3704,9 +3709,9 @@
     "LastDeath": 26,
     "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 64.51881029267042,
-    "DaysToDoubleDeath": 29.68357837192373,
-    "Last2WeeksConfirmedDelta": 171,
+    "DaysToDouble": 67.25463868342061,
+    "DaysToDoubleDeath": 31.92466004569999,
+    "Last2WeeksConfirmedDelta": 167,
     "Recovered": null
   },
   "08109": {
@@ -3721,9 +3726,9 @@
     "LastDeath": 8,
     "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 112.49484583120407,
+    "DaysToDouble": 104.10029972756182,
     "DaysToDoubleDeath": null,
-    "Last2WeeksConfirmedDelta": 68,
+    "Last2WeeksConfirmedDelta": 63,
     "Recovered": null
   },
   "08111": {
@@ -3738,7 +3743,7 @@
     "LastDeath": 0,
     "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": -405.6266346507045,
+    "DaysToDouble": -338.02219554230675,
     "DaysToDoubleDeath": null,
     "Last2WeeksConfirmedDelta": 5,
     "Recovered": null
@@ -3759,9 +3764,9 @@
     "LastDeath": 5,
     "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 275.17989426450345,
+    "DaysToDouble": 254.28274003393042,
     "DaysToDoubleDeath": null,
-    "Last2WeeksConfirmedDelta": 10,
+    "Last2WeeksConfirmedDelta": 8,
     "Recovered": null
   },
   "08121": {
@@ -3776,9 +3781,9 @@
     "LastDeath": 23,
     "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 190.8613599475892,
+    "DaysToDouble": 202.04106301613234,
     "DaysToDoubleDeath": 1724034232352768.2,
-    "Last2WeeksConfirmedDelta": 40,
+    "Last2WeeksConfirmedDelta": 35,
     "Recovered": null
   }
 }
