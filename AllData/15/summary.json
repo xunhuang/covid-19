@@ -28,11 +28,11 @@
     "Population": 185079,
     "LastConfirmed": 11609,
     "LastDeath": 132,
-    "LastConfirmedNew": 13,
+    "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 223.85462433135507,
-    "DaysToDoubleDeath": 73.55667316173795,
-    "Last2WeeksConfirmedDelta": 381,
+    "DaysToDouble": 227.8487961416363,
+    "DaysToDoubleDeath": 71.55993285107175,
+    "Last2WeeksConfirmedDelta": 368,
     "Recovered": null
   },
   "15003": {
@@ -49,11 +49,11 @@
     "Population": 953207,
     "LastConfirmed": 59232,
     "LastDeath": 747,
-    "LastConfirmedNew": 48,
+    "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 417.9033509954329,
-    "DaysToDoubleDeath": 170.8800480591548,
-    "Last2WeeksConfirmedDelta": 959,
+    "DaysToDouble": 424.35660326033803,
+    "DaysToDoubleDeath": 199.58971034896342,
+    "Last2WeeksConfirmedDelta": 948,
     "StayHomeOrder": {
       "StartUrl": "https://www.staradvertiser.com/2020/03/22/breaking-news/watch-live-honolulu-mayor-kirk-caldwell-discusses-coronavirus/",
       "StartDate": "2020-03-23T00:00:00Z",
@@ -93,11 +93,11 @@
     "Population": 67091,
     "LastConfirmed": 2997,
     "LastDeath": 13,
-    "LastConfirmedNew": 12,
+    "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 128.20717533199752,
-    "DaysToDoubleDeath": 23.235733618619815,
-    "Last2WeeksConfirmedDelta": 269,
+    "DaysToDouble": 123.65444713471229,
+    "DaysToDoubleDeath": 38.726222697698645,
+    "Last2WeeksConfirmedDelta": 254,
     "Recovered": null
   },
   "15009": {
@@ -114,11 +114,11 @@
     "Population": 154834,
     "LastConfirmed": 10246,
     "LastDeath": 99,
-    "LastConfirmedNew": 19,
+    "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 400.43920830698477,
-    "DaysToDoubleDeath": 382.3367008282698,
-    "Last2WeeksConfirmedDelta": 224,
+    "DaysToDouble": 356.87238910190297,
+    "DaysToDoubleDeath": 637.2278347139244,
+    "Last2WeeksConfirmedDelta": 232,
     "StayHomeOrder": {
       "StartUrl": "https://www.mauinews.com/news/local-news/2020/03/ige-takes-stay-at-home-mandate-statewide/",
       "StartDate": "2020-03-25T00:00:00Z",
@@ -138,9 +138,9 @@
     "LastDeath": 11,
     "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 237.72599637024842,
+    "DaysToDouble": 254.70185667993238,
     "DaysToDoubleDeath": null,
-    "Last2WeeksConfirmedDelta": 103,
+    "Last2WeeksConfirmedDelta": 92,
     "Recovered": null
   },
   "Summary": {
@@ -816,7 +816,8 @@
       "11/19/2021": 86522,
       "11/20/2021": 86740,
       "11/21/2021": 86847,
-      "11/22/2021": 86939
+      "11/22/2021": 86939,
+      "11/23/2021": 86939
     },
     "Death": {
       "01/22/2020": 0,
@@ -1489,7 +1490,8 @@
       "11/19/2021": 998,
       "11/20/2021": 1002,
       "11/21/2021": 1002,
-      "11/22/2021": 1002
+      "11/22/2021": 1002,
+      "11/23/2021": 1002
     },
     "doses_alloc_total": {
       "12/11/2020": 0,
@@ -1838,7 +1840,8 @@
       "11/19/2021": 1315360,
       "11/20/2021": 1315360,
       "11/21/2021": 1315360,
-      "11/22/2021": 1315360
+      "11/22/2021": 1315360,
+      "11/23/2021": 1315360
     },
     "doses_admin_total": {
       "12/11/2020": 0,
@@ -2187,7 +2190,8 @@
       "11/19/2021": 2311008,
       "11/20/2021": 2311008,
       "11/21/2021": 2311008,
-      "11/22/2021": 2320572
+      "11/22/2021": 2320572,
+      "11/23/2021": 2320572
     },
     "doses_shipped_total": {
       "12/11/2020": 0,
@@ -2536,18 +2540,19 @@
       "11/19/2021": 2397220,
       "11/20/2021": 2397220,
       "11/21/2021": 2397220,
-      "11/22/2021": 2397220
+      "11/22/2021": 2397220,
+      "11/23/2021": 2397220
     },
     "doses_alloc_total_Last": 1315360,
     "doses_admin_total_Last": 2320572,
     "doses_shippied_total_Last": 2397220,
     "LastConfirmed": 86939,
-    "LastConfirmedNew": 92,
+    "LastConfirmedNew": 0,
     "LastDeath": 1002,
     "LastDeathNew": 0,
-    "DaysToDouble": 341.89041424232465,
-    "DaysToDoubleDeath": 139.18140655621866,
-    "Last2WeeksConfirmedDelta": 1936,
+    "DaysToDouble": 341.6783208793869,
+    "DaysToDoubleDeath": 161.6624776205042,
+    "Last2WeeksConfirmedDelta": 1894,
     "beds": 3840,
     "bedsICU": 189,
     "hospitals": 29,
