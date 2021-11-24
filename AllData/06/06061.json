@@ -675,7 +675,8 @@
     "11/20/2021": 41680,
     "11/21/2021": 41680,
     "11/22/2021": 41809,
-    "11/23/2021": 41836
+    "11/23/2021": 41836,
+    "11/24/2021": 41836
   },
   "Death": {
     "01/22/2020": 0,
@@ -1349,7 +1350,8 @@
     "11/20/2021": 462,
     "11/21/2021": 462,
     "11/22/2021": 465,
-    "11/23/2021": 465
+    "11/23/2021": 465,
+    "11/24/2021": 465
   },
   "beds": 748,
   "bedsICU": 70,
@@ -1359,11 +1361,11 @@
   "ca_county_status": "2",
   "LastConfirmed": 41836,
   "LastDeath": 465,
-  "LastConfirmedNew": 27,
+  "LastConfirmedNew": 0,
   "LastDeathNew": 0,
-  "DaysToDouble": 624.574763238287,
-  "DaysToDoubleDeath": 189.47055652869534,
-  "Last2WeeksConfirmedDelta": 793,
+  "DaysToDouble": 628.7643491642464,
+  "DaysToDoubleDeath": 320.35367834418804,
+  "Last2WeeksConfirmedDelta": 768,
   "StayHomeOrder": {
     "StartUrl": "https://www.placer.ca.gov/DocumentCenter/View/43269/PlacerCounty-COVID-19-Directive",
     "StartDate": "2020-03-20T00:00:00Z",
