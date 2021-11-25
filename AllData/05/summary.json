@@ -706,7 +706,8 @@
       "07/28/2021": 376435,
       "07/29/2021": 379245,
       "07/30/2021": 381750,
-      "07/31/2021": 383076
+      "07/31/2021": 383076,
+      "11/25/2021": 520470
     },
     "Death": {
       "01/22/2020": 0,
@@ -1381,7 +1382,8 @@
       "07/28/2021": 6099,
       "07/29/2021": 6110,
       "07/30/2021": 6123,
-      "07/31/2021": 6141
+      "07/31/2021": 6141,
+      "11/25/2021": 8643
     },
     "doses_alloc_total": {
       "12/11/2020": 0,
@@ -1732,7 +1734,8 @@
       "11/21/2021": 2035270,
       "11/22/2021": 2035270,
       "11/23/2021": 2035270,
-      "11/24/2021": 2035270
+      "11/24/2021": 2035270,
+      "11/25/2021": 2035270
     },
     "doses_admin_total": {
       "12/11/2020": 0,
@@ -2083,7 +2086,8 @@
       "11/21/2021": 3465858,
       "11/22/2021": 3471854,
       "11/23/2021": 3474676,
-      "11/24/2021": 3474961
+      "11/24/2021": 3474961,
+      "11/25/2021": 3474961
     },
     "doses_shipped_total": {
       "12/11/2020": 0,
@@ -2434,18 +2438,19 @@
       "11/21/2021": 4846390,
       "11/22/2021": 4846390,
       "11/23/2021": 4850310,
-      "11/24/2021": 4877430
+      "11/24/2021": 4877430,
+      "11/25/2021": 4877430
     },
     "doses_alloc_total_Last": 2035270,
     "doses_admin_total_Last": 3474961,
     "doses_shippied_total_Last": 4877430,
     "LastConfirmed": 520470,
-    "LastConfirmedNew": 678,
+    "LastConfirmedNew": 0,
     "LastDeath": 8643,
-    "LastDeathNew": 16,
-    "DaysToDouble": 662.9227199649515,
-    "DaysToDoubleDeath": 1152.518713796204,
-    "Last2WeeksConfirmedDelta": 8708,
+    "LastDeathNew": 0,
+    "DaysToDouble": 705.2914771000059,
+    "DaysToDoubleDeath": 939.8778544072519,
+    "Last2WeeksConfirmedDelta": 8621,
     "beds": 12869,
     "bedsICU": 667,
     "hospitals": 106,
@@ -2473,11 +2478,11 @@
     "Population": 221339,
     "LastConfirmed": 43626,
     "LastDeath": 628,
-    "LastConfirmedNew": 76,
-    "LastDeathNew": 2,
-    "DaysToDouble": 537.3211020180464,
-    "DaysToDoubleDeath": 1346.7053656458588,
-    "Last2WeeksConfirmedDelta": 897,
+    "LastConfirmedNew": 0,
+    "LastDeathNew": 0,
+    "DaysToDouble": 571.7966632833053,
+    "DaysToDoubleDeath": 759.037022363689,
+    "Last2WeeksConfirmedDelta": 902,
     "Recovered": null
   },
   "05009": {
@@ -2494,10 +2499,10 @@
     "Population": 36903,
     "LastConfirmed": 6405,
     "LastDeath": 131,
-    "LastConfirmedNew": 6,
-    "LastDeathNew": 1,
-    "DaysToDouble": 486.5726843876406,
-    "DaysToDoubleDeath": 862017116176384.1,
+    "LastConfirmedNew": 0,
+    "LastDeathNew": 0,
+    "DaysToDouble": 531.4151100439254,
+    "DaysToDoubleDeath": 844.2491347606996,
     "Last2WeeksConfirmedDelta": 122,
     "Recovered": null
   },
@@ -2515,11 +2520,11 @@
     "Population": 11508,
     "LastConfirmed": 2006,
     "LastDeath": 41,
-    "LastConfirmedNew": 4,
+    "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 1686.3953762144347,
+    "DaysToDouble": 1177.0769560365734,
     "DaysToDoubleDeath": -862017116176384.1,
-    "Last2WeeksConfirmedDelta": 20,
+    "Last2WeeksConfirmedDelta": 24,
     "Recovered": null
   },
   "05019": {
@@ -2536,11 +2541,11 @@
     "Population": 22995,
     "LastConfirmed": 3359,
     "LastDeath": 61,
-    "LastConfirmedNew": 12,
+    "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 790.0540845943241,
-    "DaysToDoubleDeath": 234.8329180865443,
-    "Last2WeeksConfirmedDelta": 65,
+    "DaysToDouble": 545.308528887887,
+    "DaysToDoubleDeath": 195.6940984054136,
+    "Last2WeeksConfirmedDelta": 73,
     "Recovered": null
   },
   "05023": {
@@ -2557,11 +2562,11 @@
     "Population": 25970,
     "LastConfirmed": 3918,
     "LastDeath": 94,
-    "LastConfirmedNew": 9,
+    "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 531.7954487620201,
+    "DaysToDouble": 494.62635701146024,
     "DaysToDoubleDeath": 574678077450922.6,
-    "Last2WeeksConfirmedDelta": 114,
+    "Last2WeeksConfirmedDelta": 109,
     "Recovered": null
   },
   "05025": {
@@ -2574,11 +2579,11 @@
     "Population": 8689,
     "LastConfirmed": 1439,
     "LastDeath": 33,
-    "LastConfirmedNew": 3,
+    "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 1988.4406059388593,
+    "DaysToDouble": 1266.65895857072,
     "DaysToDoubleDeath": null,
-    "Last2WeeksConfirmedDelta": 5,
+    "Last2WeeksConfirmedDelta": 7,
     "Recovered": null
   },
   "05027": {
@@ -2595,11 +2600,11 @@
     "Population": 24552,
     "LastConfirmed": 3410,
     "LastDeath": 74,
-    "LastConfirmedNew": 1,
+    "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 1888.6630974982447,
+    "DaysToDouble": 2754.941910054031,
     "DaysToDoubleDeath": null,
-    "Last2WeeksConfirmedDelta": 20,
+    "Last2WeeksConfirmedDelta": 17,
     "Recovered": null
   },
   "05029": {
@@ -2616,11 +2621,11 @@
     "Population": 21273,
     "LastConfirmed": 3234,
     "LastDeath": 46,
-    "LastConfirmedNew": 12,
+    "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 471.70343656229653,
+    "DaysToDouble": 484.039948055385,
     "DaysToDoubleDeath": null,
-    "Last2WeeksConfirmedDelta": 46,
+    "Last2WeeksConfirmedDelta": 56,
     "Recovered": null
   },
   "05031": {
@@ -2637,11 +2642,11 @@
     "Population": 96443,
     "LastConfirmed": 22048,
     "LastDeath": 248,
-    "LastConfirmedNew": 20,
+    "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 656.5953151363159,
-    "DaysToDoubleDeath": 1601.1678088539575,
-    "Last2WeeksConfirmedDelta": 368,
+    "DaysToDouble": 767.5011576079797,
+    "DaysToDoubleDeath": null,
+    "Last2WeeksConfirmedDelta": 359,
     "Recovered": null
   },
   "05033": {
@@ -2658,11 +2663,11 @@
     "Population": 61948,
     "LastConfirmed": 11004,
     "LastDeath": 179,
-    "LastConfirmedNew": 14,
+    "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 1138.475251791515,
+    "DaysToDouble": 1217.9241091196702,
     "DaysToDoubleDeath": null,
-    "Last2WeeksConfirmedDelta": 122,
+    "Last2WeeksConfirmedDelta": 123,
     "Recovered": null
   },
   "05035": {
@@ -2679,11 +2684,11 @@
     "Population": 50902,
     "LastConfirmed": 8979,
     "LastDeath": 180,
-    "LastConfirmedNew": 13,
+    "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 863.438846852106,
-    "DaysToDoubleDeath": 696.7497438418751,
-    "Last2WeeksConfirmedDelta": 124,
+    "DaysToDouble": 827.4680997641482,
+    "DaysToDoubleDeath": 1161.2495730688534,
+    "Last2WeeksConfirmedDelta": 125,
     "Recovered": null
   },
   "05037": {
@@ -2700,11 +2705,11 @@
     "Population": 17870,
     "LastConfirmed": 3031,
     "LastDeath": 66,
-    "LastConfirmedNew": 3,
+    "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 2936.3509940414774,
+    "DaysToDouble": 3457.3646353389586,
     "DaysToDoubleDeath": 211.86787274952786,
-    "Last2WeeksConfirmedDelta": 31,
+    "Last2WeeksConfirmedDelta": 32,
     "Recovered": null
   },
   "05041": {
@@ -2721,11 +2726,11 @@
     "Population": 13008,
     "LastConfirmed": 1937,
     "LastDeath": 33,
-    "LastConfirmedNew": 1,
+    "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 764.8169047600538,
+    "DaysToDouble": 749.8116439494071,
     "DaysToDoubleDeath": null,
-    "Last2WeeksConfirmedDelta": 19,
+    "Last2WeeksConfirmedDelta": 20,
     "Recovered": null
   },
   "05043": {
@@ -2744,9 +2749,9 @@
     "LastDeath": 55,
     "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 2037.9016555946264,
+    "DaysToDouble": 2594.351958749856,
     "DaysToDoubleDeath": 1724034232352768.2,
-    "Last2WeeksConfirmedDelta": 37,
+    "Last2WeeksConfirmedDelta": 33,
     "Recovered": null
   },
   "05045": {
@@ -2763,11 +2768,11 @@
     "Population": 113237,
     "LastConfirmed": 20174,
     "LastDeath": 227,
-    "LastConfirmedNew": 41,
+    "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 444.8822748427329,
-    "DaysToDoubleDeath": 732.655379751806,
-    "Last2WeeksConfirmedDelta": 455,
+    "DaysToDouble": 481.1132305806143,
+    "DaysToDoubleDeath": 879.1864557024661,
+    "Last2WeeksConfirmedDelta": 474,
     "Recovered": null
   },
   "05051": {
@@ -2784,11 +2789,11 @@
     "Population": 96024,
     "LastConfirmed": 16157,
     "LastDeath": 399,
-    "LastConfirmedNew": 4,
+    "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 1674.5004264716615,
-    "DaysToDoubleDeath": 1289.022030349598,
-    "Last2WeeksConfirmedDelta": 121,
+    "DaysToDouble": 2074.6489203506976,
+    "DaysToDoubleDeath": 1546.826436420443,
+    "Last2WeeksConfirmedDelta": 119,
     "Recovered": null
   },
   "05053": {
@@ -2801,11 +2806,11 @@
     "Population": 17853,
     "LastConfirmed": 2903,
     "LastDeath": 50,
-    "LastConfirmedNew": 1,
+    "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 1875.2766261837592,
+    "DaysToDouble": 2084.6419830886907,
     "DaysToDoubleDeath": null,
-    "Last2WeeksConfirmedDelta": 19,
+    "Last2WeeksConfirmedDelta": 17,
     "Recovered": null
   },
   "05055": {
@@ -2822,11 +2827,11 @@
     "Population": 42090,
     "LastConfirmed": 10342,
     "LastDeath": 125,
-    "LastConfirmedNew": 14,
-    "LastDeathNew": 1,
-    "DaysToDouble": 925.764226465766,
-    "DaysToDoubleDeath": null,
-    "Last2WeeksConfirmedDelta": 175,
+    "LastConfirmedNew": 0,
+    "LastDeathNew": 0,
+    "DaysToDouble": 874.2031840401984,
+    "DaysToDoubleDeath": 805.432693554937,
+    "Last2WeeksConfirmedDelta": 170,
     "Recovered": null
   },
   "05057": {
@@ -2845,9 +2850,9 @@
     "LastDeath": 41,
     "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 842.3889295224889,
+    "DaysToDouble": 807.5619947982904,
     "DaysToDoubleDeath": -862017116176384.1,
-    "Last2WeeksConfirmedDelta": 35,
+    "Last2WeeksConfirmedDelta": 32,
     "Recovered": null
   },
   "05059": {
@@ -2864,11 +2869,11 @@
     "Population": 32923,
     "LastConfirmed": 7751,
     "LastDeath": 109,
-    "LastConfirmedNew": 6,
-    "LastDeathNew": 2,
-    "DaysToDouble": 1402.7448300568863,
-    "DaysToDoubleDeath": -1724034232352768.2,
-    "Last2WeeksConfirmedDelta": 69,
+    "LastConfirmedNew": 0,
+    "LastDeathNew": 0,
+    "DaysToDouble": 1564.603966527938,
+    "DaysToDoubleDeath": 349.3361951725469,
+    "Last2WeeksConfirmedDelta": 66,
     "Recovered": null
   },
   "05063": {
@@ -2885,11 +2890,11 @@
     "Population": 36647,
     "LastConfirmed": 6788,
     "LastDeath": 161,
-    "LastConfirmedNew": 13,
-    "LastDeathNew": 1,
-    "DaysToDouble": 222.9089914107482,
-    "DaysToDoubleDeath": -862017116176384.1,
-    "Last2WeeksConfirmedDelta": 341,
+    "LastConfirmedNew": 0,
+    "LastDeathNew": 0,
+    "DaysToDouble": 258.7888422966635,
+    "DaysToDoubleDeath": 1038.3311175022282,
+    "Last2WeeksConfirmedDelta": 332,
     "Recovered": null
   },
   "05069": {
@@ -2906,11 +2911,11 @@
     "Population": 77435,
     "LastConfirmed": 12443,
     "LastDeath": 228,
-    "LastConfirmedNew": 8,
-    "LastDeathNew": 1,
-    "DaysToDouble": 2096.3736173345933,
-    "DaysToDoubleDeath": 1465.310759501121,
-    "Last2WeeksConfirmedDelta": 66,
+    "LastConfirmedNew": 0,
+    "LastDeathNew": 0,
+    "DaysToDouble": 1993.4994559167687,
+    "DaysToDoubleDeath": 1471.7801436509938,
+    "Last2WeeksConfirmedDelta": 64,
     "Recovered": null
   },
   "05075": {
@@ -2927,11 +2932,11 @@
     "Population": 17415,
     "LastConfirmed": 3462,
     "LastDeath": 60,
-    "LastConfirmedNew": 3,
+    "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 322.5309066598497,
-    "DaysToDoubleDeath": 192.45933667642714,
-    "Last2WeeksConfirmedDelta": 127,
+    "DaysToDouble": 445.82136234828215,
+    "DaysToDoubleDeath": 230.95120401169711,
+    "Last2WeeksConfirmedDelta": 119,
     "Recovered": null
   },
   "05079": {
@@ -2944,11 +2949,11 @@
     "Population": 14134,
     "LastConfirmed": 3675,
     "LastDeath": 57,
-    "LastConfirmedNew": 2,
+    "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 2093.7254430411867,
+    "DaysToDouble": 1780.8277831994078,
     "DaysToDoubleDeath": 1724034232352768.2,
-    "Last2WeeksConfirmedDelta": 13,
+    "Last2WeeksConfirmedDelta": 14,
     "Recovered": null
   },
   "05109": {
@@ -2963,9 +2968,9 @@
     "LastDeath": 37,
     "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 1025.8756588171912,
-    "DaysToDoubleDeath": 118.0586842560056,
-    "Last2WeeksConfirmedDelta": 28,
+    "DaysToDouble": 1472.2817678991096,
+    "DaysToDoubleDeath": 118.05868425599753,
+    "Last2WeeksConfirmedDelta": 24,
     "Recovered": null
   },
   "05111": {
@@ -2978,11 +2983,11 @@
     "Population": 24583,
     "LastConfirmed": 5066,
     "LastDeath": 102,
-    "LastConfirmedNew": 12,
+    "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 539.810556607485,
+    "DaysToDouble": 523.4519640431013,
     "DaysToDoubleDeath": -1724034232352768.2,
-    "Last2WeeksConfirmedDelta": 86,
+    "Last2WeeksConfirmedDelta": 89,
     "Recovered": null
   },
   "05113": {
@@ -2999,11 +3004,11 @@
     "Population": 20662,
     "LastConfirmed": 3007,
     "LastDeath": 112,
-    "LastConfirmedNew": 2,
+    "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 2330.2003966908346,
+    "DaysToDouble": 1618.8251994854418,
     "DaysToDoubleDeath": -862017116176384.1,
-    "Last2WeeksConfirmedDelta": 10,
+    "Last2WeeksConfirmedDelta": 11,
     "Recovered": null
   },
   "05115": {
@@ -3020,11 +3025,11 @@
     "Population": 61754,
     "LastConfirmed": 12229,
     "LastDeath": 158,
-    "LastConfirmedNew": 18,
+    "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 631.4070293178221,
-    "DaysToDoubleDeath": -615.2353966476669,
-    "Last2WeeksConfirmedDelta": 175,
+    "DaysToDouble": 644.4654872889693,
+    "DaysToDoubleDeath": -512.6961638732997,
+    "Last2WeeksConfirmedDelta": 181,
     "Recovered": null
   },
   "05119": {
@@ -3041,11 +3046,11 @@
     "Population": 382748,
     "LastConfirmed": 59976,
     "LastDeath": 934,
-    "LastConfirmedNew": 85,
-    "LastDeathNew": 1,
-    "DaysToDouble": 791.7086149942481,
-    "DaysToDoubleDeath": 785.2203057804937,
-    "Last2WeeksConfirmedDelta": 803,
+    "LastConfirmedNew": 0,
+    "LastDeathNew": 0,
+    "DaysToDouble": 753.5670751206973,
+    "DaysToDoubleDeath": 821.7559466793415,
+    "Last2WeeksConfirmedDelta": 805,
     "Recovered": null
   },
   "05125": {
@@ -3062,11 +3067,11 @@
     "Population": 107118,
     "LastConfirmed": 18877,
     "LastDeath": 246,
-    "LastConfirmedNew": 18,
+    "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 968.4041781961076,
-    "DaysToDoubleDeath": -1594.6984263291208,
-    "Last2WeeksConfirmedDelta": 231,
+    "DaysToDouble": 1029.7318412034138,
+    "DaysToDoubleDeath": null,
+    "Last2WeeksConfirmedDelta": 227,
     "Recovered": null
   },
   "05129": {
@@ -3079,11 +3084,11 @@
     "Population": 8195,
     "LastConfirmed": 1306,
     "LastDeath": 25,
-    "LastConfirmedNew": 2,
+    "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 322.249410647114,
-    "DaysToDoubleDeath": 158.47764817117536,
-    "Last2WeeksConfirmedDelta": 42,
+    "DaysToDouble": 359.7898226611904,
+    "DaysToDoubleDeath": 95.08658890270523,
+    "Last2WeeksConfirmedDelta": 40,
     "Recovered": null
   },
   "05131": {
@@ -3100,11 +3105,11 @@
     "Population": 125744,
     "LastConfirmed": 23069,
     "LastDeath": 393,
-    "LastConfirmedNew": 28,
-    "LastDeathNew": 1,
-    "DaysToDouble": 633.9779144670381,
-    "DaysToDoubleDeath": 948.266693733652,
-    "Last2WeeksConfirmedDelta": 430,
+    "LastConfirmedNew": 0,
+    "LastDeathNew": 0,
+    "DaysToDouble": 701.7922686143025,
+    "DaysToDoubleDeath": 690.7498383442909,
+    "Last2WeeksConfirmedDelta": 427,
     "Recovered": null
   },
   "05133": {
@@ -3117,11 +3122,11 @@
     "Population": 17058,
     "LastConfirmed": 4064,
     "LastDeath": 60,
-    "LastConfirmedNew": 9,
+    "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 924.0228018846077,
-    "DaysToDoubleDeath": 384.91867335281125,
-    "Last2WeeksConfirmedDelta": 72,
+    "DaysToDouble": 660.5053546973912,
+    "DaysToDoubleDeath": 1724034232352768.2,
+    "Last2WeeksConfirmedDelta": 70,
     "Recovered": null
   },
   "05137": {
@@ -3138,11 +3143,11 @@
     "Population": 12394,
     "LastConfirmed": 1893,
     "LastDeath": 45,
-    "LastConfirmedNew": 12,
+    "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 192.1767331372044,
-    "DaysToDoubleDeath": 287.87501365270595,
-    "Last2WeeksConfirmedDelta": 113,
+    "DaysToDouble": 231.550742287917,
+    "DaysToDoubleDeath": 172.72500819160626,
+    "Last2WeeksConfirmedDelta": 112,
     "Recovered": null
   },
   "05139": {
@@ -3159,11 +3164,11 @@
     "Population": 41639,
     "LastConfirmed": 5930,
     "LastDeath": 142,
-    "LastConfirmedNew": 5,
+    "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 572.7288540807498,
-    "DaysToDoubleDeath": 549.2475398702735,
-    "Last2WeeksConfirmedDelta": 92,
+    "DaysToDouble": 670.8849871524081,
+    "DaysToDoubleDeath": 457.7062832253737,
+    "Last2WeeksConfirmedDelta": 91,
     "Recovered": null
   },
   "05141": {
@@ -3180,11 +3185,11 @@
     "Population": 17295,
     "LastConfirmed": 2275,
     "LastDeath": 44,
-    "LastConfirmedNew": 4,
+    "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 563.0917312451446,
+    "DaysToDouble": 666.5612534747894,
     "DaysToDoubleDeath": 1724034232352768.2,
-    "Last2WeeksConfirmedDelta": 55,
+    "Last2WeeksConfirmedDelta": 51,
     "Recovered": null
   },
   "05143": {
@@ -3201,11 +3206,11 @@
     "Population": 203065,
     "LastConfirmed": 45518,
     "LastDeath": 493,
-    "LastConfirmedNew": 42,
-    "LastDeathNew": 2,
-    "DaysToDouble": 726.0811394163309,
-    "DaysToDoubleDeath": 862017116176384.1,
-    "Last2WeeksConfirmedDelta": 639,
+    "LastConfirmedNew": 0,
+    "LastDeathNew": 0,
+    "DaysToDouble": 815.051922561145,
+    "DaysToDoubleDeath": 1591.463735037184,
+    "Last2WeeksConfirmedDelta": 623,
     "Recovered": null
   },
   "05145": {
@@ -3222,11 +3227,11 @@
     "Population": 77076,
     "LastConfirmed": 13771,
     "LastDeath": 206,
-    "LastConfirmedNew": 14,
-    "LastDeathNew": 2,
-    "DaysToDouble": 439.1020491699129,
-    "DaysToDoubleDeath": 1316.5148957307547,
-    "Last2WeeksConfirmedDelta": 349,
+    "LastConfirmedNew": 0,
+    "LastDeathNew": 0,
+    "DaysToDouble": 514.8335783681152,
+    "DaysToDoubleDeath": 663.1055430492913,
+    "Last2WeeksConfirmedDelta": 322,
     "Recovered": null
   },
   "05147": {
@@ -3241,9 +3246,9 @@
     "LastDeath": 24,
     "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 757.9168723028979,
+    "DaysToDouble": 846.8070596376218,
     "DaysToDoubleDeath": null,
-    "Last2WeeksConfirmedDelta": 29,
+    "Last2WeeksConfirmedDelta": 18,
     "Recovered": null
   },
   "05001": {
@@ -3260,10 +3265,10 @@
     "Population": 19019,
     "LastConfirmed": 3530,
     "LastDeath": 60,
-    "LastConfirmedNew": 2,
+    "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 2358.547611215681,
-    "DaysToDoubleDeath": 384.91867335281125,
+    "DaysToDouble": 1800.6536112956817,
+    "DaysToDoubleDeath": 230.95120401166616,
     "Last2WeeksConfirmedDelta": 20,
     "Recovered": null
   },
@@ -3283,9 +3288,9 @@
     "LastDeath": 49,
     "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 2228.640736486954,
-    "DaysToDoubleDeath": -320.22310592087405,
-    "Last2WeeksConfirmedDelta": 21,
+    "DaysToDouble": 2152.3969966772374,
+    "DaysToDoubleDeath": -192.13386355251015,
+    "Last2WeeksConfirmedDelta": 19,
     "Recovered": null
   },
   "05005": {
@@ -3302,11 +3307,11 @@
     "Population": 41513,
     "LastConfirmed": 6113,
     "LastDeath": 186,
-    "LastConfirmedNew": 28,
+    "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 474.08144620526235,
+    "DaysToDouble": 455.44655703828573,
     "DaysToDoubleDeath": null,
-    "Last2WeeksConfirmedDelta": 155,
+    "Last2WeeksConfirmedDelta": 169,
     "Recovered": null
   },
   "05013": {
@@ -3321,7 +3326,7 @@
     "LastDeath": 8,
     "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 726.8922098882788,
+    "DaysToDouble": 1294.233048358912,
     "DaysToDoubleDeath": null,
     "Last2WeeksConfirmedDelta": 7,
     "Recovered": null
@@ -3340,11 +3345,11 @@
     "Population": 27446,
     "LastConfirmed": 4379,
     "LastDeath": 75,
-    "LastConfirmedNew": 5,
+    "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 822.0814010706924,
+    "DaysToDouble": 784.660979633787,
     "DaysToDoubleDeath": 1724034232352768.2,
-    "Last2WeeksConfirmedDelta": 54,
+    "Last2WeeksConfirmedDelta": 56,
     "Recovered": null
   },
   "05017": {
@@ -3363,7 +3368,7 @@
     "LastDeath": 47,
     "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 1791.8020716459448,
+    "DaysToDouble": 2319.0682740093366,
     "DaysToDoubleDeath": 862017116176384.1,
     "Last2WeeksConfirmedDelta": 9,
     "Recovered": null
@@ -3382,11 +3387,11 @@
     "Population": 16083,
     "LastConfirmed": 2793,
     "LastDeath": 74,
-    "LastConfirmedNew": 7,
+    "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 401.30223719574496,
+    "DaysToDouble": 464.90882632045566,
     "DaysToDoubleDeath": null,
-    "Last2WeeksConfirmedDelta": 59,
+    "Last2WeeksConfirmedDelta": 61,
     "Recovered": null
   },
   "05039": {
@@ -3403,11 +3408,11 @@
     "Population": 8116,
     "LastConfirmed": 1144,
     "LastDeath": 19,
-    "LastConfirmedNew": 1,
+    "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 7391.258963495604,
+    "DaysToDouble": 2772.6313696381467,
     "DaysToDoubleDeath": null,
-    "Last2WeeksConfirmedDelta": 3,
+    "Last2WeeksConfirmedDelta": 4,
     "Recovered": null
   },
   "05047": {
@@ -3424,9 +3429,9 @@
     "Population": 18125,
     "LastConfirmed": 2799,
     "LastDeath": 55,
-    "LastConfirmedNew": 5,
+    "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 635.5860923753272,
+    "DaysToDouble": 622.1155773533557,
     "DaysToDoubleDeath": 1724034232352768.2,
     "Last2WeeksConfirmedDelta": 56,
     "Recovered": null
@@ -3445,11 +3450,11 @@
     "Population": 12245,
     "LastConfirmed": 1857,
     "LastDeath": 67,
-    "LastConfirmedNew": 5,
+    "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 130.9420243705004,
-    "DaysToDoubleDeath": 258.12314577648715,
-    "Last2WeeksConfirmedDelta": 125,
+    "DaysToDouble": 169.52712137969073,
+    "DaysToDoubleDeath": 430.20524296102667,
+    "Last2WeeksConfirmedDelta": 122,
     "Recovered": null
   },
   "05061": {
@@ -3466,11 +3471,11 @@
     "Population": 13789,
     "LastConfirmed": 2517,
     "LastDeath": 38,
-    "LastConfirmedNew": 2,
+    "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 695.2603927906968,
+    "DaysToDouble": 886.0193964802635,
     "DaysToDoubleDeath": null,
-    "Last2WeeksConfirmedDelta": 46,
+    "Last2WeeksConfirmedDelta": 42,
     "Recovered": null
   },
   "05065": {
@@ -3487,11 +3492,11 @@
     "Population": 13696,
     "LastConfirmed": 2691,
     "LastDeath": 55,
-    "LastConfirmedNew": 9,
+    "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 220.16565382844425,
+    "DaysToDouble": 266.8909069423092,
     "DaysToDoubleDeath": 1724034232352768.2,
-    "Last2WeeksConfirmedDelta": 134,
+    "Last2WeeksConfirmedDelta": 133,
     "Recovered": null
   },
   "05067": {
@@ -3504,11 +3509,11 @@
     "Population": 17997,
     "LastConfirmed": 4516,
     "LastDeath": 46,
-    "LastConfirmedNew": 9,
+    "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 370.33264970097935,
+    "DaysToDouble": 419.1010162356136,
     "DaysToDoubleDeath": null,
-    "Last2WeeksConfirmedDelta": 144,
+    "Last2WeeksConfirmedDelta": 127,
     "Recovered": null
   },
   "05071": {
@@ -3525,11 +3530,11 @@
     "Population": 25540,
     "LastConfirmed": 4666,
     "LastDeath": 58,
-    "LastConfirmedNew": 2,
+    "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 1738.7057666078451,
+    "DaysToDouble": 1739.3947775210934,
     "DaysToDoubleDeath": 1724034232352768.2,
-    "Last2WeeksConfirmedDelta": 19,
+    "Last2WeeksConfirmedDelta": 21,
     "Recovered": null
   },
   "05073": {
@@ -3542,9 +3547,9 @@
     "Population": 7645,
     "LastConfirmed": 862,
     "LastDeath": 28,
-    "LastConfirmedNew": 1,
+    "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 1517.4417108287091,
+    "DaysToDouble": 1518.2430896764768,
     "DaysToDoubleDeath": -1724034232352768.2,
     "Last2WeeksConfirmedDelta": 9,
     "Recovered": null
@@ -3559,11 +3564,11 @@
     "Population": 10424,
     "LastConfirmed": 2166,
     "LastDeath": 52,
-    "LastConfirmedNew": 6,
+    "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 8382.367334007737,
+    "DaysToDouble": 1748.447614296241,
     "DaysToDoubleDeath": 1724034232352768.2,
-    "Last2WeeksConfirmedDelta": 9,
+    "Last2WeeksConfirmedDelta": 13,
     "Recovered": null
   },
   "05081": {
@@ -3582,9 +3587,9 @@
     "LastDeath": 80,
     "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 1174.253242256645,
+    "DaysToDouble": 1468.6791447131504,
     "DaysToDoubleDeath": -1724034232352768.2,
-    "Last2WeeksConfirmedDelta": 31,
+    "Last2WeeksConfirmedDelta": 22,
     "Recovered": null
   },
   "05083": {
@@ -3603,9 +3608,9 @@
     "LastDeath": 51,
     "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 827.7665812326344,
-    "DaysToDoubleDeath": 196.01561717438756,
-    "Last2WeeksConfirmedDelta": 64,
+    "DaysToDouble": 1029.7461281365981,
+    "DaysToDoubleDeath": 163.346347645357,
+    "Last2WeeksConfirmedDelta": 55,
     "Recovered": null
   },
   "05085": {
@@ -3618,11 +3623,11 @@
     "Population": 68356,
     "LastConfirmed": 12295,
     "LastDeath": 176,
-    "LastConfirmedNew": 13,
+    "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 542.1548018312916,
-    "DaysToDoubleDeath": 681.223205924154,
-    "Last2WeeksConfirmedDelta": 229,
+    "DaysToDouble": 629.1568800407582,
+    "DaysToDoubleDeath": 1135.3720098732908,
+    "Last2WeeksConfirmedDelta": 231,
     "Recovered": null
   },
   "05087": {
@@ -3635,11 +3640,11 @@
     "Population": 15717,
     "LastConfirmed": 2604,
     "LastDeath": 40,
-    "LastConfirmedNew": 10,
+    "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 188.4724477099948,
+    "DaysToDouble": 190.04852011470922,
     "DaysToDoubleDeath": 1724034232352768.2,
-    "Last2WeeksConfirmedDelta": 99,
+    "Last2WeeksConfirmedDelta": 106,
     "Recovered": null
   },
   "05089": {
@@ -3652,11 +3657,11 @@
     "Population": 16653,
     "LastConfirmed": 2271,
     "LastDeath": 62,
-    "LastConfirmedNew": 7,
+    "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 330.55564173779703,
-    "DaysToDoubleDeath": 238.7146292387305,
-    "Last2WeeksConfirmedDelta": 105,
+    "DaysToDouble": 312.5125809477489,
+    "DaysToDoubleDeath": 397.8577153978291,
+    "Last2WeeksConfirmedDelta": 107,
     "Recovered": null
   },
   "05091": {
@@ -3673,11 +3678,11 @@
     "Population": 43462,
     "LastConfirmed": 6622,
     "LastDeath": 143,
-    "LastConfirmedNew": 6,
-    "LastDeathNew": 1,
-    "DaysToDouble": 1321.7904540390473,
-    "DaysToDoubleDeath": 915.4125664502614,
-    "Last2WeeksConfirmedDelta": 83,
+    "LastConfirmedNew": 0,
+    "LastDeathNew": 0,
+    "DaysToDouble": 1322.600829871522,
+    "DaysToDoubleDeath": 344.18547111902814,
+    "Last2WeeksConfirmedDelta": 74,
     "Recovered": null
   },
   "05093": {
@@ -3694,11 +3699,11 @@
     "Population": 46480,
     "LastConfirmed": 8603,
     "LastDeath": 148,
-    "LastConfirmedNew": 7,
+    "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 512.858202090352,
-    "DaysToDoubleDeath": 189.54602485983733,
-    "Last2WeeksConfirmedDelta": 209,
+    "DaysToDouble": 558.2742044450939,
+    "DaysToDoubleDeath": 237.33663026545497,
+    "Last2WeeksConfirmedDelta": 201,
     "Recovered": null
   },
   "05095": {
@@ -3713,7 +3718,7 @@
     "LastDeath": 25,
     "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 728.4470779931146,
+    "DaysToDouble": 1166.669731697873,
     "DaysToDoubleDeath": null,
     "Last2WeeksConfirmedDelta": 7,
     "Recovered": null
@@ -3730,9 +3735,9 @@
     "LastDeath": 46,
     "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 2489.6292389643118,
+    "DaysToDouble": null,
     "DaysToDoubleDeath": null,
-    "Last2WeeksConfirmedDelta": 17,
+    "Last2WeeksConfirmedDelta": 16,
     "Recovered": null
   },
   "05099": {
@@ -3745,11 +3750,11 @@
     "Population": 8997,
     "LastConfirmed": 1404,
     "LastDeath": 40,
-    "LastConfirmedNew": 1,
+    "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 937.2309855486864,
+    "DaysToDouble": 1236.4245767887026,
     "DaysToDoubleDeath": 1724034232352768.2,
-    "Last2WeeksConfirmedDelta": 23,
+    "Last2WeeksConfirmedDelta": 20,
     "Recovered": null
   },
   "05101": {
@@ -3762,11 +3767,11 @@
     "Population": 8330,
     "LastConfirmed": 1208,
     "LastDeath": 39,
-    "LastConfirmedNew": 4,
+    "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 629.584986635487,
+    "DaysToDouble": 506.9916140403038,
     "DaysToDoubleDeath": -1724034232352768.2,
-    "Last2WeeksConfirmedDelta": 30,
+    "Last2WeeksConfirmedDelta": 33,
     "Recovered": null
   },
   "05103": {
@@ -3783,11 +3788,11 @@
     "Population": 26120,
     "LastConfirmed": 3452,
     "LastDeath": 86,
-    "LastConfirmedNew": 1,
-    "LastDeathNew": 1,
-    "DaysToDouble": 1060.9982830399695,
-    "DaysToDoubleDeath": -1724034232352768.2,
-    "Last2WeeksConfirmedDelta": 32,
+    "LastConfirmedNew": 0,
+    "LastDeathNew": 0,
+    "DaysToDouble": 1028.7878600584625,
+    "DaysToDoubleDeath": 553.125144596903,
+    "Last2WeeksConfirmedDelta": 33,
     "Recovered": null
   },
   "05105": {
@@ -3800,11 +3805,11 @@
     "Population": 10445,
     "LastConfirmed": 1577,
     "LastDeath": 22,
-    "LastConfirmedNew": 3,
+    "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 482.6645718520504,
+    "DaysToDouble": 634.9045289613078,
     "DaysToDoubleDeath": 862017116176384.1,
-    "Last2WeeksConfirmedDelta": 40,
+    "Last2WeeksConfirmedDelta": 38,
     "Recovered": null
   },
   "05107": {
@@ -3823,9 +3828,9 @@
     "LastDeath": 77,
     "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 7835.725385740419,
+    "DaysToDouble": 7836.331889580169,
     "DaysToDoubleDeath": -1724034232352768.2,
-    "Last2WeeksConfirmedDelta": 14,
+    "Last2WeeksConfirmedDelta": 12,
     "Recovered": null
   },
   "05117": {
@@ -3840,9 +3845,9 @@
     "LastDeath": 29,
     "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 8329.318201056793,
+    "DaysToDouble": 4997.59092061476,
     "DaysToDoubleDeath": null,
-    "Last2WeeksConfirmedDelta": 6,
+    "Last2WeeksConfirmedDelta": 5,
     "Recovered": null
   },
   "05121": {
@@ -3859,11 +3864,11 @@
     "Population": 17969,
     "LastConfirmed": 3426,
     "LastDeath": 64,
-    "LastConfirmedNew": 2,
+    "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 529.4680342038004,
-    "DaysToDoubleDeath": 246.4780433278858,
-    "Last2WeeksConfirmedDelta": 59,
+    "DaysToDouble": 597.0210044377495,
+    "DaysToDoubleDeath": 205.3983694399244,
+    "Last2WeeksConfirmedDelta": 54,
     "Recovered": null
   },
   "05127": {
@@ -3880,11 +3885,11 @@
     "Population": 11233,
     "LastConfirmed": 1754,
     "LastDeath": 31,
-    "LastConfirmedNew": 2,
+    "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 1211.9665662683933,
-    "DaysToDoubleDeath": 118.37893214885361,
-    "Last2WeeksConfirmedDelta": 15,
+    "DaysToDouble": 1095.790224246497,
+    "DaysToDoubleDeath": 98.64911012403451,
+    "Last2WeeksConfirmedDelta": 16,
     "Recovered": null
   },
   "05135": {
@@ -3897,11 +3902,11 @@
     "Population": 17264,
     "LastConfirmed": 3104,
     "LastDeath": 70,
-    "LastConfirmedNew": 16,
+    "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 241.2323447005849,
-    "DaysToDoubleDeath": -456.08319769200176,
-    "Last2WeeksConfirmedDelta": 137,
+    "DaysToDouble": 212.8645849861335,
+    "DaysToDoubleDeath": -1724034232352768.2,
+    "Last2WeeksConfirmedDelta": 146,
     "Recovered": null
   },
   "05123": {
@@ -3918,11 +3923,11 @@
     "Population": 28258,
     "LastConfirmed": 4878,
     "LastDeath": 69,
-    "LastConfirmedNew": 1,
+    "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 1817.9675248195322,
+    "DaysToDouble": 1630.3103441632022,
     "DaysToDoubleDeath": 1724034232352768.2,
-    "Last2WeeksConfirmedDelta": 20,
+    "Last2WeeksConfirmedDelta": 19,
     "Recovered": null
   },
   "05149": {
@@ -3939,11 +3944,11 @@
     "Population": 22185,
     "LastConfirmed": 4762,
     "LastDeath": 81,
-    "LastConfirmedNew": 7,
+    "LastConfirmedNew": 0,
     "LastDeathNew": 0,
-    "DaysToDouble": 814.2918588790573,
-    "DaysToDoubleDeath": 312.46673071056296,
-    "Last2WeeksConfirmedDelta": 53,
+    "DaysToDouble": 808.3563595751792,
+    "DaysToDoubleDeath": 520.7778845174162,
+    "Last2WeeksConfirmedDelta": 58,
     "Recovered": null
   }
 }
